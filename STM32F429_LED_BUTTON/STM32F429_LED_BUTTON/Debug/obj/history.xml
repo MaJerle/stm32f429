@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<history>
+   <processor signature="arm-none-eabi-gcc noversion nomachine -mcpu=cortex-m4 -mthumb -Wall -ffunction-sections -g -O0 -c -DSTM32F407VG -DSTM32F4XX -DUSE_STDPERIPH_DRIVER -D__ASSEMBLY__ -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\majerle.eu\STM32F429_LED_BUTTON\tm -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\majerle.eu\STM32F429_LED_BUTTON\cmsis_boot -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\majerle.eu\STM32F429_LED_BUTTON -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\majerle.eu\STM32F429_LED_BUTTON\cmsis -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\majerle.eu -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\majerle.eu\STM32F429_LED_BUTTON\cmsis_lib -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\majerle.eu\STM32F429_LED_BUTTON\cmsis_lib\include">
+      <target file="tm_stm32f4_discovery.o" lastModified="14538f33665">
+         <source file="..\..\..\tm\tm_stm32f4_discovery.c" lastModified="14538f1d317"/>
+      </target>
+      <target file="stm32f4xx_rcc.o" lastModified="14538f3349c">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_rcc.c" lastModified="14538f04ba8"/>
+      </target>
+      <target file="system_stm32f4xx.o" lastModified="14538f33612">
+         <source file="..\..\..\cmsis_boot\system_stm32f4xx.c" lastModified="14538f04bc3"/>
+      </target>
+      <target file="tm_stm32f4_disco.o" lastModified="1453914df6c">
+         <source file="..\..\..\tm\tm_stm32f4_disco.c" lastModified="1453914da9c"/>
+      </target>
+      <target file="stm32f4xx_gpio.o" lastModified="14538f33566">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_gpio.c" lastModified="14538f055e9"/>
+      </target>
+      <target file="main.o" lastModified="1453914dfff">
+         <source file="..\..\..\main.c" lastModified="14539145d8a"/>
+      </target>
+      <target file="startup_stm32f4xx.o" lastModified="14538f332f9">
+         <source file="..\..\..\cmsis_boot\startup\startup_stm32f4xx.c" lastModified="14538f04bb5"/>
+      </target>
+   </processor>
+</history>

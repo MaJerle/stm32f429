@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dependencies>
+   <includePath signature="/I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\majerle.eu\STM32F429_LED_BUTTON\tm /I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\majerle.eu\STM32F429_LED_BUTTON\cmsis_boot /I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\majerle.eu\STM32F429_LED_BUTTON /I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\majerle.eu\STM32F429_LED_BUTTON\cmsis /I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\majerle.eu /I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\majerle.eu\STM32F429_LED_BUTTON\cmsis_lib /I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\majerle.eu\STM32F429_LED_BUTTON\cmsis_lib\include">
+      <source file="..\..\..\cmsis_lib\include\stm32f4xx_gpio.h" lastModified="14538f055e7">
+         <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
+      </source>
+      <source file="..\..\..\cmsis\core_cmFunc.h" lastModified="14538f04fbb">
+      </source>
+      <source file="..\..\..\cmsis\core_cmInstr.h" lastModified="14538f04fbd">
+      </source>
+      <source file="..\..\..\cmsis_lib\source\stm32f4xx_gpio.c" lastModified="14538f055e9">
+         <include file="..\..\..\cmsis_lib\include\stm32f4xx_gpio.h"/>
+         <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
+      </source>
+      <source file="..\..\..\cmsis_boot\startup\startup_stm32f4xx.c" lastModified="14538f04bb5">
+      </source>
+      <source file="..\..\..\tm\tm_stm32f4_disco.h" lastModified="1453901782a">
+         <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
+         <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
+         <include file="..\..\..\cmsis_lib\include\stm32f4xx_gpio.h"/>
+      </source>
+      <source file="..\..\..\cmsis\core_cm4.h" lastModified="14538f04fb6">
+         <include file="..\..\..\cmsis\core_cmInstr.h"/>
+         <include file="..\..\..\cmsis\core_cmFunc.h"/>
+         <include file="..\..\..\cmsis\core_cm4_simd.h"/>
+      </source>
+      <source file="..\..\..\cmsis_boot\system_stm32f4xx.h" lastModified="14538f04bc6">
+      </source>
+      <source file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h" lastModified="14538f04ba4">
+         <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
+      </source>
+      <source file="..\..\..\cmsis_boot\system_stm32f4xx.c" lastModified="14538f04bc3">
+         <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
+      </source>
+      <source file="..\..\..\cmsis\core_cm4_simd.h" lastModified="14538f04fb8">
+      </source>
+      <source file="..\..\..\cmsis_boot\stm32f4xx_conf.h" lastModified="14538f0a597">
+         <include file="..\..\..\cmsis_lib\include\stm32f4xx_gpio.h"/>
+         <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
+      </source>
+      <source file="..\..\..\cmsis_boot\stm32f4xx.h" lastModified="14538f04fa4">
+         <include file="..\..\..\cmsis\core_cm4.h"/>
+         <include file="..\..\..\cmsis_boot\system_stm32f4xx.h"/>
+         <include file="..\..\..\cmsis_boot\stm32f4xx_conf.h"/>
+      </source>
+      <source file="..\..\..\cmsis_lib\source\stm32f4xx_rcc.c" lastModified="14538f04ba8">
+         <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
+      </source>
+   </includePath>
+</dependencies>
