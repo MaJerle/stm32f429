@@ -20,7 +20,6 @@ int main(void) {
 	TM_DELAY_Init();
 	//Initialize onboard leds
 	TM_DISCO_LedInit();
-
 	while (1) {
 		//Toggle leds
 		GPIO_ToggleBits(GPIOG, LED_GREEN);
