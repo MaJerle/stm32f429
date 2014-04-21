@@ -14,27 +14,56 @@
 <folder appearance="1" expanded="2">
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
+<part id="1"/>
+<part id="2"/>
+<part id="3"/>
+<part id="4"/>
+<part id="5"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor activePart="true" focus="true" id="org.coocox.welcome.ui.WelcomePage" name="" partName="welcome" title="welcome" tooltip="" workbook="DefaultEditorWorkbook">
-<input factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory">
-<org.coocox.welcome.ui.WelcomePage/>
+<editor id="org.coocox.welcome.ui.WelcomePage" name="" partName="welcome" title="welcome" tooltip="" workbook="DefaultEditorWorkbook">
+<input factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory">&#x0A;<org.coocox.welcome.ui.WelcomePage/>
 </input>
+</editor>
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="C:/Users/Tilen/Google Drive/JAVNO/ELEKTRONIKA/STM32F429/majerle.eu/04-STM32F429_USART/main.c" title="main.c" tooltip="C:/Users/Tilen/Google Drive/JAVNO/ELEKTRONIKA/STM32F429/majerle.eu/04-STM32F429_USART/main.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/stm32f429_project/main.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="663" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="tm_stm32f4_usart.c" partName="tm_stm32f4_usart.c" path="C:/Users/Tilen/Google Drive/JAVNO/ELEKTRONIKA/STM32F429/majerle.eu/00-STM32F429_LIBRARIES/tm_stm32f4_usart.c" title="tm_stm32f4_usart.c" tooltip="C:/Users/Tilen/Google Drive/JAVNO/ELEKTRONIKA/STM32F429/majerle.eu/00-STM32F429_LIBRARIES/tm_stm32f4_usart.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/stm32f429_project/tm/tm_stm32f4_usart.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="4967" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="tm_stm32f4_usart.h" partName="tm_stm32f4_usart.h" path="C:/Users/Tilen/Google Drive/JAVNO/ELEKTRONIKA/STM32F429/majerle.eu/00-STM32F429_LIBRARIES/tm_stm32f4_usart.h" title="tm_stm32f4_usart.h" tooltip="C:/Users/Tilen/Google Drive/JAVNO/ELEKTRONIKA/STM32F429/majerle.eu/00-STM32F429_LIBRARIES/tm_stm32f4_usart.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/stm32f429_project/tm/tm_stm32f4_usart.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="185" selectionTopPixel="0"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx.h" partName="stm32f4xx.h" path="C:/Users/Tilen/Google Drive/JAVNO/ELEKTRONIKA/STM32F429/majerle.eu/04-STM32F429_USART/cmsis_boot/stm32f4xx.h" title="stm32f4xx.h" tooltip="C:/Users/Tilen/Google Drive/JAVNO/ELEKTRONIKA/STM32F429/majerle.eu/04-STM32F429_USART/cmsis_boot/stm32f4xx.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/stm32f429_project/cmsis_boot/stm32f4xx.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="4" selectionOffset="100028" selectionTopPixel="22050"/>
+</editor>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_usart.h" partName="stm32f4xx_usart.h" path="C:/Users/Tilen/Google Drive/JAVNO/ELEKTRONIKA/STM32F429/majerle.eu/04-STM32F429_USART/cmsis_lib/include/stm32f4xx_usart.h" title="stm32f4xx_usart.h" tooltip="C:/Users/Tilen/Google Drive/JAVNO/ELEKTRONIKA/STM32F429/majerle.eu/04-STM32F429_USART/cmsis_lib/include/stm32f4xx_usart.h" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/stm32f429_project/cmsis_lib/include/stm32f4xx_usart.h"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="15700" selectionTopPixel="5625"/>
 </editor>
 </editors>
 <views>
-<view id="org.coocox.component.ui.ComponentView" partName="Components">
-<viewState/>
-</view>
 <view id="org.coocox.builder.ui.views.ProjectView" partName="Project">
 <viewState CommonNavigator.LINKING_ENABLED="0" horizontalPosition="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0" verticalPosition="0">
 <expanded>
 <element path="/stm32f429_project"/>
+<element path="/stm32f429_project/cmsis"/>
+<element path="/stm32f429_project/cmsis_boot"/>
 <element path="/stm32f429_project/tm"/>
 </expanded>
+<selection>
+<element path="/stm32f429_project/tm/tm_stm32f4_usart.c"/>
+</selection>
 </viewState>
+</view>
+<view id="org.coocox.component.ui.ComponentView" partName="Components">
+<viewState/>
 </view>
 <view id="org.coocox.codebugger.trace.ui.traceview" partName="Semihosting">
 <viewState/>
@@ -65,26 +94,27 @@
 <alwaysOnActionSet id="org.eclipse.ui.actionSet.openFiles"/>
 <alwaysOnActionSet id="org.eclipse.debug.ui.breakpointActionSet"/>
 <alwaysOnActionSet id="org.coocox.userspace.actionSet"/>
-<hide_menu_item_id id="org.coocox.codebugger.configuration.showConsoleAction"/>
-<hide_menu_item_id id="org.coocox.codebugger.configuration.showDebugAction"/>
+<hide_menu_item_id id="org.coocox.codebugger.configuration.showMemoryAction"/>
+<hide_menu_item_id id="org.eclipse.jdt.ui.refactoring.menu"/>
 <hide_menu_item_id id="org.coocox.codebugger.configuration.ShowDisassemblyAction"/>
 <hide_menu_item_id id="org.coocox.codebugger.configuration.showExpressionsAction"/>
-<hide_menu_item_id id="org.coocox.codebugger.trace.actions.ShowTraceControlAction"/>
-<hide_menu_item_id id="org.coocox.codebugger.configuration.showMemoryAction"/>
-<hide_menu_item_id id="org.coocox.codebugger.configuration.showMemoryBrowserAction"/>
-<hide_menu_item_id id="org.coocox.builder.ui.openProjectExplorerAction"/>
-<hide_menu_item_id id="org.coocox.codebugger.configuration.showRegistersAction"/>
-<hide_menu_item_id id="org.coocox.codebugger.configuration.showVariablesAction"/>
-<hide_menu_item_id id="org.eclipse.debug.ui.commands.TerminateAndRelaunch"/>
+<hide_menu_item_id id="org.coocox.codebugger.configuration.showDebugAction"/>
+<hide_menu_item_id id="org.coocox.codebugger.configuration.showConsoleAction"/>
 <hide_menu_item_id id="org.eclipse.cdt.debug.internal.ui.actions.ToggleInstructionStepModeAction"/>
-<hide_menu_item_id id="org.eclipse.jdt.ui.refactoring.menu"/>
 <hide_menu_item_id id="org.eclipse.jdt.ui.source.menu"/>
-<hide_toolbar_item_id id="org.eclipse.debug.ui.commands.TerminateAndRelaunch"/>
+<hide_menu_item_id id="org.coocox.codebugger.configuration.showMemoryBrowserAction"/>
+<hide_menu_item_id id="org.coocox.codebugger.configuration.showVariablesAction"/>
+<hide_menu_item_id id="org.coocox.builder.ui.openProjectExplorerAction"/>
+<hide_menu_item_id id="org.coocox.codebugger.trace.actions.ShowTraceControlAction"/>
+<hide_menu_item_id id="org.eclipse.debug.ui.commands.TerminateAndRelaunch"/>
+<hide_menu_item_id id="org.coocox.codebugger.configuration.showRegistersAction"/>
 <hide_toolbar_item_id id="org.eclipse.cdt.debug.internal.ui.actions.ToggleInstructionStepModeAction"/>
 <hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
+<hide_toolbar_item_id id="org.eclipse.debug.ui.commands.TerminateAndRelaunch"/>
 <view id="org.coocox.component.ui.ComponentView"/>
 <view id="org.coocox.builder.ui.views.ProjectView"/>
 <view id="org.coocox.component.ui.Help"/>
+<view id="org.eclipse.ui.console.ConsoleView"/>
 <fastViewBars/>
 <layout>
 <mainWindow>
@@ -102,9 +132,16 @@
 <page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
 </folder>
 </info>
-<info part="org.eclipse.ui.console.ConsoleView" ratio="0.69944596" ratioLeft="505" ratioRight="217" relationship="4" relative="org.eclipse.ui.internal.ViewStack@12bdb77"/>
-<info part="org.coocox.builder.ui.exampleView" ratio="0.21907216" ratioLeft="170" ratioRight="606" relationship="2" relative="org.eclipse.ui.internal.ViewStack@12bdb77"/>
-<info folder="true" part="org.eclipse.ui.internal.ViewStack@1559b" ratio="0.71947193" ratioLeft="436" ratioRight="170" relationship="2" relative="org.coocox.builder.ui.exampleView">
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@15e631f" ratio="0.8787879" ratioLeft="667" ratioRight="92" relationship="4" relative="org.eclipse.ui.internal.ViewStack@12bdb77">
+<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
+<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info part="org.coocox.builder.ui.exampleView" ratio="0.19800943" ratioLeft="378" ratioRight="1531" relationship="2" relative="org.eclipse.ui.internal.ViewStack@12bdb77"/>
+<info folder="true" part="org.eclipse.ui.internal.ViewStack@1559b" ratio="0.7873037" ratioLeft="1203" ratioRight="325" relationship="2" relative="org.coocox.builder.ui.exampleView">
 <folder activePageID="org.coocox.component.ui.Help" appearance="2" expanded="2">
 <page content="org.coocox.component.ui.Help" label="Help"/>
 <page content="org.eclipse.debug.ui.BreakpointView" label="LabelNotFound"/>
@@ -225,173 +262,164 @@
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/stm32f429_project/main.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/stm32f429_project/tm/tm_stm32f4_spi.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/stm32f429_project/tm/tm_stm32f4_spi.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/stm32f429_project/main.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/stm32f429_project/tm/tm_stm32f4_delay.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/stm32f429_project/tm/tm_stm32f4_disco.c"/>
-<editor factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="C:\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\majerle.eu\STM32F429_SPI\cmsis_boot\system_stm32f4xx.h" project="stm32f429_project"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/stm32f429_project/tm/tm_stm32f4_usart.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/stm32f429_project/tm/tm_stm32f4_usart.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/stm32f429_project/cmsis_lib/source/stm32f4xx_usart.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/stm32f429_project/cmsis_boot/stm32f4xx.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/stm32f429_project/cmsis_boot/system_stm32f4xx.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/stm32f429_project/cmsis_boot/stm32f4xx_conf.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/stm32f429_project/cmsis_boot/system_stm32f4xx.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/stm32f429_project/cmsis/core_cm4_simd.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/stm32f429_project/cmsis_boot/startup/startup_stm32f4xx.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/stm32f429_project/tm/tm_stm32f4_delay.h"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/stm32f429_project/tm/tm_stm32f4_spi.h"/>
-<editor factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.welcome.ui.WelcomePage">
-<org.coocox.welcome.ui.WelcomePage/>
-</editor>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/stm32f429_project/cmsis_lib/include/stm32f4xx_usart.h"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/stm32f429_project/tm/tm_stm32f4_usart.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/stm32f429_project/main.c"/>
 </editors>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="24" y="26"/>
+<item historyLabel="stm32f4xx_usart.c" index="2">
+<position info="not_deleted" x="54615" y="13"/>
 </item>
-<item historyLabel="tm_stm32f4_spi.h" index="2">
-<position info="not_deleted" x="145" y="0"/>
+<item historyLabel="tm_stm32f4_usart.c" index="0">
+<position info="not_deleted" x="3352" y="0"/>
 </item>
-<item historyLabel="tm_stm32f4_spi.c" index="1">
-<position info="not_deleted" x="27" y="0"/>
+<item historyLabel="tm_stm32f4_usart.h" index="1">
+<position info="not_deleted" x="1464" y="0"/>
 </item>
-<item historyLabel="tm_stm32f4_spi.h" index="2">
-<position info="not_deleted" x="1776" y="45"/>
+<item historyLabel="tm_stm32f4_usart.c" index="0">
+<position info="not_deleted" x="3352" y="0"/>
 </item>
-<item historyLabel="tm_stm32f4_spi.c" index="1">
-<position info="not_deleted" x="2144" y="0"/>
-</item>
-<item historyLabel="tm_stm32f4_spi.h" index="2">
-<position info="not_deleted" x="521" y="46"/>
-</item>
-<item historyLabel="tm_stm32f4_spi.c" index="1">
-<position info="not_deleted" x="2139" y="0"/>
-</item>
-<item historyLabel="tm_stm32f4_spi.h" index="2">
-<position info="not_deleted" x="114" y="0"/>
-</item>
-<item historyLabel="tm_stm32f4_spi.c" index="1">
-<position info="not_deleted" x="2139" y="0"/>
-</item>
-<item historyLabel="tm_stm32f4_spi.c" index="1">
-<position info="not_deleted" x="2142" y="0"/>
-</item>
-<item historyLabel="tm_stm32f4_spi.c" index="1">
-<position info="not_deleted" x="1669" y="55"/>
-</item>
-<item historyLabel="tm_stm32f4_spi.c" index="1">
-<position info="not_deleted" x="2143" y="2"/>
-</item>
-<item historyLabel="main.c" index="3">
-<position info="not_deleted" x="479" y="9"/>
-</item>
-<item historyLabel="main.c" index="3">
-<position info="not_deleted" x="613" y="0"/>
-</item>
-<item historyLabel="main.c" index="3">
-<position info="not_deleted" x="653" y="0"/>
-</item>
-<item historyLabel="main.c" index="3">
+<item historyLabel="tm_stm32f4_usart.h" index="1">
 <position/>
 </item>
-<item historyLabel="tm_stm32f4_delay.c" index="4">
+<item historyLabel="tm_stm32f4_usart.c" index="0">
+<position info="not_deleted" x="3352" y="0"/>
+</item>
+<item historyLabel="tm_stm32f4_usart.c" index="0">
+<position info="not_deleted" x="310" y="0"/>
+</item>
+<item historyLabel="tm_stm32f4_usart.c" index="0">
+<position info="not_deleted" x="4521" y="0"/>
+</item>
+<item historyLabel="tm_stm32f4_usart.c" index="0">
+<position info="not_deleted" x="3944" y="103"/>
+</item>
+<item historyLabel="tm_stm32f4_usart.c" index="0">
+<position info="not_deleted" x="5017" y="0"/>
+</item>
+<item historyLabel="tm_stm32f4_usart.c" index="0">
+<position info="not_deleted" x="5014" y="0"/>
+</item>
+<item historyLabel="tm_stm32f4_usart.c" index="0">
+<position info="not_deleted" x="4577" y="0"/>
+</item>
+<item historyLabel="tm_stm32f4_usart.c" index="0">
+<position info="not_deleted" x="408" y="0"/>
+</item>
+<item historyLabel="tm_stm32f4_usart.c" index="0">
+<position info="not_deleted" x="3930" y="0"/>
+</item>
+<item historyLabel="tm_stm32f4_usart.c" index="0">
 <position/>
 </item>
-<item historyLabel="main.c" index="3">
+<item historyLabel="tm_stm32f4_usart.c" index="0">
+<position info="not_deleted" x="4631" y="371"/>
+</item>
+<item historyLabel="tm_stm32f4_usart.c" index="0">
+<position info="not_deleted" x="4416" y="34"/>
+</item>
+<item historyLabel="tm_stm32f4_usart.c" index="0">
+<position info="not_deleted" x="4045" y="0"/>
+</item>
+<item historyLabel="tm_stm32f4_usart.c" index="0">
+<position info="not_deleted" x="3805" y="63"/>
+</item>
+<item historyLabel="tm_stm32f4_usart.c" index="0">
 <position/>
 </item>
-<item historyLabel="main.c" index="3">
+<item historyLabel="tm_stm32f4_usart.c" index="0">
 <position/>
 </item>
-<item historyLabel="tm_stm32f4_disco.c" index="5">
-<position info="not_deleted" x="38" y="16"/>
+<item historyLabel="tm_stm32f4_usart.c" index="0">
+<position info="not_deleted" x="3805" y="63"/>
 </item>
-<item historyLabel="main.c" index="3">
+<item historyLabel="tm_stm32f4_usart.c" index="0">
 <position/>
 </item>
-<item historyLabel="tm_stm32f4_delay.c" index="4">
-<position info="not_deleted" x="478" y="0"/>
+<item historyLabel="tm_stm32f4_usart.c" index="0">
+<position info="not_deleted" x="4631" y="54"/>
 </item>
-<item historyLabel="system_stm32f4xx.h" index="6">
-<position info="not_deleted" x="1778" y="0"/>
+<item historyLabel="tm_stm32f4_usart.h" index="1">
+<position info="not_deleted" x="2688" y="0"/>
 </item>
-<item historyLabel="stm32f4xx.h" index="7">
-<position info="not_deleted" x="1755" y="0"/>
+<item historyLabel="tm_stm32f4_usart.c" index="0">
+<position info="not_deleted" x="3805" y="63"/>
 </item>
-<item historyLabel="system_stm32f4xx.c" index="8">
-<position info="not_deleted" x="3568" y="8"/>
+<item historyLabel="tm_stm32f4_usart.c" index="0">
+<position info="not_deleted" x="68" y="0"/>
 </item>
-<item historyLabel="stm32f4xx.h" index="7">
-<position info="not_deleted" x="1755" y="0"/>
+<item historyLabel="tm_stm32f4_usart.c" index="0">
+<position info="not_deleted" x="3805" y="63"/>
 </item>
-<item historyLabel="stm32f4xx_conf.h" index="9">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="system_stm32f4xx.h" index="10">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="system_stm32f4xx.c" index="8">
-<position info="not_deleted" x="15887" y="0"/>
-</item>
-<item historyLabel="core_cm4_simd.h" index="11">
-<position info="not_deleted" x="1576" y="0"/>
-</item>
-<item historyLabel="stm32f4xx.h" index="7">
-<position info="not_deleted" x="5470" y="0"/>
-</item>
-<item historyLabel="main.c" index="3">
+<item historyLabel="tm_stm32f4_usart.c" index="0">
 <position/>
 </item>
-<item historyLabel="startup_stm32f4xx.c" index="12">
-<position info="not_deleted" x="16815" y="0"/>
-</item>
-<item historyLabel="stm32f4xx.h" index="7">
-<position info="not_deleted" x="5470" y="0"/>
-</item>
-<item historyLabel="system_stm32f4xx.c" index="8">
-<position info="not_deleted" x="15887" y="0"/>
-</item>
-<item historyLabel="tm_stm32f4_delay.h" index="13">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="tm_stm32f4_delay.c" index="4">
+<item historyLabel="tm_stm32f4_usart.c" index="0">
 <position/>
 </item>
-<item historyLabel="main.c" index="3">
-<position info="not_deleted" x="698" y="0"/>
+<item historyLabel="stm32f4xx.h" index="3">
+<position info="not_deleted" x="107344" y="6"/>
 </item>
-<item historyLabel="startup_stm32f4xx.c" index="12">
-<position info="not_deleted" x="16815" y="0"/>
+<item historyLabel="tm_stm32f4_usart.h" index="1">
+<position info="not_deleted" x="2656" y="0"/>
 </item>
-<item historyLabel="stm32f4xx.h" index="7">
-<position info="not_deleted" x="39878" y="0"/>
+<item historyLabel="tm_stm32f4_usart.c" index="0">
+<position info="not_deleted" x="4669" y="0"/>
 </item>
-<item historyLabel="system_stm32f4xx.c" index="8">
-<position info="not_deleted" x="14691" y="0"/>
+<item historyLabel="stm32f4xx.h" index="3">
+<position info="not_deleted" x="100028" y="4"/>
 </item>
-<item historyLabel="tm_stm32f4_delay.c" index="4">
+<item historyLabel="tm_stm32f4_usart.h" index="1">
+<position info="not_deleted" x="514" y="0"/>
+</item>
+<item historyLabel="stm32f4xx_usart.h" index="4">
+<position info="not_deleted" x="15700" y="0"/>
+</item>
+<item historyLabel="tm_stm32f4_usart.h" index="1">
+<position info="not_deleted" x="692" y="0"/>
+</item>
+<item historyLabel="tm_stm32f4_usart.c" index="0">
+<position info="not_deleted" x="4669" y="0"/>
+</item>
+<item historyLabel="tm_stm32f4_usart.c" index="0">
 <position/>
 </item>
-<item historyLabel="startup_stm32f4xx.c" index="12">
-<position info="not_deleted" x="16815" y="0"/>
+<item historyLabel="tm_stm32f4_usart.c" index="0">
+<position/>
 </item>
-<item historyLabel="tm_stm32f4_delay.c" index="4">
-<position info="not_deleted" x="412" y="0"/>
+<item historyLabel="tm_stm32f4_usart.c" index="0">
+<position info="not_deleted" x="5014" y="0"/>
 </item>
-<item historyLabel="startup_stm32f4xx.c" index="12">
-<position info="not_deleted" x="16815" y="0"/>
+<item historyLabel="tm_stm32f4_usart.c" index="0">
+<position info="not_deleted" x="5016" y="3"/>
 </item>
-<item historyLabel="main.c" index="3">
-<position info="not_deleted" x="698" y="0"/>
+<item historyLabel="tm_stm32f4_usart.c" index="0">
+<position info="not_deleted" x="4687" y="0"/>
 </item>
-<item historyLabel="tm_stm32f4_spi.h" index="14">
-<position info="not_deleted" x="0" y="489"/>
+<item historyLabel="tm_stm32f4_usart.h" index="1">
+<position info="not_deleted" x="1744" y="0"/>
 </item>
-<item historyLabel="startup_stm32f4xx.c" index="12">
-<position info="not_deleted" x="16815" y="0"/>
+<item historyLabel="tm_stm32f4_usart.c" index="0">
+<position info="not_deleted" x="3245" y="0"/>
 </item>
-<item historyLabel="main.c" index="3">
-<position info="not_deleted" x="698" y="0"/>
+<item historyLabel="tm_stm32f4_usart.h" index="1">
+<position info="not_deleted" x="1479" y="0"/>
 </item>
-<item active="true" historyLabel="welcome" index="15"/>
+<item historyLabel="tm_stm32f4_usart.c" index="0">
+<position info="not_deleted" x="4712" y="0"/>
+</item>
+<item historyLabel="tm_stm32f4_usart.h" index="1">
+<position info="not_deleted" x="1479" y="0"/>
+</item>
+<item historyLabel="tm_stm32f4_usart.c" index="5">
+<position info="not_deleted" x="4712" y="0"/>
+</item>
+<item active="true" historyLabel="main.c" index="6">
+<position info="not_deleted" x="634" y="0"/>
+</item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
 </page>
@@ -404,47 +432,47 @@
 <org.coocox.welcome.ui.WelcomePage/>
 </persistable>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="tm_stm32f4_delay.h" tooltip="stm32f429_project/tm/tm_stm32f4_delay.h">
-<persistable path="/stm32f429_project/tm/tm_stm32f4_delay.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="core_cm4_simd.h" tooltip="stm32f429_project/cmsis/core_cm4_simd.h">
-<persistable path="/stm32f429_project/cmsis/core_cm4_simd.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="system_stm32f4xx.h" tooltip="stm32f429_project/cmsis_boot/system_stm32f4xx.h">
-<persistable path="/stm32f429_project/cmsis_boot/system_stm32f4xx.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_conf.h" tooltip="stm32f429_project/cmsis_boot/stm32f4xx_conf.h">
-<persistable path="/stm32f429_project/cmsis_boot/stm32f4xx_conf.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="system_stm32f4xx.c" tooltip="stm32f429_project/cmsis_boot/system_stm32f4xx.c">
-<persistable path="/stm32f429_project/cmsis_boot/system_stm32f4xx.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_usart.h" tooltip="stm32f429_project/cmsis_lib/include/stm32f4xx_usart.h">
+<persistable path="/stm32f429_project/cmsis_lib/include/stm32f4xx_usart.h"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx.h" tooltip="stm32f429_project/cmsis_boot/stm32f4xx.h">
 <persistable path="/stm32f429_project/cmsis_boot/stm32f4xx.h"/>
 </file>
-<file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="system_stm32f4xx.h" tooltip="C:\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\majerle.eu\STM32F429_SPI\cmsis_boot\system_stm32f4xx.h">
-<persistable path="C:\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\majerle.eu\STM32F429_SPI\cmsis_boot\system_stm32f4xx.h" project="stm32f429_project"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_usart.c" tooltip="stm32f429_project/cmsis_lib/source/stm32f4xx_usart.c">
+<persistable path="/stm32f429_project/cmsis_lib/source/stm32f4xx_usart.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="tm_stm32f4_disco.c" tooltip="stm32f429_project/tm/tm_stm32f4_disco.c">
-<persistable path="/stm32f429_project/tm/tm_stm32f4_disco.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="tm_stm32f4_usart.h" tooltip="stm32f429_project/tm/tm_stm32f4_usart.h">
+<persistable path="/stm32f429_project/tm/tm_stm32f4_usart.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="tm_stm32f4_delay.c" tooltip="stm32f429_project/tm/tm_stm32f4_delay.c">
-<persistable path="/stm32f429_project/tm/tm_stm32f4_delay.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="tm_stm32f4_usart.c" tooltip="stm32f429_project/tm/tm_stm32f4_usart.c">
+<persistable path="/stm32f429_project/tm/tm_stm32f4_usart.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_rcc.h" tooltip="nokia5110_gnu_libc/cmsis_lib/include/stm32f4xx_rcc.h">
-<persistable path="/nokia5110_gnu_libc/cmsis_lib/include/stm32f4xx_rcc.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="stm32f429_project/main.c">
+<persistable path="/stm32f429_project/main.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_gpio.c" tooltip="nokia5110_gnu_libc/cmsis_lib/source/stm32f4xx_gpio.c">
-<persistable path="/nokia5110_gnu_libc/cmsis_lib/source/stm32f4xx_gpio.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_ltdc.c" tooltip="stm32f429_project/cmsis_lib/source/stm32f4xx_ltdc.c">
+<persistable path="/stm32f429_project/cmsis_lib/source/stm32f4xx_ltdc.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_rcc.c" tooltip="nokia5110_gnu_libc/cmsis_lib/source/stm32f4xx_rcc.c">
-<persistable path="/nokia5110_gnu_libc/cmsis_lib/source/stm32f4xx_rcc.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_gpio.h" tooltip="stm32f429_project/cmsis_lib/include/stm32f4xx_gpio.h">
+<persistable path="/stm32f429_project/cmsis_lib/include/stm32f4xx_gpio.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="system_stm32f4xx.c" tooltip="nokia5110_gnu_libc/cmsis_boot/system_stm32f4xx.c">
-<persistable path="/nokia5110_gnu_libc/cmsis_boot/system_stm32f4xx.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32_ub_lcd_ili9341.h" tooltip="stm32f429_project/tm/stm32_ub_lcd_ili9341.h">
+<persistable path="/stm32f429_project/tm/stm32_ub_lcd_ili9341.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_spi.h" tooltip="nokia5110_gnu_libc/cmsis_lib/include/stm32f4xx_spi.h">
-<persistable path="/nokia5110_gnu_libc/cmsis_lib/include/stm32f4xx_spi.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_ltdc.h" tooltip="stm32f429_project/cmsis_lib/include/stm32f4xx_ltdc.h">
+<persistable path="/stm32f429_project/cmsis_lib/include/stm32f4xx_ltdc.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32_ub_lcd_ili9341.c" tooltip="stm32f429_project/tm/stm32_ub_lcd_ili9341.c">
+<persistable path="/stm32f429_project/tm/stm32_ub_lcd_ili9341.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32_ub_sdram.c" tooltip="stm32f429_project/tm/stm32_ub_sdram.c">
+<persistable path="/stm32f429_project/tm/stm32_ub_sdram.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32_ub_font.h" tooltip="stm32f429_project/tm/stm32_ub_font.h">
+<persistable path="/stm32f429_project/tm/stm32_ub_font.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_rcc.h" tooltip="stm32f429_project/cmsis_lib/include/stm32f4xx_rcc.h">
+<persistable path="/stm32f429_project/cmsis_lib/include/stm32f4xx_rcc.h"/>
 </file>
 </mruList>
 </workbench>

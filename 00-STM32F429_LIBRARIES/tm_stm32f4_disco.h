@@ -26,24 +26,30 @@
 
 /**
  * Configure led pins to output
+ *
  */
 void TM_DISCO_LedInit(void);
+
 /**
  * Configure blue button as input
+ *
  */
 void TM_DISCO_ButtonInit(void);
+
 /**
  * Turn on LED
  *
  * @param uint16_t led: led pin
  */
 void TM_DISCO_LedOn(uint16_t led);
+
 /**
  * Turn off LED
  *
  * @param uint16_t led: led pin
  */
 void TM_DISCO_LedOff(uint16_t led);
+
 /**
  * Checks if button is pressed
  *

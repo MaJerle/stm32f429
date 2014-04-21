@@ -4,10 +4,10 @@
  * Variables
  *
  */
-int8_t TM_USART_Buffer[6][TM_USART_BUFFER_SIZE];
-uint16_t tm_usart_buf_in[6] = {0, 0, 0, 0, 0, 0};
-uint16_t tm_usart_buf_out[6] = {0, 0, 0, 0, 0, 0};
-uint16_t tm_usart_buf_num[6] = {0, 0, 0, 0, 0, 0};
+int8_t TM_USART_Buffer[8][TM_USART_BUFFER_SIZE];
+uint16_t tm_usart_buf_in[8] = {0, 0, 0, 0, 0, 0};
+uint16_t tm_usart_buf_out[8] = {0, 0, 0, 0, 0, 0};
+uint16_t tm_usart_buf_num[8] = {0, 0, 0, 0, 0, 0};
 
 void TM_USART_Init(USART_TypeDef* USARTx, uint32_t baudrate) {
 	/**
@@ -167,8 +167,19 @@ uint8_t TM_USART_GetUsartNumber(USART_TypeDef* USARTx) {
 	} else if (USARTx == UART5) {
 		return 4;
 #endif
+#ifdef USART6
 	} else if (USARTx == USART6) {
 		return 5;
+#endif
+#ifdef UART7
+	} else if (USARTx == UART7) {
+		return 6;
+#endif
+#ifdef UART8
+	} else if (USARTx == UART8) {
+		return 7;
+#endif
 	}
+
 	return 0;
 }
