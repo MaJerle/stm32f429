@@ -21,7 +21,26 @@
 
 static __IO uint32_t TM_TimingDelay;
 
+
 /**
+ * This variable can be used in main
+ * It is automatically increased every time systick make an interrupt
+ *
+ * //leds are toggled every 50ms.
+ * TM_Time = 0;
+ * while (1) {
+ * 		if (TM_Time >= 50000) { //50ms
+ * 			TM_Time = 0;
+ * 			//Toogle leds here
+ * 		}
+ * 		//Do other stuff
+ * }
+ *
+ */
+static __IO uint32_t TM_Time;
+
+/**
+ *
   * @brief  Inserts a delay time.
   * @param  nTime: specifies the delay time length, in microseconds.
   * @retval None
@@ -29,6 +48,7 @@ static __IO uint32_t TM_TimingDelay;
 inline void Delay(__IO uint32_t nTime);
 
 /**
+ *
  * @brief  Inserts a delay time.
  * @param  nTime: specifies the delay time length, in milliseconds.
  * @retval None
@@ -36,8 +56,9 @@ inline void Delay(__IO uint32_t nTime);
 inline void Delayms(__IO uint32_t nTime);
 
 /**
- * Initialize timer settings for delay
  *
+ *
+ * Initialize timer settings for delay
  */
 void TM_DELAY_Init(void);
 
