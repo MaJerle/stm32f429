@@ -1,4 +1,5 @@
 /**
+ * Project template 
  *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
@@ -13,7 +14,7 @@ int main(void) {
 	//180MHz clock
 	SystemInit();
 
-    while(1) {
+	while(1) {
 
-    }
+	}
 }
