@@ -15,6 +15,7 @@
 int main(void) {
 	//Initialize system for 180MHz core clock
 	SystemInit();
+
 	//Initialize delay Systick timer
 	TM_DELAY_Init();
 	//Initialize onboard leds
