@@ -22,8 +22,8 @@ Discarded input sections
  .debug_aranges
                 0x00000000       0x48 ..\obj\stm32f4xx_syscfg.o
  .debug_ranges  0x00000000       0x38 ..\obj\stm32f4xx_syscfg.o
- .debug_line    0x00000000      0x26c ..\obj\stm32f4xx_syscfg.o
- .debug_str     0x00000000      0x2cd ..\obj\stm32f4xx_syscfg.o
+ .debug_line    0x00000000      0x275 ..\obj\stm32f4xx_syscfg.o
+ .debug_str     0x00000000      0x2d0 ..\obj\stm32f4xx_syscfg.o
  .comment       0x00000000       0x71 ..\obj\stm32f4xx_syscfg.o
  .ARM.attributes
                 0x00000000       0x33 ..\obj\stm32f4xx_syscfg.o
@@ -181,8 +181,8 @@ Discarded input sections
  .debug_aranges
                 0x00000000       0x40 ..\obj\misc.o
  .debug_ranges  0x00000000       0x30 ..\obj\misc.o
- .debug_line    0x00000000      0x2c4 ..\obj\misc.o
- .debug_str     0x00000000      0x3a7 ..\obj\misc.o
+ .debug_line    0x00000000      0x2d0 ..\obj\misc.o
+ .debug_str     0x00000000      0x3aa ..\obj\misc.o
  .comment       0x00000000       0x71 ..\obj\misc.o
  .ARM.attributes
                 0x00000000       0x33 ..\obj\misc.o
@@ -509,30 +509,30 @@ OUTPUT(stm32f429.elf elf32-littlearm)
  .debug_ranges  0x000001f8       0x78 ..\obj\stm32f4xx_gpio.o
  .debug_ranges  0x00000270       0x20 ..\obj\system_stm32f4xx.o
 
-.debug_line     0x00000000     0x1479
- .debug_line    0x00000000      0x2c3 ..\obj\tm_stm32f4_disco.o
- .debug_line    0x000002c3       0xcd ..\obj\startup_stm32f4xx.o
- .debug_line    0x00000390      0x265 ..\obj\main.o
- .debug_line    0x000005f5      0x61a ..\obj\stm32f4xx_rcc.o
- .debug_line    0x00000c0f      0x29a ..\obj\tm_stm32f4_delay.o
- .debug_line    0x00000ea9      0x3be ..\obj\stm32f4xx_gpio.o
- .debug_line    0x00001267      0x212 ..\obj\system_stm32f4xx.o
+.debug_line     0x00000000     0x14be
+ .debug_line    0x00000000      0x2d0 ..\obj\tm_stm32f4_disco.o
+ .debug_line    0x000002d0       0xd0 ..\obj\startup_stm32f4xx.o
+ .debug_line    0x000003a0      0x272 ..\obj\main.o
+ .debug_line    0x00000612      0x626 ..\obj\stm32f4xx_rcc.o
+ .debug_line    0x00000c38      0x2a4 ..\obj\tm_stm32f4_delay.o
+ .debug_line    0x00000edc      0x3ca ..\obj\stm32f4xx_gpio.o
+ .debug_line    0x000012a6      0x218 ..\obj\system_stm32f4xx.o
 
-.debug_str      0x00000000     0x1471
- .debug_str     0x00000000      0x32e ..\obj\tm_stm32f4_disco.o
-                                0x36a (size before relaxing)
- .debug_str     0x0000032e       0xdb ..\obj\startup_stm32f4xx.o
-                                0x13f (size before relaxing)
- .debug_str     0x00000409       0x6e ..\obj\main.o
-                                0x1a4 (size before relaxing)
- .debug_str     0x00000477      0x6d0 ..\obj\stm32f4xx_rcc.o
-                                0x81e (size before relaxing)
- .debug_str     0x00000b47      0x67d ..\obj\tm_stm32f4_delay.o
-                                0x7c5 (size before relaxing)
- .debug_str     0x000011c4      0x1ce ..\obj\stm32f4xx_gpio.o
-                                0x471 (size before relaxing)
- .debug_str     0x00001392       0xdf ..\obj\system_stm32f4xx.o
-                                0x378 (size before relaxing)
+.debug_str      0x00000000     0x1488
+ .debug_str     0x00000000      0x332 ..\obj\tm_stm32f4_disco.o
+                                0x36e (size before relaxing)
+ .debug_str     0x00000332       0xde ..\obj\startup_stm32f4xx.o
+                                0x142 (size before relaxing)
+ .debug_str     0x00000410       0x71 ..\obj\main.o
+                                0x1a7 (size before relaxing)
+ .debug_str     0x00000481      0x6d3 ..\obj\stm32f4xx_rcc.o
+                                0x821 (size before relaxing)
+ .debug_str     0x00000b54      0x681 ..\obj\tm_stm32f4_delay.o
+                                0x7c9 (size before relaxing)
+ .debug_str     0x000011d5      0x1d1 ..\obj\stm32f4xx_gpio.o
+                                0x474 (size before relaxing)
+ .debug_str     0x000013a6       0xe2 ..\obj\system_stm32f4xx.o
+                                0x37b (size before relaxing)
 
 .comment        0x00000000       0x70
  .comment       0x00000000       0x70 ..\obj\tm_stm32f4_disco.o

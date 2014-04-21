@@ -1,17 +1,17 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <history>
    <processor signature="4.7.4 -mcpu=cortex-m4 -mthumb -g -nostartfiles -Map=STM32F429_USART.map -O0 --gc-sections -LC:\CooCox\CoIDE\configuration\ProgramData\STM32F429_USART -TC:\CooCox\CoIDE\configuration\ProgramData\STM32F429_USART/arm-gcc-link.ld -g">
-      <target file="STM32F429_USART.elf" lastModified="14551aed6b5">
-         <source file="..\obj\stm32f4xx_usart.o" lastModified="145517d4882"/>
-         <source file="..\obj\tm_stm32f4_disco.o" lastModified="145517d48d8"/>
-         <source file="..\obj\startup_stm32f4xx.o" lastModified="145517d4914"/>
-         <source file="..\obj\main.o" lastModified="14551aed4a0"/>
-         <source file="..\obj\stm32f4xx_rcc.o" lastModified="145517d49e2"/>
-         <source file="..\obj\tm_stm32f4_usart.o" lastModified="14551aaab65"/>
-         <source file="..\obj\tm_stm32f4_delay.o" lastModified="145517d4a96"/>
-         <source file="..\obj\stm32f4xx_gpio.o" lastModified="145517d4afb"/>
-         <source file="..\obj\system_stm32f4xx.o" lastModified="145517d4b4d"/>
-         <source file="..\obj\misc.o" lastModified="145517d4b9d"/>
+      <target file="STM32F429_USART.elf" lastModified="14584bbc291">
+         <source file="..\obj\stm32f4xx_usart.o" lastModified="14584bbb9bf"/>
+         <source file="..\obj\tm_stm32f4_disco.o" lastModified="14584bbba5f"/>
+         <source file="..\obj\startup_stm32f4xx.o" lastModified="14584bbbad9"/>
+         <source file="..\obj\main.o" lastModified="14584bbbb7b"/>
+         <source file="..\obj\stm32f4xx_rcc.o" lastModified="14584bbbc7c"/>
+         <source file="..\obj\tm_stm32f4_usart.o" lastModified="14584bbbd39"/>
+         <source file="..\obj\tm_stm32f4_delay.o" lastModified="14584bbbde3"/>
+         <source file="..\obj\stm32f4xx_gpio.o" lastModified="14584bbbea7"/>
+         <source file="..\obj\system_stm32f4xx.o" lastModified="14584bbbf5b"/>
+         <source file="..\obj\misc.o" lastModified="14584bbc009"/>
       </target>
    </processor>
 </history>

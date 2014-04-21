@@ -137,8 +137,8 @@ Discarded input sections
  .debug_aranges
                 0x00000000       0x30 ..\obj\system_stm32f4xx.o
  .debug_ranges  0x00000000       0x20 ..\obj\system_stm32f4xx.o
- .debug_line    0x00000000      0x21c ..\obj\system_stm32f4xx.o
- .debug_str     0x00000000      0x37d ..\obj\system_stm32f4xx.o
+ .debug_line    0x00000000      0x222 ..\obj\system_stm32f4xx.o
+ .debug_str     0x00000000      0x380 ..\obj\system_stm32f4xx.o
  .comment       0x00000000       0x71 ..\obj\system_stm32f4xx.o
  .ARM.attributes
                 0x00000000       0x33 ..\obj\system_stm32f4xx.o
@@ -439,24 +439,24 @@ OUTPUT(STM32F429_LED_BUTTON.elf elf32-littlearm)
  .debug_ranges  0x00000058      0x168 ..\obj\stm32f4xx_rcc.o
  .debug_ranges  0x000001c0       0x78 ..\obj\stm32f4xx_gpio.o
 
-.debug_line     0x00000000      0xf31
- .debug_line    0x00000000      0x2d7 ..\obj\tm_stm32f4_disco.o
- .debug_line    0x000002d7       0xd1 ..\obj\startup_stm32f4xx.o
- .debug_line    0x000003a8      0x189 ..\obj\main.o
- .debug_line    0x00000531      0x62e ..\obj\stm32f4xx_rcc.o
- .debug_line    0x00000b5f      0x3d2 ..\obj\stm32f4xx_gpio.o
+.debug_line     0x00000000      0xf5a
+ .debug_line    0x00000000      0x2df ..\obj\tm_stm32f4_disco.o
+ .debug_line    0x000002df       0xd4 ..\obj\startup_stm32f4xx.o
+ .debug_line    0x000003b3      0x18f ..\obj\main.o
+ .debug_line    0x00000542      0x63a ..\obj\stm32f4xx_rcc.o
+ .debug_line    0x00000b7c      0x3de ..\obj\stm32f4xx_gpio.o
 
-.debug_str      0x00000000      0xd1f
- .debug_str     0x00000000      0x333 ..\obj\tm_stm32f4_disco.o
-                                0x36f (size before relaxing)
- .debug_str     0x00000333       0xe0 ..\obj\startup_stm32f4xx.o
-                                0x144 (size before relaxing)
- .debug_str     0x00000413       0x64 ..\obj\main.o
-                                0x158 (size before relaxing)
- .debug_str     0x00000477      0x6d5 ..\obj\stm32f4xx_rcc.o
-                                0x823 (size before relaxing)
- .debug_str     0x00000b4c      0x1d3 ..\obj\stm32f4xx_gpio.o
-                                0x476 (size before relaxing)
+.debug_str      0x00000000      0xd2a
+ .debug_str     0x00000000      0x332 ..\obj\tm_stm32f4_disco.o
+                                0x36e (size before relaxing)
+ .debug_str     0x00000332       0xe3 ..\obj\startup_stm32f4xx.o
+                                0x147 (size before relaxing)
+ .debug_str     0x00000415       0x67 ..\obj\main.o
+                                0x15b (size before relaxing)
+ .debug_str     0x0000047c      0x6d8 ..\obj\stm32f4xx_rcc.o
+                                0x826 (size before relaxing)
+ .debug_str     0x00000b54      0x1d6 ..\obj\stm32f4xx_gpio.o
+                                0x479 (size before relaxing)
 
 .comment        0x00000000       0x70
  .comment       0x00000000       0x70 ..\obj\tm_stm32f4_disco.o
