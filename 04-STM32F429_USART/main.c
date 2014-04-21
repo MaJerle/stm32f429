@@ -16,17 +16,17 @@ int main(void) {
 	SystemInit();
 
 	//Initialize USART1 at 9600 baud
-	TM_USART_Init(9600);
+	TM_USART_Init(USART1, 9600);
 	//Put string to terminal
-	TM_USART_Puts("Hello world\n\r");
+	TM_USART_Puts(USART1, "Hello world\n\r");
 
 	uint8_t c;
 	while (1) {
 		//Get character from internal buffer
-		c = TM_USART_Getc();
+		c = TM_USART_Getc(USART1);
 		if (c) {
 			//If anything received, put it back to terminal
-			TM_USART_Putc(c);
+			TM_USART_Putc(USART1, c);
 		}
 	}
 	return 0;

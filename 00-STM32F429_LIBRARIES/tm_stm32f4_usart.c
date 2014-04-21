@@ -2,13 +2,20 @@
 
 /**
  * Variables
+ *
  */
-volatile char TM_USART_Buffer[TM_USART_BUFFER_SIZE];
-uint16_t tm_usart_buf_in = 0;
-uint16_t tm_usart_buf_out = 0;
-uint16_t tm_usart_buf_num = 0;
+int8_t TM_USART_Buffer[6][TM_USART_BUFFER_SIZE];
+uint16_t tm_usart_buf_in[6] = {0, 0, 0, 0, 0, 0};
+uint16_t tm_usart_buf_out[6] = {0, 0, 0, 0, 0, 0};
+uint16_t tm_usart_buf_num[6] = {0, 0, 0, 0, 0, 0};
 
-void TM_USART_Init(uint32_t baudrate) {
+void TM_USART_Init(USART_TypeDef* USARTx, uint32_t baudrate) {
+	/**
+	 * Only USART1 for now
+	 */
+	if (USARTx != USART1) {
+		return;
+	}
 	/**
 	 * Initialization structures declared
 	 *
@@ -90,16 +97,16 @@ void TM_USART_Init(uint32_t baudrate) {
 	NVIC_Init(&NVIC_InitStruct);
 }
 
-void TM_USART_Putc(volatile char c) {
+void TM_USART_Putc(USART_TypeDef* USARTx, volatile char c) {
 	//Wait until transmitter is empty
-	while (!USART_GetFlagStatus(USART1, USART_FLAG_TXE));
+	while (!USART_GetFlagStatus(USARTx, USART_FLAG_TXE));
 	//Send data
-	USART_SendData(USART1, c);
+	USART_SendData(USARTx, c);
 }
 
-void TM_USART_Puts(char* str) {
+void TM_USART_Puts(USART_TypeDef* USARTx, char* str) {
 	while (*str) {
-		TM_USART_Putc(*str++);
+		TM_USART_Putc(USARTx, *str++);
 	}
 }
 
@@ -107,38 +114,61 @@ void USART1_IRQHandler(void) {
 	//Check if interrupt was because data is received
 	if (USART_GetITStatus(USART1, USART_IT_RXNE)) {
 		//Put received data into internal buffer
-		TM_USART_InsertToBuffer(USART1->DR);
+		TM_USART_InsertToBuffer(USART1, USART1->DR);
 	}
 }
 
-void TM_USART_InsertToBuffer(char c) {
+void TM_USART_InsertToBuffer(USART_TypeDef* USARTx, char c) {
+	uint8_t usart_num = TM_USART_GetUsartNumber(USARTx);
 	//Still available space in buffer
-	if (tm_usart_buf_num < TM_USART_BUFFER_SIZE) {
-		if (tm_usart_buf_in > (TM_USART_BUFFER_SIZE - 1)) {
-			tm_usart_buf_in = 0;
+	if (tm_usart_buf_num[usart_num] < TM_USART_BUFFER_SIZE) {
+		if (tm_usart_buf_in[usart_num] > (TM_USART_BUFFER_SIZE - 1)) {
+			tm_usart_buf_in[usart_num] = 0;
 		}
-		TM_USART_Buffer[tm_usart_buf_in] = c;
-		tm_usart_buf_in++;
-		tm_usart_buf_num++;
+		TM_USART_Buffer[usart_num][tm_usart_buf_in[usart_num]] = c;
+		tm_usart_buf_in[usart_num]++;
+		tm_usart_buf_num[usart_num]++;
 	}
 }
 
-uint8_t TM_USART_Getc(void) {
+uint8_t TM_USART_Getc(USART_TypeDef* USARTx) {
+	uint8_t usart_num = TM_USART_GetUsartNumber(USARTx);
 	uint8_t c = 0;
 	//Check if we have any data in buffer
-	if (tm_usart_buf_num > 0) {
-		if (tm_usart_buf_out > (TM_USART_BUFFER_SIZE - 1)) {
-			tm_usart_buf_out = 0;
+	if (tm_usart_buf_num[usart_num] > 0) {
+		if (tm_usart_buf_out[usart_num] > (TM_USART_BUFFER_SIZE - 1)) {
+			tm_usart_buf_out[usart_num] = 0;
 		}
-		c = TM_USART_Buffer[tm_usart_buf_out];
-		TM_USART_Buffer[tm_usart_buf_out] = 0;
-		tm_usart_buf_out++;
-		tm_usart_buf_num--;
+		c = TM_USART_Buffer[usart_num][tm_usart_buf_out[usart_num]];
+		TM_USART_Buffer[usart_num][tm_usart_buf_out[usart_num]] = 0;
+		tm_usart_buf_out[usart_num]++;
+		tm_usart_buf_num[usart_num]--;
 	}
 	return c;
 }
 
-uint8_t TM_USART_BufferEmpty(void) {
-	return !(tm_usart_buf_num > 0);
+uint8_t TM_USART_BufferEmpty(USART_TypeDef* USARTx) {
+	uint8_t usart_num = TM_USART_GetUsartNumber(USARTx);
+	return !(tm_usart_buf_num[usart_num] > 0);
 }
 
+uint8_t TM_USART_GetUsartNumber(USART_TypeDef* USARTx) {
+	if (USARTx == USART1) {
+		return 0;
+	} else if (USARTx == USART2) {
+		return 1;
+	} else if (USARTx == USART3) {
+		return 2;
+#ifdef UART4
+	} else if (USARTx == UART4) {
+		return 3;
+#endif
+#ifdef UART5
+	} else if (USARTx == UART5) {
+		return 4;
+#endif
+	} else if (USARTx == USART6) {
+		return 5;
+	}
+	return 0;
+}

@@ -1,13 +1,21 @@
 /**
  *	USART Library for STM32F4 with receive interrupt
  *
- *	It works for USART1.
+ *	It currently works for USART1
  *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
- *	@version 	v1.0
+ *	@website	http://majerle.eu
+ *	@version 	v1.1
  *	@gcc		v4.7 20013qr3
  *	@ide		CooCox CoIDE v1.7.6
+ */
+
+/**
+ * USART1 pins are
+ *  - TX: PA9
+ *  - RX: PA10
+ *
  */
 
 #ifndef TM_USART_
@@ -28,42 +36,86 @@
 #endif
 
 /**
- * Initialize USART1
+ * Initialize USART
  *
- * @param uint32_t baudrate: specify USART baudrate ex. 9600
+ * Currently supported only USART1
+ *
+ * Parameters:
+ * 	- USART_TypeDef* USARTx: which USART channel
+ * 		USART1, USART2, USART3, UART4, UART5, USART6
+ *	- uint32_t baudrate: baudrate for USART
  */
-extern void TM_USART_Init(uint32_t baudrate);
+extern void TM_USART_Init(USART_TypeDef* USARTx, uint32_t baudrate);
+
 /**
- * Put character to USART1
+ * Put character to USARTx
  *
- * @param volatile char c: char to put
+ * Parameters:
+ * 	- USART_TypeDef* USARTx: which USART channel
+ * 		USART1, USART2, USART3, UART4, UART5, USART6
+ *	- volatile char c: char to be sent to USART
  */
-extern void TM_USART_Putc(volatile char c);
+extern void TM_USART_Putc(USART_TypeDef* USARTx, volatile char c);
+
 /**
- * Put string to USART1
+ * Put string to USARTx
  *
- * @param char* str: pointer to first character in string
+ * Parameters:
+ * 	- USART_TypeDef* USARTx: which USART channel
+ * 		USART1, USART2, USART3, UART4, UART5, USART6
+ *	- char* str: pointer to first character in string
  */
-extern void TM_USART_Puts(char* str);
+extern void TM_USART_Puts(USART_TypeDef* USARTx, char* str);
+
+/**
+ * Get character from internal buffer
+ *
+ * Parameters:
+ * 	- USART_TypeDef* USARTx: which USART channel
+ * 		USART1, USART2, USART3, UART4, UART5, USART6
+ *
+ * Returned character
+ */
+extern uint8_t TM_USART_Getc(USART_TypeDef* USARTx);
+
 /**
  * USART1 Interrupt handler
  *
  */
 extern void USART1_IRQHandler(void);
+
 /**
  * Insert received data into internal buffer
+ * Called in interrupt
  *
+ * Parameters:
+ * 	- USART_TypeDef* USARTx: which USART channel
+ * 		USART1, USART2, USART3, UART4, UART5, USART6
+ * 	- char c: character to be inserted in buffer
  */
-extern void TM_USART_InsertToBuffer(char c);
-/**
- *	Get character from internal buffer
- *
- */
-extern uint8_t TM_USART_Getc(void);
+extern void TM_USART_InsertToBuffer(USART_TypeDef* USARTx, char c);
+
 /**
  * Check's if internal buffer is empty
  *
+ * Parameters:
+ * 	- USART_TypeDef* USARTx: which USART channel
+ * 		USART1, USART2, USART3, UART4, UART5, USART6
+ *
+ * Returns 1 if buffer is empty, otherwise 0
  */
-extern uint8_t TM_USART_BufferEmpty(void);
+extern uint8_t TM_USART_BufferEmpty(USART_TypeDef* USARTx);
 
+/**
+ * Get USART number
+ *
+ * Called internally
+ *
+ * Parameters:
+ * 	- USART_TypeDef* USARTx: which USART channel
+ * 		USART1, USART2, USART3, UART4, UART5, USART6
+ *
+ * Returns x - 1 number.
+ */
+uint8_t TM_USART_GetUsartNumber(USART_TypeDef* USARTx);
 #endif
