@@ -10,14 +10,10 @@
  */
 #include "stm32f4xx.h"
 #include "tm_stm32f4_usart.h"
-#include "tm_stm32f4_delay.h"
-#include "tm_stm32f4_disco.h"
 
 int main(void) {
 	//Initialize system
 	SystemInit();
-	//Initialize external clock source and systick timer
-	TM_DELAY_Init();
 
 	//Initialize USART1 at 9600 baud
 	TM_USART_Init(9600);
