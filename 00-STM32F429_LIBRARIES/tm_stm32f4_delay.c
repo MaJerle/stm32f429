@@ -1,7 +1,7 @@
 #include "tm_stm32f4_delay.h"
 
 static __IO uint32_t TM_TimingDelay;
-static __IO uint32_t TM_TimingDelay = 0;
+static __IO uint32_t TM_Time = 0;
 
 inline void Delay(__IO uint32_t nTime) {
 	TM_TimingDelay = nTime;
