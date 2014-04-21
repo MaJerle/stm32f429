@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<history>
+   <processor signature="arm-none-eabi-gcc noversion nomachine -mcpu=cortex-m4 -mthumb -Wall -ffunction-sections -g -O0 -c -DSTM32F407VG -DSTM32F4XX -DUSE_STDPERIPH_DRIVER -D__ASSEMBLY__ -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\majerle.eu\STM32F429_USART\tm -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\majerle.eu\STM32F429_USART -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\majerle.eu\STM32F429_USART\cmsis -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\majerle.eu -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\majerle.eu\STM32F429_USART\cmsis_lib -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\majerle.eu\STM32F429_USART\cmsis_boot -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\majerle.eu\STM32F429_USART\cmsis_lib\include">
+      <target file="stm32f4xx_gpio.o" lastModified="145517d4afb">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_gpio.c" lastModified="14537403ca8"/>
+      </target>
+      <target file="system_stm32f4xx.o" lastModified="145517d4b4d">
+         <source file="..\..\..\cmsis_boot\system_stm32f4xx.c" lastModified="145517d3831"/>
+      </target>
+      <target file="startup_stm32f4xx.o" lastModified="145517d4914">
+         <source file="..\..\..\cmsis_boot\startup\startup_stm32f4xx.c" lastModified="145373fc49f"/>
+      </target>
+      <target file="stm32f4xx_usart.o" lastModified="145517d4882">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_usart.c" lastModified="145373ff9dc"/>
+      </target>
+      <target file="main.o" lastModified="14555293e38">
+         <source file="..\..\..\main.c" lastModified="14555291ed4"/>
+      </target>
+      <target file="tm_stm32f4_disco.o" lastModified="145517d48d8">
+         <source file="..\..\..\tm\tm_stm32f4_disco.c" lastModified="1453914da9c"/>
+      </target>
+      <target file="tm_stm32f4_usart.o" lastModified="14551dd731a">
+         <source file="..\..\..\tm\tm_stm32f4_usart.c" lastModified="14551d9bcc5"/>
+      </target>
+      <target file="tm_stm32f4_delay.o" lastModified="145517d4a96">
+         <source file="..\..\..\tm\tm_stm32f4_delay.c" lastModified="145513b99c7"/>
+      </target>
+      <target file="stm32f4xx_rcc.o" lastModified="145517d49e2">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_rcc.c" lastModified="145373fc482"/>
+      </target>
+      <target file="misc.o" lastModified="145517d4b9d">
+         <source file="..\..\..\cmsis_lib\source\misc.c" lastModified="1453768465b"/>
+      </target>
+   </processor>
+</history>

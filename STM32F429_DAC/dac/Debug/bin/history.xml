@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<history>
+   <processor signature="4.7.4 -mcpu=cortex-m4 -mthumb -g -nostartfiles -Map=dac.map -O0 --gc-sections -LC:\CooCox\CoIDE\configuration\ProgramData\dac -TC:\CooCox\CoIDE\configuration\ProgramData\dac/arm-gcc-link.ld -g">
+      <target file="dac.elf" lastModified="14547e64689">
+         <source file="..\obj\stm32f4xx_usart.o" lastModified="14547e361b0"/>
+         <source file="..\obj\stm32f4xx_dac.o" lastModified="14547e3620c"/>
+         <source file="..\obj\startup_stm32f4xx.o" lastModified="1454766759a"/>
+         <source file="..\obj\main.o" lastModified="14547e643b0"/>
+         <source file="..\obj\stm32f4xx_rcc.o" lastModified="14547e362d4"/>
+         <source file="..\obj\tm_stm32f4_usart.o" lastModified="14547e36329"/>
+         <source file="..\obj\stm32f4xx_adc.o" lastModified="14547e363a5"/>
+         <source file="..\obj\tm_stm32f4_delay.o" lastModified="14547e363fa"/>
+         <source file="..\obj\stm32f4xx_gpio.o" lastModified="14547e36458"/>
+         <source file="..\obj\system_stm32f4xx.o" lastModified="14547e364a6"/>
+         <source file="..\obj\misc.o" lastModified="14547e364f4"/>
+      </target>
+   </processor>
+</history>

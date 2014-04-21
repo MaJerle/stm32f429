@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<history>
+   <processor signature="4.7.4 -mcpu=cortex-m4 -mthumb -g -nostartfiles -Map=stm32f429.map -O0 --gc-sections -LC:\CooCox\CoIDE\configuration\ProgramData\stm32f429 -TC:\CooCox\CoIDE\configuration\ProgramData\stm32f429/arm-gcc-link.ld -g">
+      <target file="stm32f429.elf" lastModified="145513b2b79">
+         <source file="..\obj\stm32f4xx_syscfg.o" lastModified="14540eaa4e5"/>
+         <source file="..\obj\tm_stm32f4_disco.o" lastModified="14540eaa58c"/>
+         <source file="..\obj\startup_stm32f4xx.o" lastModified="14540e9b087"/>
+         <source file="..\obj\main.o" lastModified="145513b250f"/>
+         <source file="..\obj\stm32f4xx_rcc.o" lastModified="14540eaa74d"/>
+         <source file="..\obj\tm_stm32f4_delay.o" lastModified="145513b25ec"/>
+         <source file="..\obj\stm32f4xx_gpio.o" lastModified="14540eaa8bc"/>
+         <source file="..\obj\system_stm32f4xx.o" lastModified="1455101962a"/>
+         <source file="..\obj\misc.o" lastModified="14540eaa9f7"/>
+      </target>
+   </processor>
+</history>
