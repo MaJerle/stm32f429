@@ -82,7 +82,6 @@ extern uint8_t TM_USART_Getc(USART_TypeDef* USARTx);
  * USART1 Interrupt handler
  *
  * Called when data is received on USART1
- *
  */
 extern void USART1_IRQHandler(void);
 
