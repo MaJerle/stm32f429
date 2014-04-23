@@ -74,7 +74,7 @@ extern void TM_USART_Puts(USART_TypeDef* USARTx, char* str);
  * 	- USART_TypeDef* USARTx: which USART channel
  * 		USART1, USART2, USART3, UART4, UART5, USART6
  *
- * Returned character
+ * Returned character if exists in buffer, otherwise zero
  */
 extern uint8_t TM_USART_Getc(USART_TypeDef* USARTx);
 

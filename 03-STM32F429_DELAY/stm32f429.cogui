@@ -484,8 +484,8 @@
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32_ub_lcd_ili9341.c" tooltip="stm32f429_project/tm/stm32_ub_lcd_ili9341.c">
 <persistable path="/stm32f429_project/tm/stm32_ub_lcd_ili9341.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32_ub_sdram.c" tooltip="stm32f429_project/tm/stm32_ub_sdram.c">
-<persistable path="/stm32f429_project/tm/stm32_ub_sdram.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx.h" tooltip="dac/cmsis_boot/stm32f4xx.h">
+<persistable path="/dac/cmsis_boot/stm32f4xx.h"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx.h" tooltip="dac/cmsis_boot/stm32f4xx.h">
 <persistable path="/dac/cmsis_boot/stm32f4xx.h"/>

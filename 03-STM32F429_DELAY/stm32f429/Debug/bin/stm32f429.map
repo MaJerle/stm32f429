@@ -44,6 +44,7 @@ Discarded input sections
  .bss           0x00000000        0x0 ..\obj\startup_stm32f4xx.o
  .text          0x00000000        0x0 ..\obj\main.o
  .data          0x00000000        0x0 ..\obj\main.o
+ .bss           0x00000000        0x8 ..\obj\main.o
  .text          0x00000000        0x0 ..\obj\stm32f4xx_rcc.o
  .data          0x00000000       0x10 ..\obj\stm32f4xx_rcc.o
  .bss           0x00000000        0x0 ..\obj\stm32f4xx_rcc.o
@@ -136,7 +137,6 @@ Discarded input sections
  .text          0x00000000        0x0 ..\obj\tm_stm32f4_delay.o
  .data          0x00000000        0x0 ..\obj\tm_stm32f4_delay.o
  .text.Delay    0x00000000       0x30 ..\obj\tm_stm32f4_delay.o
- .text.Delayms  0x00000000       0x38 ..\obj\tm_stm32f4_delay.o
  .text          0x00000000        0x0 ..\obj\stm32f4xx_gpio.o
  .data          0x00000000        0x0 ..\obj\stm32f4xx_gpio.o
  .bss           0x00000000        0x0 ..\obj\stm32f4xx_gpio.o
@@ -162,8 +162,6 @@ Discarded input sections
                 0x00000000       0x30 ..\obj\stm32f4xx_gpio.o
  .text.GPIO_Write
                 0x00000000       0x1c ..\obj\stm32f4xx_gpio.o
- .text.GPIO_ToggleBits
-                0x00000000       0x24 ..\obj\stm32f4xx_gpio.o
  .text.GPIO_PinAFConfig
                 0x00000000       0xa8 ..\obj\stm32f4xx_gpio.o
  .text          0x00000000        0x0 ..\obj\system_stm32f4xx.o
@@ -208,7 +206,7 @@ Linker script and memory map
 
                 0x20020000                _eram = 0x20020000
 
-.text           0x08000000      0x77c
+.text           0x08000000      0x7bc
  *(.isr_vector)
  .isr_vector    0x08000000      0x188 ..\obj\startup_stm32f4xx.o
                 0x08000000                g_pfnVectors
@@ -312,29 +310,34 @@ Linker script and memory map
                 0x08000240                I2C1_ER_IRQHandler
                 0x08000240                DMA2_Stream6_IRQHandler
                 0x08000240                DMA1_Stream3_IRQHandler
- .text.main     0x08000248       0x48 ..\obj\main.o
+ .text.main     0x08000248       0x2c ..\obj\main.o
                 0x08000248                main
  .text.RCC_AHB1PeriphClockCmd
-                0x08000290       0x54 ..\obj\stm32f4xx_rcc.o
-                0x08000290                RCC_AHB1PeriphClockCmd
+                0x08000274       0x54 ..\obj\stm32f4xx_rcc.o
+                0x08000274                RCC_AHB1PeriphClockCmd
  .text.NVIC_SetPriority
-                0x080002e4       0x5c ..\obj\tm_stm32f4_delay.o
+                0x080002c8       0x5c ..\obj\tm_stm32f4_delay.o
  .text.SysTick_Config
-                0x08000340       0x64 ..\obj\tm_stm32f4_delay.o
+                0x08000324       0x64 ..\obj\tm_stm32f4_delay.o
+ .text.Delayms  0x08000388       0x38 ..\obj\tm_stm32f4_delay.o
+                0x08000388                Delayms
  .text.SysTick_Handler
-                0x080003a4       0x48 ..\obj\tm_stm32f4_delay.o
-                0x080003a4                SysTick_Handler
+                0x080003c0       0x48 ..\obj\tm_stm32f4_delay.o
+                0x080003c0                SysTick_Handler
  .text.TM_DELAY_Init
-                0x080003ec       0x30 ..\obj\tm_stm32f4_delay.o
-                0x080003ec                TM_DELAY_Init
+                0x08000408       0x30 ..\obj\tm_stm32f4_delay.o
+                0x08000408                TM_DELAY_Init
  .text.GPIO_Init
-                0x0800041c      0x144 ..\obj\stm32f4xx_gpio.o
-                0x0800041c                GPIO_Init
+                0x08000438      0x144 ..\obj\stm32f4xx_gpio.o
+                0x08000438                GPIO_Init
+ .text.GPIO_ToggleBits
+                0x0800057c       0x24 ..\obj\stm32f4xx_gpio.o
+                0x0800057c                GPIO_ToggleBits
  .text.SystemInit
-                0x08000560       0x94 ..\obj\system_stm32f4xx.o
-                0x08000560                SystemInit
+                0x080005a0       0x94 ..\obj\system_stm32f4xx.o
+                0x080005a0                SystemInit
  .text.SetSysClock
-                0x080005f4      0x188 ..\obj\system_stm32f4xx.o
+                0x08000634      0x188 ..\obj\system_stm32f4xx.o
  *(.init)
  *(.fini)
  *crtbegin.o(.ctors)
@@ -350,35 +353,35 @@ Linker script and memory map
  *(.rodata*)
  *(.eh_fram e*)
 
-.glue_7         0x0800077c        0x0
+.glue_7         0x080007bc        0x0
  .glue_7        0x00000000        0x0 linker stubs
 
-.glue_7t        0x0800077c        0x0
+.glue_7t        0x080007bc        0x0
  .glue_7t       0x00000000        0x0 linker stubs
 
-.vfp11_veneer   0x0800077c        0x0
+.vfp11_veneer   0x080007bc        0x0
  .vfp11_veneer  0x00000000        0x0 linker stubs
 
-.v4_bx          0x0800077c        0x0
+.v4_bx          0x080007bc        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
-.iplt           0x0800077c        0x0
+.iplt           0x080007bc        0x0
  .iplt          0x00000000        0x0 ..\obj\stm32f4xx_syscfg.o
 
-.rel.dyn        0x0800077c        0x0
+.rel.dyn        0x080007bc        0x0
  .rel.iplt      0x00000000        0x0 ..\obj\stm32f4xx_syscfg.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x0800077c                __exidx_start = .
+                0x080007bc                __exidx_start = .
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x0800077c                __exidx_end = .
-                0x0800077c                __etext = .
-                0x0800077c                _sidata = __etext
+                0x080007bc                __exidx_end = .
+                0x080007bc                __etext = .
+                0x080007bc                _sidata = __etext
 
-.data           0x20000000       0x14 load address 0x0800077c
+.data           0x20000000       0x14 load address 0x080007bc
                 0x20000000                __data_start__ = .
                 0x20000000                _sdata = __data_start__
  *(vtable)
@@ -405,34 +408,33 @@ Linker script and memory map
                 0x20000014                __data_end__ = .
                 0x20000014                _edata = __data_end__
 
-.igot.plt       0x20000014        0x0 load address 0x08000790
+.igot.plt       0x20000014        0x0 load address 0x080007d0
  .igot.plt      0x00000000        0x0 ..\obj\stm32f4xx_syscfg.o
 
-.bss            0x20000014       0x10 load address 0x08000790
+.bss            0x20000014        0x8 load address 0x080007d0
                 0x20000014                . = ALIGN (0x4)
                 0x20000014                __bss_start__ = .
                 0x20000014                _sbss = __bss_start__
  *(.bss*)
- .bss           0x20000014        0x8 ..\obj\main.o
- .bss           0x2000001c        0x8 ..\obj\tm_stm32f4_delay.o
+ .bss           0x20000014        0x8 ..\obj\tm_stm32f4_delay.o
  *(COMMON)
-                0x20000024                . = ALIGN (0x4)
-                0x20000024                __bss_end__ = .
-                0x20000024                _ebss = __bss_end__
+                0x2000001c                . = ALIGN (0x4)
+                0x2000001c                __bss_end__ = .
+                0x2000001c                _ebss = __bss_end__
 
-.heap           0x20000024        0x0
-                0x20000024                __end__ = .
-                0x20000024                _end = __end__
-                0x20000024                end = __end__
+.heap           0x2000001c        0x0
+                0x2000001c                __end__ = .
+                0x2000001c                _end = __end__
+                0x2000001c                end = __end__
  *(.heap*)
-                0x20000024                __HeapLimit = .
+                0x2000001c                __HeapLimit = .
 
-.co_stack       0x20000024      0x804 load address 0x080007a0
-                0x20000028                . = ALIGN (0x8)
- *fill*         0x20000024        0x4 00
+.co_stack       0x2000001c      0x804 load address 0x080007d8
+                0x20000020                . = ALIGN (0x8)
+ *fill*         0x2000001c        0x4 00
  *(.co_stack .co_stack.*)
- .co_stack      0x20000028      0x800 ..\obj\startup_stm32f4xx.o
-                0x20000028                pulStack
+ .co_stack      0x20000020      0x800 ..\obj\startup_stm32f4xx.o
+                0x20000020                pulStack
                 0x20020000                __StackTop = (ORIGIN (ram) + 0x20000)
                 0x2001f7fc                __StackLimit = (__StackTop - SIZEOF (.co_stack))
                 0x20020000                PROVIDE (__stack, __StackTop)
@@ -453,23 +455,23 @@ LOAD c:/program files (x86)/gnu tools arm embedded/4.7 2013q3/bin/../lib/gcc/arm
 END GROUP
 OUTPUT(stm32f429.elf elf32-littlearm)
 
-.debug_info     0x00000000     0x260c
+.debug_info     0x00000000     0x26dd
  .debug_info    0x00000000      0x349 ..\obj\tm_stm32f4_disco.o
  .debug_info    0x00000349      0x103 ..\obj\startup_stm32f4xx.o
- .debug_info    0x0000044c       0xdd ..\obj\main.o
- .debug_info    0x00000529      0xd49 ..\obj\stm32f4xx_rcc.o
- .debug_info    0x00001272      0x765 ..\obj\tm_stm32f4_delay.o
- .debug_info    0x000019d7      0x640 ..\obj\stm32f4xx_gpio.o
- .debug_info    0x00002017      0x5f5 ..\obj\system_stm32f4xx.o
+ .debug_info    0x0000044c      0x1ae ..\obj\main.o
+ .debug_info    0x000005fa      0xd49 ..\obj\stm32f4xx_rcc.o
+ .debug_info    0x00001343      0x765 ..\obj\tm_stm32f4_delay.o
+ .debug_info    0x00001aa8      0x640 ..\obj\stm32f4xx_gpio.o
+ .debug_info    0x000020e8      0x5f5 ..\obj\system_stm32f4xx.o
 
-.debug_abbrev   0x00000000      0x89e
+.debug_abbrev   0x00000000      0x8e8
  .debug_abbrev  0x00000000      0x12a ..\obj\tm_stm32f4_disco.o
  .debug_abbrev  0x0000012a       0xb2 ..\obj\startup_stm32f4xx.o
- .debug_abbrev  0x000001dc       0x78 ..\obj\main.o
- .debug_abbrev  0x00000254      0x1e5 ..\obj\stm32f4xx_rcc.o
- .debug_abbrev  0x00000439      0x188 ..\obj\tm_stm32f4_delay.o
- .debug_abbrev  0x000005c1      0x1a5 ..\obj\stm32f4xx_gpio.o
- .debug_abbrev  0x00000766      0x138 ..\obj\system_stm32f4xx.o
+ .debug_abbrev  0x000001dc       0xc2 ..\obj\main.o
+ .debug_abbrev  0x0000029e      0x1e5 ..\obj\stm32f4xx_rcc.o
+ .debug_abbrev  0x00000483      0x188 ..\obj\tm_stm32f4_delay.o
+ .debug_abbrev  0x0000060b      0x1a5 ..\obj\stm32f4xx_gpio.o
+ .debug_abbrev  0x000007b0      0x138 ..\obj\system_stm32f4xx.o
 
 .debug_loc      0x00000000      0xffc
  .debug_loc     0x00000000      0x10c ..\obj\tm_stm32f4_disco.o
@@ -505,14 +507,14 @@ OUTPUT(stm32f429.elf elf32-littlearm)
  .debug_ranges  0x000001f8       0x78 ..\obj\stm32f4xx_gpio.o
  .debug_ranges  0x00000270       0x20 ..\obj\system_stm32f4xx.o
 
-.debug_line     0x00000000     0x143c
+.debug_line     0x00000000     0x14b6
  .debug_line    0x00000000      0x2d0 ..\obj\tm_stm32f4_disco.o
  .debug_line    0x000002d0       0xd0 ..\obj\startup_stm32f4xx.o
- .debug_line    0x000003a0      0x1f8 ..\obj\main.o
- .debug_line    0x00000598      0x626 ..\obj\stm32f4xx_rcc.o
- .debug_line    0x00000bbe      0x29c ..\obj\tm_stm32f4_delay.o
- .debug_line    0x00000e5a      0x3ca ..\obj\stm32f4xx_gpio.o
- .debug_line    0x00001224      0x218 ..\obj\system_stm32f4xx.o
+ .debug_line    0x000003a0      0x272 ..\obj\main.o
+ .debug_line    0x00000612      0x626 ..\obj\stm32f4xx_rcc.o
+ .debug_line    0x00000c38      0x29c ..\obj\tm_stm32f4_delay.o
+ .debug_line    0x00000ed4      0x3ca ..\obj\stm32f4xx_gpio.o
+ .debug_line    0x0000129e      0x218 ..\obj\system_stm32f4xx.o
 
 .debug_str      0x00000000     0x1490
  .debug_str     0x00000000      0x332 ..\obj\tm_stm32f4_disco.o
@@ -520,7 +522,7 @@ OUTPUT(stm32f429.elf elf32-littlearm)
  .debug_str     0x00000332       0xde ..\obj\startup_stm32f4xx.o
                                 0x142 (size before relaxing)
  .debug_str     0x00000410       0x79 ..\obj\main.o
-                                0x16d (size before relaxing)
+                                0x1af (size before relaxing)
  .debug_str     0x00000489      0x6d3 ..\obj\stm32f4xx_rcc.o
                                 0x821 (size before relaxing)
  .debug_str     0x00000b5c      0x681 ..\obj\tm_stm32f4_delay.o
