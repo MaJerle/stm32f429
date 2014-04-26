@@ -236,7 +236,7 @@ void PCD8544_InitIO(void) {
 
 void PCD8544_send(unsigned char data) {
 	PCD8544_CE_LOW;
-	TM_SPI_Send(SPI2, data);
+	TM_SPI_Send(PCD8544_SPIx, data);
 	PCD8544_CE_HIGH;
 }
 
