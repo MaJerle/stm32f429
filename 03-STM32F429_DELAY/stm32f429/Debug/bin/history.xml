@@ -1,16 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <history>
-   <processor signature="4.7.4 -mcpu=cortex-m4 -mthumb -g -nostartfiles -Map=stm32f429.map -O0 --gc-sections -LC:\CooCox\CoIDE\configuration\ProgramData\stm32f429 -TC:\CooCox\CoIDE\configuration\ProgramData\stm32f429/arm-gcc-link.ld -g">
-      <target file="stm32f429.elf" lastModified="1458649ce47">
-         <source file="..\obj\stm32f4xx_syscfg.o" lastModified="14584b97b4a"/>
-         <source file="..\obj\tm_stm32f4_disco.o" lastModified="1458637653f"/>
-         <source file="..\obj\startup_stm32f4xx.o" lastModified="14584b97c9e"/>
-         <source file="..\obj\main.o" lastModified="1458649cc35"/>
-         <source file="..\obj\stm32f4xx_rcc.o" lastModified="14584b97e7b"/>
-         <source file="..\obj\tm_stm32f4_delay.o" lastModified="145863f6d94"/>
-         <source file="..\obj\stm32f4xx_gpio.o" lastModified="14584b98023"/>
-         <source file="..\obj\system_stm32f4xx.o" lastModified="14584b980ec"/>
-         <source file="..\obj\misc.o" lastModified="14584b981b2"/>
+   <processor signature="4.7.4 -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wall -g -nostartfiles -Map=stm32f429.map -O0 --gc-sections -LC:\CooCox\CoIDE\configuration\ProgramData\stm32f429 -TC:\CooCox\CoIDE\configuration\ProgramData\stm32f429/arm-gcc-link.ld -g">
+      <target file="stm32f429.elf" lastModified="14595b3981b">
+         <source file="..\obj\stm32f4xx_syscfg.o" lastModified="14595b38d4f"/>
+         <source file="..\obj\tm_stm32f4_disco.o" lastModified="14595b38e22"/>
+         <source file="..\obj\startup_stm32f4xx.o" lastModified="14595b38eb4"/>
+         <source file="..\obj\main.o" lastModified="14595b38f68"/>
+         <source file="..\obj\stm32f4xx_rcc.o" lastModified="14595b39087"/>
+         <source file="..\obj\tm_stm32f4_delay.o" lastModified="14595b39167"/>
+         <source file="..\obj\stm32f4xx_gpio.o" lastModified="14595b3926a"/>
+         <source file="..\obj\system_stm32f4xx.o" lastModified="14595b3933c"/>
+         <source file="..\obj\misc.o" lastModified="14595b393fc"/>
       </target>
    </processor>
 </history>

@@ -7,6 +7,7 @@
         <Option name="OptimizationLevel" value="0"/>
         <Option name="UseFPU" value="0"/>
         <Option name="UserEditCompiler" value=""/>
+        <Option name="FPU" value="2"/>
         <Includepaths>
           <Includepath path="."/>
         </Includepaths>
@@ -15,6 +16,7 @@
           <Define name="USE_STDPERIPH_DRIVER"/>
           <Define name="__ASSEMBLY__"/>
           <Define name="STM32F429_439xx"/>
+          <Define name="__FPU_USED"/>
         </DefinedSymbols>
       </Compile>
       <Link useDefault="0">
@@ -46,9 +48,9 @@
       </User>
     </BuildOption>
     <DebugOption>
-      <Option name="org.coocox.codebugger.gdbjtag.core.adapter" value="ST-Link"/>
-      <Option name="org.coocox.codebugger.gdbjtag.core.debugMode" value="SWD"/>
-      <Option name="org.coocox.codebugger.gdbjtag.core.clockDiv" value="1M"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.adapter" value="CMSIS-DAP"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.debugMode" value="JTAG"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.clockDiv" value="2M"/>
       <Option name="org.coocox.codebugger.gdbjtag.corerunToMain" value="1"/>
       <Option name="org.coocox.codebugger.gdbjtag.core.jlinkgdbserver" value=""/>
       <Option name="org.coocox.codebugger.gdbjtag.core.userDefineGDBScript" value=""/>
@@ -75,20 +77,20 @@
     <Component id="526" name="SYSCFG" path="" type="2"/>
   </Components>
   <Files>
-    <File name="cmsis_lib/source/stm32f4xx_gpio.c" path="cmsis_lib/source/stm32f4xx_gpio.c" type="1"/>
     <File name="tm" path="" type="2"/>
+    <File name="cmsis_lib/source/stm32f4xx_gpio.c" path="cmsis_lib/source/stm32f4xx_gpio.c" type="1"/>
     <File name="cmsis_boot/startup/startup_stm32f4xx.c" path="cmsis_boot/startup/startup_stm32f4xx.c" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_rcc.c" path="cmsis_lib/source/stm32f4xx_rcc.c" type="1"/>
     <File name="cmsis/core_cmInstr.h" path="cmsis/core_cmInstr.h" type="1"/>
     <File name="tm/tm_stm32f4_disco.h" path="../00-STM32F429_LIBRARIES/tm_stm32f4_disco.h" type="1"/>
     <File name="cmsis_boot" path="" type="2"/>
     <File name="cmsis_lib/include/stm32f4xx_syscfg.h" path="cmsis_lib/include/stm32f4xx_syscfg.h" type="1"/>
-    <File name="cmsis/core_cm4_simd.h" path="cmsis/core_cm4_simd.h" type="1"/>
-    <File name="cmsis_boot/startup" path="" type="2"/>
     <File name="cmsis_boot/stm32f4xx.h" path="cmsis_boot/stm32f4xx.h" type="1"/>
+    <File name="cmsis_boot/startup" path="" type="2"/>
+    <File name="cmsis/core_cm4_simd.h" path="cmsis/core_cm4_simd.h" type="1"/>
     <File name="cmsis/core_cmFunc.h" path="cmsis/core_cmFunc.h" type="1"/>
-    <File name="cmsis_boot/system_stm32f4xx.c" path="cmsis_boot/system_stm32f4xx.c" type="1"/>
     <File name="cmsis/core_cm4.h" path="cmsis/core_cm4.h" type="1"/>
+    <File name="cmsis_boot/system_stm32f4xx.c" path="cmsis_boot/system_stm32f4xx.c" type="1"/>
     <File name="tm/tm_stm32f4_delay.h" path="../00-STM32F429_LIBRARIES/tm_stm32f4_delay.h" type="1"/>
     <File name="cmsis_lib/source/misc.c" path="cmsis_lib/source/misc.c" type="1"/>
     <File name="cmsis" path="" type="2"/>
@@ -101,8 +103,8 @@
     <File name="tm/tm_stm32f4_delay.c" path="../00-STM32F429_LIBRARIES/tm_stm32f4_delay.c" type="1"/>
     <File name="cmsis_lib/include" path="" type="2"/>
     <File name="cmsis_lib/include/stm32f4xx_rcc.h" path="cmsis_lib/include/stm32f4xx_rcc.h" type="1"/>
-    <File name="cmsis_lib/source/stm32f4xx_syscfg.c" path="cmsis_lib/source/stm32f4xx_syscfg.c" type="1"/>
     <File name="tm/tm_stm32f4_disco.c" path="../00-STM32F429_LIBRARIES/tm_stm32f4_disco.c" type="1"/>
+    <File name="cmsis_lib/source/stm32f4xx_syscfg.c" path="cmsis_lib/source/stm32f4xx_syscfg.c" type="1"/>
     <File name="main.c" path="main.c" type="1"/>
   </Files>
 </Project>
