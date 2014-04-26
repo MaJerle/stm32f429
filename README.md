@@ -1,5 +1,5 @@
 # STM32F429 Discovery board
-# Libraries and projects
+## Libraries and projects
 
 Here are listed all libraries for STM32F429 Discovery board.
 
