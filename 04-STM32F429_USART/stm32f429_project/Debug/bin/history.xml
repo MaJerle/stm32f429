@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <history>
    <processor signature="4.7.4 -mcpu=cortex-m4 -mthumb -g -nostartfiles -Map=stm32f429_project.map -O0 --gc-sections -LC:\CooCox\CoIDE\configuration\ProgramData\stm32f429_project -TC:\CooCox\CoIDE\configuration\ProgramData\stm32f429_project/arm-gcc-link.ld -g">
-      <target file="stm32f429_project.elf" lastModified="1459e6cc93c">
+      <target file="stm32f429_project.elf" lastModified="1459fec33b9">
          <source file="..\obj\stm32f4xx_syscfg.o" lastModified="1459e6cb3bc"/>
          <source file="..\obj\stm32f4xx_sdio.o" lastModified="1459e6cb436"/>
          <source file="..\obj\stm32f4xx_dma2d.o" lastModified="1459e6cb4b1"/>
@@ -14,14 +14,14 @@
          <source file="..\obj\stm32f4xx_wwdg.o" lastModified="1459e6cb85d"/>
          <source file="..\obj\stm32f4xx_hash_md5.o" lastModified="1459e6cb8ca"/>
          <source file="..\obj\stm32f4xx_dac.o" lastModified="1459e6cb940"/>
-         <source file="..\obj\tm_stm32f4_disco.o" lastModified="1459e6cb9a7"/>
+         <source file="..\obj\tm_stm32f4_disco.o" lastModified="1459fd9553b"/>
          <source file="..\obj\stm32f4xx_ltdc.o" lastModified="1459e6cba30"/>
          <source file="..\obj\startup_stm32f4xx.o" lastModified="1459e6cba67"/>
          <source file="..\obj\stm32f4xx_crc.o" lastModified="1459e6cbacb"/>
          <source file="..\obj\stm32f4xx_iwdg.o" lastModified="1459e6cbb32"/>
-         <source file="..\obj\main.o" lastModified="1459e6cbb97"/>
+         <source file="..\obj\main.o" lastModified="1459fec314e"/>
          <source file="..\obj\stm32f4xx_rcc.o" lastModified="1459e6cbc31"/>
-         <source file="..\obj\tm_stm32f4_usart.o" lastModified="1459e6cbcc1"/>
+         <source file="..\obj\tm_stm32f4_usart.o" lastModified="1459fe87658"/>
          <source file="..\obj\stm32f4xx_adc.o" lastModified="1459e6cbd51"/>
          <source file="..\obj\stm32f4xx_dcmi.o" lastModified="1459e6cbdc5"/>
          <source file="..\obj\stm32f4xx_cryp_des.o" lastModified="1459e6cbe3a"/>
