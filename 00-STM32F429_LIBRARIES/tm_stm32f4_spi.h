@@ -21,6 +21,10 @@
 #ifndef TM_SPI_H
 #define TM_SPI_H 100
 
+/**
+ * Includes
+ */
+#include "defines.h"
 #include "stm32f4xx.h"
 #include "stm32f4xx_rcc.h"
 #include "stm32f4xx_gpio.h"
