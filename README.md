@@ -8,12 +8,9 @@ http://bit.ly/1nb5ntt
 
 Current librarires:
 
-1. All libraries listed at one place for easy editing them from one place and use them for all projects
+- All libraries listed at one place for easy editing them from one place and use them for all projects
 
-2. CMSIS Default project - this is project template
-
-
-
+1. CMSIS Default project - this is project template
 02. LED_BUTTON - Project example for Discovery 2 leds and button
 http://bit.ly/1nbAHbs
 03. DELAY - Delay library for STM32F429
