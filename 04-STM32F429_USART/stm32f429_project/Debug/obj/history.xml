@@ -1,135 +1,119 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <history>
-   <processor signature="arm-none-eabi-gcc noversion nomachine -mcpu=cortex-m4 -mthumb -Wall -ffunction-sections -g -O0 -c -DSTM32F4XX -DUSE_STDPERIPH_DRIVER -D__ASSEMBLY__ -DSTM32F429_439xx -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\majerle.eu\04-STM32F429_USART -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\majerle.eu\04-STM32F429_USART\cmsis_lib\include -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\majerle.eu\00-STM32F429_LIBRARIES -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\majerle.eu\04-STM32F429_USART\cmsis -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\majerle.eu\04-STM32F429_USART\cmsis_lib -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\majerle.eu -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429 -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\majerle.eu\04-STM32F429_USART\cmsis_boot">
-      <target file="stm32f4xx_cryp_aes.o" lastModified="14584c88d27">
+   <processor signature="arm-none-eabi-gcc noversion nomachine -mcpu=cortex-m4 -mthumb -Wall -ffunction-sections -g -O0 -c -DSTM32F4XX -DUSE_STDPERIPH_DRIVER -D__ASSEMBLY__ -DSTM32F429_439xx -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\ARM\STM32F429\majerle.eu -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\ARM\STM32F429\majerle.eu\04-STM32F429_USART\cmsis_lib -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\ARM\STM32F429\majerle.eu\04-STM32F429_USART\cmsis -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\ARM\STM32F429\majerle.eu\04-STM32F429_USART\cmsis_lib\include -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\ARM\STM32F429\majerle.eu\04-STM32F429_USART -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\ARM\STM32F429\majerle.eu\00-STM32F429_LIBRARIES -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\ARM\STM32F429 -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\ARM\STM32F429\majerle.eu\04-STM32F429_USART\cmsis_boot">
+      <target file="stm32f4xx_cryp_aes.o" lastModified="1459d732159">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_cryp_aes.c" lastModified="1423985a686"/>
       </target>
-      <target file="misc.o" lastModified="14584c8a52f">
+      <target file="misc.o" lastModified="1459d732fb7">
          <source file="..\..\..\cmsis_lib\source\misc.c" lastModified="1423985a59c"/>
       </target>
-      <target file="stm32f4xx_ltdc.o" lastModified="14584c89468">
+      <target file="stm32f4xx_ltdc.o" lastModified="1459d732574">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_ltdc.c" lastModified="1423985a86a"/>
       </target>
-      <target file="stm32f4xx_cryp.o" lastModified="14584c89c99">
+      <target file="stm32f4xx_cryp.o" lastModified="1459d732a19">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_cryp.c" lastModified="1423985a657"/>
       </target>
-      <target file="stm32f4xx_cryp_des.o" lastModified="14584c89bbb">
+      <target file="stm32f4xx_cryp_des.o" lastModified="1459d732992">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_cryp_des.c" lastModified="1423985a686"/>
       </target>
-      <target file="stm32f4xx_tim.o" lastModified="14584c8a87a">
+      <target file="stm32f4xx_tim.o" lastModified="1459d7331e6">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_tim.c" lastModified="1423985a9f1"/>
       </target>
-      <target file="stm32f4xx_iwdg.o" lastModified="14584c89660">
+      <target file="stm32f4xx_iwdg.o" lastModified="1459d73267e">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_iwdg.c" lastModified="1423985a84b"/>
       </target>
-      <target file="stm32f4xx_exti.o" lastModified="14584c8a48b">
+      <target file="stm32f4xx_exti.o" lastModified="1459d732f4c">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_exti.c" lastModified="1423985a722"/>
       </target>
-      <target file="stm32f4xx_gpio.o" lastModified="14584c89d6a">
+      <target file="stm32f4xx_gpio.o" lastModified="1459d732a99">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_gpio.c" lastModified="1423985a7de"/>
       </target>
-      <target file="stm32f4xx_usart.o" lastModified="14584c88f00">
+      <target file="stm32f4xx_usart.o" lastModified="1459d732262">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_usart.c" lastModified="1423985aa20"/>
       </target>
-      <target file="stm32f4xx_rtc.o" lastModified="14584c8a654">
+      <target file="stm32f4xx_rtc.o" lastModified="1459d733092">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_rtc.c" lastModified="1423985a926"/>
       </target>
-      <target file="stm32f4xx_hash_sha1.o" lastModified="14584c88dff">
+      <target file="stm32f4xx_hash_sha1.o" lastModified="1459d7321d2">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_hash_sha1.c" lastModified="1423985a81c"/>
       </target>
-      <target file="stm32f4xx_rcc.o" lastModified="14584c8983a">
+      <target file="stm32f4xx_rcc.o" lastModified="1459d73277f">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_rcc.c" lastModified="1423985a8c8"/>
       </target>
-      <target file="stm32f4xx_dac.o" lastModified="14584c89361">
+      <target file="stm32f4xx_dac.o" lastModified="1459d7324e2">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_dac.c" lastModified="1423985a6b5"/>
       </target>
-      <target file="stm32f4xx_can.o" lastModified="14584c890ed">
+      <target file="stm32f4xx_can.o" lastModified="1459d73237f">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_can.c" lastModified="1423985a638"/>
       </target>
-      <target file="stm32f4xx_pwr.o" lastModified="14584c88fd5">
+      <target file="stm32f4xx_pwr.o" lastModified="1459d7322e0">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_pwr.c" lastModified="1426b3605ad"/>
       </target>
-      <target file="stm32f4xx_wwdg.o" lastModified="14584c891b3">
+      <target file="stm32f4xx_wwdg.o" lastModified="1459d7323ed">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_wwdg.c" lastModified="1423985aa20"/>
       </target>
-      <target file="stm32f4xx_rng.o" lastModified="14584c8a3e4">
+      <target file="stm32f4xx_rng.o" lastModified="1459d732edb">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_rng.c" lastModified="1423985a8d8"/>
       </target>
-      <target file="stm32f4xx_adc.o" lastModified="14584c89a19">
+      <target file="stm32f4xx_adc.o" lastModified="1459d7328ac">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_adc.c" lastModified="1423985a5ea"/>
       </target>
-      <target file="stm32f4xx_flash.o" lastModified="14584c89e61">
+      <target file="stm32f4xx_flash.o" lastModified="1459d732b32">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_flash.c" lastModified="1423985a751"/>
       </target>
-      <target file="stm32f4xx_cryp_tdes.o" lastModified="14584c8a70e">
+      <target file="stm32f4xx_cryp_tdes.o" lastModified="1459d733104">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_cryp_tdes.c" lastModified="1423985a696"/>
       </target>
-      <target file="startup_stm32f4xx.o" lastModified="14584c894d4">
+      <target file="startup_stm32f4xx.o" lastModified="1459d7325ae">
          <source file="..\..\..\cmsis_boot\startup\startup_stm32f4xx.c" lastModified="145774d591b"/>
       </target>
-      <target file="stm32f4xx_dcmi.o" lastModified="14584c89aec">
+      <target file="stm32f4xx_dcmi.o" lastModified="1459d732921">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_dcmi.c" lastModified="1423985a6d4"/>
       </target>
-      <target file="stm32f4xx_dma.o" lastModified="14584c8a094">
+      <target file="stm32f4xx_dma.o" lastModified="1459d732caf">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_dma.c" lastModified="1423985a6f3"/>
       </target>
-      <target file="stm32f4xx_sai.o" lastModified="14584c89f24">
+      <target file="stm32f4xx_sai.o" lastModified="1459d732bb0">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_sai.c" lastModified="1423985a945"/>
       </target>
-      <target file="tm_stm32f4_usart.o" lastModified="14584e87337">
-         <source file="..\..\..\..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c" lastModified="14584e86a06"/>
+      <target file="tm_stm32f4_usart.o" lastModified="1459e324a49">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c" lastModified="1459e320903"/>
       </target>
-      <target file="stm32f4xx_crc.o" lastModified="14584c89599">
+      <target file="stm32f4xx_crc.o" lastModified="1459d732614">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_crc.c" lastModified="1423985a638"/>
       </target>
-      <target file="stm32f4xx_sdio.o" lastModified="14584c889d1">
+      <target file="stm32f4xx_sdio.o" lastModified="1459d731f7d">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_sdio.c" lastModified="1423985a964"/>
       </target>
-      <target file="stm32f4xx_hash_md5.o" lastModified="14584c89280">
+      <target file="stm32f4xx_hash_md5.o" lastModified="1459d732468">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_hash_md5.c" lastModified="1423985a80d"/>
       </target>
-      <target file="stm32f4xx_dbgmcu.o" lastModified="14584c8a924">
+      <target file="stm32f4xx_dbgmcu.o" lastModified="1459d733254">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_dbgmcu.c" lastModified="1423985a6c5"/>
       </target>
-      <target file="stm32f4xx_i2c.o" lastModified="14584c8a331">
+      <target file="stm32f4xx_i2c.o" lastModified="1459d732e6b">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_i2c.c" lastModified="1423985a83c"/>
       </target>
-      <target file="stm32f4xx_syscfg.o" lastModified="14584c888cd">
+      <target file="stm32f4xx_syscfg.o" lastModified="1459d731ef2">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_syscfg.c" lastModified="1423985a993"/>
       </target>
-      <target file="stm32f4xx_hash.o" lastModified="14584c88ba2">
+      <target file="stm32f4xx_hash.o" lastModified="1459d732084">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_hash.c" lastModified="1423985a7fd"/>
       </target>
-      <target file="stm32f4xx_spi.o" lastModified="14584c8a24f">
+      <target file="stm32f4xx_spi.o" lastModified="1459d732dd4">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_spi.c" lastModified="1423985a984"/>
       </target>
-      <target file="stm32f4xx_fmc.o" lastModified="14584c8a17b">
+      <target file="main.o" lastModified="1459e35aae4">
+         <source file="..\..\..\main.c" lastModified="1459e35a2e0"/>
+      </target>
+      <target file="stm32f4xx_fmc.o" lastModified="1459d732d4a">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_fmc.c" lastModified="1423985a780"/>
       </target>
-      <target file="main.o" lastModified="14584e847a0">
-         <source file="..\..\..\main.c" lastModified="14584d07096"/>
-      </target>
-      <target file="system_stm32f4xx.o" lastModified="14584c89fce">
-         <source file="..\..\..\cmsis_boot\system_stm32f4xx.c" lastModified="145775221be"/>
-      </target>
-      <target file="stm32f4xx_dma2d.o" lastModified="14584c88ac0">
+      <target file="stm32f4xx_dma2d.o" lastModified="1459d732008">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_dma2d.c" lastModified="1423985a713"/>
       </target>
-   </processor>
-   <processor signature="arm-none-eabi-gcc noversion nomachine -mcpu=cortex-m4 -mthumb -Wall -ffunction-sections -g -O0 -c -DSTM32F407VG -DSTM32F4XX -DUSE_STDPERIPH_DRIVER -D__ASSEMBLY__ -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\STM32F429_CMSIS_Default_Project\cmsis_lib -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\STM32F429_CMSIS_Default_Project\cmsis_boot -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\STM32F429_CMSIS_Default_Project\cmsis -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429 -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\STM32F429_CMSIS_Default_Project -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\STM32F429_CMSIS_Default_Project\cmsis_lib\include">
-      <target file="stm32f4xx_fsmc.o" lastModified="14574810e9f">
-         <source file="..\..\..\cmsis_lib\source\stm32f4xx_fsmc.c" lastModified="145747927e6"/>
-      </target>
-   </processor>
-   <processor signature="arm-none-eabi-gcc noversion nomachine -mcpu=cortex-m4 -mthumb -Wall -ffunction-sections -g -O0 -c -DSTM32F4XX -DUSE_STDPERIPH_DRIVER -D__ASSEMBLY__ -DSTM32F429_439xx -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\majerle.eu\STM32F429_SPI\cmsis_lib\include -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\majerle.eu\STM32F429_SPI\cmsis -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\majerle.eu\STM32F429_DELAY\tm -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\majerle.eu -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\majerle.eu\STM32F429_SPI\cmsis_boot -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\majerle.eu\STM32F429_DELAY -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\majerle.eu\STM32F429_SPI\cmsis_lib -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\majerle.eu\STM32F429_SPI -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\majerle.eu\STM32F429_SPI\tm">
-      <target file="tm_stm32f4_disco.o" lastModified="145774b41ce">
-         <source file="..\..\..\..\STM32F429_DELAY\tm\tm_stm32f4_disco.c" lastModified="1453914da9c"/>
-      </target>
-      <target file="tm_stm32f4_spi.o" lastModified="145774b46db">
-         <source file="..\..\..\tm\tm_stm32f4_spi.c" lastModified="14577308776"/>
-      </target>
-      <target file="tm_stm32f4_delay.o" lastModified="1457752fccf">
-         <source file="..\..\..\..\STM32F429_DELAY\tm\tm_stm32f4_delay.c" lastModified="1457752f65f"/>
+      <target file="system_stm32f4xx.o" lastModified="1459d732c21">
+         <source file="..\..\..\cmsis_boot\system_stm32f4xx.c" lastModified="145775221be"/>
       </target>
    </processor>
 </history>

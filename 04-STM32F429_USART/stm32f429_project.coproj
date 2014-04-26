@@ -32,7 +32,7 @@
           <Memory name="IROM2" type="ReadOnly" size="" startValue=""/>
           <Memory name="IRAM2" type="ReadWrite" size="0x00010000" startValue="0x10000000"/>
         </MemoryAreas>
-        <LocateLinkFile path="../../../../../../../../coocox/coide/configuration/programdata/stm32f429_project/arm-gcc-link.ld" type="0"/>
+        <LocateLinkFile path="../../../../../../../../../coocox/coide/configuration/programdata/stm32f429_project/arm-gcc-link.ld" type="0"/>
       </Link>
       <Output>
         <Option name="OutputFileType" value="0"/>
@@ -102,9 +102,9 @@
     <File name="cmsis_lib/source/stm32f4xx_cryp_des.c" path="cmsis_lib/source/stm32f4xx_cryp_des.c" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_crc.c" path="cmsis_lib/source/stm32f4xx_crc.c" type="1"/>
     <File name="cmsis_lib/source/misc.c" path="cmsis_lib/source/misc.c" type="1"/>
-    <File name="cmsis_lib/source/stm32f4xx_iwdg.c" path="cmsis_lib/source/stm32f4xx_iwdg.c" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_adc.c" path="cmsis_lib/source/stm32f4xx_adc.c" type="1"/>
     <File name="cmsis_lib/include/stm32f4xx_tim.h" path="cmsis_lib/include/stm32f4xx_tim.h" type="1"/>
+    <File name="cmsis_lib/source/stm32f4xx_iwdg.c" path="cmsis_lib/source/stm32f4xx_iwdg.c" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_fmc.c" path="cmsis_lib/source/stm32f4xx_fmc.c" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_i2c.c" path="cmsis_lib/source/stm32f4xx_i2c.c" type="1"/>
     <File name="cmsis_lib/source" path="" type="2"/>
@@ -129,9 +129,9 @@
     <File name="cmsis_lib/source/stm32f4xx_sdio.c" path="cmsis_lib/source/stm32f4xx_sdio.c" type="1"/>
     <File name="cmsis_lib/include/stm32f4xx_sdio.h" path="cmsis_lib/include/stm32f4xx_sdio.h" type="1"/>
     <File name="cmsis_lib/include/stm32f4xx_adc.h" path="cmsis_lib/include/stm32f4xx_adc.h" type="1"/>
-    <File name="cmsis_lib/source/stm32f4xx_exti.c" path="cmsis_lib/source/stm32f4xx_exti.c" type="1"/>
     <File name="cmsis_lib/include/stm32f4xx_exti.h" path="cmsis_lib/include/stm32f4xx_exti.h" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_cryp_tdes.c" path="cmsis_lib/source/stm32f4xx_cryp_tdes.c" type="1"/>
+    <File name="cmsis_lib/source/stm32f4xx_exti.c" path="cmsis_lib/source/stm32f4xx_exti.c" type="1"/>
     <File name="cmsis_boot/system_stm32f4xx.c" path="cmsis_boot/system_stm32f4xx.c" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_rng.c" path="cmsis_lib/source/stm32f4xx_rng.c" type="1"/>
     <File name="cmsis_lib/include/stm32f4xx_dcmi.h" path="cmsis_lib/include/stm32f4xx_dcmi.h" type="1"/>
@@ -145,9 +145,9 @@
     <File name="cmsis_lib/source/stm32f4xx_tim.c" path="cmsis_lib/source/stm32f4xx_tim.c" type="1"/>
     <File name="cmsis_lib/include/stm32f4xx_gpio.h" path="cmsis_lib/include/stm32f4xx_gpio.h" type="1"/>
     <File name="cmsis_lib/include/stm32f4xx_ltdc.h" path="cmsis_lib/include/stm32f4xx_ltdc.h" type="1"/>
-    <File name="cmsis_lib/include/stm32f4xx_cryp.h" path="cmsis_lib/include/stm32f4xx_cryp.h" type="1"/>
     <File name="cmsis_lib/include/stm32f4xx_can.h" path="cmsis_lib/include/stm32f4xx_can.h" type="1"/>
     <File name="cmsis_lib/include/stm32f4xx_rtc.h" path="cmsis_lib/include/stm32f4xx_rtc.h" type="1"/>
+    <File name="cmsis_lib/include/stm32f4xx_cryp.h" path="cmsis_lib/include/stm32f4xx_cryp.h" type="1"/>
     <File name="cmsis_lib/include/stm32f4xx_hash.h" path="cmsis_lib/include/stm32f4xx_hash.h" type="1"/>
     <File name="cmsis_lib/include/misc.h" path="cmsis_lib/include/misc.h" type="1"/>
     <File name="cmsis_lib/include/stm32f4xx_rng.h" path="cmsis_lib/include/stm32f4xx_rng.h" type="1"/>

@@ -4,7 +4,7 @@
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://majerle.eu
- *	@version 	v1.0
+ *	@version 	v1.1
  *	@gcc		v4.7 20013qr3
  *	@ide		CooCox CoIDE v1.7.6
  */
@@ -15,8 +15,8 @@ int main(void) {
 	//Initialize system
 	SystemInit();
 
-	//Initialize USART1 at 9600 baud
-	TM_USART_Init(USART1, 9600);
+	//Initialize USART1 at 9600 baud, TX: PA9, RX: PA10
+	TM_USART_Init(USART1, TM_USART_PinsPack_1, 9600);
 	//Put string to terminal
 	TM_USART_Puts(USART1, "Hello world\n\r");
 
