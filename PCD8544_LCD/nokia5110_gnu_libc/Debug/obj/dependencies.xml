@@ -131,10 +131,6 @@
       </source>
       <source file="..\..\..\cmsis\core_cmInstr.h" lastModified="1412c148bb0">
       </source>
-      <source file="..\..\..\main.c" lastModified="1459e579a21">
-         <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
-         <include file="..\..\..\..\00-STM32F429_LIBRARIES\tm_stm32f4_pcd8544.h"/>
-      </source>
       <source file="..\..\..\cmsis_lib\include\stm32f4xx_usart.h" lastModified="14239854b77">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
@@ -151,7 +147,7 @@
       <source file="..\..\..\cmsis_lib\include\stm32f4xx_dcmi.h" lastModified="14239854915">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
-      <source file="..\..\..\..\00-STM32F429_LIBRARIES\defines.h" lastModified="1459e4ca420">
+      <source file="..\..\..\..\00-STM32F429_LIBRARIES\defines.h" lastModified="0">
       </source>
       <source file="..\..\..\cmsis\core_cm4.h" lastModified="1412c1487c8">
          <include file="..\..\..\cmsis\core_cmInstr.h"/>

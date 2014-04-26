@@ -21,6 +21,7 @@ int main(void) {
 
 	//Go to x=14, y=3 position
 	PCD8544_GotoXY(14, 3);
+
 	//Print data with Pixel Set mode and Fontsize of 5x7px
 	PCD8544_Puts("STM32F429", PCD8544_Pixel_Set, PCD8544_FontSize_5x7);
 	PCD8544_GotoXY(15, 13);

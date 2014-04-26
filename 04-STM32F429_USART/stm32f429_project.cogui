@@ -50,7 +50,7 @@
 </editor>
 <editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="defines.h" partName="defines.h" path="C:/Users/Tilen/Google Drive/JAVNO/ELEKTRONIKA/ARM/STM32F429/majerle.eu/04-STM32F429_USART/defines.h" title="defines.h" tooltip="C:/Users/Tilen/Google Drive/JAVNO/ELEKTRONIKA/ARM/STM32F429/majerle.eu/04-STM32F429_USART/defines.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/stm32f429_project/defines.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="168" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="15" selectionTopPixel="0"/>
 </editor>
 </editors>
 <views>
