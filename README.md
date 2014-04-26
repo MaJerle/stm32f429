@@ -19,3 +19,6 @@ http://bit.ly/1gFrBjl
 http://bit.ly/1npVXHQ
 05. SPI - SPI library for STM32F429
 http://bit.ly/1lgtcjy
+
+- PCD8544 LCD (Nokia 5110/3310) - Library for LCD
+http://bit.ly/1i7l4tB
