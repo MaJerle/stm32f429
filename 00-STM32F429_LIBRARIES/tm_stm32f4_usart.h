@@ -62,6 +62,7 @@ typedef enum {
  */
 extern void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t baudrate);
 
+#ifdef USART1
 /**
  * Initialize USART1 pins
  *
@@ -77,7 +78,9 @@ extern void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, u
  * Called from TM_USART_Init()
  */
 extern void TM_USART1_InitPins(TM_USART_PinsPack_t pinspack);
+#endif
 
+#ifdef USART2
 /**
  * Initialize USART2 pins
  *
@@ -93,7 +96,9 @@ extern void TM_USART1_InitPins(TM_USART_PinsPack_t pinspack);
  * Called from TM_USART_Init()
  */
 extern void TM_USART2_InitPins(TM_USART_PinsPack_t pinspack);
+#endif
 
+#ifdef USART3
 /**
  * Initialize USART3 pins
  *
@@ -112,7 +117,9 @@ extern void TM_USART2_InitPins(TM_USART_PinsPack_t pinspack);
  * Called from TM_USART_Init()
  */
 extern void TM_USART3_InitPins(TM_USART_PinsPack_t pinspack);
+#endif
 
+#ifdef UART4
 /**
  * Initialize UART4 pins
  *
@@ -128,7 +135,9 @@ extern void TM_USART3_InitPins(TM_USART_PinsPack_t pinspack);
  * Called from TM_USART_Init()
  */
 extern void TM_UART4_InitPins(TM_USART_PinsPack_t pinspack);
+#endif
 
+#ifdef UART5
 /**
  * Initialize UART5 pins
  *
@@ -141,7 +150,9 @@ extern void TM_UART4_InitPins(TM_USART_PinsPack_t pinspack);
  * Called from TM_USART_Init()
  */
 extern void TM_UART5_InitPins(TM_USART_PinsPack_t pinspack);
+#endif
 
+#ifdef USART6
 /**
  * Initialize USART6 pins
  *
@@ -157,7 +168,9 @@ extern void TM_UART5_InitPins(TM_USART_PinsPack_t pinspack);
  * Called from TM_USART_Init()
  */
 extern void TM_USART6_InitPins(TM_USART_PinsPack_t pinspack);
+#endif
 
+#ifdef UART7
 /**
  * Initialize UART7 pins
  *
@@ -173,7 +186,9 @@ extern void TM_USART6_InitPins(TM_USART_PinsPack_t pinspack);
  * Called from TM_USART_Init()
  */
 extern void TM_UART7_InitPins(TM_USART_PinsPack_t pinspack);
+#endif
 
+#ifdef UART8
 /**
  * Initialize UART8 pins
  *
@@ -186,6 +201,7 @@ extern void TM_UART7_InitPins(TM_USART_PinsPack_t pinspack);
  * Called from TM_USART_Init()
  */
 extern void TM_UART8_InitPins(TM_USART_PinsPack_t pinspack);
+#endif
 
 /**
  * Put character to USARTx
@@ -218,12 +234,77 @@ extern void TM_USART_Puts(USART_TypeDef* USARTx, char* str);
  */
 extern uint8_t TM_USART_Getc(USART_TypeDef* USARTx);
 
+#ifdef USART1
 /**
  * USART1 Interrupt handler
  *
  * Called when data is received on USART1
  */
 extern void USART1_IRQHandler(void);
+#endif
+
+#ifdef USART2
+/**
+ * USART2 Interrupt handler
+ *
+ * Called when data is received on USART2
+ */
+extern void USART2_IRQHandler(void);
+#endif
+
+#ifdef USART3
+/**
+ * USART3 Interrupt handler
+ *
+ * Called when data is received on USART3
+ */
+extern void USART3_IRQHandler(void);
+#endif
+
+#ifdef UART4
+/**
+ * UART4 Interrupt handler
+ *
+ * Called when data is received on UART4
+ */
+extern void UART4_IRQHandler(void);
+#endif
+
+#ifdef UART5
+/**
+ * UART5 Interrupt handler
+ *
+ * Called when data is received on UART5
+ */
+extern void UART5_IRQHandler(void);
+#endif
+
+#ifdef USART6
+/**
+ * USART6 Interrupt handler
+ *
+ * Called when data is received on USART6
+ */
+extern void USART6_IRQHandler(void);
+#endif
+
+#ifdef UART7
+/**
+ * UART7 Interrupt handler
+ *
+ * Called when data is received on UART7
+ */
+extern void UART7_IRQHandler(void);
+#endif
+
+#ifdef UART8
+/**
+ * UART8 Interrupt handler
+ *
+ * Called when data is received on UART8
+ */
+extern void UART8_IRQHandler(void);
+#endif
 
 /**
  * Insert received data into internal buffer

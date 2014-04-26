@@ -22,38 +22,54 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 	 * Initialize USARTx pins
 	 * Set channel for USARTx NVIC
 	 */
+#ifdef USART1
 	if (USARTx == USART1) {
 		TM_USART1_InitPins(pinspack);
 		NVIC_InitStruct.NVIC_IRQChannel = USART1_IRQn;
-	} else if (USARTx == USART2) {
+	}
+#endif
+#ifdef USART2
+	else if (USARTx == USART2) {
 		TM_USART2_InitPins(pinspack);
 		NVIC_InitStruct.NVIC_IRQChannel = USART2_IRQn;
-	} else if (USARTx == USART3) {
+	}
+#endif
+#ifdef USART3
+	else if (USARTx == USART3) {
 		TM_USART3_InitPins(pinspack);
 		NVIC_InitStruct.NVIC_IRQChannel = USART3_IRQn;
-	} else if (USARTx == UART4) {
+	}
+#endif
+#ifdef UART4
+	else if (USARTx == UART4) {
 		TM_UART4_InitPins(pinspack);
 		NVIC_InitStruct.NVIC_IRQChannel = UART4_IRQn;
-	} else if (USARTx == UART5) {
+	}
+#endif
+#ifdef UART5
+	else if (USARTx == UART5) {
 		TM_UART5_InitPins(pinspack);
 		NVIC_InitStruct.NVIC_IRQChannel = UART5_IRQn;
-	} else if (USARTx == USART6) {
+	}
+#endif
+#ifdef USART6
+	else if (USARTx == USART6) {
 		TM_USART6_InitPins(pinspack);
 		NVIC_InitStruct.NVIC_IRQChannel = USART6_IRQn;
-	} else if (USARTx == UART7) {
+	}
+#endif
+#ifdef UART7
+	else if (USARTx == UART7) {
 		TM_UART7_InitPins(pinspack);
 		NVIC_InitStruct.NVIC_IRQChannel = UART7_IRQn;
-	} else if (USARTx == UART8) {
+	}
+#endif
+#ifdef UART8
+	else if (USARTx == UART8) {
 		TM_UART8_InitPins(pinspack);
 		NVIC_InitStruct.NVIC_IRQChannel = UART8_IRQn;
 	}
-
-	/**
-	 * Enable clock for USART1 peripheral
-	 */
-	if (USARTx == USART1 || USARTx == USART6) {
-
-	}
+#endif
 
 	/**
 	 * Set Baudrate to value you pass to function
@@ -93,6 +109,7 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 	NVIC_Init(&NVIC_InitStruct);
 }
 
+#ifdef USART1
 void TM_USART1_InitPins(TM_USART_PinsPack_t pinspack) {
 	//Enable clock for USART1
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, ENABLE);
@@ -129,7 +146,9 @@ void TM_USART1_InitPins(TM_USART_PinsPack_t pinspack) {
 		GPIO_Init(GPIOB, &GPIO_InitStruct);
 	}
 }
+#endif
 
+#ifdef USART2
 void TM_USART2_InitPins(TM_USART_PinsPack_t pinspack) {
 	//Enable clock for USART2
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART2, ENABLE);
@@ -166,7 +185,9 @@ void TM_USART2_InitPins(TM_USART_PinsPack_t pinspack) {
 		GPIO_Init(GPIOD, &GPIO_InitStruct);
 	}
 }
+#endif
 
+#ifdef USART3
 void TM_USART3_InitPins(TM_USART_PinsPack_t pinspack) {
 	//Enable clock for USART3
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART3, ENABLE);
@@ -214,7 +235,9 @@ void TM_USART3_InitPins(TM_USART_PinsPack_t pinspack) {
 		GPIO_Init(GPIOD, &GPIO_InitStruct);
 	}
 }
+#endif
 
+#ifdef UART4
 void TM_UART4_InitPins(TM_USART_PinsPack_t pinspack) {
 	//Enable clock for UART4
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_UART4, ENABLE);
@@ -251,7 +274,9 @@ void TM_UART4_InitPins(TM_USART_PinsPack_t pinspack) {
 		GPIO_Init(GPIOC, &GPIO_InitStruct);
 	}
 }
+#endif
 
+#ifdef UART5
 void TM_UART5_InitPins(TM_USART_PinsPack_t pinspack) {
 	//Enable clock for UART5
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_UART5, ENABLE);
@@ -280,7 +305,9 @@ void TM_UART5_InitPins(TM_USART_PinsPack_t pinspack) {
 		GPIO_Init(GPIOD, &GPIO_InitStruct);
 	}
 }
+#endif
 
+#ifdef USART6
 void TM_USART6_InitPins(TM_USART_PinsPack_t pinspack) {
 	//Enable clock for USART6
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART6, ENABLE);
@@ -317,7 +344,9 @@ void TM_USART6_InitPins(TM_USART_PinsPack_t pinspack) {
 		GPIO_Init(GPIOG, &GPIO_InitStruct);
 	}
 }
+#endif
 
+#ifdef UART7
 void TM_UART7_InitPins(TM_USART_PinsPack_t pinspack) {
 	//Enable clock for UART7
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_UART7, ENABLE);
@@ -354,7 +383,9 @@ void TM_UART7_InitPins(TM_USART_PinsPack_t pinspack) {
 		GPIO_Init(GPIOF, &GPIO_InitStruct);
 	}
 }
+#endif
 
+#ifdef UART8
 void TM_UART8_InitPins(TM_USART_PinsPack_t pinspack) {
 	//Enable clock for UART8
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_UART8, ENABLE);
@@ -380,6 +411,7 @@ void TM_UART8_InitPins(TM_USART_PinsPack_t pinspack) {
 		GPIO_Init(GPIOE, &GPIO_InitStruct);
 	}
 }
+#endif
 
 void TM_USART_Putc(USART_TypeDef* USARTx, volatile char c) {
 	//Wait until transmitter is empty
@@ -394,6 +426,7 @@ void TM_USART_Puts(USART_TypeDef* USARTx, char* str) {
 	}
 }
 
+#ifdef  USART1
 void USART1_IRQHandler(void) {
 	//Check if interrupt was because data is received
 	if (USART_GetITStatus(USART1, USART_IT_RXNE)) {
@@ -401,7 +434,9 @@ void USART1_IRQHandler(void) {
 		TM_USART_InsertToBuffer(0, USART1->DR);
 	}
 }
+#endif
 
+#ifdef USART2
 void USART2_IRQHandler(void) {
 	//Check if interrupt was because data is received
 	if (USART_GetITStatus(USART2, USART_IT_RXNE)) {
@@ -409,7 +444,9 @@ void USART2_IRQHandler(void) {
 		TM_USART_InsertToBuffer(1, USART2->DR);
 	}
 }
+#endif
 
+#ifdef USART3
 void USART3_IRQHandler(void) {
 	//Check if interrupt was because data is received
 	if (USART_GetITStatus(USART3, USART_IT_RXNE)) {
@@ -417,7 +454,9 @@ void USART3_IRQHandler(void) {
 		TM_USART_InsertToBuffer(2, USART3->DR);
 	}
 }
+#endif
 
+#ifdef UART4
 void UART4_IRQHandler(void) {
 	//Check if interrupt was because data is received
 	if (USART_GetITStatus(UART4, USART_IT_RXNE)) {
@@ -425,7 +464,9 @@ void UART4_IRQHandler(void) {
 		TM_USART_InsertToBuffer(3, UART4->DR);
 	}
 }
+#endif
 
+#ifdef UART5
 void UART5_IRQHandler(void) {
 	//Check if interrupt was because data is received
 	if (USART_GetITStatus(UART5, USART_IT_RXNE)) {
@@ -433,7 +474,9 @@ void UART5_IRQHandler(void) {
 		TM_USART_InsertToBuffer(4, UART5->DR);
 	}
 }
+#endif
 
+#ifdef USART6
 void USART6_IRQHandler(void) {
 	//Check if interrupt was because data is received
 	if (USART_GetITStatus(USART6, USART_IT_RXNE)) {
@@ -441,7 +484,9 @@ void USART6_IRQHandler(void) {
 		TM_USART_InsertToBuffer(5, USART6->DR);
 	}
 }
+#endif
 
+#ifdef UART7
 void UART7_IRQHandler(void) {
 	//Check if interrupt was because data is received
 	if (USART_GetITStatus(UART7, USART_IT_RXNE)) {
@@ -449,7 +494,9 @@ void UART7_IRQHandler(void) {
 		TM_USART_InsertToBuffer(6, UART7->DR);
 	}
 }
+#endif
 
+#ifdef UART8
 void UART8_IRQHandler(void) {
 	//Check if interrupt was because data is received
 	if (USART_GetITStatus(UART8, USART_IT_RXNE)) {
@@ -457,6 +504,7 @@ void UART8_IRQHandler(void) {
 		TM_USART_InsertToBuffer(7, UART8->DR);
 	}
 }
+#endif
 
 void TM_USART_InsertToBuffer(uint8_t usart_num, char c) {
 	//uint8_t usart_num = TM_USART_GetUsartNumber(USARTx);
@@ -493,33 +541,46 @@ uint8_t TM_USART_BufferEmpty(USART_TypeDef* USARTx) {
 }
 
 uint8_t TM_USART_GetUsartNumber(USART_TypeDef* USARTx) {
+#ifdef USART1
 	if (USARTx == USART1) {
 		return 0;
-	} else if (USARTx == USART2) {
+	}
+#endif
+#ifdef USART2
+	if (USARTx == USART2) {
 		return 1;
-	} else if (USARTx == USART3) {
+	}
+#endif
+#ifdef USART3
+	if (USARTx == USART3) {
 		return 2;
+	}
+#endif
 #ifdef UART4
-	} else if (USARTx == UART4) {
+	if (USARTx == UART4) {
 		return 3;
+	}
 #endif
 #ifdef UART5
-	} else if (USARTx == UART5) {
+	if (USARTx == UART5) {
 		return 4;
+	}
 #endif
 #ifdef USART6
-	} else if (USARTx == USART6) {
+	if (USARTx == USART6) {
 		return 5;
+	}
 #endif
 #ifdef UART7
-	} else if (USARTx == UART7) {
+	if (USARTx == UART7) {
 		return 6;
+	}
 #endif
 #ifdef UART8
-	} else if (USARTx == UART8) {
+	if (USARTx == UART8) {
 		return 7;
-#endif
 	}
+#endif
 
 	return 0;
 }

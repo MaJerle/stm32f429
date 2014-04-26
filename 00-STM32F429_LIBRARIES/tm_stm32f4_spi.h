@@ -56,6 +56,7 @@ typedef enum {
  */
 extern void TM_SPI_Init(SPI_TypeDef* SPIx, TM_SPI_PinsPack_t pinspack);
 
+#ifdef SPI1
 /**
  * SPI1 uses pins:
  * 	- Pins pack 1:
@@ -68,7 +69,9 @@ extern void TM_SPI_Init(SPI_TypeDef* SPIx, TM_SPI_PinsPack_t pinspack);
  * 		- SCK:  PB3
  */
 extern void TM_SPI1_Init(TM_SPI_PinsPack_t pinspack);
+#endif
 
+#ifdef SPI2
 /**
  * SPI2 uses pins:
  * 	- Pins pack 1:
@@ -81,7 +84,9 @@ extern void TM_SPI1_Init(TM_SPI_PinsPack_t pinspack);
  * 		- SCK:  PB13
  */
 extern void TM_SPI2_Init(TM_SPI_PinsPack_t pinspack);
+#endif
 
+#ifdef SPI3
 /**
  * SPI3 uses pins:
  * 	- Pins pack 1:
@@ -94,7 +99,9 @@ extern void TM_SPI2_Init(TM_SPI_PinsPack_t pinspack);
  * 		- SCK:  PC10
  */
 extern void TM_SPI3_Init(TM_SPI_PinsPack_t pinspack);
+#endif
 
+#ifdef SPI4
 /**
  * SPI4 uses pins:
  * 	- Pins pack 1:
@@ -107,7 +114,9 @@ extern void TM_SPI3_Init(TM_SPI_PinsPack_t pinspack);
  * 		- SCK:  PE12
  */
 extern void TM_SPI4_Init(TM_SPI_PinsPack_t pinspack);
+#endif
 
+#ifdef SPI5
 /**
  * SPI5 uses pins:
  * 	- Pins pack 1:
@@ -120,7 +129,9 @@ extern void TM_SPI4_Init(TM_SPI_PinsPack_t pinspack);
  * 		- SCK:  PH6
  */
 extern void TM_SPI5_Init(TM_SPI_PinsPack_t pinspack);
+#endif
 
+#ifdef SPI6
 /**
  * SPI6 uses pins:
  * 	- Pins pack 1:
@@ -129,6 +140,7 @@ extern void TM_SPI5_Init(TM_SPI_PinsPack_t pinspack);
  * 		- SCK:  PG13
  */
 extern void TM_SPI6_Init(void);
+#endif
 
 /**
  * Send and receive data over SPI

@@ -14,20 +14,39 @@ uint8_t TM_SPI_Send(SPI_TypeDef* SPIx, uint8_t data) {
 }
 
 void TM_SPI_Init(SPI_TypeDef* SPIx, TM_SPI_PinsPack_t pinspack) {
+#ifdef SPI1
 	if (SPIx == SPI1) {
 		TM_SPI1_Init(pinspack);
-	} else if (SPIx == SPI2) {
+	}
+#endif
+#ifdef SPI2
+	if (SPIx == SPI2) {
 		TM_SPI2_Init(pinspack);
-	} else if (SPIx == SPI3) {
+	}
+#endif
+#ifdef SPI3
+	if (SPIx == SPI3) {
 		TM_SPI3_Init(pinspack);
-	} else if (SPIx == SPI4) {
+	}
+#endif
+#ifdef SPI4
+	if (SPIx == SPI4) {
 		TM_SPI4_Init(pinspack);
-	} else if (SPIx == SPI5) {
+	}
+#endif
+#ifdef SPI5
+	if (SPIx == SPI5) {
 		TM_SPI5_Init(pinspack);
-	} else if (SPIx == SPI6) {
+	}
+#endif
+#ifdef SPI6
+	if (SPIx == SPI6) {
 		TM_SPI6_Init();
 	}
+#endif
 }
+
+#ifdef SPI1
 
 void TM_SPI1_Init(TM_SPI_PinsPack_t pinspack) {
 	GPIO_InitTypeDef GPIO_InitDef;
@@ -73,7 +92,9 @@ void TM_SPI1_Init(TM_SPI_PinsPack_t pinspack) {
 	SPI_Init(SPI1, &SPI_InitDef);
 	SPI_Cmd(SPI1, ENABLE);
 }
+#endif
 
+#ifdef SPI2
 
 void TM_SPI2_Init(TM_SPI_PinsPack_t pinspack) {
 	GPIO_InitTypeDef GPIO_InitDef;
@@ -125,7 +146,9 @@ void TM_SPI2_Init(TM_SPI_PinsPack_t pinspack) {
 	SPI_Init(SPI2, &SPI_InitDef);
 	SPI_Cmd(SPI2, ENABLE);
 }
+#endif
 
+#ifdef SPI3
 
 void TM_SPI3_Init(TM_SPI_PinsPack_t pinspack) {
 	GPIO_InitTypeDef GPIO_InitDef;
@@ -171,6 +194,9 @@ void TM_SPI3_Init(TM_SPI_PinsPack_t pinspack) {
 	SPI_Init(SPI3, &SPI_InitDef);
 	SPI_Cmd(SPI3, ENABLE);
 }
+#endif
+
+#ifdef SPI4
 
 void TM_SPI4_Init(TM_SPI_PinsPack_t pinspack) {
 	GPIO_InitTypeDef GPIO_InitDef;
@@ -216,6 +242,9 @@ void TM_SPI4_Init(TM_SPI_PinsPack_t pinspack) {
 	SPI_Init(SPI4, &SPI_InitDef);
 	SPI_Cmd(SPI4, ENABLE);
 }
+#endif
+
+#ifdef SPI5
 
 void TM_SPI5_Init(TM_SPI_PinsPack_t pinspack) {
 	GPIO_InitTypeDef GPIO_InitDef;
@@ -265,7 +294,9 @@ void TM_SPI5_Init(TM_SPI_PinsPack_t pinspack) {
 	SPI_Init(SPI5, &SPI_InitDef);
 	SPI_Cmd(SPI5, ENABLE);
 }
+#endif
 
+#ifdef SPI6
 void TM_SPI6_Init(void) {
 	GPIO_InitTypeDef GPIO_InitDef;
 	SPI_InitTypeDef SPI_InitDef;
@@ -299,3 +330,5 @@ void TM_SPI6_Init(void) {
 	SPI_Init(SPI6, &SPI_InitDef);
 	SPI_Cmd(SPI6, ENABLE);
 }
+
+#endif
