@@ -49,13 +49,6 @@ typedef enum {
 	TM_USART_PinsPack_3
 } TM_USART_PinsPack_t;
 
-typedef struct {
-	GPIO_TypeDef* GPIOx;
-	uint16_t RCCx;
-	uint16_t GPIO_Pin;
-	uint8_t GPIO_PinSource;
-} TM_USART_Pin_t;
-
 /**
  * Initialize USARTx
  *
