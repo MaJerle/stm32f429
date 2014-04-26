@@ -1,25 +1,25 @@
 /**
  *	USART Library for STM32F4 with receive interrupt
+ *	Libraries works for all 8 U(S)ARTs which are supported in STM32F429.
  *
- *	It currently works for USART1
+ *	Every USART channel has it's own receive interrupt which stores incoming data into cyclic buffer.
+ *	In your project you can set buffer length, default is 32Bytes, with:
+ *
+ *	#define TM_USART_BUFFER_SIZE number_of_bytes
+ *
+ *	in your project's header file.
  *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://majerle.eu
+ *	@link		http://bit.ly/1npVXHQ
  *	@version 	v1.1
  *	@gcc		v4.7 20013qr3
  *	@ide		CooCox CoIDE v1.7.6
  */
 
-/**
- * USART1 pins are
- *  - TX: PA9
- *  - RX: PA10
- *
- */
-
 #ifndef TM_USART_
-#define TM_USART_
+#define TM_USART_ 110
 
 /**
  * Includes
@@ -80,6 +80,8 @@ extern void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, u
  * 		- TM_USART_PinsPack_2
  * 			- TX: PB6
  * 			- RX: PB7
+ *
+ * Called from TM_USART_Init()
  */
 extern void TM_USART1_InitPins(TM_USART_PinsPack_t pinspack);
 
@@ -94,6 +96,8 @@ extern void TM_USART1_InitPins(TM_USART_PinsPack_t pinspack);
  * 		- TM_USART_PinsPack_2
  * 			- TX: PD5
  * 			- RX: PD6
+ *
+ * Called from TM_USART_Init()
  */
 extern void TM_USART2_InitPins(TM_USART_PinsPack_t pinspack);
 
@@ -111,6 +115,8 @@ extern void TM_USART2_InitPins(TM_USART_PinsPack_t pinspack);
  * 		- TM_USART_PinsPack_3
  * 			- TX: PD8
  * 			- RX: PD9
+ *
+ * Called from TM_USART_Init()
  */
 extern void TM_USART3_InitPins(TM_USART_PinsPack_t pinspack);
 
@@ -125,6 +131,8 @@ extern void TM_USART3_InitPins(TM_USART_PinsPack_t pinspack);
  * 		- TM_USART_PinsPack_2
  * 			- TX: PC10
  * 			- RX: PC11
+ *
+ * Called from TM_USART_Init()
  */
 extern void TM_UART4_InitPins(TM_USART_PinsPack_t pinspack);
 
@@ -136,6 +144,8 @@ extern void TM_UART4_InitPins(TM_USART_PinsPack_t pinspack);
  * 		- TM_USART_PinsPack_1
  * 			- TX: PC12
  * 			- RX: PD2
+ *
+ * Called from TM_USART_Init()
  */
 extern void TM_UART5_InitPins(TM_USART_PinsPack_t pinspack);
 
@@ -150,6 +160,8 @@ extern void TM_UART5_InitPins(TM_USART_PinsPack_t pinspack);
  * 		- TM_USART_PinsPack_2
  * 			- TX: PG14
  * 			- RX: PG9
+ *
+ * Called from TM_USART_Init()
  */
 extern void TM_USART6_InitPins(TM_USART_PinsPack_t pinspack);
 
@@ -164,6 +176,8 @@ extern void TM_USART6_InitPins(TM_USART_PinsPack_t pinspack);
  * 		- TM_USART_PinsPack_2
  * 			- TX: PF7
  * 			- RX: PF6
+ *
+ * Called from TM_USART_Init()
  */
 extern void TM_UART7_InitPins(TM_USART_PinsPack_t pinspack);
 
@@ -175,6 +189,8 @@ extern void TM_UART7_InitPins(TM_USART_PinsPack_t pinspack);
  * 		- TM_USART_PinsPack_1
  * 			- TX: PE1
  * 			- RX: PE0
+ *
+ * Called from TM_USART_Init()
  */
 extern void TM_UART8_InitPins(TM_USART_PinsPack_t pinspack);
 

@@ -1,5 +1,4 @@
 #include "tm_stm32f4_usart.h"
-
 /**
  * Variables
  *
