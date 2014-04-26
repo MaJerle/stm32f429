@@ -2,7 +2,7 @@
 Allocating common symbols
 Common symbol       size              file
 
-TM_USART_Buffer     0x100             ..\obj\tm_stm32f4_usart.o
+TM_USART_Buffer     0x28              ..\obj\tm_stm32f4_usart.o
 
 Discarded input sections
 
@@ -1876,7 +1876,7 @@ Linker script and memory map
 
                 0x20020000                _eram = 0x20020000
 
-.text           0x08000000     0x1acc
+.text           0x08000000     0x1adc
  *(.isr_vector)
  .isr_vector    0x08000000      0x1ac ..\obj\startup_stm32f4xx.o
                 0x08000000                g_pfnVectors
@@ -2069,28 +2069,28 @@ Linker script and memory map
                 0x080012f0       0x34 ..\obj\tm_stm32f4_usart.o
                 0x080012f0                UART8_IRQHandler
  .text.TM_USART_InsertToBuffer
-                0x08001324       0xb4 ..\obj\tm_stm32f4_usart.o
+                0x08001324       0xbc ..\obj\tm_stm32f4_usart.o
                 0x08001324                TM_USART_InsertToBuffer
  .text.TM_USART_Getc
-                0x080013d8       0xe8 ..\obj\tm_stm32f4_usart.o
-                0x080013d8                TM_USART_Getc
+                0x080013e0       0xf0 ..\obj\tm_stm32f4_usart.o
+                0x080013e0                TM_USART_Getc
  .text.TM_USART_GetUsartNumber
-                0x080014c0       0xb8 ..\obj\tm_stm32f4_usart.o
-                0x080014c0                TM_USART_GetUsartNumber
+                0x080014d0       0xb8 ..\obj\tm_stm32f4_usart.o
+                0x080014d0                TM_USART_GetUsartNumber
  .text.GPIO_Init
-                0x08001578      0x144 ..\obj\stm32f4xx_gpio.o
-                0x08001578                GPIO_Init
+                0x08001588      0x144 ..\obj\stm32f4xx_gpio.o
+                0x08001588                GPIO_Init
  .text.GPIO_PinAFConfig
-                0x080016bc       0xa8 ..\obj\stm32f4xx_gpio.o
-                0x080016bc                GPIO_PinAFConfig
+                0x080016cc       0xa8 ..\obj\stm32f4xx_gpio.o
+                0x080016cc                GPIO_PinAFConfig
  .text.SystemInit
-                0x08001764       0x94 ..\obj\system_stm32f4xx.o
-                0x08001764                SystemInit
+                0x08001774       0x94 ..\obj\system_stm32f4xx.o
+                0x08001774                SystemInit
  .text.SetSysClock
-                0x080017f8      0x1e0 ..\obj\system_stm32f4xx.o
+                0x08001808      0x1e0 ..\obj\system_stm32f4xx.o
  .text.NVIC_Init
-                0x080019d8       0xe4 ..\obj\misc.o
-                0x080019d8                NVIC_Init
+                0x080019e8       0xe4 ..\obj\misc.o
+                0x080019e8                NVIC_Init
  *(.init)
  *(.fini)
  *crtbegin.o(.ctors)
@@ -2104,38 +2104,38 @@ Linker script and memory map
  *(SORT(.dtors.*))
  *(.dtors)
  *(.rodata*)
- .rodata        0x08001abc       0x10 ..\obj\main.o
+ .rodata        0x08001acc       0x10 ..\obj\main.o
  *(.eh_fram e*)
 
-.glue_7         0x08001acc        0x0
+.glue_7         0x08001adc        0x0
  .glue_7        0x00000000        0x0 linker stubs
 
-.glue_7t        0x08001acc        0x0
+.glue_7t        0x08001adc        0x0
  .glue_7t       0x00000000        0x0 linker stubs
 
-.vfp11_veneer   0x08001acc        0x0
+.vfp11_veneer   0x08001adc        0x0
  .vfp11_veneer  0x00000000        0x0 linker stubs
 
-.v4_bx          0x08001acc        0x0
+.v4_bx          0x08001adc        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
-.iplt           0x08001acc        0x0
+.iplt           0x08001adc        0x0
  .iplt          0x00000000        0x0 ..\obj\stm32f4xx_syscfg.o
 
-.rel.dyn        0x08001acc        0x0
+.rel.dyn        0x08001adc        0x0
  .rel.iplt      0x00000000        0x0 ..\obj\stm32f4xx_syscfg.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x08001acc                __exidx_start = .
+                0x08001adc                __exidx_start = .
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x08001acc                __exidx_end = .
-                0x08001acc                __etext = .
-                0x08001acc                _sidata = __etext
+                0x08001adc                __exidx_end = .
+                0x08001adc                __etext = .
+                0x08001adc                _sidata = __etext
 
-.data           0x20000000       0x10 load address 0x08001acc
+.data           0x20000000       0x10 load address 0x08001adc
                 0x20000000                __data_start__ = .
                 0x20000000                _sdata = __data_start__
  *(vtable)
@@ -2160,10 +2160,10 @@ Linker script and memory map
                 0x20000010                __data_end__ = .
                 0x20000010                _edata = __data_end__
 
-.igot.plt       0x20000010        0x0 load address 0x08001adc
+.igot.plt       0x20000010        0x0 load address 0x08001aec
  .igot.plt      0x00000000        0x0 ..\obj\stm32f4xx_syscfg.o
 
-.bss            0x20000010      0x130 load address 0x08001adc
+.bss            0x20000010       0x58 load address 0x08001aec
                 0x20000010                . = ALIGN (0x4)
                 0x20000010                __bss_start__ = .
                 0x20000010                _sbss = __bss_start__
@@ -2173,24 +2173,24 @@ Linker script and memory map
                 0x20000020                tm_usart_buf_out
                 0x20000030                tm_usart_buf_num
  *(COMMON)
- COMMON         0x20000040      0x100 ..\obj\tm_stm32f4_usart.o
+ COMMON         0x20000040       0x28 ..\obj\tm_stm32f4_usart.o
                 0x20000040                TM_USART_Buffer
-                0x20000140                . = ALIGN (0x4)
-                0x20000140                __bss_end__ = .
-                0x20000140                _ebss = __bss_end__
+                0x20000068                . = ALIGN (0x4)
+                0x20000068                __bss_end__ = .
+                0x20000068                _ebss = __bss_end__
 
-.heap           0x20000140        0x0
-                0x20000140                __end__ = .
-                0x20000140                _end = __end__
-                0x20000140                end = __end__
+.heap           0x20000068        0x0
+                0x20000068                __end__ = .
+                0x20000068                _end = __end__
+                0x20000068                end = __end__
  *(.heap*)
-                0x20000140                __HeapLimit = .
+                0x20000068                __HeapLimit = .
 
-.co_stack       0x20000140      0x800 load address 0x08001c0c
-                0x20000140                . = ALIGN (0x8)
+.co_stack       0x20000068      0x800 load address 0x08001b44
+                0x20000068                . = ALIGN (0x8)
  *(.co_stack .co_stack.*)
- .co_stack      0x20000140      0x800 ..\obj\startup_stm32f4xx.o
-                0x20000140                pulStack
+ .co_stack      0x20000068      0x800 ..\obj\startup_stm32f4xx.o
+                0x20000068                pulStack
                 0x20020000                __StackTop = (ORIGIN (ram) + 0x20000)
                 0x2001f800                __StackLimit = (__StackTop - SIZEOF (.co_stack))
                 0x20020000                PROVIDE (__stack, __StackTop)
@@ -2240,15 +2240,15 @@ LOAD c:/program files (x86)/gnu tools arm embedded/4.7 2013q3/bin/../lib/gcc/arm
 END GROUP
 OUTPUT(stm32f429_project.elf elf32-littlearm)
 
-.debug_info     0x00000000     0x3a23
+.debug_info     0x00000000     0x3a21
  .debug_info    0x00000000      0xa65 ..\obj\stm32f4xx_usart.o
  .debug_info    0x00000a65      0x103 ..\obj\startup_stm32f4xx.o
  .debug_info    0x00000b68      0x1e3 ..\obj\main.o
  .debug_info    0x00000d4b      0xf3b ..\obj\stm32f4xx_rcc.o
- .debug_info    0x00001c86      0xba1 ..\obj\tm_stm32f4_usart.o
- .debug_info    0x00002827      0x643 ..\obj\stm32f4xx_gpio.o
- .debug_info    0x00002e6a      0x627 ..\obj\system_stm32f4xx.o
- .debug_info    0x00003491      0x592 ..\obj\misc.o
+ .debug_info    0x00001c86      0xb9f ..\obj\tm_stm32f4_usart.o
+ .debug_info    0x00002825      0x643 ..\obj\stm32f4xx_gpio.o
+ .debug_info    0x00002e68      0x627 ..\obj\system_stm32f4xx.o
+ .debug_info    0x0000348f      0x592 ..\obj\misc.o
 
 .debug_abbrev   0x00000000      0xa8c
  .debug_abbrev  0x00000000      0x157 ..\obj\stm32f4xx_usart.o
@@ -2356,12 +2356,12 @@ OUTPUT(stm32f429_project.elf elf32-littlearm)
  .ARM.attributes
                 0x00000165       0x33 ..\obj\misc.o
 
-.debug_frame    0x00000000      0xed8
+.debug_frame    0x00000000      0xedc
  .debug_frame   0x00000000      0x344 ..\obj\stm32f4xx_usart.o
  .debug_frame   0x00000344       0x48 ..\obj\startup_stm32f4xx.o
  .debug_frame   0x0000038c       0x30 ..\obj\main.o
  .debug_frame   0x000003bc      0x5b8 ..\obj\stm32f4xx_rcc.o
- .debug_frame   0x00000974      0x2c8 ..\obj\tm_stm32f4_usart.o
- .debug_frame   0x00000c3c      0x19c ..\obj\stm32f4xx_gpio.o
- .debug_frame   0x00000dd8       0x64 ..\obj\system_stm32f4xx.o
- .debug_frame   0x00000e3c       0x9c ..\obj\misc.o
+ .debug_frame   0x00000974      0x2cc ..\obj\tm_stm32f4_usart.o
+ .debug_frame   0x00000c40      0x19c ..\obj\stm32f4xx_gpio.o
+ .debug_frame   0x00000ddc       0x64 ..\obj\system_stm32f4xx.o
+ .debug_frame   0x00000e40       0x9c ..\obj\misc.o

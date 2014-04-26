@@ -56,14 +56,15 @@
       <source file="..\..\..\cmsis_lib\include\stm32f4xx_dbgmcu.h" lastModified="142398548f6">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
-      <source file="..\..\..\..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h" lastModified="1459e2c9175">
+      <source file="..\..\..\..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h" lastModified="1459e45a489">
+         <include file="..\..\..\defines.h"/>
          <include file="..\..\..\cmsis_lib\include\misc.h"/>
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_gpio.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_usart.h"/>
       </source>
-      <source file="..\..\..\..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c" lastModified="1459e320903">
+      <source file="..\..\..\..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c" lastModified="1459e3eac40">
          <include file="..\..\..\..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h"/>
       </source>
       <source file="..\..\..\cmsis_lib\source\stm32f4xx_fmc.c" lastModified="1423985a780">
@@ -267,6 +268,10 @@
       </source>
       <source file="..\..\..\cmsis_lib\source\stm32f4xx_iwdg.c" lastModified="1423985a84b">
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_iwdg.h"/>
+      </source>
+      <source file="..\..\..\main.c" lastModified="1459e42009a">
+         <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
+         <include file="..\..\..\..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h"/>
       </source>
       <source file="..\..\..\cmsis_lib\source\stm32f4xx_sdio.c" lastModified="1423985a964">
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_sdio.h"/>

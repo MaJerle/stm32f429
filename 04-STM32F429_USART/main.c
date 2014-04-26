@@ -8,8 +8,10 @@
  *	@gcc		v4.7 20013qr3
  *	@ide		CooCox CoIDE v1.7.6
  */
+#include "defines.h"
 #include "stm32f4xx.h"
 #include "tm_stm32f4_usart.h"
+
 
 int main(void) {
 	//Initialize system
