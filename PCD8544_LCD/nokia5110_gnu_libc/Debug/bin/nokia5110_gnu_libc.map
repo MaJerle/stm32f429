@@ -327,7 +327,7 @@ Linker script and memory map
 
                 0x20020000                _eram = 0x20020000
 
-.text           0x08000000     0x1dac
+.text           0x08000000     0x1da0
  *(.isr_vector)
  .isr_vector    0x08000000      0x1ac ..\obj\startup_stm32f4xx.o
                 0x08000000                g_pfnVectors
@@ -455,96 +455,96 @@ Linker script and memory map
                 0x0800040c       0x5c ..\obj\tm_stm32f4_spi.o
                 0x0800040c                TM_SPI_Send
  .text.TM_SPI_Init
-                0x08000468       0xa0 ..\obj\tm_stm32f4_spi.o
+                0x08000468       0x94 ..\obj\tm_stm32f4_spi.o
                 0x08000468                TM_SPI_Init
  .text.TM_SPI1_Init
-                0x08000508      0x158 ..\obj\tm_stm32f4_spi.o
-                0x08000508                TM_SPI1_Init
+                0x080004fc      0x158 ..\obj\tm_stm32f4_spi.o
+                0x080004fc                TM_SPI1_Init
  .text.TM_SPI2_Init
-                0x08000660      0x188 ..\obj\tm_stm32f4_spi.o
-                0x08000660                TM_SPI2_Init
+                0x08000654      0x188 ..\obj\tm_stm32f4_spi.o
+                0x08000654                TM_SPI2_Init
  .text.TM_SPI3_Init
-                0x080007e8      0x158 ..\obj\tm_stm32f4_spi.o
-                0x080007e8                TM_SPI3_Init
+                0x080007dc      0x158 ..\obj\tm_stm32f4_spi.o
+                0x080007dc                TM_SPI3_Init
  .text.TM_SPI4_Init
-                0x08000940      0x158 ..\obj\tm_stm32f4_spi.o
-                0x08000940                TM_SPI4_Init
+                0x08000934      0x158 ..\obj\tm_stm32f4_spi.o
+                0x08000934                TM_SPI4_Init
  .text.TM_SPI5_Init
-                0x08000a98      0x17c ..\obj\tm_stm32f4_spi.o
-                0x08000a98                TM_SPI5_Init
+                0x08000a8c      0x17c ..\obj\tm_stm32f4_spi.o
+                0x08000a8c                TM_SPI5_Init
  .text.TM_SPI6_Init
-                0x08000c14       0xe4 ..\obj\tm_stm32f4_spi.o
-                0x08000c14                TM_SPI6_Init
+                0x08000c08       0xe4 ..\obj\tm_stm32f4_spi.o
+                0x08000c08                TM_SPI6_Init
  .text.GPIO_Init
-                0x08000cf8      0x144 ..\obj\stm32f4xx_gpio.o
-                0x08000cf8                GPIO_Init
+                0x08000cec      0x144 ..\obj\stm32f4xx_gpio.o
+                0x08000cec                GPIO_Init
  .text.GPIO_SetBits
-                0x08000e3c       0x1c ..\obj\stm32f4xx_gpio.o
-                0x08000e3c                GPIO_SetBits
+                0x08000e30       0x1c ..\obj\stm32f4xx_gpio.o
+                0x08000e30                GPIO_SetBits
  .text.GPIO_ResetBits
-                0x08000e58       0x1c ..\obj\stm32f4xx_gpio.o
-                0x08000e58                GPIO_ResetBits
+                0x08000e4c       0x1c ..\obj\stm32f4xx_gpio.o
+                0x08000e4c                GPIO_ResetBits
  .text.GPIO_PinAFConfig
-                0x08000e74       0xa8 ..\obj\stm32f4xx_gpio.o
-                0x08000e74                GPIO_PinAFConfig
+                0x08000e68       0xa8 ..\obj\stm32f4xx_gpio.o
+                0x08000e68                GPIO_PinAFConfig
  .text.SystemInit
-                0x08000f1c       0xb0 ..\obj\system_stm32f4xx.o
-                0x08000f1c                SystemInit
+                0x08000f10       0xb0 ..\obj\system_stm32f4xx.o
+                0x08000f10                SystemInit
  .text.SetSysClock
-                0x08000fcc      0x1e0 ..\obj\system_stm32f4xx.o
+                0x08000fc0      0x1e0 ..\obj\system_stm32f4xx.o
  .text.SPI_Init
-                0x080011ac       0x88 ..\obj\stm32f4xx_spi.o
-                0x080011ac                SPI_Init
+                0x080011a0       0x88 ..\obj\stm32f4xx_spi.o
+                0x080011a0                SPI_Init
  .text.SPI_StructInit
-                0x08001234       0x5c ..\obj\stm32f4xx_spi.o
-                0x08001234                SPI_StructInit
- .text.SPI_Cmd  0x08001290       0x40 ..\obj\stm32f4xx_spi.o
-                0x08001290                SPI_Cmd
+                0x08001228       0x5c ..\obj\stm32f4xx_spi.o
+                0x08001228                SPI_StructInit
+ .text.SPI_Cmd  0x08001284       0x40 ..\obj\stm32f4xx_spi.o
+                0x08001284                SPI_Cmd
  .text.SPI_I2S_GetFlagStatus
-                0x080012d0       0x40 ..\obj\stm32f4xx_spi.o
-                0x080012d0                SPI_I2S_GetFlagStatus
+                0x080012c4       0x40 ..\obj\stm32f4xx_spi.o
+                0x080012c4                SPI_I2S_GetFlagStatus
  .text.PCD8544_InitIO
-                0x08001310       0x78 ..\obj\tm_stm32f4_pcd8544.o
-                0x08001310                PCD8544_InitIO
+                0x08001304       0x78 ..\obj\tm_stm32f4_pcd8544.o
+                0x08001304                PCD8544_InitIO
  .text.PCD8544_send
-                0x08001388       0x44 ..\obj\tm_stm32f4_pcd8544.o
-                0x08001388                PCD8544_send
+                0x0800137c       0x44 ..\obj\tm_stm32f4_pcd8544.o
+                0x0800137c                PCD8544_send
  .text.PCD8544_Pin
-                0x080013cc       0x78 ..\obj\tm_stm32f4_pcd8544.o
-                0x080013cc                PCD8544_Pin
+                0x080013c0       0x78 ..\obj\tm_stm32f4_pcd8544.o
+                0x080013c0                PCD8544_Pin
  .text.PCD8544_Delay
-                0x08001444       0x2c ..\obj\tm_stm32f4_pcd8544.o
-                0x08001444                PCD8544_Delay
+                0x08001438       0x2c ..\obj\tm_stm32f4_pcd8544.o
+                0x08001438                PCD8544_Delay
  .text.PCD8544_Init
-                0x08001470       0x9c ..\obj\tm_stm32f4_pcd8544.o
-                0x08001470                PCD8544_Init
+                0x08001464       0x9c ..\obj\tm_stm32f4_pcd8544.o
+                0x08001464                PCD8544_Init
  .text.PCD8544_Write
-                0x0800150c       0x48 ..\obj\tm_stm32f4_pcd8544.o
-                0x0800150c                PCD8544_Write
+                0x08001500       0x48 ..\obj\tm_stm32f4_pcd8544.o
+                0x08001500                PCD8544_Write
  .text.PCD8544_DrawPixel
-                0x08001554       0xe4 ..\obj\tm_stm32f4_pcd8544.o
-                0x08001554                PCD8544_DrawPixel
+                0x08001548       0xe4 ..\obj\tm_stm32f4_pcd8544.o
+                0x08001548                PCD8544_DrawPixel
  .text.PCD8544_Clear
-                0x08001638       0x64 ..\obj\tm_stm32f4_pcd8544.o
-                0x08001638                PCD8544_Clear
+                0x0800162c       0x64 ..\obj\tm_stm32f4_pcd8544.o
+                0x0800162c                PCD8544_Clear
  .text.PCD8544_Home
-                0x0800169c       0x20 ..\obj\tm_stm32f4_pcd8544.o
-                0x0800169c                PCD8544_Home
+                0x08001690       0x20 ..\obj\tm_stm32f4_pcd8544.o
+                0x08001690                PCD8544_Home
  .text.PCD8544_Refresh
-                0x080016bc      0x108 ..\obj\tm_stm32f4_pcd8544.o
-                0x080016bc                PCD8544_Refresh
+                0x080016b0      0x108 ..\obj\tm_stm32f4_pcd8544.o
+                0x080016b0                PCD8544_Refresh
  .text.PCD8544_UpdateArea
-                0x080017c4       0x88 ..\obj\tm_stm32f4_pcd8544.o
-                0x080017c4                PCD8544_UpdateArea
+                0x080017b8       0x88 ..\obj\tm_stm32f4_pcd8544.o
+                0x080017b8                PCD8544_UpdateArea
  .text.PCD8544_GotoXY
-                0x0800184c       0x30 ..\obj\tm_stm32f4_pcd8544.o
-                0x0800184c                PCD8544_GotoXY
+                0x08001840       0x30 ..\obj\tm_stm32f4_pcd8544.o
+                0x08001840                PCD8544_GotoXY
  .text.PCD8544_Putc
-                0x0800187c      0x1c0 ..\obj\tm_stm32f4_pcd8544.o
-                0x0800187c                PCD8544_Putc
+                0x08001870      0x1c0 ..\obj\tm_stm32f4_pcd8544.o
+                0x08001870                PCD8544_Putc
  .text.PCD8544_Puts
-                0x08001a3c       0x3c ..\obj\tm_stm32f4_pcd8544.o
-                0x08001a3c                PCD8544_Puts
+                0x08001a30       0x3c ..\obj\tm_stm32f4_pcd8544.o
+                0x08001a30                PCD8544_Puts
  *(.init)
  *(.fini)
  *crtbegin.o(.ctors)
@@ -558,41 +558,41 @@ Linker script and memory map
  *(SORT(.dtors.*))
  *(.dtors)
  *(.rodata*)
- .rodata        0x08001a78       0x2c ..\obj\main.o
- .rodata        0x08001aa4      0x308 ..\obj\tm_stm32f4_pcd8544.o
-                0x08001aa4                PCD8544_Font5x7
-                0x08001c8c                PCD8544_Font3x5
+ .rodata        0x08001a6c       0x2c ..\obj\main.o
+ .rodata        0x08001a98      0x308 ..\obj\tm_stm32f4_pcd8544.o
+                0x08001a98                PCD8544_Font5x7
+                0x08001c80                PCD8544_Font3x5
  *(.eh_fram e*)
 
-.glue_7         0x08001dac        0x0
+.glue_7         0x08001da0        0x0
  .glue_7        0x00000000        0x0 linker stubs
 
-.glue_7t        0x08001dac        0x0
+.glue_7t        0x08001da0        0x0
  .glue_7t       0x00000000        0x0 linker stubs
 
-.vfp11_veneer   0x08001dac        0x0
+.vfp11_veneer   0x08001da0        0x0
  .vfp11_veneer  0x00000000        0x0 linker stubs
 
-.v4_bx          0x08001dac        0x0
+.v4_bx          0x08001da0        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
-.iplt           0x08001dac        0x0
+.iplt           0x08001da0        0x0
  .iplt          0x00000000        0x0 ..\obj\stm32f4xx_usart.o
 
-.rel.dyn        0x08001dac        0x0
+.rel.dyn        0x08001da0        0x0
  .rel.iplt      0x00000000        0x0 ..\obj\stm32f4xx_usart.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x08001dac                __exidx_start = .
+                0x08001da0                __exidx_start = .
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x08001dac                __exidx_end = .
-                0x08001dac                __etext = .
-                0x08001dac                _sidata = __etext
+                0x08001da0                __exidx_end = .
+                0x08001da0                __etext = .
+                0x08001da0                _sidata = __etext
 
-.data           0x20000000        0x0 load address 0x08001dac
+.data           0x20000000        0x0 load address 0x08001da0
                 0x20000000                __data_start__ = .
                 0x20000000                _sdata = __data_start__
  *(vtable)

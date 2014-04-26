@@ -25,7 +25,7 @@
       <source file="..\..\..\cmsis_lib\include\misc.h" lastModified="1423985485a">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
-      <source file="..\..\..\..\00-STM32F429_LIBRARIES\tm_stm32f4_pcd8544.c" lastModified="1459e5fe2a6">
+      <source file="..\..\..\..\00-STM32F429_LIBRARIES\tm_stm32f4_pcd8544.c" lastModified="1459fcff433">
          <include file="..\..\..\..\00-STM32F429_LIBRARIES\tm_stm32f4_pcd8544.h"/>
       </source>
       <source file="..\..\..\cmsis_lib\source\misc.c" lastModified="1423985a59c">
@@ -49,8 +49,8 @@
       <source file="..\..\..\cmsis_lib\include\stm32f4xx_dac.h" lastModified="142398548f6">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
-      <source file="..\..\..\..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.h" lastModified="1459e5c238e">
-         <include file="..\..\..\..\00-STM32F429_LIBRARIES\defines.h"/>
+      <source file="..\..\..\..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.h" lastModified="1459fd2219f">
+         <include file="..\..\..\defines.h"/>
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_gpio.h"/>
@@ -61,9 +61,6 @@
       </source>
       <source file="..\..\..\cmsis_lib\include\stm32f4xx_rng.h" lastModified="14239854a7d">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
-      </source>
-      <source file="..\..\..\..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.c" lastModified="1459e5ddefa">
-         <include file="..\..\..\..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.h"/>
       </source>
       <source file="..\..\..\cmsis\core_cmFunc.h" lastModified="1412c148bb0">
       </source>
@@ -131,6 +128,11 @@
       </source>
       <source file="..\..\..\cmsis\core_cmInstr.h" lastModified="1412c148bb0">
       </source>
+      <source file="..\..\..\main.c" lastModified="1459ef94ae6">
+         <include file="..\..\..\defines.h"/>
+         <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
+         <include file="..\..\..\..\00-STM32F429_LIBRARIES\tm_stm32f4_pcd8544.h"/>
+      </source>
       <source file="..\..\..\cmsis_lib\include\stm32f4xx_usart.h" lastModified="14239854b77">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
@@ -143,6 +145,8 @@
       </source>
       <source file="..\..\..\cmsis_lib\include\stm32f4xx_flash.h" lastModified="14239854963">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
+      </source>
+      <source file="..\..\..\defines.h" lastModified="1459e506432">
       </source>
       <source file="..\..\..\cmsis_lib\include\stm32f4xx_dcmi.h" lastModified="14239854915">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
