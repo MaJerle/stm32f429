@@ -14,6 +14,7 @@
 /**
  * Includes
  */
+#include "defines.h"
 #include "stm32f4xx.h"
 #include "stm32f4xx_rcc.h"
 #include "stm32f4xx_gpio.h"
@@ -39,21 +40,27 @@ void TM_DISCO_ButtonInit(void);
 /**
  * Turn on LED
  *
- * @param uint16_t led: led pin
+ * Parameters:
+ * 	- uint16_t led:
+ * 		LED_GREEN
+ * 		LED_RED
  */
 void TM_DISCO_LedOn(uint16_t led);
 
 /**
  * Turn off LED
  *
- * @param uint16_t led: led pin
+ * Parameters:
+ * 	- uint16_t led:
+ * 		LED_GREEN
+ * 		LED_RED
  */
 void TM_DISCO_LedOff(uint16_t led);
 
 /**
  * Checks if button is pressed
  *
- * @return 1 if pressed, 0 if not
+ * Returns 1 if is pressed, otherwise 0
  */
 uint8_t TM_DISCO_ButtonPressed(void);
 

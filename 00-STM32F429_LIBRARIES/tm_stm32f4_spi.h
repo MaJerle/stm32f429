@@ -45,6 +45,18 @@ typedef enum {
  */
 
 /**
+ * Initialize SPIx
+ *
+ * Parameters:
+ * 	- SPI_TypeDef* SPIx:
+ * 		SPI 1 - 6
+ * 	- TM_SPI_PinsPack_t pinspack: select pins pack to use
+ * 		- TM_SPI_PinsPack_1
+ * 		- TM_SPI_PinsPack_2
+ */
+extern void TM_SPI_Init(SPI_TypeDef* SPIx, TM_SPI_PinsPack_t pinspack);
+
+/**
  * SPI1 uses pins:
  * 	- Pins pack 1:
  * 		- MOSI: PA7
@@ -119,11 +131,13 @@ extern void TM_SPI5_Init(TM_SPI_PinsPack_t pinspack);
 extern void TM_SPI6_Init(void);
 
 /**
- * Send data over SPI
+ * Send and receive data over SPI
  *
  * Parameters:
  * 	- SPI_TypeDef* SPIx: Select SPI which will operate with data
  * 	- uint8_t data: data to be sent
+ *
+ * Returns: Data returned from slave
  */
 extern uint8_t TM_SPI_Send(SPI_TypeDef* SPIx, uint8_t data);
 

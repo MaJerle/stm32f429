@@ -13,6 +13,22 @@ uint8_t TM_SPI_Send(SPI_TypeDef* SPIx, uint8_t data) {
 	return SPIx->DR;
 }
 
+void TM_SPI_Init(SPI_TypeDef* SPIx, TM_SPI_PinsPack_t pinspack) {
+	if (SPIx == SPI1) {
+		TM_SPI1_Init(pinspack);
+	} else if (SPIx == SPI2) {
+		TM_SPI2_Init(pinspack);
+	} else if (SPIx == SPI3) {
+		TM_SPI3_Init(pinspack);
+	} else if (SPIx == SPI4) {
+		TM_SPI4_Init(pinspack);
+	} else if (SPIx == SPI5) {
+		TM_SPI5_Init(pinspack);
+	} else if (SPIx == SPI6) {
+		TM_SPI6_Init();
+	}
+}
+
 void TM_SPI1_Init(TM_SPI_PinsPack_t pinspack) {
 	GPIO_InitTypeDef GPIO_InitDef;
 	SPI_InitTypeDef SPI_InitDef;

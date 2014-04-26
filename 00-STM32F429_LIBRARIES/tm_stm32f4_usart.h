@@ -7,7 +7,7 @@
  *
  *	#define TM_USART_BUFFER_SIZE number_of_bytes
  *
- *	in your project's header file.
+ *	in your project's defines.h file.
  *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
@@ -17,7 +17,6 @@
  *	@gcc		v4.7 20013qr3
  *	@ide		CooCox CoIDE v1.7.6
  */
-
 #ifndef TM_USART_
 #define TM_USART_ 110
 
