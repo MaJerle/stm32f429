@@ -46,7 +46,7 @@ static __IO uint32_t TM_Time;
   * @param  nTime: specifies the delay time length, in microseconds.
   * @retval None
   */
-inline void Delay(__IO uint32_t nTime);
+void Delay(__IO uint32_t nTime);
 
 /**
  *
@@ -54,7 +54,7 @@ inline void Delay(__IO uint32_t nTime);
  * @param  nTime: specifies the delay time length, in milliseconds.
  * @retval None
  */
-inline void Delayms(__IO uint32_t nTime);
+void Delayms(__IO uint32_t nTime);
 
 /**
  *
@@ -63,4 +63,17 @@ inline void Delayms(__IO uint32_t nTime);
  */
 void TM_DELAY_Init(void);
 
+/**
+ * Get the TM_Time variable value
+ */
+uint32_t TM_DELAY_Time(void){
+
+}
+
+/**
+ * Set value for TM_Time variable
+ */
+void TM_DELAY_SetTime(uint32_t time){
+
+}
 #endif

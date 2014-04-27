@@ -1,26 +1,25 @@
 #include "tm_stm32f4_delay.h"
 
-static __IO uint32_t TM_TimingDelay;
+static __IO uint32_t TM_TimingDelay = 0;
 static __IO uint32_t TM_Time = 0;
 
-inline void Delay(__IO uint32_t nTime) {
+void Delay(__IO uint32_t nTime) {
 	TM_TimingDelay = nTime;
 
 	while (TM_TimingDelay != 0);
 }
 
-inline void Delayms(__IO uint32_t nTime) {
+void Delayms(__IO uint32_t nTime) {
 	TM_TimingDelay = 1000 * nTime;
 
 	while (TM_TimingDelay != 0);
 }
 
-void SysTick_Handler(void) {
+void TimingDelay_Decrement(void) {
+	TM_Time++;
 	if (TM_TimingDelay != 0x00) {
 		TM_TimingDelay--;
 	}
-
-	TM_Time++;
 }
 
 void TM_DELAY_Init(void) {
@@ -29,4 +28,12 @@ void TM_DELAY_Init(void) {
 		/* Capture error */
 		while (1);
 	}
+}
+
+uint32_t TM_DELAY_Time(void) {
+	return TM_Time;
+}
+
+void TM_DELAY_SetTime(uint32_t time) {
+	TM_Time = time;
 }
