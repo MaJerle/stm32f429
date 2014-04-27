@@ -11,7 +11,6 @@
 #include "defines.h"
 #include "stm32f4xx.h"
 #include "tm_stm32f4_usart.h"
-#include "tm_stm32f4_disco.h"
 
 
 int main(void) {
