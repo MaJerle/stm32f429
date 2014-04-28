@@ -21,6 +21,8 @@ http://bit.ly/1npVXHQ
 http://bit.ly/1lgtcjy
 6. ADC - ADC library for STM32F429
 http://bit.ly/1fINniy
+7. DAC - DAC library for STM32F429
+http://bit.ly/1rwGdTR
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB
