@@ -1,7 +1,7 @@
 /**
  * ADC library for STM32F4xx
  *
- *	@author 	Tilen Majerle
+ *	@author		Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://majerle.eu
  *	@link
