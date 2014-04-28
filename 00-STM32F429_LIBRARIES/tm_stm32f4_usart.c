@@ -111,11 +111,11 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 
 #ifdef USART1
 void TM_USART1_InitPins(TM_USART_PinsPack_t pinspack) {
-	//Enable clock for USART1
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, ENABLE);
-
 	//GPIO Structure
 	GPIO_InitTypeDef GPIO_InitStruct;
+	
+	//Enable clock for USART1
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, ENABLE);
 
 	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
 	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
@@ -150,11 +150,10 @@ void TM_USART1_InitPins(TM_USART_PinsPack_t pinspack) {
 
 #ifdef USART2
 void TM_USART2_InitPins(TM_USART_PinsPack_t pinspack) {
-	//Enable clock for USART2
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART2, ENABLE);
-
 	//GPIO Structure
 	GPIO_InitTypeDef GPIO_InitStruct;
+	//Enable clock for USART2
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART2, ENABLE);
 
 	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
 	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
@@ -189,11 +188,10 @@ void TM_USART2_InitPins(TM_USART_PinsPack_t pinspack) {
 
 #ifdef USART3
 void TM_USART3_InitPins(TM_USART_PinsPack_t pinspack) {
-	//Enable clock for USART3
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART3, ENABLE);
-
 	//GPIO Structure
 	GPIO_InitTypeDef GPIO_InitStruct;
+	//Enable clock for USART3
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART3, ENABLE);
 
 	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
 	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
@@ -239,11 +237,10 @@ void TM_USART3_InitPins(TM_USART_PinsPack_t pinspack) {
 
 #ifdef UART4
 void TM_UART4_InitPins(TM_USART_PinsPack_t pinspack) {
-	//Enable clock for UART4
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_UART4, ENABLE);
-
 	//GPIO Structure
 	GPIO_InitTypeDef GPIO_InitStruct;
+	//Enable clock for UART4
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_UART4, ENABLE);
 
 	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
 	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
@@ -278,11 +275,10 @@ void TM_UART4_InitPins(TM_USART_PinsPack_t pinspack) {
 
 #ifdef UART5
 void TM_UART5_InitPins(TM_USART_PinsPack_t pinspack) {
-	//Enable clock for UART5
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_UART5, ENABLE);
-
 	//GPIO Structure
 	GPIO_InitTypeDef GPIO_InitStruct;
+	//Enable clock for UART5
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_UART5, ENABLE);
 
 	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
 	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
@@ -309,11 +305,10 @@ void TM_UART5_InitPins(TM_USART_PinsPack_t pinspack) {
 
 #ifdef USART6
 void TM_USART6_InitPins(TM_USART_PinsPack_t pinspack) {
-	//Enable clock for USART6
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART6, ENABLE);
-
 	//GPIO Structure
 	GPIO_InitTypeDef GPIO_InitStruct;
+	//Enable clock for USART6
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART6, ENABLE);
 
 	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
 	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
@@ -348,11 +343,10 @@ void TM_USART6_InitPins(TM_USART_PinsPack_t pinspack) {
 
 #ifdef UART7
 void TM_UART7_InitPins(TM_USART_PinsPack_t pinspack) {
-	//Enable clock for UART7
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_UART7, ENABLE);
-
 	//GPIO Structure
 	GPIO_InitTypeDef GPIO_InitStruct;
+	//Enable clock for UART7
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_UART7, ENABLE);
 
 	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
 	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
@@ -387,11 +381,10 @@ void TM_UART7_InitPins(TM_USART_PinsPack_t pinspack) {
 
 #ifdef UART8
 void TM_UART8_InitPins(TM_USART_PinsPack_t pinspack) {
+	//GPIO Structure
+	GPIO_InitTypeDef GPIO_InitStruct;
 	//Enable clock for UART8
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_UART8, ENABLE);
-
-	//GPIO Structure
-	GPIO_InitTypeDef 	GPIO_InitStruct;
 
 	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
 	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;

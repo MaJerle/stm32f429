@@ -10,7 +10,7 @@
  */
 
 #ifndef TM_DELAY_
-#define TM_DELAY_
+#define TM_DELAY_ 110
 
 /**
  * Includes
@@ -26,17 +26,6 @@ static __IO uint32_t TM_TimingDelay;
 /**
  * This variable can be used in main
  * It is automatically increased every time systick make an interrupt
- *
- * //leds are toggled every 50ms.
- * TM_Time = 0;
- * while (1) {
- * 		if (TM_Time >= 50000) { //50ms
- * 			TM_Time = 0;
- * 			//Toogle leds here
- * 		}
- * 		//Do other stuff
- * }
- *
  */
 static __IO uint32_t TM_Time;
 
@@ -66,14 +55,11 @@ void TM_DELAY_Init(void);
 /**
  * Get the TM_Time variable value
  */
-uint32_t TM_DELAY_Time(void){
-
-}
+uint32_t TM_DELAY_Time(void);
 
 /**
  * Set value for TM_Time variable
  */
-void TM_DELAY_SetTime(uint32_t time){
+void TM_DELAY_SetTime(uint32_t time);
 
-}
 #endif

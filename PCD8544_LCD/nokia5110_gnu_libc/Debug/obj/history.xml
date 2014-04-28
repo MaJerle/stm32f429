@@ -1,56 +1,37 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <history>
-   <processor signature="arm-none-eabi-gcc noversion nomachine -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wall -ffunction-sections -g -O0 -c -DSTM32F407VG -DSTM32F4XX -DUSE_STDPERIPH_DRIVER -D__ASSEMBLY__ -D__FPU_USED -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\nokia5110_gnu_libc -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\nokia5110_gnu_libc\cmsis -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\nokia5110_gnu_libc\lib -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\nokia5110_gnu_libc\cmsis_lib -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\nokia5110_gnu_libc\cmsis_boot -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\nokia5110_gnu_libc\cmsis_lib\include">
-      <target file="pcd8544_io.o" lastModified="14571d5a0d1">
-         <source file="..\..\..\lib\pcd8544_io.c" lastModified="1455b26308e"/>
-      </target>
-      <target file="fonts.o" lastModified="14571f4abe9">
-         <source file="..\..\..\lib\fonts.c" lastModified="14571f48e2d"/>
-      </target>
-      <target file="tm_stm32f4_usart.o" lastModified="14571af3930">
-         <source file="..\..\..\lib\tm_stm32f4_usart.c" lastModified="14551d9bcc5"/>
-      </target>
-   </processor>
-   <processor signature="arm-none-eabi-gcc noversion nomachine -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wall -ffunction-sections -g -O0 -c -DSTM32F407VG -DSTM32F4XX -DUSE_STDPERIPH_DRIVER -D__ASSEMBLY__ -D__FPU_USED -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\nokia5110_gnu_libc -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\majerle.eu\STM32F429_DELAY\tm -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\majerle.eu -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\nokia5110_gnu_libc\cmsis -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\nokia5110_gnu_libc\lib -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\nokia5110_gnu_libc\cmsis_lib -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\nokia5110_gnu_libc\cmsis_boot -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\STM32F429\majerle.eu\STM32F429_DELAY -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\nokia5110_gnu_libc\cmsis_lib\include">
-      <target file="pcd8544.o" lastModified="1457b1f0995">
-         <source file="..\..\..\lib\pcd8544.c" lastModified="1457a7667e0"/>
-      </target>
-      <target file="tm_stm32f4_disco.o" lastModified="1457a7a9558">
-         <source file="..\..\..\..\STM32F429\majerle.eu\STM32F429_DELAY\tm\tm_stm32f4_disco.c" lastModified="1453914da9c"/>
-      </target>
-   </processor>
    <processor signature="arm-none-eabi-gcc noversion nomachine -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wall -ffunction-sections -g -O0 -c -DSTM32F407VG -DSTM32F4XX -DUSE_STDPERIPH_DRIVER -D__ASSEMBLY__ -D__FPU_USED -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\ARM\STM32F429\majerle.eu\PCD8544_LCD\cmsis_lib -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\ARM\STM32F429\majerle.eu -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\ARM\STM32F429\majerle.eu\PCD8544_LCD\cmsis_boot -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\ARM\STM32F429\majerle.eu\PCD8544_LCD\cmsis -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\ARM\STM32F429\majerle.eu\PCD8544_LCD\cmsis_lib\include -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\ARM\STM32F429\majerle.eu\PCD8544_LCD -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\ARM\STM32F429\majerle.eu\00-STM32F429_LIBRARIES -I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\ARM\STM32F429">
-      <target file="stm32f4xx_gpio.o" lastModified="1459e59391f">
+      <target file="stm32f4xx_gpio.o" lastModified="145a41ca4e8">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_gpio.c" lastModified="1412fa6baf0"/>
       </target>
-      <target file="tm_stm32f4_pcd8544.o" lastModified="1459fd46b5a">
-         <source file="..\..\..\..\00-STM32F429_LIBRARIES\tm_stm32f4_pcd8544.c" lastModified="1459fcff433"/>
+      <target file="tm_stm32f4_pcd8544.o" lastModified="145a77e1dfb">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\tm_stm32f4_pcd8544.c" lastModified="145a77e1b9d"/>
       </target>
-      <target file="system_stm32f4xx.o" lastModified="1459e593971">
+      <target file="system_stm32f4xx.o" lastModified="145a41ca539">
          <source file="..\..\..\cmsis_boot\system_stm32f4xx.c" lastModified="141e5f775b0"/>
       </target>
-      <target file="startup_stm32f4xx.o" lastModified="1459e59371e">
+      <target file="startup_stm32f4xx.o" lastModified="145a41ca2e4">
          <source file="..\..\..\cmsis_boot\startup\startup_stm32f4xx.c" lastModified="141f8c20980"/>
       </target>
-      <target file="stm32f4xx_usart.o" lastModified="1459e5936e3">
+      <target file="stm32f4xx_usart.o" lastModified="145a41ca2a7">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_usart.c" lastModified="1423985aa20"/>
       </target>
-      <target file="main.o" lastModified="1459fd46a8d">
-         <source file="..\..\..\main.c" lastModified="1459ef94ae6"/>
+      <target file="main.o" lastModified="145a77f9804">
+         <source file="..\..\..\main.c" lastModified="145a77f95fe"/>
       </target>
-      <target file="stm32f4xx_spi.o" lastModified="1459e5939e1">
+      <target file="stm32f4xx_spi.o" lastModified="145a41ca5a8">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_spi.c" lastModified="1423985a984"/>
       </target>
-      <target file="tm_stm32f4_spi.o" lastModified="1459fd4a269">
-         <source file="..\..\..\..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.c" lastModified="1459fd4990f"/>
+      <target file="tm_stm32f4_spi.o" lastModified="145a41ca488">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.c" lastModified="1459fd4f69f"/>
       </target>
-      <target file="tm_stm32f4_delay.o" lastModified="1459e593856">
-         <source file="..\..\..\..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c" lastModified="14586366a84"/>
+      <target file="tm_stm32f4_delay.o" lastModified="145a76ca2f7">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c" lastModified="145a59fec06"/>
       </target>
-      <target file="stm32f4xx_rcc.o" lastModified="1459e593802">
+      <target file="stm32f4xx_rcc.o" lastModified="145a41ca3c0">
          <source file="..\..\..\cmsis_lib\source\stm32f4xx_rcc.c" lastModified="1412fa6baf0"/>
       </target>
-      <target file="misc.o" lastModified="1459e593a31">
+      <target file="misc.o" lastModified="145a41ca5fb">
          <source file="..\..\..\cmsis_lib\source\misc.c" lastModified="1423985a59c"/>
       </target>
    </processor>

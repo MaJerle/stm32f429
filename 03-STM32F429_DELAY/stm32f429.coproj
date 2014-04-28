@@ -49,8 +49,8 @@
     </BuildOption>
     <DebugOption>
       <Option name="org.coocox.codebugger.gdbjtag.core.adapter" value="CMSIS-DAP"/>
-      <Option name="org.coocox.codebugger.gdbjtag.core.debugMode" value="JTAG"/>
-      <Option name="org.coocox.codebugger.gdbjtag.core.clockDiv" value="2M"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.debugMode" value="SWD"/>
+      <Option name="org.coocox.codebugger.gdbjtag.core.clockDiv" value="1M"/>
       <Option name="org.coocox.codebugger.gdbjtag.corerunToMain" value="1"/>
       <Option name="org.coocox.codebugger.gdbjtag.core.jlinkgdbserver" value=""/>
       <Option name="org.coocox.codebugger.gdbjtag.core.userDefineGDBScript" value=""/>
@@ -99,12 +99,12 @@
     <File name="cmsis_lib/include/stm32f4xx_gpio.h" path="cmsis_lib/include/stm32f4xx_gpio.h" type="1"/>
     <File name="cmsis_lib/include/misc.h" path="cmsis_lib/include/misc.h" type="1"/>
     <File name="cmsis_boot/stm32f4xx_conf.h" path="cmsis_boot/stm32f4xx_conf.h" type="1"/>
-    <File name="cmsis_boot/system_stm32f4xx.h" path="cmsis_boot/system_stm32f4xx.h" type="1"/>
     <File name="tm/tm_stm32f4_delay.c" path="../00-STM32F429_LIBRARIES/tm_stm32f4_delay.c" type="1"/>
+    <File name="cmsis_boot/system_stm32f4xx.h" path="cmsis_boot/system_stm32f4xx.h" type="1"/>
     <File name="cmsis_lib/include" path="" type="2"/>
     <File name="cmsis_lib/include/stm32f4xx_rcc.h" path="cmsis_lib/include/stm32f4xx_rcc.h" type="1"/>
-    <File name="tm/tm_stm32f4_disco.c" path="../00-STM32F429_LIBRARIES/tm_stm32f4_disco.c" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_syscfg.c" path="cmsis_lib/source/stm32f4xx_syscfg.c" type="1"/>
+    <File name="tm/tm_stm32f4_disco.c" path="../00-STM32F429_LIBRARIES/tm_stm32f4_disco.c" type="1"/>
     <File name="main.c" path="main.c" type="1"/>
   </Files>
 </Project>

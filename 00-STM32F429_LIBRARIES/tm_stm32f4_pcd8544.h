@@ -9,8 +9,8 @@
  *	@gcc		v4.7 20013qr3
  *	@ide		CooCox CoIDE v1.7.6
  */
-#ifndef PCD8544
-#define PCD8544 100
+#ifndef PCD8544_H
+#define PCD8544_H 100
 
 /**
  * Includes
@@ -51,7 +51,7 @@
  * SPI channel
  */
 #ifndef PCD8544_SPIx
-#define PCD8544_SPIx 						SPI2
+#define PCD8544_SPIx						SPI2
 #endif
 #ifndef PCD8544_SPI_PINSPACK
 #define PCD8544_SPI_PINSPACK 				TM_SPI_PinsPack_1

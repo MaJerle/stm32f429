@@ -25,7 +25,7 @@ void TimingDelay_Decrement(void) {
 void TM_DELAY_Init(void) {
 	//Set Systick interrupt every 1us
 	if (SysTick_Config(SystemCoreClock / 1000000)) {
-		/* Capture error */
+		//Capture error
 		while (1);
 	}
 }
@@ -37,3 +37,4 @@ uint32_t TM_DELAY_Time(void) {
 void TM_DELAY_SetTime(uint32_t time) {
 	TM_Time = time;
 }
+

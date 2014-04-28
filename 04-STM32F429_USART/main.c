@@ -11,11 +11,14 @@
 #include "defines.h"
 #include "stm32f4xx.h"
 #include "tm_stm32f4_usart.h"
+#include "tm_stm32f4_delay.h"
 
 
 int main(void) {
 	//Initialize system
 	SystemInit();
+
+	TM_DELAY_Init();
 
 	//Initialize USART1 at 9600 baud, TX: PA9, RX: PA10
 	TM_USART_Init(USART1, TM_USART_PinsPack_1, 9600);
@@ -30,7 +33,6 @@ int main(void) {
 			//If anything received, put it back to terminal
 			TM_USART_Putc(USART1, c);
 		}
-
 	}
 	return 0;
 }

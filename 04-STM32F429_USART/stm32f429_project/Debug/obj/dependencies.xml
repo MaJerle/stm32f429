@@ -1,12 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dependencies>
    <includePath signature="/I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\ARM\STM32F429\majerle.eu /I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\ARM\STM32F429\majerle.eu\04-STM32F429_USART\cmsis_lib /I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\ARM\STM32F429\majerle.eu\04-STM32F429_USART\cmsis /I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\ARM\STM32F429\majerle.eu\04-STM32F429_USART\cmsis_lib\include /I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\ARM\STM32F429\majerle.eu\04-STM32F429_USART /I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\ARM\STM32F429\majerle.eu\00-STM32F429_LIBRARIES /I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\ARM\STM32F429 /I..\..\..\..\..\Users\Tilen\Google Drive\JAVNO\ELEKTRONIKA\ARM\STM32F429\majerle.eu\04-STM32F429_USART\cmsis_boot">
-      <source file="..\..\..\..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.h" lastModified="1459e673e59">
-         <include file="..\..\..\defines.h"/>
-         <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
-         <include file="..\..\..\cmsis_lib\include\stm32f4xx_gpio.h"/>
-      </source>
       <source file="..\..\..\cmsis_lib\source\stm32f4xx_dcmi.c" lastModified="1423985a6d4">
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_dcmi.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
@@ -15,14 +9,11 @@
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_ltdc.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
       </source>
-      <source file="..\..\..\..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.c" lastModified="14584b36f02">
-         <include file="..\..\..\..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.h"/>
-      </source>
       <source file="..\..\..\cmsis_lib\source\stm32f4xx_wwdg.c" lastModified="1423985aa20">
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_wwdg.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
       </source>
-      <source file="..\..\..\cmsis\core_cm4.h" lastModified="1423232bd42">
+      <source file="..\..\..\cmsis\core_cm4.h" lastModified="145a593de95">
          <include file="..\..\..\cmsis\core_cmInstr.h"/>
          <include file="..\..\..\cmsis\core_cmFunc.h"/>
          <include file="..\..\..\cmsis\core_cm4_simd.h"/>
@@ -65,7 +56,7 @@
       <source file="..\..\..\cmsis_lib\include\stm32f4xx_dbgmcu.h" lastModified="142398548f6">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
       </source>
-      <source file="..\..\..\..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h" lastModified="1459fd979dc">
+      <source file="..\..\..\..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h" lastModified="145a50cccfe">
          <include file="..\..\..\defines.h"/>
          <include file="..\..\..\cmsis_lib\include\misc.h"/>
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
@@ -73,7 +64,7 @@
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
          <include file="..\..\..\cmsis_lib\include\stm32f4xx_usart.h"/>
       </source>
-      <source file="..\..\..\..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c" lastModified="1459fe866c7">
+      <source file="..\..\..\..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c" lastModified="145a336c755">
          <include file="..\..\..\..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h"/>
       </source>
       <source file="..\..\..\cmsis_lib\source\stm32f4xx_fmc.c" lastModified="1423985a780">
@@ -149,6 +140,15 @@
       </source>
       <source file="..\..\..\cmsis_boot\system_stm32f4xx.c" lastModified="145775221be">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
+      </source>
+      <source file="..\..\..\..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.h" lastModified="145a595b675">
+         <include file="..\..\..\defines.h"/>
+         <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
+         <include file="..\..\..\cmsis_lib\include\stm32f4xx_rcc.h"/>
+         <include file="..\..\..\cmsis_lib\include\stm32f4xx_gpio.h"/>
+      </source>
+      <source file="..\..\..\..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c" lastModified="145a59fec06">
+         <include file="..\..\..\..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.h"/>
       </source>
       <source file="..\..\..\cmsis_lib\include\stm32f4xx_exti.h" lastModified="14239854954">
          <include file="..\..\..\cmsis_boot\stm32f4xx.h"/>
