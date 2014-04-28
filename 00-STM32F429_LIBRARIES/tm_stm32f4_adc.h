@@ -17,6 +17,28 @@
 #include "stm32f4xx_gpio.h"
 #include "stm32f4xx_adc.h"
 
+/*
+ADC pins
+
+CHANNEL			ADC1	ADC2	ADC3
+ADC Channel 0	PA0		PA0		PA0
+ADC Channel 1	PA1		PA1		PA1
+ADC Channel 2	PA2		PA2		PA2
+ADC Channel 3	PA3		PA3		PA3
+ADC Channel 4	PA4		PA4		PF6
+ADC Channel 5	PA5		PA5		PF7
+ADC Channel 6	PA6		PA6		PF8
+ADC Channel 7	PA7		PA7		PF9
+ADC Channel 8	PB0		PB0		PF10
+ADC Channel 9	PB1		PB1		PF3
+ADC Channel 10	PC0		PC0		PC0
+ADC Channel 11	PC1		PC1		PC1
+ADC Channel 12	PC2		PC2		PC2
+ADC Channel 13	PC3		PC3		PC3
+ADC Channel 14	PC4		PC4		PF4
+ADC Channel 15	PC5		PC5		PF5
+*/
+
 /**
  * Initialize ADCx with ADCx channel
  *
@@ -40,7 +62,7 @@ extern void TM_ADC_Init(ADC_TypeDef* ADCx, uint8_t channel);
 extern uint16_t TM_ADC_Read(ADC_TypeDef* ADCx, uint8_t channel);
 
 /**
- *
+ * Initialize pin for
  */
 extern void TM_ADC_InitPin(uint16_t RCCx, GPIO_TypeDef* GPIOx, uint16_t PinX);
 
