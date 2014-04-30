@@ -15,14 +15,25 @@ void Delayms(__IO uint32_t nTime) {
 	while (TM_TimingDelay != 0);
 }
 
+#ifdef KEIL_IDE
 void TimingDelay_Decrement(void) {
 	TM_Time++;
 	if (TM_TimingDelay != 0x00) {
 		TM_TimingDelay--;
 	}
 }
+#else
+void SysTick_Handler(void) {
+	TM_Time++;
+	if (TM_TimingDelay != 0x00) {
+		TM_TimingDelay--;
+	}
+}
+#endif
 
 void TM_DELAY_Init(void) {
+	RCC_HSEConfig(RCC_HSE_ON);
+	while (!RCC_WaitForHSEStartUp());
 	//Set Systick interrupt every 1us
 	if (SysTick_Config(SystemCoreClock / 1000000)) {
 		//Capture error

@@ -4,24 +4,29 @@
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://majerle.eu
- *	@version 	v1.0
- *	@gcc		v4.7 20013qr3
- *	@ide		CooCox CoIDE v1.7.6
+ *	@version 	v1.1
  */
+/**
 
+If you are working with Keil uVision, than set KEIL_IDE define in options for project:
+
+- Open "Options for target"
+- Tab "C/C++"
+- Under "Define" type "KEIL_IDE", without quotes
+
+*/
 #ifndef TM_DELAY_
 #define TM_DELAY_ 110
 
 /**
  * Includes
  */
-#include "defines.h"
 #include "stm32f4xx.h"
 #include "stm32f4xx_rcc.h"
 #include "stm32f4xx_gpio.h"
+#include "defines.h"
 
 static __IO uint32_t TM_TimingDelay;
-
 
 /**
  * This variable can be used in main
