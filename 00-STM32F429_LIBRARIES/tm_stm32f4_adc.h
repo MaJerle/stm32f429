@@ -40,6 +40,9 @@ ADC Channel 15	PC5		PC5		PF5
 #include "stm32f4xx_adc.h"
 #include "defines.h"
 
+/**
+ * This values can be overwriten in defines.h file
+ */
 #ifndef TM_ADC1_RESOLUTION
 #define TM_ADC1_RESOLUTION		ADC_Resolution_12b
 #endif
