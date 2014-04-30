@@ -10,17 +10,18 @@
 #ifndef TM_DAC_
 #define TM_DAC_ 100
 
-#include "stm32f4xx.h"
-#include "stm32f4xx_rcc.h"
-#include "stm32f4xx_gpio.h"
-#include "stm32f4xx_dac.h"
-
 /*
 DAC pins
 DAC	channel		Pin
 DAC1			PA4
 DAC2			PA5
 */
+
+#include "stm32f4xx.h"
+#include "stm32f4xx_rcc.h"
+#include "stm32f4xx_gpio.h"
+#include "stm32f4xx_dac.h"
+#include "defines.h"
 
 /**
  * Select which DAC channel
