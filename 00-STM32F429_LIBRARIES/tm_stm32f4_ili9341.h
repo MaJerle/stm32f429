@@ -4,7 +4,7 @@
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://majerle.eu
- *	@link
+ *	@link		http://bit.ly/PQQnCm
  *	@version 	v1.0
  */
 /**
