@@ -24,11 +24,11 @@
 /**
  * Includes
  */
-#include "defines.h"
 #include "stm32f4xx.h"
 #include "stm32f4xx_rcc.h"
 #include "stm32f4xx_gpio.h"
 #include "stm32f4xx_spi.h"
+#include "defines.h"
 
 /**
  * Every SPIx has 2 pins for MISO, MOSI and SCK
@@ -37,6 +37,32 @@ typedef enum {
 	TM_SPI_PinsPack_1,
 	TM_SPI_PinsPack_2
 } TM_SPI_PinsPack_t;
+
+//SPI options
+//Options can be overwriten in defines.h file
+#ifndef TM_SPI1_PRESCALER
+#define TM_SPI1_PRESCALER	SPI_BaudRatePrescaler_32
+#endif
+
+#ifndef TM_SPI2_PRESCALER
+#define TM_SPI2_PRESCALER	SPI_BaudRatePrescaler_32
+#endif
+
+#ifndef TM_SPI3_PRESCALER
+#define TM_SPI3_PRESCALER	SPI_BaudRatePrescaler_32
+#endif
+
+#ifndef TM_SPI4_PRESCALER
+#define TM_SPI4_PRESCALER	SPI_BaudRatePrescaler_32
+#endif
+
+#ifndef TM_SPI5_PRESCALER
+#define TM_SPI5_PRESCALER	SPI_BaudRatePrescaler_32
+#endif
+
+#ifndef TM_SPI6_PRESCALER
+#define TM_SPI6_PRESCALER	SPI_BaudRatePrescaler_32
+#endif
 
 
 /**

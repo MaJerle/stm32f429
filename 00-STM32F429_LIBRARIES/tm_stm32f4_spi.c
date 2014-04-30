@@ -83,7 +83,7 @@ void TM_SPI1_Init(TM_SPI_PinsPack_t pinspack) {
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_SPI1, ENABLE);
 
 	SPI_StructInit(&SPI_InitDef);
-	SPI_InitDef.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_32;
+	SPI_InitDef.SPI_BaudRatePrescaler = TM_SPI1_PRESCALER;
 	SPI_InitDef.SPI_DataSize = SPI_DataSize_8b;
 	SPI_InitDef.SPI_Direction = SPI_Direction_2Lines_FullDuplex;
 	SPI_InitDef.SPI_FirstBit = SPI_FirstBit_MSB;
@@ -137,7 +137,7 @@ void TM_SPI2_Init(TM_SPI_PinsPack_t pinspack) {
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_SPI2, ENABLE);
 
 	SPI_StructInit(&SPI_InitDef);
-	SPI_InitDef.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_32;
+	SPI_InitDef.SPI_BaudRatePrescaler = TM_SPI2_PRESCALER;
 	SPI_InitDef.SPI_DataSize = SPI_DataSize_8b;
 	SPI_InitDef.SPI_Direction = SPI_Direction_2Lines_FullDuplex;
 	SPI_InitDef.SPI_FirstBit = SPI_FirstBit_MSB;
@@ -185,7 +185,7 @@ void TM_SPI3_Init(TM_SPI_PinsPack_t pinspack) {
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_SPI3, ENABLE);
 
 	SPI_StructInit(&SPI_InitDef);
-	SPI_InitDef.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_32;
+	SPI_InitDef.SPI_BaudRatePrescaler = TM_SPI3_PRESCALER;
 	SPI_InitDef.SPI_DataSize = SPI_DataSize_8b;
 	SPI_InitDef.SPI_Direction = SPI_Direction_2Lines_FullDuplex;
 	SPI_InitDef.SPI_FirstBit = SPI_FirstBit_MSB;
@@ -233,7 +233,7 @@ void TM_SPI4_Init(TM_SPI_PinsPack_t pinspack) {
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_SPI4, ENABLE);
 
 	SPI_StructInit(&SPI_InitDef);
-	SPI_InitDef.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_32;
+	SPI_InitDef.SPI_BaudRatePrescaler = TM_SPI4_PRESCALER;
 	SPI_InitDef.SPI_DataSize = SPI_DataSize_8b;
 	SPI_InitDef.SPI_Direction = SPI_Direction_2Lines_FullDuplex;
 	SPI_InitDef.SPI_FirstBit = SPI_FirstBit_MSB;
@@ -285,7 +285,7 @@ void TM_SPI5_Init(TM_SPI_PinsPack_t pinspack) {
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_SPI5, ENABLE);
 
 	SPI_StructInit(&SPI_InitDef);
-	SPI_InitDef.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_32;
+	SPI_InitDef.SPI_BaudRatePrescaler = TM_SPI5_PRESCALER;
 	SPI_InitDef.SPI_DataSize = SPI_DataSize_8b;
 	SPI_InitDef.SPI_Direction = SPI_Direction_2Lines_FullDuplex;
 	SPI_InitDef.SPI_FirstBit = SPI_FirstBit_MSB;
@@ -321,7 +321,7 @@ void TM_SPI6_Init(void) {
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_SPI6, ENABLE);
 
 	SPI_StructInit(&SPI_InitDef);
-	SPI_InitDef.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_32;
+	SPI_InitDef.SPI_BaudRatePrescaler = TM_SPI6_PRESCALER;
 	SPI_InitDef.SPI_DataSize = SPI_DataSize_8b;
 	SPI_InitDef.SPI_Direction = SPI_Direction_2Lines_FullDuplex;
 	SPI_InitDef.SPI_FirstBit = SPI_FirstBit_MSB;
