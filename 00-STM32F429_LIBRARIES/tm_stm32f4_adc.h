@@ -12,11 +12,6 @@
 #ifndef TM_ADC_
 #define TM_ADC_ 100
 
-#include "stm32f4xx.h"
-#include "stm32f4xx_rcc.h"
-#include "stm32f4xx_gpio.h"
-#include "stm32f4xx_adc.h"
-
 /*
 ADC pins
 
@@ -38,6 +33,24 @@ ADC Channel 13	PC3		PC3		PC3
 ADC Channel 14	PC4		PC4		PF4
 ADC Channel 15	PC5		PC5		PF5
 */
+
+#include "stm32f4xx.h"
+#include "stm32f4xx_rcc.h"
+#include "stm32f4xx_gpio.h"
+#include "stm32f4xx_adc.h"
+#include "defines.h"
+
+#ifndef TM_ADC1_RESOLUTION
+#define TM_ADC1_RESOLUTION		ADC_Resolution_12b
+#endif
+
+#ifndef TM_ADC2_RESOLUTION
+#define TM_ADC2_RESOLUTION		ADC_Resolution_12b
+#endif
+
+#ifndef TM_ADC3_RESOLUTION
+#define TM_ADC3_RESOLUTION		ADC_Resolution_12b
+#endif
 
 /**
  * Initialize ADCx with ADCx channel

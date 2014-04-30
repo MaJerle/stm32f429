@@ -38,12 +38,22 @@ void TM_ADC_Init(ADC_TypeDef* ADCx, uint8_t channel) {
 		TM_ADC_Channel_15_Init(ADCx);
 	}
 
+	ADC_InitDef.ADC_ContinuousConvMode = DISABLE;
+	ADC_InitDef.ADC_DataAlign = ADC_DataAlign_Right;
+	ADC_InitDef.ADC_ExternalTrigConv = DISABLE;
+	ADC_InitDef.ADC_ExternalTrigConvEdge = ADC_ExternalTrigConvEdge_None;
+	ADC_InitDef.ADC_NbrOfConversion = 1;
+	ADC_InitDef.ADC_ScanConvMode = DISABLE;
+	
 	if (ADCx == ADC1) {
 		RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE);
+		ADC_InitDef.ADC_Resolution = TM_ADC1_RESOLUTION;
 	} else if (ADCx == ADC2) {
 		RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC2, ENABLE);
+		ADC_InitDef.ADC_Resolution = TM_ADC2_RESOLUTION;
 	} else if (ADCx == ADC3) {
 		RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC3, ENABLE);
+		ADC_InitDef.ADC_Resolution = TM_ADC3_RESOLUTION;
 	}
 
 	ADC_CommonInitDef.ADC_DMAAccessMode = ADC_DMAAccessMode_Disabled;
@@ -51,14 +61,7 @@ void TM_ADC_Init(ADC_TypeDef* ADCx, uint8_t channel) {
 	ADC_CommonInitDef.ADC_Prescaler = ADC_Prescaler_Div4;
 	ADC_CommonInitDef.ADC_TwoSamplingDelay = ADC_TwoSamplingDelay_8Cycles;
 	ADC_CommonInit(&ADC_CommonInitDef);
-
-	ADC_InitDef.ADC_ContinuousConvMode = DISABLE;
-	ADC_InitDef.ADC_DataAlign = ADC_DataAlign_Right;
-	ADC_InitDef.ADC_ExternalTrigConv = DISABLE;
-	ADC_InitDef.ADC_ExternalTrigConvEdge = ADC_ExternalTrigConvEdge_None;
-	ADC_InitDef.ADC_NbrOfConversion = 1;
-	ADC_InitDef.ADC_Resolution = ADC_Resolution_12b;
-	ADC_InitDef.ADC_ScanConvMode = DISABLE;
+	
 	ADC_Init(ADCx, &ADC_InitDef);
 
 	ADC_Cmd(ADCx, ENABLE);
