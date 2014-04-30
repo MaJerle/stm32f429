@@ -23,6 +23,8 @@ http://bit.ly/1lgtcjy
 http://bit.ly/1fINniy
 7. DAC - DAC library for STM32F429
 http://bit.ly/1rwGdTR
+8. ILI9341 LCD - Onboard LCD library
+http://bit.ly/PQQnCm
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB
