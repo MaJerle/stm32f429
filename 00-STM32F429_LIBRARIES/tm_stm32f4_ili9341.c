@@ -30,7 +30,7 @@ void TM_ILI9341_Init() {
 
 	ILI9341_CS_SET;
 	
-	TM_SPI5_Init(TM_SPI_PinsPack_1);
+	TM_SPI_Init(ILI9341_SPI, TM_SPI_PinsPack_1);
 	
 	TM_ILI9341_InitLCD();
 	
