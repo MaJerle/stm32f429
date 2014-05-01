@@ -25,6 +25,8 @@ http://bit.ly/1fINniy
 http://bit.ly/1rwGdTR
 8. ILI9341 LCD - Onboard LCD library
 http://bit.ly/PQQnCm
+9. I2C - I2C library for STM32F429
+http://bit.ly/1o4TS4q
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB

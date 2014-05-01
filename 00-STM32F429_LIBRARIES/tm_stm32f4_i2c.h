@@ -4,7 +4,7 @@
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://majerle.eu
- *	@link
+ *	@link		http://bit.ly/1o4TS4q
  *	@version 	v1.0
  */
 #ifndef TM_I2C_H
