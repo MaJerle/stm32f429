@@ -2,21 +2,21 @@
  *	SPI library for STM32F4(2/3)9.
  *	It support all 6 SPIs in master with 2Line Full Duplex mode
  *
- *	All six spi's work the same principle.
+ *	All six spi's work the same principle by default.
  *	- Master
  *	- 8data bits
  *	- data sampled at first edge
  *	- prescaler 32
+ *	- firstbit MSB
  *	- software SS pin configure
  *	- direction is full duplex 2 wire
- *	- firstbit MSB
  *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://majerle.eu
- *	@version 	v1.0
+	@link		http://bit.ly/1lgtcjy
+ *	@version 	v1.1
  *	@gcc		v4.7 20013qr3
- *	@ide		CooCox CoIDE v1.7.6
  */
 #ifndef TM_SPI_H
 #define TM_SPI_H 100
@@ -38,31 +38,167 @@ typedef enum {
 	TM_SPI_PinsPack_2
 } TM_SPI_PinsPack_t;
 
-//SPI options
+//----- SPI1 options start -------
 //Options can be overwriten in defines.h file
 #ifndef TM_SPI1_PRESCALER
 #define TM_SPI1_PRESCALER	SPI_BaudRatePrescaler_32
 #endif
+//Specify datasize
+#ifndef TM_SPI1_DATASIZE
+#define TM_SPI1_DATASIZE 	SPI_DataSize_8b
+#endif
+//Specify which bit is first
+#ifndef TM_SPI1_FIRSTBIT
+#define TM_SPI1_FIRSTBIT 	SPI_FirstBit_MSB
+#endif
+//Mode, master or slave
+#ifndef TM_SPI1_MODE
+#define TM_SPI1_MODE 		SPI_Mode_Master
+#endif
+//Specify idle clock state
+#ifndef TM_SPI1_CPOL
+#define TM_SPI1_CPOL		SPI_CPOL_Low
+#endif
+//Specify when data is sampled
+#ifndef TM_SPI1_CPHA
+#define TM_SPI1_CPHA		SPI_CPHA_1Edge
+#endif
+//----- SPI1 options end -------
 
+//----- SPI2 options start -------
+//Options can be overwriten in defines.h file
 #ifndef TM_SPI2_PRESCALER
 #define TM_SPI2_PRESCALER	SPI_BaudRatePrescaler_32
 #endif
+//Specify datasize
+#ifndef TM_SPI2_DATASIZE
+#define TM_SPI2_DATASIZE 	SPI_DataSize_8b
+#endif
+//Specify which bit is first
+#ifndef TM_SPI2_FIRSTBIT
+#define TM_SPI2_FIRSTBIT 	SPI_FirstBit_MSB
+#endif
+//Mode, master or slave
+#ifndef TM_SPI2_MODE
+#define TM_SPI2_MODE 		SPI_Mode_Master
+#endif
+//Specify idle clock state
+#ifndef TM_SPI2_CPOL
+#define	TM_SPI2_CPOL		SPI_CPOL_Low
+#endif
+//Specify when data is sampled
+#ifndef TM_SPI2_CPHA
+#define TM_SPI2_CPHA		SPI_CPHA_1Edge
+#endif
+//----- SPI2 options end -------
 
+//----- SPI3 options start -------
+//Options can be overwriten in defines.h file
 #ifndef TM_SPI3_PRESCALER
 #define TM_SPI3_PRESCALER	SPI_BaudRatePrescaler_32
 #endif
+//Specify datasize
+#ifndef TM_SPI3_DATASIZE
+#define TM_SPI3_DATASIZE 	SPI_DataSize_8b
+#endif
+//Specify which bit is first
+#ifndef TM_SPI3_FIRSTBIT
+#define TM_SPI3_FIRSTBIT 	SPI_FirstBit_MSB
+#endif
+//Mode, master or slave
+#ifndef TM_SPI3_MODE
+#define TM_SPI3_MODE 		SPI_Mode_Master
+#endif
+//Specify idle clock state
+#ifndef TM_SPI3_CPOL
+#define	TM_SPI3_CPOL		SPI_CPOL_Low
+#endif
+//Specify when data is sampled
+#ifndef TM_SPI3_CPHA
+#define TM_SPI3_CPHA		SPI_CPHA_1Edge
+#endif
+//----- SPI3 options end -------
 
+//----- SPI4 options start -------
+//Options can be overwriten in defines.h file
 #ifndef TM_SPI4_PRESCALER
 #define TM_SPI4_PRESCALER	SPI_BaudRatePrescaler_32
 #endif
+//Specify datasize
+#ifndef TM_SPI4_DATASIZE
+#define TM_SPI4_DATASIZE 	SPI_DataSize_8b
+#endif
+//Specify which bit is first
+#ifndef TM_SPI4_FIRSTBIT
+#define TM_SPI4_FIRSTBIT 	SPI_FirstBit_MSB
+#endif
+//Mode, master or slave
+#ifndef TM_SPI4_MODE
+#define TM_SPI4_MODE 		SPI_Mode_Master
+#endif
+//Specify idle clock state
+#ifndef TM_SPI4_CPOL
+#define	TM_SPI4_CPOL		SPI_CPOL_Low
+#endif
+//Specify when data is sampled
+#ifndef TM_SPI4_CPHA
+#define TM_SPI4_CPHA		SPI_CPHA_1Edge
+#endif
+//----- SPI4 options end -------
 
+//----- SPI5 options start -------
+//Options can be overwriten in defines.h file
 #ifndef TM_SPI5_PRESCALER
 #define TM_SPI5_PRESCALER	SPI_BaudRatePrescaler_32
 #endif
+//Specify datasize
+#ifndef TM_SPI5_DATASIZE
+#define TM_SPI5_DATASIZE 	SPI_DataSize_8b
+#endif
+//Specify which bit is first
+#ifndef TM_SPI5_FIRSTBIT
+#define TM_SPI5_FIRSTBIT 	SPI_FirstBit_MSB
+#endif
+//Mode, master or slave
+#ifndef TM_SPI5_MODE
+#define TM_SPI5_MODE 		SPI_Mode_Master
+#endif
+//Specify idle clock state
+#ifndef TM_SPI5_CPOL
+#define	TM_SPI5_CPOL		SPI_CPOL_Low
+#endif
+//Specify when data is sampled
+#ifndef TM_SPI5_CPHA
+#define TM_SPI5_CPHA		SPI_CPHA_1Edge
+#endif
+//----- SPI5 options end -------
 
+//----- SPI6 options start -------
+//Options can be overwriten in defines.h file
 #ifndef TM_SPI6_PRESCALER
 #define TM_SPI6_PRESCALER	SPI_BaudRatePrescaler_32
 #endif
+//Specify datasize
+#ifndef TM_SPI6_DATASIZE
+#define TM_SPI6_DATASIZE 	SPI_DataSize_8b
+#endif
+//Specify which bit is first
+#ifndef TM_SPI6_FIRSTBIT
+#define TM_SPI6_FIRSTBIT 	SPI_FirstBit_MSB
+#endif
+//Mode, master or slave
+#ifndef TM_SPI6_MODE
+#define TM_SPI6_MODE 		SPI_Mode_Master
+#endif
+//Specify idle clock state
+#ifndef TM_SPI6_CPOL
+#define	TM_SPI6_CPOL		SPI_CPOL_Low
+#endif
+//Specify when data is sampled
+#ifndef TM_SPI6_CPHA
+#define TM_SPI6_CPHA		SPI_CPHA_1Edge
+#endif
+//----- SPI6 options end -------
 
 
 /**
