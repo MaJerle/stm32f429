@@ -12,7 +12,8 @@
 #include "tm_stm32f4_delay.h"
 #include <stdio.h>
 
-#define ADDRESS		0xD0
+//Slave address
+#define ADDRESS		0xD0 // 1101 000 0
 
 int main(void) {
 	uint8_t data[] = {0, 1, 2};
