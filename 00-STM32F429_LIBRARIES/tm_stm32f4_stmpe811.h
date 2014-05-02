@@ -33,6 +33,7 @@
 #define STMPE811_I2C					I2C3
 #define STMPE811_I2C_PINSPACK			TM_I2C_PinsPack_1
 #endif
+
 #define STMPE811_ADDRESS				0x82	//I2C address
 
 //Registers
@@ -88,7 +89,7 @@
 #define STMPE811_TEMP_DATA				0x61	//Temperature data access port
 #define STMPE811_TEMP_TH				0x62	//Threshold for temperature controlled interrupt
 
-//Register STMPE811
+//STMPE811 Chip ID on reset
 #define STMPE811_CHIP_ID_VALUE			0x0811	//Chip ID
 
 //Register STMPE811_SYS_CTRL1 bits
@@ -175,7 +176,7 @@
 #define STMPE811_INT_GLOBAL     		0x01	//Master enable for the interrupt system
 
 /**
- * Enums for set how to read x and y from controller
+ * Enum for set how to read x and y from controller
  */
 typedef enum {
 	TM_STMPE811_Orientation_Portrait_1,
