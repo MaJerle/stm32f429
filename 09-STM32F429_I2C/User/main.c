@@ -20,7 +20,7 @@ int main(void) {
 	uint8_t data[] = {0, 1, 2};
 	//Initialize system
 	SystemInit();
-	
+
 	//Initialize I2C, SCL: PB6 and SDA: PB7 with 100kHt serial clock
 	TM_I2C_Init(I2C1, TM_I2C_PinsPack_1, 100000);
 
