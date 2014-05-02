@@ -679,6 +679,16 @@
               <FileType>5</FileType>
               <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.h</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32f4_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_i2c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_i2c.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
