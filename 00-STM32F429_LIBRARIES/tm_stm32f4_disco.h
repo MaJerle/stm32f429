@@ -58,6 +58,16 @@ void TM_DISCO_LedOn(uint16_t led);
 void TM_DISCO_LedOff(uint16_t led);
 
 /**
+ * Toggle LED
+ *
+ * Parameters:
+ * 	- uint16_t led:
+ * 		LED_GREEN
+ * 		LED_RED
+ */
+void TM_DISCO_LedToggle(uint16_t led);
+
+/**
  * Checks if button is pressed
  *
  * Returns 1 if is pressed, otherwise 0
