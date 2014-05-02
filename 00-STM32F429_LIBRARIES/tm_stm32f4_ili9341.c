@@ -32,7 +32,7 @@ void TM_ILI9341_Init() {
 	
 	TM_SPI_Init(ILI9341_SPI, TM_SPI_PinsPack_1);
 	
-	TM_ILI9341_InitLCD();
+	TM_ILI9341_InitLCD();	
 	
 	TM_ILI9341_Fill(ILI9341_COLOR_WHITE);
 	
@@ -228,12 +228,39 @@ void TM_ILI9341_Rotate(TM_ILI9341_Orientation_t orientation) {
 }
 
 void TM_ILI9341_Puts(uint16_t x, uint16_t y, char *str, TM_FontDef_t *font, uint16_t foreground, uint16_t background) {
+	uint16_t startX = x;
 	ILI9341_x = x;
 	ILI9341_y = y;
 	
 	while (*str) {
+		//New line
+		if (*str == '\n') {
+			ILI9341_y += font->FontHeight;
+			//if after \n is also \r, than go to the left of the screen
+			if (*(str + 1) == '\r') {
+				ILI9341_x = 0;
+				str++;
+			} else {
+				ILI9341_x = startX;
+			}
+			str++;
+			continue;
+		} else if (*str == '\r') {
+			str++;
+			continue;
+		}
+		
 		TM_ILI9341_Putc(ILI9341_x, ILI9341_y, *str++, font, foreground, background);
 	}
+}
+
+void TM_ILI9341_GetStringSize(char *str, TM_FontDef_t *font, uint16_t *width, uint16_t *height) {
+	uint16_t w = 0;
+	*height = font->FontHeight;
+	while (*str++) {
+		w += font->FontWidth;
+	}
+	*width = w;
 }
 
 void TM_ILI9341_Putc(uint16_t x, uint16_t y, char c, TM_FontDef_t *font, uint16_t foreground, uint16_t background) {

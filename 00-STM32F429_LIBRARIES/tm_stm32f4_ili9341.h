@@ -1,5 +1,5 @@
 /**
- *	ILI9341 library for LCD on STM32F429 Discovery
+ *	ILI9341 library for LCD on STM32F429 Discovery, without LTDC hardware
  *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
@@ -12,7 +12,6 @@
 Libraries used:
 - TM_SPI
 - TM_FONTS
-
 
 Default pin configuration:
 SPI Used: SPI5
@@ -84,13 +83,15 @@ D/C			PD13
 #define ILI9341_COLOR_BLACK			0x0000
 #define ILI9341_COLOR_RED			0xF800
 #define ILI9341_COLOR_GREEN			0x07E0
+#define ILI9341_COLOR_GREEN2		0xB723
 #define ILI9341_COLOR_BLUE			0x001F
-#define ILI9341_COLOR_BLUE2			0x051F
+#define ILI9341_COLOR_BLUE2			0x051D
 #define ILI9341_COLOR_YELLOW		0xFFE0
-#define ILI9341_COLOR_ORANGE		0xF9E0
+#define ILI9341_COLOR_ORANGE		0xFBE4
 #define ILI9341_COLOR_CYAN			0x07FF
-#define ILI9341_COLOR_MAGENTA		0xF81F
-#define ILI9341_COLOR_GRAY			0xF7DE //1111 0111 1101 1110
+#define ILI9341_COLOR_MAGENTA		0xA254
+#define ILI9341_COLOR_GRAY			0x7BEF //1111 0111 1101 1110
+#define ILI9341_COLOR_BROWN			0xBBCA
 
 //Commands
 #define ILI9341_RESET				0x01
@@ -260,12 +261,23 @@ extern void TM_ILI9341_Putc(uint16_t x, uint16_t y, char c, TM_FontDef_t *font, 
  * Parameters:
  * 	- uint16_t x: X position of top left corner of first character in string
  * 	- uint16_t y: Y position of top left corner of first character in string
- * 	- char *c: pointer to first character
+ * 	- char *str: pointer to first character
  * 	- TM_FontDef_t *font: pointer to used font
  * 	- uint16_t foreground: color for string
  * 	- uint16_t background: color for string background
  */
 extern void TM_ILI9341_Puts(uint16_t x, uint16_t y, char *str, TM_FontDef_t *font, uint16_t foreground, uint16_t background);
+
+/**
+ * Get width and height of box with text
+ *
+ * Parameters:
+ * 	- char *str: pointer to first character
+ * 	- TM_FontDef_t *font: pointer to used font
+ * 	- uint16_t *width: Pointer to variable to store width
+ * 	- uint16_t *height: ointer to variable to store height
+ */
+extern void TM_ILI9341_GetStringSize(char *str, TM_FontDef_t *font, uint16_t *width, uint16_t *height);
 
 /**
  * Draw line to LCD
