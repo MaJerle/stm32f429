@@ -17,6 +17,13 @@
  * TM_ILI931	LCD
  * TM_I2C		I2C
  */
+/**
+ * Connection
+ * 
+ * I2Cx		I2C3
+ * SCL		PA8
+ * SDA		PC9
+ */
 
 /**
  * Includes
