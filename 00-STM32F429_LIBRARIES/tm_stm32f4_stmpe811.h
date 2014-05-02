@@ -27,6 +27,7 @@
 #include "defines.h"
 #include "tm_stm32f4_i2c.h"
 #include "tm_stm32f4_delay.h"
+#include "tm_stm32f4_stmpe811.h"
 
 #ifndef STMPE811_I2C
 //I2C used

@@ -2,9 +2,9 @@
 
 uint8_t TM_STMPE811_Init(void) {
 	uint8_t test[2];
-	
+	//Initialize Delay
 	TM_DELAY_Init();
-	
+	//Initialize I2C
 	TM_I2C_Init(STMPE811_I2C, STMPE811_I2C_PINSPACK, 400000);
 	
 	test[0] = TM_STMPE811_Read(STMPE811_TSC_CTRL);

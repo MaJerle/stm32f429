@@ -749,11 +749,6 @@
               <FileType>5</FileType>
               <FilePath>.\main.h</FilePath>
             </File>
-            <File>
-              <FileName>button_back.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\User\button_back.h</FilePath>
-            </File>
           </Files>
         </Group>
       </Groups>
