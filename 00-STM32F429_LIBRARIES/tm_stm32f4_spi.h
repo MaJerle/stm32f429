@@ -14,9 +14,8 @@
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://majerle.eu
-	@link		http://bit.ly/1lgtcjy
+ *	@link		http://bit.ly/1lgtcjy
  *	@version 	v1.1
- *	@gcc		v4.7 20013qr3
  */
 #ifndef TM_SPI_H
 #define TM_SPI_H 100
