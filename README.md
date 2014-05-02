@@ -23,10 +23,12 @@ http://bit.ly/1lgtcjy
 http://bit.ly/1fINniy
 7. DAC - DAC library for STM32F429
 http://bit.ly/1rwGdTR
-8. ILI9341 LCD - Onboard LCD library
+8. ILI9341 LCD - STM32F429 Discovery ILI9341 LCD library
 http://bit.ly/PQQnCm
 9. I2C - I2C library for STM32F429
 http://bit.ly/1o4TS4q
+10. STMPE811 touch driver for STM32F429 Discovery board
+11. ILI9341 Button - Button library for ILI9341 LCD and STMPE811 Touch driver
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB
