@@ -5,7 +5,7 @@
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://majerle.eu
- *	@link		
+ *	@link		http://bit.ly/1ob7hYK
  *	@version 	v1.0
  */
 #ifndef TM_STMPE811_H
