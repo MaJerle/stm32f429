@@ -56,6 +56,10 @@ void TM_DISCO_LedToggle(uint16_t led) {
 	GPIO_ToggleBits(GPIOG, led & 0x6000);
 }
 
+uint8_t TM_DISCO_LedIsOn(uint16_t led) {
+	return GPIO_ReadOutputDataBit(GPIOG, led) == Bit_SET;
+}
+
 uint8_t TM_DISCO_ButtonPressed(void) {
 	return GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_0);
 }

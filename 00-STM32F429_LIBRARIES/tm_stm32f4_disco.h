@@ -29,13 +29,13 @@
  * Configure led pins to output
  *
  */
-void TM_DISCO_LedInit(void);
+extern void TM_DISCO_LedInit(void);
 
 /**
  * Configure blue button as input
  *
  */
-void TM_DISCO_ButtonInit(void);
+extern void TM_DISCO_ButtonInit(void);
 
 /**
  * Turn on LED
@@ -45,7 +45,7 @@ void TM_DISCO_ButtonInit(void);
  * 		LED_GREEN
  * 		LED_RED
  */
-void TM_DISCO_LedOn(uint16_t led);
+extern void TM_DISCO_LedOn(uint16_t led);
 
 /**
  * Turn off LED
@@ -55,7 +55,7 @@ void TM_DISCO_LedOn(uint16_t led);
  * 		LED_GREEN
  * 		LED_RED
  */
-void TM_DISCO_LedOff(uint16_t led);
+extern void TM_DISCO_LedOff(uint16_t led);
 
 /**
  * Toggle LED
@@ -65,13 +65,25 @@ void TM_DISCO_LedOff(uint16_t led);
  * 		LED_GREEN
  * 		LED_RED
  */
-void TM_DISCO_LedToggle(uint16_t led);
+extern void TM_DISCO_LedToggle(uint16_t led);
+
+/**
+ * Check's if led is on
+ *
+ * Parameters:
+ * 	- uint16_t led:
+ * 		LED_GREEN
+ * 		LED_RED
+ * 
+ * Return 1 if turned on, otherwise 0
+ */
+extern uint8_t TM_DISCO_LedIsOn(uint16_t led);
 
 /**
  * Checks if button is pressed
  *
  * Returns 1 if is pressed, otherwise 0
  */
-uint8_t TM_DISCO_ButtonPressed(void);
+extern uint8_t TM_DISCO_ButtonPressed(void);
 
 #endif
