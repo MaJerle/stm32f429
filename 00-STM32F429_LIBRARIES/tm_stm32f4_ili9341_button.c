@@ -30,7 +30,7 @@ int8_t TM_ILI9341_Button_Add(TM_ILI9341_Button_t *button) {
 void TM_ILI9341_Button_DrawAll(void) {
 	uint8_t id = 0;
 	for (id = 0; id < TM_ILI9341_BUTTON_MAX_BUTTONS; id++) {
-		if ((TM_ILI9341_Buttons[id].flags & TM_BUTTON_FLAG_ENABLED) && (TM_ILI9341_Buttons[id].flags & TM_BUTTON_FLAG_USED)) {
+		if ((TM_ILI9341_Buttons[id].flags & TM_BUTTON_FLAG_USED)) {
 			//Button enabled, draw it to screen
 			TM_ILI9341_Button_Draw(id);
 		}
@@ -39,7 +39,7 @@ void TM_ILI9341_Button_DrawAll(void) {
 
 ErrorStatus TM_ILI9341_Button_Draw(uint8_t id) {
 	uint16_t fontWidth, fontHeight, x, y, i, j;
-	if ((TM_ILI9341_Buttons[id].flags & TM_BUTTON_FLAG_ENABLED) == 0 || (TM_ILI9341_Buttons[id].flags & TM_BUTTON_FLAG_USED) == 0) {
+	if ((TM_ILI9341_Buttons[id].flags & TM_BUTTON_FLAG_USED) == 0) {
 		//Button not enabled
 		return ERROR;
 	}
