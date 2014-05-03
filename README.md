@@ -30,6 +30,7 @@ http://bit.ly/1o4TS4q
 10. STMPE811 touch driver for STM32F429 Discovery board
 http://bit.ly/1ob7hYK
 11. ILI9341 Button - Button library for ILI9341 LCD and STMPE811 Touch driver
+http://bit.ly/RdiIDS
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB

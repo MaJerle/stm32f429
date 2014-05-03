@@ -5,7 +5,7 @@
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://majerle.eu
- *	@link		
+ *	@link		http://bit.ly/RdiIDS
  *	@version 	v1.0
  */
 #ifndef TM_ILI9341_BUTTON_H
