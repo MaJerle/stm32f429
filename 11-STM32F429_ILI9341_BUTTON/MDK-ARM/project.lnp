@@ -16,6 +16,7 @@
 ".\tm_stm32f4_ili9341_button.o"
 ".\tm_stm32f4_stmpe811.o"
 ".\tm_stm32f4_i2c.o"
+".\tm_stm32f4_disco.o"
 ".\main.o"
 ".\stm32f4xx_it.o"
 --ro-base 0x08000000 --entry 0x08000000 --rw-base 0x20000000 --entry Reset_Handler --first __Vectors --strict --summary_stderr --info summarysizes --map --xref --callgraph --symbols

@@ -32,7 +32,7 @@
 
 // Maximum number of buttons available
 #ifndef TM_ILI9341_BUTTON_MAX_BUTTONS
-#define TM_ILI9341_BUTTON_MAX_BUTTONS	20
+#define TM_ILI9341_BUTTON_MAX_BUTTONS	10
 #endif
 
 //Button flags
