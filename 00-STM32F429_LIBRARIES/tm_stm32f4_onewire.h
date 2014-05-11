@@ -4,7 +4,7 @@
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
- *	@link		http://bit.ly/1o4TS4q
+ *	@link		http://bit.ly/1nvT6jG
  *	@version 	v1.0
  */
 #ifndef TM_ONEWIRE_H
@@ -49,26 +49,77 @@
 #define TM_ONEWIRE_CMD_SKIPROM				0xCC
 #define TM_ONEWIRE_CMD_ALARMSEARCH			0xEC
 
+/**
+ * Initialize OneWire bus
+ *
+ */
 extern void TM_OneWire_Init(void);
 
+/**
+ * Reset OneWire bus
+ */
 extern uint8_t TM_OneWire_Reset(void);
 
+/**
+ * Read single bit from bus
+ *
+ */
 extern uint8_t TM_OneWire_ReadBit(void);
 
+/**
+ * Read byte from bus
+ *
+ *
+ */
 extern uint8_t TM_OneWire_ReadByte(void);
 
+/**
+ * Write single bit to bus
+ *
+ *
+ */
 extern void TM_OneWire_WriteBit(uint8_t bit);
 
+/**
+ * Write byte to bus
+ *
+ *
+ */
 extern void TM_OneWire_WriteByte(uint8_t byte);
 
+/**
+ * Search for devices
+ *
+ * Returns 1 if device is found, otherwise 0
+ */
 extern uint8_t TM_OneWire_Search(void);
 
+/**
+ * Start search, reset states
+ *
+ * Returns 1 if any device on bus
+ */
 extern uint8_t TM_OneWire_First(void);
 
+/**
+ * Read next device
+ *
+ * Returns 1 if more devices are on bus, otherwise 0
+ */
 extern uint8_t TM_OneWire_Next(void);
 
+/**
+ * Get rom from device from search
+ */
 extern uint8_t TM_OneWire_GetROM(uint8_t index);
 
+/**
+ * Select specific slave on bus
+ *
+ * Parameters:
+ * 	- uint8_t addr[]
+ * 		8 bytes ROM address
+ */
 extern void TM_OneWire_Select(uint8_t addr[]);
 
 #endif
