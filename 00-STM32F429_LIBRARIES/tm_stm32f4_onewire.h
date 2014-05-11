@@ -63,12 +63,14 @@ extern uint8_t TM_OneWire_Reset(void);
 /**
  * Read single bit from bus
  *
+ * 0 or 1 is returned
  */
 extern uint8_t TM_OneWire_ReadBit(void);
 
 /**
  * Read byte from bus
  *
+ * Byte is returned
  *
  */
 extern uint8_t TM_OneWire_ReadByte(void);
@@ -76,6 +78,9 @@ extern uint8_t TM_OneWire_ReadByte(void);
 /**
  * Write single bit to bus
  *
+ * Parameters:
+ * 	- uint8_t bit
+ * 		0 or 1, what you want to send
  *
  */
 extern void TM_OneWire_WriteBit(uint8_t bit);
@@ -83,7 +88,9 @@ extern void TM_OneWire_WriteBit(uint8_t bit);
 /**
  * Write byte to bus
  *
- *
+ * Parameters:
+ * 	- uint8_t byte
+ * 		Byte to be sent
  */
 extern void TM_OneWire_WriteByte(uint8_t byte);
 
@@ -111,7 +118,9 @@ extern uint8_t TM_OneWire_Next(void);
 /**
  * Get rom from device from search
  *
- *
+ * Parameters
+ * 	- uint8_t index:
+ * 		because each device has 8bytes long rom, you have to call this 8 times, to get rom bytes from 0 to 7
  */
 extern uint8_t TM_OneWire_GetROM(uint8_t index);
 
