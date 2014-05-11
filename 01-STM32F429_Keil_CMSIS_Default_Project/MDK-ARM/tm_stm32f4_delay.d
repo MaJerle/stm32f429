@@ -1,6 +1,5 @@
 .\tm_stm32f4_delay.o: ..\..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c
 .\tm_stm32f4_delay.o: ..\..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.h
-.\tm_stm32f4_delay.o: ..\User\defines.h
 .\tm_stm32f4_delay.o: ..\CMSIS\stm32f4xx.h
 .\tm_stm32f4_delay.o: ..\CMSIS\core_cm4.h
 .\tm_stm32f4_delay.o: C:\Keil\ARM\ARMCC\bin\..\include\stdint.h
@@ -39,3 +38,4 @@
 .\tm_stm32f4_delay.o: ..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h
 .\tm_stm32f4_delay.o: ..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_ltdc.h
 .\tm_stm32f4_delay.o: ..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h
+.\tm_stm32f4_delay.o: ..\User\defines.h
