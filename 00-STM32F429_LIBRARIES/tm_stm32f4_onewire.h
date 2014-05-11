@@ -110,6 +110,8 @@ extern uint8_t TM_OneWire_Next(void);
 
 /**
  * Get rom from device from search
+ *
+ *
  */
 extern uint8_t TM_OneWire_GetROM(uint8_t index);
 
