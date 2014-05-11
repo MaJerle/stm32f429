@@ -58,13 +58,13 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 		NVIC_InitStruct.NVIC_IRQChannel = USART6_IRQn;
 	}
 #endif
-#ifdef UART7
+#ifdef UART7_IRQn
 	else if (USARTx == UART7) {
 		TM_UART7_InitPins(pinspack);
 		NVIC_InitStruct.NVIC_IRQChannel = UART7_IRQn;
 	}
 #endif
-#ifdef UART8
+#ifdef UART8_IRQn
 	else if (USARTx == UART8) {
 		TM_UART8_InitPins(pinspack);
 		NVIC_InitStruct.NVIC_IRQChannel = UART8_IRQn;

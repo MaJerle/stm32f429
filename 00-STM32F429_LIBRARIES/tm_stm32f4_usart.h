@@ -11,7 +11,7 @@
  *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
- *	@website	http://majerle.eu
+ *	@website	http://stm32f4-discovery.com
  *	@link		http://bit.ly/1npVXHQ
  *	@version 	v1.1
  *	@gcc		v4.7 20013qr3
@@ -19,7 +19,11 @@
  */
 #ifndef TM_USART_
 #define TM_USART_ 110
-
+/**
+ * Library dependencies
+ * - misc.h for interrupts
+ * - stm32f4xx_usart.h for USART core
+ */
 /**
  * Includes
  */

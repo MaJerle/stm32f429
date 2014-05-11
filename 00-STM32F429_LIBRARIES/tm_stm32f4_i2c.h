@@ -3,7 +3,7 @@
  *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
- *	@website	http://majerle.eu
+ *	@website	http://stm32f4-discovery.com
  *	@link		http://bit.ly/1o4TS4q
  *	@version 	v1.0
  */

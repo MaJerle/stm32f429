@@ -1,15 +1,15 @@
 /**
- *	Leds and button library for STM32F429Discovery board
+ *	Leds and button library for STM32F4 & STM32F429 Discovery board
  *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
- *	@version 	v1.0
+ *	@version 	v1.1
  *	@gcc		v4.7 20013qr3
  *	@ide		CooCox CoIDE v1.7.6
  */
 
 #ifndef TM_DISCO_
-#define TM_DISCO_
+#define TM_DISCO_ 110
 
 /**
  * Includes
@@ -19,12 +19,37 @@
 #include "stm32f4xx_gpio.h"
 #include "defines.h"
 
+#if defined(STM32F407VG) || defined(STM32F40_41xxx)
+	#define STM32F4_DISCOVERY
+#elif defined(STM32F427_437xx)
+	#define STM32F429_DISCOVERY
+#endif
+
 /**
  * Defines
  */
-#define LED_GREEN	GPIO_Pin_13
-#define LED_RED		GPIO_Pin_14
+#ifdef STM32F429_DISCOVERY
+	#define LED_GREEN					GPIO_Pin_13
+	#define LED_RED						GPIO_Pin_14
+	#define TM_DISCO_LED_RCC			RCC_AHB1Periph_GPIOG
+	#define TM_DISCO_LED_PORT			GPIOG
 
+
+	#define TM_DISCO_BUTTON_RCC			RCC_AHB1Periph_GPIOA
+	#define TM_DISCO_BUTTON_PORT		GPIOA
+	#define TM_DISCO_BUTTON_PIN			GPIO_Pin_0
+#elif defined(STM32F4_DISCOVERY)
+	#define LED_GREEN					GPIO_Pin_12
+	#define LED_ORANGE					GPIO_Pin_13
+	#define LED_RED						GPIO_Pin_14
+	#define LED_BLUE					GPIO_Pin_15
+	#define TM_DISCO_LED_RCC			RCC_AHB1Periph_GPIOD
+	#define TM_DISCO_LED_PORT			GPIOD
+
+	#define TM_DISCO_BUTTON_RCC			RCC_AHB1Periph_GPIOA
+	#define TM_DISCO_BUTTON_PORT		GPIOA
+	#define TM_DISCO_BUTTON_PIN			GPIO_Pin_0
+#endif
 /**
  * Configure led pins to output
  *

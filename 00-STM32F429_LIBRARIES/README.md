@@ -1,4 +1,4 @@
 # Libraries
 
 Every library listed here is described at
-http://majerle.eu
+http://stm32f4-discovery.com

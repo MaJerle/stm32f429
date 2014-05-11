@@ -3,14 +3,13 @@
  *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
- *	@website	http://majerle.eu
+ *	@website	http://stm32f4-discovery.com
  *	@link		http://bit.ly/1rwGdTR
  *	@version 	v1.0
  */
 #ifndef TM_DAC_
 #define TM_DAC_ 100
-
-/*
+/**
 DAC pins
 DAC	channel		Pin
 DAC1			PA4
