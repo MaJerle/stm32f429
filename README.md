@@ -3,6 +3,10 @@
 
 Here are listed all libraries for STM32F429 Discovery board.
 
+If you are working with STM32F4 Discovery board, than you have to download project for this board for Keil to be able to run this libraries.
+http://bit.ly/1jOFqx8
+
+
 First time with Discovery board?
 http://bit.ly/1nb5ntt
 
