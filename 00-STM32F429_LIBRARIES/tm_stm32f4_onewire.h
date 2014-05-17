@@ -121,8 +121,18 @@ extern uint8_t TM_OneWire_Next(void);
  * Parameters
  * 	- uint8_t index:
  * 		because each device has 8bytes long rom, you have to call this 8 times, to get rom bytes from 0 to 7
+ * Returns ROM byte for index (0 to 7) at current found device
  */
 extern uint8_t TM_OneWire_GetROM(uint8_t index);
+
+/**
+ * Get all 8 bytes ROM value from device from search
+ *
+ * Parameters
+ * 	- uint8_t *firstIndex:
+ * 		Pointer to first location for first byte, other bytes are automatically incremented
+ */
+extern void TM_OneWire_GetFullROM(uint8_t *firstIndex);
 
 /**
  * Select specific slave on bus
@@ -132,6 +142,8 @@ extern uint8_t TM_OneWire_GetROM(uint8_t index);
  * 		8 bytes ROM address
  */
 extern void TM_OneWire_Select(uint8_t addr[]);
+
+extern void TM_OneWire_SelectWithPointer(uint8_t *ROM);
 
 #endif
 

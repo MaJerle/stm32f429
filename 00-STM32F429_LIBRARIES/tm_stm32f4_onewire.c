@@ -302,4 +302,18 @@ void TM_OneWire_Select(uint8_t addr[]) {
 	}
 }
 
+void TM_OneWire_SelectWithPointer(uint8_t *ROM) {
+	uint8_t i;
+	TM_OneWire_WriteByte(TM_ONEWIRE_CMD_MATCHROM);
+	
+	for (i = 0; i < 8; i++) {
+		TM_OneWire_WriteByte(*(ROM + i));
+	}	
+}
 
+void TM_OneWire_GetFullROM(uint8_t *firstIndex) {
+	uint8_t i;
+	for (i = 0; i < 8; i++) {
+		*(firstIndex + i) = TM_OneWire_ROM_NO[i];
+	}
+}
