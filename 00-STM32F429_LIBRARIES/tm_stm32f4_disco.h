@@ -21,7 +21,7 @@
 
 #if defined(STM32F407VG) || defined(STM32F40_41xxx)
 	#define STM32F4_DISCOVERY
-#elif defined(STM32F427_437xx)
+#elif defined(STM32F429_439xx)
 	#define STM32F429_DISCOVERY
 #endif
 
