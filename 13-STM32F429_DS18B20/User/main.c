@@ -1,7 +1,11 @@
 /**
- *	Onewire library example
+ *	DS18B20 library example
  *	
- *	Find all devices on 1-wire bus and show their 8bytes rom code
+ *	This example first search for all devices on 1wire bus
+ *	Set some parameters, described down in code
+ *	Start conversion on all devices
+ *	Read temperatures and display it
+ *	Checks for devices with alarm flag set
  *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
@@ -19,11 +23,15 @@
 #include "tm_stm32f4_ds18b20.h"
 #include <stdio.h>
 
+//How many sensors we are expecting on 1wire bus?
+#define EXPECTING_SENSORS	2
+
 int main(void) {
-	char buf[30];
-	uint8_t devices, i, j, count, device[2][8];
-	float temp;
-	uint8_t converted;
+	char buf[40];
+	uint8_t devices, i, j, count, alarm_count;
+	uint8_t device[EXPECTING_SENSORS][8];
+	uint8_t alarm_device[EXPECTING_SENSORS][8];
+	float temps[EXPECTING_SENSORS];
 	
 	//Initialize system
 	SystemInit();
@@ -48,7 +56,7 @@ int main(void) {
 	if (count > 0) {
 		sprintf(buf, "Devices found on 1-wire: %d\n\r", count);
 		TM_USART_Puts(USART1, buf);
-		//Display 64bit rom code
+		//Display 64bit rom code for each device
 		for (j = 0; j < count; j++) {
 			for (i = 0; i < 8; i++) {
 				sprintf(buf, "0x%02X ", device[j][i]);
@@ -60,18 +68,51 @@ int main(void) {
 		TM_USART_Puts(USART1, "No devices on OneWire.\n\r");
 	}
 	
-	//Set DS18B20 resolution to 12bits, last device read 
-	TM_DS18B20_SetResolution(&device[count - 1][0], TM_DS18B20_Resolution_12bit);
+	//Go through all connected devices and set resolution to 12bits
+	for (i = 0; i < count; i++) {
+		TM_DS18B20_SetResolution(&device[i][0], TM_DS18B20_Resolution_12bits);
+	}
+	//Set high temperature alarm on device number 0, 25degrees celcius
+	TM_DS18B20_SetAlarmHighTemperature(&device[0][0], 25);
+	//Disable alarm temperatures on device number 1
+	TM_DS18B20_DisableAlarmTemperature(&device[1][0]);
+	
 	while (1) {
-		//Start temperature conversion
-		TM_DS18B20_Start(&device[count - 1][0]);
-		//It tooks about 750ms to convert temperature at 12bits
-		Delayms(750);
-		//Check if temperature is converted
-		converted = TM_DS18B20_Read(&device[count - 1][0], &temp);
-		if (converted) {
-			sprintf(buf, "Temp is: %3.5f\n\r", temp);
+		//Start temperature conversion on all bits
+		TM_DS18B20_StartAll();
+		//Wait until all are done
+		while (!TM_DS18B20_AllDone());
+		//Read temperature from each device separatelly
+		for (i = 0; i < count; i++) {
+			//Read temperature from ROM address and store it to temps variable
+			TM_DS18B20_Read(&device[i][0], &temps[i]);
+			//Print temperature
+			sprintf(buf, "Temp %d: %3.5f; ", i, temps[i]);
 			TM_USART_Puts(USART1, buf);
 		}
+		alarm_count = 0;
+		//Check if any device has alarm flag set
+		while (TM_DS18B20_AlarmSearch()) {
+			//Store ROM of device which has alarm flag set
+			TM_OneWire_GetFullROM(&alarm_device[alarm_count][0]);
+			alarm_count++;
+		}
+		sprintf(buf, "alarm: %d\n\r", alarm_count);
+		TM_USART_Puts(USART1, buf);
+		//Any device has alarm flag set?
+		if (alarm_count > 0) {
+			TM_USART_Puts(USART1, "THIS DEVICES HAS ALARM!\n\r    ");
+			//Show rom of this devices
+			for (j = 0; j < alarm_count; j++) {
+				for (i = 0; i < 8; i++) {
+					sprintf(buf, "0x%02X ", alarm_device[j][i]);
+					TM_USART_Puts(USART1, buf);
+				}
+				TM_USART_Puts(USART1, "\n\r    ");
+			}
+			TM_USART_Puts(USART1, "ALARM devices recognized!\n\r");
+		}
+		//Some delay
+		Delayms(1000);
 	}
 }
