@@ -99,21 +99,25 @@ void TM_OneWire_WriteByte(uint8_t byte) {
 
 
 uint8_t TM_OneWire_First(void) {
-	// reset the search state
-	TM_OneWire_LastDiscrepancy = 0;
-	TM_OneWire_LastDeviceFlag = 0;
-	TM_OneWire_LastFamilyDiscrepancy = 0;
+	TM_OneWire_ResetSearch();
 
-	return TM_OneWire_Search();
+	return TM_OneWire_Search(TM_ONEWIRE_CMD_SEARCHROM);
 }
 
 
 uint8_t TM_OneWire_Next(void) {
    // leave the search state alone
-   return TM_OneWire_Search();
+   return TM_OneWire_Search(TM_ONEWIRE_CMD_SEARCHROM);
 }
 
-uint8_t TM_OneWire_Search(void) {
+void TM_OneWire_ResetSearch(void) {
+	// reset the search state
+	TM_OneWire_LastDiscrepancy = 0;
+	TM_OneWire_LastDeviceFlag = 0;
+	TM_OneWire_LastFamilyDiscrepancy = 0;
+}
+
+uint8_t TM_OneWire_Search(uint8_t command) {
 	uint8_t id_bit_number;
 	uint8_t last_zero, rom_byte_number, search_result;
 	uint8_t id_bit, cmp_id_bit;
@@ -138,7 +142,7 @@ uint8_t TM_OneWire_Search(void) {
 		}
 
 		// issue the search command 
-		TM_OneWire_WriteByte(0xF0);  
+		TM_OneWire_WriteByte(command);  
 
 		// loop to do the search
 		do {
@@ -239,7 +243,7 @@ int TM_OneWire_Verify() {
 	TM_OneWire_LastDiscrepancy = 64;
 	TM_OneWire_LastDeviceFlag = 0;
 
-	if (TM_OneWire_Search()) {
+	if (TM_OneWire_Search(TM_ONEWIRE_CMD_SEARCHROM)) {
 		// check if same device found
 		rslt = 1;
 		for (i = 0; i < 8; i++) {
@@ -251,7 +255,6 @@ int TM_OneWire_Verify() {
 	} else {
 		rslt = 0;
 	}
-
 
 	// restore the search state 
 	for (i = 0; i < 8; i++) {

@@ -56,7 +56,6 @@
 #define TM_ONEWIRE_CMD_READROM				0x33
 #define TM_ONEWIRE_CMD_MATCHROM				0x55
 #define TM_ONEWIRE_CMD_SKIPROM				0xCC
-#define TM_ONEWIRE_CMD_ALARMSEARCH			0xEC
 
 /**
  * Initialize OneWire bus
@@ -107,9 +106,18 @@ extern void TM_OneWire_WriteByte(uint8_t byte);
 /**
  * Search for devices
  *
+ * Parameters:
+ * 	- uint8_t command: command type of search
+ *
  * Returns 1 if device is found, otherwise 0
  */
-extern uint8_t TM_OneWire_Search(void);
+extern uint8_t TM_OneWire_Search(uint8_t command);
+
+/**
+ * Reset search states
+ *
+ */
+extern void TM_OneWire_ResetSearch(void);
 
 /**
  * Start search, reset states
