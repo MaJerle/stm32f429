@@ -38,7 +38,7 @@ http://bit.ly/RdiIDS
 12. ONEWIRE - OneWire library for STM32F4/29
 http://bit.ly/1nvT6jG
 13. DS18B20 - DS18B20 OneWire temperature sensor library for STM32F4/29
-
+http://bit.ly/1viCnSX
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB
