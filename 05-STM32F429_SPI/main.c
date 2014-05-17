@@ -9,7 +9,7 @@
  *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
- *	@website	http://majerle.eu
+ *	@website	http://stm32f4-discovery.com
  *	@version	v1.0
  *	@gcc		v4.7 20013qr3
  *	@ide		CooCox CoIDE v1.7.6
