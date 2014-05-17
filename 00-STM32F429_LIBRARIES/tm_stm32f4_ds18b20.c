@@ -1,7 +1,7 @@
 #include "tm_stm32f4_ds18b20.h"
 
 uint8_t TM_DS18B20_Start(uint8_t *ROM) {
-	if (*ROM != TM_DS18B20_FAMILY_CODE) {
+	if (!TM_DS18B20_Is(ROM)) {
 		return 0;
 	}
 	//Reset line
@@ -20,9 +20,10 @@ uint8_t TM_DS18B20_Read(uint8_t *ROM, float *destination) {
 	int8_t digit, minus = 0;
 	float decimal;
 	
-	if (*ROM != TM_DS18B20_FAMILY_CODE) {
+	if (!TM_DS18B20_Is(ROM)) {
 		return 0;
-	}	
+	}
+	
 	//Check if line is released, if it is, then conversion is complete
 	if (!TM_OneWire_ReadBit()) {
 		return 0; //Conversion is not finished yet
@@ -87,7 +88,7 @@ uint8_t TM_DS18B20_Read(uint8_t *ROM, float *destination) {
 
 uint8_t TM_DS18B20_GetResolution(uint8_t *ROM) {
 	uint8_t conf;
-	if (*ROM != TM_DS18B20_FAMILY_CODE) {
+	if (!TM_DS18B20_Is(ROM)) {
 		return 0;
 	}
 	//Reset line
@@ -109,7 +110,7 @@ uint8_t TM_DS18B20_GetResolution(uint8_t *ROM) {
 
 uint8_t TM_DS18B20_SetResolution(uint8_t *ROM, TM_DS18B20_Resolution_t resolution) {
 	uint8_t th, tl, conf;
-	if (*ROM != TM_DS18B20_FAMILY_CODE) {
+	if (!TM_DS18B20_Is(ROM)) {
 		return 0;
 	}
 	
@@ -162,4 +163,13 @@ uint8_t TM_DS18B20_SetResolution(uint8_t *ROM, TM_DS18B20_Resolution_t resolutio
 	
 	return 1;
 }
+
+uint8_t TM_DS18B20_Is(uint8_t *ROM) {
+	//Checks if first byte is equal to DS18B20's family code (0x28)
+	if (*ROM == TM_DS18B20_FAMILY_CODE) {
+		return 1;
+	}
+	return 0;
+}
+
 
