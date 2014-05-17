@@ -6,13 +6,22 @@
  *	@website	http://stm32f4-discovery.com
  *	@link		http://bit.ly/1nvT6jG
  *	@version 	v1.0
+ *	@ide		Keil uVision
  */
 #ifndef TM_ONEWIRE_H
 #define TM_ONEWIRE_H 100
-
+/**
+ * Default pin for OneWire
+ * 	GPIOD.0
+ * 
+ * It can be changed in you defines.h file
+ */
 /**
  * Library dependencies
+ * - STM32F4xx RCC
+ * - STM32F4xx GPIO
  * - TM_DELAY
+ * - defines.h
  */
 /**
  * Includes
@@ -57,6 +66,8 @@ extern void TM_OneWire_Init(void);
 
 /**
  * Reset OneWire bus
+ * 
+ * Sends reset command for OneWire
  */
 extern uint8_t TM_OneWire_Reset(void);
 
@@ -71,7 +82,6 @@ extern uint8_t TM_OneWire_ReadBit(void);
  * Read byte from bus
  *
  * Byte is returned
- *
  */
 extern uint8_t TM_OneWire_ReadByte(void);
 
@@ -143,6 +153,13 @@ extern void TM_OneWire_GetFullROM(uint8_t *firstIndex);
  */
 extern void TM_OneWire_Select(uint8_t addr[]);
 
+/**
+ * Select specific slave on bus with pointer address
+ *
+ * Parameters:
+ * 	- uint8_t *ROM
+ * 		pointer to first byte of ROM address
+ */
 extern void TM_OneWire_SelectWithPointer(uint8_t *ROM);
 
 #endif

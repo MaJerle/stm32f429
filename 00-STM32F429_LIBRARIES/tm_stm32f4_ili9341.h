@@ -6,26 +6,28 @@
  *	@website	http://stm32f4-discovery.com
  *	@link		http://bit.ly/PQQnCm
  *	@version 	v1.0
+ *	@ide		Keil uVision
  */
-/**
-
-Libraries used:
-- TM_SPI
-- TM_FONTS
-
-Default pin configuration:
-SPI Used: SPI5
-
-SPI MOSI:	PF9
-SPI SCK:	PF7	
-CS			PC2
-RESET		PD12
-D/C			PD13
-
-*/
- 
 #ifndef TM_ILI9341_H
 #define TM_ILI9341_H 100
+/**
+ * Default pin configuration:
+ * SPI Used: 	SPI5
+ * 
+ * SPI MOSI:	PF9
+ * SPI SCK:		PF7	
+ * CS			PC2
+ * RESET		PD12
+ * D/C			PD13
+ */
+/**
+ * Library dependencies
+ * - STM32F4xx RCC
+ * - STM32F4xx GPIO
+ * - defines.h
+ * - TM_SPI
+ * - TM_FONTS
+ */
 
 /**
  * Includes

@@ -7,24 +7,27 @@
  *	@website	http://stm32f4-discovery.com
  *	@link		http://bit.ly/1ob7hYK
  *	@version 	v1.0
+ *	@ide		Keil uVision
  */
 #ifndef TM_STMPE811_H
 #define TM_STMPE811_H
-
 /**
  * Library dependencies
- *
- * TM_ILI931	LCD
- * TM_I2C		I2C
+ * - STM32F4xx RCC
+ * - STM32F4xx GPIO
+ * - defines.h
+ * - TM_I2C
+ * - TM_DELAY
+ * - TM_STMPE811
  */
 /**
- * Connection
+ * Connection (it can be changed in defines.h file)
  * 
  * I2Cx		I2C3
  * SCL		PA8
  * SDA		PC9
+ * 
  */
-
 /**
  * Includes
  */
@@ -34,7 +37,6 @@
 #include "defines.h"
 #include "tm_stm32f4_i2c.h"
 #include "tm_stm32f4_delay.h"
-#include "tm_stm32f4_stmpe811.h"
 
 #ifndef STMPE811_I2C
 //I2C used

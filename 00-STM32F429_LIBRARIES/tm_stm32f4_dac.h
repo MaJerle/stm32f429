@@ -6,15 +6,24 @@
  *	@website	http://stm32f4-discovery.com
  *	@link		http://bit.ly/1rwGdTR
  *	@version 	v1.0
+ *	@ide		Keil uVision
  */
 #ifndef TM_DAC_
 #define TM_DAC_ 100
 /**
-DAC pins
-DAC	channel		Pin
-DAC1			PA4
-DAC2			PA5
-*/
+ * Library dependencies
+ * - STM32F4xx RCC
+ * - STM32F4xx GPIO
+ * - STM32F4xx DAC
+ * - defines.h
+ */
+
+/**
+ * DAC pins
+ * DAC	channel		Pin
+ * DAC1				PA4
+ * DAC2				PA5
+ */
 
 #include "stm32f4xx.h"
 #include "stm32f4xx_rcc.h"

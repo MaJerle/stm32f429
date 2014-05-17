@@ -11,7 +11,12 @@
  */
 #ifndef PCD8544_H
 #define PCD8544_H 100
-
+/**
+ * Library dependencies
+ * - STM32F4xx RCC
+ * - STM32F4xx GPIO
+ * - TM_SPI
+ */
 /**
  * Includes
  */
@@ -19,7 +24,6 @@
 #include "stm32f4xx.h"
 #include "stm32f4xx_gpio.h"
 #include "stm32f4xx_rcc.h"
-#include "stm32f4xx_spi.h"
 #include "tm_stm32f4_spi.h"
 
 /**

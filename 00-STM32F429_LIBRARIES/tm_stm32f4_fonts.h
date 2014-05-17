@@ -1,3 +1,6 @@
+/**
+ * Fonts library
+ */
 #ifndef TM_FONTS_H
 #define TM_FONTS_H
 

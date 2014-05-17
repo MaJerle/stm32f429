@@ -1,16 +1,39 @@
 /**
  *	Leds and button library for STM32F4 & STM32F429 Discovery board
+ *	
+ *	Library works for both Discovery boards.
+ *	
+ *	STM32F4 Discovery:
+ *		- Leds:
+ *			- LED_GREEN 	on PD12
+ *			- LED_ORANGE	on PD13
+ *			- LED_RED 		on PD14
+ *			- LED_BLUE 		on PD15
+ *		- Button:
+ *			- Blue button	on PA0
+ *			
+ *	STM32F429 Discovery:
+ *		- Leds:
+ *			- LED_GREEN 	on PG13
+ *			- LED_RED 		on PG14
+ *		- Button:
+ *			- Blue button	on PA0
  *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
+ *	@website	http://stm32f4-discovery.com
+ *	@link		http://bit.ly/1k585Oo
  *	@version 	v1.1
- *	@gcc		v4.7 20013qr3
- *	@ide		CooCox CoIDE v1.7.6
+ *	@ide		Keil uVision
  */
-
 #ifndef TM_DISCO_
 #define TM_DISCO_ 110
-
+/**
+ * Library dependencies
+ * - STM32F4xx RCC
+ * - STM32F4xx GPIO
+ * - defines.h
+ */
 /**
  * Includes
  */
@@ -19,6 +42,7 @@
 #include "stm32f4xx_gpio.h"
 #include "defines.h"
 
+//Recognize STM32F4 or STM32F429 Discovery
 #if defined(STM32F407VG) || defined(STM32F40_41xxx)
 	#define STM32F4_DISCOVERY
 #elif defined(STM32F429_439xx)

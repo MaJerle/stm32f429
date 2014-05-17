@@ -19,7 +19,13 @@
  */
 #ifndef TM_SPI_H
 #define TM_SPI_H 100
-
+/**
+ * Library dependencies
+ * - STM32F4xx RCC
+ * - STM32F4xx GPIO
+ * - STM32F4xx SPI
+ * - defines.h
+ */
 /**
  * Includes
  */

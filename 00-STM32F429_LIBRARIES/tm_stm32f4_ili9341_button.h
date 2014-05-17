@@ -7,15 +7,20 @@
  *	@website	http://stm32f4-discovery.com
  *	@link		http://bit.ly/RdiIDS
  *	@version 	v1.0
+ *	@ide		Keil uVision
  */
 #ifndef TM_ILI9341_BUTTON_H
 #define TM_ILI9341_BUTTON_H
 /**
  * Library dependencies
- *
- * TM_ILI931	LCD
- * TM_I2C		I2C
- * TM_STMPE811	Touch
+ * - STM32F4xx RCC
+ * - STM32F4xx GPIO
+ * - defines.h
+ * - TM_I2C
+ * - TM_DELAY
+ * - TM_ILI9341
+ * - TM_FONTS
+ * - TM_STMPE811
  */
 /**
  * Includes

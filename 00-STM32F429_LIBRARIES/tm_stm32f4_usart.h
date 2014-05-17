@@ -21,16 +21,18 @@
 #define TM_USART_ 110
 /**
  * Library dependencies
- * - misc.h for interrupts
- * - stm32f4xx_usart.h for USART core
+ * - STM32F4xx RCC
+ * - STM32F4xx GPIO
+ * - STM32F4xx USART
+ * - defines.h
  */
 /**
  * Includes
  */
 #include "misc.h"
 #include "stm32f4xx.h"
-#include "stm32f4xx_gpio.h"
 #include "stm32f4xx_rcc.h"
+#include "stm32f4xx_gpio.h"
 #include "stm32f4xx_usart.h"
 #include "defines.h"
 

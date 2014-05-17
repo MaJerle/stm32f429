@@ -5,6 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@version 	v1.1
+ *	@ide		Keil uVision
  */
 /**
 
@@ -17,13 +18,14 @@ If you are working with Keil uVision, than set KEIL_IDE define in options for pr
 */
 #ifndef TM_DELAY_
 #define TM_DELAY_ 110
-
+/**
+ * Library dependencies
+ * - defines.h
+ */
 /**
  * Includes
  */
 #include "stm32f4xx.h"
-#include "stm32f4xx_rcc.h"
-#include "stm32f4xx_gpio.h"
 #include "defines.h"
 
 static __IO uint32_t TM_TimingDelay;

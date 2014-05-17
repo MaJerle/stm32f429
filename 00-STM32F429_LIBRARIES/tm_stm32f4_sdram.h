@@ -4,12 +4,20 @@
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
+ *	@link		
  *	@version 	v1.0
+ *	@ide		Keil uVision
  */
 
 #ifndef TM_SDRAM_H
 #define TM_SDRAM_H 100
-
+/**
+ * Library dependencies
+ * - STM32F4xx RCC
+ * - STM32F4xx GPIO
+ * - STM32F4xx FMC
+ * - defines.h
+ */
 /**
  * Includes
  */

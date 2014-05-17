@@ -6,11 +6,17 @@
  *	@website	http://stm32f4-discovery.com
  *	@link
  *	@version 	v1.0
- *	@gcc		v4.7 20013qr3
- *	@ide		CooCox CoIDE v1.7.6
+ *	@ide		Keil uVision
  */
 #ifndef TM_ADC_
 #define TM_ADC_ 100
+/**
+ * Library dependencies
+ * - STM32F4xx RCC
+ * - STM32F4xx GPIO
+ * - STM32F4xx ADC
+ * - defines.h
+ */
 
 /*
 ADC pins
@@ -78,7 +84,14 @@ extern void TM_ADC_Init(ADC_TypeDef* ADCx, uint8_t channel);
 extern uint16_t TM_ADC_Read(ADC_TypeDef* ADCx, uint8_t channel);
 
 /**
- * Initialize pin for
+ * Initialize pin for ADC
+ * 
+ * Parameters:
+ * 	- uint16_t RCCx: RCC constant
+ * 	- GPIO_TypeDef* GPIOx: pointer to GPIOx port
+ * 	- uint16_t PinX: pin number
+ * 	
+ * Called internally
  */
 extern void TM_ADC_InitPin(uint16_t RCCx, GPIO_TypeDef* GPIOx, uint16_t PinX);
 

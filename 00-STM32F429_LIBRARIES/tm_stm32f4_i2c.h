@@ -6,10 +6,17 @@
  *	@website	http://stm32f4-discovery.com
  *	@link		http://bit.ly/1o4TS4q
  *	@version 	v1.0
+ *	@ide		Keil uVision
  */
 #ifndef TM_I2C_H
 #define TM_I2C_H 100
-
+/**
+ * Library dependencies
+ * - STM32F4xx RCC
+ * - STM32F4xx GPIO
+ * - STM32F4xx I2C
+ * - defines.h
+ */
 /**
  * I2C pins
  *
