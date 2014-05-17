@@ -15,28 +15,30 @@ Current librarires:
 - All libraries listed at one place for easy editing them from one place and use them for all projects
 
 1. CMSIS Default project - this is project template for Coocox
-2. LED_BUTTON - Project example for Discovery 2 leds and button
+2. LED_BUTTON - Project example for STM32F4/29 Discovery
 http://bit.ly/1nbAHbs
-3. DELAY - Delay library for STM32F429
+3. DELAY - Delay library for STM32F4/29
 http://bit.ly/1gFrBjl
-4. USART - USART library for STM32F429
+4. USART - USART library for STM32F4/29
 http://bit.ly/1npVXHQ
-5. SPI - SPI library for STM32F429
+5. SPI - SPI library for STM32F4/29
 http://bit.ly/1lgtcjy
-6. ADC - ADC library for STM32F429
+6. ADC - ADC library for STM32F4/29
 http://bit.ly/1fINniy
-7. DAC - DAC library for STM32F429
+7. DAC - DAC library for STM32F4/29
 http://bit.ly/1rwGdTR
 8. ILI9341 LCD - STM32F429 Discovery ILI9341 LCD library
 http://bit.ly/PQQnCm
-9. I2C - I2C library for STM32F429
+9. I2C - I2C library for STM32F4/29
 http://bit.ly/1o4TS4q
-10. STMPE811 touch driver for STM32F429 Discovery board
+10. STMPE811 touch driver for STM32F4/29 Discovery board
 http://bit.ly/1ob7hYK
-11. ILI9341 Button - Button library for ILI9341 LCD and STMPE811 Touch driver
+11. ILI9341 Button - Button library for ILI9341 LCD and STMPE811 Touch driver on STM32F429
 http://bit.ly/RdiIDS
-12. ONEWIRE - OneWire library for STM32F429
+12. ONEWIRE - OneWire library for STM32F4/29
 http://bit.ly/1nvT6jG
+13. DS18B20 - DS18B20 OneWire temperature sensor library for STM32F4/29
+
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB
