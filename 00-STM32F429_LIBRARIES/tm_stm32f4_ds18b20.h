@@ -28,6 +28,7 @@
 //Every onewire chip has different ROM code, but all the same chips has same family code,
 //in case of DS18B20 this is 0x28 and this is first byte of ROM address
 #define TM_DS18B20_FAMILY_CODE				0x28
+#define TM_DS18B20_CMD_ALARMSEARCH			0xEC
 
 //DS18B20 read temperature command
 #define TM_DS18B20_CMD_CONVERTTEMP			0x44 	//Convert temperature
@@ -44,10 +45,10 @@
  * Resolutions available
  */
 typedef enum {
-	TM_DS18B20_Resolution_9bit,
-	TM_DS18B20_Resolution_10bit,
-	TM_DS18B20_Resolution_11bit,
-	TM_DS18B20_Resolution_12bit
+	TM_DS18B20_Resolution_9bits = 9,
+	TM_DS18B20_Resolution_10bits = 10,
+	TM_DS18B20_Resolution_11bits = 11,
+	TM_DS18B20_Resolution_12bits = 12
 } TM_DS18B20_Resolution_t;
 
 /**
@@ -59,6 +60,13 @@ typedef enum {
  * Returns 1 if device is DS18B20 or 0 if not
  */
 extern uint8_t TM_DS18B20_Start(uint8_t *ROM);
+
+/**
+ * Start temperature conversion for all DS18B20 devices
+ * 
+ * 
+ */
+extern void TM_DS18B20_StartAll(void);
 
 /**
  * Read temperature from DS18B20
@@ -105,6 +113,53 @@ extern uint8_t TM_DS18B20_SetResolution(uint8_t *ROM, TM_DS18B20_Resolution_t re
  * Returns 1 if device is DS18B20, otherwise 0
  */
 extern uint8_t TM_DS18B20_Is(uint8_t *ROM);
+
+/**
+ * Set high alarm temperature to specific DS18B20 sensor
+ * 
+ * Parameters:
+ * 	- uint8_t *ROM: pointer to first byte of ROM address
+ * 	- int8_t temp: temperature between -55 and 125°C
+ * 
+ * Returns 0 if device is not DS18B20, otherwise 1
+ */
+extern uint8_t TM_DS18B20_SetAlarmHighTemperature(uint8_t *ROM, int8_t temp);
+
+/**
+ * Set low alarm temperature to specific DS18B20 sensor
+ * 
+ * Parameters:
+ * 	- uint8_t *ROM: pointer to first byte of ROM address
+ * 	- int8_t temp: temperature between -55 and 125°C
+ * 
+ * Returns 0 if device is not DS18B20, otherwise 1
+ */
+extern uint8_t TM_DS18B20_SetAlarmLowTemperature(uint8_t *ROM, int8_t temp);
+
+/**
+ * Disable alarm temperature
+ * 
+ * Parameters:
+ * 	- uint8_t *ROM: pointer to first byte of ROM address
+ * 
+ * Returns 0 if device is not DS18B20, otherwise 1
+ */
+extern uint8_t TM_DS18B20_DisableAlarmTemperature(uint8_t *ROM);
+
+/**
+ * Search for devices with alarm flag set
+ * 
+ * Returns 1 if any device has flag, otherwise 0
+ */
+extern uint8_t TM_DS18B20_AlarmSearch(void);
+
+/**
+ * Check if all DS18B20 sensors are done with temperature conversion
+ * 
+ * Return 1 if they are, otherwise 0
+ */
+extern uint8_t TM_DS18B20_AllDone(void);
+
 
 #endif
 
