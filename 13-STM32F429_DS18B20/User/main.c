@@ -101,7 +101,7 @@ int main(void) {
 		TM_USART_Puts(USART1, buf);
 		//Any device has alarm flag set?
 		if (alarm_count > 0) {
-			TM_USART_Puts(USART1, "THIS DEVICES HAS ALARM!\n\r    ");
+			TM_USART_Puts(USART1, "THIS DEVICES HAVE ALARM!\n\r    ");
 			//Show rom of this devices
 			for (j = 0; j < alarm_count; j++) {
 				for (i = 0; i < 8; i++) {
