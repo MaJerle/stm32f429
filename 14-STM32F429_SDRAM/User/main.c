@@ -12,7 +12,6 @@
 #include "tm_stm32f4_sdram.h"
 #include "tm_stm32f4_delay.h"
 
-
 int main(void) {
 	uint16_t write, read;
 	uint8_t i;
