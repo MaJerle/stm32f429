@@ -26,14 +26,19 @@
 #include "stm32f4xx_gpio.h"
 #include "stm32f4xx_fmc.h"
 #include "defines.h"
-
+//SDRAM start address
 #define SDRAM_START_ADR			0xD0000000
+//SDRAM max memory width = 8MB
+#define SDRAM_MEMORY_WIDTH		(uint32_t)0x800000
+
+#define SDRAM_TIMEOUT			((uint32_t)0xFFFF) 
 
 /**
  * Initialize SD ram
  *
+ * Returns 0 if SDRAM was not properly configured, otherwise 1
  */
-extern void TM_SDRAM_Init(void);
+extern uint8_t TM_SDRAM_Init(void);
 
 /**
  * Initialize SD ram used pins for FMC
@@ -43,18 +48,18 @@ extern void TM_SDRAM_Init(void);
 extern void TM_SDRAM_InitPins(void);
 
 /**
- * Write 8 bit value to SD ram
+ * Write 8 bit value to SDRAM
  *
  * Parameters:
  * 	- uint32_t address:
  * 		address from 0x00 to 0x800000 for 8MBytes
  * 	- uint8_t value:
- * 		value to be saved in SD RAM
+ * 		value to be saved in SDRAM
  */
-extern void TM_SDRAM_Write8(uint32_t address, uint8_t value);
+extern uint8_t TM_SDRAM_Write8(uint32_t address, uint8_t value);
 
 /**
- * Read 8 bit value from SD ram
+ * Read 8 bit value from SDRAM
  *
  * Parameters:
  * 	- uint32_t address
@@ -64,18 +69,18 @@ extern void TM_SDRAM_Write8(uint32_t address, uint8_t value);
 extern uint8_t TM_SDRAM_Read8(uint32_t address);
 
 /**
- * Write 16 bit value to SD ram
+ * Write 16 bit value to SDRAM
  *
  * Parameters:
  * 	- uint32_t address:
  * 		address from 0x00 to 0x800000 for 8MBytes
  * 	- uint16_t value:
- * 		value to be saved in SD RAM
+ * 		value to be saved in SDRAM
  */
-extern void TM_SDRAM_Write16(uint32_t address, uint16_t value);
+extern uint8_t TM_SDRAM_Write16(uint32_t address, uint16_t value);
 
 /**
- * Read 16 bit value from SD ram
+ * Read 16 bit value from SDRAM
  *
  * Parameters:
  * 	- uint32_t address
@@ -85,18 +90,18 @@ extern void TM_SDRAM_Write16(uint32_t address, uint16_t value);
 extern uint16_t TM_SDRAM_Read16(uint32_t address);
 
 /**
- * Write 32 bit value to SD ram
+ * Write 32 bit value to SDRAM
  *
  * Parameters:
  * 	- uint32_t address:
  * 		address from 0x00 to 0x800000 for 8MBytes
  * 	- uint32_t value:
- * 		value to be saved in SD RAM
+ * 		value to be saved in SDRAM
  */
-extern void TM_SDRAM_Write32(uint32_t address, uint32_t value);
+extern uint8_t TM_SDRAM_Write32(uint32_t address, uint32_t value);
 
 /**
- * Read 32 bit value from SD ram
+ * Read 32 bit value from SDRAM
  *
  * Parameters:
  * 	- uint32_t address
@@ -104,26 +109,5 @@ extern void TM_SDRAM_Write32(uint32_t address, uint32_t value);
  * Return: value stored at desired location
  */
 extern uint32_t TM_SDRAM_Read32(uint32_t address);
-
-/**
- * Write 64 bit value to SD ram
- *
- * Parameters:
- * 	- uint32_t address:
- * 		address from 0x00 to 0x800000 for 8MBytes
- * 	- uint64_t value:
- * 		value to be saved in SD RAM
- */
-extern void TM_SDRAM_Write64(uint32_t address, uint64_t value);
-
-/**
- * Read 64 bit value from SD ram
- *
- * Parameters:
- * 	- uint32_t address
- * 		address to read from ram location
- * Return: value stored at desired location
- */
-extern uint64_t TM_SDRAM_Read64(uint32_t address);
 
 #endif
