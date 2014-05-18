@@ -52,7 +52,7 @@ extern void TM_SDRAM_InitPins(void);
  *
  * Parameters:
  * 	- uint32_t address:
- * 		address from 0x00 to 0x800000 for 8MBytes
+ * 		address from 0x000000 to 0x7FFFFF for 8MBytes
  * 	- uint8_t value:
  * 		value to be saved in SDRAM
  */
@@ -73,7 +73,7 @@ extern uint8_t TM_SDRAM_Read8(uint32_t address);
  *
  * Parameters:
  * 	- uint32_t address:
- * 		address from 0x00 to 0x800000 for 8MBytes
+ * 		address from 0x000000 to 0x7FFFFF for 8MBytes
  * 	- uint16_t value:
  * 		value to be saved in SDRAM
  */
@@ -94,7 +94,7 @@ extern uint16_t TM_SDRAM_Read16(uint32_t address);
  *
  * Parameters:
  * 	- uint32_t address:
- * 		address from 0x00 to 0x800000 for 8MBytes
+ * 		address from 0x00 to 0x7FFFFF for 8MBytes
  * 	- uint32_t value:
  * 		value to be saved in SDRAM
  */
