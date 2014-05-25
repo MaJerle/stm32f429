@@ -43,6 +43,7 @@ typedef enum {
 	TM_SPI_PinsPack_2
 } TM_SPI_PinsPack_t;
 
+
 //----- SPI1 options start -------
 //Options can be overwriten in defines.h file
 #ifndef TM_SPI1_PRESCALER

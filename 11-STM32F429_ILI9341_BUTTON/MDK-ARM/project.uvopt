@@ -1038,7 +1038,7 @@
       <Focus>0</Focus>
       <ColumnNumber>30</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>81</TopLine>
+      <TopLine>82</TopLine>
       <CurrentLine>88</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341_button.c</PathWithFileName>
@@ -1068,9 +1068,9 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>4</ColumnNumber>
+      <ColumnNumber>7</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>6</TopLine>
+      <TopLine>7</TopLine>
       <CurrentLine>11</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_stmpe811.c</PathWithFileName>
@@ -1134,7 +1134,7 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>44</TopLine>
+      <TopLine>40</TopLine>
       <CurrentLine>57</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.c</PathWithFileName>
@@ -1172,9 +1172,9 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>30</ColumnNumber>
+      <ColumnNumber>33</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>37</TopLine>
+      <TopLine>38</TopLine>
       <CurrentLine>44</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\User\main.c</PathWithFileName>
