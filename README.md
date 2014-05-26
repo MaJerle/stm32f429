@@ -41,6 +41,8 @@ http://bit.ly/1nvT6jG
 http://bit.ly/1viCnSX
 14. SDRAM - ISSI 8MByte SDRAM on STM32F429 Discovery board
 http://bit.ly/1jVGY96
+15. DS1307 - DS1307 RTC modeule for STM32F429 Discovery
+http://bit.ly/1oxFaDK
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB

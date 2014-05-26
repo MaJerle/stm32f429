@@ -624,6 +624,11 @@
               <FileType>1</FileType>
               <FilePath>..\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_adc.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f4xx_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_i2c.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -638,6 +643,56 @@
               <FileName>tm_stm32f4_delay.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_i2c.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_i2c.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ili9341.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ili9341.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ds1307.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_ds1307.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ds1307.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_ds1307.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_spi.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_fonts.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.h</FilePath>
             </File>
           </Files>
         </Group>
