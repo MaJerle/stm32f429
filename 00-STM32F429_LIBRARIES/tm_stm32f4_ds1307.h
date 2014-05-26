@@ -40,7 +40,7 @@
 #define TM_DS1307_CONTROL	0x07
 
 /**
- * Struct for time
+ * Struct for date/time
  *
  * Parameters:
  * 	- uint8_t seconds:

@@ -18,7 +18,7 @@ int main(void) {
 	//Initialize system
 	SystemInit();
 	
-	//Initialize DS1307
+	//Initialize ILI9341 LCD on board
 	TM_ILI9341_Init();
 	TM_ILI9341_Fill(ILI9341_COLOR_ORANGE);
 	TM_ILI9341_Rotate(TM_ILI9341_Orientation_Portrait_2);
