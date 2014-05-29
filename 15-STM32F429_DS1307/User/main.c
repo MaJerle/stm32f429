@@ -29,11 +29,11 @@ int main(void) {
 	
 	//Set date and time
 	//Day 7, 26th May 2014, 02:05:00
-	time.hours = 2;
-	time.minutes = 05;
+	time.hours = 21;
+	time.minutes = 18;
 	time.seconds = 0;
 	time.date = 26;
-	time.day = 7;
+	time.day = 1;
 	time.month = 5;
 	time.year = 14;
 	TM_DS1307_SetDateTime(&time);

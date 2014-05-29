@@ -43,6 +43,15 @@ typedef enum {
 	TM_SPI_PinsPack_2
 } TM_SPI_PinsPack_t;
 
+/**
+ * Every SPIx can work in 4 different modes
+ */
+typedef enum {
+	TM_SPI_Mode_0,
+	TM_SPI_Mode_1,
+	TM_SPI_Mode_2,
+	TM_SPI_Mode_3
+} TM_SPI_Mode_t;
 
 //----- SPI1 options start -------
 //Options can be overwriten in defines.h file
@@ -58,16 +67,12 @@ typedef enum {
 #define TM_SPI1_FIRSTBIT 	SPI_FirstBit_MSB
 #endif
 //Mode, master or slave
+#ifndef TM_SPI1_MASTERSLAVE
+#define TM_SPI1_MASTERSLAVE SPI_Mode_Master
+#endif
+//Specify mode of operation, clock polarity and clock phase
 #ifndef TM_SPI1_MODE
-#define TM_SPI1_MODE 		SPI_Mode_Master
-#endif
-//Specify idle clock state
-#ifndef TM_SPI1_CPOL
-#define TM_SPI1_CPOL		SPI_CPOL_Low
-#endif
-//Specify when data is sampled
-#ifndef TM_SPI1_CPHA
-#define TM_SPI1_CPHA		SPI_CPHA_1Edge
+#define TM_SPI1_MODE		TM_SPI_Mode_0
 #endif
 //----- SPI1 options end -------
 
@@ -85,16 +90,12 @@ typedef enum {
 #define TM_SPI2_FIRSTBIT 	SPI_FirstBit_MSB
 #endif
 //Mode, master or slave
+#ifndef TM_SPI2_MASTERSLAVE
+#define TM_SPI2_MASTERSLAVE SPI_Mode_Master
+#endif
+//Specify mode of operation, clock polarity and clock phase
 #ifndef TM_SPI2_MODE
-#define TM_SPI2_MODE 		SPI_Mode_Master
-#endif
-//Specify idle clock state
-#ifndef TM_SPI2_CPOL
-#define	TM_SPI2_CPOL		SPI_CPOL_Low
-#endif
-//Specify when data is sampled
-#ifndef TM_SPI2_CPHA
-#define TM_SPI2_CPHA		SPI_CPHA_1Edge
+#define TM_SPI2_MODE		TM_SPI_Mode_0
 #endif
 //----- SPI2 options end -------
 
@@ -112,16 +113,12 @@ typedef enum {
 #define TM_SPI3_FIRSTBIT 	SPI_FirstBit_MSB
 #endif
 //Mode, master or slave
+#ifndef TM_SPI3_MASTERSLAVE
+#define TM_SPI3_MASTERSLAVE SPI_Mode_Master
+#endif
+//Specify mode of operation, clock polarity and clock phase
 #ifndef TM_SPI3_MODE
-#define TM_SPI3_MODE 		SPI_Mode_Master
-#endif
-//Specify idle clock state
-#ifndef TM_SPI3_CPOL
-#define	TM_SPI3_CPOL		SPI_CPOL_Low
-#endif
-//Specify when data is sampled
-#ifndef TM_SPI3_CPHA
-#define TM_SPI3_CPHA		SPI_CPHA_1Edge
+#define TM_SPI3_MODE		TM_SPI_Mode_0
 #endif
 //----- SPI3 options end -------
 
@@ -139,16 +136,12 @@ typedef enum {
 #define TM_SPI4_FIRSTBIT 	SPI_FirstBit_MSB
 #endif
 //Mode, master or slave
+#ifndef TM_SPI4_MASTERSLAVE
+#define TM_SPI4_MASTERSLAVE	SPI_Mode_Master
+#endif
+//Specify mode of operation, clock polarity and clock phase
 #ifndef TM_SPI4_MODE
-#define TM_SPI4_MODE 		SPI_Mode_Master
-#endif
-//Specify idle clock state
-#ifndef TM_SPI4_CPOL
-#define	TM_SPI4_CPOL		SPI_CPOL_Low
-#endif
-//Specify when data is sampled
-#ifndef TM_SPI4_CPHA
-#define TM_SPI4_CPHA		SPI_CPHA_1Edge
+#define TM_SPI4_MODE		TM_SPI_Mode_0
 #endif
 //----- SPI4 options end -------
 
@@ -166,16 +159,12 @@ typedef enum {
 #define TM_SPI5_FIRSTBIT 	SPI_FirstBit_MSB
 #endif
 //Mode, master or slave
+#ifndef TM_SPI5_MASTERSLAVE
+#define TM_SPI5_MASTERSLAVE SPI_Mode_Master
+#endif
+//Specify mode of operation, clock polarity and clock phase
 #ifndef TM_SPI5_MODE
-#define TM_SPI5_MODE 		SPI_Mode_Master
-#endif
-//Specify idle clock state
-#ifndef TM_SPI5_CPOL
-#define	TM_SPI5_CPOL		SPI_CPOL_Low
-#endif
-//Specify when data is sampled
-#ifndef TM_SPI5_CPHA
-#define TM_SPI5_CPHA		SPI_CPHA_1Edge
+#define TM_SPI5_MODE		TM_SPI_Mode_0
 #endif
 //----- SPI5 options end -------
 
@@ -193,16 +182,12 @@ typedef enum {
 #define TM_SPI6_FIRSTBIT 	SPI_FirstBit_MSB
 #endif
 //Mode, master or slave
+#ifndef TM_SPI6_MASTERSLAVE
+#define TM_SPI6_MASTERSLAVE SPI_Mode_Master
+#endif
+//Specify mode of operation, clock polarity and clock phase
 #ifndef TM_SPI6_MODE
-#define TM_SPI6_MODE 		SPI_Mode_Master
-#endif
-//Specify idle clock state
-#ifndef TM_SPI6_CPOL
-#define	TM_SPI6_CPOL		SPI_CPOL_Low
-#endif
-//Specify when data is sampled
-#ifndef TM_SPI6_CPHA
-#define TM_SPI6_CPHA		SPI_CPHA_1Edge
+#define TM_SPI6_MODE		TM_SPI_Mode_0
 #endif
 //----- SPI6 options end -------
 

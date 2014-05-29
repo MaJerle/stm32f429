@@ -87,9 +87,20 @@ void TM_SPI1_Init(TM_SPI_PinsPack_t pinspack) {
 	SPI_InitDef.SPI_DataSize = TM_SPI1_DATASIZE;
 	SPI_InitDef.SPI_Direction = SPI_Direction_2Lines_FullDuplex;
 	SPI_InitDef.SPI_FirstBit = TM_SPI1_FIRSTBIT;
-	SPI_InitDef.SPI_Mode = TM_SPI1_MODE;
-	SPI_InitDef.SPI_CPHA = TM_SPI1_CPHA;
-	SPI_InitDef.SPI_CPOL = TM_SPI1_CPOL;
+	SPI_InitDef.SPI_Mode = TM_SPI1_MASTERSLAVE;
+	if (TM_SPI1_MODE == TM_SPI_Mode_0) {
+		SPI_InitDef.SPI_CPOL = SPI_CPOL_Low;
+		SPI_InitDef.SPI_CPHA = SPI_CPHA_1Edge;
+	} else if (TM_SPI1_MODE == TM_SPI_Mode_1) {
+		SPI_InitDef.SPI_CPOL = SPI_CPOL_Low;
+		SPI_InitDef.SPI_CPHA = SPI_CPHA_2Edge;
+	} else if (TM_SPI1_MODE == TM_SPI_Mode_2) {
+		SPI_InitDef.SPI_CPOL = SPI_CPOL_High;
+		SPI_InitDef.SPI_CPHA = SPI_CPHA_1Edge;
+	} else if (TM_SPI1_MODE == TM_SPI_Mode_3) {
+		SPI_InitDef.SPI_CPOL = SPI_CPOL_High;
+		SPI_InitDef.SPI_CPHA = SPI_CPHA_2Edge;
+	}
 	SPI_InitDef.SPI_NSS = SPI_NSS_Soft;
 	SPI_Init(SPI1, &SPI_InitDef);
 	SPI_Cmd(SPI1, ENABLE);
@@ -143,9 +154,20 @@ void TM_SPI2_Init(TM_SPI_PinsPack_t pinspack) {
 	SPI_InitDef.SPI_DataSize = TM_SPI2_DATASIZE;
 	SPI_InitDef.SPI_Direction = SPI_Direction_2Lines_FullDuplex;
 	SPI_InitDef.SPI_FirstBit = TM_SPI2_FIRSTBIT;
-	SPI_InitDef.SPI_Mode = TM_SPI2_MODE;
-	SPI_InitDef.SPI_CPHA = TM_SPI2_CPHA;
-	SPI_InitDef.SPI_CPOL = TM_SPI2_CPOL;
+	SPI_InitDef.SPI_Mode = TM_SPI2_MASTERSLAVE;
+	if (TM_SPI2_MODE == TM_SPI_Mode_0) {
+		SPI_InitDef.SPI_CPOL = SPI_CPOL_Low;
+		SPI_InitDef.SPI_CPHA = SPI_CPHA_1Edge;
+	} else if (TM_SPI2_MODE == TM_SPI_Mode_1) {
+		SPI_InitDef.SPI_CPOL = SPI_CPOL_Low;
+		SPI_InitDef.SPI_CPHA = SPI_CPHA_2Edge;
+	} else if (TM_SPI2_MODE == TM_SPI_Mode_2) {
+		SPI_InitDef.SPI_CPOL = SPI_CPOL_High;
+		SPI_InitDef.SPI_CPHA = SPI_CPHA_1Edge;
+	} else if (TM_SPI2_MODE == TM_SPI_Mode_3) {
+		SPI_InitDef.SPI_CPOL = SPI_CPOL_High;
+		SPI_InitDef.SPI_CPHA = SPI_CPHA_2Edge;
+	}
 	SPI_InitDef.SPI_NSS = SPI_NSS_Soft;
 	SPI_Cmd(SPI2, ENABLE);
 }
@@ -192,9 +214,20 @@ void TM_SPI3_Init(TM_SPI_PinsPack_t pinspack) {
 	SPI_InitDef.SPI_DataSize = TM_SPI3_DATASIZE;
 	SPI_InitDef.SPI_Direction = SPI_Direction_2Lines_FullDuplex;
 	SPI_InitDef.SPI_FirstBit = TM_SPI3_FIRSTBIT;
-	SPI_InitDef.SPI_Mode = TM_SPI3_MODE;
-	SPI_InitDef.SPI_CPHA = TM_SPI3_CPHA;
-	SPI_InitDef.SPI_CPOL = TM_SPI3_CPOL;
+	SPI_InitDef.SPI_Mode = TM_SPI3_MASTERSLAVE;
+	if (TM_SPI3_MODE == TM_SPI_Mode_0) {
+		SPI_InitDef.SPI_CPOL = SPI_CPOL_Low;
+		SPI_InitDef.SPI_CPHA = SPI_CPHA_1Edge;
+	} else if (TM_SPI3_MODE == TM_SPI_Mode_1) {
+		SPI_InitDef.SPI_CPOL = SPI_CPOL_Low;
+		SPI_InitDef.SPI_CPHA = SPI_CPHA_2Edge;
+	} else if (TM_SPI3_MODE == TM_SPI_Mode_2) {
+		SPI_InitDef.SPI_CPOL = SPI_CPOL_High;
+		SPI_InitDef.SPI_CPHA = SPI_CPHA_1Edge;
+	} else if (TM_SPI3_MODE == TM_SPI_Mode_3) {
+		SPI_InitDef.SPI_CPOL = SPI_CPOL_High;
+		SPI_InitDef.SPI_CPHA = SPI_CPHA_2Edge;
+	}
 	SPI_InitDef.SPI_NSS = SPI_NSS_Soft;
 	SPI_Init(SPI3, &SPI_InitDef);
 	SPI_Cmd(SPI3, ENABLE);
@@ -242,9 +275,20 @@ void TM_SPI4_Init(TM_SPI_PinsPack_t pinspack) {
 	SPI_InitDef.SPI_DataSize = TM_SPI4_DATASIZE;
 	SPI_InitDef.SPI_Direction = SPI_Direction_2Lines_FullDuplex;
 	SPI_InitDef.SPI_FirstBit = TM_SPI4_FIRSTBIT;
-	SPI_InitDef.SPI_Mode = TM_SPI4_MODE;
-	SPI_InitDef.SPI_CPHA = TM_SPI4_CPHA;
-	SPI_InitDef.SPI_CPOL = TM_SPI4_CPOL;
+	SPI_InitDef.SPI_Mode = TM_SPI4_MASTERSLAVE;
+	if (TM_SPI4_MODE == TM_SPI_Mode_0) {
+		SPI_InitDef.SPI_CPOL = SPI_CPOL_Low;
+		SPI_InitDef.SPI_CPHA = SPI_CPHA_1Edge;
+	} else if (TM_SPI4_MODE == TM_SPI_Mode_1) {
+		SPI_InitDef.SPI_CPOL = SPI_CPOL_Low;
+		SPI_InitDef.SPI_CPHA = SPI_CPHA_2Edge;
+	} else if (TM_SPI4_MODE == TM_SPI_Mode_2) {
+		SPI_InitDef.SPI_CPOL = SPI_CPOL_High;
+		SPI_InitDef.SPI_CPHA = SPI_CPHA_1Edge;
+	} else if (TM_SPI4_MODE == TM_SPI_Mode_3) {
+		SPI_InitDef.SPI_CPOL = SPI_CPOL_High;
+		SPI_InitDef.SPI_CPHA = SPI_CPHA_2Edge;
+	}
 	SPI_InitDef.SPI_NSS = SPI_NSS_Soft;
 	SPI_Init(SPI4, &SPI_InitDef);
 	SPI_Cmd(SPI4, ENABLE);
@@ -296,9 +340,20 @@ void TM_SPI5_Init(TM_SPI_PinsPack_t pinspack) {
 	SPI_InitDef.SPI_DataSize = TM_SPI5_DATASIZE;
 	SPI_InitDef.SPI_Direction = SPI_Direction_2Lines_FullDuplex;
 	SPI_InitDef.SPI_FirstBit = TM_SPI5_FIRSTBIT;
-	SPI_InitDef.SPI_Mode = TM_SPI5_MODE;
-	SPI_InitDef.SPI_CPHA = TM_SPI5_CPHA;
-	SPI_InitDef.SPI_CPOL = TM_SPI5_CPOL;
+	SPI_InitDef.SPI_Mode = TM_SPI5_MASTERSLAVE;
+	if (TM_SPI5_MODE == TM_SPI_Mode_0) {
+		SPI_InitDef.SPI_CPOL = SPI_CPOL_Low;
+		SPI_InitDef.SPI_CPHA = SPI_CPHA_1Edge;
+	} else if (TM_SPI5_MODE == TM_SPI_Mode_1) {
+		SPI_InitDef.SPI_CPOL = SPI_CPOL_Low;
+		SPI_InitDef.SPI_CPHA = SPI_CPHA_2Edge;
+	} else if (TM_SPI5_MODE == TM_SPI_Mode_2) {
+		SPI_InitDef.SPI_CPOL = SPI_CPOL_High;
+		SPI_InitDef.SPI_CPHA = SPI_CPHA_1Edge;
+	} else if (TM_SPI5_MODE == TM_SPI_Mode_3) {
+		SPI_InitDef.SPI_CPOL = SPI_CPOL_High;
+		SPI_InitDef.SPI_CPHA = SPI_CPHA_2Edge;
+	}
 	SPI_InitDef.SPI_NSS = SPI_NSS_Soft;
 	SPI_Init(SPI5, &SPI_InitDef);
 	SPI_Cmd(SPI5, ENABLE);
@@ -334,9 +389,20 @@ void TM_SPI6_Init(void) {
 	SPI_InitDef.SPI_DataSize = TM_SPI6_DATASIZE;
 	SPI_InitDef.SPI_Direction = SPI_Direction_2Lines_FullDuplex;
 	SPI_InitDef.SPI_FirstBit = TM_SPI6_FIRSTBIT;
-	SPI_InitDef.SPI_Mode = TM_SPI6_MODE;
-	SPI_InitDef.SPI_CPHA = TM_SPI6_CPHA;
-	SPI_InitDef.SPI_CPOL = TM_SPI6_CPOL;
+	SPI_InitDef.SPI_Mode = TM_SPI6_MASTERSLAVE;
+	if (TM_SPI6_MODE == TM_SPI_Mode_0) {
+		SPI_InitDef.SPI_CPOL = SPI_CPOL_Low;
+		SPI_InitDef.SPI_CPHA = SPI_CPHA_1Edge;
+	} else if (TM_SPI6_MODE == TM_SPI_Mode_1) {
+		SPI_InitDef.SPI_CPOL = SPI_CPOL_Low;
+		SPI_InitDef.SPI_CPHA = SPI_CPHA_2Edge;
+	} else if (TM_SPI6_MODE == TM_SPI_Mode_2) {
+		SPI_InitDef.SPI_CPOL = SPI_CPOL_High;
+		SPI_InitDef.SPI_CPHA = SPI_CPHA_1Edge;
+	} else if (TM_SPI6_MODE == TM_SPI_Mode_3) {
+		SPI_InitDef.SPI_CPOL = SPI_CPOL_High;
+		SPI_InitDef.SPI_CPHA = SPI_CPHA_2Edge;
+	}
 	SPI_InitDef.SPI_NSS = SPI_NSS_Soft;
 	SPI_Init(SPI6, &SPI_InitDef);
 	SPI_Cmd(SPI6, ENABLE);

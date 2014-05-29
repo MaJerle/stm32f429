@@ -26,6 +26,7 @@ If you are working with Keil uVision, than set KEIL_IDE define in options for pr
  * Includes
  */
 #include "stm32f4xx.h"
+#include "stm32f4xx_rcc.h"
 #include "defines.h"
 
 static __IO uint32_t TM_TimingDelay;

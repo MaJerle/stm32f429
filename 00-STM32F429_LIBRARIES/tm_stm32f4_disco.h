@@ -73,6 +73,8 @@
 	#define TM_DISCO_BUTTON_RCC			RCC_AHB1Periph_GPIOA
 	#define TM_DISCO_BUTTON_PORT		GPIOA
 	#define TM_DISCO_BUTTON_PIN			GPIO_Pin_0
+#else
+	#error "Please select your discovery board"
 #endif
 /**
  * Configure led pins to output
