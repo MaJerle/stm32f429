@@ -43,6 +43,8 @@ http://bit.ly/1viCnSX
 http://bit.ly/1jVGY96
 15. DS1307 - DS1307 RTC modeule for STM32F429 Discovery
 http://bit.ly/1oxFaDK
+16. HD44780 - HD44780 Alpha numeric LCD driver for STM32F429 discovery
+http://bit.ly/1gR6Lzz
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB
