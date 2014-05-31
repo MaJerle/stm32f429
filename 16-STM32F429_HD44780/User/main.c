@@ -1,5 +1,5 @@
 /**
- *	Keil project
+ *	Keil project example for HD44780 LCD driver
  *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
@@ -49,6 +49,12 @@ int main(void) {
 	
 	//Write new text
 	TM_HD44780_Puts(6, 2, "CLEARED!");
+	
+	//Wait a little
+	Delayms(1000);
+	
+	//Enable cursor blinking
+	TM_HD44780_BlinkOn();
 	
 	//Show custom character at x = 1, y = 2 from RAM location 0
 	TM_HD44780_PutCustom(1, 2, 0);
