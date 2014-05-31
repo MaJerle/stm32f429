@@ -15,10 +15,10 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://bit.ly/1lgtcjy
- *	@version 	v1.1
+ *	@version 	v1.2
  */
 #ifndef TM_SPI_H
-#define TM_SPI_H 100
+#define TM_SPI_H 120
 /**
  * Library dependencies
  * - STM32F4xx RCC

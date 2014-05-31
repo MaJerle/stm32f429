@@ -244,7 +244,7 @@ extern uint8_t TM_USART_Getc(USART_TypeDef* USARTx);
 /**
  * USART1 Interrupt handler
  *
- * Called when data is received on USART1
+ * Called by systen when data is received on USART1
  */
 extern void USART1_IRQHandler(void);
 #endif
@@ -253,7 +253,7 @@ extern void USART1_IRQHandler(void);
 /**
  * USART2 Interrupt handler
  *
- * Called when data is received on USART2
+ * Called by systen when data is received on USART2
  */
 extern void USART2_IRQHandler(void);
 #endif
@@ -262,7 +262,7 @@ extern void USART2_IRQHandler(void);
 /**
  * USART3 Interrupt handler
  *
- * Called when data is received on USART3
+ * Called by systen when data is received on USART3
  */
 extern void USART3_IRQHandler(void);
 #endif
@@ -271,7 +271,7 @@ extern void USART3_IRQHandler(void);
 /**
  * UART4 Interrupt handler
  *
- * Called when data is received on UART4
+ * Called by systen when data is received on UART4
  */
 extern void UART4_IRQHandler(void);
 #endif
@@ -280,7 +280,7 @@ extern void UART4_IRQHandler(void);
 /**
  * UART5 Interrupt handler
  *
- * Called when data is received on UART5
+ * Called by systen when data is received on UART5
  */
 extern void UART5_IRQHandler(void);
 #endif
@@ -289,7 +289,7 @@ extern void UART5_IRQHandler(void);
 /**
  * USART6 Interrupt handler
  *
- * Called when data is received on USART6
+ * Called by systen when data is received on USART6
  */
 extern void USART6_IRQHandler(void);
 #endif
@@ -298,7 +298,7 @@ extern void USART6_IRQHandler(void);
 /**
  * UART7 Interrupt handler
  *
- * Called when data is received on UART7
+ * Called by systen when data is received on UART7
  */
 extern void UART7_IRQHandler(void);
 #endif
@@ -307,7 +307,7 @@ extern void UART7_IRQHandler(void);
 /**
  * UART8 Interrupt handler
  *
- * Called when data is received on UART8
+ * Called by systen when data is received on UART8
  */
 extern void UART8_IRQHandler(void);
 #endif
@@ -346,4 +346,5 @@ extern uint8_t TM_USART_BufferEmpty(USART_TypeDef* USARTx);
  * Returns x - 1 number.
  */
 uint8_t TM_USART_GetUsartNumber(USART_TypeDef* USARTx);
+
 #endif

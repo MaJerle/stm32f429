@@ -940,10 +940,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>20</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>1</CurrentLine>
+      <TopLine>356</TopLine>
+      <CurrentLine>385</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.c</PathWithFileName>
       <FilenameWithoutPath>tm_stm32f4_spi.c</FilenameWithoutPath>
@@ -1044,10 +1044,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>11</ColumnNumber>
+      <ColumnNumber>30</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>21</CurrentLine>
+      <TopLine>11</TopLine>
+      <CurrentLine>32</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\User\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>

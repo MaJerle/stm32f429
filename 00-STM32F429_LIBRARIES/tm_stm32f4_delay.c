@@ -2,6 +2,7 @@
 
 static __IO uint32_t TM_TimingDelay = 0;
 static __IO uint32_t TM_Time = 0;
+uint8_t TM_DELAY_Initialized = 0;
 
 void Delay(__IO uint32_t nTime) {
 	TM_TimingDelay = nTime;
@@ -32,6 +33,9 @@ void SysTick_Handler(void) {
 #endif
 
 void TM_DELAY_Init(void) {
+	if (TM_DELAY_Initialized) {
+		return;
+	}
 	RCC_HSEConfig(RCC_HSE_ON);
 	while (!RCC_WaitForHSEStartUp());
 	//Set Systick interrupt every 1us
@@ -39,6 +43,7 @@ void TM_DELAY_Init(void) {
 		//Capture error
 		while (1);
 	}
+	TM_DELAY_Initialized = 1;
 }
 
 uint32_t TM_DELAY_Time(void) {

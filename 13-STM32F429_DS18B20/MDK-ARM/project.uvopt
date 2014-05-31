@@ -910,7 +910,7 @@
       <Focus>0</Focus>
       <ColumnNumber>1</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>277</TopLine>
+      <TopLine>291</TopLine>
       <CurrentLine>315</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_onewire.c</PathWithFileName>
@@ -940,10 +940,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>13</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
+      <TopLine>3</TopLine>
+      <CurrentLine>7</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</PathWithFileName>
       <FilenameWithoutPath>tm_stm32f4_usart.c</FilenameWithoutPath>
@@ -972,9 +972,9 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>19</ColumnNumber>
+      <ColumnNumber>31</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>289</TopLine>
+      <TopLine>303</TopLine>
       <CurrentLine>327</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_ds18b20.c</PathWithFileName>
@@ -1014,7 +1014,7 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>73</TopLine>
+      <TopLine>87</TopLine>
       <CurrentLine>119</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\User\main.c</PathWithFileName>

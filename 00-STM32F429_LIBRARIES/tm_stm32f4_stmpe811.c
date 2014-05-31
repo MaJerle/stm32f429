@@ -111,7 +111,6 @@ uint16_t TM_STMPE811_ReadX(uint16_t x) {
 	data[0] = TM_STMPE811_Read(STMPE811_TSC_DATA_X + 1);
 	val = (data[1] << 8 | (data[0] & 0xFF));
 	
-	////Thanks to Uwe B from mikrocontroller.bplaced.net for that
 	if (val <= 3000) {
 		val = 3900 - val;
 	} else {
@@ -140,7 +139,6 @@ uint16_t TM_STMPE811_ReadY(uint16_t y) {
 	data[0] = TM_STMPE811_Read(STMPE811_TSC_DATA_Y + 1);
 	val = (data[1] << 8 | (data[0] & 0xFF));
 
-	//Thanks to Uwe B from mikrocontroller.bplaced.net for that
 	val -= 360;
 	val = val / 11;
 

@@ -419,7 +419,7 @@ void TM_USART_Puts(USART_TypeDef* USARTx, char* str) {
 	}
 }
 
-#ifdef  USART1
+#ifdef USART1
 void USART1_IRQHandler(void) {
 	//Check if interrupt was because data is received
 	if (USART_GetITStatus(USART1, USART_IT_RXNE)) {
