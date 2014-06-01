@@ -907,14 +907,14 @@ ARM Macro Assembler    Page 14
 Command Line: --debug --xref --cpu=Cortex-M4.fp --apcs=interwork --depend=.\sta
 rtup_stm32f429_439xx.d -o.\startup_stm32f429_439xx.o -IC:\Keil\ARM\RV31\INC -IC
 :\Keil\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include -IC:\Keil\ARM\PACK\Keil\STM32F4x
-x_DFP\1.0.6\Device\Include --predefine="__EVAL SETA 1" --list=.\startup_stm32f4
+x_DFP\1.0.7\Device\Include --list=.\startup_stm32f429_439xx.lst startup_stm32f4
 
 
 
 ARM Macro Assembler    Page 15 
 
 
-29_439xx.lst startup_stm32f429_439xx.s
+29_439xx.s
 
 
 
@@ -2114,4 +2114,4 @@ Symbol: __use_two_region_memory
       None
 Comment: __use_two_region_memory unused
 3 symbols
-456 symbols in table
+455 symbols in table

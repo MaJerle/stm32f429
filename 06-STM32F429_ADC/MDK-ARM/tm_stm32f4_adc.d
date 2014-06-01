@@ -38,3 +38,4 @@
 .\tm_stm32f4_adc.o: ..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_fmc.h
 .\tm_stm32f4_adc.o: ..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_ltdc.h
 .\tm_stm32f4_adc.o: ..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_sai.h
+.\tm_stm32f4_adc.o: ..\User\defines.h

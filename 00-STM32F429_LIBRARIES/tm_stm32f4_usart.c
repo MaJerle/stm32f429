@@ -18,6 +18,18 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 	USART_InitTypeDef 	USART_InitStruct;
 	NVIC_InitTypeDef	NVIC_InitStruct;
 
+	/**
+	 * Default settings:
+	 * 
+	 * Set Baudrate to value you pass to function
+	 * Disable Hardware Flow control
+	 * Set Mode To TX and RX, so USART will work in full-duplex mode
+	 * Disable parity bit
+	 * Set 1 stop bit
+	 * Set Data bits to 8
+	 */
+	USART_InitStruct.USART_BaudRate = baudrate;
+	
 	/*
 	 * Initialize USARTx pins
 	 * Set channel for USARTx NVIC
@@ -26,71 +38,102 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 	if (USARTx == USART1) {
 		TM_USART1_InitPins(pinspack);
 		NVIC_InitStruct.NVIC_IRQChannel = USART1_IRQn;
+		
+		USART_InitStruct.USART_HardwareFlowControl = TM_USART1_HARDWARE_FLOW_CONTROL;
+		USART_InitStruct.USART_Mode = TM_USART1_MODE;
+		USART_InitStruct.USART_Parity = TM_USART1_PARITY;
+		USART_InitStruct.USART_StopBits = TM_USART1_STOP_BITS;
+		USART_InitStruct.USART_WordLength = TM_USART1_WORD_LENGTH;
 	}
 #endif
 #ifdef USART2
-	else if (USARTx == USART2) {
+	if (USARTx == USART2) {
 		TM_USART2_InitPins(pinspack);
 		NVIC_InitStruct.NVIC_IRQChannel = USART2_IRQn;
+		
+		USART_InitStruct.USART_HardwareFlowControl = TM_USART2_HARDWARE_FLOW_CONTROL;
+		USART_InitStruct.USART_Mode = TM_USART2_MODE;
+		USART_InitStruct.USART_Parity = TM_USART2_PARITY;
+		USART_InitStruct.USART_StopBits = TM_USART2_STOP_BITS;
+		USART_InitStruct.USART_WordLength = TM_USART2_WORD_LENGTH;
 	}
 #endif
 #ifdef USART3
-	else if (USARTx == USART3) {
+	if (USARTx == USART3) {
 		TM_USART3_InitPins(pinspack);
 		NVIC_InitStruct.NVIC_IRQChannel = USART3_IRQn;
+		
+		USART_InitStruct.USART_HardwareFlowControl = TM_USART3_HARDWARE_FLOW_CONTROL;
+		USART_InitStruct.USART_Mode = TM_USART3_MODE;
+		USART_InitStruct.USART_Parity = TM_USART3_PARITY;
+		USART_InitStruct.USART_StopBits = TM_USART3_STOP_BITS;
+		USART_InitStruct.USART_WordLength = TM_USART3_WORD_LENGTH;
 	}
 #endif
 #ifdef UART4
-	else if (USARTx == UART4) {
+	if (USARTx == UART4) {
 		TM_UART4_InitPins(pinspack);
 		NVIC_InitStruct.NVIC_IRQChannel = UART4_IRQn;
+		
+		USART_InitStruct.USART_HardwareFlowControl = TM_UART4_HARDWARE_FLOW_CONTROL;
+		USART_InitStruct.USART_Mode = TM_UART4_MODE;
+		USART_InitStruct.USART_Parity = TM_UART4_PARITY;
+		USART_InitStruct.USART_StopBits = TM_UART4_STOP_BITS;
+		USART_InitStruct.USART_WordLength = TM_UART4_WORD_LENGTH;
 	}
 #endif
 #ifdef UART5
-	else if (USARTx == UART5) {
+	if (USARTx == UART5) {
 		TM_UART5_InitPins(pinspack);
 		NVIC_InitStruct.NVIC_IRQChannel = UART5_IRQn;
+		
+		USART_InitStruct.USART_HardwareFlowControl = TM_UART5_HARDWARE_FLOW_CONTROL;
+		USART_InitStruct.USART_Mode = TM_UART5_MODE;
+		USART_InitStruct.USART_Parity = TM_UART5_PARITY;
+		USART_InitStruct.USART_StopBits = TM_UART5_STOP_BITS;
+		USART_InitStruct.USART_WordLength = TM_UART5_WORD_LENGTH;
 	}
 #endif
 #ifdef USART6
-	else if (USARTx == USART6) {
+	if (USARTx == USART6) {
 		TM_USART6_InitPins(pinspack);
 		NVIC_InitStruct.NVIC_IRQChannel = USART6_IRQn;
+		
+		USART_InitStruct.USART_HardwareFlowControl = TM_USART6_HARDWARE_FLOW_CONTROL;
+		USART_InitStruct.USART_Mode = TM_USART6_MODE;
+		USART_InitStruct.USART_Parity = TM_USART6_PARITY;
+		USART_InitStruct.USART_StopBits = TM_USART6_STOP_BITS;
+		USART_InitStruct.USART_WordLength = TM_USART6_WORD_LENGTH;
 	}
 #endif
 #ifdef UART7_IRQn
-	else if (USARTx == UART7) {
+	if (USARTx == UART7) {
 		TM_UART7_InitPins(pinspack);
 		NVIC_InitStruct.NVIC_IRQChannel = UART7_IRQn;
+		
+		USART_InitStruct.USART_HardwareFlowControl = TM_UART7_HARDWARE_FLOW_CONTROL;
+		USART_InitStruct.USART_Mode = TM_UART7_MODE;
+		USART_InitStruct.USART_Parity = TM_UART7_PARITY;
+		USART_InitStruct.USART_StopBits = TM_UART7_STOP_BITS;
+		USART_InitStruct.USART_WordLength = TM_UART7_WORD_LENGTH;
 	}
 #endif
 #ifdef UART8_IRQn
-	else if (USARTx == UART8) {
+	if (USARTx == UART8) {
 		TM_UART8_InitPins(pinspack);
 		NVIC_InitStruct.NVIC_IRQChannel = UART8_IRQn;
+		
+		USART_InitStruct.USART_HardwareFlowControl = TM_UART8_HARDWARE_FLOW_CONTROL;
+		USART_InitStruct.USART_Mode = TM_UART8_MODE;
+		USART_InitStruct.USART_Parity = TM_UART8_PARITY;
+		USART_InitStruct.USART_StopBits = TM_UART8_STOP_BITS;
+		USART_InitStruct.USART_WordLength = TM_UART8_WORD_LENGTH;
 	}
 #endif
 
-	/**
-	 * Set Baudrate to value you pass to function
-	 * Disable Hardware Flow control
-	 * Set Mode To TX and RX, so USART will work in full-duplex mode
-	 * Disable parity bit
-	 * Set 1 stop bit
-	 * Set Data bits to 8
-	 *
-	 * Initialize USARTx
-	 * Activate USARTx
-	 */
-	USART_InitStruct.USART_BaudRate = baudrate;
-	USART_InitStruct.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
-	USART_InitStruct.USART_Mode = USART_Mode_Tx | USART_Mode_Rx;
-	USART_InitStruct.USART_Parity = USART_Parity_No;
-	USART_InitStruct.USART_StopBits = USART_StopBits_1;
-	USART_InitStruct.USART_WordLength = USART_WordLength_8b;
 	USART_Init(USARTx, &USART_InitStruct);
 	USART_Cmd(USARTx, ENABLE);
-
+	
 	/**
 	 * Enable RX interrupt
 	 */
@@ -104,7 +147,7 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 	 * Initialize NVIC
 	 */
 	NVIC_InitStruct.NVIC_IRQChannelCmd = ENABLE;
-	NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority = 0;
+	NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority = TM_USART_NVIC_PRIORITY;
 	NVIC_InitStruct.NVIC_IRQChannelSubPriority = TM_USART_GetUsartNumber(USARTx);
 	NVIC_Init(&NVIC_InitStruct);
 }

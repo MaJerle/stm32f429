@@ -36,11 +36,151 @@
 #include "stm32f4xx_usart.h"
 #include "defines.h"
 
-/**
- * Buffer size
- */
+//Buffer size
 #ifndef TM_USART_BUFFER_SIZE
-#define TM_USART_BUFFER_SIZE 32
+#define TM_USART_BUFFER_SIZE 		32
+#endif
+
+//NVIC Priority
+#ifndef TM_USART_NVIC_PRIORITY
+#define TM_USART_NVIC_PRIORITY		0x00
+#endif
+
+//U(S)ART settings, can be changed in your defines.h project file
+//USART1 default settings
+#ifndef TM_USART1_HARDWARE_FLOW_CONTROL
+#define TM_USART1_HARDWARE_FLOW_CONTROL		USART_HardwareFlowControl_None
+#endif
+#ifndef TM_USART1_MODE
+#define TM_USART1_MODE						USART_Mode_Tx | USART_Mode_Rx
+#endif
+#ifndef TM_USART1_PARITY
+#define TM_USART1_PARITY					USART_Parity_No
+#endif
+#ifndef TM_USART1_STOP_BITS
+#define TM_USART1_STOP_BITS					USART_StopBits_1
+#endif
+#ifndef TM_USART1_WORD_LENGTH
+#define TM_USART1_WORD_LENGTH				USART_WordLength_8b
+#endif
+
+//USART2 default settings
+#ifndef TM_USART2_HARDWARE_FLOW_CONTROL
+#define TM_USART2_HARDWARE_FLOW_CONTROL		USART_HardwareFlowControl_None
+#endif
+#ifndef TM_USART2_MODE
+#define TM_USART2_MODE						USART_Mode_Tx | USART_Mode_Rx
+#endif
+#ifndef TM_USART2_PARITY
+#define TM_USART2_PARITY					USART_Parity_No
+#endif
+#ifndef TM_USART2_STOP_BITS
+#define TM_USART2_STOP_BITS					USART_StopBits_1
+#endif
+#ifndef TM_USART2_WORD_LENGTH
+#define TM_USART2_WORD_LENGTH				USART_WordLength_8b
+#endif
+
+//USART3 default settings
+#ifndef TM_USART3_HARDWARE_FLOW_CONTROL
+#define TM_USART3_HARDWARE_FLOW_CONTROL		USART_HardwareFlowControl_None
+#endif
+#ifndef TM_USART3_MODE
+#define TM_USART3_MODE						USART_Mode_Tx | USART_Mode_Rx
+#endif
+#ifndef TM_USART3_PARITY
+#define TM_USART3_PARITY					USART_Parity_No
+#endif
+#ifndef TM_USART3_STOP_BITS
+#define TM_USART3_STOP_BITS					USART_StopBits_1
+#endif
+#ifndef TM_USART3_WORD_LENGTH
+#define TM_USART3_WORD_LENGTH				USART_WordLength_8b
+#endif
+
+//UART4 default settings
+#ifndef TM_UART4_HARDWARE_FLOW_CONTROL
+#define TM_UART4_HARDWARE_FLOW_CONTROL		USART_HardwareFlowControl_None
+#endif
+#ifndef TM_UART4_MODE
+#define TM_UART4_MODE						USART_Mode_Tx | USART_Mode_Rx
+#endif
+#ifndef TM_UART4_PARITY
+#define TM_UART4_PARITY						USART_Parity_No
+#endif
+#ifndef TM_UART4_STOP_BITS
+#define TM_UART4_STOP_BITS					USART_StopBits_1
+#endif
+#ifndef TM_UART4_WORD_LENGTH
+#define TM_UART4_WORD_LENGTH				USART_WordLength_8b
+#endif
+
+//UART5 default settings
+#ifndef TM_UART5_HARDWARE_FLOW_CONTROL
+#define TM_UART5_HARDWARE_FLOW_CONTROL		USART_HardwareFlowControl_None
+#endif
+#ifndef TM_UART5_MODE
+#define TM_UART5_MODE						USART_Mode_Tx | USART_Mode_Rx
+#endif
+#ifndef TM_UART5_PARITY
+#define TM_UART5_PARITY						USART_Parity_No
+#endif
+#ifndef TM_UART5_STOP_BITS
+#define TM_UART5_STOP_BITS					USART_StopBits_1
+#endif
+#ifndef TM_UART5_WORD_LENGTH
+#define TM_UART5_WORD_LENGTH				USART_WordLength_8b
+#endif
+
+//USART6 default settings
+#ifndef TM_USART6_HARDWARE_FLOW_CONTROL
+#define TM_USART6_HARDWARE_FLOW_CONTROL		USART_HardwareFlowControl_None
+#endif
+#ifndef TM_USART6_MODE
+#define TM_USART6_MODE						USART_Mode_Tx | USART_Mode_Rx
+#endif
+#ifndef TM_USART6_PARITY
+#define TM_USART6_PARITY					USART_Parity_No
+#endif
+#ifndef TM_USART6_STOP_BITS
+#define TM_USART6_STOP_BITS					USART_StopBits_1
+#endif
+#ifndef TM_USART6_WORD_LENGTH
+#define TM_USART6_WORD_LENGTH				USART_WordLength_8b
+#endif
+
+//UART7 default settings
+#ifndef TM_UART7_HARDWARE_FLOW_CONTROL
+#define TM_UART7_HARDWARE_FLOW_CONTROL		USART_HardwareFlowControl_None
+#endif
+#ifndef TM_UART7_MODE
+#define TM_UART7_MODE						USART_Mode_Tx | USART_Mode_Rx
+#endif
+#ifndef TM_UART7_PARITY
+#define TM_UART7_PARITY						USART_Parity_No
+#endif
+#ifndef TM_UART7_STOP_BITS
+#define TM_UART7_STOP_BITS					USART_StopBits_1
+#endif
+#ifndef TM_UART7_WORD_LENGTH
+#define TM_UART7_WORD_LENGTH				USART_WordLength_8b
+#endif
+
+//UART8 default settings
+#ifndef TM_UART8_HARDWARE_FLOW_CONTROL
+#define TM_UART8_HARDWARE_FLOW_CONTROL		USART_HardwareFlowControl_None
+#endif
+#ifndef TM_UART8_MODE
+#define TM_UART8_MODE						USART_Mode_Tx | USART_Mode_Rx
+#endif
+#ifndef TM_UART8_PARITY
+#define TM_UART8_PARITY						USART_Parity_No
+#endif
+#ifndef TM_UART8_STOP_BITS
+#define TM_UART8_STOP_BITS					USART_StopBits_1
+#endif
+#ifndef TM_UART8_WORD_LENGTH
+#define TM_UART8_WORD_LENGTH				USART_WordLength_8b
 #endif
 
 /**

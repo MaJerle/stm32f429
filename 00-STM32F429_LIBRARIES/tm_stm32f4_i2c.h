@@ -1,5 +1,5 @@
 /**
- *	I2C library for STM32F429
+ *	I2C library for STM32F4xx
  *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
@@ -41,6 +41,57 @@
 #define TM_I2C_TIMEOUT		20000
 #endif
 
+//I2C1 settings, change them in defines.h project file
+#ifndef TM_I2C1_ACKNOWLEDGED_ADDRESS
+#define TM_I2C1_ACKNOWLEDGED_ADDRESS	I2C_AcknowledgedAddress_7bit
+#endif
+#ifndef TM_I2C1_MODE
+#define TM_I2C1_MODE					I2C_Mode_I2C
+#endif
+#ifndef TM_I2C1_OWN_ADDRESS
+#define TM_I2C1_OWN_ADDRESS				0x00
+#endif
+#ifndef TM_I2C1_ACK
+#define TM_I2C1_ACK						I2C_Ack_Disable
+#endif
+#ifndef TM_I2C1_DUTY_CYCLE
+#define TM_I2C1_DUTY_CYCLE				I2C_DutyCycle_2
+#endif
+
+//I2C2 settings, change them in defines.h project file
+#ifndef TM_I2C2_ACKNOWLEDGED_ADDRESS
+#define TM_I2C2_ACKNOWLEDGED_ADDRESS	I2C_AcknowledgedAddress_7bit
+#endif
+#ifndef TM_I2C2_MODE
+#define TM_I2C2_MODE					I2C_Mode_I2C
+#endif
+#ifndef TM_I2C2_OWN_ADDRESS
+#define TM_I2C2_OWN_ADDRESS				0x00
+#endif
+#ifndef TM_I2C2_ACK
+#define TM_I2C2_ACK						I2C_Ack_Disable
+#endif
+#ifndef TM_I2C2_DUTY_CYCLE
+#define TM_I2C2_DUTY_CYCLE				I2C_DutyCycle_2
+#endif
+
+//I2C3 settings, change them in defines.h project file
+#ifndef TM_I2C3_ACKNOWLEDGED_ADDRESS
+#define TM_I2C3_ACKNOWLEDGED_ADDRESS	I2C_AcknowledgedAddress_7bit
+#endif
+#ifndef TM_I2C3_MODE
+#define TM_I2C3_MODE					I2C_Mode_I2C
+#endif
+#ifndef TM_I2C3_OWN_ADDRESS
+#define TM_I2C3_OWN_ADDRESS				0x00
+#endif
+#ifndef TM_I2C3_ACK
+#define TM_I2C3_ACK						I2C_Ack_Disable
+#endif
+#ifndef TM_I2C3_DUTY_CYCLE
+#define TM_I2C3_DUTY_CYCLE				I2C_DutyCycle_2
+#endif
+
 /**
  * Pins used
  */
@@ -67,6 +118,7 @@ typedef enum {
  */
 extern void TM_I2C_Init(I2C_TypeDef* I2Cx, TM_I2C_PinsPack_t pinspack, uint32_t clockSpeed);
 
+#ifdef I2C1
 /**
  * Initialize I2C1
  *
@@ -80,7 +132,9 @@ extern void TM_I2C_Init(I2C_TypeDef* I2Cx, TM_I2C_PinsPack_t pinspack, uint32_t 
  * 			- SDA: PB9
  */
 extern void TM_I2C1_InitPins(TM_I2C_PinsPack_t pinspack);
+#endif
 
+#ifdef I2C2
 /**
  * Initialize I2C2
  *
@@ -94,7 +148,9 @@ extern void TM_I2C1_InitPins(TM_I2C_PinsPack_t pinspack);
  * 			- SDA: PF0
  */
 extern void TM_I2C2_InitPins(TM_I2C_PinsPack_t pinspack);
+#endif
 
+#ifdef I2C3
 /**
  * Initialize I2C3
  *
@@ -108,6 +164,7 @@ extern void TM_I2C2_InitPins(TM_I2C_PinsPack_t pinspack);
  * 			- SDA: PH8
  */
 extern void TM_I2C3_InitPins(TM_I2C_PinsPack_t pinspack);
+#endif
 
 /**
  * Read single byte from slave

@@ -3,32 +3,54 @@
 uint32_t TM_I2C_Timeout;
 
 void TM_I2C_Init(I2C_TypeDef* I2Cx, TM_I2C_PinsPack_t pinspack, uint32_t clockSpeed) {
-	I2C_InitTypeDef I2C_InitDef;
+	I2C_InitTypeDef I2C_InitStruct;
 	
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C1, ENABLE);
-
+	I2C_InitStruct.I2C_ClockSpeed = clockSpeed;
+	
+#ifdef I2C1
 	if (I2Cx == I2C1) {
 		RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C1, ENABLE);
 		TM_I2C1_InitPins(pinspack);
-	} else if (I2Cx == I2C2) {
+		
+		I2C_InitStruct.I2C_AcknowledgedAddress = TM_I2C1_ACKNOWLEDGED_ADDRESS;
+		I2C_InitStruct.I2C_Mode = TM_I2C1_MODE;
+		I2C_InitStruct.I2C_OwnAddress1 = TM_I2C1_OWN_ADDRESS;
+		I2C_InitStruct.I2C_Ack = TM_I2C1_ACK;
+		I2C_InitStruct.I2C_DutyCycle = TM_I2C1_DUTY_CYCLE;
+	}
+#endif
+#ifdef I2C2
+	if (I2Cx == I2C2) {
 		RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C2, ENABLE);
 		TM_I2C2_InitPins(pinspack);
-	} else if (I2Cx == I2C3) {
+		
+		I2C_InitStruct.I2C_AcknowledgedAddress = TM_I2C2_ACKNOWLEDGED_ADDRESS;
+		I2C_InitStruct.I2C_Mode = TM_I2C2_MODE;
+		I2C_InitStruct.I2C_OwnAddress1 = TM_I2C2_OWN_ADDRESS;
+		I2C_InitStruct.I2C_Ack = TM_I2C2_ACK;
+		I2C_InitStruct.I2C_DutyCycle = TM_I2C2_DUTY_CYCLE;
+	}
+#endif
+#ifdef I2C3
+	if (I2Cx == I2C3) {
 		RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C3, ENABLE);
 		TM_I2C3_InitPins(pinspack);
+		
+		I2C_InitStruct.I2C_AcknowledgedAddress = TM_I2C3_ACKNOWLEDGED_ADDRESS;
+		I2C_InitStruct.I2C_Mode = TM_I2C3_MODE;
+		I2C_InitStruct.I2C_OwnAddress1 = TM_I2C3_OWN_ADDRESS;
+		I2C_InitStruct.I2C_Ack = TM_I2C3_ACK;
+		I2C_InitStruct.I2C_DutyCycle = TM_I2C3_DUTY_CYCLE;
 	}
-	
-	I2C_InitDef.I2C_ClockSpeed = clockSpeed;
-	I2C_InitDef.I2C_Ack = I2C_Ack_Disable;
-	I2C_InitDef.I2C_AcknowledgedAddress = I2C_AcknowledgedAddress_7bit;
-	I2C_InitDef.I2C_DutyCycle = I2C_DutyCycle_2;
-	I2C_InitDef.I2C_Mode = I2C_Mode_I2C;
-	I2C_InitDef.I2C_OwnAddress1 = 0x00;
-	I2C_Init(I2Cx, &I2C_InitDef);
+#endif
+
+
+	I2C_Init(I2Cx, &I2C_InitStruct);
 
 	I2C_Cmd(I2Cx, ENABLE);
 }
 
+#ifdef I2C1
 void TM_I2C1_InitPins(TM_I2C_PinsPack_t pinspack) {
 	GPIO_InitTypeDef GPIO_InitDef;
 	
@@ -54,8 +76,9 @@ void TM_I2C1_InitPins(TM_I2C_PinsPack_t pinspack) {
 	}
 	GPIO_Init(GPIOB, &GPIO_InitDef);
 }
+#endif
 
-
+#ifdef I2C2
 void TM_I2C2_InitPins(TM_I2C_PinsPack_t pinspack) {
 	GPIO_InitTypeDef GPIO_InitDef;
 	
@@ -86,9 +109,9 @@ void TM_I2C2_InitPins(TM_I2C_PinsPack_t pinspack) {
 		GPIO_Init(GPIOF, &GPIO_InitDef);
 	}
 }
+#endif
 
-
-
+#ifdef I2C3
 void TM_I2C3_InitPins(TM_I2C_PinsPack_t pinspack) {
 	GPIO_InitTypeDef GPIO_InitDef;
 
@@ -122,8 +145,7 @@ void TM_I2C3_InitPins(TM_I2C_PinsPack_t pinspack) {
 	}
 	GPIO_Init(GPIOH, &GPIO_InitDef);
 }
-
-
+#endif
 
 uint8_t TM_I2C_Read(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg) {
 	uint8_t received_data;
