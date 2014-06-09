@@ -21,7 +21,7 @@
  * I2C pins
  *
  * I2Cx		Pinspack1		Pinspack2
- * 			SCL		SDA		SCL		SDA
+ * SCL		SDA		SCL		SDA
  * I2C1		PB6		PB7		PB8		PB9
  * I2C2		PB10	PB11	PF1		PF0
  * I2C3		PA8		PC9		PH7		PH8
@@ -91,6 +91,12 @@
 #ifndef TM_I2C3_DUTY_CYCLE
 #define TM_I2C3_DUTY_CYCLE				I2C_DutyCycle_2
 #endif
+
+//I2C speed modes
+#define TM_I2C_CLOCK_STANDARD					100000
+#define TM_I2C_CLOCK_FAST_MODE				400000
+#define TM_I2C_CLOCK_FAST_MODE_PLUS		1000000
+#define TM_I2C_CLOCK_HIGH_SPEED				3400000
 
 /**
  * Pins used

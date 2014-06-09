@@ -18,6 +18,7 @@ int main(void) {
 	TM_DAC_Init(TM_DAC2);
 	//Set 12bit analog value of 1500/4096 * 3.3V
 	TM_DAC_SetValue(TM_DAC2, 1500);
+	
 	while (1) {
 	
 	}
