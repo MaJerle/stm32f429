@@ -3,7 +3,7 @@
  *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
- *	@website	http://majerle.eu
+ *	@website	http://stm32f4-discovery.com
  *	@ide		Keil uVision 5
  */
 #include "defines.h"
@@ -12,7 +12,6 @@
 #include "tm_stm32f4_usart.h"
 #include "tm_stm32f4_adc.h"
 #include <stdio.h>
-
 
 int main(void) {
 	char str[15];

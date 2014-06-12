@@ -1,0 +1,175 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+C:\Users\tilz0R\Google Drive\JAVNO\ELEKTRONIKA\ARM\STM32F429\majerle.eu\STM32F401 Nucleo\MDK-ARM\project.uvproj
+Project File Date:  05/11/2014
+
+<h2>Output:</h2>
+Build target 'STM32F401RE'
+compiling system_stm32f4xx.c...
+compiling misc.c...
+compiling stm32f4xx_rcc.c...
+compiling stm32f4xx_gpio.c...
+compiling stm32f4xx_usart.c...
+compiling stm32f4xx_spi.c...
+compiling stm32f4xx_adc.c...
+compiling tm_stm32f4_delay.c...
+compiling main.c...
+compiling stm32f4xx_it.c...
+linking...
+Program Size: Code=2648 RO-data=460 RW-data=48 ZI-data=1632  
+FromELF: creating hex file...
+".\project.axf" - 0 Error(s), 0 Warning(s).
+</pre>
+</body>
+</html>
+)
+  #define IS_FLASH_ADDRESS(ADDRESS) ((((ADDRESS) >= 0x08000000) && ((ADDRESS) < 0x0803FFFF)) ||\
+..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 387)
+  #define IS_GPIO_AF(AF)   (((AF) == GPIO_AF_RTC_50Hz)  || ((AF) == GPIO_AF_TIM14)     || \
+..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
+  void        RCC_PLLI2SConfig(uint32_t PLLI2SN, uint32_t PLLI2SQ, uint32_t PLLI2SR);
+..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 151)
+  #define IS_SYSCFG_MEMORY_REMAP_CONFING(REMAP) (((REMAP) == SYSCFG_MemoryRemap_Flash)       || \
+..\CMSIS\system_stm32f4xx.c(271): warning:  #47-D: incompatible redefinition of macro "PLL_N" (declared at line 265)
+  #define PLL_N      336
+..\CMSIS\system_stm32f4xx.c(273): warning:  #47-D: incompatible redefinition of macro "PLL_P" (declared at line 267)
+  #define PLL_P      4
+..\CMSIS\system_stm32f4xx.c(303): error:  #148: variable "SystemCoreClock" has already been initialized
+    uint32_t SystemCoreClock = 84000000;
+..\CMSIS\system_stm32f4xx.c: 6 warnings, 3 errors
+assembling startup_stm32f429_439xx.s...
+compiling misc.c...
+..\CMSIS\stm32f4xx.h(418): error:  #67: expected a "}"
+    EXTI9_5_IRQn                = 23,     /*!< External Line[9:5] Interrupts                                     */
+..\CMSIS\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
+  } IRQn_Type;
+..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(180): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
+  #define IS_FLASH_ADDRESS(ADDRESS) ((((ADDRESS) >= 0x08000000) && ((ADDRESS) < 0x0803FFFF)) ||\
+..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 387)
+  #define IS_GPIO_AF(AF)   (((AF) == GPIO_AF_RTC_50Hz)  || ((AF) == GPIO_AF_TIM14)     || \
+..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
+  void        RCC_PLLI2SConfig(uint32_t PLLI2SN, uint32_t PLLI2SQ, uint32_t PLLI2SR);
+..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 151)
+  #define IS_SYSCFG_MEMORY_REMAP_CONFING(REMAP) (((REMAP) == SYSCFG_MemoryRemap_Flash)       || \
+..\STM32F4xx_StdPeriph_Driver\src\misc.c: 4 warnings, 2 errors
+compiling stm32f4xx_rcc.c...
+..\CMSIS\stm32f4xx.h(418): error:  #67: expected a "}"
+    EXTI9_5_IRQn                = 23,     /*!< External Line[9:5] Interrupts                                     */
+..\CMSIS\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
+  } IRQn_Type;
+..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(180): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
+  #define IS_FLASH_ADDRESS(ADDRESS) ((((ADDRESS) >= 0x08000000) && ((ADDRESS) < 0x0803FFFF)) ||\
+..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 387)
+  #define IS_GPIO_AF(AF)   (((AF) == GPIO_AF_RTC_50Hz)  || ((AF) == GPIO_AF_TIM14)     || \
+..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 151)
+  #define IS_SYSCFG_MEMORY_REMAP_CONFING(REMAP) (((REMAP) == SYSCFG_MemoryRemap_Flash)       || \
+..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
+  void        RCC_PLLI2SConfig(uint32_t PLLI2SN, uint32_t PLLI2SQ, uint32_t PLLI2SR);
+..\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rcc.c(516): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t, uint32_t)" (declared at line 542 of "..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h")
+  void RCC_PLLI2SConfig(uint32_t PLLI2SN, uint32_t PLLI2SR)
+..\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rcc.c(552): error:  #247: function "RCC_PLLI2SConfig" has already been defined
+  void RCC_PLLI2SConfig(uint32_t PLLI2SN, uint32_t PLLI2SQ, uint32_t PLLI2SR)
+..\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rcc.c: 4 warnings, 4 errors
+compiling stm32f4xx_gpio.c...
+..\CMSIS\stm32f4xx.h(418): error:  #67: expected a "}"
+    EXTI9_5_IRQn                = 23,     /*!< External Line[9:5] Interrupts                                     */
+..\CMSIS\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
+  } IRQn_Type;
+..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(180): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
+  #define IS_FLASH_ADDRESS(ADDRESS) ((((ADDRESS) >= 0x08000000) && ((ADDRESS) < 0x0803FFFF)) ||\
+..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
+  void        RCC_PLLI2SConfig(uint32_t PLLI2SN, uint32_t PLLI2SQ, uint32_t PLLI2SR);
+..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 151)
+  #define IS_SYSCFG_MEMORY_REMAP_CONFING(REMAP) (((REMAP) == SYSCFG_MemoryRemap_Flash)       || \
+..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 387)
+  #define IS_GPIO_AF(AF)   (((AF) == GPIO_AF_RTC_50Hz)  || ((AF) == GPIO_AF_TIM14)     || \
+..\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.c: 4 warnings, 2 errors
+compiling stm32f4xx_usart.c...
+..\CMSIS\stm32f4xx.h(418): error:  #67: expected a "}"
+    EXTI9_5_IRQn                = 23,     /*!< External Line[9:5] Interrupts                                     */
+..\CMSIS\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
+  } IRQn_Type;
+..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(180): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
+  #define IS_FLASH_ADDRESS(ADDRESS) ((((ADDRESS) >= 0x08000000) && ((ADDRESS) < 0x0803FFFF)) ||\
+..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 387)
+  #define IS_GPIO_AF(AF)   (((AF) == GPIO_AF_RTC_50Hz)  || ((AF) == GPIO_AF_TIM14)     || \
+..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
+  void        RCC_PLLI2SConfig(uint32_t PLLI2SN, uint32_t PLLI2SQ, uint32_t PLLI2SR);
+..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 151)
+  #define IS_SYSCFG_MEMORY_REMAP_CONFING(REMAP) (((REMAP) == SYSCFG_MemoryRemap_Flash)       || \
+..\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.c: 4 warnings, 2 errors
+compiling stm32f4xx_spi.c...
+..\CMSIS\stm32f4xx.h(418): error:  #67: expected a "}"
+    EXTI9_5_IRQn                = 23,     /*!< External Line[9:5] Interrupts                                     */
+..\CMSIS\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
+  } IRQn_Type;
+..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(180): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
+  #define IS_FLASH_ADDRESS(ADDRESS) ((((ADDRESS) >= 0x08000000) && ((ADDRESS) < 0x0803FFFF)) ||\
+..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 387)
+  #define IS_GPIO_AF(AF)   (((AF) == GPIO_AF_RTC_50Hz)  || ((AF) == GPIO_AF_TIM14)     || \
+..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
+  void        RCC_PLLI2SConfig(uint32_t PLLI2SN, uint32_t PLLI2SQ, uint32_t PLLI2SR);
+..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 151)
+  #define IS_SYSCFG_MEMORY_REMAP_CONFING(REMAP) (((REMAP) == SYSCFG_MemoryRemap_Flash)       || \
+..\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_spi.c: 4 warnings, 2 errors
+compiling stm32f4xx_adc.c...
+..\CMSIS\stm32f4xx.h(418): error:  #67: expected a "}"
+    EXTI9_5_IRQn                = 23,     /*!< External Line[9:5] Interrupts                                     */
+..\CMSIS\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
+  } IRQn_Type;
+..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(180): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
+  #define IS_FLASH_ADDRESS(ADDRESS) ((((ADDRESS) >= 0x08000000) && ((ADDRESS) < 0x0803FFFF)) ||\
+..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 387)
+  #define IS_GPIO_AF(AF)   (((AF) == GPIO_AF_RTC_50Hz)  || ((AF) == GPIO_AF_TIM14)     || \
+..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
+  void        RCC_PLLI2SConfig(uint32_t PLLI2SN, uint32_t PLLI2SQ, uint32_t PLLI2SR);
+..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 151)
+  #define IS_SYSCFG_MEMORY_REMAP_CONFING(REMAP) (((REMAP) == SYSCFG_MemoryRemap_Flash)       || \
+..\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_adc.c: 4 warnings, 2 errors
+compiling tm_stm32f4_delay.c...
+..\CMSIS\stm32f4xx.h(418): error:  #67: expected a "}"
+    EXTI9_5_IRQn                = 23,     /*!< External Line[9:5] Interrupts                                     */
+..\CMSIS\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
+  } IRQn_Type;
+..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(180): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
+  #define IS_FLASH_ADDRESS(ADDRESS) ((((ADDRESS) >= 0x08000000) && ((ADDRESS) < 0x0803FFFF)) ||\
+..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 387)
+  #define IS_GPIO_AF(AF)   (((AF) == GPIO_AF_RTC_50Hz)  || ((AF) == GPIO_AF_TIM14)     || \
+..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
+  void        RCC_PLLI2SConfig(uint32_t PLLI2SN, uint32_t PLLI2SQ, uint32_t PLLI2SR);
+..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 151)
+  #define IS_SYSCFG_MEMORY_REMAP_CONFING(REMAP) (((REMAP) == SYSCFG_MemoryRemap_Flash)       || \
+..\..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c: 4 warnings, 2 errors
+compiling main.c...
+..\CMSIS\stm32f4xx.h(418): error:  #67: expected a "}"
+    EXTI9_5_IRQn                = 23,     /*!< External Line[9:5] Interrupts                                     */
+..\CMSIS\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
+  } IRQn_Type;
+..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(180): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
+  #define IS_FLASH_ADDRESS(ADDRESS) ((((ADDRESS) >= 0x08000000) && ((ADDRESS) < 0x0803FFFF)) ||\
+..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 387)
+  #define IS_GPIO_AF(AF)   (((AF) == GPIO_AF_RTC_50Hz)  || ((AF) == GPIO_AF_TIM14)     || \
+..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
+  void        RCC_PLLI2SConfig(uint32_t PLLI2SN, uint32_t PLLI2SQ, uint32_t PLLI2SR);
+..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 151)
+  #define IS_SYSCFG_MEMORY_REMAP_CONFING(REMAP) (((REMAP) == SYSCFG_MemoryRemap_Flash)       || \
+..\User\main.c: 4 warnings, 2 errors
+compiling stm32f4xx_it.c...
+..\CMSIS\stm32f4xx.h(418): error:  #67: expected a "}"
+    EXTI9_5_IRQn                = 23,     /*!< External Line[9:5] Interrupts                                     */
+..\CMSIS\stm32f4xx.h(457): warning:  #12-D: parsing restarts here after previous syntax error
+  } IRQn_Type;
+..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_flash.h(180): warning:  #47-D: incompatible redefinition of macro "IS_FLASH_ADDRESS" (declared at line 170)
+  #define IS_FLASH_ADDRESS(ADDRESS) ((((ADDRESS) >= 0x08000000) && ((ADDRESS) < 0x0803FFFF)) ||\
+..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_gpio.h(404): warning:  #47-D: incompatible redefinition of macro "IS_GPIO_AF" (declared at line 387)
+  #define IS_GPIO_AF(AF)   (((AF) == GPIO_AF_RTC_50Hz)  || ((AF) == GPIO_AF_TIM14)     || \
+..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_rcc.h(546): error:  #147-D: declaration is incompatible with "void RCC_PLLI2SConfig(uint32_t, uint32_t)" (declared at line 542)
+  void        RCC_PLLI2SConfig(uint32_t PLLI2SN, uint32_t PLLI2SQ, uint32_t PLLI2SR);
+..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_syscfg.h(157): warning:  #47-D: incompatible redefinition of macro "IS_SYSCFG_MEMORY_REMAP_CONFING" (declared at line 151)
+  #define IS_SYSCFG_MEMORY_REMAP_CONFING(REMAP) (((REMAP) == SYSCFG_MemoryRemap_Flash)       || \
+..\User\stm32f4xx_it.c: 4 warnings, 2 errors
+".\project.axf" - 23 Error(s), 42 Warning(s).
+Target not created

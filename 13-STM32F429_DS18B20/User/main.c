@@ -21,6 +21,7 @@
 #include "tm_stm32f4_onewire.h"
 #include "tm_stm32f4_usart.h"
 #include "tm_stm32f4_ds18b20.h"
+#include "tm_stm32f4_disco.h"
 #include <stdio.h>
 
 //How many sensors we are expecting on 1wire bus?
@@ -41,6 +42,11 @@ int main(void) {
 	TM_OneWire_Init();
 	//Initialize USART, TX: PA9, RX: PA10
 	TM_USART_Init(USART1, TM_USART_PinsPack_1, 115200);
+	
+	//Initialize Leds
+	TM_DISCO_LedInit();
+	//Turn leds on
+	TM_DISCO_LedOn(LED_RED | LED_GREEN);
 	
 	//Checks for any device on 1-wire
 	devices = TM_OneWire_First();

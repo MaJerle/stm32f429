@@ -143,7 +143,7 @@
             <RestoreTracepoints>1</RestoreTracepoints>
           </Target>
           <RunDebugAfterBuild>0</RunDebugAfterBuild>
-          <TargetSelection>12</TargetSelection>
+          <TargetSelection>1</TargetSelection>
           <SimDlls>
             <CpuDll></CpuDll>
             <CpuDllArguments></CpuDllArguments>
@@ -157,7 +157,7 @@
             <PeripheralDll></PeripheralDll>
             <PeripheralDllArguments></PeripheralDllArguments>
             <InitializationFile></InitializationFile>
-            <Driver>STLink\ST-LINKIII-KEIL_SWO.dll</Driver>
+            <Driver>BIN\UL2CM3.DLL</Driver>
           </TargetDlls>
         </DebugOption>
         <Utilities>
@@ -171,7 +171,7 @@
           </Flash1>
           <bUseTDR>1</bUseTDR>
           <Flash2>BIN\UL2CM3.DLL</Flash2>
-          <Flash3>"" ()</Flash3>
+          <Flash3></Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
           <pFcarmGrp></pFcarmGrp>
@@ -359,7 +359,7 @@
             <useXO>0</useXO>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>STM32F429_439xx,USE_STDPERIPH_DRIVER,STM32F4XX,__ASSEMBLY__,KEIL_IDE</Define>
+              <Define>USE_STDPERIPH_DRIVER,STM32F4XX,__ASSEMBLY__,KEIL_IDE</Define>
               <Undefine></Undefine>
               <IncludePath>..\CMSIS;..\User;..\MDK-ARM;..\STM32F4xx_StdPeriph_Driver\inc;..\STM32F4xx_StdPeriph_Driver\src;..\..\00-STM32F429_LIBRARIES</IncludePath>
             </VariousControls>
@@ -668,6 +668,16 @@
               <FileName>tm_stm32f4_ds18b20.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_ds18b20.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_disco.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_disco.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.h</FilePath>
             </File>
           </Files>
         </Group>
