@@ -5,8 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@version 	v1.0
- *	@gcc		v4.7 20013qr3
- *	@ide		CooCox CoIDE v1.7.6
+ *	@ide		Keil uVision 5
  */
 #ifndef TM_DEFINES_H
 #define TM_DEFINES_H

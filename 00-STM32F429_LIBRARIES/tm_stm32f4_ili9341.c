@@ -34,13 +34,13 @@ void TM_ILI9341_Init() {
 	
 	TM_ILI9341_InitLCD();	
 	
-	TM_ILI9341_Fill(ILI9341_COLOR_WHITE);
-	
 	ILI9341_x = ILI9341_y = 0;
 	
 	ILI9341_Opts.width = ILI9341_WIDTH;
 	ILI9341_Opts.height = ILI9341_HEIGHT;
 	ILI9341_Opts.orientation = TM_ILI9341_Portrait;
+	
+	TM_ILI9341_Fill(ILI9341_COLOR_WHITE);
 }
 
 void TM_ILI9341_InitLCD(void) {

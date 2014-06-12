@@ -20,6 +20,7 @@ If you are working with Keil uVision, than set KEIL_IDE define in options for pr
 #define TM_DELAY_ 110
 /**
  * Library dependencies
+ * - STM32F4xx RCC
  * - defines.h
  */
 /**
