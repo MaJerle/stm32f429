@@ -213,7 +213,7 @@ extern void TM_SPI_Init(SPI_TypeDef* SPIx, TM_SPI_PinsPack_t pinspack);
 /**
  * SPI1 uses pins:
  * 	- Pins pack 1:
- * 		- MOSI: PA7
+ * 		- MOSI: PA7 
  * 		- MISO: PA6
  * 		- SCK:  PA5
  * 	- Pins pack 2:

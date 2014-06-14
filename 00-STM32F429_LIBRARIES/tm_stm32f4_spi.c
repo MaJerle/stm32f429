@@ -169,6 +169,7 @@ void TM_SPI2_Init(TM_SPI_PinsPack_t pinspack) {
 		SPI_InitDef.SPI_CPHA = SPI_CPHA_2Edge;
 	}
 	SPI_InitDef.SPI_NSS = SPI_NSS_Soft;
+	SPI_Init(SPI2, &SPI_InitDef);
 	SPI_Cmd(SPI2, ENABLE);
 }
 #endif
