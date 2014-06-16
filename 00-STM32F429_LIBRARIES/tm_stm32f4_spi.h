@@ -306,4 +306,18 @@ extern void TM_SPI6_Init(void);
  */
 extern uint8_t TM_SPI_Send(SPI_TypeDef* SPIx, uint8_t data);
 
+/**
+ * Send and receive multiple data bytes over SPI
+ *
+ * Parameters:
+ * 	- SPI_TypeDef* SPIx: Select SPI which will operate with data
+ * 	- uint8_t dataOut: pointer to data to be sent out
+ *	- uint8_t dataIn: pointer to received data
+ *	- uint8_t count: number of bytes to send
+ *
+ * No returns
+ */
+extern void TM_SPI_SendMulti(SPI_TypeDef* SPIx, uint8_t *dataOut, uint8_t *dataIn, uint8_t count);
+
 #endif
+
