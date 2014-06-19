@@ -68,7 +68,7 @@ typedef enum {
 #endif
 //Mode, master or slave
 #ifndef TM_SPI1_MASTERSLAVE
-#define TM_SPI1_MASTERSLAVE SPI_Mode_Master
+#define TM_SPI1_MASTERSLAVE	SPI_Mode_Master
 #endif
 //Specify mode of operation, clock polarity and clock phase
 #ifndef TM_SPI1_MODE

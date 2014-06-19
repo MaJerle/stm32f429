@@ -34,7 +34,7 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 	 * Initialize USARTx pins
 	 * Set channel for USARTx NVIC
 	 */
-#ifdef USART1
+#ifdef USART1_IRQn
 	if (USARTx == USART1) {
 		TM_USART1_InitPins(pinspack);
 		NVIC_InitStruct.NVIC_IRQChannel = USART1_IRQn;
@@ -46,7 +46,7 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 		USART_InitStruct.USART_WordLength = TM_USART1_WORD_LENGTH;
 	}
 #endif
-#ifdef USART2
+#ifdef USART2_IRQn
 	if (USARTx == USART2) {
 		TM_USART2_InitPins(pinspack);
 		NVIC_InitStruct.NVIC_IRQChannel = USART2_IRQn;
@@ -58,7 +58,7 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 		USART_InitStruct.USART_WordLength = TM_USART2_WORD_LENGTH;
 	}
 #endif
-#ifdef USART3
+#ifdef USART3_IRQn
 	if (USARTx == USART3) {
 		TM_USART3_InitPins(pinspack);
 		NVIC_InitStruct.NVIC_IRQChannel = USART3_IRQn;
@@ -70,7 +70,7 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 		USART_InitStruct.USART_WordLength = TM_USART3_WORD_LENGTH;
 	}
 #endif
-#ifdef UART4
+#ifdef UART4_IRQn
 	if (USARTx == UART4) {
 		TM_UART4_InitPins(pinspack);
 		NVIC_InitStruct.NVIC_IRQChannel = UART4_IRQn;
@@ -82,7 +82,7 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 		USART_InitStruct.USART_WordLength = TM_UART4_WORD_LENGTH;
 	}
 #endif
-#ifdef UART5
+#ifdef UART5_IRQn
 	if (USARTx == UART5) {
 		TM_UART5_InitPins(pinspack);
 		NVIC_InitStruct.NVIC_IRQChannel = UART5_IRQn;
@@ -94,7 +94,7 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 		USART_InitStruct.USART_WordLength = TM_UART5_WORD_LENGTH;
 	}
 #endif
-#ifdef USART6
+#ifdef USART6_IRQn
 	if (USARTx == USART6) {
 		TM_USART6_InitPins(pinspack);
 		NVIC_InitStruct.NVIC_IRQChannel = USART6_IRQn;
