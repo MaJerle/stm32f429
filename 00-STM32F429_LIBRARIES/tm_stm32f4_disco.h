@@ -3,7 +3,7 @@
  *	
  *	Library works for both Discovery boards.
  *	
- *	STM32F4 Discovery:
+ *	STM32F4 Discovery: (STM32F407VG)
  *		- Leds:
  *			- LED_GREEN 	on PD12
  *			- LED_ORANGE	on PD13
@@ -12,7 +12,7 @@
  *		- Button:
  *			- Blue button	on PA0
  *			
- *	STM32F429 Discovery:
+ *	STM32F429 Discovery: (STM32F429ZI)
  *		- Leds:
  *			- LED_GREEN 	on PG13
  *			- LED_RED 		on PG14
@@ -23,11 +23,11 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://bit.ly/1k585Oo
- *	@version 	v1.1
+ *	@version 	v1.2
  *	@ide		Keil uVision
  */
 #ifndef TM_DISCO_
-#define TM_DISCO_ 110
+#define TM_DISCO_ 120
 /**
  * Library dependencies
  * - STM32F4xx RCC
@@ -43,21 +43,22 @@
 #include "defines.h"
 
 //Recognize STM32F4 or STM32F429 Discovery
-#if defined(STM32F407VG) || defined(STM32F40_41xxx)
-	#define STM32F4_DISCOVERY
-#elif defined(STM32F429_439xx)
+//Added nucleo board
+#if defined(STM32F429_439xx)
 	#define STM32F429_DISCOVERY
+#elif defined(STM32F407VG) || defined(STM32F40_41xxx)
+	#define STM32F4_DISCOVERY
 #endif
 
 /**
  * Defines
  */
-#ifdef STM32F429_DISCOVERY
+#if defined(STM32F429_DISCOVERY)
 	#define LED_GREEN					GPIO_Pin_13
 	#define LED_RED						GPIO_Pin_14
 	#define TM_DISCO_LED_RCC			RCC_AHB1Periph_GPIOG
 	#define TM_DISCO_LED_PORT			GPIOG
-
+	#define TM_DISCO_LED_PINS			LED_GREEN | LED_RED
 
 	#define TM_DISCO_BUTTON_RCC			RCC_AHB1Periph_GPIOA
 	#define TM_DISCO_BUTTON_PORT		GPIOA
@@ -69,6 +70,7 @@
 	#define LED_BLUE					GPIO_Pin_15
 	#define TM_DISCO_LED_RCC			RCC_AHB1Periph_GPIOD
 	#define TM_DISCO_LED_PORT			GPIOD
+	#define TM_DISCO_LED_PINS			LED_GREEN | LED_RED | LED_ORANGE | LED_BLUE
 
 	#define TM_DISCO_BUTTON_RCC			RCC_AHB1Periph_GPIOA
 	#define TM_DISCO_BUTTON_PORT		GPIOA

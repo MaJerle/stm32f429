@@ -13,12 +13,7 @@ void TM_DISCO_LedInit(void) {
 	 * No pull resistor
 	 * Speed 100MHz
 	 */
-#ifdef STM32F429_DISCOVERY
-	GPIO_InitDef.GPIO_Pin = LED_GREEN | LED_RED;
-#endif
-#ifdef STM32F4_DISCOVERY
-	GPIO_InitDef.GPIO_Pin = LED_GREEN | LED_RED | LED_ORANGE | LED_BLUE;
-#endif
+	GPIO_InitDef.GPIO_Pin = TM_DISCO_LED_PINS;
 	GPIO_InitDef.GPIO_OType = GPIO_OType_PP;
 	GPIO_InitDef.GPIO_Mode = GPIO_Mode_OUT;
 	GPIO_InitDef.GPIO_PuPd = GPIO_PuPd_NOPULL;
