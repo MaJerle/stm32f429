@@ -45,6 +45,8 @@ http://bit.ly/1jVGY96
 http://bit.ly/1oxFaDK
 16. HD44780 - HD44780 Alpha numeric LCD driver for STM32F429 discovery
 http://bit.ly/1gR6Lzz
+17. NRF24L01+ - NRF24L01+ 2.4 GHz transceiver library
+http://bit.ly/1pTkrgY
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB
