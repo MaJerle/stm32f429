@@ -37,6 +37,30 @@
 #include "stm32f4xx_usart.h"
 #include "defines.h"
 
+#if defined (STM32F40_41xxx)
+#define TM_USE_USART1
+#define TM_USE_USART2
+#define TM_USE_USART3
+#define TM_USE_UART4
+#define TM_USE_UART5
+#define TM_USE_USART6
+#endif /* STM32F40_41xxx */
+#if defined (STM32F427_437xx) || defined (STM32F429_439xx)
+#define TM_USE_USART1
+#define TM_USE_USART2
+#define TM_USE_USART3
+#define TM_USE_UART4
+#define TM_USE_UART5
+#define TM_USE_USART6
+#define TM_USE_UART7
+#define TM_USE_UART8
+#endif /* STM32F427_437x || STM32F429_439xx */
+#if defined (STM32F401xx)
+#define TM_USE_USART1
+#define TM_USE_USART2
+#define TM_USE_USART6
+#endif /* STM32F401xx */
+
 //Buffer size
 #ifndef TM_USART_BUFFER_SIZE
 #define TM_USART_BUFFER_SIZE 		32

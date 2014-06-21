@@ -34,7 +34,7 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 	 * Initialize USARTx pins
 	 * Set channel for USARTx NVIC
 	 */
-#ifdef USART1_IRQn
+#ifdef TM_USE_USART1
 	if (USARTx == USART1) {
 		TM_USART1_InitPins(pinspack);
 		NVIC_InitStruct.NVIC_IRQChannel = USART1_IRQn;
@@ -46,7 +46,7 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 		USART_InitStruct.USART_WordLength = TM_USART1_WORD_LENGTH;
 	}
 #endif
-#ifdef USART2_IRQn
+#ifdef TM_USE_USART2
 	if (USARTx == USART2) {
 		TM_USART2_InitPins(pinspack);
 		NVIC_InitStruct.NVIC_IRQChannel = USART2_IRQn;
@@ -58,7 +58,7 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 		USART_InitStruct.USART_WordLength = TM_USART2_WORD_LENGTH;
 	}
 #endif
-#ifdef USART3_IRQn
+#ifdef TM_USE_USART3
 	if (USARTx == USART3) {
 		TM_USART3_InitPins(pinspack);
 		NVIC_InitStruct.NVIC_IRQChannel = USART3_IRQn;
@@ -70,7 +70,7 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 		USART_InitStruct.USART_WordLength = TM_USART3_WORD_LENGTH;
 	}
 #endif
-#ifdef UART4_IRQn
+#ifdef TM_USE_UART4
 	if (USARTx == UART4) {
 		TM_UART4_InitPins(pinspack);
 		NVIC_InitStruct.NVIC_IRQChannel = UART4_IRQn;
@@ -82,7 +82,7 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 		USART_InitStruct.USART_WordLength = TM_UART4_WORD_LENGTH;
 	}
 #endif
-#ifdef UART5_IRQn
+#ifdef TM_USE_UART5
 	if (USARTx == UART5) {
 		TM_UART5_InitPins(pinspack);
 		NVIC_InitStruct.NVIC_IRQChannel = UART5_IRQn;
@@ -94,7 +94,7 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 		USART_InitStruct.USART_WordLength = TM_UART5_WORD_LENGTH;
 	}
 #endif
-#ifdef USART6_IRQn
+#ifdef TM_USE_USART6
 	if (USARTx == USART6) {
 		TM_USART6_InitPins(pinspack);
 		NVIC_InitStruct.NVIC_IRQChannel = USART6_IRQn;
@@ -106,7 +106,7 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 		USART_InitStruct.USART_WordLength = TM_USART6_WORD_LENGTH;
 	}
 #endif
-#ifdef UART7_IRQn
+#ifdef TM_USE_UART7
 	if (USARTx == UART7) {
 		TM_UART7_InitPins(pinspack);
 		NVIC_InitStruct.NVIC_IRQChannel = UART7_IRQn;
@@ -118,7 +118,7 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 		USART_InitStruct.USART_WordLength = TM_UART7_WORD_LENGTH;
 	}
 #endif
-#ifdef UART8_IRQn
+#ifdef TM_USE_UART8
 	if (USARTx == UART8) {
 		TM_UART8_InitPins(pinspack);
 		NVIC_InitStruct.NVIC_IRQChannel = UART8_IRQn;
@@ -152,7 +152,7 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 	NVIC_Init(&NVIC_InitStruct);
 }
 
-#ifdef USART1
+#ifdef TM_USE_USART1
 void TM_USART1_InitPins(TM_USART_PinsPack_t pinspack) {
 	//GPIO Structure
 	GPIO_InitTypeDef GPIO_InitStruct;
@@ -191,7 +191,7 @@ void TM_USART1_InitPins(TM_USART_PinsPack_t pinspack) {
 }
 #endif
 
-#ifdef USART2
+#ifdef TM_USE_USART2
 void TM_USART2_InitPins(TM_USART_PinsPack_t pinspack) {
 	//GPIO Structure
 	GPIO_InitTypeDef GPIO_InitStruct;
@@ -229,7 +229,7 @@ void TM_USART2_InitPins(TM_USART_PinsPack_t pinspack) {
 }
 #endif
 
-#ifdef USART3
+#ifdef TM_USE_USART3
 void TM_USART3_InitPins(TM_USART_PinsPack_t pinspack) {
 	//GPIO Structure
 	GPIO_InitTypeDef GPIO_InitStruct;
@@ -278,7 +278,7 @@ void TM_USART3_InitPins(TM_USART_PinsPack_t pinspack) {
 }
 #endif
 
-#ifdef UART4
+#ifdef TM_USE_UART4
 void TM_UART4_InitPins(TM_USART_PinsPack_t pinspack) {
 	//GPIO Structure
 	GPIO_InitTypeDef GPIO_InitStruct;
@@ -316,7 +316,7 @@ void TM_UART4_InitPins(TM_USART_PinsPack_t pinspack) {
 }
 #endif
 
-#ifdef UART5
+#ifdef TM_USE_UART5
 void TM_UART5_InitPins(TM_USART_PinsPack_t pinspack) {
 	//GPIO Structure
 	GPIO_InitTypeDef GPIO_InitStruct;
@@ -346,7 +346,7 @@ void TM_UART5_InitPins(TM_USART_PinsPack_t pinspack) {
 }
 #endif
 
-#ifdef USART6
+#ifdef TM_USE_USART6
 void TM_USART6_InitPins(TM_USART_PinsPack_t pinspack) {
 	//GPIO Structure
 	GPIO_InitTypeDef GPIO_InitStruct;
@@ -384,7 +384,7 @@ void TM_USART6_InitPins(TM_USART_PinsPack_t pinspack) {
 }
 #endif
 
-#ifdef UART7
+#ifdef TM_USE_UART7
 void TM_UART7_InitPins(TM_USART_PinsPack_t pinspack) {
 	//GPIO Structure
 	GPIO_InitTypeDef GPIO_InitStruct;
@@ -422,7 +422,7 @@ void TM_UART7_InitPins(TM_USART_PinsPack_t pinspack) {
 }
 #endif
 
-#ifdef UART8
+#ifdef TM_USE_UART8
 void TM_UART8_InitPins(TM_USART_PinsPack_t pinspack) {
 	//GPIO Structure
 	GPIO_InitTypeDef GPIO_InitStruct;

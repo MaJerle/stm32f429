@@ -11,7 +11,8 @@
 #include "stm32f4xx_rcc.h"
 #include "stm32f4xx_gpio.h"
 #include "tm_stm32f4_delay.h"
-
+#include "tm_stm32f4_usart.h"
+#include "tm_stm32f4_spi.h"
 
 int main(void) {
 	GPIO_InitTypeDef GPIO_InitDef;

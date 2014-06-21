@@ -47,12 +47,14 @@ uint8_t TM_DS18B20_Read(uint8_t *ROM, float *destination) {
 	
 	//First two bytes of scratchpad are temperature values
 	temperature = TM_OneWire_ReadByte() | (TM_OneWire_ReadByte() << 8);
+
 	//Reset line
 	TM_OneWire_Reset();
 	
 	if (((temperature >> 15)) == 1) {
 		//Two's complement, temperature is negative
 		temperature = ~temperature + 1;
+		minus = 1;
 	}
 
 	//Get sensor resolution
@@ -76,11 +78,11 @@ uint8_t TM_DS18B20_Read(uint8_t *ROM, float *destination) {
 			decimal *= (float)TM_DS18B20_DECIMAL_STEPS_11BIT;
 		} break;
 		case 12: {
-			decimal = temperature & 0x0f;
+			decimal = temperature & 0x0F;
 			decimal *= (float)TM_DS18B20_DECIMAL_STEPS_12BIT;
 		} break;
 		default: {
-			decimal = 255;
+			decimal = 0xFF;
 			digit = 0;
 		}
 	}

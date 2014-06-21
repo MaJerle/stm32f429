@@ -319,5 +319,30 @@ extern uint8_t TM_SPI_Send(SPI_TypeDef* SPIx, uint8_t data);
  */
 extern void TM_SPI_SendMulti(SPI_TypeDef* SPIx, uint8_t *dataOut, uint8_t *dataIn, uint8_t count);
 
+/**
+ * Write multiple data via SPI
+ *
+ * Parameters:
+ * 	- SPI_TypeDef* SPIx: Select SPI which will operate with data
+ * 	- uint8_t dataOut: pointer to data to be sent out
+ *	- uint8_t count: number of bytes to send
+ *
+ * No returns
+ */
+extern void TM_SPI_WriteMulti(SPI_TypeDef* SPIx, uint8_t *dataOut, uint8_t count);
+
+/**
+ * Send and receive multiple data bytes over SPI
+ *
+ * Parameters:
+ * 	- SPI_TypeDef* SPIx: Select SPI which will operate with data
+ *	- uint8_t dataIn: pointer to received data
+ *	- uint8_t dummy: dummy byte to be sent to SPI
+ *	- uint8_t count: number of bytes to receive
+ *
+ * No returns
+ */
+extern void TM_SPI_ReadMulti(SPI_TypeDef* SPIx, uint8_t *dataIn, uint8_t dummy, uint8_t count);
+
 #endif
 

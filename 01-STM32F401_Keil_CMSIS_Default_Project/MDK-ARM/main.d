@@ -29,3 +29,5 @@
 .\main.o: ..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_wwdg.h
 .\main.o: ..\STM32F4xx_StdPeriph_Driver\inc\misc.h
 .\main.o: ..\..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.h
+.\main.o: ..\..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h
+.\main.o: ..\..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.h
