@@ -61,5 +61,9 @@ uint8_t TM_DISCO_LedIsOn(uint16_t led) {
 }
 
 uint8_t TM_DISCO_ButtonPressed(void) {
-	return GPIO_ReadInputDataBit(TM_DISCO_BUTTON_PORT, TM_DISCO_BUTTON_PIN);
+	#ifdef NUCLEO_F401
+		return !GPIO_ReadInputDataBit(TM_DISCO_BUTTON_PORT, TM_DISCO_BUTTON_PIN);
+	#else
+		return GPIO_ReadInputDataBit(TM_DISCO_BUTTON_PORT, TM_DISCO_BUTTON_PIN);
+	#endif
 }

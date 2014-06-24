@@ -27,7 +27,7 @@
 #include "stm32f4xx_fmc.h"
 #include "defines.h"
 //SDRAM start address
-#define SDRAM_START_ADR			0xD0000000
+#define SDRAM_START_ADR			(uint32_t)0xD0000000
 //SDRAM max memory width = 8MB
 #define SDRAM_MEMORY_WIDTH		(uint32_t)0x800000
 

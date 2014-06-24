@@ -48,6 +48,8 @@
 	#define STM32F429_DISCOVERY
 #elif defined(STM32F407VG) || defined(STM32F40_41xxx)
 	#define STM32F4_DISCOVERY
+#elif defined (STM32F401xx)
+	#define NUCLEO_F401
 #endif
 
 /**
@@ -75,6 +77,15 @@
 	#define TM_DISCO_BUTTON_RCC			RCC_AHB1Periph_GPIOA
 	#define TM_DISCO_BUTTON_PORT		GPIOA
 	#define TM_DISCO_BUTTON_PIN			GPIO_Pin_0
+#elif defined(NUCLEO_F401)
+	#define LED_GREEN					GPIO_Pin_5
+	#define TM_DISCO_LED_RCC			RCC_AHB1Periph_GPIOA
+	#define TM_DISCO_LED_PORT			GPIOA
+	#define TM_DISCO_LED_PINS			LED_GREEN
+
+	#define TM_DISCO_BUTTON_RCC			RCC_AHB1Periph_GPIOC
+	#define TM_DISCO_BUTTON_PORT		GPIOC
+	#define TM_DISCO_BUTTON_PIN			GPIO_Pin_13
 #else
 	#error "Please select your discovery board"
 #endif

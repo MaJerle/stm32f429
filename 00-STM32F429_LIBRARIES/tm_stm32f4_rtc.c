@@ -21,7 +21,7 @@ void TM_RTC_Init(TM_RTC_ClockSource_t source) {
 		TM_RTC_Config(source);
 	} else {
 		// Enable the PWR clock
-		RCC_APB1PeriphClockCmd(RCC_APB1Periph_PWR, ENABLE);
+		//RCC_APB1PeriphClockCmd(RCC_APB1Periph_PWR, ENABLE);
 		
 		//Already initialized
 		RTC_ClearITPendingBit(RTC_IT_WUT);
@@ -40,7 +40,7 @@ void TM_RTC_Init(TM_RTC_ClockSource_t source) {
 }
 
 void TM_RTC_SetDateTime(TM_RTC_Data_t* data, TM_RTC_Format_t format) {
-		RTC_InitTypeDef RTC_InitStruct;
+	RTC_InitTypeDef RTC_InitStruct;
 	
 	TM_RTC_SetTime(data, format);
 	TM_RTC_SetDate(data, format);
@@ -163,10 +163,10 @@ void TM_RTC_Config(TM_RTC_ClockSource_t source) {
 	RTC_InitTypeDef RTC_InitStruct;
 
 	// Enable the PWR clock
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_PWR, ENABLE);
+	//RCC_APB1PeriphClockCmd(RCC_APB1Periph_PWR, ENABLE);
 
 	// Allow access to RTC
-	PWR_BackupAccessCmd(ENABLE);
+	//PWR_BackupAccessCmd(ENABLE);
 
 	if (source == TM_RTC_ClockSource_Internal) {
 		// Enable the LSI OSC 

@@ -128,8 +128,9 @@ void TM_HD44780_Cmd4bit(uint8_t cmd) {
 void TM_HD44780_CursorSet(uint8_t col, uint8_t row) {
 	uint8_t row_offsets[] = {0x00, 0x40, 0x14, 0x54};
 	
+	//Go to the beginning
 	if (row >= TM_HD44780_Opts.Rows) {
-		row = 0;	// we count rows starting 0
+		row = 0;
 	}
 	
 	TM_HD44780_Opts.currentX = col;

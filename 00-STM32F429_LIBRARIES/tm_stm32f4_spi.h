@@ -47,10 +47,10 @@ typedef enum {
  * Every SPIx can work in 4 different modes
  */
 typedef enum {
-	TM_SPI_Mode_0,
-	TM_SPI_Mode_1,
-	TM_SPI_Mode_2,
-	TM_SPI_Mode_3
+	TM_SPI_Mode_0,	//Clock polarity low, clock phase 1st edge
+	TM_SPI_Mode_1,	//Clock polarity low, clock phase 2nd edge
+	TM_SPI_Mode_2,	//Clock polarity high, clock phase 1st edge
+	TM_SPI_Mode_3	//Clock polarity high, clock phase 2nd edge
 } TM_SPI_Mode_t;
 
 //----- SPI1 options start -------

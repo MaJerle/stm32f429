@@ -36,7 +36,7 @@ int main(void) {
 	//Put string to LCD
 	TM_HD44780_Puts(0, 0, "STM32F4/29 Discovery");
 	TM_HD44780_Puts(2, 1, "20x4 HD44780 LCD");
-	TM_HD44780_Puts(0, 2, "stm32f429-\n\r       discovery.com");
+	TM_HD44780_Puts(0, 2, "stm32f4-\n\r       discovery.com");
 
 	//Wait a little
 	Delayms(3000);

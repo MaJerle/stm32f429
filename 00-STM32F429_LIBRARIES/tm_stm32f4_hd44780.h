@@ -11,6 +11,7 @@
  */
 #ifndef TM_HD44780_H
 #define TM_HD44780_H 100
+
 /**
  * Dependencies
  * 	- STM32F4xx
@@ -72,7 +73,6 @@
 
 #define TM_HD44780_E_BLINK		TM_HD44780_E_HIGH; TM_HD44780_Delay(20); TM_HD44780_E_LOW; TM_HD44780_Delay(20)
 #define TM_HD44780_Delay(x)		Delay(x)
-
 //Commands
 #define TM_HD44780_CLEARDISPLAY			0x01
 #define TM_HD44780_RETURNHOME			0x02

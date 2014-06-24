@@ -47,6 +47,8 @@ http://bit.ly/1oxFaDK
 http://bit.ly/1gR6Lzz
 17. NRF24L01+ - NRF24L01+ 2.4 GHz transceiver library
 http://bit.ly/1pTkrgY
+18. ILI8341 LTDC - ILI9341 LCD with LTDC hardware only for STM32F429
+http://bit.ly/1jeZaqH
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB

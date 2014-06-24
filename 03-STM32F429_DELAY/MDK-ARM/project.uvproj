@@ -640,19 +640,14 @@
               <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_hd44780.c</FileName>
+              <FileName>tm_stm32f4_disco.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_hd44780.c</FilePath>
+              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_hd44780.h</FileName>
+              <FileName>tm_stm32f4_disco.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_hd44780.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_usart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</FilePath>
+              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.h</FilePath>
             </File>
           </Files>
         </Group>
