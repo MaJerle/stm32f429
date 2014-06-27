@@ -20,6 +20,15 @@
  */
 #include "stm32f4xx.h"
 
+/**
+ * Generate CRC from given data
+ *
+ * Parameters:
+ * 	- uint8_t* data: pointer to data array
+ * 	- uint8_t length: length of data
+ *
+ * Returns 16bit CRC generated
+ */
 extern uint16_t TM_CRC_Generate(uint8_t* data, uint8_t length);
 
 #endif
