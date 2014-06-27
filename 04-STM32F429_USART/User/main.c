@@ -16,7 +16,7 @@ int main(void) {
 	
 	//Initialize system
 	SystemInit();
-
+	
 	TM_DELAY_Init();
 
 	//Initialize USART1 at 9600 baud, TX: PA9, RX: PA10
@@ -33,3 +33,8 @@ int main(void) {
 		}
 	}
 }
+
+void TM_USART1_Handler(void) {
+
+}
+

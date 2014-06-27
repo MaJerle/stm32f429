@@ -69,8 +69,8 @@ void TM_ILI9341_InitPins(void) {
 	GPIO_PinAFConfig(GPIOA, GPIO_PinSource6, GPIO_AF_LTDC);
 	GPIO_PinAFConfig(GPIOA, GPIO_PinSource11, GPIO_AF_LTDC);
 	GPIO_PinAFConfig(GPIOA, GPIO_PinSource12, GPIO_AF_LTDC);
-	GPIO_PinAFConfig(GPIOB, GPIO_PinSource0, 0x09);
-	GPIO_PinAFConfig(GPIOB, GPIO_PinSource1, 0x09);
+	GPIO_PinAFConfig(GPIOB, GPIO_PinSource0, GPIO_AF_LTDC);
+	GPIO_PinAFConfig(GPIOB, GPIO_PinSource1, GPIO_AF_LTDC);
 	GPIO_PinAFConfig(GPIOB, GPIO_PinSource8, GPIO_AF_LTDC);
 	GPIO_PinAFConfig(GPIOB, GPIO_PinSource9, GPIO_AF_LTDC);
 	GPIO_PinAFConfig(GPIOB, GPIO_PinSource10, GPIO_AF_LTDC);
@@ -83,9 +83,9 @@ void TM_ILI9341_InitPins(void) {
 	GPIO_PinAFConfig(GPIOF, GPIO_PinSource10, GPIO_AF_LTDC);
 	GPIO_PinAFConfig(GPIOG, GPIO_PinSource6, GPIO_AF_LTDC);
 	GPIO_PinAFConfig(GPIOG, GPIO_PinSource7, GPIO_AF_LTDC);
-	GPIO_PinAFConfig(GPIOG, GPIO_PinSource10, 0x09);
+	GPIO_PinAFConfig(GPIOG, GPIO_PinSource10, GPIO_AF_LTDC);
 	GPIO_PinAFConfig(GPIOG, GPIO_PinSource11, GPIO_AF_LTDC);
-	GPIO_PinAFConfig(GPIOG, GPIO_PinSource12, 0x09);
+	GPIO_PinAFConfig(GPIOG, GPIO_PinSource12, GPIO_AF_LTDC);
 	
 	//Common settings
 	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;

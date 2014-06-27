@@ -12,6 +12,7 @@
 #include "tm_stm32f4_ili9341_ltdc.h"
 #include "tm_stm32f4_fonts.h"
 #include "tm_stm32f4_delay.h"
+#include "tm_stm32f4_disco.h"
 #include <stdio.h>
 
 int main(void) {
@@ -52,7 +53,7 @@ int main(void) {
 		//This is like toggle function
 		TM_ILI9341_ChangeLayers();
 		Delayms(500);
-		
+		 
 		/*
 		//Bottom code works the same as one before inside while loop
 		

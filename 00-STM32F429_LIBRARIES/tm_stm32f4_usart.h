@@ -13,12 +13,11 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://bit.ly/1npVXHQ
- *	@version 	v1.1
- *	@gcc		v4.7 20013qr3
- *	@ide		CooCox CoIDE v1.7.6
+ *	@version 	v1.2
+ *	@ide		Keil uVision
  */
 #ifndef TM_USART_
-#define TM_USART_ 110
+#define TM_USART_ 120
 /**
  * Library dependencies
  * - STM32F4xx
@@ -412,6 +411,8 @@ extern uint8_t TM_USART_Getc(USART_TypeDef* USARTx);
  * Called by systen when data is received on USART1
  */
 extern void USART1_IRQHandler(void);
+
+extern void TM_USART1_ReceiveHandler(uint8_t c);
 #endif
 
 #ifdef USART2
@@ -421,6 +422,8 @@ extern void USART1_IRQHandler(void);
  * Called by systen when data is received on USART2
  */
 extern void USART2_IRQHandler(void);
+
+extern void TM_USART2_ReceiveHandler(uint8_t c);
 #endif
 
 #ifdef USART3
@@ -430,6 +433,8 @@ extern void USART2_IRQHandler(void);
  * Called by systen when data is received on USART3
  */
 extern void USART3_IRQHandler(void);
+
+extern void TM_USART3_ReceiveHandler(uint8_t c);
 #endif
 
 #ifdef UART4
@@ -439,6 +444,8 @@ extern void USART3_IRQHandler(void);
  * Called by systen when data is received on UART4
  */
 extern void UART4_IRQHandler(void);
+
+extern void TM_UART4_ReceiveHandler(uint8_t c);
 #endif
 
 #ifdef UART5
@@ -448,6 +455,8 @@ extern void UART4_IRQHandler(void);
  * Called by systen when data is received on UART5
  */
 extern void UART5_IRQHandler(void);
+
+extern void TM_UART5_ReceiveHandler(uint8_t c);
 #endif
 
 #ifdef USART6
@@ -457,6 +466,8 @@ extern void UART5_IRQHandler(void);
  * Called by systen when data is received on USART6
  */
 extern void USART6_IRQHandler(void);
+
+extern void TM_USART6_ReceiveHandler(uint8_t c);
 #endif
 
 #ifdef UART7
@@ -466,6 +477,8 @@ extern void USART6_IRQHandler(void);
  * Called by systen when data is received on UART7
  */
 extern void UART7_IRQHandler(void);
+
+extern void TM_UART7_ReceiveHandler(uint8_t c);
 #endif
 
 #ifdef UART8
@@ -475,6 +488,8 @@ extern void UART7_IRQHandler(void);
  * Called by systen when data is received on UART8
  */
 extern void UART8_IRQHandler(void);
+
+extern void TM_UART8_ReceiveHandler(uint8_t c);
 #endif
 
 /**
@@ -511,5 +526,6 @@ extern uint8_t TM_USART_BufferEmpty(USART_TypeDef* USARTx);
  * Returns x - 1 number.
  */
 uint8_t TM_USART_GetUsartNumber(USART_TypeDef* USARTx);
+
 
 #endif

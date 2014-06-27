@@ -16,6 +16,7 @@
  *	@website	http://stm32f4-discovery.com
  *	@link		http://bit.ly/1lgtcjy
  *	@version 	v1.2
+ *	@ide		Keil uVision
  */
 #ifndef TM_SPI_H
 #define TM_SPI_H 120
