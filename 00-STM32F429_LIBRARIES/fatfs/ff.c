@@ -1826,8 +1826,9 @@ FRESULT create_name (
 		w &= 0xFF;
 		if (IsDBCS1(w)) {				/* Check if it is a DBC 1st byte (always false on SBCS cfg) */
 			b = (BYTE)p[si++];			/* Get 2nd byte */
-			if (!IsDBCS2(b))
+			if (!IsDBCS2(b)) {
 				return FR_INVALID_NAME;	/* Reject invalid sequence */
+			}
 			w = (w << 8) + b;			/* Create a DBC */
 		}
 		w = ff_convert(w, 1);			/* Convert ANSI/OEM to Unicode */
