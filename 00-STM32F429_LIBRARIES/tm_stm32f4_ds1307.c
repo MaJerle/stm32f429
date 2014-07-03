@@ -10,7 +10,7 @@ void TM_DS1307_Init(void) {
 
 void TM_DS1307_GetDateTime(TM_DS1307_Time_t* time) {
 	uint8_t data[7];
-	TM_I2C_ReadMulti(TM_DS1307_I2C, TM_DS1307_I2C_ADDR, TM_DS1307_SECONDS, data, 7);
+	TM_I2C_ReadMulti(TM_DS1307_I2C, TM_DS1307_I2C_ADDR, TM_DS1307_SECONDS, &data[0], 7);
 	
 	time->seconds = TM_DS1307_Bcd2Bin(data[TM_DS1307_SECONDS]);
 	time->minutes = TM_DS1307_Bcd2Bin(data[TM_DS1307_MINUTES]);
@@ -32,7 +32,7 @@ void TM_DS1307_SetDateTime(TM_DS1307_Time_t* time) {
 	data[TM_DS1307_MONTH] = TM_DS1307_Bin2Bcd(TM_DS1307_CheckMinMax(time->month, 1, 12));
 	data[TM_DS1307_YEAR] = TM_DS1307_Bin2Bcd(TM_DS1307_CheckMinMax(time->year, 0, 99));
 	
-	TM_I2C_WriteMulti(TM_DS1307_I2C, TM_DS1307_I2C_ADDR, TM_DS1307_SECONDS, data, 7);
+	TM_I2C_WriteMulti(TM_DS1307_I2C, TM_DS1307_I2C_ADDR, TM_DS1307_SECONDS, &data[0], 7);
 }
 
 uint8_t TM_DS1307_GetSeconds(void) {

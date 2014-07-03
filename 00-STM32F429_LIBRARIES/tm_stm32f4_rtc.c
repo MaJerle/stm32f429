@@ -4,79 +4,77 @@ uint32_t TM_RTC_Status = 0;
 uint8_t TM_RTC_noResetFlag = 0;
 uint16_t uwSynchPrediv = 0xFF, uwAsynchPrediv = 0x7F;
 
-uint32_t TM_RTC_Init(TM_RTC_ClockSource_t source) {
+void TM_RTC_Init(TM_RTC_ClockSource_t source) {
 	uint32_t status;
-	RTC_InitTypeDef RTC_InitStructure;
 
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_PWR, ENABLE);
 
-	// Allow access to BKP Domain
+	/* Allow access to BKP Domain */
 	PWR_BackupAccessCmd(ENABLE);
 
-	// Clear Wakeup flag
+	/* Clear Wakeup flag */
 	PWR_ClearFlag(PWR_FLAG_WU);
 	
-	status = RTC_ReadBackupRegister(RTC_STATUS_REG);
-	
-	if (status == RTC_STATUS_TIME_OK) {
-		TM_RTC_Status = RTC_STATUS_TIME_OK;
-		
-		// Config RTC
+	status = RTC_ReadBackupRegister(TM_RTC_INIT_OK_REG);
+	if (status != TM_RTC_INIT_OK_VAL) {
+		//Initialize RTC
 		TM_RTC_Config(source);
-		
-		// Wait for RTC APB registers synchronisation (needed after start-up from Reset)
-		RTC_WaitForSynchro();
-		
-		//Clear interrupt flags
-		RTC_ClearITPendingBit(RTC_IT_WUT);
-		EXTI_ClearITPendingBit(EXTI_Line22);
-	} else if (status == RTC_STATUS_INIT_OK) {
-		TM_RTC_Status = RTC_STATUS_INIT_OK;
-		
-		// Config RTC
-		TM_RTC_Config(source);
-		
-		// Wait for RTC APB registers synchronisation (needed after start-up from Reset)
-		RTC_WaitForSynchro();
-		
-		//Clear interrupt flags
-		RTC_ClearITPendingBit(RTC_IT_WUT);
-		EXTI_ClearITPendingBit(EXTI_Line22);
 	} else {
-		TM_RTC_Status = 0;
+		// Enable the PWR clock
+		//RCC_APB1PeriphClockCmd(RCC_APB1Periph_PWR, ENABLE);
 		
-		// Config RTC
-		TM_RTC_Config(source);
-
-		// Wait for RTC APB registers synchronisation (needed after start-up from Reset)
-		RTC_WaitForSynchro();
+		//Already initialized
+		RTC_ClearITPendingBit(RTC_IT_WUT);
+		EXTI_ClearITPendingBit(EXTI_Line22);
 		
-		//Init OK
-		RTC_WriteBackupRegister(RTC_STATUS_REG, RTC_STATUS_INIT_OK);
-
-		// Set the RTC time base to 1s
-		RTC_InitStructure.RTC_HourFormat = RTC_HourFormat_24;
-		RTC_InitStructure.RTC_AsynchPrediv = uwAsynchPrediv;
-		RTC_InitStructure.RTC_SynchPrediv = uwSynchPrediv;
-
-		if (RTC_Init(&RTC_InitStructure) == ERROR) {
-			return 0;
+		if (source == TM_RTC_ClockSource_Internal) {
+			TM_RTC_Config(source);
 		}
 		
-		TM_RTC_Status = RTC_STATUS_INIT_OK;
+		// Allow access to RTC
+		PWR_BackupAccessCmd(ENABLE);
+
+		// Wait for RTC APB registers synchronisation
+		RTC_WaitForSynchro();
 	}
-	
-	// Clear RTC Alarm Flag
-	RTC_ClearFlag(RTC_FLAG_ALRAF);
-	
-	return TM_RTC_Status;
 }
 
-void TM_RTC_SetDateTime(TM_RTC_Time_t* data, TM_RTC_Format_t format) {
+void TM_RTC_SetDateTime(TM_RTC_Data_t* data, TM_RTC_Format_t format) {
 	RTC_InitTypeDef RTC_InitStruct;
-	RTC_TimeTypeDef RTC_TimeStruct;
+	
+	TM_RTC_SetTime(data, format);
+	TM_RTC_SetDate(data, format);
+	
+	// Configure the RTC data register and RTC prescaler
+	RTC_InitStruct.RTC_AsynchPrediv = uwAsynchPrediv;
+	RTC_InitStruct.RTC_SynchPrediv = uwSynchPrediv;
+	RTC_InitStruct.RTC_HourFormat = RTC_HourFormat_24;
+	RTC_Init(&RTC_InitStruct);
+}
+
+void TM_RTC_SetDate(TM_RTC_Data_t* data, TM_RTC_Format_t format) {
 	RTC_DateTypeDef RTC_DateStruct;
 	
+	RTC_DateStruct.RTC_Date = data->date;
+	RTC_DateStruct.RTC_Month = data->month;
+	RTC_DateStruct.RTC_Year = data->year;
+	RTC_DateStruct.RTC_WeekDay = data->weekDay;
+	
+	if (format == TM_RTC_Format_BCD) {
+		RTC_SetDate(RTC_Format_BCD, &RTC_DateStruct);
+	} else {
+		RTC_SetDate(RTC_Format_BIN, &RTC_DateStruct);
+	}
+}
+	
+void TM_RTC_SetTime(TM_RTC_Data_t* data, TM_RTC_Format_t format) {
+	RTC_TimeTypeDef RTC_TimeStruct;
+	
+	if (data->hours >= 12) {
+		RTC_TimeStruct.RTC_H12 = RTC_H12_PM;
+	} else {
+		RTC_TimeStruct.RTC_H12 = RTC_H12_AM;
+	}
 	RTC_TimeStruct.RTC_Hours = data->hours;
 	RTC_TimeStruct.RTC_Minutes = data->minutes;
 	RTC_TimeStruct.RTC_Seconds = data->seconds;
@@ -86,48 +84,90 @@ void TM_RTC_SetDateTime(TM_RTC_Time_t* data, TM_RTC_Format_t format) {
 	} else {
 		RTC_SetTime(RTC_Format_BIN, &RTC_TimeStruct);
 	}
-
-	RTC_DateStruct.RTC_Date = data->date;
-	RTC_DateStruct.RTC_Month = data->month;
-	RTC_DateStruct.RTC_Year = data->year;
-	RTC_DateStruct.RTC_WeekDay = data->day;
-	
-	if (format == TM_RTC_Format_BCD) {
-		RTC_SetDate(RTC_Format_BCD, &RTC_DateStruct);
-	} else {
-		RTC_SetDate(RTC_Format_BIN, &RTC_DateStruct);
-	}
-
-	if (TM_RTC_Status != 0) {
-		RTC_WriteBackupRegister(RTC_STATUS_REG, RTC_STATUS_TIME_OK);
-	}
-	
-	// Set the RTC time base to 1s
-	RTC_InitStruct.RTC_HourFormat = RTC_HourFormat_24;
-	RTC_InitStruct.RTC_AsynchPrediv = uwAsynchPrediv;
-	RTC_InitStruct.RTC_SynchPrediv = uwSynchPrediv;
-
-	RTC_Init(&RTC_InitStruct);
 }
 
-void TM_RTC_GetDateTime(TM_RTC_Time_t* data, TM_RTC_Format_t format) {	
+void TM_RTC_GetDateTime(TM_RTC_Data_t* data, TM_RTC_Format_t format) {
+	/*TM_RTC_noResetFlag = 1;
+	TM_RTC_GetDate(data, format);
+	TM_RTC_GetTime(data, format);
+	TM_RTC_noResetFlag = 0;*/
+	
 	RTC_DateTypeDef RTC_DateStruct;
 	RTC_TimeTypeDef RTC_TimeStruct;
 	
-	RTC_GetDate(RTC_Format_BIN, &RTC_DateStruct);
-	RTC_GetTime(RTC_Format_BIN, &RTC_TimeStruct);
+	if (format == TM_RTC_Format_BCD) {
+		RTC_GetDate(RTC_Format_BCD, &RTC_DateStruct);
+	} else {
+		RTC_GetDate(RTC_Format_BIN, &RTC_DateStruct);
+	}
 	
 	data->year = RTC_DateStruct.RTC_Year;
 	data->month = RTC_DateStruct.RTC_Month;
 	data->date = RTC_DateStruct.RTC_Date;
-	data->day = RTC_DateStruct.RTC_WeekDay;
+	data->weekDay = RTC_DateStruct.RTC_WeekDay;
+	
+	if (format == TM_RTC_Format_BCD) {
+		RTC_GetTime(RTC_Format_BCD, &RTC_TimeStruct);
+	} else {
+		RTC_GetTime(RTC_Format_BIN, &RTC_TimeStruct);
+	}
 	
 	data->hours = RTC_TimeStruct.RTC_Hours;
 	data->minutes = RTC_TimeStruct.RTC_Minutes;
 	data->seconds = RTC_TimeStruct.RTC_Seconds;
 }
 
+void TM_RTC_GetTime(TM_RTC_Data_t* data, TM_RTC_Format_t format) {
+	RTC_TimeTypeDef RTC_TimeStruct;
+	/*
+	if (TM_RTC_noResetFlag == 0) {
+		data->year = 0;
+		data->month = 0;
+		data->date = 0;
+		data->weekDay = 0;
+	}*/
+	
+	if (format == TM_RTC_Format_BCD) {
+		RTC_GetTime(RTC_Format_BCD, &RTC_TimeStruct);
+	} else {
+		RTC_GetTime(RTC_Format_BIN, &RTC_TimeStruct);
+	}
+	
+	data->hours = RTC_TimeStruct.RTC_Hours;
+	data->minutes = RTC_TimeStruct.RTC_Minutes;
+	data->seconds = RTC_TimeStruct.RTC_Seconds;
+}
+
+void TM_RTC_GetDate(TM_RTC_Data_t* data, TM_RTC_Format_t format) {
+	RTC_DateTypeDef RTC_DateStruct;
+	/*
+	if (TM_RTC_noResetFlag == 0) {
+		data->hours = 0;
+		data->minutes = 0;
+		data->seconds = 0;
+	}
+	*/
+	if (format == TM_RTC_Format_BCD) {
+		RTC_GetDate(RTC_Format_BCD, &RTC_DateStruct);
+	} else {
+		RTC_GetDate(RTC_Format_BIN, &RTC_DateStruct);
+	}
+	
+	data->year = RTC_DateStruct.RTC_Year;
+	data->month = RTC_DateStruct.RTC_Month;
+	data->date = RTC_DateStruct.RTC_Date;
+	data->weekDay = RTC_DateStruct.RTC_WeekDay;
+}
+
 void TM_RTC_Config(TM_RTC_ClockSource_t source) {
+	RTC_InitTypeDef RTC_InitStruct;
+
+	// Enable the PWR clock
+	//RCC_APB1PeriphClockCmd(RCC_APB1Periph_PWR, ENABLE);
+
+	// Allow access to RTC
+	//PWR_BackupAccessCmd(ENABLE);
+
 	if (source == TM_RTC_ClockSource_Internal) {
 		// Enable the LSI OSC 
 		RCC_LSICmd(ENABLE);
@@ -147,9 +187,21 @@ void TM_RTC_Config(TM_RTC_ClockSource_t source) {
 		// Select the RTC Clock Source
 		RCC_RTCCLKConfig(RCC_RTCCLKSource_LSE);
 	}
-	
+
 	// Enable the RTC Clock
 	RCC_RTCCLKCmd(ENABLE);
+
+	// Wait for RTC APB registers synchronisation
+	RTC_WaitForSynchro();
+
+	// Configure the RTC data register and RTC prescaler
+	RTC_InitStruct.RTC_AsynchPrediv = uwAsynchPrediv;
+	RTC_InitStruct.RTC_SynchPrediv = uwSynchPrediv;
+	RTC_InitStruct.RTC_HourFormat = RTC_HourFormat_24;
+	RTC_Init(&RTC_InitStruct);
+
+	// Indicator for the RTC configuration
+	RTC_WriteBackupRegister(TM_RTC_INIT_OK_REG, TM_RTC_INIT_OK_VAL);
 }
 
 void TM_RTC_Interrupts(TM_RTC_Int_t int_value) {
@@ -157,12 +209,12 @@ void TM_RTC_Interrupts(TM_RTC_Int_t int_value) {
 	EXTI_InitTypeDef EXTI_InitStruct;
 	uint32_t int_val;
 
-	// NVIC init for 
+	//NVIC init for 
 	NVIC_InitStruct.NVIC_IRQChannel = RTC_WKUP_IRQn;
 	NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority = 1;
 	NVIC_InitStruct.NVIC_IRQChannelSubPriority = 0;
 	
-	// RTC connected to EXTI_Line22
+	//RTC connected to EXTI_Line22
 	EXTI_ClearITPendingBit(EXTI_Line22);
 	EXTI_InitStruct.EXTI_Line = EXTI_Line22;
 	EXTI_InitStruct.EXTI_Mode = EXTI_Mode_Interrupt;
@@ -174,18 +226,18 @@ void TM_RTC_Interrupts(TM_RTC_Int_t int_value) {
 		NVIC_InitStruct.NVIC_IRQChannelCmd = DISABLE;
 		NVIC_Init(&NVIC_InitStruct); 
 	} else {
-		// Enable NVIC
+		//Enable NVIC
 		NVIC_InitStruct.NVIC_IRQChannelCmd = ENABLE;
 		NVIC_Init(&NVIC_InitStruct); 
 		//Enable EXT1 interrupt
 		EXTI_InitStruct.EXTI_LineCmd = ENABLE;
 		EXTI_Init(&EXTI_InitStruct);
 
-		// First disable wake up command
+		//First disable wake up command
 		RTC_WakeUpCmd(DISABLE);
 
-		// Clock divided by 8, 32768 / 8 = 4068
-		// 4096 ticks for 1second interrupt
+		//Clock divided by 8, 32768 / 8 = 4068
+		//4096 ticks for 1second interrupt
 		RTC_WakeUpClockConfig(RTC_WakeUpClock_RTCCLK_Div8);
 
 		if (int_value == TM_RTC_Int_60s) {
@@ -210,22 +262,22 @@ void TM_RTC_Interrupts(TM_RTC_Int_t int_value) {
 			int_val = 0x1FF;		// 125 ms
 		}		
 
-		// Set RTC wakeup counter
+		//Set RTC wakeup counter
 		RTC_SetWakeUpCounter(int_val);
-		// Enable wakeup interrupt
+		//Enable wakeup interrupt
 		RTC_ITConfig(RTC_IT_WUT, ENABLE);
-		// Enable wakeup command
+		//Enable wakeup command
 		RTC_WakeUpCmd(ENABLE);
 	}
 }
 
 void RTC_WKUP_IRQHandler(void) {
 	if (RTC_GetITStatus(RTC_IT_WUT) != RESET) {
-		// Clear interrupt flags
+		//Clear interrupt flags
 		RTC_ClearITPendingBit(RTC_IT_WUT);
 		EXTI_ClearITPendingBit(EXTI_Line22);
 		
-		// Call user function
+		//Call user function
 		TM_RTC_RequestHandler();
 	}
 }

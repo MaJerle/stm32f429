@@ -5,11 +5,26 @@
 #ifndef _DISKIO_DEFINED
 #define _DISKIO_DEFINED
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define _USE_WRITE	1	/* 1: Enable disk_write function */
 #define _USE_IOCTL	1	/* 1: Enable disk_ioctl fucntion */
 
 #include "integer.h"
-#include "tm_stm32f4_usart.h"
+#include "tm_stm32f4_spi.h"
+	
+#ifndef FF_SPI_USE
+#define FF_SPI_USE				SPI1
+#define FF_SPI_USE_PINSPACK		TM_SPI_PinsPack_1
+#endif
+
+#ifndef FF_CS_PIN
+#define FF_CS_RCC				RCC_AHB1Periph_GPIOB			
+#define FF_CS_PORT				GPIOB
+#define FF_CS_PIN				GPIO_Pin_5
+#endif
 
 /* Status of Disk Functions */
 typedef BYTE	DSTATUS;
@@ -22,10 +37,6 @@ typedef enum {
 	RES_NOTRDY,		/* 3: Not Ready */
 	RES_PARERR		/* 4: Invalid Parameter */
 } DRESULT;
-
-
-#define FATFS_DEBUG_SEND_USART(x)	TM_USART_Puts(USART1, x); TM_USART_Puts(USART1, "\n");
-//#define FATFS_DEBUG_SEND_USART(x)
 
 
 /*---------------------------------------*/
@@ -73,11 +84,8 @@ DRESULT disk_ioctl (BYTE pdrv, BYTE cmd, void* buff);
 #define ATA_GET_MODEL		21	/* Get model name */
 #define ATA_GET_SN			22	/* Get serial number */
 
-/* MMC card type flags (MMC_GET_TYPE) */
-#define CT_MMC		0x01		/* MMC ver 3 */
-#define CT_SD1		0x02		/* SD ver 1 */
-#define CT_SD2		0x04		/* SD ver 2 */
-#define CT_SDC		(CT_SD1|CT_SD2)	/* SD */
-#define CT_BLOCK	0x08		/* Block addressing */
+#ifdef __cplusplus
+}
+#endif
 
 #endif

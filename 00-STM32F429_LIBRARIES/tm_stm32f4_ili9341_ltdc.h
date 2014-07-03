@@ -170,7 +170,6 @@ typedef struct {
  */
 extern TM_FontDef_t TM_Font_7x10;
 extern TM_FontDef_t TM_Font_11x18;
-extern TM_FontDef_t TM_Font_16x26;
 
 /**
  * Initialize ILI9341 LCD

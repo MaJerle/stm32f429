@@ -67,7 +67,7 @@
 
 //NVIC Priority
 #ifndef TM_USART_NVIC_PRIORITY
-#define TM_USART_NVIC_PRIORITY		0x02
+#define TM_USART_NVIC_PRIORITY		0x00
 #endif
 
 //U(S)ART settings, can be changed in your defines.h project file
@@ -501,7 +501,7 @@ extern void TM_UART8_ReceiveHandler(uint8_t c);
  * 		- USART number: starting from 0
  * 	- char c: character to be inserted in buffer
  */
-extern void TM_USART_InsertToBuffer(uint8_t USARTnum, uint8_t c);
+extern void TM_USART_InsertToBuffer(uint8_t USARTnum, char c);
 
 /**
  * Check's if internal buffer is empty

@@ -4,7 +4,7 @@
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
- *	@version 	v1.2
+ *	@version 	v1.1
  *	@ide		Keil uVision
  */
 /**
@@ -17,7 +17,7 @@ If you are working with Keil uVision, than set KEIL_IDE define in options for pr
 
 */
 #ifndef TM_DELAY_
-#define TM_DELAY_ 120
+#define TM_DELAY_ 110
 /**
  * Library dependencies
  * - STM32F4xx RCC
@@ -37,7 +37,6 @@ static __IO uint32_t TM_TimingDelay;
  * It is automatically increased every time systick make an interrupt
  */
 static __IO uint32_t TM_Time;
-static __IO uint32_t TM_Time2;
 
 /**
  *
@@ -71,15 +70,5 @@ uint32_t TM_DELAY_Time(void);
  * Set value for TM_Time variable
  */
 void TM_DELAY_SetTime(uint32_t time);
-
-/**
- * Get the TM_Time variable value
- */
-uint32_t TM_DELAY_Time2(void);
-
-/**
- * Set value for TM_Time variable
- */
-void TM_DELAY_SetTime2(uint32_t time);
 
 #endif
