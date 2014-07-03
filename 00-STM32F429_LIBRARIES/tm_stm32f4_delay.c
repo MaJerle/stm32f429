@@ -19,6 +19,9 @@ void Delayms(__IO uint32_t nTime) {
 #ifdef KEIL_IDE
 void TimingDelay_Decrement(void) {
 	TM_Time++;
+	if (TM_Time2 != 0x00) {
+		TM_Time2--;
+	}
 	if (TM_TimingDelay != 0x00) {
 		TM_TimingDelay--;
 	}
@@ -26,6 +29,9 @@ void TimingDelay_Decrement(void) {
 #else
 void SysTick_Handler(void) {
 	TM_Time++;
+	if (TM_Time2 != 0x00) {
+		TM_Time2--;
+	}
 	if (TM_TimingDelay != 0x00) {
 		TM_TimingDelay--;
 	}
@@ -50,7 +56,15 @@ uint32_t TM_DELAY_Time(void) {
 	return TM_Time;
 }
 
+uint32_t TM_DELAY_Time2(void) {
+	return TM_Time2;
+}
+
 void TM_DELAY_SetTime(uint32_t time) {
 	TM_Time = time;
+}
+
+void TM_DELAY_SetTime2(uint32_t time) {
+	TM_Time2 = time;
 }
 

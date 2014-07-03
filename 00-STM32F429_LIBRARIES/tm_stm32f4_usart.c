@@ -574,7 +574,7 @@ void UART8_IRQHandler(void) {
 }
 #endif
 
-void TM_USART_InsertToBuffer(uint8_t usart_num, char c) {
+void TM_USART_InsertToBuffer(uint8_t usart_num, uint8_t c) {
 	//uint8_t usart_num = TM_USART_GetUsartNumber(USARTx);
 	//Still available space in buffer
 	if (tm_usart_buf_num[usart_num] < TM_USART_BUFFER_SIZE) {

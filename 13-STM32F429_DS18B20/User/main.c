@@ -41,7 +41,7 @@ int main(void) {
 	//Initialize OneWire on pin PD0
 	TM_OneWire_Init();
 	//Initialize USART, TX: PA9, RX: PA10
-	TM_USART_Init(USART1, TM_USART_PinsPack_2, 115200);
+	TM_USART_Init(USART1, TM_USART_PinsPack_1, 115200);
 	
 	//Initialize Leds
 	TM_DISCO_LedInit();
@@ -79,7 +79,7 @@ int main(void) {
 		TM_DS18B20_SetResolution(&device[i][0], TM_DS18B20_Resolution_12bits);
 	}
 	//Set high temperature alarm on device number 0, 25degrees celcius
-	TM_DS18B20_SetAlarmHighTemperature(&device[0][0], 27);
+	TM_DS18B20_SetAlarmHighTemperature(&device[0][0], 25);
 	//Disable alarm temperatures on device number 1
 	TM_DS18B20_DisableAlarmTemperature(&device[1][0]);
 	
