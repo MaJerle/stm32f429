@@ -50,6 +50,9 @@ http://bit.ly/1pTkrgY
 18. ILI8341 LTDC - ILI9341 LCD with LTDC hardware only for STM32F429
 http://bit.ly/1jeZaqH
 19. Internal RTC - Library for internal RTC on STM32F4xx devices
+http://bit.ly/U4wmKW
+20. Independent watchdog - Library for watchdog on STM32F4xx devices
+http://bit.ly/1w2ru5n
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB
