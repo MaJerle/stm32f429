@@ -76,33 +76,6 @@
         <IsCurrentTarget>1</IsCurrentTarget>
       </OPTFL>
       <CpuCode>255</CpuCode>
-      <Books>
-        <Book>
-          <Number>0</Number>
-          <Title>STM32F4 Series Reference Manual</Title>
-          <Path>$$Device:STM32F429ZI$Documents\STM32F4xx_RM.PDF</Path>
-        </Book>
-        <Book>
-          <Number>1</Number>
-          <Title>STM32F429 Data Sheet</Title>
-          <Path>$$Device:STM32F429ZI$Documents\STM32F429_DS.PDF</Path>
-        </Book>
-        <Book>
-          <Number>2</Number>
-          <Title>MCBSTM32F400 User's Guide</Title>
-          <Path>$$Device:STM32F429ZI$Documents\mcbstm32f200.chm</Path>
-        </Book>
-        <Book>
-          <Number>3</Number>
-          <Title>STM32F401C Discovery Board</Title>
-          <Path>http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf</Path>
-        </Book>
-        <Book>
-          <Number>4</Number>
-          <Title>Cortex-M4 Generic User Guide</Title>
-          <Path>$$Device:STM32F429ZI$Documents\dui0553a_cortex_m4_dgug.pdf</Path>
-        </Book>
-      </Books>
       <DllOpt>
         <SimDllName>SARMCM3.DLL</SimDllName>
         <SimDllArguments> -REMAP -MPU</SimDllArguments>
@@ -135,7 +108,7 @@
         <tRSysVw>1</tRSysVw>
         <sRunDeb>0</sRunDeb>
         <sLrtime>0</sLrtime>
-        <nTsel>1</nTsel>
+        <nTsel>11</nTsel>
         <sDll></sDll>
         <sDllPa></sDllPa>
         <sDlgDll></sDlgDll>
@@ -146,7 +119,7 @@
         <tDlgDll></tDlgDll>
         <tDlgPa></tDlgPa>
         <tIfile></tIfile>
-        <pMon>BIN\UL2CM3.DLL</pMon>
+        <pMon>STLink\ST-LINKIII-KEIL_SWO.dll</pMon>
       </DebugOpt>
       <TargetDriverDllRegistry>
         <SetRegEntry>
@@ -202,7 +175,7 @@
         <aSer4>0</aSer4>
         <StkLoc>0</StkLoc>
         <TrcWin>0</TrcWin>
-        <newCpu>3</newCpu>
+        <newCpu>0</newCpu>
         <uProt>0</uProt>
       </DebugFlag>
       <LintExecutable></LintExecutable>
@@ -316,7 +289,7 @@
 
   <Group>
     <GroupName>MDK-ARM</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -972,7 +945,7 @@
 
   <Group>
     <GroupName>TM</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -1158,10 +1131,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>53</ColumnNumber>
+      <ColumnNumber>54</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>70</TopLine>
-      <CurrentLine>87</CurrentLine>
+      <TopLine>1</TopLine>
+      <CurrentLine>110</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_rtc.c</PathWithFileName>
       <FilenameWithoutPath>tm_stm32f4_rtc.c</FilenameWithoutPath>
@@ -1214,10 +1187,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>23</ColumnNumber>
+      <ColumnNumber>30</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>68</TopLine>
-      <CurrentLine>107</CurrentLine>
+      <TopLine>24</TopLine>
+      <CurrentLine>53</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\User\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>

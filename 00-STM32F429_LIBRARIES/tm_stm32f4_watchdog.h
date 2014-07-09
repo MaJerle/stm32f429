@@ -25,7 +25,7 @@
 #include "defines.h"
 
 /**
- *
+ * Watchdog timeout settings
  */
 typedef enum {
 	TM_WATCHDOG_Timeout_5ms,	//System reset called every 5ms
