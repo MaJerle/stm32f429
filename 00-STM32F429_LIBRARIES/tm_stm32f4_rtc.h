@@ -4,7 +4,7 @@
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
- *	@link
+ *	@link		http://bit.ly/U4wmKW
  *	@version 	v1.0
  *	@ide		Keil uVision
  */
@@ -72,7 +72,7 @@ typedef struct {
 } TM_RTC_Time_t;
 
 /**
- * Set format of hour
+ * Set format of date and time
  *
  * - TM_RTC_Format_BIN
  * 	binary format
@@ -110,7 +110,7 @@ typedef enum {
  */
 typedef enum {
 	TM_RTC_ClockSource_Internal,	//Internal
-	TM_RTC_ClockSource_External		//Clock
+	TM_RTC_ClockSource_External		//External
 } TM_RTC_ClockSource_t;
 
 /**
