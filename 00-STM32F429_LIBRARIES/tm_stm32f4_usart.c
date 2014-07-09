@@ -467,8 +467,9 @@ void USART1_IRQHandler(void) {
 	//Check if interrupt was because data is received
 	if (USART_GetITStatus(USART1, USART_IT_RXNE)) {
 		#ifdef TM_USART1_USE_CUSTOM_IRQ
+			//Call user function
 			TM_USART1_ReceiveHandler(USART1->DR);
-		#else 
+		#else
 			//Put received data into internal buffer
 			TM_USART_InsertToBuffer(0, USART1->DR);
 		#endif
@@ -481,6 +482,7 @@ void USART2_IRQHandler(void) {
 	//Check if interrupt was because data is received
 	if (USART_GetITStatus(USART2, USART_IT_RXNE)) {
 		#ifdef TM_USART2_USE_CUSTOM_IRQ
+			//Call user function
 			TM_USART2_ReceiveHandler(USART2->DR);
 		#else 
 			//Put received data into internal buffer
@@ -495,6 +497,7 @@ void USART3_IRQHandler(void) {
 	//Check if interrupt was because data is received
 	if (USART_GetITStatus(USART3, USART_IT_RXNE)) {
 		#ifdef TM_USART3_USE_CUSTOM_IRQ
+			//Call user function
 			TM_USART3_ReceiveHandler(USART3->DR);
 		#else
 			//Put received data into internal buffer
@@ -509,6 +512,7 @@ void UART4_IRQHandler(void) {
 	//Check if interrupt was because data is received
 	if (USART_GetITStatus(UART4, USART_IT_RXNE)) {
 		#ifdef TM_UART4_USE_CUSTOM_IRQ
+			//Call user function
 			TM_UART4_ReceiveHandler(UART4->DR);
 		#else
 			//Put received data into internal buffer
@@ -523,6 +527,7 @@ void UART5_IRQHandler(void) {
 	//Check if interrupt was because data is received
 	if (USART_GetITStatus(UART5, USART_IT_RXNE)) {
 		#ifdef TM_UART5_USE_CUSTOM_IRQ
+			//Call user function
 			TM_UART5_ReceiveHandler(UART5->DR);
 		#else
 			//Put received data into internal buffer
@@ -537,6 +542,7 @@ void USART6_IRQHandler(void) {
 	//Check if interrupt was because data is received
 	if (USART_GetITStatus(USART6, USART_IT_RXNE)) {
 		#ifdef TM_USART6_USE_CUSTOM_IRQ
+			//Call user function
 			TM_USART6_ReceiveHandler(USART6->DR);
 		#else
 			//Put received data into internal buffer
@@ -551,6 +557,7 @@ void UART7_IRQHandler(void) {
 	//Check if interrupt was because data is received
 	if (USART_GetITStatus(UART7, USART_IT_RXNE)) {
 		#ifdef TM_UART7_USE_CUSTOM_IRQ
+			//Call user function
 			TM_UART7_ReceiveHandler(UART7->DR);
 		#else
 			//Put received data into internal buffer
@@ -565,6 +572,7 @@ void UART8_IRQHandler(void) {
 	//Check if interrupt was because data is received
 	if (USART_GetITStatus(UART8, USART_IT_RXNE)) {
 		#ifdef TM_UART8_USE_CUSTOM_IRQ
+			//Call user function
 			TM_UART8_ReceiveHandler(UART8->DR);
 		#else
 			//Put received data into internal buffer

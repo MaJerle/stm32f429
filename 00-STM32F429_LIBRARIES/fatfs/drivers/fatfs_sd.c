@@ -296,6 +296,7 @@ void TM_FATFS_InitPins(void) {
 #endif
 }
 
+
 uint8_t TM_FATFS_Detect(void) {
 #if FATFS_USE_DETECT_PIN > 0
 	return GPIO_ReadInputDataBit(FATFS_USE_DETECT_PIN_PORT, FATFS_USE_DETECT_PIN_PIN) == Bit_RESET;
@@ -311,6 +312,7 @@ uint8_t TM_FATFS_WriteEnabled(void) {
 	return 1;
 #endif	
 }
+
 
 DSTATUS TM_FATFS_SD_disk_initialize (void) {
 	BYTE n, cmd, ty, ocr[4];
@@ -410,11 +412,8 @@ DRESULT TM_FATFS_SD_disk_read (
 )
 {
 	FATFS_DEBUG_SEND_USART("disk_read: inside");
-	if (!TM_FATFS_Detect()) {
+	if (!TM_FATFS_Detect() || (TM_FATFS_SD_Stat & STA_NOINIT)) {
 		return RES_NOTRDY;
-	}
-	if (TM_FATFS_SD_Stat & STA_NOINIT) {
-		return RES_NOTRDY;	/* Check if drive is ready */
 	}
 
 	if (!(TM_FATFS_SD_CardType & CT_BLOCK)) {

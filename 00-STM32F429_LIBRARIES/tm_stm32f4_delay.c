@@ -68,3 +68,19 @@ void TM_DELAY_SetTime2(uint32_t time) {
 	TM_Time2 = time;
 }
 
+void TM_DELAY_EnableSystick(void) {
+	if (!TM_DELAY_Initialized) {
+		return;
+	}
+	
+	// Re-enables systick timer without changing reload value
+	// Enable SysTick IRQ and SysTick Timer
+	SysTick->CTRL = SysTick_CTRL_CLKSOURCE_Msk |
+                   SysTick_CTRL_TICKINT_Msk   |
+                   SysTick_CTRL_ENABLE_Msk;                    
+}
+
+void TM_DELAY_DisableSystick(void) {
+	SysTick->CTRL = 0 ;	//Disable Systick
+}
+

@@ -1,5 +1,5 @@
 /**
- * 16bit CRC Generator
+ * 16bit CRC Software Generator
  *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
@@ -8,8 +8,8 @@
  *	@version 	v1.0
  *	@ide		Keil uVision
  */
-#ifndef TM_CRC_
-#define TM_CRC_ 100
+#ifndef TM_SOFTCRC_
+#define TM_SOFTCRC_ 100
 /**
  * Library dependencies
  * 
@@ -29,7 +29,7 @@
  *
  * Returns 16bit CRC generated
  */
-extern uint16_t TM_CRC_Generate(uint8_t* data, uint8_t length);
+extern uint16_t TM_SOFTCRC_Generate(uint8_t* data, uint8_t length);
 
 #endif
 

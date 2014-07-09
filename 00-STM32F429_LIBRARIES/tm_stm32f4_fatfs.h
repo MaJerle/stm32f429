@@ -26,7 +26,6 @@
 #include "fatfs_sd_sdio.h"
 #endif
 
-
 #ifndef TM_FATFS_SCANFILES_USART
 #define TM_FATFS_SCANFILES_USART 	1
 #include "tm_stm32f4_usart.h"

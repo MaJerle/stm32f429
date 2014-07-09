@@ -24,9 +24,8 @@ typedef enum {
 } DRESULT;
 
 
-#define FATFS_DEBUG_SEND_USART(x)	TM_USART_Puts(USART1, x); TM_USART_Puts(USART1, "\n");
-//#define FATFS_DEBUG_SEND_USART(x)
-
+//#define FATFS_DEBUG_SEND_USART(x)	TM_USART_Puts(USART1, x); TM_USART_Puts(USART1, "\n");
+#define FATFS_DEBUG_SEND_USART(x)
 
 /*---------------------------------------*/
 /* Prototypes for disk control functions */
@@ -38,6 +37,15 @@ DRESULT disk_read (BYTE pdrv, BYTE* buff, DWORD sector, UINT count);
 DRESULT disk_write (BYTE pdrv, const BYTE* buff, DWORD sector, UINT count);
 DRESULT disk_ioctl (BYTE pdrv, BYTE cmd, void* buff);
 
+
+//By default SDIO is used
+#ifndef FATFS_USE_SDIO
+#define FATFS_USE_SDIO			1
+#endif
+
+#ifndef TM_FATFS_CUSTOM_FATTIME
+#define TM_FATFS_CUSTOM_FATTIME	0
+#endif
 
 /* Disk Status Bits (DSTATUS) */
 

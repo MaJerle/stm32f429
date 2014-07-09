@@ -82,4 +82,14 @@ uint32_t TM_DELAY_Time2(void);
  */
 void TM_DELAY_SetTime2(uint32_t time);
 
+/**
+ * Re-enable Systick. It has to be configured before with TM_DELAY_Init();
+ */
+void TM_DELAY_EnableSystick(void);
+
+/**
+ * Disable Systick. Usef when going into sleep mode, so systick will not
+ */
+void TM_DELAY_DisableSystick(void);
+
 #endif

@@ -4,6 +4,10 @@ uint32_t TM_RTC_Status = 0;
 uint8_t TM_RTC_noResetFlag = 0;
 uint16_t uwSynchPrediv = 0xFF, uwAsynchPrediv = 0x7F;
 
+uint8_t TM_RTC_Months[] = {
+	31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
+};
+
 uint32_t TM_RTC_Init(TM_RTC_ClockSource_t source) {
 	uint32_t status;
 	RTC_InitTypeDef RTC_InitStructure;
@@ -113,6 +117,7 @@ void TM_RTC_SetDateTime(TM_RTC_Time_t* data, TM_RTC_Format_t format) {
 void TM_RTC_GetDateTime(TM_RTC_Time_t* data, TM_RTC_Format_t format) {	
 	RTC_DateTypeDef RTC_DateStruct;
 	RTC_TimeTypeDef RTC_TimeStruct;
+	uint32_t unix;
 	
 	RTC_GetDate(RTC_Format_BIN, &RTC_DateStruct);
 	RTC_GetTime(RTC_Format_BIN, &RTC_TimeStruct);
@@ -125,6 +130,9 @@ void TM_RTC_GetDateTime(TM_RTC_Time_t* data, TM_RTC_Format_t format) {
 	data->hours = RTC_TimeStruct.RTC_Hours;
 	data->minutes = RTC_TimeStruct.RTC_Minutes;
 	data->seconds = RTC_TimeStruct.RTC_Seconds;
+	
+	unix = TM_RTC_GetUnixTimeStamp(data);
+	data->unix = unix;
 }
 
 void TM_RTC_Config(TM_RTC_ClockSource_t source) {
@@ -218,6 +226,43 @@ void TM_RTC_Interrupts(TM_RTC_Int_t int_value) {
 		RTC_WakeUpCmd(ENABLE);
 	}
 }
+
+uint32_t TM_RTC_GetUnixTimeStamp(TM_RTC_Time_t* data) {
+	uint32_t days = 0, seconds = 0;
+	uint16_t i;
+	uint16_t year = (uint16_t) (data->year + 2000);
+	//Year is below offset year
+	if (year < TM_RTC_OFFSET_YEAR) {
+		return 0;
+	}
+	//Days in back years
+	for (i = TM_RTC_OFFSET_YEAR; i < year; i++) {
+		if (TM_RTC_LEAP_YEAR(i)) {
+			days += TM_RTC_DAYS_IN_YEAR + 1;
+		} else {
+			days += TM_RTC_DAYS_IN_YEAR;
+		}
+	}
+	//Days in current year
+	data->month = data->month % 12;
+	for (i = 1; i < data->month; i++) {
+		if (i == 2 && TM_RTC_LEAP_YEAR(year)) {
+			days += TM_RTC_Months[1] + 1;
+		} else {
+			days += TM_RTC_Months[i - 1];
+		}
+	}
+	//Day starts with 1
+	days += data->date - 1;
+	seconds = days * TM_RTC_SECONDS_PER_DAY;
+	seconds += data->hours * TM_RTC_SECONDS_PER_HOUR;
+	seconds += data->minutes * TM_RTC_SECONDS_PER_MINUTE;
+	seconds += data->seconds;
+	
+	//seconds = days * 86400;
+	return seconds;
+}
+
 
 void RTC_WKUP_IRQHandler(void) {
 	if (RTC_GetITStatus(RTC_IT_WUT) != RESET) {

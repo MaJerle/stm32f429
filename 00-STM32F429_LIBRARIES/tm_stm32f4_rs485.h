@@ -27,7 +27,7 @@
 #include "stm32f4xx_gpio.h"
 #include "defines.h"
 #include "tm_stm32f4_usart.h"
-#include "tm_stm32f4_crc.h"
+#include "tm_stm32f4_softcrc.h"
 
 #ifndef RS485_USART
 //Select your USART
@@ -35,7 +35,7 @@
 //Select your USART pins used
 #define RS485_USART_PINSPACK	TM_USART_PinsPack_1
 //define USARTx interrupt handler selected
-#define RS485_USART_IRQ_USART1			
+//#define RS485_USART_IRQ_USART1
 #endif
 
 //Pin for enable/disable RX or TX mode
@@ -50,14 +50,20 @@
 #define RS485_CLEAR_BUFFER		while (!TM_USART_BufferEmpty(RS485_USART)) { TM_USART_Getc(RS485_USART); }
 
 #ifndef RS485_DELAY
-#define RS485_DELAY 			1000000
+#define RS485_DELAY 			100000
 #endif
 
+//Define RS485 START byte
+#ifndef RS485_START_BYTE	
 #define RS485_START_BYTE		0xAA
+#endif
+//Define RS485 Stop byte
+#ifndef RS485_STOP_BYTE			
 #define RS485_STOP_BYTE			0x55
+#endif
 
-#define RS485_ENABLE_RX			RS485_RXTX_ENABLE_PORT->BSRRH = RS485_RXTX_ENABLE_PIN
-#define RS485_ENABLE_TX			RS485_RXTX_ENABLE_PORT->BSRRL = RS485_RXTX_ENABLE_PIN
+#define RS485_ENABLE_RX			GPIO_ResetBits(RS485_RXTX_ENABLE_PORT, RS485_RXTX_ENABLE_PIN)	//RS485_RXTX_ENABLE_PORT->BSRRH = RS485_RXTX_ENABLE_PIN
+#define RS485_ENABLE_TX			GPIO_SetBits(RS485_RXTX_ENABLE_PORT, RS485_RXTX_ENABLE_PIN)		//RS485_RXTX_ENABLE_PORT->BSRRL = RS485_RXTX_ENABLE_PIN
 
 typedef struct {
 	uint8_t id;

@@ -9,15 +9,18 @@
 
 #include "diskio.h"		/* FatFs lower layer API */
 
-#include "fatfs_sd.h"
-#include "fatfs_sd_sdio.h"
+#if FATFS_USE_SDIO == 1
+	#include "fatfs_sd_sdio.h"
+#else
+	#include "fatfs_sd.h"
+#endif
+
+
 
 /* Definitions of physical drive number for each media */
 #define ATA		0
 #define MMC		1
 #define USB		2
-
-#define FATFS_USE_SPI 			1
 
 /*-----------------------------------------------------------------------*/
 /* Inidialize a Drive                                                    */
@@ -31,11 +34,10 @@ DSTATUS disk_initialize (
 		return STA_NOINIT;
 	}
 	
-#if FATFS_USE_SPI == 1
-	return TM_FATFS_SD_disk_initialize();
-#else
-	//UB_SDCard_Init();
+#if FATFS_USE_SDIO == 1
 	return TM_FATFS_SD_SDIO_disk_initialize();
+#else
+	return TM_FATFS_SD_disk_initialize();
 #endif
 }
 
@@ -53,10 +55,10 @@ DSTATUS disk_status (
 		return STA_NOINIT;
 	}
 	
-#if FATFS_USE_SPI == 1
-	return TM_FATFS_SD_disk_status();
-#else
+#if FATFS_USE_SDIO == 1
 	return TM_FATFS_SD_SDIO_disk_status();
+#else
+	return TM_FATFS_SD_disk_status();
 #endif
 }
 
@@ -77,10 +79,10 @@ DRESULT disk_read (
 		return RES_PARERR;		/* Check parameter */
 	}
 
-#if FATFS_USE_SPI == 1
-	return TM_FATFS_SD_disk_read(buff, sector, count);
-#else
+#if FATFS_USE_SDIO == 1
 	return TM_FATFS_SD_SDIO_disk_read(buff, sector, count);
+#else
+	return TM_FATFS_SD_disk_read(buff, sector, count);
 #endif
 }
 
@@ -102,10 +104,10 @@ DRESULT disk_write (
 		return RES_PARERR;		/* Check parameter */
 	}
 	
-#if FATFS_USE_SPI == 1
-	return TM_FATFS_SD_disk_write(buff, sector, count);
-#else
+#if FATFS_USE_SDIO == 1
 	return TM_FATFS_SD_SDIO_disk_write((uint8_t *)buff, sector, count);
+#else
+	return TM_FATFS_SD_disk_write(buff, sector, count);
 #endif
 }
 #endif
@@ -125,15 +127,15 @@ DRESULT disk_ioctl (
 	if (pdrv) {
 		return RES_PARERR;					/* Check parameter */
 	}
-#if FATFS_USE_SPI == 1
-	return TM_FATFS_SD_disk_ioctl(cmd, buff);
-#else
+#if FATFS_USE_SDIO == 1
 	return TM_FATFS_SD_SDIO_disk_ioctl(cmd, buff);
+#else
+	return TM_FATFS_SD_disk_ioctl(cmd, buff);
 #endif
 }
 #endif
 
-#ifndef TM_FATFS_CUSTOM_FATTIME
+#if TM_FATFS_CUSTOM_FATTIME == 0
 DWORD get_fattime (void) {
 	/* Returns current time packed into a DWORD variable */
 	return	  ((DWORD)(2013 - 1980) << 25)	/* Year 2013 */
