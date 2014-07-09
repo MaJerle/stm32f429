@@ -1,5 +1,5 @@
 /**
- * Watchdog timer for STM32F4xx MCUs
+ * Independent watchdog timer for STM32F4xx MCUs
  *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
