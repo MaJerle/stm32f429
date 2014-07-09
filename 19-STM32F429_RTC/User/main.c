@@ -1,5 +1,5 @@
 /**
- *	Keil project example for internal RTC on STM32F429 board
+ *	Keil project example for internal RTC
  *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
@@ -28,7 +28,7 @@ int main(void) {
 	//Initiaize button
 	TM_DISCO_ButtonInit();
 	
-	//Initialize USART
+	//Initialize USART, TX: PB10, RX: PB11
 	TM_USART_Init(USART3, TM_USART_PinsPack_1, 115200);
 	
 	//Initialize RTC with internal 32768Hz clock
@@ -39,7 +39,6 @@ int main(void) {
 	TM_RTC_Interrupts(TM_RTC_Int_1s);
 	
 	while (1) {
-		
 		if (TM_DISCO_ButtonPressed()) {
 			datatime.hours = 23;
 			datatime.minutes = 59;
@@ -48,7 +47,7 @@ int main(void) {
 			datatime.month = 5;
 			datatime.date = 31;
 			datatime.day = 6;
-			
+			//Set new time
 			TM_RTC_SetDateTime(&datatime, TM_RTC_Format_BIN);
 			
 			datatime.year = 0;
@@ -60,19 +59,10 @@ int main(void) {
 }
 
 void TM_RTC_RequestHandler() {
-	static uint8_t count = 0;
 
 	TM_RTC_GetDateTime(&datatime, TM_RTC_Format_BIN);
 	sprintf(buf, "%02d.%02d.%04d %02d:%02d:%02d\n", datatime.date, datatime.month, datatime.year + 2000, datatime.hours, datatime.minutes, datatime.seconds);
 	TM_USART_Puts(USART3, buf);
-
-	if (count >= 50) {
-		TM_RTC_Interrupts(TM_RTC_Int_125ms);
-	} else if (count >= 15) {
-		TM_RTC_Interrupts(TM_RTC_Int_250ms);
-	} else if (count >= 5) {
-		TM_RTC_Interrupts(TM_RTC_Int_500ms);
-	}
 }
 
 
