@@ -42,11 +42,11 @@ int main(void) {
 				TM_DISCO_LedOn(LED_GREEN | LED_RED);
 			}
 			
-			//Close file
+			//Close file, don't forget this!
 			f_close(&fil);
 		}
 		
-		//Unmount drive
+		//Unmount drive, don't forget this!
 		f_mount(0, "", 1);
 	}
 	
