@@ -15,8 +15,12 @@
 #include <string.h>
 
 int main(void) {
+	//Fatfs object
 	FATFS FatFs;
+	//File object
 	FIL fil;
+	//Free and total space
+	uint32_t total, free;
 	
 	//Initialize system
 	SystemInit();
@@ -38,6 +42,10 @@ int main(void) {
 			
 			//If we put more than 0 characters (everything OK)
 			if (f_puts("First string in my file\n", &fil) > 0) {
+				if (TM_FATFS_DriveSize(&total, &free) == FR_OK) {
+					//Data for drive size are valid
+				}
+				
 				//Turn on both leds
 				TM_DISCO_LedOn(LED_GREEN | LED_RED);
 			}
@@ -49,7 +57,6 @@ int main(void) {
 		//Unmount drive, don't forget this!
 		f_mount(0, "", 1);
 	}
-	
 	
 	while (1) {
 

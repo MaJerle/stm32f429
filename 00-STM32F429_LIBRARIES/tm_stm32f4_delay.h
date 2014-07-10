@@ -5,6 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@version 	v1.2
+ *	@link		http://bit.ly/1gFrBjl
  *	@ide		Keil uVision
  */
 /**
