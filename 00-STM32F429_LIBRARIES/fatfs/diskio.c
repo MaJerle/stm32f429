@@ -135,7 +135,7 @@ DRESULT disk_ioctl (
 }
 #endif
 
-#if TM_FATFS_CUSTOM_FATTIME == 0
+#if FATFS_CUSTOM_FATTIME == 0
 DWORD get_fattime (void) {
 	/* Returns current time packed into a DWORD variable */
 	return	  ((DWORD)(2013 - 1980) << 25)	/* Year 2013 */

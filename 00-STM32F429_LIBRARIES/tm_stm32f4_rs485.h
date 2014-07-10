@@ -17,7 +17,7 @@
  * - STM32F4xx GPIO
  * - defines.h
  * - TM USART
- * - TM CRC
+ * - TM SOFTCRC
  */
 /**
  * Includes
@@ -34,8 +34,6 @@
 #define RS485_USART				USART1
 //Select your USART pins used
 #define RS485_USART_PINSPACK	TM_USART_PinsPack_1
-//define USARTx interrupt handler selected
-//#define RS485_USART_IRQ_USART1
 #endif
 
 //Pin for enable/disable RX or TX mode

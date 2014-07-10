@@ -53,6 +53,9 @@ http://bit.ly/1jeZaqH
 http://bit.ly/U4wmKW
 20. Independent watchdog - Library for watchdog on STM32F4xx devices
 http://bit.ly/1w2ru5n
+21. FATFS - Read SDcard with STM32F4xx using SDIO or SPI communication
+http://bit.ly/1k9rJGo
+
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB

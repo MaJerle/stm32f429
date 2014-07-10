@@ -259,9 +259,6 @@ void TM_FATFS_InitPins(void) {
 	GPIO_InitTypeDef GPIO_InitStruct;
 	
 	RCC_AHB1PeriphClockCmd(FATFS_CS_RCC, ENABLE);	
-#if FATFS_USE_DETECT_PIN > 0
-	RCC_AHB1PeriphClockCmd(FATFS_USE_DETECT_PIN_RCC, ENABLE);	
-#endif
 	
 	GPIO_InitStruct.GPIO_Pin = FATFS_CS_PIN;
 	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_OUT;

@@ -275,7 +275,9 @@ uint8_t TM_FATFS_SDIO_WriteEnabled(void) {
 }
 
 DSTATUS TM_FATFS_SD_SDIO_disk_initialize(void) {
+#if FATFS_USE_DETECT_PIN > 0 || FATFS_USE_WRITEPROTECT_PIN > 0
 	GPIO_InitTypeDef GPIO_InitStruct;
+#endif
 	NVIC_InitTypeDef NVIC_InitStructure;
 	
 #if FATFS_USE_DETECT_PIN > 0
@@ -321,7 +323,7 @@ DSTATUS TM_FATFS_SD_SDIO_disk_initialize(void) {
 	if (SD_Init() == SD_OK) {
 		TM_FATFS_SD_SDIO_Stat &= ~STA_NOINIT;	/* Clear STA_NOINIT flag */
 	} else {
-		TM_FATFS_SD_SDIO_Stat = STA_NOINIT;
+		TM_FATFS_SD_SDIO_Stat |= STA_NOINIT;
 	}
 	//Check write protected
 	if (!TM_FATFS_SDIO_WriteEnabled()) {
