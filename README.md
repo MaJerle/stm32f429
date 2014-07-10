@@ -55,6 +55,8 @@ http://bit.ly/U4wmKW
 http://bit.ly/1w2ru5n
 21. FATFS - Read SDcard with STM32F4xx using SDIO or SPI communication
 http://bit.ly/1k9rJGo
+22. RNG - Use of True random number generator peripheral on STM32F4xx devices
+http://bit.ly/1sCyx4w
 
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
