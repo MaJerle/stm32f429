@@ -1,5 +1,5 @@
 /**
- *	Keil project
+ *	Keil project example for FATFS
  *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
@@ -55,17 +55,4 @@ int main(void) {
 
 	}
 }
-
-//Use custom get_fattime function
-//Implement RTC get time here if you need it
-/*
-DWORD get_fattime (void) {
-	return	  ((DWORD)(2000 - 1980) << 25)	// Year 2013
-			| ((DWORD)0 << 21)				// Month 7
-			| ((DWORD)0 << 16)				// Mday 28
-			| ((DWORD)0 << 11)				// Hour 0
-			| ((DWORD)0 << 5)				// Min 0
-			| ((DWORD)0 >> 1);				// Sec 0
-}
-*/
 
