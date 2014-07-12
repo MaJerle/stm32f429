@@ -9,7 +9,7 @@
  *	@ide		Keil uVision
  */
 #ifndef TM_RTC_H
-#define TM_RTC_H 100
+#define TM_RTC_H 110
 /**
  * Library dependencies
  * - STM32F4xx RCC
