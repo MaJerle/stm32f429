@@ -383,6 +383,8 @@ extern void TM_UART8_InitPins(TM_USART_PinsPack_t pinspack);
  */
 extern void TM_USART_Putc(USART_TypeDef* USARTx, volatile char c);
 
+extern uint16_t TM_USART_Gets(USART_TypeDef* USARTx, char *buffer, uint16_t bufsize);
+
 /**
  * Put string to USARTx
  *

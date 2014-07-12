@@ -611,6 +611,31 @@ uint8_t TM_USART_Getc(USART_TypeDef* USARTx) {
 	return c;
 }
 
+uint16_t TM_USART_Gets(USART_TypeDef* USARTx, char* buffer, uint16_t bufsize) {
+	uint16_t i = 0;                             
+	uint8_t eol = 0;
+	if (TM_USART_BufferEmpty(USARTx)) {
+		return 0;
+	}
+	if (bufsize > 0) {
+		while (!eol) {
+			while (TM_USART_BufferEmpty(USARTx));
+			buffer[i] = (char) TM_USART_Getc(USARTx);   
+			if (buffer[i] == '\n') {
+				eol = 1;                
+			} else {            
+				if (i < (bufsize - 1)) {
+					i++; 	
+				}
+			}
+		}
+		//Add zero to the end of string
+		buffer[i] = 0;               
+	}
+
+	return (i);
+}
+
 uint8_t TM_USART_BufferEmpty(USART_TypeDef* USARTx) {
 	uint8_t usart_num = TM_USART_GetUsartNumber(USARTx);
 	return !(tm_usart_buf_num[usart_num] > 0);
