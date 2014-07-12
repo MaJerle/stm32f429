@@ -13,11 +13,11 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://bit.ly/1npVXHQ
- *	@version 	v1.2
+ *	@version 	v1.3
  *	@ide		Keil uVision
  */
 #ifndef TM_USART_
-#define TM_USART_ 120
+#define TM_USART_ 130
 /**
  * Library dependencies
  * - STM32F4xx
@@ -383,8 +383,6 @@ extern void TM_UART8_InitPins(TM_USART_PinsPack_t pinspack);
  */
 extern void TM_USART_Putc(USART_TypeDef* USARTx, volatile char c);
 
-extern uint16_t TM_USART_Gets(USART_TypeDef* USARTx, char *buffer, uint16_t bufsize);
-
 /**
  * Put string to USARTx
  *
@@ -405,6 +403,24 @@ extern void TM_USART_Puts(USART_TypeDef* USARTx, char* str);
  * Returned character if exists in buffer, otherwise zero
  */
 extern uint8_t TM_USART_Getc(USART_TypeDef* USARTx);
+
+/**
+ * Get string from USART
+ *
+ * This function can create a string from usart received data.
+ * It generates string until "\n" is not recognized.
+ * So when you call this function, make sure your string ends with \n or
+ * you may stop in infinite loop.
+ *
+ * Parameters:
+ * 	- USART_TypeDef* USARTx: which USART channel
+ * 		USART1, USART2, USART3, UART4, UART5, USART6, UART7. UART8
+ * 	- char* buffer: pointer to character buffer
+ * 	- uint16_t bufsize: size of your buffer
+ *
+ * Returns number of valid characters in buffer
+ */
+extern uint16_t TM_USART_Gets(USART_TypeDef* USARTx, char* buffer, uint16_t bufsize);
 
 #ifdef USART1
 /**
