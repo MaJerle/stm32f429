@@ -13,61 +13,12 @@
 #include "tm_stm32f4_usart.h"
 #include "tm_stm32f4_disco.h"
 #include "tm_stm32f4_delay.h"
+#include "tm_stm32f4_ili9341.h"
 
 #include <stdio.h>
 
 char buf[30];
-TM_RTC_Time_t datatime;
-
-
-void TM_LEDS_Init() {
-    GPIO_InitTypeDef GPIO_InitDef;
-    //Clock for GPIOD
-    RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
- 
-    //Alternating functions
-    GPIO_PinAFConfig(GPIOD, GPIO_PinSource12, GPIO_AF_TIM4);
-    GPIO_PinAFConfig(GPIOD, GPIO_PinSource13, GPIO_AF_TIM4);
-    GPIO_PinAFConfig(GPIOD, GPIO_PinSource14, GPIO_AF_TIM4);
-    GPIO_PinAFConfig(GPIOD, GPIO_PinSource15, GPIO_AF_TIM4);
-    
-    GPIO_InitDef.GPIO_Pin = GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15;
-    GPIO_InitDef.GPIO_OType = GPIO_OType_PP;
-    GPIO_InitDef.GPIO_PuPd = GPIO_PuPd_NOPULL;
-    GPIO_InitDef.GPIO_Mode = GPIO_Mode_AF;
-    GPIO_InitDef.GPIO_Speed = GPIO_Speed_100MHz;
-    GPIO_Init(GPIOD, &GPIO_InitDef);
-}
- 
-void TM_TIMER_Init() {
-    TIM_TimeBaseInitTypeDef TIM_BaseDef;
-    
-    //Enable clock for TIM4
-    RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE);
-    
-    //Clock speed to Sysclk/2 = 90MHz
-    TIM_BaseDef.TIM_Prescaler = 0;
-    TIM_BaseDef.TIM_CounterMode = TIM_CounterMode_Up;
-    TIM_BaseDef.TIM_Period = 2746; //10kHz 
-    TIM_BaseDef.TIM_ClockDivision = TIM_CKD_DIV1;
-    TIM_BaseDef.TIM_RepetitionCounter = 0;
-    TIM_TimeBaseInit(TIM4, &TIM_BaseDef);
-    TIM_Cmd(TIM4, ENABLE);
-}
- 
-void TM_PWM_Init() {
-    TIM_OCInitTypeDef TIM_OCDef;
-    
-    TIM_OCDef.TIM_OCMode = TIM_OCMode_PWM2;
-    TIM_OCDef.TIM_OutputState = TIM_OutputState_Enable;
-    TIM_OCDef.TIM_OCPolarity = TIM_OCPolarity_Low;
-    
- 
-    TIM_OCDef.TIM_Pulse = 1373; //25% duty cycle
-    TIM_OC1Init(TIM4, &TIM_OCDef);
-    TIM_OC1PreloadConfig(TIM4, TIM_OCPreload_Enable);
-}
-    
+TM_RTC_Time_t datatime;    
     
 char buffer[30];
 
@@ -81,10 +32,9 @@ int main(void) {
 	TM_DISCO_ButtonInit();
 	
 	TM_DISCO_LedInit();
-	
-	TM_LEDS_Init();
-    TM_TIMER_Init();
-    TM_PWM_Init();
+	//Init LCD
+	TM_ILI9341_Init();
+	TM_ILI9341_Rotate(TM_ILI9341_Orientation_Portrait_2);
 	
 	//Initialize USART, TX: PB10, RX: PB11
 	TM_USART_Init(USART3, TM_USART_PinsPack_1, 115200);
@@ -120,7 +70,7 @@ int main(void) {
 			
 			TM_RTC_GetDateTime(&datatime, TM_RTC_Format_BIN);
 			sprintf(buffer, "%02d.%02d.  %02d:%02d:%02d\n", datatime.date, datatime.month, datatime.hours, datatime.minutes, datatime.seconds);
-			TM_USART_Puts(USART3, buffer);
+			TM_ILI9341_Puts(10, 10, buffer, &TM_Font_11x18, 0x00, 0xFF);
 		}
 		
 		if (TM_DISCO_ButtonPressed()) {

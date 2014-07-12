@@ -13,6 +13,7 @@
 /**
  * Library dependencies
  * - STM32F4xx RCC
+ * - STM32F4xx RTC
  * - STM32F4xx PWR
  * - STM32F4xx EXTI
  * - MISC
@@ -22,15 +23,17 @@
  * Includes
  */
 #include "stm32f4xx.h"
+#include "stm32f4xx_rcc.h"
 #include "stm32f4xx_rtc.h"
 #include "stm32f4xx_pwr.h"
 #include "stm32f4xx_exti.h"
 #include "misc.h"
 #include "defines.h"
 
-#define  RTC_STATUS_REG      			RTC_BKP_DR0  // Status Register
-#define  RTC_STATUS_INIT_OK  			0x35AC       // RTC initialised
-#define  RTC_STATUS_TIME_OK  			0xA3C5       // RTC time ok
+#define RTC_STATUS_REG      			RTC_BKP_DR0  // Status Register
+#define RTC_STATUS_INIT_OK  			0x35AC       // RTC initialised
+#define RTC_STATUS_TIME_OK  			0xA3C5       // RTC time ok
+#define	RTC_STATUS_ZERO					0x00
 
 #define TM_RTC_LEAP_YEAR(year) 			(((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0))
 #define TM_RTC_OFFSET_YEAR				1970

@@ -52,35 +52,6 @@ uint8_t TM_WATCHDOG_Init(TM_WATCHDOG_Timeout_t timeout) {
 	return result;
 }
 
-/*
-  // letzte Reset-Quelle auswerten
-  if (RCC_GetFlagStatus(RCC_FLAG_IWDGRST) != RESET) {
-    // letzter Reset war wegen IWDG
-    ret_wert=1;
-
-    RCC_ClearFlag();
-  }
-
-  // enable Write access
-  IWDG_WriteAccessCmd(IWDG_WriteAccess_Enable);
-
-  // vorteiler auf 32 => IWDG_Clk = ca 1kHz = ca. 1ms
-  IWDG_SetPrescaler(IWDG_Prescaler_32);
-
-  // reload Wert einstellen
-  IWDG_SetReload(2000);
-
-  // reset vom Counter
-  IWDG_ReloadCounter();
-
-  // IWDG enable => LSI enable
-  IWDG_Enable();
-
-  return(ret_wert);
-*/
-
-
-
 void TM_WATCHDOG_Reset(void) {
 	// Reload IWDG counter
     IWDG_ReloadCounter(); 

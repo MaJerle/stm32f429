@@ -1,13 +1,11 @@
 #include "tm_stm32f4_rtc.h"
 
-uint32_t TM_RTC_Status = 0;
+uint32_t TM_RTC_Status = RTC_STATUS_ZERO;
 uint16_t uwSynchPrediv = 0xFF, uwAsynchPrediv = 0x7F;
 
 RTC_TimeTypeDef RTC_TimeStruct;
 RTC_InitTypeDef RTC_InitStruct;
 RTC_DateTypeDef RTC_DateStruct;
-
-#define RTC_CLOCK_SOURCE_LSE
 
 uint8_t TM_RTC_Months[] = {
 	31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
@@ -15,6 +13,7 @@ uint8_t TM_RTC_Months[] = {
 
 uint32_t TM_RTC_Init(TM_RTC_ClockSource_t source) {
 	uint32_t status;
+	TM_RTC_Time_t datatime;
 	
 	// Enable RTC Clock
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_PWR, ENABLE);
@@ -27,11 +26,6 @@ uint32_t TM_RTC_Init(TM_RTC_ClockSource_t source) {
 	
 	if (status == RTC_STATUS_TIME_OK) {
 		TM_RTC_Status = RTC_STATUS_TIME_OK;
-		
-		if (source == TM_RTC_ClockSource_Internal) {
-			// Config RTC
-			TM_RTC_Config(source);
-		}
 
 		// Wait for RTC APB registers synchronisation (needed after start-up from Reset)
 		RTC_WaitForSynchro();
@@ -40,14 +34,9 @@ uint32_t TM_RTC_Init(TM_RTC_ClockSource_t source) {
 		RTC_ClearITPendingBit(RTC_IT_WUT);
 		EXTI_ClearITPendingBit(EXTI_Line22);
 		
-		//TM_RTC_GetDateTime(&datatime, TM_RTC_Format_BIN);
+		TM_RTC_GetDateTime(&datatime, TM_RTC_Format_BIN);
 	} else if (status == RTC_STATUS_INIT_OK) {
 		TM_RTC_Status = RTC_STATUS_INIT_OK;
-		
-		if (source == TM_RTC_ClockSource_Internal) {
-			// Config RTC
-			TM_RTC_Config(TM_RTC_ClockSource_Internal);
-		}
 		
 		// Wait for RTC APB registers synchronisation (needed after start-up from Reset)
 		RTC_WaitForSynchro();
@@ -56,18 +45,22 @@ uint32_t TM_RTC_Init(TM_RTC_ClockSource_t source) {
 		RTC_ClearITPendingBit(RTC_IT_WUT);
 		EXTI_ClearITPendingBit(EXTI_Line22);
 		
-		//TM_RTC_GetDateTime(&datatime, TM_RTC_Format_BIN);
+		TM_RTC_GetDateTime(&datatime, TM_RTC_Format_BIN);
 	} else {
-		TM_RTC_Status = 0;
+		TM_RTC_Status = RTC_STATUS_ZERO;
 		
 		// Config RTC
 		TM_RTC_Config(source);
-
-		// Wait for RTC APB registers synchronisation (needed after start-up from Reset)
-		RTC_WaitForSynchro();
 		
-		// Init OK
-		RTC_WriteBackupRegister(RTC_STATUS_REG, RTC_STATUS_INIT_OK);
+		//Set date and time
+		datatime.date = 1;
+		datatime.day = 1;
+		datatime.month = 1;
+		datatime.year = 0;
+		datatime.hours = 0;
+		datatime.minutes = 0;
+		datatime.seconds = 0;
+		TM_RTC_SetDateTime(&datatime, TM_RTC_Format_BIN);
 		
 		// Initialized OK
 		TM_RTC_Status = RTC_STATUS_INIT_OK;
@@ -104,15 +97,13 @@ void TM_RTC_SetDateTime(TM_RTC_Time_t* data, TM_RTC_Format_t format) {
 	RTC_InitStruct.RTC_SynchPrediv = uwSynchPrediv;
 	RTC_Init(&RTC_InitStruct);
 	
-	if (TM_RTC_Status != 0) {
+	if (TM_RTC_Status != RTC_STATUS_ZERO) {
 		// Write backup registers
 		RTC_WriteBackupRegister(RTC_STATUS_REG, RTC_STATUS_TIME_OK);
 	}
 }
 
-void TM_RTC_GetDateTime(TM_RTC_Time_t* data, TM_RTC_Format_t format) {	
-	RTC_DateTypeDef RTC_DateStruct;
-	RTC_TimeTypeDef RTC_TimeStruct;
+void TM_RTC_GetDateTime(TM_RTC_Time_t* data, TM_RTC_Format_t format) {
 	uint32_t unix;
 	//Get date
 	if (format == TM_RTC_Format_BIN) {
@@ -165,6 +156,12 @@ void TM_RTC_Config(TM_RTC_ClockSource_t source) {
 	
 	// Enable the RTC Clock
 	RCC_RTCCLKCmd(ENABLE);
+	
+	// Wait for register synchronization
+	RTC_WaitForSynchro();
+
+	// Write status
+	RTC_WriteBackupRegister(RTC_STATUS_REG, RTC_STATUS_INIT_OK);
 }
 
 void TM_RTC_Interrupts(TM_RTC_Int_t int_value) {
@@ -174,7 +171,7 @@ void TM_RTC_Interrupts(TM_RTC_Int_t int_value) {
 
 	// NVIC init for 
 	NVIC_InitStruct.NVIC_IRQChannel = RTC_WKUP_IRQn;
-	NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority = 1;
+	NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority = 2;
 	NVIC_InitStruct.NVIC_IRQChannelSubPriority = 0;
 	
 	// RTC connected to EXTI_Line22
@@ -195,8 +192,6 @@ void TM_RTC_Interrupts(TM_RTC_Int_t int_value) {
 		RTC_WakeUpCmd(DISABLE);
 		// Disable RTC interrupt flag
 		RTC_ITConfig(RTC_IT_WUT, DISABLE);
-
-		
 	} else {
 		// Enable NVIC
 		NVIC_InitStruct.NVIC_IRQChannelCmd = ENABLE;
