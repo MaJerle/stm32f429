@@ -32,7 +32,11 @@ int main(void) {
 	
 	//Initialize RTC with internal 32768Hz clock
 	//It's not very accurate
-	TM_RTC_Init(TM_RTC_ClockSource_Internal);
+	if (!TM_RTC_Init(TM_RTC_ClockSource_Internal)) {
+		//RTC was first time initialized
+		//Do your stuf here
+		//eg. set default time
+	}
 	
 	//Set wakeup interrupt every 1 second
 	TM_RTC_Interrupts(TM_RTC_Int_1s);
