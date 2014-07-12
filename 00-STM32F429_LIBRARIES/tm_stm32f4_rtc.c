@@ -13,6 +13,7 @@ uint8_t TM_RTC_Months[] = {
 
 uint32_t TM_RTC_Init(TM_RTC_ClockSource_t source) {
 	uint32_t status;
+	uint8_t stat = 1;
 	TM_RTC_Time_t datatime;
 	
 	// Enable RTC Clock
@@ -26,7 +27,12 @@ uint32_t TM_RTC_Init(TM_RTC_ClockSource_t source) {
 	
 	if (status == RTC_STATUS_TIME_OK) {
 		TM_RTC_Status = RTC_STATUS_TIME_OK;
-
+		
+		//Start internal clock if we choose internal clock
+		if (source == TM_RTC_ClockSource_Internal) {
+			TM_RTC_Config(TM_RTC_ClockSource_Internal);
+		}
+		
 		// Wait for RTC APB registers synchronisation (needed after start-up from Reset)
 		RTC_WaitForSynchro();
 		
@@ -38,6 +44,11 @@ uint32_t TM_RTC_Init(TM_RTC_ClockSource_t source) {
 	} else if (status == RTC_STATUS_INIT_OK) {
 		TM_RTC_Status = RTC_STATUS_INIT_OK;
 		
+		//Start internal clock if we choose internal clock
+		if (source == TM_RTC_ClockSource_Internal) {
+			TM_RTC_Config(TM_RTC_ClockSource_Internal);
+		}
+		
 		// Wait for RTC APB registers synchronisation (needed after start-up from Reset)
 		RTC_WaitForSynchro();
 		
@@ -48,7 +59,8 @@ uint32_t TM_RTC_Init(TM_RTC_ClockSource_t source) {
 		TM_RTC_GetDateTime(&datatime, TM_RTC_Format_BIN);
 	} else {
 		TM_RTC_Status = RTC_STATUS_ZERO;
-		
+		//Return status = 0 > RTC Never initialized before
+		stat = RTC_STATUS_ZERO;
 		// Config RTC
 		TM_RTC_Config(source);
 		
@@ -65,37 +77,41 @@ uint32_t TM_RTC_Init(TM_RTC_ClockSource_t source) {
 		// Initialized OK
 		TM_RTC_Status = RTC_STATUS_INIT_OK;
 	}
-	
+	//If first time initialized
+	if (stat == RTC_STATUS_ZERO) {
+		return 0;
+	}
 	return TM_RTC_Status;
 }
 
 void TM_RTC_SetDateTime(TM_RTC_Time_t* data, TM_RTC_Format_t format) {	
+	// Fill time
 	RTC_TimeStruct.RTC_Hours = data->hours;
 	RTC_TimeStruct.RTC_Minutes = data->minutes;
 	RTC_TimeStruct.RTC_Seconds = data->seconds;
-	
-	if (format == TM_RTC_Format_BCD) {
-		RTC_SetTime(RTC_Format_BCD, &RTC_TimeStruct);
-	} else {
-		RTC_SetTime(RTC_Format_BIN, &RTC_TimeStruct);
-	}
-
+	// Fill date
 	RTC_DateStruct.RTC_Date = data->date;
 	RTC_DateStruct.RTC_Month = data->month;
 	RTC_DateStruct.RTC_Year = data->year;
 	RTC_DateStruct.RTC_WeekDay = data->day;
 	
-	if (format == TM_RTC_Format_BCD) {
-		RTC_SetDate(RTC_Format_BCD, &RTC_DateStruct);
-	} else {
-		RTC_SetDate(RTC_Format_BIN, &RTC_DateStruct);
-	}
-	
-	// Set the RTC time base to 1s
+	// Set the RTC time base to 1s and hours format to 24h
 	RTC_InitStruct.RTC_HourFormat = RTC_HourFormat_24;
 	RTC_InitStruct.RTC_AsynchPrediv = uwAsynchPrediv;
 	RTC_InitStruct.RTC_SynchPrediv = uwSynchPrediv;
 	RTC_Init(&RTC_InitStruct);
+
+	if (format == TM_RTC_Format_BCD) {
+		RTC_SetTime(RTC_Format_BCD, &RTC_TimeStruct);
+	} else {
+		RTC_SetTime(RTC_Format_BIN, &RTC_TimeStruct);
+	}
+	
+	if (format == TM_RTC_Format_BCD) {
+		RTC_SetDate(RTC_Format_BCD, &RTC_DateStruct);
+	} else {
+		RTC_SetDate(RTC_Format_BIN, &RTC_DateStruct);
+	}	
 	
 	if (TM_RTC_Status != RTC_STATUS_ZERO) {
 		// Write backup registers
@@ -105,6 +121,18 @@ void TM_RTC_SetDateTime(TM_RTC_Time_t* data, TM_RTC_Format_t format) {
 
 void TM_RTC_GetDateTime(TM_RTC_Time_t* data, TM_RTC_Format_t format) {
 	uint32_t unix;
+
+	//Get time
+	if (format == TM_RTC_Format_BIN) {
+		RTC_GetTime(RTC_Format_BIN, &RTC_TimeStruct);
+	} else {
+		RTC_GetTime(RTC_Format_BCD, &RTC_TimeStruct);
+	}
+	
+	data->hours = RTC_TimeStruct.RTC_Hours;
+	data->minutes = RTC_TimeStruct.RTC_Minutes;
+	data->seconds = RTC_TimeStruct.RTC_Seconds;
+	
 	//Get date
 	if (format == TM_RTC_Format_BIN) {
 		RTC_GetDate(RTC_Format_BIN, &RTC_DateStruct);
@@ -116,17 +144,6 @@ void TM_RTC_GetDateTime(TM_RTC_Time_t* data, TM_RTC_Format_t format) {
 	data->month = RTC_DateStruct.RTC_Month;
 	data->date = RTC_DateStruct.RTC_Date;
 	data->day = RTC_DateStruct.RTC_WeekDay;
-	
-	//Get time
-	if (format == TM_RTC_Format_BIN) {
-		RTC_GetTime(RTC_Format_BIN, &RTC_TimeStruct);
-	} else {
-		RTC_GetTime(RTC_Format_BCD, &RTC_TimeStruct);
-	}
-	
-	data->hours = RTC_TimeStruct.RTC_Hours;
-	data->minutes = RTC_TimeStruct.RTC_Minutes;
-	data->seconds = RTC_TimeStruct.RTC_Seconds;
 	
 	//Calculate unix offset
 	unix = TM_RTC_GetUnixTimeStamp(data);
@@ -168,30 +185,32 @@ void TM_RTC_Interrupts(TM_RTC_Int_t int_value) {
 	NVIC_InitTypeDef NVIC_InitStruct;
 	EXTI_InitTypeDef EXTI_InitStruct;
 	uint32_t int_val;
+	
+	// Clear pending bit
+	EXTI_ClearITPendingBit(EXTI_Line22);
 
-	// NVIC init for 
+	// NVIC init for RTC
 	NVIC_InitStruct.NVIC_IRQChannel = RTC_WKUP_IRQn;
-	NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority = 2;
+	NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority = 1;
 	NVIC_InitStruct.NVIC_IRQChannelSubPriority = 0;
 	
 	// RTC connected to EXTI_Line22
-	EXTI_ClearITPendingBit(EXTI_Line22);
 	EXTI_InitStruct.EXTI_Line = EXTI_Line22;
 	EXTI_InitStruct.EXTI_Mode = EXTI_Mode_Interrupt;
 	EXTI_InitStruct.EXTI_Trigger = EXTI_Trigger_Rising;
 	
 	if (int_value == TM_RTC_Int_Disable) {
+		// Disable wakeup interrupt
+		RTC_WakeUpCmd(DISABLE);
+		// Disable RTC interrupt flag
+		RTC_ITConfig(RTC_IT_WUT, DISABLE);
+		
 		// Disable NVIC
 		NVIC_InitStruct.NVIC_IRQChannelCmd = DISABLE;
 		NVIC_Init(&NVIC_InitStruct); 
 		// Disable EXT1 interrupt
 		EXTI_InitStruct.EXTI_LineCmd = DISABLE;
 		EXTI_Init(&EXTI_InitStruct);
-		
-		// Disable wakeup interrupt
-		RTC_WakeUpCmd(DISABLE);
-		// Disable RTC interrupt flag
-		RTC_ITConfig(RTC_IT_WUT, DISABLE);
 	} else {
 		// Enable NVIC
 		NVIC_InitStruct.NVIC_IRQChannelCmd = ENABLE;
@@ -202,10 +221,6 @@ void TM_RTC_Interrupts(TM_RTC_Int_t int_value) {
 
 		// First disable wake up command
 		RTC_WakeUpCmd(DISABLE);
-
-		// Clock divided by 8, 32768 / 8 = 4068
-		// 4096 ticks for 1second interrupt
-		RTC_WakeUpClockConfig(RTC_WakeUpClock_RTCCLK_Div8);
 
 		if (int_value == TM_RTC_Int_60s) {
 			int_val = 0x3BFFF; 		// 60 seconds = 60 * 4096 / 1 = 245760
@@ -229,6 +244,10 @@ void TM_RTC_Interrupts(TM_RTC_Int_t int_value) {
 			int_val = 0x1FF;		// 125 ms
 		}		
 
+		// Clock divided by 8, 32768 / 8 = 4068
+		// 4096 ticks for 1second interrupt
+		RTC_WakeUpClockConfig(RTC_WakeUpClock_RTCCLK_Div8);
+		
 		// Set RTC wakeup counter
 		RTC_SetWakeUpCounter(int_val);
 		// Enable wakeup interrupt

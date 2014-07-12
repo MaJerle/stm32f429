@@ -31,9 +31,9 @@
 #include "defines.h"
 
 #define RTC_STATUS_REG      			RTC_BKP_DR0  // Status Register
-#define RTC_STATUS_INIT_OK  			0x35AC       // RTC initialised
-#define RTC_STATUS_TIME_OK  			0xA3C5       // RTC time ok
-#define	RTC_STATUS_ZERO					0x00
+#define RTC_STATUS_INIT_OK  			0x1234       // RTC initialised
+#define RTC_STATUS_TIME_OK  			0x4321       // RTC time ok
+#define	RTC_STATUS_ZERO					0x0000
 
 #define TM_RTC_LEAP_YEAR(year) 			(((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0))
 #define TM_RTC_OFFSET_YEAR				1970
@@ -133,6 +133,7 @@ extern uint32_t TM_RTC_GetUnixTimeStamp(TM_RTC_Time_t* data);
  * Parameters:
  * 	- TM_RTC_ClockSource_t source:
  * 		Select RTC clock source
+ * Returns 0 if RTC was initialized first time (power up), so you know when to set date and time
  */
 extern uint32_t TM_RTC_Init(TM_RTC_ClockSource_t source);
 
