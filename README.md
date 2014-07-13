@@ -57,7 +57,8 @@ http://bit.ly/1w2ru5n
 http://bit.ly/1k9rJGo
 22. RNG - Use of True random number generator peripheral on STM32F4xx devices
 http://bit.ly/1sCyx4w
-
+23. MFRC522 - Read RFID Cards with STM32F4xx devices
+http://bit.ly/1ycHq7P
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB
