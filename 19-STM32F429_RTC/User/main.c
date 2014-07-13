@@ -49,7 +49,7 @@ int main(void) {
 			datatime.seconds = 55;
 			datatime.year = 14;
 			datatime.month = 6;
-			datatime.date = 32;
+			datatime.date = 30;
 			datatime.day = 6;
 			//Set new time
 			TM_RTC_SetDateTime(&datatime, TM_RTC_Format_BIN);
