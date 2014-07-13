@@ -15,7 +15,7 @@
 
 #include <stdio.h>
 
-char buf[30];
+char buf[50], buf2[50];
 TM_RTC_Time_t datatime;
 
 int main(void) {	
@@ -44,12 +44,12 @@ int main(void) {
 	while (1) {
 		//If button pressed
 		if (TM_DISCO_ButtonPressed()) {
-			datatime.hours = 23;
+			datatime.hours = 0;
 			datatime.minutes = 59;
 			datatime.seconds = 55;
 			datatime.year = 14;
-			datatime.month = 5;
-			datatime.date = 31;
+			datatime.month = 6;
+			datatime.date = 32;
 			datatime.day = 6;
 			//Set new time
 			TM_RTC_SetDateTime(&datatime, TM_RTC_Format_BIN);
@@ -61,9 +61,18 @@ int main(void) {
 void TM_RTC_RequestHandler() {
 	//Get time
 	TM_RTC_GetDateTime(&datatime, TM_RTC_Format_BIN);
+	
 	//Format time
-	sprintf(buf, "%02d.%02d.%04d %02d:%02d:%02d\n", datatime.date, datatime.month, datatime.year + 2000, datatime.hours, datatime.minutes, datatime.seconds);
-	//Send to terminal
+	sprintf(buf, "%02d.%02d.%04d %02d:%02d:%02d  Unix: %u\n",
+				datatime.date,
+				datatime.month,
+				datatime.year + 2000,
+				datatime.hours,
+				datatime.minutes,
+				datatime.seconds,
+				datatime.unix
+	);
+	//Send to USART
 	TM_USART_Puts(USART3, buf);
 	//Toggle LED
 	TM_DISCO_LedToggle(LED_RED | LED_GREEN);

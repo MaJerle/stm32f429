@@ -53,7 +53,6 @@ uint8_t TM_STMPE811_Init(void) {
 
 uint8_t TM_STMPE811_Read(uint8_t reg) {
 	return TM_I2C_Read(STMPE811_I2C, STMPE811_ADDRESS, reg);
-
 }
 
 TM_STMPE811_State_t TM_STMPE811_ReadTouch(TM_STMPE811_TouchData *structdata) {

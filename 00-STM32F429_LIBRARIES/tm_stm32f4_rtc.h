@@ -35,12 +35,14 @@
 #define RTC_STATUS_TIME_OK  			0x4321       // RTC time ok
 #define	RTC_STATUS_ZERO					0x0000
 
-#define TM_RTC_LEAP_YEAR(year) 			(((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0))
+#define TM_RTC_LEAP_YEAR(year) 			(((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0))// ? 1 : 0
+#define TM_RTC_DAYS_IN_YEAR(x)			TM_RTC_LEAP_YEAR(x) ? 366 : 365
 #define TM_RTC_OFFSET_YEAR				1970
-#define TM_RTC_DAYS_IN_YEAR				365
 #define TM_RTC_SECONDS_PER_DAY			86400
 #define TM_RTC_SECONDS_PER_HOUR			3600
 #define TM_RTC_SECONDS_PER_MINUTE		60
+
+
 
 /**
  * Struct for date/time
@@ -126,6 +128,18 @@ typedef enum {
  * Returns Unix seconds
  */
 extern uint32_t TM_RTC_GetUnixTimeStamp(TM_RTC_Time_t* data);
+
+/**
+ * Get formatted time from seconds till 01.01.1970 00:00:00
+ * It fills struct with valid data. Valid if year is greater or equal (>=) than 2000
+ *
+ * Parameters:
+ * 	- TM_RTC_Time_t* data:
+ * 		Pointer to TM_RTC_Time_t struct to store formatted data in
+ * 	- uint32_t unix:
+ * 		Seconds from 01.01.1970 00:00:00
+ */
+extern void TM_RTC_GetDateTimeFromUnix(TM_RTC_Time_t* data, uint32_t unix);
 
 /**
  * Initialize RTC

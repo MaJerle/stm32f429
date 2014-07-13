@@ -7,8 +7,9 @@ RTC_TimeTypeDef RTC_TimeStruct;
 RTC_InitTypeDef RTC_InitStruct;
 RTC_DateTypeDef RTC_DateStruct;
 
-uint8_t TM_RTC_Months[] = {
-	31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31
+uint8_t TM_RTC_Months[2][12] = {
+	{31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31},	//Not leap year
+	{31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}	//Leap year
 };
 
 uint32_t TM_RTC_Init(TM_RTC_ClockSource_t source) {
@@ -267,20 +268,12 @@ uint32_t TM_RTC_GetUnixTimeStamp(TM_RTC_Time_t* data) {
 	}
 	//Days in back years
 	for (i = TM_RTC_OFFSET_YEAR; i < year; i++) {
-		if (TM_RTC_LEAP_YEAR(i)) {
-			days += TM_RTC_DAYS_IN_YEAR + 1;
-		} else {
-			days += TM_RTC_DAYS_IN_YEAR;
-		}
+		days += TM_RTC_DAYS_IN_YEAR(i);
 	}
 	//Days in current year
 	data->month = data->month % 12;
 	for (i = 1; i < data->month; i++) {
-		if (i == 2 && TM_RTC_LEAP_YEAR(year)) {
-			days += TM_RTC_Months[1] + 1;
-		} else {
-			days += TM_RTC_Months[i - 1];
-		}
+		days += TM_RTC_Months[TM_RTC_LEAP_YEAR(year)][i];
 	}
 	//Day starts with 1
 	days += data->date - 1;
@@ -291,6 +284,66 @@ uint32_t TM_RTC_GetUnixTimeStamp(TM_RTC_Time_t* data) {
 	
 	//seconds = days * 86400;
 	return seconds;
+}
+
+uint16_t TM_RTC_DaysInYear(uint16_t year) {
+	return TM_RTC_DAYS_IN_YEAR(year);
+}
+
+void TM_RTC_GetDateTimeFromUnix(TM_RTC_Time_t* data, uint32_t unix) {
+	uint16_t year;
+	
+	//Store unix time to unix in struct
+	//data->unix = unix;
+	//Get seconds from unix
+	data->seconds = unix % 60;
+	//Go to minutes
+	unix /= 60;
+	//Get minutes
+	data->minutes = unix % 60;
+	//Go to hours
+	unix /= 60;
+	//Get hours
+	data->hours = unix % 24;
+	//Go to days
+	unix /= 24;
+	
+	return;
+	/*
+	//Get week day
+	data->day = (unix + 3) % 7 + 1;
+
+	//Get year
+	year = 1970;
+	while (1) {
+		if (TM_RTC_LEAP_YEAR(year) && unix >= 366) {
+			unix -= 366;
+		} else if (unix >= 365) {
+			unix -= 365;
+		} else {
+			break;
+		}
+		year++;
+	}
+	//Get year in xx format
+	data->year = (uint8_t) (year - 2000);
+	//Get month
+	for (data->month = 0; data->month < 12; data->month++) {
+		if (TM_RTC_LEAP_YEAR(year) && unix >= (uint32_t)TM_RTC_Months[1][data->month]) {
+			unix -= TM_RTC_Months[1][data->month];
+		} else if (unix >= (uint32_t)TM_RTC_Months[0][data->month]) {
+			unix -= TM_RTC_Months[0][data->month];
+		} else {
+			break;
+		}
+	}
+	//Get month
+	//Month starts with 1
+	data->month++;
+	//Get date
+	//Date starts with 1
+	data->date = unix + 1;
+	*/
 }
 
 void RTC_WKUP_IRQHandler(void) {
