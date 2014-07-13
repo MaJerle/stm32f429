@@ -294,7 +294,7 @@ void TM_RTC_GetDateTimeFromUnix(TM_RTC_Time_t* data, uint32_t unix) {
 	uint16_t year;
 	
 	//Store unix time to unix in struct
-	//data->unix = unix;
+	data->unix = unix;
 	//Get seconds from unix
 	data->seconds = unix % 60;
 	//Go to minutes
@@ -308,9 +308,8 @@ void TM_RTC_GetDateTimeFromUnix(TM_RTC_Time_t* data, uint32_t unix) {
 	//Go to days
 	unix /= 24;
 	
-	return;
-	/*
 	//Get week day
+	//Monday is day one
 	data->day = (unix + 3) % 7 + 1;
 
 	//Get year
@@ -343,7 +342,6 @@ void TM_RTC_GetDateTimeFromUnix(TM_RTC_Time_t* data, uint32_t unix) {
 	//Get date
 	//Date starts with 1
 	data->date = unix + 1;
-	*/
 }
 
 void RTC_WKUP_IRQHandler(void) {
