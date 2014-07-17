@@ -17,8 +17,8 @@
  * 	- STM32F4xx
  * 	- STM32F4xx RCC
  * 	- STM32F4xx GPIO
- * 	- TM DELAY
  * 	- defines.h
+ * 	- TM DELAY
  */
 /**
  * Includes
@@ -26,8 +26,8 @@
 #include "stm32f4xx.h"
 #include "stm32f4xx_rcc.h"
 #include "stm32f4xx_gpio.h"
-#include "tm_stm32f4_delay.h"
 #include "defines.h"
+#include "tm_stm32f4_delay.h"
 
 //4 bit mode
 //Control pins, can be overwritten
