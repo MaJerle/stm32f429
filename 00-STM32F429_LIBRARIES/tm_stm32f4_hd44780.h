@@ -17,8 +17,11 @@
  * 	- STM32F4xx
  * 	- STM32F4xx RCC
  * 	- STM32F4xx GPIO
- * 	- TM_STM32F4_DELAY
+ * 	- TM DELAY
  * 	- defines.h
+ */
+/**
+ * Includes
  */
 #include "stm32f4xx.h"
 #include "stm32f4xx_rcc.h"
@@ -27,7 +30,7 @@
 #include "defines.h"
 
 //4 bit mode
-//Control pins, can be owerwritten
+//Control pins, can be overwritten
 //RS - Register select pin
 #ifndef TM_HD44780_RS_PIN
 #define TM_HD44780_RS_RCC		RCC_AHB1Periph_GPIOB
@@ -40,7 +43,7 @@
 #define TM_HD44780_E_PORT		GPIOB
 #define TM_HD44780_E_PIN		GPIO_Pin_7
 #endif
-//Data pins, can be owerwritten
+//Data pins, can be overwritten
 //D4 - Data 4 pin
 #ifndef TM_HD44780_D4_PIN
 #define TM_HD44780_D4_RCC		RCC_AHB1Periph_GPIOC
@@ -160,7 +163,7 @@ extern void TM_HD44780_Clear(void);
  * Parameters:
  * 	- uint8_t x: x location
  * 	- uint8_t y: y location
- * 	- char *str: pointer to string
+ * 	- char* str: pointer to string
  *
  * No return
  */
@@ -219,7 +222,7 @@ extern void TM_HD44780_ScrollRight(void);
  *
  * No return
  */
-extern void TM_HD44780_CreateChar(uint8_t location, uint8_t *data);
+extern void TM_HD44780_CreateChar(uint8_t location, uint8_t* data);
 
 /**
  * Put custom created character on LCD

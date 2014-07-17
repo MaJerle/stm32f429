@@ -4,8 +4,6 @@ TM_RS485_t RS485_Settings;
 
 void TM_RS485_Init(uint8_t id, uint32_t baudrate) {
 	RS485_Settings.id = id;
-	RS485_Settings.inReceiving = 0;
-	RS485_Settings.receivedCharacter = 0;
 	
 	TM_RS485_InitPins();
 	TM_USART_Init(RS485_USART, RS485_USART_PINSPACK, baudrate);
@@ -69,7 +67,7 @@ uint8_t TM_RS485_Send(uint8_t receiver, uint8_t* data, uint8_t count) {
 	return 1;
 }
 
-uint8_t TM_RS485_Receive(uint8_t *from, uint8_t *data, uint8_t *count) {
+uint8_t TM_RS485_Receive(uint8_t* from, uint8_t* data, uint8_t* count) {
 	uint8_t c, toID, bytesCount, i, crcMSB, crcLSB, crcData[RS485_BUFFER_LENGTH];
 	uint16_t calculatedCRC, receivedCRC;
 	
