@@ -17,7 +17,7 @@ void TM_MFRC522_Init(void) {
 	TM_MFRC522_AntennaOn();		//Open the antenna
 }
 
-TM_MFRC522_Status_t TM_MFRC522_Check(uint8_t *id) {
+TM_MFRC522_Status_t TM_MFRC522_Check(uint8_t* id) {
 	TM_MFRC522_Status_t status;
 	//Find cards, return card type
 	status = TM_MFRC522_Request(PICC_REQIDL, id);	
@@ -61,7 +61,7 @@ void TM_MFRC522_WriteRegister(uint8_t addr, uint8_t val) {
 	//CS low
 	MFRC522_CS_LOW;
 	//Send address
-	TM_SPI_Send(MFRC522_SPI, (addr<<1)&0x7E);
+	TM_SPI_Send(MFRC522_SPI, (addr << 1) & 0x7E);
 	//Send data	
 	TM_SPI_Send(MFRC522_SPI, val);
 	//CS high
@@ -122,7 +122,7 @@ TM_MFRC522_Status_t TM_MFRC522_Request(uint8_t reqMode, uint8_t* TagType) {
 	return status;
 }
 
-TM_MFRC522_Status_t TM_MFRC522_ToCard(uint8_t command, uint8_t *sendData, uint8_t sendLen, uint8_t *backData, uint16_t *backLen) {
+TM_MFRC522_Status_t TM_MFRC522_ToCard(uint8_t command, uint8_t* sendData, uint8_t sendLen, uint8_t* backData, uint16_t* backLen) {
 	TM_MFRC522_Status_t status = MI_ERR;
 	uint8_t irqEn = 0x00;
 	uint8_t waitIRq = 0x00;
@@ -233,7 +233,7 @@ TM_MFRC522_Status_t TM_MFRC522_Anticoll(uint8_t* serNum) {
 	return status;
 } 
 
-void TM_MFRC522_CalculateCRC(uint8_t * pIndata, uint8_t len, uint8_t* pOutData) {
+void TM_MFRC522_CalculateCRC(uint8_t*  pIndata, uint8_t len, uint8_t* pOutData) {
 	uint8_t i, n;
 
 	TM_MFRC522_ClearBitMask(MFRC522_REG_DIV_IRQ, 0x04);			//CRCIrq = 0
@@ -258,7 +258,7 @@ void TM_MFRC522_CalculateCRC(uint8_t * pIndata, uint8_t len, uint8_t* pOutData) 
 	pOutData[1] = TM_MFRC522_ReadRegister(MFRC522_REG_CRC_RESULT_M);
 }
 
-uint8_t TM_MFRC522_SelectTag(uint8_t *serNum) {
+uint8_t TM_MFRC522_SelectTag(uint8_t* serNum) {
 	uint8_t i;
 	TM_MFRC522_Status_t status;
 	uint8_t size;
@@ -282,7 +282,7 @@ uint8_t TM_MFRC522_SelectTag(uint8_t *serNum) {
 	return size;
 }
 
-TM_MFRC522_Status_t TM_MFRC522_Auth(uint8_t authMode, uint8_t BlockAddr, uint8_t *Sectorkey, uint8_t *serNum) {
+TM_MFRC522_Status_t TM_MFRC522_Auth(uint8_t authMode, uint8_t BlockAddr, uint8_t* Sectorkey, uint8_t* serNum) {
 	TM_MFRC522_Status_t status;
 	uint16_t recvBits;
 	uint8_t i;
@@ -306,7 +306,7 @@ TM_MFRC522_Status_t TM_MFRC522_Auth(uint8_t authMode, uint8_t BlockAddr, uint8_t
 	return status;
 }
 
-TM_MFRC522_Status_t TM_MFRC522_Read(uint8_t blockAddr, uint8_t *recvData) {
+TM_MFRC522_Status_t TM_MFRC522_Read(uint8_t blockAddr, uint8_t* recvData) {
 	TM_MFRC522_Status_t status;
 	uint16_t unLen;
 
@@ -322,7 +322,7 @@ TM_MFRC522_Status_t TM_MFRC522_Read(uint8_t blockAddr, uint8_t *recvData) {
 	return status;
 }
 
-TM_MFRC522_Status_t TM_MFRC522_Write(uint8_t blockAddr, uint8_t *writeData) {
+TM_MFRC522_Status_t TM_MFRC522_Write(uint8_t blockAddr, uint8_t* writeData) {
 	TM_MFRC522_Status_t status;
 	uint16_t recvBits;
 	uint8_t i;
