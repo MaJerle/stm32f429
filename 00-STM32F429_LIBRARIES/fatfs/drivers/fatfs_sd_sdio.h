@@ -53,6 +53,10 @@
 #define FATFS_USE_WRITEPROTECT_PIN			0
 #endif
 
+#ifndef FATFS_SDIO_4BIT
+#define FATFS_SDIO_4BIT						1
+#endif
+
 #if FATFS_USE_DETECT_PIN > 0
 #ifndef FATFS_USE_DETECT_PIN_PIN
 #define FATFS_USE_DETECT_PIN_RCC			RCC_AHB1Periph_GPIOB			
@@ -68,6 +72,8 @@
 #define FATFS_USE_WRITEPROTECT_PIN_PIN		GPIO_Pin_7
 #endif
 #endif
+
+#ifndef FATFS_USE_
 
 
 typedef enum
@@ -517,3 +523,6 @@ extern SD_Error SD_HighSpeed (void);
 #endif 
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+
+#endif
+

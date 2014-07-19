@@ -819,6 +819,11 @@
               <FileType>1</FileType>
               <FilePath>..\..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_sd_sdio.c</FilePath>
             </File>
+            <File>
+              <FileName>fatfs_sd_sdio.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_sd_sdio.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

@@ -510,7 +510,13 @@ SD_Error SD_Init (void)
 
 	if (errorstatus == SD_OK) {
 		logf ("SD_SelectDeselect OK\r\n");
+#if FATFS_SDIO_4BIT == 1
+		//4 bit mode
 		errorstatus = SD_EnableWideBusOperation (SDIO_BusWide_4b);
+#else
+		//1 bit mode
+		errorstatus = SD_EnableWideBusOperation (SDIO_BusWide_1b);
+#endif
 	}
 	else {
 		logf ("SD_EnableWideBusOperation failed\r\n");
@@ -2869,15 +2875,24 @@ void SD_LowLevel_DeInit (void)
         /* Disable the SDIO APB2 Clock */
         RCC_APB2PeriphClockCmd (RCC_APB2Periph_SDIO, DISABLE);
 
-        GPIO_PinAFConfig (GPIOC, GPIO_PinSource8, GPIO_AF_MCO);
-        GPIO_PinAFConfig (GPIOC, GPIO_PinSource9, GPIO_AF_MCO);
-        GPIO_PinAFConfig (GPIOC, GPIO_PinSource10, GPIO_AF_MCO);
-        GPIO_PinAFConfig (GPIOC, GPIO_PinSource11, GPIO_AF_MCO);
-        GPIO_PinAFConfig (GPIOC, GPIO_PinSource12, GPIO_AF_MCO);
-        GPIO_PinAFConfig (GPIOD, GPIO_PinSource2, GPIO_AF_MCO);
+#if FATFS_SDIO_4BIT == 1
+		GPIO_PinAFConfig (GPIOC, GPIO_PinSource8, GPIO_AF_MCO);		//D0
+		GPIO_PinAFConfig (GPIOC, GPIO_PinSource9, GPIO_AF_MCO);		//D1
+		GPIO_PinAFConfig (GPIOC, GPIO_PinSource10, GPIO_AF_MCO);	//D2
+		GPIO_PinAFConfig (GPIOC, GPIO_PinSource11, GPIO_AF_MCO);	//D3
+		GPIO_PinAFConfig (GPIOC, GPIO_PinSource12, GPIO_AF_MCO);	//CLK
+		GPIO_PinAFConfig (GPIOD, GPIO_PinSource2, GPIO_AF_MCO);		//CMD
+		//							  D0		   D1			D2			  D3
+		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_10 | GPIO_Pin_11;
+#else
+		GPIO_PinAFConfig (GPIOC, GPIO_PinSource8, GPIO_AF_MCO);		//D0
+		GPIO_PinAFConfig (GPIOC, GPIO_PinSource12, GPIO_AF_MCO);	//CLK
+		GPIO_PinAFConfig (GPIOD, GPIO_PinSource2, GPIO_AF_MCO);		//CMD
+		
+		//							  D0
+		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8;
+#endif
 
-        /* Configure PC.08, PC.09, PC.10, PC.11 pins: D0, D1, D2, D3 pins */
-        GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_10 | GPIO_Pin_11;
         GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
         GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
         GPIO_Init (GPIOC, &GPIO_InitStructure);
@@ -2904,15 +2919,24 @@ void SD_LowLevel_Init (void)
         /* GPIOC and GPIOD Periph clock enable */
         RCC_AHB1PeriphClockCmd (RCC_AHB1Periph_GPIOC | RCC_AHB1Periph_GPIOD, ENABLE);
 
-        GPIO_PinAFConfig (GPIOC, GPIO_PinSource8, GPIO_AF_SDIO);
-        GPIO_PinAFConfig (GPIOC, GPIO_PinSource9, GPIO_AF_SDIO);
-        GPIO_PinAFConfig (GPIOC, GPIO_PinSource10, GPIO_AF_SDIO);
-        GPIO_PinAFConfig (GPIOC, GPIO_PinSource11, GPIO_AF_SDIO);
-        GPIO_PinAFConfig (GPIOC, GPIO_PinSource12, GPIO_AF_SDIO);
-        GPIO_PinAFConfig (GPIOD, GPIO_PinSource2, GPIO_AF_SDIO);
+#if FATFS_SDIO_4BIT == 1
+		GPIO_PinAFConfig(GPIOC, GPIO_PinSource8, GPIO_AF_SDIO);		//D0
+		GPIO_PinAFConfig(GPIOC, GPIO_PinSource9, GPIO_AF_SDIO);		//D1
+		GPIO_PinAFConfig(GPIOC, GPIO_PinSource10, GPIO_AF_SDIO);	//D2
+		GPIO_PinAFConfig(GPIOC, GPIO_PinSource11, GPIO_AF_SDIO);	//D3
+		GPIO_PinAFConfig(GPIOC, GPIO_PinSource12, GPIO_AF_SDIO);	//CLK
+		GPIO_PinAFConfig(GPIOD, GPIO_PinSource2, GPIO_AF_SDIO);		//CMD
+		//							  D0		   D1			D2			  D3
+		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_10 | GPIO_Pin_11;
+	
+#else
+		GPIO_PinAFConfig (GPIOC, GPIO_PinSource8, GPIO_AF_SDIO);	//D0
+		GPIO_PinAFConfig(GPIOC, GPIO_PinSource12, GPIO_AF_SDIO);	//CLK
+		GPIO_PinAFConfig(GPIOD, GPIO_PinSource2, GPIO_AF_SDIO);		//CMD
+		//D0 pin
+		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8;
+#endif
 
-        /* Configure PC.08, PC.09, PC.10, PC.11 pins: D0, D1, D2, D3 pins */
-        GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_10 | GPIO_Pin_11;
         GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
         GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
         GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;

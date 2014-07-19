@@ -11,11 +11,11 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://bit.ly/1k9rJGo
- *	@version 	v1.0
+ *	@version 	v1.1
  *	@ide		Keil uVision
  */
 #ifndef TM_FATFS_
-#define TM_FATFS_	100
+#define TM_FATFS_	110
 /**
  * Dependencies
  *	- STM32F4xx
