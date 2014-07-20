@@ -6,8 +6,6 @@ TM_HD44780_Options_t TM_HD44780_Opts;
 void TM_HD44780_Init(uint8_t cols, uint8_t rows) {
 	TM_DELAY_Init();
 	
-	TM_USART_Init(USART1, TM_USART_PinsPack_1, 9600);
-	
 	TM_HD44780_InitPins();
 	
 	//At least 40ms
