@@ -91,10 +91,50 @@ void TM_DS1307_SetYear(uint8_t year) {
 	TM_I2C_Write(TM_DS1307_I2C, TM_DS1307_I2C_ADDR, TM_DS1307_YEAR, TM_DS1307_Bin2Bcd(TM_DS1307_CheckMinMax(year, 0, 99)));
 }
 
+void TM_DS1307_EnableOutputPin(TM_DS1307_OutputFrequency_t frequency) {
+	uint8_t temp;
+	if (frequency == TM_DS1307_OutputFrequency_1Hz) {
+		temp =	1 << TM_DS1307_CONTROL_OUT 	| 
+				1 << TM_DS1307_CONTROL_SQWE |
+				0 << TM_DS1307_CONTROL_RS1 	|
+				0 << TM_DS1307_CONTROL_RS0;
+	} else if (frequency == TM_DS1307_OutputFrequency_4096Hz) {
+		temp =	1 << TM_DS1307_CONTROL_OUT 	| 
+				1 << TM_DS1307_CONTROL_SQWE |
+				0 << TM_DS1307_CONTROL_RS1 	|
+				1 << TM_DS1307_CONTROL_RS0;	
+	} else if (frequency == TM_DS1307_OutputFrequency_8192Hz) {
+		temp =	1 << TM_DS1307_CONTROL_OUT 	| 
+				1 << TM_DS1307_CONTROL_SQWE |
+				1 << TM_DS1307_CONTROL_RS1 	|
+				0 << TM_DS1307_CONTROL_RS0;	
+	} else if (frequency == TM_DS1307_OutputFrequency_32768Hz) {
+		temp =	1 << TM_DS1307_CONTROL_OUT 	| 
+				1 << TM_DS1307_CONTROL_SQWE |
+				1 << TM_DS1307_CONTROL_RS1 	|
+				1 << TM_DS1307_CONTROL_RS0;	
+	} else if (frequency == TM_DS1307_OutputFrequency_High) {
+		temp =	1 << TM_DS1307_CONTROL_OUT 	| 
+				0 << TM_DS1307_CONTROL_SQWE |
+				0 << TM_DS1307_CONTROL_RS1 	|
+				0 << TM_DS1307_CONTROL_RS0;	
+	} else if (frequency == TM_DS1307_OutputFrequency_Low) {
+		temp =	0 << TM_DS1307_CONTROL_OUT 	| 
+				0 << TM_DS1307_CONTROL_SQWE |
+				0 << TM_DS1307_CONTROL_RS1 	|
+				0 << TM_DS1307_CONTROL_RS0;	
+	}
+	TM_I2C_Write(TM_DS1307_I2C, TM_DS1307_I2C_ADDR, TM_DS1307_CONTROL, temp);
+}
+
+void TM_DS1307_DisableOutputPin(void) {
+	//Set output pin to high
+	TM_DS1307_EnableOutputPin(TM_DS1307_OutputFrequency_High);
+}
 
 uint8_t TM_DS1307_Bcd2Bin(uint8_t bcd) {
 	uint8_t dec = 10 * (bcd >> 4);
-	dec += bcd & ~(0xF0);
+	dec += bcd & 0x0F;
 	return dec;
 }
 

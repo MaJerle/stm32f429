@@ -1,11 +1,18 @@
 /**
  * DS1307 Library for STM32F4xx
  *
+ * 	Version 1.0
+ * 	- Added basic routines to set and get hours
+ * 	Version 1.1
+ * 	- Added 2 new functions to work with SQW/OUT pin on DS1307
+ * 		TM_DS1307_EnableOutputPin
+ * 		TM_DS1307_DisableOutputPin
+ *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://bit.ly/1oxFaDK
- *	@version 	v1.0
+ *	@version 	v1.1
  *	@ide		Keil uVision
  */
 #ifndef TM_DS1307_
@@ -13,8 +20,15 @@
 /**
  * Library dependencies
  *
- * TM I2C library
- * defines.h
+ * - STM32F4xx
+ * - STM32F4xx RCC
+ * - STM32F4xx GPIO
+ * - STM32F4xx I2C
+ * - TM I2C
+ * - defines.h
+ */
+/**
+ * Includes
  */
 #include "stm32f4xx.h"
 #include "tm_stm32f4_i2c.h"
@@ -26,18 +40,24 @@
 #define TM_DS1307_I2C_PINSPACK		TM_I2C_PinsPack_1
 #endif
 
-//I2C slave address
-#define TM_DS1307_I2C_ADDR	0xD0
+//I2C slave address for DS1307
+#define TM_DS1307_I2C_ADDR			0xD0
 
 //Registers location
-#define TM_DS1307_SECONDS	0x00
-#define TM_DS1307_MINUTES	0x01
-#define TM_DS1307_HOURS		0x02
-#define TM_DS1307_DAY		0x03
-#define TM_DS1307_DATE		0x04
-#define TM_DS1307_MONTH		0x05
-#define TM_DS1307_YEAR		0x06
-#define TM_DS1307_CONTROL	0x07
+#define TM_DS1307_SECONDS			0x00
+#define TM_DS1307_MINUTES			0x01
+#define TM_DS1307_HOURS				0x02
+#define TM_DS1307_DAY				0x03
+#define TM_DS1307_DATE				0x04
+#define TM_DS1307_MONTH				0x05
+#define TM_DS1307_YEAR				0x06
+#define TM_DS1307_CONTROL			0x07
+
+//Bits in control register
+#define TM_DS1307_CONTROL_OUT		7
+#define TM_DS1307_CONTROL_SQWE		4
+#define TM_DS1307_CONTROL_RS1		1
+#define TM_DS1307_CONTROL_RS0		0
 
 /**
  * Struct for date/time
@@ -67,6 +87,31 @@ typedef struct {
 	uint8_t month;		//Month,			1-12
 	uint8_t year;		//Year				00-99
 } TM_DS1307_Time_t;
+
+/**
+ * Typedef enumerations for SQW/OUT pin
+ *
+ * 	- TM_DS1307_OutputFrequency_1Hz:
+ * 		Set SQW/OUT pin to 1Hz output frequency
+ * 	- TM_DS1307_OutputFrequency_4096Hz
+ * 		Set SQW/OUT pin to 4096Hz output frequency
+ * 	- TM_DS1307_OutputFrequency_8192Hz
+ * 		Set SQW/OUT pin to 8192Hz output frequency
+ * 	- TM_DS1307_OutputFrequency_32768Hz
+ * 		Set SQW/OUT pin to 32768Hz output frequency
+ * 	- TM_DS1307_OutputFrequency_High
+ * 		Set SQW/OUT pin high. Because this pin is open-drain, you will need external pull up resistor
+ * 	- TM_DS1307_OutputFrequency_Low
+ * 		Set SQW/OUT pin low
+ */
+typedef enum {
+	TM_DS1307_OutputFrequency_1Hz = 0,
+	TM_DS1307_OutputFrequency_4096Hz,
+	TM_DS1307_OutputFrequency_8192Hz,
+	TM_DS1307_OutputFrequency_32768Hz,
+	TM_DS1307_OutputFrequency_High,
+	TM_DS1307_OutputFrequency_Low
+} TM_DS1307_OutputFrequency_t;
 
 /**
  * Initialize DS1307 RTC library
@@ -146,7 +191,6 @@ extern uint8_t TM_DS1307_GetMonth(void);
  * Returns year from DS1307, 00 (2000) to 99 (2099)
  */
 extern uint8_t TM_DS1307_GetYear(void);
-
 
 
 /**
@@ -247,6 +291,34 @@ extern void TM_DS1307_GetDateTime(TM_DS1307_Time_t* time);
  * No returns
  */
 extern void TM_DS1307_SetDateTime(TM_DS1307_Time_t* time);
+
+/**
+ * DS1307 has SQW/OUT pin, which can be enabled in various modes.
+ * It can output 32768Hz, 8192Hz, 4096Hz, 1Hz, Low or High state.
+ * This is useful if you need interrupts on MCU. 1Hz can be used to increment time by software each time.
+ * This is faster than look for date and time each time.
+ *
+ * Also, this pin is Open-Drain. This means that pin cannot supply positive power supply,
+ * for that you need external pull up resistor (or pull up from MCU).
+ *
+ * Parameters:
+ * 	- TM_DS1307_OutputFrequency_t frequency:
+ * 		Member of TM_DS1307_OutputFrequency_t typedef
+ *
+ * No returns
+ */
+extern void TM_DS1307_EnableOutputPin(TM_DS1307_OutputFrequency_t frequency);
+
+/**
+ * Disable SQW/OUT pin.
+ *
+ * This function basically set pin to high state.
+ * To get high state you need external pull up resistor (or use pull up from MCU)
+ *
+ * No returns
+ */
+extern void TM_DS1307_DisableOutputPin(void);
+
 
 /**
  * Convert BCD to BIN data
