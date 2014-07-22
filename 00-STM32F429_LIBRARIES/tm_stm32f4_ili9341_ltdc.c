@@ -1,6 +1,5 @@
 #include "tm_stm32f4_ili9341_ltdc.h"
 #include "tm_stm32f4_fonts.h"
-#include "tm_stm32f4_disco.h"
 
 uint16_t ILI9341_x;
 uint16_t ILI9341_y;
