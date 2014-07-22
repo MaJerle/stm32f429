@@ -1,21 +1,24 @@
 /**
- *	Onewire library for STM32F4
+ *	Onewire library for STM32F4 devices
  *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
- *	@link		http://bit.ly/1nvT6jG
+ *	@link		http://stm32f4-discovery.com/2014/05/library-12-onewire-library-for-stm43f4xx/
  *	@version 	v1.0
  *	@ide		Keil uVision
+ *	
+ *	Onewire default pin: PD0
+ *	
+ *	If you want to use other pin, edit lines below in your defines.h file
+ * 
+ *  //Edit this files to select custom onewire pin
+ *	#define TM_ONEWIRE_RCC			RCC_AHB1Periph_GPIOD
+ *	#define TM_ONEWIRE_PORT			GPIOD
+ *	#define TM_ONEWIRE_PIN			GPIO_Pin_0
  */
 #ifndef TM_ONEWIRE_H
 #define TM_ONEWIRE_H 100
-/**
- * Default pin for OneWire
- * 	GPIOD.0
- * 
- * It can be changed in you defines.h file
- */
 /**
  * Library dependencies
  * - STM32F4xx RCC

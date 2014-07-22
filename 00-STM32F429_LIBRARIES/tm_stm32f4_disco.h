@@ -1,7 +1,16 @@
 /**
  *	Leds and button library for STM32F4 & STM32F429 Discovery board
  *	
- *	Library works for both Discovery boards.
+ *
+ *	@author 	Tilen Majerle
+ *	@email		tilen@majerle.eu
+ *	@website	http://stm32f4-discovery.com
+ *	@link		http://stm32f4-discovery.com/2014/04/stm32f429-discovery-gpio-tutorial-with-onboard-leds-and-button/
+ *	@version 	v1.2
+ *	@ide		Keil uVision
+ *
+ * 	Library works for both Discovery boards.
+ *	It can also be used with F401-NUCLEO board
  *	
  *	STM32F4 Discovery: (STM32F407VG)
  *		- Leds:
@@ -9,22 +18,21 @@
  *			- LED_ORANGE	on PD13
  *			- LED_RED 		on PD14
  *			- LED_BLUE 		on PD15
- *		- Button:
+ *		- Button: (pressed when low state)
  *			- Blue button	on PA0
  *			
  *	STM32F429 Discovery: (STM32F429ZI)
  *		- Leds:
  *			- LED_GREEN 	on PG13
  *			- LED_RED 		on PG14
- *		- Button:
+ *		- Button: (pressed when low state)
  *			- Blue button	on PA0
  *
- *	@author 	Tilen Majerle
- *	@email		tilen@majerle.eu
- *	@website	http://stm32f4-discovery.com
- *	@link		http://bit.ly/1k585Oo
- *	@version 	v1.2
- *	@ide		Keil uVision
+ *	F401 NUCLEO
+ *		- Led:
+ *			- LED_GREEN 	on PA5
+ *		- Button: (pressed when high state)
+ *			- Blue button	on PC13
  */
 #ifndef TM_DISCO_
 #define TM_DISCO_ 120

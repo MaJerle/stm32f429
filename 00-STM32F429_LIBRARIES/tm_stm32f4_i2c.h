@@ -4,29 +4,44 @@
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
- *	@link		http://bit.ly/1o4TS4q
+ *	@link		http://stm32f4-discovery.com/2014/05/library-09-i2c-for-stm32f4xx/
  *	@version 	v1.0
  *	@ide		Keil uVision
+ *	
+ *	Pinout on STM32F4 devices
+ *	
+ *			|PINSPACK 1		|PINSPACK 2	
+ *	I2CX	|SCL	SDA		|SCL	SDA
+ *			|				|
+ *	I2C1	|PB6	PB7		|PB8	PB9
+ *	I2C2	|PB10	PB11	|PF1	PF0
+ *	I2C3	|PA8	PC9		|PH7	PH8
+ *	
+ *	Possible changes in your defines.h file:
+ *	Change x to your I2C used, 1-3
+ *	
+ *	//By default library support only 7bit long address
+ *	#define TM_I2Cx_ACKNOWLEDGED_ADDRESS	I2C_AcknowledgedAddress_7bit
+ *	//Library supports I2C mode
+ *	#define TM_I2Cx_MODE					I2C_Mode_I2C
+ *	//Own address, if slave mode
+ *	#define TM_I2Cx_OWN_ADDRESS				0x00
+ *	//By default, disable ack
+ *	#define TM_I2Cx_ACK						I2C_Ack_Disable
+ *	//Duty cycle 2, 50%
+ *	#define TM_I2Cx_DUTY_CYCLE				I2C_DutyCycle_2
+ *
  */
 #ifndef TM_I2C_H
 #define TM_I2C_H 100
 /**
  * Library dependencies
+ * - STM32F4xx
  * - STM32F4xx RCC
  * - STM32F4xx GPIO
  * - STM32F4xx I2C
  * - defines.h
  */
-/**
- * I2C pins
- *
- * I2Cx		Pinspack1		Pinspack2
- * SCL		SDA		SCL		SDA
- * I2C1		PB6		PB7		PB8		PB9
- * I2C2		PB10	PB11	PF1		PF0
- * I2C3		PA8		PC9		PH7		PH8
- */
-
 /**
  * Includes
  */
@@ -38,7 +53,7 @@
 
 // Timeout
 #ifndef TM_I2C_TIMEOUT
-#define TM_I2C_TIMEOUT		20000
+#define TM_I2C_TIMEOUT					20000
 #endif
 
 //I2C1 settings, change them in defines.h project file
@@ -205,7 +220,7 @@ extern void TM_I2C_Write(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_
  *	- uint8_t *data: pointer to data array to store data from slave
  *	- uint8_t count: how many bytes will be read
  */
-extern void TM_I2C_ReadMulti(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t *data, uint8_t count);
+extern void TM_I2C_ReadMulti(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t *data, uint16_t count);
 
 /**
  * Write multi bytes from slave
@@ -217,7 +232,7 @@ extern void TM_I2C_ReadMulti(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, ui
  *	- uint8_t *data: pointer to data array to write it to slave
  *	- uint8_t count: how many bytes will be written
  */
-extern void TM_I2C_WriteMulti(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t *data, uint8_t count);
+extern void TM_I2C_WriteMulti(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t *data, uint16_t count);
 
 /**
  * I2C Start condition

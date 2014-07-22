@@ -1,5 +1,13 @@
 /**
  *	USART Library for STM32F4 with receive interrupt
+ *
+ *	@author 	Tilen Majerle
+ *	@email		tilen@majerle.eu
+ *	@website	http://stm32f4-discovery.com
+ *	@link		http://stm32f4-discovery.com/2014/04/library-04-connect-stm32f429-discovery-to-computer-with-usart/
+ *	@version 	v1.3
+ *	@ide		Keil uVision
+ *	
  *	Libraries works for all 8 U(S)ARTs which are supported in STM32F429.
  *
  *	Every USART channel has it's own receive interrupt which stores incoming data into cyclic buffer.
@@ -8,13 +16,34 @@
  *	#define TM_USART_BUFFER_SIZE number_of_bytes
  *
  *	in your project's defines.h file.
+ *	
+ *	Pinout
  *
- *	@author 	Tilen Majerle
- *	@email		tilen@majerle.eu
- *	@website	http://stm32f4-discovery.com
- *	@link		http://bit.ly/1npVXHQ
- *	@version 	v1.3
- *	@ide		Keil uVision
+ *				|PINSPACK 1		|PINSPACK 2		|PINSPACK 3	
+ *	U(S)ARTX	|TX		RX		|TX		RX		|TX		RX
+ *	
+ *	USART1		|PA9	PA10	|PB6	PB7		|-		-
+ *	USART2		|PA2	PA3		|PD5	PD6		|-		-
+ *	USART3		|PB10	PB11	|PC10	PC11	|PD8	PD9
+ *	UART4		|PA0	PA1		|PC10	PC11	|-		-
+ *	UART5		|PC12	PD2		|-		-		|-		-
+ *	USART6		|PC6	PC7		|PG14	PG9		|-		-
+ *	UART7		|PE8	PE7		|PF7	PF6		|-		-
+ *	UART8		|PE1	PE0		|-		-		|-		-
+ *
+ * Possible changes in USART operation
+ * 
+ * 	//Change X with possible U(S)ARTs: USART1, USART2, USART3, UART4, UART5, USART6, UART7, UART8
+ * 	//Set flow control
+ *	#define TM_X_HARDWARE_FLOW_CONTROL		USART_HardwareFlowControl_None
+ *	//Set mode
+ *	#define TM_X_MODE						USART_Mode_Tx | USART_Mode_Rx
+ *	//Set parity
+ *	#define TM_X_PARITY						USART_Parity_No
+ *	//Set stopbits
+ *	#define TM_X_STOP_BITS					USART_StopBits_1
+ *	//Set USART datasize
+ *	#define TM_X_WORD_LENGTH				USART_WordLength_8b
  */
 #ifndef TM_USART_
 #define TM_USART_ 130

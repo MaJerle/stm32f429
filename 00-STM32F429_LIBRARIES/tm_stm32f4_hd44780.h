@@ -2,16 +2,64 @@
  *	HD44780 LCD driver library for STM32F4xx
  *	It also support's all HD44780 compatible LCD drivers
  *
- *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
- *	@link		http://bit.ly/1gR6Lzz
+ *	@link		http://stm32f4-discovery.com/2014/06/library-16-interfacing-hd44780-lcd-controller-with-stm32f4/
  *	@version 	v1.0
+ *	
+ *	
+ *	Default pinout
+ *	
+ *	LCD		STM32F4XX		DESCRIPTION
+ *	
+ *	GND		GND				Ground
+ *	VCC		+5V				Power supply for LCD
+ *	V0		Potentiometer	Contrast voltage. Connect to potentiometer
+ *	RS		PB2				Register select, can be overwritten in your project’s defines.h file
+ *	RW		GND				Read/write
+ *	E		PB7				Enable pin, can be overwritten in your project’s defines.h file
+ *	D0		-				Data 0 – doesn’t care
+ *	D1		-				Data 1 - doesn’t care
+ *	D2		-				Data 2 - doesn’t care
+ *	D3		-				Data 3 - doesn’t  care
+ *	D4		PC12			Data 4, can be overwritten in your project’s defines.h file
+ *	D5		PC13			Data 5, can be overwritten in your project’s defines.h file
+ *	D6		PC14			Data 6, can be overwritten in your project’s defines.h file
+ *	D7		PC15			Data 7, can be overwritten in your project’s defines.h file
+ *	A		+3V3			Backlight positive power
+ *	K		GND				Ground for backlight
+ *	
+ *	
+ *	If you want to change pinout, do this in your defines.h file with lines below and set your own settings:
+ *	
+ *	//RS - Register select pin
+ *	#define TM_HD44780_RS_RCC		RCC_AHB1Periph_GPIOB
+ *	#define TM_HD44780_RS_PORT		GPIOB
+ *	#define TM_HD44780_RS_PIN		GPIO_Pin_2
+ *	//E - Enable pin
+ *	#define TM_HD44780_E_RCC		RCC_AHB1Periph_GPIOB
+ *	#define TM_HD44780_E_PORT		GPIOB
+ *	#define TM_HD44780_E_PIN		GPIO_Pin_7
+ *	//D4 - Data 4 pin
+ *	#define TM_HD44780_D4_RCC		RCC_AHB1Periph_GPIOC
+ *	#define TM_HD44780_D4_PORT		GPIOC
+ *	#define TM_HD44780_D4_PIN		GPIO_Pin_12
+ *	//D5 - Data 5 pin
+ *	#define TM_HD44780_D5_RCC		RCC_AHB1Periph_GPIOC
+ *	#define TM_HD44780_D5_PORT		GPIOC
+ *	#define TM_HD44780_D5_PIN		GPIO_Pin_13
+ *	//D6 - Data 6 pin
+ *	#define TM_HD44780_D6_RCC		RCC_AHB1Periph_GPIOC
+ *	#define TM_HD44780_D6_PORT		GPIOC
+ *	#define TM_HD44780_D6_PIN		GPIO_Pin_14
+ *	//D7 - Data 7 pin
+ *	#define TM_HD44780_D7_RCC		RCC_AHB1Periph_GPIOC
+ *	#define TM_HD44780_D7_PORT		GPIOC
+ *	#define TM_HD44780_D7_PIN		GPIO_Pin_15
  */
 #ifndef TM_HD44780_H
 #define TM_HD44780_H 100
-
 /**
  * Dependencies
  * 	- STM32F4xx

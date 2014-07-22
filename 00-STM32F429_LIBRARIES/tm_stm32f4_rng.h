@@ -1,14 +1,14 @@
 /**
  * Random number generator library for STM32F4xx devices
  *
- * This peripheral provides you a true randon 32bit number
- *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
- *	@link		http://bit.ly/1sCyx4w
+ *	@link		http://stm32f4-discovery.com/2014/07/library-22-true-random-number-generator-stm32f4xx/
  *	@version 	v1.0
  *	@ide		Keil uVision
+ *	
+ *	This peripheral provides you a true random 32bit number
  */
 #ifndef TM_RNG_
 #define TM_RNG_ 100

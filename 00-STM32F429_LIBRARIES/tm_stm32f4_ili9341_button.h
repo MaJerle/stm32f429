@@ -5,9 +5,15 @@
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
- *	@link		http://bit.ly/RdiIDS
+ *	@link		http://stm32f4-discovery.com/2014/05/11-button-library-for-ili9341-lcd-and-stmpe811-touch-controller-on-stm32f429-discovery-board/
  *	@version 	v1.0
  *	@ide		Keil uVision
+ *	
+ *	By default, library supports up to 10 buttons.
+ *	If you want to use more of them, change line below in your defines.h file:
+ *	
+ *	#define TM_ILI9341_BUTTON_MAX_BUTTONS	10
+ *	
  */
 #ifndef TM_ILI9341_BUTTON_H
 #define TM_ILI9341_BUTTON_H

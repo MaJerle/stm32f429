@@ -4,9 +4,28 @@
  *	@author		Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
- *	@link
+ *	@link		http://stm32f4-discovery.com/2014/04/library-06-ad-converter-on-stm32f4xx/
  *	@version 	v1.0
  *	@ide		Keil uVision
+ *	
+ *	Pinout
+ *		CHANNEL			ADC1	ADC2	ADC3
+ *		0				PA0		PA0		PA0
+ *		1				PA1		PA1		PA1
+ *		2				PA2		PA2		PA2
+ *		3				PA3		PA3		PA3
+ *		4				PA4		PA4		PF6
+ *		5				PA5		PA5		PF7
+ *		6				PA6		PA6		PF8
+ *		7				PA7		PA7		PF9
+ *		8				PB0		PB0		PF10
+ *		9				PB1		PB1		PF3
+ *		10				PC0		PC0		PC0
+ *		11				PC1		PC1		PC1
+ *		12				PC2		PC2		PC2
+ *		13				PC3		PC3		PC3
+ *		14				PC4		PC4		PF4
+ *		15				PC5		PC5		PF5
  */
 #ifndef TM_ADC_
 #define TM_ADC_ 100
@@ -17,29 +36,9 @@
  * - STM32F4xx ADC
  * - defines.h
  */
-
-/*
-ADC pins
-
-CHANNEL			ADC1	ADC2	ADC3
-ADC Channel 0	PA0		PA0		PA0
-ADC Channel 1	PA1		PA1		PA1
-ADC Channel 2	PA2		PA2		PA2
-ADC Channel 3	PA3		PA3		PA3
-ADC Channel 4	PA4		PA4		PF6
-ADC Channel 5	PA5		PA5		PF7
-ADC Channel 6	PA6		PA6		PF8
-ADC Channel 7	PA7		PA7		PF9
-ADC Channel 8	PB0		PB0		PF10
-ADC Channel 9	PB1		PB1		PF3
-ADC Channel 10	PC0		PC0		PC0
-ADC Channel 11	PC1		PC1		PC1
-ADC Channel 12	PC2		PC2		PC2
-ADC Channel 13	PC3		PC3		PC3
-ADC Channel 14	PC4		PC4		PF4
-ADC Channel 15	PC5		PC5		PF5
-*/
-
+/**
+ * Includes
+ */
 #include "stm32f4xx.h"
 #include "stm32f4xx_rcc.h"
 #include "stm32f4xx_gpio.h"

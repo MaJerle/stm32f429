@@ -4,7 +4,7 @@
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
- *	@link		http://bit.ly/U4wmKW
+ *	@link		http://stm32f4-discovery.com/2014/07/library-19-use-internal-rtc-on-stm32f4xx-devices/
  *	@version 	v1.0
  *	@ide		Keil uVision
  */
@@ -41,8 +41,6 @@
 #define TM_RTC_SECONDS_PER_DAY			86400
 #define TM_RTC_SECONDS_PER_HOUR			3600
 #define TM_RTC_SECONDS_PER_MINUTE		60
-
-
 
 /**
  * Struct for date/time

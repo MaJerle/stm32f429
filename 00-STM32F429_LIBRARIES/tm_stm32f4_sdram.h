@@ -4,7 +4,7 @@
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
- *	@link		http://bit.ly/1jVGY96
+ *	@link		http://stm32f4-discovery.com/2014/05/library-14-working-with-sdram-on-stm32f429-discovery/
  *	@version 	v1.0
  *	@ide		Keil uVision
  */

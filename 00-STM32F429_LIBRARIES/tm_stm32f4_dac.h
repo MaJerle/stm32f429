@@ -4,9 +4,18 @@
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
- *	@link		http://bit.ly/1rwGdTR
+ *	@link		http://stm32f4-discovery.com/2014/04/library-07-da-converter-on-stm32f4xx/
  *	@version 	v1.0
  *	@ide		Keil uVision
+ *	
+ *	This library provides 12bit digital to analog output, values from 0 to 4095
+ *	
+ *	Pinout
+ *
+ * 		DAC	channel		Pin
+ * 		
+ * 		DAC1			PA4
+ * 		DAC2			PA5
  */
 #ifndef TM_DAC_
 #define TM_DAC_ 100
@@ -17,14 +26,9 @@
  * - STM32F4xx DAC
  * - defines.h
  */
-
 /**
- * DAC pins
- * DAC	channel		Pin
- * DAC1				PA4
- * DAC2				PA5
+ * Includes
  */
-
 #include "stm32f4xx.h"
 #include "stm32f4xx_rcc.h"
 #include "stm32f4xx_gpio.h"

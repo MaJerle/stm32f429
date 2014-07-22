@@ -10,8 +10,6 @@
 #include "defines.h"
 #include "tm_stm32f4_i2c.h"
 #include "tm_stm32f4_delay.h"
-#include "tm_stm32f4_ili9341.h"
-#include <stdio.h>
 
 //Slave address
 #define ADDRESS		0xD0 // 1101 000 0

@@ -4,23 +4,20 @@
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
+ *	@link		http://stm32f4-discovery.com/2014/04/library-03-stm32f429-discovery-system-clock-and-pretty-precise-delay-library/
  *	@version 	v1.2
- *	@link		http://bit.ly/1gFrBjl
  *	@ide		Keil uVision
+ *	
+ *	If you are working with Keil uVision, than set KEIL_IDE define in options for project:
+ *	- Open "Options for target"
+ *	- Tab "C/C++"
+ *	- Under "Define" add "KEIL_IDE", without quotes
  */
-/**
-
-If you are working with Keil uVision, than set KEIL_IDE define in options for project:
-
-- Open "Options for target"
-- Tab "C/C++"
-- Under "Define" type "KEIL_IDE", without quotes
-
-*/
 #ifndef TM_DELAY_
 #define TM_DELAY_ 120
 /**
  * Library dependencies
+ * - STM32F4xx
  * - STM32F4xx RCC
  * - defines.h
  */

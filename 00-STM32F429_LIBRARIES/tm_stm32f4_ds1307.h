@@ -1,19 +1,33 @@
 /**
  * DS1307 Library for STM32F4xx
  *
+ *	@author 	Tilen Majerle
+ *	@email		tilen@majerle.eu
+ *	@website	http://stm32f4-discovery.com
+ *	@link		http://stm32f4-discovery.com/2014/05/library-15-ds1307-real-time-clock-for-stm32f429-discovery/
+ *	@version 	v1.1
+ *	@ide		Keil uVision
+ *
  * 	Version 1.0
  * 	- Added basic routines to set and get hours
  * 	Version 1.1
  * 	- Added 2 new functions to work with SQW/OUT pin on DS1307
  * 		TM_DS1307_EnableOutputPin
  * 		TM_DS1307_DisableOutputPin
- *
- *	@author 	Tilen Majerle
- *	@email		tilen@majerle.eu
- *	@website	http://stm32f4-discovery.com
- *	@link		http://bit.ly/1oxFaDK
- *	@version 	v1.1
- *	@ide		Keil uVision
+ * 		
+ * Default pinout
+ * 
+ * 	DS1307	STM32F4XX	DESCRIPTION
+ *	VCC		5V			Positive voltage
+ *	GND		GND			Ground
+ *	SDA		PB7			I2C1, PinsPack 1
+ *	SCL		PB6			I2C1, PinsPack 1
+ *	
+ * Change pinout in your defines.h file
+ * 
+ *	//Set your I2C, to see corresponding pins, look for TM I2C library
+ * 	#define TM_DS1307_I2C				I2C1
+ *	#define TM_DS1307_I2C_PINSPACK		TM_I2C_PinsPack_1
  */
 #ifndef TM_DS1307_
 #define TM_DS1307_ 100

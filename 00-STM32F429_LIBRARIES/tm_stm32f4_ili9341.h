@@ -1,12 +1,57 @@
 /**
- *	ILI9341 library for LCD on STM32F429 Discovery, without LTDC hardware
+ *	ILI9341 library for STM32F4xx with SPI communication, without LTDC hardware
  *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
- *	@link		http://bit.ly/PQQnCm
+ *	@link		http://stm32f4-discovery.com/2014/04/library-08-ili9341-lcd-on-stm32f429-discovery-board/
  *	@version 	v1.0
  *	@ide		Keil uVision
+ *	
+ *	This driver works for all STM32F4xx series with SPI built in.
+ *	
+ *	Default pinout
+ *		ILI9341			STM32F4xx		DESCRIPTION
+ *		
+ *		SDO (MISO)		PF8				Output from LCD for SPI.	Not used, can be left
+ *		LED				3.3V			Backlight
+ *		SCK				PF7				SPI clock
+ *		SDI (MOSI)		PF9				SPI master output
+ *		WRX or D/C		PD13			Data/Command register
+ *		RESET			PD12			Reset LCD
+ *		CS				PC2				Chip select for SPI
+ *		GND				GND				Ground
+ *		VCC				3.3V			Positive power supply
+ *		
+ *	All pins can be changed in your defines.h file
+ *		
+ *	//Default SPI used is SPI5. Check my SPI library for other pinouts
+ *	#define ILI9341_SPI 				SPI5
+ *	#define ILI9341_SPI_PINS			TM_SPI_PinsPack_1
+ *		
+ *	//Default CS pin. Edit this in your defines.h file
+ *	#define ILI9341_CS_CLK				RCC_AHB1Periph_GPIOC
+ *	#define ILI9341_CS_PORT				GPIOC
+ *	#define ILI9341_CS_PIN				GPIO_Pin_2
+ *		
+ *	//Default D/C (or WRX) pin. Edit this in your defines.h file
+ *	#define ILI9341_WRX_CLK				RCC_AHB1Periph_GPIOD
+ *	#define ILI9341_WRX_PORT			GPIOD
+ *	#define ILI9341_WRX_PIN				GPIO_Pin_13
+ *		
+ *	Reset pin can be disabled, if you need GPIOs for other purpose.
+ *	To disable RESET pin, add line below to defines.h file
+ *	If you disable pin, then set LCD's RESET pin to VCC
+ *	
+ *	//Disable RESET pin
+ *	#define ILI9341_USE_RST_PIN			0
+ *		
+ *	But if you want to use RESET pin, you can change its settings in defines.h file
+ *	
+ *	//Default RESET pin. Edit this in your defines.h file
+ *	#define ILI9341_RST_CLK				RCC_AHB1Periph_GPIOD
+ *	#define ILI9341_RST_PORT			GPIOD
+ *	#define ILI9341_RST_PIN				GPIO_Pin_12
  */
 #ifndef TM_ILI9341_H
 #define TM_ILI9341_H 100

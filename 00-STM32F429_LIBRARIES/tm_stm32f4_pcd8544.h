@@ -5,9 +5,9 @@
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
- *	@version 	v1.0.0
- *	@gcc		v4.7 20013qr3
- *	@ide		CooCox CoIDE v1.7.6
+ *	@link		http://stm32f4-discovery.com/pcd8544-nokia-33105110-lcd-stm32f429-discovery-library/
+ *	@version 	v1.0
+ *	@ide		Keil uVision
  */
 #ifndef PCD8544_H
 #define PCD8544_H 100

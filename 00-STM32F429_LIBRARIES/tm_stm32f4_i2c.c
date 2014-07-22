@@ -164,7 +164,7 @@ void TM_I2C_Write(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t data)
 	TM_I2C_Stop(I2Cx);
 }
 
-void TM_I2C_ReadMulti(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t *data, uint8_t count) {
+void TM_I2C_ReadMulti(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t* data, uint16_t count) {
 	uint8_t i;
 	TM_I2C_Start(I2Cx, address, I2C_Direction_Transmitter, 1);
 	TM_I2C_WriteData(I2Cx, reg);
@@ -180,7 +180,7 @@ void TM_I2C_ReadMulti(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t *
 	}
 }
 
-void TM_I2C_WriteMulti(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t *data, uint8_t count) {
+void TM_I2C_WriteMulti(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t* data, uint16_t count) {
 	uint8_t i;
 	TM_I2C_Start(I2Cx, address, I2C_Direction_Transmitter, 0);
 	TM_I2C_WriteData(I2Cx, reg);

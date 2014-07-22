@@ -5,8 +5,7 @@
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
- *	@link		http://bit.ly/1ob7hYK
- *	@version 	v1.0
+ *	@link		http://stm32f4-discovery.com/2014/05/library-10-stmpe811-touch-screen-driver-for-stm32f429-discovery-board/ *	@version 	v1.0
  *	@ide		Keil uVision
  */
 #ifndef TM_STMPE811_H

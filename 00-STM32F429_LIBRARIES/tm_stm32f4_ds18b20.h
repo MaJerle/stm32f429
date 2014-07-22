@@ -1,20 +1,23 @@
 /**
  * Library for interfacing DS18B20 temperature sensor from Dallas semiconductors.
- * 
- * With this you can read temperature, set and get temperature resolution from 9 to 12 bits
- * and check if device is DS18B20
  *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
- *	@link		http://bit.ly/1viCnSX
+ *	@link		http://stm32f4-discovery.com/2014/05/13-reading-temperature-with-dallas-ds18b20-on-stm32f429-discovery-board/
  *	@version 	v1.0
  *	@ide		Keil uVision
+ *	
+ * With this you can read temperature, set and get temperature resolution from 9 to 12 bits
+ * and check if device is DS18B20
+ * 
+ * Pin for STM32F4xx is the same as set in TM ONEWIRE library.
  */
 #ifndef TM_DS18B20_H
 #define TM_DS18B20_H 110
 /**
  * Library dependencies
+ * - STM32F4xx
  * - TM_ONEWIRE
  * - defines.h
  */
