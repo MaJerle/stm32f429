@@ -14,10 +14,7 @@ void TM_ILI9341_Init() {
 	//Init SPI
 	TM_SPI_Init(ILI9341_SPI, ILI9341_SPI_PINS);
 	//Init SDRAM
-	TM_DISCO_LedInit();
-	if (!TM_SDRAM_Init()) {
-		TM_DISCO_LedOn(LED_RED);
-	}
+	TM_SDRAM_Init();
 	//Initialize LCD for LTDC
 	TM_ILI9341_InitLCD();
 	//Initialize LTDC
