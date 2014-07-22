@@ -77,10 +77,10 @@ typedef struct {
 	uint16_t background;
 	uint16_t borderColor;
 	uint16_t flags;
-	char *label;
-	TM_FontDef_t *font;
+	char* label;
+	TM_FontDef_t* font;
 	uint16_t color;
-	uint16_t *image;
+	uint16_t* image;
 } TM_ILI9341_Button_t;
 
 extern TM_ILI9341_Button_t TM_ILI9341_Buttons[TM_ILI9341_BUTTON_MAX_BUTTONS];
@@ -93,7 +93,7 @@ extern TM_ILI9341_Button_t TM_ILI9341_Buttons[TM_ILI9341_BUTTON_MAX_BUTTONS];
  *
  * Returns button id on success (starting from 0), or -1 on failure
  */
-extern int8_t TM_ILI9341_Button_Add(TM_ILI9341_Button_t *button);
+extern int8_t TM_ILI9341_Button_Add(TM_ILI9341_Button_t* button);
 
 /**
  * Draw button on LCD
@@ -151,7 +151,7 @@ extern void TM_ILI9341_Button_Delete(uint8_t id);
  *
  * Returns button id on success, otherwise -1
  */
-extern int8_t TM_ILI9341_Button_Touch(TM_STMPE811_TouchData *TouchData);
+extern int8_t TM_ILI9341_Button_Touch(TM_STMPE811_TouchData* TouchData);
 
 #endif
 

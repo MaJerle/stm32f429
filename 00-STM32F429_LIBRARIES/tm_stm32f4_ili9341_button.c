@@ -2,7 +2,7 @@
 
 TM_ILI9341_Button_t TM_ILI9341_Buttons[TM_ILI9341_BUTTON_MAX_BUTTONS];
 
-int8_t TM_ILI9341_Button_Add(TM_ILI9341_Button_t *button) {
+int8_t TM_ILI9341_Button_Add(TM_ILI9341_Button_t* button) {
 	uint8_t id = 0;
 	while ((TM_ILI9341_Buttons[id].flags & TM_BUTTON_FLAG_USED) && (id < TM_ILI9341_BUTTON_MAX_BUTTONS)) {
 		id++;
@@ -85,28 +85,35 @@ ErrorStatus TM_ILI9341_Button_Draw(uint8_t id) {
 	return SUCCESS;
 }
 
-int8_t TM_ILI9341_Button_Touch(TM_STMPE811_TouchData *TouchData) {
+int8_t TM_ILI9341_Button_Touch(TM_STMPE811_TouchData* TouchData) {
 	uint8_t id;
 	for (id = 0; id < TM_ILI9341_BUTTON_MAX_BUTTONS; id++) {
+		//If button not enabled, ignore it
 		if ((TM_ILI9341_Buttons[id].flags & TM_BUTTON_FLAG_ENABLED) == 0) {
 			continue;
 		}
+		//If touch data is inside button somewhere
 		if (
 			(TouchData->x > TM_ILI9341_Buttons[id].x && TouchData->x < (TM_ILI9341_Buttons[id].x + TM_ILI9341_Buttons[id].width)) &&
 			(TouchData->y > TM_ILI9341_Buttons[id].y && TouchData->y < (TM_ILI9341_Buttons[id].y + TM_ILI9341_Buttons[id].height))
 		) {
+			//Return its id
 			return id;
 		}
 	}
+	
+	//No one was pressed
 	return -1;
 }
 
 
 void TM_ILI9341_Button_Enable(uint8_t id) {
+	//Add enabled flag
 	TM_ILI9341_Buttons[id].flags |= TM_BUTTON_FLAG_ENABLED;
 }
 
 void TM_ILI9341_Button_Disable(uint8_t id) {
+	//Remove enabled flag
 	TM_ILI9341_Buttons[id].flags &= ~TM_BUTTON_FLAG_ENABLED;
 }
 
@@ -118,8 +125,7 @@ void TM_ILI9341_Button_DeleteAll(void) {
 }
 
 void TM_ILI9341_Button_Delete(uint8_t id) {
+	//Just remove USED flag from button
 	TM_ILI9341_Buttons[id].flags &= ~TM_BUTTON_FLAG_USED;
 }
-
-//void TM_ILI9341_Button_
 
