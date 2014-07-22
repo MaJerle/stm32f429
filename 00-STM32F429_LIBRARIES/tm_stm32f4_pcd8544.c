@@ -207,28 +207,41 @@ const uint8_t PCD8544_Font3x5[106][3] = {
 
 
 void PCD8544_InitIO(void) {
-	GPIO_InitTypeDef GPIO_InitDef;
-	//Enable clock
-	RCC_AHB1PeriphClockCmd(PCD8544_GPIO_RCC, ENABLE);
+	GPIO_InitTypeDef GPIO_InitStruct;
+	//Enable clock for all pins
+	RCC_AHB1PeriphClockCmd(PCD8544_RST_RCC | PCD8544_CE_RCC | PCD8544_DC_RCC, ENABLE);
 
 	//Common settings for all pins
-	GPIO_InitDef.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitDef.GPIO_PuPd = GPIO_PuPd_NOPULL;
-	GPIO_InitDef.GPIO_Speed = GPIO_Speed_100MHz;
-	GPIO_InitDef.GPIO_Mode = GPIO_Mode_OUT;
-	GPIO_InitDef.GPIO_Pin = PCD8544_GPIO_RST_Pin | PCD8544_GPIO_DC_Pin | PCD8544_GPIO_CE_Pin;
-	GPIO_Init(PCD8544_GPIO_Port, &GPIO_InitDef);
+	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
+	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
+	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
+	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_OUT;
+	
+	//RST pin
+	GPIO_InitStruct.GPIO_Pin = PCD8544_RST_PIN;
+	GPIO_Init(PCD8544_RST_PORT, &GPIO_InitStruct);
+	
+	//DC pin
+	GPIO_InitStruct.GPIO_Pin = PCD8544_DC_PIN;
+	GPIO_Init(PCD8544_DC_PORT, &GPIO_InitStruct);
+	
+	//CE pin
+	GPIO_InitStruct.GPIO_Pin = PCD8544_CE_PIN;
+	GPIO_Init(PCD8544_CE_PORT, &GPIO_InitStruct);
 
-	GPIO_SetBits(PCD8544_GPIO_Port, PCD8544_GPIO_RST_Pin);
-
-	TM_SPI_Init(PCD8544_SPIx, PCD8544_SPI_PINSPACK);
-
+	//Reset pin HIGH
+	GPIO_SetBits(PCD8544_RST_PORT, PCD8544_RST_PIN);
+	
+	//CE HIGH
 	PCD8544_CE_HIGH;
+
+	//Initialize SPI
+	TM_SPI_Init(PCD8544_SPI, PCD8544_SPI_PINSPACK);
 }
 
 void PCD8544_send(unsigned char data) {
 	PCD8544_CE_LOW;
-	TM_SPI_Send(PCD8544_SPIx, data);
+	TM_SPI_Send(PCD8544_SPI, data);
 	PCD8544_CE_HIGH;
 }
 
@@ -236,16 +249,16 @@ void PCD8544_Pin(PCD8544_Pin_t pin, PCD8544_State_t state) {
 	switch (pin) {
 		case PCD8544_Pin_DC:
 			if (state != PCD8544_State_Low) {
-				GPIO_SetBits(PCD8544_GPIO_Port, PCD8544_GPIO_DC_Pin);
+				GPIO_SetBits(PCD8544_DC_PORT, PCD8544_DC_PIN);
 			} else {
-				GPIO_ResetBits(PCD8544_GPIO_Port, PCD8544_GPIO_DC_Pin);
+				GPIO_ResetBits(PCD8544_DC_PORT, PCD8544_DC_PIN);
 			}
 			break;
 		case PCD8544_Pin_RST:
 			if (state != PCD8544_State_Low) {
-				GPIO_SetBits(PCD8544_GPIO_Port, PCD8544_GPIO_RST_Pin);
+				GPIO_SetBits(PCD8544_RST_PORT, PCD8544_RST_PIN);
 			} else {
-				GPIO_ResetBits(PCD8544_GPIO_Port, PCD8544_GPIO_RST_Pin);
+				GPIO_ResetBits(PCD8544_RST_PORT, PCD8544_RST_PIN);
 			}
 			break;
 		default: break;

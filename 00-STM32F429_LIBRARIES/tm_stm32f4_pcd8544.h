@@ -8,11 +8,49 @@
  *	@link		http://stm32f4-discovery.com/pcd8544-nokia-33105110-lcd-stm32f429-discovery-library/
  *	@version 	v1.0
  *	@ide		Keil uVision
+ *	
+ *	Default pinout
+ *	
+ *	LCD BOARD	STM32F444	DESCRIPTION
+ *	
+ *	RST			PC15		Reset pin for LCD
+ *	CE			PC13		Chip enable for SPI2
+ *	DC			PC14		Data/Command pin
+ *	DIN			PC3			MOSI pin for SPI2
+ *	CLK			PB10		CLOCK pin for SPI2
+ *	VCC			3.3V		VCC Power
+ *	LIGHT		GND			If you connect this to GND, backlight is turned on
+ *	GND			GND			Ground
+ *	
+ * If you want to change your SPI, set lines below in defines.h file:
+ * 
+ *	//Set default SPI
+ * 	#define PCD8544_SPI				SPI2
+ * 	#define PCD8544_SPI_PINSPACK 	TM_SPI_PinsPack_1
+ * 	
+ * Also, other pins can be changed as well, in your defines.h file
+ * 
+ *	//Default RST pin
+ *	#define PCD8544_RST_RCC			RCC_AHB1Periph_GPIOC
+ *	#define PCD8544_RST_PORT		GPIOC
+ *	#define PCD8544_RST_PIN			GPIO_Pin_15
+ *	
+ *	//Default DC pin
+ *	#define PCD8544_DC_RCC			RCC_AHB1Periph_GPIOC
+ *	#define PCD8544_DC_PORT			GPIOC
+ *	#define PCD8544_DC_PIN			GPIO_Pin_14
+ *	
+ *	//Default CE pin
+ *	#define PCD8544_CE_RCC			RCC_AHB1Periph_GPIOC
+ *	#define PCD8544_CE_PORT			GPIOC
+ *	#define PCD8544_CE_PIN			GPIO_Pin_13
+ *	
  */
 #ifndef PCD8544_H
 #define PCD8544_H 100
 /**
  * Library dependencies
+ * - STM32F4xx
  * - STM32F4xx RCC
  * - STM32F4xx GPIO
  * - TM_SPI
@@ -26,40 +64,34 @@
 #include "stm32f4xx_rcc.h"
 #include "tm_stm32f4_spi.h"
 
-/**
- * Define used pins
- */
-#ifndef PCD8544_GPIO_Port
-	#define PCD8544_GPIO_Port				GPIOC
-#endif
-#ifndef PCD8544_GPIO_RCC
-	#define PCD8544_GPIO_RCC				RCC_AHB1Periph_GPIOC
-#endif
-// Reset Pin
-#ifndef PCD8544_GPIO_RST_Pin
-	#define PCD8544_GPIO_RST_Pin			GPIO_Pin_15
-#endif
-// Data/Command pin
-#ifndef PCD8544_GPIO_DC_Pin
-	#define PCD8544_GPIO_DC_Pin				GPIO_Pin_14
-#endif
-// SPI Chip enable pin
-#ifndef PCD8544_GPIO_CE_Pin
-	#define PCD8544_GPIO_CE_Pin				GPIO_Pin_13
+//SPI used
+#ifndef PCD8544_SPI
+#define PCD8544_SPI				SPI2
+#define PCD8544_SPI_PINSPACK 	TM_SPI_PinsPack_1
 #endif
 
-#define PCD8544_CE_LOW						GPIO_ResetBits(PCD8544_GPIO_Port, PCD8544_GPIO_CE_Pin)
-#define PCD8544_CE_HIGH						GPIO_SetBits(PCD8544_GPIO_Port, PCD8544_GPIO_CE_Pin)
+//Default pins used
+//Default RST pin
+#ifndef PCD8544_RST_PIN
+#define PCD8544_RST_RCC			RCC_AHB1Periph_GPIOC
+#define PCD8544_RST_PORT		GPIOC
+#define PCD8544_RST_PIN			GPIO_Pin_15
+#endif
+//Default DC pin
+#ifndef PCD8544_DC_PIN
+#define PCD8544_DC_RCC			RCC_AHB1Periph_GPIOC
+#define PCD8544_DC_PORT			GPIOC
+#define PCD8544_DC_PIN			GPIO_Pin_14
+#endif
+//Default CE pin
+#ifndef PCD8544_CE_PIN
+#define PCD8544_CE_RCC			RCC_AHB1Periph_GPIOC
+#define PCD8544_CE_PORT			GPIOC
+#define PCD8544_CE_PIN			GPIO_Pin_13
+#endif
 
-/**
- * SPI channel
- */
-#ifndef PCD8544_SPIx
-#define PCD8544_SPIx						SPI2
-#endif
-#ifndef PCD8544_SPI_PINSPACK
-#define PCD8544_SPI_PINSPACK 				TM_SPI_PinsPack_1
-#endif
+#define PCD8544_CE_LOW			GPIO_ResetBits(PCD8544_CE_PORT, PCD8544_CE_PIN)
+#define PCD8544_CE_HIGH			GPIO_SetBits(PCD8544_CE_PORT, PCD8544_CE_PIN)
 
 /**
  * Private enums

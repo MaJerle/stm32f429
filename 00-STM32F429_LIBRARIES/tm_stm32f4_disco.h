@@ -1,6 +1,6 @@
 /**
  *	Leds and button library for STM32F4 & STM32F429 Discovery board
- *	
+ *	Library also supports F401 Nucleo board
  *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
@@ -28,7 +28,7 @@
  *		- Button: (pressed when low state)
  *			- Blue button	on PA0
  *
- *	F401 NUCLEO
+ *	F401 NUCLEO: (STM32F401RE)
  *		- Led:
  *			- LED_GREEN 	on PA5
  *		- Button: (pressed when high state)
@@ -51,7 +51,7 @@
 #include "defines.h"
 
 //Recognize STM32F4 or STM32F429 Discovery
-//Added nucleo board
+//Added Nucleo board
 #if defined(STM32F429_439xx)
 	#define STM32F429_DISCOVERY
 #elif defined(STM32F407VG) || defined(STM32F40_41xxx)
