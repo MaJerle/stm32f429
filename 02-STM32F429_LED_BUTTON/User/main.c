@@ -10,14 +10,21 @@
 #include "tm_stm32f4_disco.h"
 
 int main(void) {
-	//Initialize leds on board
+	/* Initialize System */
+	SystemInit();
+	
+	/* Initialize leds on board */
 	TM_DISCO_LedInit();
-	//Initialize button ob board
+	/* Initialize button on board */
 	TM_DISCO_ButtonInit();
+	
     while(1) {
+		/* If button pressed */
     	if (TM_DISCO_ButtonPressed()) {
+			/* Turn on leds */
     		TM_DISCO_LedOn(LED_RED | LED_GREEN);
     	} else {
+			/* Turn off leds */
     		TM_DISCO_LedOff(LED_RED | LED_GREEN);
     	}
     }
