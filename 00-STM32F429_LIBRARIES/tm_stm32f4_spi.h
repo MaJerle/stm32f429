@@ -222,7 +222,7 @@ typedef enum {
 
 
 /**
- * Initialize SPIx separately
+ * Initialize each SPIx separately
  *
  */
 /**
