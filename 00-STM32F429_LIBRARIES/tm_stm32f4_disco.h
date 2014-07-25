@@ -77,13 +77,14 @@
 #include "defines.h"
 
 /* Recognize correct board */
+/* CooCox support */
 #if defined(STM32F429_439xx) || defined(STM32F429ZI)
 	/* STM32F429 Discovery support */
 	#define TM_DISCO_STM32F429_DISCOVERY
-#elif defined(STM32F407VG) || defined(STM32F401VC) || defined(STM32F40_41xxx)
+#elif defined(STM32F407VG) || defined(STM32F401VC)// || defined(STM32F40_41xxx)
 	/* STM32F4 and STM32F401 Discovery support */
 	#define TM_DISCO_STM32F4_DISCOVERY
-#elif defined (STM32F401xx) || defined(STM32F401RE)
+#elif defined (STM32F401xx) || defined(STM32F401RE) || defined(STM32F401RB)
 	/* Nucleo board support */
 	#define TM_DISCO_NUCLEO_F401
 #endif
