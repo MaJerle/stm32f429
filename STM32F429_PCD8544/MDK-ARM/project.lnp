@@ -7,6 +7,7 @@
 ".\stm32f4xx_usart.o"
 ".\stm32f4xx_spi.o"
 ".\stm32f4xx_adc.o"
+".\stm32f4xx_dma.o"
 ".\tm_stm32f4_delay.o"
 ".\tm_stm32f4_pcd8544.o"
 ".\tm_stm32f4_spi.o"

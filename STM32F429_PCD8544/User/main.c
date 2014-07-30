@@ -10,12 +10,15 @@
 #include "stm32f4xx.h"
 #include "tm_stm32f4_pcd8544.h"
 
+#include "stdio.h"
+
 int main(void) {
+	volatile uint32_t delay;
 	//180MHz
 	SystemInit();
 
 	//Initialize LCD with 0x38 software contrast
-	PCD8544_Init(0x38);
+	PCD8544_Init(0x50);
 
 	//Go to x=14, y=3 position
 	PCD8544_GotoXY(14, 3);
@@ -31,9 +34,16 @@ int main(void) {
 	//Put string with Pixel set mode and Fontsize of 3x5
 	PCD8544_Puts("majerle.eu", PCD8544_Pixel_Set, PCD8544_FontSize_3x5);
 
-	//Display data on LCD
+	//PCD8544_DrawFilledRectangle(0, 0, 83, 47, PCD8544_Pixel_Set);
 	PCD8544_Refresh();
+	
     while (1) {
-
+		PCD8544_Invert(PCD8544_Invert_Yes);
+		delay = 50000000;
+		while (delay--);
+		
+		PCD8544_Invert(PCD8544_Invert_No);
+		delay = 50000000;
+		while (delay--);
     }
 }

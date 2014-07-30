@@ -8,10 +8,25 @@
  *	@version 	v1.3
  *	@ide		Keil uVision
  *	
- *	Libraries works for all 8 U(S)ARTs which are supported in STM32F429.
+ *	Library works for all 8 U(S)ARTs which are supported on STM32F429.
  *
  *	Every USART channel has it's own receive interrupt which stores incoming data into cyclic buffer.
- *	In your project you can set buffer length, default is 32Bytes, with:
+ *	If you want to use your own receive handler, then you have to open defines.h files and set a define
+ *
+ *	//Use custom IRQ Receive handler
+ *
+ *	//Change X with possible U(S)ARTs: USART1, USART2, USART3, UART4, UART5, USART6, UART7, UART8
+ *	//#define TM_X_USE_CUSTOM_IRQ
+ *
+ *	After you set define, you have to create a function, which will handle custom request
+ *
+ *	//Change X with possible U(S)ARTs: USART1, USART2, USART3, UART4, UART5, USART6, UART7, UART8
+ *	//Parameter c is a received character
+ *	void TM_X_ReceiveHandler(uint8_t c) {
+ *		//Do your stuff here when byte received
+ *	}
+ *
+ *	In your project you can set internal cyclic buffer length, default is 32Bytes, with:
  *
  *	#define TM_USART_BUFFER_SIZE number_of_bytes
  *
