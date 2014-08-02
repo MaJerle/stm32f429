@@ -9,7 +9,8 @@
 #define _USE_IOCTL	1	/* 1: Enable disk_ioctl fucntion */
 
 #include "integer.h"
-#include "tm_stm32f4_usart.h"
+#include "defines.h"
+//#include "tm_stm32f4_usart.h"
 
 /* Status of Disk Functions */
 typedef BYTE	DSTATUS;
@@ -24,7 +25,7 @@ typedef enum {
 } DRESULT;
 
 
-//#define FATFS_DEBUG_SEND_USART(x)	TM_USART_Puts(USART1, x); TM_USART_Puts(USART1, "\n");
+//#define FATFS_DEBUG_SEND_USART(x)	TM_USART_Puts(USART6, x); TM_USART_Puts(USART6, "\n");
 #define FATFS_DEBUG_SEND_USART(x)
 
 /*---------------------------------------*/

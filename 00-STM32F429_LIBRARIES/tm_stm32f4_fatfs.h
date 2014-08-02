@@ -57,7 +57,6 @@
  *	
  * SDIO Communication
  * 
- *	
  * By default, SDIO with 4-bit communication is used.
  * If you want to use SDIO 1-bit communication, set defines below in your defines.h file:
  * 
@@ -113,9 +112,8 @@
  *	#define FATFS_CS_PORT						GPIOB
  *	#define FATFS_CS_PIN						GPIO_Pin_5
  *
- *	
- *	
- * Also, library supports for Write protect and Card detect pins.
+ *
+ * Also, library has support for Write protect and Card detect pins.
  * This two pins are by default on pins below.
  * They are the same for any communication used, and are disabled by default
  * WP and CD Pinout

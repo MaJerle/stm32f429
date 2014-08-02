@@ -2930,7 +2930,7 @@ void SD_LowLevel_Init (void)
 		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_10 | GPIO_Pin_11;
 	
 #else
-		GPIO_PinAFConfig (GPIOC, GPIO_PinSource8, GPIO_AF_SDIO);	//D0
+		GPIO_PinAFConfig(GPIOC, GPIO_PinSource8, GPIO_AF_SDIO);		//D0
 		GPIO_PinAFConfig(GPIOC, GPIO_PinSource12, GPIO_AF_SDIO);	//CLK
 		GPIO_PinAFConfig(GPIOD, GPIO_PinSource2, GPIO_AF_SDIO);		//CMD
 		//D0 pin
@@ -2965,40 +2965,38 @@ void SD_LowLevel_Init (void)
  * @param  BufferSize: buffer size
  * @retval None
  */
-void SD_LowLevel_DMA_TxConfig (uint32_t *BufferSRC, uint32_t BufferSize)
-{
-        DMA_InitTypeDef SDDMA_InitStructure;
+void SD_LowLevel_DMA_TxConfig (uint32_t *BufferSRC, uint32_t BufferSize) {
+	DMA_InitTypeDef SDDMA_InitStructure;
 
-        DMA_ClearFlag (SD_SDIO_DMA_STREAM, SD_SDIO_DMA_FLAG_FEIF | SD_SDIO_DMA_FLAG_DMEIF | SD_SDIO_DMA_FLAG_TEIF | SD_SDIO_DMA_FLAG_HTIF | SD_SDIO_DMA_FLAG_TCIF);
+	DMA_ClearFlag (SD_SDIO_DMA_STREAM, SD_SDIO_DMA_FLAG_FEIF | SD_SDIO_DMA_FLAG_DMEIF | SD_SDIO_DMA_FLAG_TEIF | SD_SDIO_DMA_FLAG_HTIF | SD_SDIO_DMA_FLAG_TCIF);
 
-        /* DMA2 Stream3  or Stream6 disable */
-        DMA_Cmd (SD_SDIO_DMA_STREAM, DISABLE);
+	/* DMA2 Stream3  or Stream6 disable */
+	DMA_Cmd (SD_SDIO_DMA_STREAM, DISABLE);
 
-        /* DMA2 Stream3  or Stream6 Config */
-        DMA_DeInit (SD_SDIO_DMA_STREAM );
+	/* DMA2 Stream3  or Stream6 Config */
+	DMA_DeInit (SD_SDIO_DMA_STREAM );
 
-        SDDMA_InitStructure.DMA_Channel = SD_SDIO_DMA_CHANNEL;
-        SDDMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t) SDIO_FIFO_ADDRESS;
-        SDDMA_InitStructure.DMA_Memory0BaseAddr = (uint32_t) BufferSRC;
-        SDDMA_InitStructure.DMA_DIR = DMA_DIR_MemoryToPeripheral;
-        SDDMA_InitStructure.DMA_BufferSize = 1;
-        SDDMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
-        SDDMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
-        SDDMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Word;
-        SDDMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_Word;
-        SDDMA_InitStructure.DMA_Mode = DMA_Mode_Normal;
-        SDDMA_InitStructure.DMA_Priority = DMA_Priority_VeryHigh;
-        SDDMA_InitStructure.DMA_FIFOMode = DMA_FIFOMode_Enable;
-        SDDMA_InitStructure.DMA_FIFOThreshold = DMA_FIFOThreshold_Full;
-        SDDMA_InitStructure.DMA_MemoryBurst = DMA_MemoryBurst_INC4;
-        SDDMA_InitStructure.DMA_PeripheralBurst = DMA_PeripheralBurst_INC4;
-        DMA_Init (SD_SDIO_DMA_STREAM, &SDDMA_InitStructure);
-        DMA_ITConfig (SD_SDIO_DMA_STREAM, DMA_IT_TC, ENABLE);
-        DMA_FlowControllerConfig (SD_SDIO_DMA_STREAM, DMA_FlowCtrl_Peripheral);
+	SDDMA_InitStructure.DMA_Channel = SD_SDIO_DMA_CHANNEL;
+	SDDMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t) SDIO_FIFO_ADDRESS;
+	SDDMA_InitStructure.DMA_Memory0BaseAddr = (uint32_t) BufferSRC;
+	SDDMA_InitStructure.DMA_DIR = DMA_DIR_MemoryToPeripheral;
+	SDDMA_InitStructure.DMA_BufferSize = 1;
+	SDDMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
+	SDDMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
+	SDDMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Word;
+	SDDMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_Word;
+	SDDMA_InitStructure.DMA_Mode = DMA_Mode_Normal;
+	SDDMA_InitStructure.DMA_Priority = DMA_Priority_VeryHigh;
+	SDDMA_InitStructure.DMA_FIFOMode = DMA_FIFOMode_Enable;
+	SDDMA_InitStructure.DMA_FIFOThreshold = DMA_FIFOThreshold_Full;
+	SDDMA_InitStructure.DMA_MemoryBurst = DMA_MemoryBurst_INC4;
+	SDDMA_InitStructure.DMA_PeripheralBurst = DMA_PeripheralBurst_INC4;
+	DMA_Init (SD_SDIO_DMA_STREAM, &SDDMA_InitStructure);
+	DMA_ITConfig (SD_SDIO_DMA_STREAM, DMA_IT_TC, ENABLE);
+	DMA_FlowControllerConfig (SD_SDIO_DMA_STREAM, DMA_FlowCtrl_Peripheral);
 
-        /* DMA2 Stream3  or Stream6 enable */
-        DMA_Cmd (SD_SDIO_DMA_STREAM, ENABLE);
-
+	/* DMA2 Stream3  or Stream6 enable */
+	DMA_Cmd (SD_SDIO_DMA_STREAM, ENABLE);
 }
 /**
  * @brief  Configures the DMA2 Channel4 for SDIO Rx request.

@@ -14,15 +14,17 @@
 
 int main(void) {
 	volatile uint32_t delay;
+	uint8_t x;
+	char buf[30];
 	//180MHz
 	SystemInit();
 
 	//Initialize LCD with 0x38 software contrast
-	PCD8544_Init(0x50);
-
+	PCD8544_Init();
+	
 	//Go to x=14, y=3 position
 	PCD8544_GotoXY(14, 3);
-
+	
 	//Print data with Pixel Set mode and Fontsize of 5x7px
 	PCD8544_Puts("STM32F429", PCD8544_Pixel_Set, PCD8544_FontSize_5x7);
 	PCD8544_GotoXY(15, 13);
@@ -31,19 +33,18 @@ int main(void) {
 	PCD8544_Puts("2014", PCD8544_Pixel_Set, PCD8544_FontSize_5x7);
 
 	PCD8544_GotoXY(45, 42);
+	
 	//Put string with Pixel set mode and Fontsize of 3x5
 	PCD8544_Puts("majerle.eu", PCD8544_Pixel_Set, PCD8544_FontSize_3x5);
 
 	//PCD8544_DrawFilledRectangle(0, 0, 83, 47, PCD8544_Pixel_Set);
-	PCD8544_Refresh();
+	//PCD8544_Refresh();
+	//PCD8544_Clear();
 	
+	PCD8544_DrawLine(0, 0, 41, 0, PCD8544_Pixel_Set);
+	PCD8544_DrawLine(0, 2, 41, 41, PCD8544_Pixel_Set);
     while (1) {
-		PCD8544_Invert(PCD8544_Invert_Yes);
-		delay = 50000000;
-		while (delay--);
 		
-		PCD8544_Invert(PCD8544_Invert_No);
-		delay = 50000000;
-		while (delay--);
+		//if (x > 46) x = 0;
     }
 }
