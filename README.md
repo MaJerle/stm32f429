@@ -59,6 +59,8 @@ http://bit.ly/1k9rJGo
 http://bit.ly/1sCyx4w
 23. MFRC522 - Read RFID Cards with STM32F4xx devices
 http://bit.ly/1ycHq7P
+24. USB VCP - Use STM32F4xx as USB VCP (Virtual Com Port)
+http://bit.ly/1sgSy0M
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB
