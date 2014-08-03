@@ -30,7 +30,7 @@ int main(void) {
 		if (TM_USB_VCP_GetStatus() == TM_USB_VCP_CONNECTED) {
 			/* Turn on GREEN led */
 			TM_DISCO_LedOn(LED_GREEN);
-			TM_DISCO_LedOff(LED_RED);
+			//TM_DISCO_LedOff(LED_RED);
 			/* If something arrived at VCP */
 			if (TM_USB_VCP_Getc(&c) == TM_USB_VCP_DATA_OK) {
 				/* Return data back */
@@ -39,7 +39,7 @@ int main(void) {
 		} else {
 			/* USB not OK */
 			TM_DISCO_LedOff(LED_GREEN);
-			TM_DISCO_LedOn(LED_RED);
+			//TM_DISCO_LedOn(LED_RED);
 		}
 	}
 } 
