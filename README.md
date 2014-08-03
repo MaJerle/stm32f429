@@ -61,6 +61,8 @@ http://bit.ly/1sCyx4w
 http://bit.ly/1ycHq7P
 24. USB VCP - Use STM32F4xx as USB VCP (Virtual Com Port)
 http://bit.ly/1sgSy0M
+24. AM2301 - AM2301 (DHT21) temperature and humidity sensor
+http://bit.ly/1p2mqy1 
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB

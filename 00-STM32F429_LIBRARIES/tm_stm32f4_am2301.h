@@ -1,0 +1,115 @@
+/**
+ *	Basic library for AM2301 (DHT21) temperature and humidity sensor
+ *
+ *	@author 	Tilen Majerle
+ *	@email		tilen@majerle.eu
+ *	@website	http://stm32f4-discovery.com
+ *	@link		http://stm32f4-discovery.com/2014/08/library-25-am2301-dht21-sensor-stm32f4xx/
+ *	@version 	v1.0
+ *	@ide		Keil uVision
+ *
+ *	This library does not use any timers and interrupts to increase speed, only basic pooling mode.
+ *
+ *	Pinout
+ *
+ *	AM2301		STM32F4xx		Description
+ *
+ *	VCC			3V3-5V			Supply voltage from 3V3 to 5V
+ *	GND			GND				Ground
+ *	DATA		PD1				Data line
+ *
+ * By default, PD1 pin is used for data. If you want to change it, use lines below:
+ *
+ *	#define AM2301_RCC				RCC_AHB1Periph_GPIOD
+ *	#define AM2301_PORT				GPIOD
+ *	#define AM2301_PIN				GPIO_Pin_1
+ *
+ * Temperature and humidity is returned from sensor in x10 multiplyer, so like 55.5% humidity,
+ * sensor will return 555 and 27.3°C, sensor will return 273.
+ * This values are also returned from my library, you have to manually convert them (divide by 10)
+ */
+#ifndef TM_AM2301_H
+#define TM_AM2301_H
+/**
+ * Dependencies
+ * - STM32F4xx
+ * - STM32F4xx RCC
+ * - STM32F4xx GPIO
+ * - defines.h
+ * - TM DELAY
+ */
+/**
+ * Includes
+ */
+#include "stm32f4xx.h"
+#include "stm32f4xx_rcc.h"
+#include "stm32f4xx_gpio.h"
+#include "defines.h"
+#include "tm_stm32f4_delay.h"
+
+/* Default data pin, overwrite it in defines.h file */
+#ifndef AM2301_PIN
+#define AM2301_RCC				RCC_AHB1Periph_GPIOD
+#define AM2301_PORT				GPIOD
+#define AM2301_PIN				GPIO_Pin_1
+#endif
+
+/* Pin settings */
+#define AM2301_PIN_LOW			AM2301_PORT->BSRRH = AM2301_PIN
+#define AM2301_PIN_HIGH			AM2301_PORT->BSRRL = AM2301_PIN
+#define AM2301_PIN_IN			AM2301_GPIO_InitStruct.GPIO_Mode = GPIO_Mode_IN; GPIO_Init(AM2301_PORT, &AM2301_GPIO_InitStruct)
+#define AM2301_PIN_OUT			AM2301_GPIO_InitStruct.GPIO_Mode = GPIO_Mode_OUT; GPIO_Init(AM2301_PORT, &AM2301_GPIO_InitStruct)
+#define AM2301_PIN_READ			GPIO_ReadInputDataBit(AM2301_PORT, AM2301_PIN)
+
+/**
+ * Enumerations
+ */
+typedef enum {
+	TM_AM2301_OK,						/* Data OK */
+	TM_AM2301_ERROR,					/* An error */
+	TM_AM2301_CONNECTION_ERROR,			/* Device is not connected */
+	TM_AM2301_WAITHIGH_ERROR,
+	TM_AM2301_WAITLOW_ERROR,
+	TM_AM2301_WAITHIGH_LOOP_ERROR,
+	TM_AM2301_WAITLOW_LOOP_ERROR,
+	TM_AM2301_PARITY_ERROR				/* Data read fail */
+} TM_AM2301_t;
+
+/**
+ * Data structure
+ */
+typedef struct {
+	int16_t Temp;	/* Temperature */
+	uint16_t Hum;	/* Humidity */
+} TM_AM2301_Data_t;
+
+extern GPIO_InitTypeDef AM2301_GPIO_InitStruct;
+
+/**
+ * Initialize AM2301 sensor
+ *
+ * TM_AM2301_OK is returned
+ */
+extern TM_AM2301_t TM_AM2301_Init(void);
+
+/*
+ * Initialize data pin
+ *
+ * TM_AM2301_OK is returned
+ */
+extern TM_AM2301_t TM_AM2301_InitPins(void);
+
+/**
+ * Read data from sensor
+ *
+ * Parameters:
+ * 	- TM_AM2301_Data_t* data: pointer to data structure
+ *
+ * TM_AM2301_OK returned in case data is valid, otherwise anything from TM_AM2301_t typedef
+ */
+extern TM_AM2301_t TM_AM2301_Read(TM_AM2301_Data_t* data);
+/* Internal */
+extern TM_AM2301_t TM_INT_AM2301_Read(TM_AM2301_Data_t* data);
+
+#endif
+

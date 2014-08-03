@@ -49,8 +49,8 @@
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
-          <DebugInformation>1</DebugInformation>
-          <BrowseInformation>1</BrowseInformation>
+          <DebugInformation>0</DebugInformation>
+          <BrowseInformation>0</BrowseInformation>
           <ListingPath>.\</ListingPath>
           <HexFormatSelection>1</HexFormatSelection>
           <Merge32K>0</Merge32K>
@@ -143,7 +143,7 @@
             <RestoreTracepoints>1</RestoreTracepoints>
           </Target>
           <RunDebugAfterBuild>0</RunDebugAfterBuild>
-          <TargetSelection>12</TargetSelection>
+          <TargetSelection>11</TargetSelection>
           <SimDlls>
             <CpuDll></CpuDll>
             <CpuDllArguments></CpuDllArguments>

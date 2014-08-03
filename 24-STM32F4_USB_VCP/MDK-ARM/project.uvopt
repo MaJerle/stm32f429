@@ -422,28 +422,53 @@
       <Books>
         <Book>
           <Number>0</Number>
-          <Title>STM32F4 Series Reference Manual</Title>
-          <Path>$$Device:STM32F401RE$Documents\STM32F4xx_RM.PDF</Path>
+          <Title>Getting Started (STM32F401C-Discovery)</Title>
+          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Documents\DM00092826.pdf</Path>
         </Book>
         <Book>
           <Number>1</Number>
-          <Title>STM32F401xD/xE Data Sheet</Title>
-          <Path>$$Device:STM32F401RE$Documents\STM32F401xD_xE_DS.PDF</Path>
+          <Title>User Manual (STM32F401C-Discovery)</Title>
+          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Documents\DM00093902.pdf</Path>
         </Book>
         <Book>
           <Number>2</Number>
-          <Title>MCBSTM32F400 User's Guide</Title>
-          <Path>$$Device:STM32F401RE$Documents\mcbstm32f200.chm</Path>
+          <Title>Bill of Materials (STM32F401C-Discovery)</Title>
+          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Documents\stm32f401c-disco_bom.zip</Path>
         </Book>
         <Book>
           <Number>3</Number>
-          <Title>STM32F401C Discovery Board</Title>
-          <Path>http://www.st.com/st-web-ui/static/active/en/resource/technical/document/user_manual/DM00039084.pdf</Path>
+          <Title>Gerber Files (STM32F401C-Discovery)</Title>
+          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Documents\stm32f401c-disco_gerber.zip</Path>
         </Book>
         <Book>
           <Number>4</Number>
-          <Title>Cortex-M4 Generic User Guide</Title>
-          <Path>$$Device:STM32F401RE$Documents\dui0553a_cortex_m4_dgug.pdf</Path>
+          <Title>Schematics (STM32F401C-Discovery)</Title>
+          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Documents\stm32f401c-disco_sch.zip</Path>
+        </Book>
+        <Book>
+          <Number>5</Number>
+          <Title>User Manual (NUCLEO-F401RE)</Title>
+          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32NUCLEO_BSP\1.0.0\Documents\DM00105823.pdf</Path>
+        </Book>
+        <Book>
+          <Number>6</Number>
+          <Title>Getting started (NUCLEO-F401RE)</Title>
+          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32NUCLEO_BSP\1.0.0\Documents\DM00105925.pdf</Path>
+        </Book>
+        <Book>
+          <Number>7</Number>
+          <Title>Schematics (NUCLEO-F401RE)</Title>
+          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32NUCLEO_BSP\1.0.0\Documents\MB1136.pdf</Path>
+        </Book>
+        <Book>
+          <Number>8</Number>
+          <Title>STM32F401C-Discovery Web Page (STM32F401C-Discovery)</Title>
+          <Path>http://www.st.com/web/catalog/tools/FM116/SC959/SS1532/LN1199/PF259098</Path>
+        </Book>
+        <Book>
+          <Number>9</Number>
+          <Title>Nucleo STM32 F4 series development board (NUCLEO-F401RE)</Title>
+          <Path>http://www.st.com/web/en/catalog/tools/PF260000</Path>
         </Book>
       </Books>
       <DllOpt>
@@ -530,7 +555,7 @@
         <aSer4>0</aSer4>
         <StkLoc>0</StkLoc>
         <TrcWin>0</TrcWin>
-        <newCpu>3</newCpu>
+        <newCpu>0</newCpu>
         <uProt>0</uProt>
       </DebugFlag>
       <LintExecutable></LintExecutable>
@@ -1288,7 +1313,7 @@
       <Focus>0</Focus>
       <ColumnNumber>41</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
+      <TopLine>2</TopLine>
       <CurrentLine>9</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_usb_vcp.c</PathWithFileName>
@@ -1332,7 +1357,7 @@
 
   <Group>
     <GroupName>User</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -1345,7 +1370,7 @@
       <ColumnNumber>4</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
       <TopLine>1</TopLine>
-      <CurrentLine>24</CurrentLine>
+      <CurrentLine>25</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\User\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -1446,10 +1471,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>50</ColumnNumber>
+      <ColumnNumber>18</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>36</TopLine>
-      <CurrentLine>53</CurrentLine>
+      <TopLine>100</TopLine>
+      <CurrentLine>127</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\00-STM32F429_LIBRARIES\usb_device\usb_bsp.c</PathWithFileName>
       <FilenameWithoutPath>usb_bsp.c</FilenameWithoutPath>

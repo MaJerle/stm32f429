@@ -1032,10 +1032,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>10</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>5</TopLine>
-      <CurrentLine>16</CurrentLine>
+      <TopLine>6</TopLine>
+      <CurrentLine>32</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\User\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
