@@ -217,7 +217,7 @@
 
   <Group>
     <GroupName>CMSIS</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -227,10 +227,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>22</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
+      <TopLine>247</TopLine>
+      <CurrentLine>259</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\CMSIS\system_stm32f4xx.c</PathWithFileName>
       <FilenameWithoutPath>system_stm32f4xx.c</FilenameWithoutPath>
@@ -925,8 +925,8 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>4</TopLine>
-      <CurrentLine>33</CurrentLine>
+      <TopLine>1</TopLine>
+      <CurrentLine>15</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c</PathWithFileName>
       <FilenameWithoutPath>tm_stm32f4_delay.c</FilenameWithoutPath>
@@ -952,22 +952,6 @@
     <File>
       <GroupNumber>4</GroupNumber>
       <FileNumber>45</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>1</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_onewire.c</PathWithFileName>
-      <FilenameWithoutPath>tm_stm32f4_onewire.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>4</GroupNumber>
-      <FileNumber>46</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -976,8 +960,24 @@
       <TopLine>0</TopLine>
       <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_onewire.h</PathWithFileName>
-      <FilenameWithoutPath>tm_stm32f4_onewire.h</FilenameWithoutPath>
+      <PathWithFileName>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_am2301.h</PathWithFileName>
+      <FilenameWithoutPath>tm_stm32f4_am2301.h</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>4</GroupNumber>
+      <FileNumber>46</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <ColumnNumber>27</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>1</TopLine>
+      <CurrentLine>89</CurrentLine>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_am2301.c</PathWithFileName>
+      <FilenameWithoutPath>tm_stm32f4_am2301.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -987,13 +987,13 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>13</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>3</TopLine>
-      <CurrentLine>7</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</PathWithFileName>
-      <FilenameWithoutPath>tm_stm32f4_usart.c</FilenameWithoutPath>
+      <PathWithFileName>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341.c</PathWithFileName>
+      <FilenameWithoutPath>tm_stm32f4_ili9341.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1008,30 +1008,46 @@
       <TopLine>0</TopLine>
       <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</PathWithFileName>
-      <FilenameWithoutPath>tm_stm32f4_usart.h</FilenameWithoutPath>
+      <PathWithFileName>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341.h</PathWithFileName>
+      <FilenameWithoutPath>tm_stm32f4_ili9341.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>4</GroupNumber>
       <FileNumber>49</FileNumber>
-      <FileType>1</FileType>
+      <FileType>5</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>23</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>248</TopLine>
-      <CurrentLine>263</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_ds18b20.c</PathWithFileName>
-      <FilenameWithoutPath>tm_stm32f4_ds18b20.c</FilenameWithoutPath>
+      <PathWithFileName>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.h</PathWithFileName>
+      <FilenameWithoutPath>tm_stm32f4_spi.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>4</GroupNumber>
       <FileNumber>50</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>0</tvExp>
+      <Focus>0</Focus>
+      <ColumnNumber>58</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>283</TopLine>
+      <CurrentLine>299</CurrentLine>
+      <bDave2>0</bDave2>
+      <PathWithFileName>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.c</PathWithFileName>
+      <FilenameWithoutPath>tm_stm32f4_spi.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>4</GroupNumber>
+      <FileNumber>51</FileNumber>
       <FileType>5</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -1040,14 +1056,14 @@
       <TopLine>0</TopLine>
       <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_ds18b20.h</PathWithFileName>
-      <FilenameWithoutPath>tm_stm32f4_ds18b20.h</FilenameWithoutPath>
+      <PathWithFileName>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.h</PathWithFileName>
+      <FilenameWithoutPath>tm_stm32f4_fonts.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
     <File>
       <GroupNumber>4</GroupNumber>
-      <FileNumber>51</FileNumber>
+      <FileNumber>52</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
@@ -1056,24 +1072,8 @@
       <TopLine>0</TopLine>
       <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.c</PathWithFileName>
-      <FilenameWithoutPath>tm_stm32f4_disco.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
-    <File>
-      <GroupNumber>4</GroupNumber>
-      <FileNumber>52</FileNumber>
-      <FileType>5</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.h</PathWithFileName>
-      <FilenameWithoutPath>tm_stm32f4_disco.h</FilenameWithoutPath>
+      <PathWithFileName>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.c</PathWithFileName>
+      <FilenameWithoutPath>tm_stm32f4_fonts.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1091,10 +1091,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>4</ColumnNumber>
+      <ColumnNumber>31</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>80</TopLine>
-      <CurrentLine>85</CurrentLine>
+      <TopLine>6</TopLine>
+      <CurrentLine>13</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\User\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>

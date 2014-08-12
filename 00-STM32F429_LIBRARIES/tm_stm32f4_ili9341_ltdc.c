@@ -575,7 +575,11 @@ void TM_ILI9341_DrawLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uin
 		temp = 2 * dy - dx;
 		while (x0 != x1) {
 			TM_ILI9341_DrawPixel(x0, y0, color);
-			x0++;
+			if (x0 < x1) {
+				x0++;
+			} else {
+				x0--;
+			}
 			if (temp > 0) {
 				y0++;
 				temp += 2 * dy - 2 * dx;
@@ -588,7 +592,11 @@ void TM_ILI9341_DrawLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uin
 		temp = 2 * dx - dy;
 		while (y0 != y1) {
 			TM_ILI9341_DrawPixel(x0, y0, color);
-			y0++;
+			if (y0 < y1) {
+                y0++;
+            } else {
+                y0--;
+			}
 			if (temp > 0) {
 				x0++;
 				temp += 2 * dy - 2 * dx;
@@ -599,6 +607,7 @@ void TM_ILI9341_DrawLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uin
 		TM_ILI9341_DrawPixel(x0, y0, color);
 	}
 }
+
 
 void TM_ILI9341_DrawRectangle(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color) {
 	TM_ILI9341_DrawLine(x0, y0, x1, y0, color); //Top

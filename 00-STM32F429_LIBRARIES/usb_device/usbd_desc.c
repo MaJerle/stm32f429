@@ -39,7 +39,7 @@
   * @{
   */ 
 #define USBD_LANGID_STRING              0x409
-#define USBD_MANUFACTURER_STRING        "STMicroelectronicss"
+#define USBD_MANUFACTURER_STRING        "STMicroelectronics"
 
 #define USBD_PRODUCT_FS_STRING          "STM32 Virtual ComPort in FS Mode"
 #define USBD_SERIALNUMBER_FS_STRING     "00000000050C"

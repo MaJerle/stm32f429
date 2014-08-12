@@ -905,16 +905,16 @@ ARM Macro Assembler    Page 14
               00000200 
               00000000 
 Command Line: --debug --xref --cpu=Cortex-M4.fp --apcs=interwork --depend=.\sta
-rtup_stm32f429_439xx.d -o.\startup_stm32f429_439xx.o -IC:\Keil\ARM\RV31\INC -IC
-:\Keil\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include -IC:\Keil\ARM\PACK\Keil\STM32F4x
-x_DFP\1.0.7\Device\Include --list=.\startup_stm32f429_439xx.lst startup_stm32f4
+rtup_stm32f429_439xx.d -o.\startup_stm32f429_439xx.o -IC:\Keil_v5\ARM\RV31\INC 
+-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include -IC:\Keil_v5\ARM\PACK\Keil\
+STM32F4xx_DFP\1.0.8\Device\Include --list=.\startup_stm32f429_439xx.lst startup
 
 
 
 ARM Macro Assembler    Page 15 
 
 
-29_439xx.s
+_stm32f429_439xx.s
 
 
 

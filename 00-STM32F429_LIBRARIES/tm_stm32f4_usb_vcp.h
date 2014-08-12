@@ -8,7 +8,7 @@
  *	@version 	v1.0
  *	@ide		Keil uVision
  *
- *	With this library, your STM32F4xx will be seen to your computer as Virtual Com Port (VCP).
+ *	With this library, your STM32F4xx will be seen to your computer as Virtual COM Port (VCP).
  *	To be able to work, you have to install ST's VCP Driver, from link below:
  *
  *		http://www.st.com/web/en/catalog/tools/PF257938
