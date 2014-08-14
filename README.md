@@ -4,11 +4,11 @@
 Here are listed all libraries for STM32F429 Discovery board.
 
 If you are working with STM32F4 Discovery board, than you have to download project template for this board for Keil to be able to run this libraries.
-http://bit.ly/1jOFqx8
+http://stm32f4-discovery.com
 
 
 First time with Discovery board?
-http://bit.ly/1nb5ntt
+http://stm32f4-discovery.com
 
 Current librarires:
 
@@ -63,6 +63,8 @@ http://bit.ly/1ycHq7P
 http://bit.ly/1sgSy0M
 25. AM2301 - AM2301 (DHT21) temperature and humidity sensor
 http://bit.ly/1p2mqy1 
+27. ROTARY ENCODER - Connect Rotary Encoder to STM32F4xx device
+http://bit.ly/1sWSUeh
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB

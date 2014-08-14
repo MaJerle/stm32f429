@@ -1,0 +1,39 @@
+/**
+ *	Keil project for rotary encoder
+ *
+ *	@author 	Tilen Majerle
+ *	@email		tilen@majerle.eu
+ *	@website	http://stm32f4-discovery.com
+ *	@ide		Keil uVision 5
+ */
+#include "defines.h"
+#include "stm32f4xx.h"
+#include "tm_stm32f4_ili9341.h"
+#include "tm_stm32f4_rotary_encoder.h"
+
+#include <stdio.h>
+
+int main(void) {
+	char buf[15];
+	/* Rotary encoder data */
+	TM_RE_t data;
+	
+	/* Initialize system */
+	SystemInit();
+	
+	/* Initialize LCD */
+	TM_ILI9341_Init();
+	TM_ILI9341_Rotate(TM_ILI9341_Orientation_Portrait_2);
+	
+	/* Initialize Rotary encoder */
+	TM_RE_Init(&data);
+
+	while (1) {
+		/* Get new rotation */
+		TM_RE_Get(&data);
+		
+		/* Display on LCD */
+		sprintf(buf, "Absolute:\n%8d\n\n\nDifference from\nlast check:\n%8d", data.Absolute, data.Diff);
+		TM_ILI9341_Puts(10, 10, buf, &TM_Font_11x18, 0x0000, 0xFFFF);
+	}
+}
