@@ -63,8 +63,10 @@ http://bit.ly/1ycHq7P
 http://bit.ly/1sgSy0M
 25. AM2301 - AM2301 (DHT21) temperature and humidity sensor
 http://bit.ly/1p2mqy1 
-27. ROTARY ENCODER - Connect Rotary Encoder to STM32F4xx device
+26. ROTARY ENCODER - Connect Rotary Encoder to STM32F4xx device
 http://bit.ly/1sWSUeh
+27. GPS - Read GPS data on STM32F4xx devices
+http://bit.ly/1n93Dgb
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB
