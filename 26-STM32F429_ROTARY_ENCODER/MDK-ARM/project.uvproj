@@ -637,6 +637,11 @@
               <FileType>1</FileType>
               <FilePath>..\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_syscfg.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f4xx_tim.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_tim.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
