@@ -49,8 +49,8 @@
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
-          <DebugInformation>1</DebugInformation>
-          <BrowseInformation>1</BrowseInformation>
+          <DebugInformation>0</DebugInformation>
+          <BrowseInformation>0</BrowseInformation>
           <ListingPath>.\</ListingPath>
           <HexFormatSelection>1</HexFormatSelection>
           <Merge32K>0</Merge32K>
@@ -613,9 +613,19 @@
               <FilePath>..\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.c</FilePath>
             </File>
             <File>
+              <FileName>stm32f4xx_usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.c</FilePath>
+            </File>
+            <File>
               <FileName>stm32f4xx_spi.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_adc.c</FilePath>
             </File>
             <File>
               <FileName>stm32f4xx_fmc.c</FileName>
@@ -632,6 +642,46 @@
         <Group>
           <GroupName>TM</GroupName>
           <Files>
+            <File>
+              <FileName>tm_stm32f4_delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_delay.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_l3gd20.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_l3gd20.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_l3gd20.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_l3gd20.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ili9341_ltdc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341_ltdc.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ili9341_ltdc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341_ltdc.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_sdram.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.c</FilePath>
+            </File>
             <File>
               <FileName>tm_stm32f4_spi.c</FileName>
               <FileType>1</FileType>
@@ -651,46 +701,6 @@
               <FileName>tm_stm32f4_fonts.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_delay.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_delay.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_ili9341_ltdc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341_ltdc.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_ili9341_ltdc.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341_ltdc.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_sdram.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_sdram.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_disco.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_disco.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.h</FilePath>
             </File>
           </Files>
         </Group>
