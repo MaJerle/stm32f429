@@ -4,12 +4,8 @@
 ".\misc.o"
 ".\stm32f4xx_rcc.o"
 ".\stm32f4xx_gpio.o"
-".\stm32f4xx_usart.o"
-".\stm32f4xx_spi.o"
-".\stm32f4xx_adc.o"
 ".\tm_stm32f4_delay.o"
 ".\tm_stm32f4_hd44780.o"
-".\tm_stm32f4_usart.o"
 ".\main.o"
 ".\stm32f4xx_it.o"
 --ro-base 0x08000000 --entry 0x08000000 --rw-base 0x20000000 --entry Reset_Handler --first __Vectors --strict --summary_stderr --info summarysizes --map --xref --callgraph --symbols

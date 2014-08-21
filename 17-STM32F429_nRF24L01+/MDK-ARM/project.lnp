@@ -6,7 +6,6 @@
 ".\stm32f4xx_gpio.o"
 ".\stm32f4xx_usart.o"
 ".\stm32f4xx_spi.o"
-".\stm32f4xx_adc.o"
 ".\tm_stm32f4_delay.o"
 ".\tm_stm32f4_spi.o"
 ".\tm_stm32f4_nrf24l01.o"
