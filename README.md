@@ -14,7 +14,8 @@ Current librarires:
 
 - All libraries listed at one place for easy editing them from one place and use them for all projects
 
-1. CMSIS Default project - this is project template for Coocox
+1. CMSIS Default project - project template for STM32F4 discovery, STM32F429 discovery and Nucleo F401 boards.
+You have to choose your target when you open project.
 2. LED_BUTTON - Project example for STM32F4/29 Discovery
 http://bit.ly/1nbAHbs
 3. DELAY - Delay library for STM32F4/29
