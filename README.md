@@ -15,7 +15,7 @@ Current librarires:
 - All libraries listed at one place for easy editing them from one place and use them for all projects
 
 1. Two default projects are included
-	1. Default Keil project, with CMSIS iles v.1.3.0 included
+	1. Default Keil project, with CMSIS files v.1.3.0 included
 	2. Default Keil project, without CMSIS files included, because they are in Keil packs.
 	3. How to make own Keil project? http://stm32f4-discovery.com/2014/04/stm32f429-discovery-with-cmsis-library-in-keil/
 2. LED_BUTTON - Project example for STM32F4/29 Discovery
