@@ -10,6 +10,7 @@
 01-STM32F4xx_Keil_CMSIS_Default_Project/MDK-ARM/*.axf
 01-STM32F4xx_Keil_CMSIS_Default_Project/MDK-ARM/*.lnp
 01-STM32F4xx_Keil_CMSIS_Default_Project/MDK-ARM/*.lst
+01-STM32F4xx_Keil_CMSIS_Default_Project/MDK-ARM/*.ini
 
 01-STM32F4xx_Keil_Packs_CMSIS_Default_Project/*.o
 01-STM32F4xx_Keil_Packs_CMSIS_Default_Project/*.d
