@@ -123,74 +123,98 @@ void TM_GPS_ConvertFloat(float num, TM_GPS_Float_t* Float_Data, uint8_t decimals
 	}
 }
 
+void TM_GPS_DistanceBetween(TM_GPS_Distance_t* Distance_Data) {
+	float f1, f2, l1, l2, df, dfi, a;
+	
+	/* Calculate distance between 2 pointes */
+	f1 = GPS_DEGREES2RADIANS(Distance_Data->Latitude1);
+	f2 = GPS_DEGREES2RADIANS(Distance_Data->Latitude2);
+	l1 = GPS_DEGREES2RADIANS(Distance_Data->Longitude1);
+	l2 = GPS_DEGREES2RADIANS(Distance_Data->Longitude2);
+	df = GPS_DEGREES2RADIANS(Distance_Data->Latitude2 - Distance_Data->Latitude1);
+	dfi = GPS_DEGREES2RADIANS(Distance_Data->Longitude2 - Distance_Data->Longitude1);
+
+	a = sin(df / 2) * sin(df / 2) + cos(f1) * cos(f2) * sin(dfi / 2) * sin(dfi / 2);
+	/* Get distance in meters */
+	Distance_Data->Distance = GPS_EARTH_RADIUS * 2 * atan2(sqrt(a), sqrt(1 - a)) * 1000;
+	
+	/* Calculate bearing between two points from point1 to point2 */
+	df = sin(l2 - l1) * cos(f2);
+	dfi = cos(f1) * sin(f2) - sin(f1) * cos(f2) * cos(l2 - l1);
+	Distance_Data->Bearing = (GPS_RADIANS2DEGREES(atan2(df, dfi)));
+	if (Distance_Data->Bearing < 0) {
+		Distance_Data->Bearing += 360;
+	}
+}
+
 /* Private */
 extern TM_GPS_Result_t TM_GPS_INT_Do(TM_GPS_Data_t* GPS_Data, char c) {
 	if (TM_GPS_INT_FlagsOk()) {
-		//Data were valid before, new data are coming, not new anymore
+		/* Data were valid before, new data are coming, not new anymore */
 		TM_GPS_INT_ClearFlags();
-		//Data were "new" on last call, now are only "Old data", no NEW data
+		/* Data were "new" on last call, now are only "Old data", no NEW data */
 		GPS_Data->Status = TM_GPS_Result_OldData;
 	}
 	if (c == '$') {		
-		//Star detection reset
+		/* Star detection reset */
 		TM_GPS_Star = 0;
-		//Reset CRC
+		/* Reset CRC */
 		TM_GPS_CRC = 0;
-		//First term in new statement
+		/* First term in new statement */
 		TM_GPS_Term_Number = 0;
-		//At position 0 of a first term
+		/* At position 0 of a first term */
 		TM_GPS_Term_Pos = 0;
-		//Add character to first term
+		/* Add character to first term */
 		TM_GPS_Term[TM_GPS_Term_Pos++] = c;
 	} else if (c == ',') {
-		//Add to parity
+		/* Add to parity */
 		TM_GPS_INT_Add2CRC(c);
-		//Add 0 at the end
+		/* Add 0 at the end */
 		TM_GPS_Term[TM_GPS_Term_Pos++] = 0;
 		
-		//Check term
+		/* Check term */
 		TM_GPS_INT_CheckTerm(GPS_Data);
 		
-		//Increase term number
+		/* Increase term number */
 		TM_GPS_Term_Number++;
-		//At position 0 of a first term
+		/* At position 0 of a first term */
 		TM_GPS_Term_Pos = 0;
 	} else if (c == '\n') {
 	
 	} else if (c == '\r') {
 		TM_GPS_Term[TM_GPS_Term_Pos++] = 0;
 		
-		//Between * and \r are 2 characters of Checksum
+		/* Between * and \r are 2 characters of Checksum */
 		TM_GPS_CRC_Received = TM_GPS_INT_Hex2Dec(TM_GPS_Term[0]) * 16 + TM_GPS_INT_Hex2Dec(TM_GPS_Term[1]);
 		
 		if (TM_GPS_CRC_Received != TM_GPS_CRC) {
-			//CRC is not OK, data failed somewhere
-			//Clear all flags
+			/* CRC is not OK, data failed somewhere */
+			/* Clear all flags */
 			TM_GPS_INT_ClearFlags();
 		}
 	} else if (c == '*') {
-		//Star detected
+		/* Star detected */
 		TM_GPS_Star = 1;
-		//Add 0 at the end
+		/* Add 0 at the end */
 		TM_GPS_Term[TM_GPS_Term_Pos++] = 0;
 		
-		//Check term
+		/* Check term */
 		TM_GPS_INT_CheckTerm(GPS_Data);
 		
-		//Increase term number
+		/* Increase term number */
 		TM_GPS_Term_Number++;
-		//At position 0 of a first term
+		/* At position 0 of a first term */
 		TM_GPS_Term_Pos = 0;
 	} else {
-		//Other characters detected
+		/* Other characters detected */
 		
-		//If star is not detected yet
+		/* If star is not detected yet */
 		if (!TM_GPS_Star) {
-			//Add to parity
+			/* Add to parity */
 			TM_GPS_INT_Add2CRC(c);
 		}
 		
-		//Add to term
+		/* Add to term */
 		TM_GPS_Term[TM_GPS_Term_Pos++] = c;
 	}
 	return TM_GPS_INT_Return(GPS_Data);
@@ -207,7 +231,7 @@ void TM_GPS_INT_CheckTerm(TM_GPS_Data_t* GPS_Data) {
 	uint32_t temp;
 	uint8_t count;
 	if (TM_GPS_Term_Number == 0) {
-		//Statement indicator
+		/* Statement indicator */
 		if (TM_GPS_INT_StringStartsWith(TM_GPS_Term, "$GPGGA")) {
 			TM_GPS_Statement = GPS_GPGGA;
 		} else if (TM_GPS_INT_StringStartsWith(TM_GPS_Term, "$GPRMC")) {
@@ -219,11 +243,11 @@ void TM_GPS_INT_CheckTerm(TM_GPS_Data_t* GPS_Data) {
 		} else {
 			TM_GPS_Statement = GPS_ERR;
 		}
-		//Do nothing
+		/* Do nothing */
 		return;
 	}
 	if (TM_GPS_Statement == GPS_ERR) {
-		//Not valid input data
+		/* Not valid input data */
 		return;
 	}
 	switch (GPS_CONCAT(TM_GPS_Statement, TM_GPS_Term_Number)) {
@@ -520,29 +544,34 @@ uint32_t TM_GPS_INT_Pow(uint8_t x, uint8_t y) {
 
 uint8_t TM_GPS_INT_Hex2Dec(char c) {
 	if (c >= '0' && c <= '9') {
-		return c - '0';			//0 - 9
+		return c - '0';			/* 0 - 9 */
 	} else if (c >= 'A' && c <= 'F') {
-		return c - 'A' + 10; 	//10 - 15
+		return c - 'A' + 10; 	/* 10 - 15 */
 	} else if (c >= 'a' && c <= 'f') {
-		return c - 'a' + 10; 	//10 - 15
+		return c - 'a' + 10; 	/* 10 - 15 */
 	}
 	return 0;
 }
 
 TM_GPS_Result_t TM_GPS_INT_ReturnWithStatus(TM_GPS_Data_t* GPS_Data, TM_GPS_Result_t status) {
+	/* Set status and return status */
 	GPS_Data->Status = status;
+	/* Return status */
 	return status;
 }
 
 uint8_t TM_GPS_INT_FlagsOk(void) {
+	/* Check flags */
 	return TM_GPS_Flags == TM_GPS_Flags_OK;
 }
 
 void TM_GPS_INT_ClearFlags(void) {
+	/* Reset flags */
 	TM_GPS_Flags = 0;
 }
 
 void TM_GPS_INT_SetFlag(uint32_t flag) {
+	/* Set flag bit */
 	TM_GPS_Flags |= flag;
 }
 

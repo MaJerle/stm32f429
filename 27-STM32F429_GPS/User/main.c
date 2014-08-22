@@ -20,6 +20,7 @@ int main(void) {
 	TM_GPS_Data_t GPS_Data;
 	TM_GPS_Result_t result, current;
 	TM_GPS_Float_t GPS_Float;
+	TM_GPS_Distance_t GPS_Distance;
 	char buffer[40];
 	uint8_t i;
 	float temp;
@@ -36,6 +37,23 @@ int main(void) {
 	/* Initialize USART3 for debug */
 	/* TX = PB10 */
 	TM_USART_Init(USART3, TM_USART_PinsPack_1, 115200);
+	
+	/* Version 1.1 added */
+	/* Set two test coordinates */
+	GPS_Distance.Latitude1 = 48.300215;
+	GPS_Distance.Longitude1 = -122.285903;
+	GPS_Distance.Latitude2 = 45.907813;
+	GPS_Distance.Longitude2 = 56.659407;
+	
+	/* Calculate distance and bearing between 2 pointes */
+	TM_GPS_DistanceBetween(&GPS_Distance);
+	/* Convert float number */
+	TM_GPS_ConvertFloat(GPS_Distance.Distance, &GPS_Float, 6);
+	sprintf(buffer, "Distance is: %d.%06d meters\n", GPS_Float.Integer, GPS_Float.Decimal);
+	TM_USART_Puts(USART3, buffer);
+	TM_GPS_ConvertFloat(GPS_Distance.Bearing, &GPS_Float, 6);
+	sprintf(buffer, "Bearing is: %d.%06d degrees\n\n", GPS_Float.Integer, GPS_Float.Decimal);
+	TM_USART_Puts(USART3, buffer);
 	
 	/* Reset counter */
 	TM_DELAY_SetTime(0);

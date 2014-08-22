@@ -5,9 +5,13 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/08/library-27-gps-stm32f4-devices/
- *	@version 	v1.0
+ *	@version 	v1.1
  *	@ide		Keil uVision
  * 
+ * Version v1.1
+ * 	- 22.08.2014
+ * 	- Added support for calculating distance between 2 coordinates and bearing in degrees
+ *
  * This library parses response from GPS module, in NMEA statements format.
  * 
  * For more, how GPS returns data, look at link below:
@@ -66,7 +70,7 @@
  *
  */
 #ifndef TM_GPS_H
-#define TM_GPS_H	100
+#define TM_GPS_H	110
 /**
  * Dependencies
  * - STM32F4xx
@@ -81,6 +85,7 @@
 #include "stm32f4xx_rcc.h"
 #include "stm32f4xx_gpio.h"
 #include "tm_stm32f4_usart.h"
+#include "math.h"
 
 /* Default GPS USART used */
 #ifndef GPS_USART
@@ -159,6 +164,14 @@
 
 /* Is character a digit */
 #define GPS_IS_DIGIT(x)			(x >= '0' && x <= '9')
+
+/* Earth radius */
+#define GPS_EARTH_RADIUS		6371
+
+/* Degrees to radians converter */
+#define GPS_DEGREES2RADIANS(x)	((x) * (float)0.01745329251994)
+/* Radians to degrees */
+#define GPS_RADIANS2DEGREES(x)	((x) * (float)57.29577951308232)
 
 /**
  * Possible return statements
@@ -330,6 +343,34 @@ typedef struct {
 	TM_GPS_Result_t Status;			/* GPS Data status */
 } TM_GPS_Data_t;
 
+/**
+ * Added in version v1.1
+ *
+ * GPS Distance struct
+ *
+ * Parameters:
+ * 	- float Latitude1
+ * 		Latitude of starting point
+ * 	- float Latitude1
+ * 		Longitude of starting point
+ * 	- float Latitude2
+ * 		Latitude of starting point
+ * 	- float Longitude2
+ * 		Longitude of starting point
+ * 	- float Distance
+ * 		Distance returned in meters
+ * 	- float Bearing
+ * 		Bearing returned in degrees
+ *
+ */
+typedef struct {
+	float Latitude1;
+	float Longitude1;
+	float Latitude2;
+	float Longitude2;
+	float Distance;
+	float Bearing;
+} TM_GPS_Distance_t;
 
 /* Public */
 /**
@@ -384,6 +425,19 @@ extern double TM_GPS_ConvertSpeed(double SpeedInKnots, TM_GPS_Speed_t toSpeed);
  *  	Number of decimals places
  */
 extern void TM_GPS_ConvertFloat(float num, TM_GPS_Float_t* Float_Data, uint8_t decimals);
+
+/**
+ * Added in version v1.1
+ *
+ * Calculates distance between 2 coordinates on earth and bearing in realtion to the north
+ *
+ * Distance is returned in meters and bearing in degrees
+ *
+ * Parameters:
+ * 	- TM_GPS_Distance_t* Distance_Data
+ * 		Pointer to TM_GPS_Distance_t struct to get data and calculate back
+ */
+extern void TM_GPS_DistanceBetween(TM_GPS_Distance_t* Distance_Data);
 
 /* Private */
 extern TM_GPS_Result_t 	TM_GPS_INT_Do(TM_GPS_Data_t* GPS_Data, char c);
