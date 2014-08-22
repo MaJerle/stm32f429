@@ -16,8 +16,8 @@
  * Default pinout
  *
  * STMPE811		STM32F429 Discovery			Description
- * SCL
- * SDA
+ * SCL			PA8							Clock pin for I2C
+ * SDA			PC9							Data pin for I2C
  */
 #ifndef TM_STMPE811_H
 #define TM_STMPE811_H	110
