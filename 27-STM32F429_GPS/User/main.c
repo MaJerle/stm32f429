@@ -25,10 +25,10 @@ int main(void) {
 	uint8_t i;
 	float temp;
 	
-	//Initialize system
+	/* Initialize system */
 	SystemInit();
 	
-	//Delay init
+	/* Delay init */
 	TM_DELAY_Init();
 	
 	/* Initialize GPS on 115200 baudrate */
