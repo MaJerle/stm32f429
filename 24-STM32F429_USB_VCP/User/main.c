@@ -16,11 +16,55 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include "stm32f4xx.h"
+#include "tm_stm32f4_ili9341.h"
+#include "tm_stm32f4_stmpe811.h"
+#include "tm_stm32f4_ili9341_button.h"
+#include <math.h>
+
+#define BUTTON_WIDTH 60
+#define BUTTON_HEIGHT 67 
+#define BUTTON_NWIDE 3
+
+
+void  sendStringViaUSB( 	char *str ) {
+	
+    int i;
+    int string_len;
+
+    string_len = strlen(str);
+
+    for(i = 0; i < string_len; i++) {
+					TM_USB_VCP_Putc(str[i]);
+    }
+
+}	
+
+int8_t makeButton(int n, char* label) {
+	TM_ILI9341_Button_t button;
+	
+	button.x = 10 + (n % BUTTON_NWIDE) * (BUTTON_WIDTH + 10 ) ;
+	button.y = 10 + floor(n / BUTTON_NWIDE) * (BUTTON_HEIGHT +10);
+	button.width = BUTTON_WIDTH;
+	button.height = BUTTON_HEIGHT;
+	button.background = ILI9341_COLOR_RED;
+	button.borderColor = ILI9341_COLOR_BLACK;
+	button.label = label;
+	button.color = ILI9341_COLOR_BLACK;
+	button.font = &TM_Font_11x18;
+	return (TM_ILI9341_Button_Add(&button));
+}
+
 
 int main(void) {
 	uint8_t c, i;
 	uint16_t number;
-	char str[5];
+	char str[30];
+	char *strs[12] = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "D", "0", "E" };
+	int8_t buttonPressed, buttons[12];
+	TM_STMPE811_TouchData touchData;
+
 	/* System Init */
 	SystemInit();
 	
@@ -30,41 +74,55 @@ int main(void) {
 	/* Initialize USB VCP */	
 	TM_USB_VCP_Init();
 	
-	/* Set counter to 0 */
-	i = 0;
+	//Initialize LCD
+	TM_ILI9341_Init();
+	//Fill LCD with gray color
+	TM_ILI9341_Fill(ILI9341_COLOR_GRAY);
+	//Select orientation
+	TM_ILI9341_Rotate(TM_ILI9341_Orientation_Portrait_2);
+	
+	//Select touch screen orientation
+	touchData.orientation = TM_STMPE811_Orientation_Portrait_2;
+	
+	//Initialize Touch
+	TM_STMPE811_Init();
+	for(i=0;  i<12; i++) {
+		buttons[i] = makeButton(i, strs[i]);
+	}
+	TM_ILI9341_Button_DrawAll();
+
+/* algorithm
+ * draw a grid
+ * wait for touchdown
+ * while touchdown
+ * draw to next point
+ * if point near button - light button, stash button N
+ * end while
+ * process touchup
+ * if match, fire match to pi
+ * delay 
+ * redraw screen
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ * */
+
+
 	while (1) {
-		/* USB configured OK, drivers OK */
-		if (TM_USB_VCP_GetStatus() == TM_USB_VCP_CONNECTED) {
-			/* Turn on GREEN led */
-			TM_DISCO_LedOn(LED_GREEN);
-			//TM_DISCO_LedOff(LED_RED);
-			/* If something arrived at VCP */
-			if (TM_USB_VCP_Getc(&c) == TM_USB_VCP_DATA_OK) {
-				/* Add new character to string */
-				str[i] = (char) c;
-				/* Increase counter */
-				i++;
-				/* Return data back */
-				TM_USB_VCP_Putc(c);
-			}
-		} else {
-			/* USB not OK */
-			TM_DISCO_LedOff(LED_GREEN);
-			//TM_DISCO_LedOn(LED_RED);
-		}
-		/* If 3 bytes are received */
-		if (i == 3) {
-			str[3] = 0;
-			/* Reset counter */
-			i = 0;
-			/* Convert string to number */
-			number = atoi(str);
-			
-			if (number == 100) {
-				/* Number is 100 */
-				TM_DISCO_LedOn(LED_RED);
+		if (TM_STMPE811_ReadTouch(&touchData) == TM_STMPE811_State_Pressed) {
+			buttonPressed = TM_ILI9341_Button_Touch(&touchData);
+			if (buttonPressed >= 0) {
+				//Any button pressed
+				sprintf(str, "Pressed: Button %d", (buttonPressed + 1));
+		sendStringViaUSB(str);
 			}
 		}
 	}
-} 
-
+}
+	

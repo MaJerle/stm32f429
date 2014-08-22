@@ -75,7 +75,7 @@
 #include "stm32f4xx_rcc.h"
 #include "stm32f4xx_gpio.h"
 #include "defines.h"
-
+#define TM_DISCO_STM32F429_DISCOVERY
 /* Recognize correct board */
 /* CooCox support */
 #if defined(STM32F429_439xx) || defined(STM32F429ZI)

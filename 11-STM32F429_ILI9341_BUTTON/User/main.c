@@ -12,7 +12,6 @@
 #include "tm_stm32f4_stmpe811.h"
 #include "tm_stm32f4_ili9341_button.h"
 #include "tm_stm32f4_disco.h"
-#include "button_back.h"
 #include <stdio.h>
 
 int main(void) {
@@ -67,7 +66,6 @@ int main(void) {
 	button.flags = TM_BUTTON_FLAG_NOLABEL | TM_BUTTON_FLAG_IMAGE;
 	button.color = ILI9341_COLOR_BLACK;
 	button.font = &TM_Font_11x18;
-	button.image = buttonBackground; //Variable stored in 
 	//Add button
 	button2 = TM_ILI9341_Button_Add(&button);
 	
