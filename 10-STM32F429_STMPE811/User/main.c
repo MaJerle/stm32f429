@@ -28,7 +28,11 @@ int main(void) {
 	TM_ILI9341_Rotate(TM_ILI9341_Orientation_Portrait_2);
 	
 	//Initialize Touch
-	TM_STMPE811_Init();
+	if (TM_STMPE811_Init() == TM_STMPE811_State_Error) {
+		TM_ILI9341_Puts(20, 20, "STMPE811 Error", &TM_Font_11x18, ILI9341_COLOR_ORANGE, ILI9341_COLOR_BLACK);
+		
+		while (1);
+	}
 	
 	//Select touch screen orientation
 	touchData.orientation = TM_STMPE811_Orientation_Portrait_2;
