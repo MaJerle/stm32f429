@@ -1,3 +1,33 @@
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+#uVision generated files
+*.axf
+*.htm
+*.map
+*.dep
+.*.*~
+
 01-STM32F4xx_Keil_CMSIS_Default_Project/MDK-ARM/*.o
 01-STM32F4xx_Keil_CMSIS_Default_Project/MDK-ARM/*.d
 01-STM32F4xx_Keil_CMSIS_Default_Project/MDK-ARM/*.crf
