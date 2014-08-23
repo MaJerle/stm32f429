@@ -4,6 +4,7 @@
 uint16_t ILI9341_x;
 uint16_t ILI9341_y;
 TM_ILI931_Options_t ILI9341_Opts;
+uint8_t ILI9341_INT_CalledFromPuts = 0;
 
 void TM_ILI9341_Init() {
 	GPIO_InitTypeDef GPIO_InitDef;
@@ -229,6 +230,9 @@ void TM_ILI9341_Rotate(TM_ILI9341_Orientation_t orientation) {
 
 void TM_ILI9341_Puts(uint16_t x, uint16_t y, char *str, TM_FontDef_t *font, uint16_t foreground, uint16_t background) {
 	uint16_t startX = x;
+	/* We are calling Putc from Puts function */
+	ILI9341_INT_CalledFromPuts = 1;
+	/* Set X and Y coordinates */
 	ILI9341_x = x;
 	ILI9341_y = y;
 	
@@ -252,6 +256,8 @@ void TM_ILI9341_Puts(uint16_t x, uint16_t y, char *str, TM_FontDef_t *font, uint
 		
 		TM_ILI9341_Putc(ILI9341_x, ILI9341_y, *str++, font, foreground, background);
 	}
+	/* Reset */
+	ILI9341_INT_CalledFromPuts = 0;
 }
 
 void TM_ILI9341_GetStringSize(char *str, TM_FontDef_t *font, uint16_t *width, uint16_t *height) {
@@ -265,6 +271,11 @@ void TM_ILI9341_GetStringSize(char *str, TM_FontDef_t *font, uint16_t *width, ui
 
 void TM_ILI9341_Putc(uint16_t x, uint16_t y, char c, TM_FontDef_t *font, uint16_t foreground, uint16_t background) {
 	uint32_t i, b, j;
+	if (!ILI9341_INT_CalledFromPuts) {
+		/* Set X and Y coordinates */
+		ILI9341_x = x;
+		ILI9341_y = y;
+	}
 	if ((ILI9341_x + font->FontWidth) > ILI9341_Opts.width) {
 		//If at the end of a line of display, go to new line and set x to 0 position
 		ILI9341_y += font->FontHeight;
