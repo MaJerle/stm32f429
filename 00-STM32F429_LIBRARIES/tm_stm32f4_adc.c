@@ -68,13 +68,12 @@ void TM_ADC_Init(ADC_TypeDef* ADCx, uint8_t channel) {
 }
 
 uint16_t TM_ADC_Read(ADC_TypeDef* ADCx, uint8_t channel) {
-	ADC_RegularChannelConfig(ADCx, channel, 1, ADC_SampleTime_3Cycles);
+	ADC_RegularChannelConfig(ADCx, channel, 1, ADC_SampleTime_15Cycles);
 	ADC_SoftwareStartConv(ADCx);
 	while (ADC_GetFlagStatus(ADCx, ADC_FLAG_EOC) == RESET);
 
 	return ADC_GetConversionValue(ADCx);
 }
-
 
 void TM_ADC_Channel_0_Init(ADC_TypeDef* ADCx) {
 	TM_ADC_InitPin(RCC_AHB1Periph_GPIOA, GPIOA, GPIO_Pin_0);

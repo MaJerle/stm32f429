@@ -9,7 +9,7 @@
 #include "defines.h"
 #include "stm32f4xx.h"
 #include "tm_stm32f4_delay.h"
-#include "tm_stm32f4_usart.h"
+#include "tm_stm32f4_ili9341.h"
 #include "tm_stm32f4_adc.h"
 #include <stdio.h>
 
@@ -20,10 +20,8 @@ int main(void) {
 	//Initialize Delay library
 	TM_DELAY_Init();
 	
-	//Initialize USART1-> TX: PA9, RX: PA10
-	TM_USART_Init(USART1, TM_USART_PinsPack_1, 9600);
-	
-	TM_USART_Puts(USART1, "ADC example");
+	TM_ILI9341_Init();
+	TM_ILI9341_Rotate(TM_ILI9341_Orientation_Portrait_2);
 	
 	//Initialize ADC1 on channel 0, this is pin PA0
 	TM_ADC_Init(ADC1, ADC_Channel_0);
@@ -32,8 +30,9 @@ int main(void) {
 	
 	while (1) {
 		//							Read ADC1 Channel0					Read ADC1 Channel3
-		sprintf(str, "%d: %d\n\r", TM_ADC_Read(ADC1, ADC_Channel_0), TM_ADC_Read(ADC1, ADC_Channel_3));
-		TM_USART_Puts(USART1, str);
+		sprintf(str, "%4d: %4d\n\r", TM_ADC_Read(ADC1, ADC_Channel_0), TM_ADC_Read(ADC1, ADC_Channel_3));
+		
+		TM_ILI9341_Puts(10, 10, str, &TM_Font_11x18, 0x0000, 0xFFFF);
 		
 		Delayms(100);
 	}

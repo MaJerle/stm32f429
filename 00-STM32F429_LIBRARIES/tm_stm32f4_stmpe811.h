@@ -5,27 +5,31 @@
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
- *	@link		http://stm32f4-discovery.com/2014/05/library-10-stmpe811-touch-screen-driver-for-stm32f429-discovery-board/ *	@version 	v1.0
+ *	@link		http://stm32f4-discovery.com/2014/05/library-10-stmpe811-touch-screen-driver-for-stm32f429-discovery-board/
+ *	@version 	v1.1
  *	@ide		Keil uVision
+ *
+ * Version 1.1
+ * 	- 22.08.2014
+ * 	- Fixes because on some boards my library for these touch didn't work
+ *
+ * Default pinout
+ *
+ * STMPE811		STM32F429 Discovery			Description
+ * SCL			PA8							Clock pin for I2C
+ * SDA			PC9							Data pin for I2C
  */
 #ifndef TM_STMPE811_H
-#define TM_STMPE811_H
+#define TM_STMPE811_H	110
 /**
  * Library dependencies
+ * * STM32F4xx
  * - STM32F4xx RCC
  * - STM32F4xx GPIO
  * - defines.h
  * - TM_I2C
  * - TM_DELAY
  * - TM_STMPE811
- */
-/**
- * Connection (it can be changed in defines.h file)
- * 
- * I2Cx		I2C3
- * SCL		PA8
- * SDA		PC9
- * 
  */
 /**
  * Includes
@@ -37,13 +41,14 @@
 #include "tm_stm32f4_i2c.h"
 #include "tm_stm32f4_delay.h"
 
+/* Default I2C used, on F429 Discovery board */
 #ifndef STMPE811_I2C
-//I2C used
 #define STMPE811_I2C					I2C3
 #define STMPE811_I2C_PINSPACK			TM_I2C_PinsPack_1
 #endif
 
-#define STMPE811_ADDRESS				0x82	//I2C address
+/* I2C address */
+#define STMPE811_ADDRESS				0x82
 
 //Registers
 #define STMPE811_CHIP_ID				0x00	//STMPE811 Device identification
@@ -200,6 +205,8 @@ typedef enum {
 typedef enum {
 	TM_STMPE811_State_Pressed,
 	TM_STMPE811_State_Released,
+	TM_STMPE811_State_Ok,
+	TM_STMPE811_State_Error
 } TM_STMPE811_State_t;
 
 /**
@@ -225,7 +232,7 @@ typedef struct {
  *
  * Returns 0 on success
  */
-uint8_t TM_STMPE811_Init(void);
+TM_STMPE811_State_t TM_STMPE811_Init(void);
 
 /**
  * Read touch coordinates

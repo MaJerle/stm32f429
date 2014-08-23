@@ -14,7 +14,10 @@ Current librarires:
 
 - All libraries listed at one place for easy editing them from one place and use them for all projects
 
-1. CMSIS Default project - this is project template for Coocox
+1. Two default projects are included
+	1. Default Keil project, with CMSIS files v.1.3.0 included
+	2. Default Keil project, without CMSIS files included, because they are in Keil packs.
+	3. How to make own Keil project? http://stm32f4-discovery.com/2014/04/stm32f429-discovery-with-cmsis-library-in-keil/
 2. LED_BUTTON - Project example for STM32F4/29 Discovery
 http://bit.ly/1nbAHbs
 3. DELAY - Delay library for STM32F4/29
@@ -63,8 +66,12 @@ http://bit.ly/1ycHq7P
 http://bit.ly/1sgSy0M
 25. AM2301 - AM2301 (DHT21) temperature and humidity sensor
 http://bit.ly/1p2mqy1 
-27. ROTARY ENCODER - Connect Rotary Encoder to STM32F4xx device
+26. ROTARY ENCODER - Connect Rotary Encoder to STM32F4xx device
 http://bit.ly/1sWSUeh
+27. GPS - Read GPS data on STM32F4xx devices
+http://bit.ly/1n93Dgb
+28. L3GD20 - Measure rotation of all 3 axis with L3GD20 gyro sensor
+http://bit.ly/1pNdpt4
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB

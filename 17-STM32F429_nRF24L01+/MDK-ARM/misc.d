@@ -5,7 +5,7 @@
 .\misc.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\stdint.h
 .\misc.o: ..\CMSIS\core_cmInstr.h
 .\misc.o: ..\CMSIS\core_cmFunc.h
-.\misc.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cm4_simd.h
+.\misc.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Include\core_cm4_simd.h
 .\misc.o: ..\CMSIS\system_stm32f4xx.h
 .\misc.o: ..\User\stm32f4xx_conf.h
 .\misc.o: ..\STM32F4xx_StdPeriph_Driver\inc\stm32f4xx_adc.h
