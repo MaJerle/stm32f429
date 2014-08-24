@@ -46,13 +46,12 @@ int main(void) {
 			//Touch valid
 			sprintf(str, "Pressed    \n\nX: %03d\nY: %03d", touchData.x, touchData.y);
 			TM_ILI9341_Puts(20, 80, str, &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_ORANGE);
-
 			
 			TM_ILI9341_DrawPixel(touchData.x, touchData.y, 0x0000);
-		} else {
+		}/* else {
 			sprintf(str, "Not Pressed\n\n       \n      ");
 			TM_ILI9341_Puts(20, 80, str, &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_ORANGE);
-		}
+		}*/
 	}
 }
 

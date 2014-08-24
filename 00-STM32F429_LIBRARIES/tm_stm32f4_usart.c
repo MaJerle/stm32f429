@@ -177,7 +177,7 @@ void TM_USART1_InitPins(TM_USART_PinsPack_t pinspack) {
 		//Alternating function
 		GPIO_Init(GPIOA, &GPIO_InitStruct);
 	} else if (pinspack == TM_USART_PinsPack_2) {
-		// Enable clock for GPIOA
+		// Enable clock for GPIOB
 		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
 
 		GPIO_PinAFConfig(GPIOB, GPIO_PinSource6, GPIO_AF_USART1);
@@ -215,7 +215,7 @@ void TM_USART2_InitPins(TM_USART_PinsPack_t pinspack) {
 		//Alternating function
 		GPIO_Init(GPIOA, &GPIO_InitStruct);
 	} else if (pinspack == TM_USART_PinsPack_2) {
-		// Enable clock for GPIOA
+		// Enable clock for GPIOD
 		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
 
 		GPIO_PinAFConfig(GPIOD, GPIO_PinSource5, GPIO_AF_USART2);
@@ -242,7 +242,7 @@ void TM_USART3_InitPins(TM_USART_PinsPack_t pinspack) {
 	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
 
 	if (pinspack == TM_USART_PinsPack_1) {
-		// Enable clock for GPIOA
+		// Enable clock for GPIOB
 		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
 
 		GPIO_PinAFConfig(GPIOB, GPIO_PinSource10, GPIO_AF_USART3);
@@ -253,7 +253,7 @@ void TM_USART3_InitPins(TM_USART_PinsPack_t pinspack) {
 		//Alternating function
 		GPIO_Init(GPIOB, &GPIO_InitStruct);
 	} else if (pinspack == TM_USART_PinsPack_2) {
-		// Enable clock for GPIOA
+		// Enable clock for GPIOC
 		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);
 
 		GPIO_PinAFConfig(GPIOC, GPIO_PinSource10, GPIO_AF_USART3);
@@ -264,7 +264,7 @@ void TM_USART3_InitPins(TM_USART_PinsPack_t pinspack) {
 		//Alternating function
 		GPIO_Init(GPIOC, &GPIO_InitStruct);
 	} else if (pinspack == TM_USART_PinsPack_3) {
-		// Enable clock for GPIOA
+		// Enable clock for GPIOD
 		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
 
 		GPIO_PinAFConfig(GPIOD, GPIO_PinSource8, GPIO_AF_USART3);
@@ -302,7 +302,7 @@ void TM_UART4_InitPins(TM_USART_PinsPack_t pinspack) {
 		//Alternating function
 		GPIO_Init(GPIOA, &GPIO_InitStruct);
 	} else if (pinspack == TM_USART_PinsPack_2) {
-		// Enable clock for GPIOA
+		// Enable clock for GPIOC
 		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);
 
 		GPIO_PinAFConfig(GPIOC, GPIO_PinSource10, GPIO_AF_UART4);
@@ -329,7 +329,7 @@ void TM_UART5_InitPins(TM_USART_PinsPack_t pinspack) {
 	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
 
 	if (pinspack == TM_USART_PinsPack_1) {
-		// Enable clock for GPIOA
+		// Enable clock for GPIOC and GPIOD
 		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);
 		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
 
@@ -359,7 +359,7 @@ void TM_USART6_InitPins(TM_USART_PinsPack_t pinspack) {
 	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
 
 	if (pinspack == TM_USART_PinsPack_1) {
-		// Enable clock for GPIOA
+		// Enable clock for GPIOC
 		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);
 
 		GPIO_PinAFConfig(GPIOC, GPIO_PinSource6, GPIO_AF_USART6);
@@ -370,7 +370,7 @@ void TM_USART6_InitPins(TM_USART_PinsPack_t pinspack) {
 		//Alternating function
 		GPIO_Init(GPIOC, &GPIO_InitStruct);
 	} else if (pinspack == TM_USART_PinsPack_2) {
-		// Enable clock for GPIOA
+		// Enable clock for GPIOG
 		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOG, ENABLE);
 
 		GPIO_PinAFConfig(GPIOG, GPIO_PinSource14, GPIO_AF_USART6);
@@ -397,7 +397,7 @@ void TM_UART7_InitPins(TM_USART_PinsPack_t pinspack) {
 	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
 
 	if (pinspack == TM_USART_PinsPack_1) {
-		// Enable clock for GPIOA
+		// Enable clock for GPIOE
 		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOE, ENABLE);
 
 		GPIO_PinAFConfig(GPIOE, GPIO_PinSource8, GPIO_AF_UART7);
@@ -408,7 +408,7 @@ void TM_UART7_InitPins(TM_USART_PinsPack_t pinspack) {
 		//Alternating function
 		GPIO_Init(GPIOE, &GPIO_InitStruct);
 	} else if (pinspack == TM_USART_PinsPack_2) {
-		// Enable clock for GPIOA
+		// Enable clock for GPIOF
 		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOF, ENABLE);
 
 		GPIO_PinAFConfig(GPIOF, GPIO_PinSource7, GPIO_AF_UART7);
@@ -435,7 +435,7 @@ void TM_UART8_InitPins(TM_USART_PinsPack_t pinspack) {
 	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
 
 	if (pinspack == TM_USART_PinsPack_1) {
-		// Enable clock for GPIOA
+		// Enable clock for GPIOE
 		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOE, ENABLE);
 
 		GPIO_PinAFConfig(GPIOE, GPIO_PinSource1, GPIO_AF_UART8);

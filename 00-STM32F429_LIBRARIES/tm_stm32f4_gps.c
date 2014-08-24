@@ -67,45 +67,45 @@ TM_GPS_Result_t TM_GPS_Update(TM_GPS_Data_t* GPS_Data) {
 	return TM_GPS_INT_ReturnWithStatus(GPS_Data, TM_GPS_Result_OldData);
 }
 
-double TM_GPS_ConvertSpeed(double SpeedInKnots, TM_GPS_Speed_t toSpeed) {
+float TM_GPS_ConvertSpeed(float SpeedInKnots, TM_GPS_Speed_t toSpeed) {
 	switch ((uint8_t)toSpeed) {
 		/* Metric */
 		case TM_GPS_Speed_KilometerPerSecond:
-			return SpeedInKnots * 0.000514;
+			return SpeedInKnots * (float)0.000514;
 		case TM_GPS_Speed_MeterPerSecond:
-			return SpeedInKnots * 0.5144;
+			return SpeedInKnots * (float)0.5144;
 		case TM_GPS_Speed_KilometerPerHour:
-			return SpeedInKnots * 1.852;
+			return SpeedInKnots * (float)1.852;
 		case TM_GPS_Speed_MeterPerMinute:
-			return SpeedInKnots * 30.87;
+			return SpeedInKnots * (float)30.87;
 		
 			/* Imperial */
 		case TM_GPS_Speed_MilePerSecond:
-			return SpeedInKnots * 0.0003197;
+			return SpeedInKnots * (float)0.0003197;
 		case TM_GPS_Speed_MilePerHour:
-			return SpeedInKnots * 1.151;
+			return SpeedInKnots * (float)1.151;
 		case TM_GPS_Speed_FootPerSecond:
-			return SpeedInKnots * 1.688;
+			return SpeedInKnots * (float)1.688;
 		case TM_GPS_Speed_FootPerMinute:
-			return SpeedInKnots * 101.3;
+			return SpeedInKnots * (float)101.3;
 		
 		/* For Runners and Joggers */
 		case TM_GPS_Speed_MinutePerKilometer:
-			return SpeedInKnots * 32.4;
+			return SpeedInKnots * (float)32.4;
 		case TM_GPS_Speed_SecondPerKilometer:
-			return SpeedInKnots * 1944;
+			return SpeedInKnots * (float)1944;
 		case TM_GPS_Speed_SecondPer100Meters:
-			return SpeedInKnots * 194.4;
+			return SpeedInKnots * (float)194.4;
 		case TM_GPS_Speed_MinutePerMile:
-			return SpeedInKnots * 52.14;
+			return SpeedInKnots * (float)52.14;
 		case TM_GPS_Speed_SecondPerMile:
-			return SpeedInKnots * 3128;
+			return SpeedInKnots * (float)3128;
 		case TM_GPS_Speed_SecondPer100Yards:
-			return SpeedInKnots * 177.7;
+			return SpeedInKnots * (float)177.7;
 		
 		/* Nautical */
 		case TM_GPS_Speed_SeaMilePerHour:
-			return SpeedInKnots * 1;
+			return SpeedInKnots * (float)1;
 		default:
 			return 0;
 	}

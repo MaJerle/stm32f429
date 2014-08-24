@@ -411,7 +411,7 @@ extern TM_GPS_Result_t TM_GPS_Update(TM_GPS_Data_t* GPS_Data);
  *
  * Returns speed in desired format
  */
-extern double TM_GPS_ConvertSpeed(double SpeedInKnots, TM_GPS_Speed_t toSpeed);
+extern float TM_GPS_ConvertSpeed(float SpeedInKnots, TM_GPS_Speed_t toSpeed);
 
 /**
  * Converts float number into Integer and Decimal parts.

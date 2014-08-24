@@ -1,26 +1,31 @@
 #include "tm_stm32f4_stmpe811.h"
 
 TM_STMPE811_State_t TM_STMPE811_Init(void) {
-	uint8_t bytes[2];
+	uint8_t bytes[2], mode;
 	/* Initialize Delay */
 	TM_DELAY_Init();
 	/* Initialize I2C */
 	TM_I2C_Init(STMPE811_I2C, STMPE811_I2C_PINSPACK, 400000);
-
+	
 	/* Check for STMPE811 Connected */
 	TM_I2C_ReadMulti(STMPE811_I2C, STMPE811_ADDRESS, STMPE811_CHIP_ID, bytes, 2);
 	if ((bytes[0] << 8 | bytes[1]) != STMPE811_CHIP_ID_VALUE) {
 		return TM_STMPE811_State_Error;
 	}
 	
+	/* Reset */
+	TM_I2C_Write(STMPE811_I2C, STMPE811_ADDRESS, STMPE811_SYS_CTRL1, 0x02);
+	Delayms(5);
+	TM_I2C_Write(STMPE811_I2C, STMPE811_ADDRESS, STMPE811_SYS_CTRL1, 0x00);
+	Delayms(2);
+	
 	/* Get the current register value */
-	bytes[0] = TM_STMPE811_Read(STMPE811_SYS_CTRL2);
-
-	/* Set the Functionalities to be Enabled */    
-	bytes[0] &= ~(0x06);  
-
-	/* Set the new register value */  
-	TM_I2C_Write(STMPE811_I2C, STMPE811_ADDRESS, STMPE811_SYS_CTRL2, bytes[0]); 
+	mode = TM_STMPE811_Read(STMPE811_SYS_CTRL2); 
+	mode &= ~(0x01); 
+	TM_I2C_Write(STMPE811_I2C, STMPE811_ADDRESS, STMPE811_SYS_CTRL2, mode);
+	mode = TM_STMPE811_Read(STMPE811_SYS_CTRL2);
+	mode &= ~(0x02); 
+	TM_I2C_Write(STMPE811_I2C, STMPE811_ADDRESS, STMPE811_SYS_CTRL2, mode); 
 
 	/* Select Sample Time, bit number and ADC Reference */
 	TM_I2C_Write(STMPE811_I2C, STMPE811_ADDRESS, STMPE811_ADC_CTRL1, 0x49);
@@ -32,9 +37,9 @@ TM_STMPE811_State_t TM_STMPE811_Init(void) {
 	TM_I2C_Write(STMPE811_I2C, STMPE811_ADDRESS, STMPE811_ADC_CTRL2, 0x01);
 
 	/* Select TSC pins in non default mode */  
-	bytes[0] = TM_STMPE811_Read(STMPE811_GPIO_AF);
-	bytes[0] &= ~(uint8_t)(0x1E);
-	TM_I2C_Write(STMPE811_I2C, STMPE811_ADDRESS, STMPE811_GPIO_AF, bytes[0]);
+	mode = TM_STMPE811_Read(STMPE811_GPIO_AF);
+	mode |= 0x1E;
+	TM_I2C_Write(STMPE811_I2C, STMPE811_ADDRESS, STMPE811_GPIO_AF, mode);
 
 	/* Select 2 nF filter capacitor */
 	/* Configuration: 
@@ -42,7 +47,7 @@ TM_STMPE811_State_t TM_STMPE811_Init(void) {
 	- Touch delay time         : 500 uS
 	- Panel driver setting time: 500 uS 
 	*/
-	TM_I2C_Write(STMPE811_I2C, STMPE811_ADDRESS, STMPE811_TSC_CFG, 0x9A); 
+	TM_I2C_Write(STMPE811_I2C, STMPE811_ADDRESS, STMPE811_TSC_CFG, 0x9A);
 
 	/* Configure the Touch FIFO threshold: single point reading */
 	TM_I2C_Write(STMPE811_I2C, STMPE811_ADDRESS, STMPE811_FIFO_TH, 0x01);
@@ -57,7 +62,7 @@ TM_STMPE811_State_t TM_STMPE811_Init(void) {
 	- Fractional part :7 
 	- Whole part      :1 
 	*/
-	//TM_I2C_Write(STMPE811_I2C, STMPE811_ADDRESS, STMPE811_TSC_FRACT_XYZ, 0x01);
+	TM_I2C_Write(STMPE811_I2C, STMPE811_ADDRESS, STMPE811_TSC_FRACTION_Z, 0x01);
 
 	/* Set the driving capability (limit) of the device for TSC pins: 50mA */
 	TM_I2C_Write(STMPE811_I2C, STMPE811_ADDRESS, STMPE811_TSC_I_DRIVE, 0x01);
@@ -66,7 +71,7 @@ TM_STMPE811_State_t TM_STMPE811_Init(void) {
 	- No window tracking index
 	- XYZ acquisition mode
 	*/
-	TM_I2C_Write(STMPE811_I2C, STMPE811_ADDRESS, STMPE811_TSC_CTRL, 0x01);
+	TM_I2C_Write(STMPE811_I2C, STMPE811_ADDRESS, STMPE811_TSC_CTRL, 0x03);
 
 	/*  Clear all the status pending bits if any */
 	TM_I2C_Write(STMPE811_I2C, STMPE811_ADDRESS, STMPE811_INT_STA, 0xFF);
@@ -90,6 +95,10 @@ TM_STMPE811_State_t TM_STMPE811_ReadTouch(TM_STMPE811_TouchData *structdata) {
 		structdata->x = 0;
 		structdata->y = 0;
 		structdata->pressed = TM_STMPE811_State_Released;
+		
+		//Reset Fifo
+		TM_I2C_Write(STMPE811_I2C, STMPE811_ADDRESS, STMPE811_FIFO_STA, 0x01);
+		TM_I2C_Write(STMPE811_I2C, STMPE811_ADDRESS, STMPE811_FIFO_STA, 0x00);
 		
 		return TM_STMPE811_State_Released;
 	}
