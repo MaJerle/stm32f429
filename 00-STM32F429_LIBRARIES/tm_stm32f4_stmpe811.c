@@ -7,6 +7,12 @@ TM_STMPE811_State_t TM_STMPE811_Init(void) {
 	/* Initialize I2C */
 	TM_I2C_Init(STMPE811_I2C, STMPE811_I2C_PINSPACK, 400000);
 	
+	/* Reset */
+	TM_I2C_Write(STMPE811_I2C, STMPE811_ADDRESS, STMPE811_SYS_CTRL1, 0x02);
+	Delayms(5);
+	TM_I2C_Write(STMPE811_I2C, STMPE811_ADDRESS, STMPE811_SYS_CTRL1, 0x00);
+	Delayms(2);
+	
 	/* Check for STMPE811 Connected */
 	TM_I2C_ReadMulti(STMPE811_I2C, STMPE811_ADDRESS, STMPE811_CHIP_ID, bytes, 2);
 	if ((bytes[0] << 8 | bytes[1]) != STMPE811_CHIP_ID_VALUE) {
