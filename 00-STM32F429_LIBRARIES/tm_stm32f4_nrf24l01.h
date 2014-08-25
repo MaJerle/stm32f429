@@ -1,5 +1,5 @@
 /**
- *	nRF24L01+ library for STM32F4
+ *	nRF24L01+ library for STM32F4xx devices
  *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
@@ -29,26 +29,26 @@
 
 //Set default SPI used
 #ifndef NRF24L01_SPI
-#define NRF24L01_SPI			SPI3
-#define NRF24L01_SPI_PINS		TM_SPI_PinsPack_2
+#define NRF24L01_SPI				SPI3
+#define NRF24L01_SPI_PINS			TM_SPI_PinsPack_2
 #endif
-//SPI chil enable pin
+//SPI chip enable pin
 #ifndef NRF24L01_CSN_PIN
-#define NRF24L01_CSN_RCC		RCC_AHB1Periph_GPIOD
-#define NRF24L01_CSN_PORT		GPIOD
-#define NRF24L01_CSN_PIN		GPIO_Pin_7
+#define NRF24L01_CSN_RCC			RCC_AHB1Periph_GPIOD
+#define NRF24L01_CSN_PORT			GPIOD
+#define NRF24L01_CSN_PIN			GPIO_Pin_7
 #endif
 //Chip enable for transmitting
 #ifndef NRF24L01_CE_PIN
-#define NRF24L01_CE_RCC			RCC_AHB1Periph_GPIOD
-#define NRF24L01_CE_PORT		GPIOD
-#define NRF24L01_CE_PIN			GPIO_Pin_8
+#define NRF24L01_CE_RCC				RCC_AHB1Periph_GPIOD
+#define NRF24L01_CE_PORT			GPIOD
+#define NRF24L01_CE_PIN				GPIO_Pin_8
 #endif
 //Pins configuration
-#define NRF24L01_CE_LOW			NRF24L01_CE_PORT->BSRRH = NRF24L01_CE_PIN
-#define NRF24L01_CE_HIGH		NRF24L01_CE_PORT->BSRRL = NRF24L01_CE_PIN
-#define NRF24L01_CSN_LOW		NRF24L01_CSN_PORT->BSRRH = NRF24L01_CSN_PIN
-#define NRF24L01_CSN_HIGH		NRF24L01_CSN_PORT->BSRRL = NRF24L01_CSN_PIN
+#define NRF24L01_CE_LOW				NRF24L01_CE_PORT->BSRRH = NRF24L01_CE_PIN
+#define NRF24L01_CE_HIGH			NRF24L01_CE_PORT->BSRRL = NRF24L01_CE_PIN
+#define NRF24L01_CSN_LOW			NRF24L01_CSN_PORT->BSRRH = NRF24L01_CSN_PIN
+#define NRF24L01_CSN_HIGH			NRF24L01_CSN_PORT->BSRRL = NRF24L01_CSN_PIN
 
 //NRF24L01+ registers
 #define NRF24L01_REG_CONFIG			0x00	//Configuration Register
@@ -194,7 +194,7 @@
 #define NRF24L01_1MBPS			1
 #define NRF24L01_250KBPS		2
 
-#define NRF24L01_CONFIG			((1 << NRF24L01_MASK_RX_DR) | (1 << NRF24L01_EN_CRC) | (0 << NRF24L01_CRCO))
+#define NRF24L01_CONFIG			((1 << NRF24L01_EN_CRC) | (0 << NRF24L01_CRCO))
 
 //Instruction Mnemonics
 #define NRF24L01_REGISTER_MASK				0x1F
