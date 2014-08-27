@@ -8,6 +8,24 @@
  *	@link		http://stm32f4-discovery.com/2014/04/stm32f429-discovery-gpio-tutorial-with-onboard-leds-and-button/
  *	@version 	v1.3
  *	@ide		Keil uVision
+ *	@license	GNU GPL v3
+ *	
+ * |----------------------------------------------------------------------
+ * | Copyright (C) Tilen Majerle, 2014
+ * | 
+ * | This program is free software: you can redistribute it and/or modify
+ * | it under the terms of the GNU General Public License as published by
+ * | the Free Software Foundation, either version 3 of the License, or
+ * | any later version.
+ * |  
+ * | This program is distributed in the hope that it will be useful,
+ * | but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * | GNU General Public License for more details.
+ * | 
+ * | You should have received a copy of the GNU General Public License
+ * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * |----------------------------------------------------------------------
  *
  * 	CHANGELOG
  *
@@ -61,9 +79,10 @@
  *			- Blue button	on PA0
  */
 #ifndef TM_DISCO_
-#define TM_DISCO_ 120
+#define TM_DISCO_ 130
 /**
  * Library dependencies
+ * - STM32F4xx
  * - STM32F4xx RCC
  * - STM32F4xx GPIO
  * - defines.h
@@ -102,6 +121,9 @@
 #if defined(TM_DISCO_STM32F429_DISCOVERY)
 	#define LED_GREEN					GPIO_Pin_13
 	#define LED_RED						GPIO_Pin_14
+	#define LED_ORANGE					0
+	#define LED_BLUE					0
+	
 	#define TM_DISCO_LED_RCC			RCC_AHB1Periph_GPIOG
 	#define TM_DISCO_LED_PORT			GPIOG
 	#define TM_DISCO_LED_PINS			LED_GREEN | LED_RED
@@ -127,6 +149,10 @@
 /* Nucleo F401-RE */
 #elif defined(TM_DISCO_NUCLEO_F401)
 	#define LED_GREEN					GPIO_Pin_5
+	#define LED_RED						0
+	#define LED_ORANGE					0
+	#define LED_BLUE					0
+	
 	#define TM_DISCO_LED_RCC			RCC_AHB1Periph_GPIOA
 	#define TM_DISCO_LED_PORT			GPIOA
 	#define TM_DISCO_LED_PINS			LED_GREEN

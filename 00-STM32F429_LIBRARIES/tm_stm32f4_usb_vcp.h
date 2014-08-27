@@ -7,6 +7,24 @@
  *	@link		http://stm32f4-discovery.com/2014/08/library-24-virtual-com-port-vcp-stm32f4xx/
  *	@version 	v1.0
  *	@ide		Keil uVision
+ *	@license	GNU GPL v3
+ *	
+ * |----------------------------------------------------------------------
+ * | Copyright (C) Tilen Majerle, 2014
+ * | 
+ * | This program is free software: you can redistribute it and/or modify
+ * | it under the terms of the GNU General Public License as published by
+ * | the Free Software Foundation, either version 3 of the License, or
+ * | any later version.
+ * |  
+ * | This program is distributed in the hope that it will be useful,
+ * | but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * | GNU General Public License for more details.
+ * | 
+ * | You should have received a copy of the GNU General Public License
+ * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * |----------------------------------------------------------------------
  *
  *	With this library, your STM32F4xx will be seen to your computer as Virtual COM Port (VCP).
  *	To be able to work, you have to install ST's VCP Driver, from link below:

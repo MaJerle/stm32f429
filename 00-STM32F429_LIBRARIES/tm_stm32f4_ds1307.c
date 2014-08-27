@@ -1,3 +1,21 @@
+/**	
+ * |----------------------------------------------------------------------
+ * | Copyright (C) Tilen Majerle, 2014
+ * | 
+ * | This program is free software: you can redistribute it and/or modify
+ * | it under the terms of the GNU General Public License as published by
+ * | the Free Software Foundation, either version 3 of the License, or
+ * | any later version.
+ * |  
+ * | This program is distributed in the hope that it will be useful,
+ * | but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * | GNU General Public License for more details.
+ * | 
+ * | You should have received a copy of the GNU General Public License
+ * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * |----------------------------------------------------------------------
+ */
 #include "tm_stm32f4_ds1307.h"
 
 uint8_t TM_DS1307_Months[] = {
@@ -5,7 +23,7 @@ uint8_t TM_DS1307_Months[] = {
 };
 
 void TM_DS1307_Init(void) {
-	TM_I2C_Init(TM_DS1307_I2C, TM_DS1307_I2C_PINSPACK, 50000);
+	TM_I2C_Init(TM_DS1307_I2C, TM_DS1307_I2C_PINSPACK, 100000);
 }
 
 void TM_DS1307_GetDateTime(TM_DS1307_Time_t* time) {

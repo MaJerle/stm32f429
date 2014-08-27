@@ -7,11 +7,68 @@
  *	@link		http://stm32f4-discovery.com/2014/06/library-17-nrf24l01-stm32f4xx/
  *	@version 	v1.0
  *	@ide		Keil uVision
+ *	@license	GNU GPL v3
+ *	
+ * |----------------------------------------------------------------------
+ * | Copyright (C) Tilen Majerle, 2014
+ * | 
+ * | This program is free software: you can redistribute it and/or modify
+ * | it under the terms of the GNU General Public License as published by
+ * | the Free Software Foundation, either version 3 of the License, or
+ * | any later version.
+ * |  
+ * | This program is distributed in the hope that it will be useful,
+ * | but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * | GNU General Public License for more details.
+ * | 
+ * | You should have received a copy of the GNU General Public License
+ * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * |----------------------------------------------------------------------
+ * 
+ * This library allows you to work with nRF24L01+ modules.
+ * 
+ * You can send and receive data from nRF24L01+ modules.
+ * 
+ * Default pinout
+ * 	
+ * 	NRF24L01+	STM32F4xx	DESCRIPTION
+ * 	
+ * 	GND			GND			Ground
+ * 	VCC			3.3V		3.3V
+ * 	CE			PD8			RF activated pin
+ * 	CSN			PD7			SPI3 Pinspack 2 CSN pin
+ * 	SCK			PC10		SPI3 Pinspack 2 SCK pin
+ * 	MOSI		PC12		SPI3 Pinspack 2 MOSI pin
+ * 	MISO		PC11		SPI3 Pinspack 2 MISO pin
+ * 	IRQ			Not used	Interrupt pin. Goes low when active
+ * 	
+ * IRQ pin is not used in this library, but it's functionality is enabled by this software.
+ * You can still set any pin on F4xx to be an external interrupt and handle
+ * interrupts from nRF24L01+ module.
+ * 
+ * Add lines below in your defines.h file if you want to change default pinout:
+ * 
+ * 	//Change SPI used. Refer to TM SPI library to check which pins are for SPI
+ *	#define NRF24L01_SPI				SPI3
+ *	#define NRF24L01_SPI_PINS			TM_SPI_PinsPack_2
+ *	
+ *	//Change CSN pin. This is for SPI communication
+ *	#define NRF24L01_CSN_RCC			RCC_AHB1Periph_GPIOD
+ *	#define NRF24L01_CSN_PORT			GPIOD
+ *	#define NRF24L01_CSN_PIN			GPIO_Pin_7
+ *	
+ *	//Change CE pin. This pin is used to enable/disable transmitter/receiver functionality
+ *	#define NRF24L01_CE_RCC				RCC_AHB1Periph_GPIOD
+ *	#define NRF24L01_CE_PORT			GPIOD
+ *	#define NRF24L01_CE_PIN				GPIO_Pin_8
+ * 	
  */
 #ifndef TM_NRF24L01_H
 #define TM_NRF24L01_H	100
 /**
  * Library dependencies
+ * - STM32F4xx
  * - STM32F4xx RCC
  * - STM32F4xx GPIO
  * - STM32F4xx SPI

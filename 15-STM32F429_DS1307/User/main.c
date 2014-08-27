@@ -15,6 +15,7 @@
 int main(void) {
 	char str[100];
 	TM_DS1307_Time_t time;
+	
 	//Initialize system
 	SystemInit();
 	
@@ -37,6 +38,8 @@ int main(void) {
 	time.month = 5;
 	time.year = 14;
 	TM_DS1307_SetDateTime(&time);
+	
+	TM_DS1307_EnableOutputPin(TM_DS1307_OutputFrequency_32768Hz);
 	
 	while (1) {
 		//Get date and time
