@@ -1363,7 +1363,7 @@
             <useXO>0</useXO>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>USE_STDPERIPH_DRIVER,STM32F4XX,HSE_VALUE=8000000,TM_DISCO_STM32F429_DISCOVERY,USE_USB_OTG_HS</Define>
+              <Define>USE_STDPERIPH_DRIVER,STM32F4XX,HSE_VALUE=8000000,TM_DISCO_STM32F429_DISCOVERY</Define>
               <Undefine></Undefine>
               <IncludePath>.\TM;.\User;..\00-STM32F429_LIBRARIES;..\00-STM32F429_LIBRARIES\usb_msc_host;..\00-STM32F429_LIBRARIES\fatfs;..\00-STM32F429_LIBRARIES\fatfs\option;..\00-STM32F429_LIBRARIES\fatfs\drivers</IncludePath>
             </VariousControls>

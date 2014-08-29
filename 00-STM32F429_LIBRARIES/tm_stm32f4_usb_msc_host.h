@@ -4,7 +4,8 @@
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
- *	@link		
+ *	@link		http://stm32f4-discovery.com/2014/07/library-21-read-sd-card-fatfs-stm32f4xx-devices/
+ *	@link		http://stm32f4-discovery.com/2014/08/library-29-usb-msc-host-usb-flash-drive-stm32f4xx-devices
  *	@version 	v1.0
  *	@ide		Keil uVision
  *	@license	GNU GPL v3

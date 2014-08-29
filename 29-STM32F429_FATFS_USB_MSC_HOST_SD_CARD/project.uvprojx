@@ -677,6 +677,16 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_usb.c</FilePath>
             </File>
+            <File>
+              <FileName>fatfs_sd_sdio.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_sd_sdio.h</FilePath>
+            </File>
+            <File>
+              <FileName>fatfs_sd_sdio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_sd_sdio.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1002,6 +1012,16 @@
               <FileName>stm32f4xx_rcc.c</FileName>
               <FileType>1</FileType>
               <FilePath>C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\StdPeriph_Driver\src\stm32f4xx_rcc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\StdPeriph_Driver\src\stm32f4xx_dma.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_sdio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\StdPeriph_Driver\src\stm32f4xx_sdio.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1363,7 +1383,7 @@
             <useXO>0</useXO>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>USE_STDPERIPH_DRIVER,STM32F4XX,HSE_VALUE=8000000,TM_DISCO_STM32F429_DISCOVERY,USE_USB_OTG_HS</Define>
+              <Define>USE_STDPERIPH_DRIVER,STM32F4XX,HSE_VALUE=8000000,TM_DISCO_STM32F429_DISCOVERY</Define>
               <Undefine></Undefine>
               <IncludePath>.\TM;.\User;..\00-STM32F429_LIBRARIES;..\00-STM32F429_LIBRARIES\usb_msc_host;..\00-STM32F429_LIBRARIES\fatfs;..\00-STM32F429_LIBRARIES\fatfs\option;..\00-STM32F429_LIBRARIES\fatfs\drivers</IncludePath>
             </VariousControls>
@@ -1677,6 +1697,16 @@
               <FileName>fatfs_usb.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_usb.c</FilePath>
+            </File>
+            <File>
+              <FileName>fatfs_sd_sdio.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_sd_sdio.h</FilePath>
+            </File>
+            <File>
+              <FileName>fatfs_sd_sdio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_sd_sdio.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2123,6 +2153,16 @@
               <FileName>stm32f4xx_rcc.c</FileName>
               <FileType>1</FileType>
               <FilePath>C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\StdPeriph_Driver\src\stm32f4xx_rcc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\StdPeriph_Driver\src\stm32f4xx_dma.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_sdio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\StdPeriph_Driver\src\stm32f4xx_sdio.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2799,6 +2839,16 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_usb.c</FilePath>
             </File>
+            <File>
+              <FileName>fatfs_sd_sdio.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_sd_sdio.h</FilePath>
+            </File>
+            <File>
+              <FileName>fatfs_sd_sdio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_sd_sdio.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -3125,6 +3175,16 @@
               <FileType>1</FileType>
               <FilePath>C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\StdPeriph_Driver\src\stm32f4xx_rcc.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f4xx_dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\StdPeriph_Driver\src\stm32f4xx_dma.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_sdio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\StdPeriph_Driver\src\stm32f4xx_sdio.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
@@ -3158,6 +3218,14 @@
           <targetInfo name="STM32F429-Discovery"/>
         </targetInfos>
       </component>
+      <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="DMA" Cvendor="Keil" Cversion="1.3.0" condition="STM32F4 STDPERIPH RCC">
+        <package name="STM32F4xx_DFP" schemaVersion="1.2" url="http://www.keil.com/pack" vendor="Keil" version="1.0.8"/>
+        <targetInfos>
+          <targetInfo name="Nucleo F401RE"/>
+          <targetInfo name="STM32F4-Discovery"/>
+          <targetInfo name="STM32F429-Discovery"/>
+        </targetInfos>
+      </component>
       <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="Framework" Cvendor="Keil" Cversion="1.3.1" condition="STM32F4 STDPERIPH">
         <package name="STM32F4xx_DFP" schemaVersion="1.2" url="http://www.keil.com/pack" vendor="Keil" version="1.0.8"/>
         <targetInfos>
@@ -3175,6 +3243,14 @@
         </targetInfos>
       </component>
       <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="RCC" Cvendor="Keil" Cversion="1.3.0" condition="STM32F4 STDPERIPH">
+        <package name="STM32F4xx_DFP" schemaVersion="1.2" url="http://www.keil.com/pack" vendor="Keil" version="1.0.8"/>
+        <targetInfos>
+          <targetInfo name="Nucleo F401RE"/>
+          <targetInfo name="STM32F4-Discovery"/>
+          <targetInfo name="STM32F429-Discovery"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="SDIO" Cvendor="Keil" Cversion="1.3.0" condition="STM32F4 STDPERIPH RCC">
         <package name="STM32F4xx_DFP" schemaVersion="1.2" url="http://www.keil.com/pack" vendor="Keil" version="1.0.8"/>
         <targetInfos>
           <targetInfo name="Nucleo F401RE"/>

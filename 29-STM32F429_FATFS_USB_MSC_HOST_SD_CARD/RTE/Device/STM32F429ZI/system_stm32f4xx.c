@@ -296,7 +296,7 @@
 #endif /* STM32F40_41xxx */
 
 #if defined (STM32F427_437xx) || defined (STM32F429_439xx)
-  uint32_t SystemCoreClock = 180000000;
+  uint32_t SystemCoreClock = 168000000;
 #endif /* STM32F427_437x || STM32F429_439xx */
 
 #if defined (STM32F401xx)
