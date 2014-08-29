@@ -87,7 +87,7 @@
  * - STM32F4xx
  * - defines.h
  * - USB HOST stack
- * - FatFS by Chan
+ * - TM FATFS library
  */
 /**
  * Includes
