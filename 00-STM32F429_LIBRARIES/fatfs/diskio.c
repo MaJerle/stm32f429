@@ -8,7 +8,7 @@
 /*-----------------------------------------------------------------------*/
 
 #include "diskio.h"		/* FatFs lower layer API */
-#include "tm_stm32f4_usart.h"
+#include "ff.h"
 
 /* Not USB in use */
 /* Define it in defines.h project file if you want to use USB */
@@ -38,7 +38,7 @@
 	#endif
 #endif
 
-#ifdef FATFS_USE_USB
+#if FATFS_USE_USB == 1
 	#include "fatfs_usb.h"
 #endif 	/* FATFS_USE_USB */
 

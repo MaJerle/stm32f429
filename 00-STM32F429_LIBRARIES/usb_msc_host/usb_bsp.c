@@ -39,8 +39,7 @@ extern USBH_HOST                    USB_Host;
  * @param  None
  * @retval None
  */
-void BSP_Init(void)
-{
+void BSP_Init(void) {
 
 }
 
@@ -96,8 +95,8 @@ void USB_OTG_BSP_Init(USB_OTG_CORE_HANDLE *pdev)
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB , ENABLE);
 
 	/* Configure SOF VBUS ID DM DP Pins */  
-	GPIO_InitStructure.GPIO_Pin = 	GPIO_Pin_14 |	// Data +
-									GPIO_Pin_15;	// Data -
+	GPIO_InitStructure.GPIO_Pin = 	GPIO_Pin_14 |	// Data -
+									GPIO_Pin_15;	// Data +
 
 	#ifndef USB_MSC_HOST_DISABLE_ID
 	GPIO_InitStructure.GPIO_Pin |= GPIO_Pin_12;
@@ -202,15 +201,6 @@ void USB_OTG_BSP_uDelay (const uint32_t usec) {
 
 void USB_OTG_BSP_mDelay (const uint32_t msec) {
 	USB_OTG_BSP_uDelay(msec * 1000);
-}
-
-
-void EXTI1_IRQHandler(void) {
-	EXTI_ClearITPendingBit(EXTI_Line1);
-}
-
-void EXTI0_IRQHandler(void) {
-	EXTI_ClearITPendingBit(EXTI_Line0);
 }
 
 #ifdef USE_USB_OTG_FS

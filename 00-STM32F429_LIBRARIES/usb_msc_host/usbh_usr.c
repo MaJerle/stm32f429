@@ -56,13 +56,13 @@ void USBH_USR_DeviceDisconnected (void) {
 
 void USBH_USR_ResetDevice(void) {
 	/* We have to initialize first */
-	//Application = 0;
+	Application = USH_USR_FS_INIT;
 }
 
 void USBH_USR_DeviceSpeedDetected(uint8_t DeviceSpeed) {
-	if ((DeviceSpeed != HPRT0_PRTSPD_FULL_SPEED) && (DeviceSpeed != HPRT0_PRTSPD_LOW_SPEED)) {
+	/*if ((DeviceSpeed != HPRT0_PRTSPD_FULL_SPEED) && (DeviceSpeed != HPRT0_PRTSPD_LOW_SPEED)) {
 		TM_USB_MSCHOST_INT_Result = TM_USB_MSCHOST_Result_Disconnected;
-	}
+	}*/
 }
 
 void USBH_USR_Device_DescAvailable(void *DeviceDesc) {

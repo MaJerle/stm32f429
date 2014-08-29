@@ -109,7 +109,6 @@ DRESULT TM_FATFS_USB_disk_write (
 	}
 
 	if (HCD_IsDeviceConnected(&USB_OTG_Core) && TM_USB_MSCHOST_INT_Result == TM_USB_MSCHOST_Result_Connected) {
-		
 		timeout = FATFS_USB_TIMEOUT;
 		do
 		{
@@ -119,7 +118,7 @@ DRESULT TM_FATFS_USB_disk_write (
 			if (!HCD_IsDeviceConnected(&USB_OTG_Core)) {
 				return RES_ERROR;
 			}
-		} while(status == USBH_MSC_BUSY && timeout);
+		} while(status == USBH_MSC_BUSY && timeout--);
 	}
 
 	if (status == USBH_MSC_OK) {

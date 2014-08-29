@@ -1,5 +1,6 @@
 /**
  *	Keil project for USB MSC HOST
+ *	Data is saved into SD card via SDIO communication and into USB flash drive
  *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
@@ -23,10 +24,10 @@
 #include <stdio.h>
 
 int main(void) {
-	FATFS USB_Fs;
-	FIL USB_Fil;
+	FATFS USB_Fs, SD_Fs;
+	FIL USB_Fil, SD_Fil;
 	char buffer[50];
-	uint8_t write = 1;
+	uint8_t usb_write = 1, sd_write = 1;
 	uint32_t free, total;
 	
 	/* Initialize system */
@@ -45,19 +46,19 @@ int main(void) {
 		/* Host Task handler */
 		/* This have to be called periodically as fast as possible */
 		TM_USB_MSCHOST_Process();
-		/* Device is connected and ready to use */
+		/* USB Device is connected and ready to use */
 		if (TM_USB_MSCHOST_Device() == TM_USB_MSCHOST_Result_Connected) {
+			TM_DISCO_LedOn(LED_GREEN);
 			/* If we didn't write data already */
-			if (write) {
+			if (usb_write) {
 				/* Try to mount USB device */
 				/* USB is at 1: */
 				if (f_mount(&USB_Fs, "1:", 1) == FR_OK) {
-					TM_DISCO_LedOn(LED_GREEN);
 					/* Mounted ok */
 					/* Try to open USB file */
 					if (f_open(&USB_Fil, "1:usb_file.txt", FA_READ | FA_WRITE | FA_OPEN_ALWAYS) == FR_OK) {
 						/* We want to write only once */
-						write = 0;
+						usb_write = 0;
 						
 						/* Get total and free space on USB */
 						TM_FATFS_USBDriveSize(&total, &free);
@@ -77,22 +78,65 @@ int main(void) {
 						/* Close USB file */
 						f_close(&USB_Fil);
 
-						/* Turn GREEN LED On and RED LED Off */
-						/* Indicate successful write */
+						/* Turn GREEN LED On */
+						/* Indicate successful write for USB flash */
 						TM_DISCO_LedOn(LED_GREEN);
-						TM_DISCO_LedOff(LED_RED);
 					}
 				}
 				/* Unmount USB */
 				f_mount(0, "1:", 1);
 			}
 		} else {
-			/* Not inserted, turn on RED led */
-			TM_DISCO_LedOn(LED_RED);
+			/* Not inserted, turn off GREEN led */
 			TM_DISCO_LedOff(LED_GREEN);
 			
 			/* Ready to write next time */
-			write = 1;
+			usb_write = 1;
+		}
+		/* Try to mount SD card */
+		/* SD card is at 0: */
+		if (f_mount(&SD_Fs, "0:", 1) == FR_OK) {
+			/* Mounted ok */
+			/* Write only once */
+			if (sd_write) {
+				/* Try to open SD card file */
+				if (f_open(&SD_Fil, "0:sd_file.txt", FA_READ | FA_WRITE | FA_OPEN_ALWAYS) == FR_OK) {
+					/* We want to write only once */
+					sd_write = 0;
+					
+					/* Get total and free space on SD card */
+					TM_FATFS_DriveSize(&total, &free);
+					
+					/* Put data */
+					f_puts("This is my first file with SD card and FatFs\n", &SD_Fil);
+					f_puts("with SD card library from stm32f4-discovery.com\n", &SD_Fil);
+					f_puts("----------------------------------------------------\n", &SD_Fil);
+					f_puts("SD card total and free space:\n\n", &SD_Fil);
+					/* Total space */
+					sprintf(buffer, "Total: %8u kB; %5u MB; %2u GB\n", total, total / 1024, total / 1048576);
+					f_puts(buffer, &SD_Fil);
+					/* Free space */
+					sprintf(buffer, "Free:  %8u kB; %5u MB; %2u GB\n", free, free / 1024, free / 1048576);
+					f_puts(buffer, &SD_Fil);
+					f_puts("----------------------------------------------------\n", &SD_Fil);
+					
+					/* Close SD card file */
+					f_close(&SD_Fil);
+
+					/* Turn RED LED On */
+					/* Indicate successful write for SD card */
+					TM_DISCO_LedOn(LED_RED);
+				}
+			}
+			
+			/* Unmount SD card */
+			f_mount(0, "0:", 1);
+		} else {
+			/* Not inserted, turn off RED led */
+			TM_DISCO_LedOff(LED_RED);
+			
+			/* Ready to write next time */
+			sd_write = 1;
 		}
 	}
 }

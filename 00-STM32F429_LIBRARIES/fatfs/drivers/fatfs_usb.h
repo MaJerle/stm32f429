@@ -13,7 +13,7 @@
 
 /* USB timeout max value */
 #ifndef FATFS_USB_TIMEOUT
-#define FATFS_USB_TIMEOUT	10000
+#define FATFS_USB_TIMEOUT	50000
 #endif
 
 /*---------------------------------------*/
