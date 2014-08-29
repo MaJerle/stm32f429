@@ -72,6 +72,8 @@ http://bit.ly/1sWSUeh
 http://bit.ly/1n93Dgb
 28. L3GD20 - Measure rotation of all 3 axis with L3GD20 gyro sensor
 http://bit.ly/1pNdpt4
+29. USB MSC HOST - Read USB flash drive with STM32F4xx
+http://bit.ly/1lAs4Im
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB
