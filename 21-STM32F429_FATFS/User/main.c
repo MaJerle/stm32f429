@@ -30,12 +30,12 @@ int main(void) {
 	TM_DISCO_LedInit();
 
 	//Mount drive
-	if (f_mount(&FatFs, "", 1) == FR_OK) {
+	if (f_mount(&FatFs, "0:", 1) == FR_OK) {
 		//Mounted OK, turn on RED LED
 		TM_DISCO_LedOn(LED_RED);
 		
 		//Try to open file
-		if (f_open(&fil, "first_file.txt", FA_OPEN_ALWAYS | FA_READ | FA_WRITE) == FR_OK) {
+		if (f_open(&fil, "0:first_file.txt", FA_OPEN_ALWAYS | FA_READ | FA_WRITE) == FR_OK) {
 			//File opened, turn off RED and turn on GREEN led
 			TM_DISCO_LedOn(LED_GREEN);
 			TM_DISCO_LedOff(LED_RED);
@@ -55,7 +55,7 @@ int main(void) {
 		}
 		
 		//Unmount drive, don't forget this!
-		f_mount(0, "", 1);
+		f_mount(0, "0:", 1);
 	}
 	
 	while (1) {

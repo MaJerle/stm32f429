@@ -20,10 +20,13 @@
 
 USB_OTG_CORE_HANDLE			USB_OTG_Core;
 USBH_HOST					USB_Host;
+
 uint8_t						TM_USB_MSCHOST_INT_Initialized = 0;
 TM_USB_MSCHOST_Result_t 	TM_USB_MSCHOST_INT_Result;
 
 TM_USB_MSCHOST_Result_t TM_USB_MSCHOST_Init() {
+	/* Set default */
+	TM_USB_MSCHOST_INT_Result = TM_USB_MSCHOST_Result_Disconnected;
 	/* Init Host Library */
 	USBH_Init(	&USB_OTG_Core,
 			#ifdef USE_USB_OTG_FS
@@ -36,16 +39,25 @@ TM_USB_MSCHOST_Result_t TM_USB_MSCHOST_Init() {
 				&USR_Callbacks);
 	/* Process */
 	TM_USB_MSCHOST_Process();
+	/* Initialized */
+	TM_USB_MSCHOST_INT_Initialized = 1;
 	/* Is connected already? */
 	return TM_USB_MSCHOST_Device();
 }
 
 void TM_USB_MSCHOST_Process(void) {
-	/* Process */
-	USBH_Process(&USB_OTG_Core, &USB_Host);
+	/* if library is initialized */
+	if (TM_USB_MSCHOST_INT_Initialized) {
+		/* Process */
+		USBH_Process(&USB_OTG_Core, &USB_Host);
+	}
 }
 
 TM_USB_MSCHOST_Result_t TM_USB_MSCHOST_Device(void) {
+	/* Check if library is initialized */
+	if (!TM_USB_MSCHOST_INT_Initialized) {
+		return TM_USB_MSCHOST_Result_LibraryNotInitialized;
+	}
 	/* Return status, handled by USB library */
 	return TM_USB_MSCHOST_INT_Result;
 }

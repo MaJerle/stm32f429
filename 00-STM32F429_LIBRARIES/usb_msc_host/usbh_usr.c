@@ -23,27 +23,27 @@ USBH_Usr_cb_TypeDef USR_Callbacks = {
 };
 
 extern TM_USB_MSCHOST_Result_t 	TM_USB_MSCHOST_INT_Result;
-uint8_t Application = 0;
+uint8_t Application = USH_USR_FS_INIT;
 
 void USBH_USR_Init(void) {
 	/* USB Library has been initialized, device is not connected yet */
 	TM_USB_MSCHOST_INT_Result = TM_USB_MSCHOST_Result_Disconnected;
 	/* We have to initialize first */
-	Application = 0;
+	Application = USH_USR_FS_INIT;
 }
 
 void USBH_USR_DeviceAttached(void) {
 	/* Device has been initialized, device is not connected yet */
 	TM_USB_MSCHOST_INT_Result = TM_USB_MSCHOST_Result_Disconnected;
 	/* We have to initialize first */
-	Application = 0;
+	Application = USH_USR_FS_INIT;
 }
 
 void USBH_USR_UnrecoveredError (void) {
-	/* Unrecover error */
-	TM_USB_MSCHOST_INT_Result = TM_USB_MSCHOST_Result_Error;	
+	/*  */
+	TM_USB_MSCHOST_INT_Result = TM_USB_MSCHOST_Result_Disconnected;	
 	/* We have to initialize first */
-	Application = 0;
+	Application = USH_USR_FS_INIT;
 }
 
 void USBH_USR_DeviceDisconnected (void) {
@@ -51,12 +51,12 @@ void USBH_USR_DeviceDisconnected (void) {
 	TM_USB_MSCHOST_INT_Result = TM_USB_MSCHOST_Result_Disconnected;
 	
 	/* We have to initialize first */
-	Application = 0;
+	Application = USH_USR_FS_INIT;
 }
 
 void USBH_USR_ResetDevice(void) {
 	/* We have to initialize first */
-	Application = 0;
+	//Application = 0;
 }
 
 void USBH_USR_DeviceSpeedDetected(uint8_t DeviceSpeed) {
@@ -111,8 +111,9 @@ void USBH_USR_OverCurrentDetected (void) {
 
 int USBH_USR_MSC_Application(void) {
 	/* Device is connected */
-	if (Application == 0) {
-		Application++;
+	if (Application == USH_USR_FS_INIT) {
+		Application = USH_USR_FS_LOOP;
+		
 		/* Device is connected */
 		TM_USB_MSCHOST_INT_Result = TM_USB_MSCHOST_Result_Connected;
 		if (USBH_MSC_Param.MSWriteProtect == DISK_WRITE_PROTECTED) {
@@ -126,9 +127,9 @@ int USBH_USR_MSC_Application(void) {
 
 void USBH_USR_DeInit(void) {
 	/* Device disconnected */
-	TM_USB_MSCHOST_INT_Result = TM_USB_MSCHOST_Result_Disconnected;
+	//TM_USB_MSCHOST_INT_Result = TM_USB_MSCHOST_Result_Disconnected;
 	/* We have to initialize first */
-	Application = 0;
+	Application = USH_USR_FS_INIT;
 }
 
 

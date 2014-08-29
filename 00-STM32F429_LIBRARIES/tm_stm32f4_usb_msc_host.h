@@ -39,11 +39,11 @@
  * 
  * Pinout (can not be changed)
  * 
- * 	USB			|STM32F4xx HS in FS mode		|STM32F4xx FS mode			|Notes
+ * 	USB			|STM32F4xx FS mode				|STM32F4xx HS in FS mode	|Notes
  * 				|STM32F4-Discovery				|STM32F429-Discovery
  * 				
- * 	Data +		PA12							PB15						Data + for USB, standard and used pin
- * 	Data -		PA11							PB14						Data - for USB, standard and used pin
+ * 	Data +		PA12							PB15						Data+ for USB, standard and used pin
+ * 	Data -		PA11							PB14						Data- for USB, standard and used pin
  * 	ID			PA10							PB12						ID pin, used on F4 and F429 discovery boards, not needed if you don't like it
  *	VBUS		PA9								PB13						VBUS pin, used on F4 and F429 discovery board for activating USB chip.
  *																			You have to use VBUS on discovery boards, but on nucleo, it's ok with only Data+ and Data- pins
@@ -64,12 +64,21 @@
  * 
  * VBUS pin is located on Discovery boards, to activate USB chip on board.
  * If you are working with Discovery boards, then you need this pin, otherise USB will not work.
- * But if you are working on other application (or Nucleo board), you only need D+ and D- pins.
- * To disable VBUS pin, add lines belo in your defines.h file:
+ * But if you are working on other application (or Nucleo board), you only need Data+ and Data- pins.
+ * To disable VBUS pin, add lines below in your defines.h file:
  * 
  * 	//Disable VBUS pin
  * 	#define USB_MSC_HOST_DISABLE_VBUS
- * 
+ *
+ * -------------------------------------------------------------------------------------
+ * Now, we have initialized USB, we have to enable it for FATFS too.
+ * Open your project defines.h file and add line below to activate FatFS for USB.
+ *	
+ *	//Activate FatFS library for USB communication
+ *	#define FATFS_USE_USB		1
+ *
+ * Too see, how to use FatFS with USB, open file tm_stm32f4_fatfs.h and check it's manual
+ * -------------------------------------------------------------------------------------
  * */
 #ifndef TM_USB_MSCHOST
 #define TM_USB_MSCHOST	100
@@ -103,13 +112,16 @@
  * 		Device is not supported
  * - TM_USB_MSCHOST_Result_WriteProtected
  * 		Device is write protected
+ * - TM_USB_MSCHOST_Result_LibraryNotInitialized
+ *		Library is not initialized yet
  */
 typedef enum {
 	TM_USB_MSCHOST_Result_Error,
 	TM_USB_MSCHOST_Result_Connected,
 	TM_USB_MSCHOST_Result_Disconnected,
 	TM_USB_MSCHOST_Result_DeviceNotSupported,
-	TM_USB_MSCHOST_Result_WriteProtected
+	TM_USB_MSCHOST_Result_WriteProtected,
+	TM_USB_MSCHOST_Result_LibraryNotInitialized
 } TM_USB_MSCHOST_Result_t;
 
 /**
@@ -133,6 +145,7 @@ extern void TM_USB_MSCHOST_Process(void);
  * Check device status.
  * 
  * Returns current device status. A member of TM_USB_MSCHOST_Result_t typedef is returned
+ * if TM_USB_MSCHOST_Result_Connected is returned, then you are ready to work
  */
 extern TM_USB_MSCHOST_Result_t TM_USB_MSCHOST_Device(void);
 

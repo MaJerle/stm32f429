@@ -668,16 +668,6 @@
               <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_usart.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_usart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</FilePath>
-            </File>
-            <File>
               <FileName>tm_stm32f4_fatfs.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_fatfs.c</FilePath>
@@ -686,116 +676,6 @@
               <FileName>tm_stm32f4_fatfs.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_fatfs.h</FilePath>
-            </File>
-            <File>
-              <FileName>diskio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\00-STM32F429_LIBRARIES\fatfs\diskio.c</FilePath>
-            </File>
-            <File>
-              <FileName>diskio.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\00-STM32F429_LIBRARIES\fatfs\diskio.h</FilePath>
-            </File>
-            <File>
-              <FileName>ff.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\00-STM32F429_LIBRARIES\fatfs\ff.c</FilePath>
-            </File>
-            <File>
-              <FileName>ff.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\00-STM32F429_LIBRARIES\fatfs\ff.h</FilePath>
-            </File>
-            <File>
-              <FileName>ffconf.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\00-STM32F429_LIBRARIES\fatfs\ffconf.h</FilePath>
-            </File>
-            <File>
-              <FileName>integer.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\00-STM32F429_LIBRARIES\fatfs\integer.h</FilePath>
-            </File>
-            <File>
-              <FileName>fatfs_sd.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_sd.c</FilePath>
-            </File>
-            <File>
-              <FileName>fatfs_sd.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_sd.h</FilePath>
-            </File>
-            <File>
-              <FileName>unicode.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\00-STM32F429_LIBRARIES\fatfs\option\unicode.c</FilePath>
-            </File>
-            <File>
-              <FileName>syscall.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\00-STM32F429_LIBRARIES\fatfs\option\syscall.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_spi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_spi.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_ili9341.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_ili9341.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_fonts.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_fonts.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_ds1307.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_ds1307.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_ds1307.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_ds1307.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_i2c.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_i2c.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_i2c.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\00-STM32F429_LIBRARIES\tm_stm32f4_i2c.h</FilePath>
-            </File>
-            <File>
-              <FileName>fatfs_sd_sdio.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_sd_sdio.c</FilePath>
-            </File>
-            <File>
-              <FileName>fatfs_sd_sdio.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_sd_sdio.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -836,6 +716,58 @@
         </Group>
         <Group>
           <GroupName>FatFS</GroupName>
+          <Files>
+            <File>
+              <FileName>diskio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\00-STM32F429_LIBRARIES\fatfs\diskio.c</FilePath>
+            </File>
+            <File>
+              <FileName>diskio.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\00-STM32F429_LIBRARIES\fatfs\diskio.h</FilePath>
+            </File>
+            <File>
+              <FileName>ff.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\00-STM32F429_LIBRARIES\fatfs\ff.c</FilePath>
+            </File>
+            <File>
+              <FileName>ff.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\00-STM32F429_LIBRARIES\fatfs\ff.h</FilePath>
+            </File>
+            <File>
+              <FileName>ffconf.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\00-STM32F429_LIBRARIES\fatfs\ffconf.h</FilePath>
+            </File>
+            <File>
+              <FileName>integer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\00-STM32F429_LIBRARIES\fatfs\integer.h</FilePath>
+            </File>
+            <File>
+              <FileName>syscall.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\00-STM32F429_LIBRARIES\fatfs\option\syscall.c</FilePath>
+            </File>
+            <File>
+              <FileName>unicode.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\00-STM32F429_LIBRARIES\fatfs\option\unicode.c</FilePath>
+            </File>
+            <File>
+              <FileName>fatfs_sd_sdio.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_sd_sdio.h</FilePath>
+            </File>
+            <File>
+              <FileName>fatfs_sd_sdio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_sd_sdio.c</FilePath>
+            </File>
+          </Files>
         </Group>
       </Groups>
     </Target>

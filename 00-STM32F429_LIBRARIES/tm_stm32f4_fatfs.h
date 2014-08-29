@@ -14,7 +14,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/07/library-21-read-sd-card-fatfs-stm32f4xx-devices/
- *	@version 	v1.1
+ *	@version 	v1.2
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -35,7 +35,12 @@
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
  *	
- * 
+ * Version 1.2
+ *	- 28.08.2014
+ *	- Added support for USB
+ *
+ *
+ * -----------------------------------------------------------------------------------------
  * Library works with SPI or SDIO mode. Also, when in SDIO mode, you can set to 1- or 4-bit mode.
  * By default, SDIO with 4-bit mode is used, so you will look into right column on table below.
  * 
@@ -130,7 +135,6 @@
  *	#define FATFS_CS_PORT						GPIOB
  *	#define FATFS_CS_PIN						GPIO_Pin_5
  *
- *
  * Also, library has support for Write protect and Card detect pins.
  * This two pins are by default on pins below.
  * They are the same for any communication used, and are disabled by default
@@ -183,10 +187,61 @@
  * 				| ((DWORD)0 << 5)				// Min 0
  * 				| ((DWORD)0 >> 1);				// Sec 0
  * 	}
+ * 
+ * 
+ * -------------------------------------------------------------------------------------------
+ * 	Version v1.2
+ * -------------------------------------------------------------------------------------------
+ * 
+ * Added support for USB MSC HOST interface with FatFS library.
+ * More about, how to configure USB MSC HOST to work properly, you should take a look at 
+ * my library tm_stm32f4_usb_msc_host.h. There is also default pinout for USB and other stuff.
+ * 
+ * I will explain here, how to properly set FatFS library to work with USB.
+ * 
+ * Files, needed for USB communication and FatFS
+ * 		- tm_stm32f4_fatfs.h
+ *		- tm_stm32f4_fatfs.c
+ *		- fatfs/diskio.h
+ *		- fatfs/diskio.c
+ *		- fatfs/ff.h
+ *		- fatfs/ff.c
+ *		- fatfs/ffconf.h
+ *		- fatfs/integer.h
+ *		- fatfs/option/syscall.c
+ *		- fatfs/option/unicode.c
+ *		- fatfs/drivers/fatfs_usb.h
+ *		- fatfs/drivers/fatfs_usb.c
+ * 
+ * After you have your files included in project, open project's defines.h file and add line below:
+ * 
+ * //Enable USB in FatFS library
+ * #define FATFS_USE_USB		1
+ * 
+ * This will enable USB functions to work with FatFS module.
+ * Also, when you make define 2 lines above, SD card settings become inactive.
+ * If you want to use SD card and USB storage at the same time for some reason, you have to enable SD card
+ * functionality. Add lines below in your defines.h file:
+ * 
+ * 	//Enable SDIO communication for SD card
+ *	#define FATFS_USE_SDIO		1
+ * 
+ * 	//Enable SPI communication for SD card
+ *	#define FATFS_USE_SDIO		0
  *	
+ * And also, you should know, that USB has 1: partition and SD card has 0: partition.
+ * So when you mount SD card, you should use:
+ * 
+ *	//Mount SD card
+ * 	f_mount(&sd_fs, "0:", 1);
+ * 	
+ * 	//Mount USB storage
+ * 	f_mount(&usb_fs, "1:", 1);
+ * 
+ * This allows you to copy data from one SD card to USB and back too.
  */
 #ifndef TM_FATFS_H
-#define TM_FATFS_H	110
+#define TM_FATFS_H	120
 /**
  * Dependencies
  *	- STM32F4xx
@@ -210,16 +265,8 @@
 #include "defines.h"
 #include "ff.h"
 
-#if FATFS_USE_SDIO == 1
-//If you use SDIO
-#include "fatfs_sd_sdio.h"
-#else
-//If you use SPI
-#include "fatfs_sd.h"
-#endif
-
 /**
- * Get drive size
+ * Get SD card drive size
  *
  * Parameters:
  * 	- uint32_t* total: pointer to variable to store total size of card
@@ -228,6 +275,17 @@
  * Returns FRESULT struct members. If data are valid, FR_OK is returned.
  */
 FRESULT TM_FATFS_DriveSize(uint32_t* total, uint32_t* free);
+
+/**
+ * Get SD card drive size
+ *
+ * Parameters:
+ * 	- uint32_t* total: pointer to variable to store total size of card
+ * 	- uint32_t* free: pointer to variable to store free space on card
+ *
+ * Returns FRESULT struct members. If data are valid, FR_OK is returned.
+ */
+FRESULT TM_FATFS_USBDriveSize(uint32_t* total, uint32_t* free);
 
 #endif
 
