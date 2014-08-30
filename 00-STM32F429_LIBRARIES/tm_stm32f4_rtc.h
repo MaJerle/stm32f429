@@ -30,6 +30,7 @@
 #define TM_RTC_H 110
 /**
  * Library dependencies
+ * - STM32F4xx
  * - STM32F4xx RCC
  * - STM32F4xx RTC
  * - STM32F4xx PWR

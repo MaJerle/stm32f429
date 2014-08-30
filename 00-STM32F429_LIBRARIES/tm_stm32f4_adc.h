@@ -49,6 +49,7 @@
 #define TM_ADC_ 100
 /**
  * Library dependencies
+ * - STM32F4xx
  * - STM32F4xx RCC
  * - STM32F4xx GPIO
  * - STM32F4xx ADC

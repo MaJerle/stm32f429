@@ -39,6 +39,7 @@
 #define TM_DAC_ 100
 /**
  * Library dependencies
+ * - STM32F4xx
  * - STM32F4xx RCC
  * - STM32F4xx GPIO
  * - STM32F4xx DAC

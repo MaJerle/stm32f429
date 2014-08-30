@@ -74,22 +74,13 @@
 #ifndef TM_ILI9341_H
 #define TM_ILI9341_H 100
 /**
- * Default pin configuration:
- * SPI Used: 	SPI5
- * 
- * SPI MOSI:	PF9
- * SPI SCK:		PF7	
- * CS			PC2
- * RESET		PD12
- * D/C			PD13
- */
-/**
  * Library dependencies
+ * - STM32F4xx
  * - STM32F4xx RCC
  * - STM32F4xx GPIO
  * - defines.h
- * - TM_SPI
- * - TM_FONTS
+ * - TM SPI
+ * - TM FONTS
  */
 
 /**

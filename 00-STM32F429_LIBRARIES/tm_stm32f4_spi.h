@@ -68,6 +68,7 @@
 #define TM_SPI_H 120
 /**
  * Library dependencies
+ * - STM32F4xx
  * - STM32F4xx RCC
  * - STM32F4xx GPIO
  * - STM32F4xx SPI

@@ -49,7 +49,7 @@
 #ifndef TM_RE_H
 #define TM_RE_H 100
 /**
- * Dependencies
+ * Library dependencies
  * - STM32F4xx
  * - STM32F4xx RCC
  * - STM32F4xx GPIO

@@ -1,7 +1,7 @@
 /**
  *	Keil project
  *
- *  Before you start, select your target, on the right of the "Load" button
+ *	Before you start, select your target, on the right of the "Load" button
  *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu

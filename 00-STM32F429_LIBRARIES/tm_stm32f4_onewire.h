@@ -39,6 +39,7 @@
 #define TM_ONEWIRE_H 100
 /**
  * Library dependencies
+ * - STM32F4xx
  * - STM32F4xx RCC
  * - STM32F4xx GPIO
  * - TM_DELAY

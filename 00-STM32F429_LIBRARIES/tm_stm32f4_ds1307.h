@@ -47,11 +47,10 @@
  * 	#define TM_DS1307_I2C				I2C1
  *	#define TM_DS1307_I2C_PINSPACK		TM_I2C_PinsPack_1
  */
-#ifndef TM_DS1307_
-#define TM_DS1307_ 100
+#ifndef TM_DS1307_H
+#define TM_DS1307_H 100
 /**
  * Library dependencies
- *
  * - STM32F4xx
  * - STM32F4xx RCC
  * - STM32F4xx GPIO

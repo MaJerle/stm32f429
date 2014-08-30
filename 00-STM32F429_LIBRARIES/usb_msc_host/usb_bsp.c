@@ -25,6 +25,15 @@
 #include "usbh_core.h"
 #include "defines.h"
 
+/* Default NVIC settings */
+#ifndef USB_MSC_HOST_NVIC_PRIORITY
+#define USB_MSC_HOST_NVIC_PRIORITY			0x01
+#endif
+
+#ifndef USB_MSC_HOST_NVIC_SUBPRIORITY
+#define USB_MSC_HOST_NVIC_SUBPRIORITY		0x01
+#endif
+
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
@@ -139,11 +148,9 @@ void USB_OTG_BSP_EnableInterrupt(USB_OTG_CORE_HANDLE *pdev)
 	NVIC_InitStructure.NVIC_IRQChannel = OTG_HS_IRQn;
 #endif
 	
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
-	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = USB_MSC_HOST_NVIC_PRIORITY;
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = USB_MSC_HOST_NVIC_SUBPRIORITY;
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-	NVIC_Init(&NVIC_InitStructure);
-
 	NVIC_Init(&NVIC_InitStructure);
 }
 

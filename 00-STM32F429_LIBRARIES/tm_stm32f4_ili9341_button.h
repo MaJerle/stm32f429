@@ -37,6 +37,7 @@
 #define TM_ILI9341_BUTTON_H
 /**
  * Library dependencies
+ * - STM32F4xx
  * - STM32F4xx RCC
  * - STM32F4xx GPIO
  * - defines.h

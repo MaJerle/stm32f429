@@ -95,6 +95,7 @@
  * - STM32F4xx RCC
  * - STM32F4xx GPIO
  * - TM USART
+ * - defines.h
  */
 /**
  * Includes
@@ -103,6 +104,7 @@
 #include "stm32f4xx_rcc.h"
 #include "stm32f4xx_gpio.h"
 #include "tm_stm32f4_usart.h"
+#include "defines.h"
 #include "math.h"
 
 /* Default GPS USART used */
@@ -111,10 +113,11 @@
 #define GPS_USART_PINSPACK		TM_USART_PinsPack_2
 #endif
 
-#define GPS_C2N(a)				(a - 48)
+#define GPS_C2N(a)				((a) - 48)
 #define GPS_C2NM(a, x)			C2N(a) * x
-#define GPS_CONCAT(x, y)		(x << 5 | y)
+#define GPS_CONCAT(x, y)		((x) << 5 | (y))
 
+/* NMEA statements */
 #define GPS_GPGGA				0
 #define GPS_GPRMC				1
 #define GPS_GPGSA				2
