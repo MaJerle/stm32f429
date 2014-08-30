@@ -58,7 +58,6 @@ DRESULT TM_FATFS_USB_disk_read (
 )
 {
 	BYTE status = USBH_MSC_OK;
-	uint32_t timeout;
 
 	if (!count) {
 		return RES_PARERR;
@@ -68,7 +67,6 @@ DRESULT TM_FATFS_USB_disk_read (
 	}
 
 	if (HCD_IsDeviceConnected(&USB_OTG_Core) && TM_USB_MSCHOST_INT_Result == TM_USB_MSCHOST_Result_Connected) {
-		timeout = FATFS_USB_TIMEOUT;
 		do
 		{
 			status = USBH_MSC_Read10(&USB_OTG_Core, buff, sector, 512 * count);
@@ -77,7 +75,7 @@ DRESULT TM_FATFS_USB_disk_read (
 			if (!HCD_IsDeviceConnected(&USB_OTG_Core)) { 
 				return RES_ERROR;
 			}
-		} while (status == USBH_MSC_BUSY && timeout--);
+		} while (status == USBH_MSC_BUSY);
 	}
 
 	if (status == USBH_MSC_OK) {
@@ -97,7 +95,6 @@ DRESULT TM_FATFS_USB_disk_write (
 )
 {
 	BYTE status = USBH_MSC_OK;
-	uint32_t timeout;
 	if (!count) {
 		return RES_PARERR;
 	}
@@ -109,7 +106,6 @@ DRESULT TM_FATFS_USB_disk_write (
 	}
 
 	if (HCD_IsDeviceConnected(&USB_OTG_Core) && TM_USB_MSCHOST_INT_Result == TM_USB_MSCHOST_Result_Connected) {
-		timeout = FATFS_USB_TIMEOUT;
 		do
 		{
 			status = USBH_MSC_Write10(&USB_OTG_Core, (BYTE*)buff, sector, 512 * count);
@@ -118,7 +114,7 @@ DRESULT TM_FATFS_USB_disk_write (
 			if (!HCD_IsDeviceConnected(&USB_OTG_Core)) {
 				return RES_ERROR;
 			}
-		} while(status == USBH_MSC_BUSY && timeout--);
+		} while (status == USBH_MSC_BUSY);
 	}
 
 	if (status == USBH_MSC_OK) {

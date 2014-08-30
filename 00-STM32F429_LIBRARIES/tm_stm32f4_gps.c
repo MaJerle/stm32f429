@@ -173,7 +173,7 @@ extern TM_GPS_Result_t TM_GPS_INT_Do(TM_GPS_Data_t* GPS_Data, char c) {
 		/* Data were "new" on last call, now are only "Old data", no NEW data */
 		GPS_Data->Status = TM_GPS_Result_OldData;
 	}
-	if (c == '$') {		
+	if (c == '$') {
 		/* Star detection reset */
 		TM_GPS_Star = 0;
 		/* Reset CRC */

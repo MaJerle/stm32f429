@@ -113,8 +113,12 @@
 #define GPS_USART_PINSPACK		TM_USART_PinsPack_2
 #endif
 
-#define GPS_C2N(a)				((a) - 48)
-#define GPS_C2NM(a, x)			C2N(a) * x
+/* Is character a digit */
+#define GPS_IS_DIGIT(x)			((x) >= '0' && (x) <= '9')
+
+/* Char 2 digit conversions */
+#define GPS_C2N(a)				(((a) - 48))
+#define GPS_C2NM(a, x)			C2N(a) * (x)
 #define GPS_CONCAT(x, y)		((x) << 5 | (y))
 
 /* NMEA statements */
@@ -182,9 +186,6 @@
 
 /* GPGSV Positions */
 #define GPS_POS_SATSINVIEW		GPS_CONCAT(GPS_GPGSV, 3)	//
-
-/* Is character a digit */
-#define GPS_IS_DIGIT(x)			(x >= '0' && x <= '9')
 
 /* Earth radius */
 #define GPS_EARTH_RADIUS		6371
