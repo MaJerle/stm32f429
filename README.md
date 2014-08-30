@@ -74,6 +74,8 @@ http://bit.ly/1n93Dgb
 http://bit.ly/1pNdpt4
 29. USB MSC HOST - Read USB flash drive with STM32F4xx
 http://bit.ly/1lAs4Im
+30. HC-SR04 - Measure distance with ultrasonic sensor on STM32F4xx
+http://bit.ly/1tMP7AX
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB
