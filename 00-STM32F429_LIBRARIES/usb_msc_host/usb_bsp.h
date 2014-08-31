@@ -1,14 +1,6 @@
-//--------------------------------------------------------------
-// File     : usb_bsp.h
-//--------------------------------------------------------------
-
-
 #ifndef __USB_BSP__H__
 #define __USB_BSP__H__
 
-//--------------------------------------------------------------
-// Includes
-//--------------------------------------------------------------
 #include "usb_core.h"
 #include "stm32f4xx_gpio.h"
 #include "stm32f4xx_rcc.h"
@@ -42,6 +34,6 @@ void USB_OTG_BSP_DriveVBUS(USB_OTG_CORE_HANDLE *pdev,uint8_t state);
 
 
 
-#endif //__USB_BSP__H__
+#endif
 
 
