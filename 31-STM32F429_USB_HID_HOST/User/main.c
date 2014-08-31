@@ -14,7 +14,6 @@
 #include "defines.h"
 #include "tm_stm32f4_disco.h"
 #include "tm_stm32f4_delay.h"
-#include "tm_stm32f4_usart.h"
 #include "tm_stm32f4_usb_hid_host.h"
 
 #include <stdio.h>
@@ -32,9 +31,6 @@ int main(void) {
 	
 	/* Delay init */
 	TM_DELAY_Init();
-
-	/* USART debug init */
-	TM_USART_Init(USART6, TM_USART_PinsPack_1, 115200);
 	
 	/* Init USB HID */
 	TM_USB_HIDHOST_Init();

@@ -4,7 +4,7 @@
  *      *** Do not modify ! ***
  *
  * Project: 'project' 
- * Target:  'STM32F4-Discovery' 
+ * Target:  'Nucleo F401RE' 
  */
 
 #ifndef RTE_COMPONENTS_H
@@ -14,6 +14,5 @@
 #define RTE_DEVICE_STDPERIPH_FRAMEWORK
 #define RTE_DEVICE_STDPERIPH_GPIO
 #define RTE_DEVICE_STDPERIPH_RCC
-#define RTE_DEVICE_STDPERIPH_USART
 
 #endif /* RTE_COMPONENTS_H */
