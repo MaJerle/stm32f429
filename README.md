@@ -62,7 +62,7 @@ http://bit.ly/1k9rJGo
 http://bit.ly/1sCyx4w
 23. MFRC522 - Read RFID Cards with STM32F4xx devices
 http://bit.ly/1ycHq7P
-24. USB VCP - Use STM32F4xx as USB VCP (Virtual Com Port)
+24. USB VCP - Use STM32F4xx as USB VCP device (Virtual COM Port)
 http://bit.ly/1sgSy0M
 25. AM2301 - AM2301 (DHT21) temperature and humidity sensor
 http://bit.ly/1p2mqy1 
@@ -76,6 +76,8 @@ http://bit.ly/1pNdpt4
 http://bit.ly/1lAs4Im
 30. HC-SR04 - Measure distance with ultrasonic sensor on STM32F4xx
 http://bit.ly/1tMP7AX
+31. USB HID HOST - Read USB mouse and keyboard on STM32F4xx
+http://bit.ly/1tKFMIn
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB
