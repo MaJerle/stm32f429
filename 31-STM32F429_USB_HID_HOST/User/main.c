@@ -55,9 +55,9 @@ int main(void) {
 				TM_USB_HIDHOST_ReadKeyboard(&Keyboard_Data);
 				/* Check if keyboard button is pressed */
 				if (Keyboard_Data.ButtonStatus == TM_USB_HIDHOST_Button_Pressed) {
-					if (Keyboard_Data.Button == 'b') {			/* Turn on RED led on 'b' button */
+					if (Keyboard_Data.Button == 'a') {			/* Turn on RED led on 'b' button */
 						TM_DISCO_LedOn(LED_RED);
-					} else if (Keyboard_Data.Button == 'v') {	/* Turn off RED led on 'v' button */
+					} else if (Keyboard_Data.Button == 'm') {	/* Turn off RED led on 'v' button */
 						TM_DISCO_LedOff(LED_RED);
 					}
 				}

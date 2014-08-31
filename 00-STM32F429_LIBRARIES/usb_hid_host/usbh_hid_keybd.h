@@ -32,6 +32,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "usb_conf.h"
 #include "usbh_hid_core.h"
+#include "defines.h"
 
 /** @addtogroup USBH_LIB
   * @{

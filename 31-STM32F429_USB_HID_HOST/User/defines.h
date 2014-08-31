@@ -15,5 +15,9 @@
 /* If you do this, on F4 and F429 Discovery boards USB will not work */
 //#define USB_HID_HOST_DISABLE_VBUS
 
+/* Keyboard supports for QWERTY mode */
+/* If you want to enable it, uncomment defines below */
+#define QWERTY_KEYBOARD
+
 #endif
 
