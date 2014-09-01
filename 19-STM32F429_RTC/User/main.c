@@ -32,7 +32,7 @@ int main(void) {
 	
 	//Initialize RTC with internal 32768Hz clock
 	//It's not very accurate
-	if (!TM_RTC_Init(TM_RTC_ClockSource_External)) {
+	if (!TM_RTC_Init(TM_RTC_ClockSource_Internal)) {
 		//RTC was first time initialized
 		//Do your stuf here
 		//eg. set default time
