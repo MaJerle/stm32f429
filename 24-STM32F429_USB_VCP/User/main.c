@@ -2,7 +2,7 @@
 *    USB VCP for STM32F4xx example.
  *    
  *    @author     Tilen Majerle
- *    @email        tilen@majerle.eu
+ *    @email      tilen@majerle.eu
  *    @website    http://stm32f4-discovery.com
  *    @ide        Keil uVision
  *

@@ -1,7 +1,12 @@
-#ifndef DEFINES_H
-#define DEFINES_H
+#ifndef TM_DEFINES
+#define TM_DEFINES
 
-/* Activate USB HS in FS mode */
+/* Place your custom library settings */
+
+/* By default, USB CDC works in USB FS mode */
+/* If you want to use this on STM32F429-Discovery, uncomment lines below */
+/* I set this here in target C/C++ preprocessor defines */
 //#define USE_USB_OTG_HS
 
-#endif 
+#endif
+
