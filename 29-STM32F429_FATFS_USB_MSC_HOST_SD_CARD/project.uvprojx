@@ -470,7 +470,7 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>USB</GroupName>
+          <GroupName>USB MSC Host</GroupName>
           <Files>
             <File>
               <FileName>usb_bsp.c</FileName>
@@ -1491,7 +1491,7 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>USB</GroupName>
+          <GroupName>USB MSC Host</GroupName>
           <Files>
             <File>
               <FileName>usb_bsp.c</FileName>
@@ -2632,7 +2632,7 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>USB</GroupName>
+          <GroupName>USB MSC Host</GroupName>
           <Files>
             <File>
               <FileName>usb_bsp.c</FileName>

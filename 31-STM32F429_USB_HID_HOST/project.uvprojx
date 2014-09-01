@@ -455,7 +455,7 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>USB HID</GroupName>
+          <GroupName>USB HID Host</GroupName>
           <Files>
             <File>
               <FileName>usb_bsp.c</FileName>
@@ -1374,7 +1374,7 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>USB HID</GroupName>
+          <GroupName>USB HID Host</GroupName>
           <Files>
             <File>
               <FileName>usb_bsp.c</FileName>
@@ -2413,7 +2413,7 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>USB HID</GroupName>
+          <GroupName>USB HID Host</GroupName>
           <Files>
             <File>
               <FileName>usb_bsp.c</FileName>

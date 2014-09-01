@@ -657,7 +657,7 @@
   </Group>
 
   <Group>
-    <GroupName>USB HID</GroupName>
+    <GroupName>USB HID Host</GroupName>
     <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>

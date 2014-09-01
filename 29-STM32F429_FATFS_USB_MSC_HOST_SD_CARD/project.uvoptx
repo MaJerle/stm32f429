@@ -696,7 +696,7 @@
   </Group>
 
   <Group>
-    <GroupName>USB</GroupName>
+    <GroupName>USB MSC Host</GroupName>
     <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
