@@ -483,6 +483,7 @@ STM32F429_GRAPHIC
 *.axf
 *.lnp
 *.lst
+*.ini
 
 
 GPS_TRACKER
