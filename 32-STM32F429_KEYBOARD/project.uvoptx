@@ -272,7 +272,7 @@
         <LExpSel>0</LExpSel>
       </OPTXL>
       <OPTFL>
-        <tvExp>0</tvExp>
+        <tvExp>1</tvExp>
         <tvExpOptDlg>0</tvExpOptDlg>
         <IsCurrentTarget>0</IsCurrentTarget>
       </OPTFL>
@@ -553,7 +553,7 @@
 
   <Group>
     <GroupName>TM</GroupName>
-    <tvExp>1</tvExp>
+    <tvExp>0</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
@@ -617,8 +617,8 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\00-STM32F429_LIBRARIES\tm_stm32f4_keyboard.h</PathWithFileName>
-      <FilenameWithoutPath>tm_stm32f4_keyboard.h</FilenameWithoutPath>
+      <PathWithFileName>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</PathWithFileName>
+      <FilenameWithoutPath>tm_stm32f4_usart.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -630,8 +630,8 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\00-STM32F429_LIBRARIES\tm_stm32f4_keyboard.c</PathWithFileName>
-      <FilenameWithoutPath>tm_stm32f4_keyboard.c</FilenameWithoutPath>
+      <PathWithFileName>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</PathWithFileName>
+      <FilenameWithoutPath>tm_stm32f4_usart.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -643,8 +643,8 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</PathWithFileName>
-      <FilenameWithoutPath>tm_stm32f4_usart.h</FilenameWithoutPath>
+      <PathWithFileName>..\00-STM32F429_LIBRARIES\tm_stm32f4_keypad.h</PathWithFileName>
+      <FilenameWithoutPath>tm_stm32f4_keypad.h</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -656,8 +656,8 @@
       <Focus>0</Focus>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</PathWithFileName>
-      <FilenameWithoutPath>tm_stm32f4_usart.c</FilenameWithoutPath>
+      <PathWithFileName>..\00-STM32F429_LIBRARIES\tm_stm32f4_keypad.c</PathWithFileName>
+      <FilenameWithoutPath>tm_stm32f4_keypad.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -665,7 +665,7 @@
 
   <Group>
     <GroupName>User</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>

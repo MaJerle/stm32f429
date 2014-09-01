@@ -428,16 +428,6 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_keyboard.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_keyboard.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_keyboard.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_keyboard.c</FilePath>
-            </File>
-            <File>
               <FileName>tm_stm32f4_usart.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</FilePath>
@@ -446,6 +436,16 @@
               <FileName>tm_stm32f4_usart.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_keypad.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_keypad.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_keypad.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_keypad.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1212,16 +1212,6 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_keyboard.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_keyboard.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_keyboard.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_keyboard.c</FilePath>
-            </File>
-            <File>
               <FileName>tm_stm32f4_usart.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</FilePath>
@@ -1230,6 +1220,16 @@
               <FileName>tm_stm32f4_usart.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_keypad.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_keypad.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_keypad.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_keypad.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2116,16 +2116,6 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_keyboard.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_keyboard.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_keyboard.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_keyboard.c</FilePath>
-            </File>
-            <File>
               <FileName>tm_stm32f4_usart.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</FilePath>
@@ -2134,6 +2124,16 @@
               <FileName>tm_stm32f4_usart.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_keypad.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_keypad.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_keypad.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_keypad.c</FilePath>
             </File>
           </Files>
         </Group>
