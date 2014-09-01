@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/07/library-19-use-internal-rtc-on-stm32f4xx-devices/
- *	@version 	v1.0
+ *	@version 	v1.0.1
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -25,9 +25,13 @@
  * | You should have received a copy of the GNU General Public License
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
+ *
+ * Version 1.0.1
+ *	- 01.09.2014
+ *	- Date to unix convert bug fix
  */
 #ifndef TM_RTC_H
-#define TM_RTC_H 110
+#define TM_RTC_H 101
 /**
  * Library dependencies
  * - STM32F4xx
@@ -60,6 +64,14 @@
 #define TM_RTC_SECONDS_PER_DAY			86400
 #define TM_RTC_SECONDS_PER_HOUR			3600
 #define TM_RTC_SECONDS_PER_MINUTE		60
+
+#ifndef RTC_PRIORITY
+#define RTC_PRIORITY					4
+#endif
+
+#ifndef RTC_SUBPRIORITY
+#define RTC_SUBPRIORITY					0
+#endif
 
 /**
  * Struct for date/time
