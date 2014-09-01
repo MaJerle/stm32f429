@@ -15,7 +15,7 @@
 
 #include <stdio.h>
 
-char buf[50], buf2[50];
+char buf[50];
 TM_RTC_Time_t datatime;
 
 int main(void) {	
