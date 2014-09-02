@@ -1,12 +1,16 @@
 /**
- *	Keil project for I2C example
+ *	Keil project for I2C peripheral
+ *
+ *	Before you start, select your target, on the right of the "Load" button
  *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
- *	@website	http://majerle.eu
+ *	@website	http://stm32f4-discovery.com
  *	@ide		Keil uVision 5
  */
+/* Include core modules */
 #include "stm32f4xx.h"
+/* Include my libraries here */
 #include "defines.h"
 #include "tm_stm32f4_i2c.h"
 #include "tm_stm32f4_delay.h"
@@ -16,13 +20,14 @@
 
 int main(void) {
 	uint8_t data[] = {0, 1, 2};
-	//Initialize system
+	
+	/* Initialize system */
 	SystemInit();
 
-	//Initialize I2C, SCL: PB6 and SDA: PB7 with 100kHt serial clock
+	/* Initialize I2C, SCL: PB6 and SDA: PB7 with 100kHt serial clock */
 	TM_I2C_Init(I2C1, TM_I2C_PinsPack_1, 100000);
 
-	//Write "5" at location 0x00 to slave with address ADDRESS
+	/* Write "5" at location 0x00 to slave with address ADDRESS */
 	TM_I2C_Write(I2C1, ADDRESS, 0x00, 5);
 	
 	/**
@@ -31,7 +36,7 @@ int main(void) {
 	 */
 	TM_I2C_WriteMulti(I2C1, ADDRESS, 0x00, data, 3);
 	
-	//Read single byte from slave with 0xD0 (1101 000 0) address and register location 0x00
+	/* Read single byte from slave with 0xD0 (1101 000 0) address and register location 0x00 */
 	data[0] = TM_I2C_Read(I2C1, ADDRESS, 0x00);
 	
 	/**
@@ -45,4 +50,3 @@ int main(void) {
 
 	}
 }
-
