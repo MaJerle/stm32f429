@@ -1,5 +1,5 @@
 /**
- *	Keil project
+ *	Keil project for internal RTC
  *
  *	Before you start, select your target, on the right of the "Load" button
  *
