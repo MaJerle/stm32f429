@@ -1,12 +1,14 @@
 /**
- *	Keil project for GPS example
+ *	Keil project for GP
+ *
+ *	Before you start, select your target, on the right of the "Load" button
  *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@ide		Keil uVision 5
  *
- * Make sure you have correct baudrate set for your GPS
+ *	Make sure you have correct baudrate set for your GPS
  */
 #include "defines.h"
 #include "stm32f4xx.h"

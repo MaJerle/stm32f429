@@ -1,13 +1,17 @@
 /**
  *	Keil project for rotary encoder
  *
+ *	Before you start, select your target, on the right of the "Load" button
+ *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@ide		Keil uVision 5
  */
-#include "defines.h"
+/* Include core modules */
 #include "stm32f4xx.h"
+/* Include my libraries here */
+#include "defines.h"
 #include "tm_stm32f4_ili9341.h"
 #include "tm_stm32f4_rotary_encoder.h"
 
@@ -37,3 +41,4 @@ int main(void) {
 		TM_ILI9341_Puts(10, 10, buf, &TM_Font_11x18, 0x0000, 0xFFFF);
 	}
 }
+
