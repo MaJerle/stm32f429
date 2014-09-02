@@ -1,22 +1,23 @@
 /**
- *	DS18B20 library example
- *	
+ *	Keil project for DS18B20 library example
+ *
  *	This example first search for all devices on 1wire bus
  *	Set some parameters, described down in code
  *	Start conversion on all devices
  *	Read temperatures and display it
  *	Checks for devices with alarm flag set
  *
+ *	Before you start, select your target, on the right of the "Load" button
+ *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
- *	@website	http://stm32f4-discovery.com
+ *	@website	http:/* stm32f4-discovery.com
  *	@ide		Keil uVision 5
  */
-#include "defines.h"
+/* Include core modules */
 #include "stm32f4xx.h"
-
-#include "stm32f4xx_rcc.h"
-#include "stm32f4xx_gpio.h"
+/* Include my libraries here */
+#include "defines.h"
 #include "tm_stm32f4_delay.h"
 #include "tm_stm32f4_onewire.h"
 #include "tm_stm32f4_usart.h"
@@ -24,7 +25,7 @@
 #include "tm_stm32f4_disco.h"
 #include <stdio.h>
 
-//How many sensors we are expecting on 1wire bus?
+/* How many sensors we are expecting on 1wire bus? */
 #define EXPECTING_SENSORS	2
 
 int main(void) {
@@ -34,35 +35,35 @@ int main(void) {
 	uint8_t alarm_device[EXPECTING_SENSORS][8];
 	float temps[EXPECTING_SENSORS];
 	
-	//Initialize system
+	/* Initialize system */
 	SystemInit();
-	//Initialize delay
+	/* Initialize delay */
 	TM_DELAY_Init();
-	//Initialize OneWire on pin PD0
+	/* Initialize OneWire on pin PD0 */
 	TM_OneWire_Init();
-	//Initialize USART, TX: PA9, RX: PA10
-	TM_USART_Init(USART1, TM_USART_PinsPack_1, 115200);
+	/* Initialize USART, TX: PB6, RX: PB7 */
+	TM_USART_Init(USART1, TM_USART_PinsPack_2, 115200);
 	
-	//Initialize Leds
+	/* Initialize Leds */
 	TM_DISCO_LedInit();
-	//Turn leds on
+	/* Turn leds on */
 	TM_DISCO_LedOn(LED_RED | LED_GREEN);
 	
-	//Checks for any device on 1-wire
+	/* Checks for any device on 1-wire */
 	devices = TM_OneWire_First();
 	count = 0;
 	while (devices) {
 		count++;
-		//Get full ROM value, 8 bytes, give location of first byte where to save
+		/* Get full ROM value, 8 bytes, give location of first byte where to save */
 		TM_OneWire_GetFullROM(&device[count - 1][0]);
-		//Get next device
+		/* Get next device */
 		devices = TM_OneWire_Next();
 	}
-	//If any devices on 1wire
+	/* If any devices on 1wire */
 	if (count > 0) {
 		sprintf(buf, "Devices found on 1-wire: %d\n\r", count);
 		TM_USART_Puts(USART1, buf);
-		//Display 64bit rom code for each device
+		/* Display 64bit rom code for each device */
 		for (j = 0; j < count; j++) {
 			for (i = 0; i < 8; i++) {
 				sprintf(buf, "0x%02X ", device[j][i]);
@@ -74,41 +75,41 @@ int main(void) {
 		TM_USART_Puts(USART1, "No devices on OneWire.\n\r");
 	}
 	
-	//Go through all connected devices and set resolution to 12bits
+	/* Go through all connected devices and set resolution to 12bits */
 	for (i = 0; i < count; i++) {
 		TM_DS18B20_SetResolution(&device[i][0], TM_DS18B20_Resolution_12bits);
 	}
-	//Set high temperature alarm on device number 0, 25degrees celcius
+	/* Set high temperature alarm on device number 0, 25degrees celcius */
 	TM_DS18B20_SetAlarmHighTemperature(&device[0][0], 25);
-	//Disable alarm temperatures on device number 1
+	/* Disable alarm temperatures on device number 1 */
 	TM_DS18B20_DisableAlarmTemperature(&device[1][0]);
 	
 	while (1) {
-		//Start temperature conversion on all bits
+		/* Start temperature conversion on all bits */
 		TM_DS18B20_StartAll();
-		//Wait until all are done
+		/* Wait until all are done */
 		while (!TM_DS18B20_AllDone());
-		//Read temperature from each device separatelly
+		/* Read temperature from each device separatelly */
 		for (i = 0; i < count; i++) {
-			//Read temperature from ROM address and store it to temps variable
+			/* Read temperature from ROM address and store it to temps variable */
 			TM_DS18B20_Read(&device[i][0], &temps[i]);
-			//Print temperature
+			/* Print temperature */
 			sprintf(buf, "Temp %d: %3.5f; ", i, temps[i]);
 			TM_USART_Puts(USART1, buf);
 		}
 		alarm_count = 0;
-		//Check if any device has alarm flag set
+		/* Check if any device has alarm flag set */
 		while (TM_DS18B20_AlarmSearch()) {
-			//Store ROM of device which has alarm flag set
+			/* Store ROM of device which has alarm flag set */
 			TM_OneWire_GetFullROM(&alarm_device[alarm_count][0]);
 			alarm_count++;
 		}
 		sprintf(buf, "alarm: %d\n\r", alarm_count);
 		TM_USART_Puts(USART1, buf);
-		//Any device has alarm flag set?
+		/* Any device has alarm flag set? */
 		if (alarm_count > 0) {
 			TM_USART_Puts(USART1, "THIS DEVICES HAVE ALARM!\n\r    ");
-			//Show rom of this devices
+			/* Show rom of this devices */
 			for (j = 0; j < alarm_count; j++) {
 				for (i = 0; i < 8; i++) {
 					sprintf(buf, "0x%02X ", alarm_device[j][i]);
@@ -118,7 +119,8 @@ int main(void) {
 			}
 			TM_USART_Puts(USART1, "ALARM devices recognized!\n\r");
 		}
-		//Some delay
+		/* Some delay */
 		Delayms(1000);
 	}
 }
+
