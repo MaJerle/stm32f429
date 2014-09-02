@@ -16,8 +16,10 @@ Current librarires:
 
 1. Two default projects are included
 	1. Default Keil project, with CMSIS files v.1.3.0 included
-	2. Default Keil project, without CMSIS files included, because they are in Keil packs.
-	3. How to make own Keil project? http://stm32f4-discovery.com/2014/04/stm32f429-discovery-with-cmsis-library-in-keil/
+	2. Default Keil project, with CMSIS files v.1.3.0 included and clock for STM32F429-Discovery slowed down to 168MHz for USB configuration
+	3. Default Keil project, without CMSIS files included, because they are in Keil packs
+	4. Default Keil project, without CMSIS files included, because they are in Keil packs and clock for STM32F429-Discovery slowed down to 168MHz for USB configuration
+	5. How to make own Keil project? http://stm32f4-discovery.com/2014/04/stm32f429-discovery-with-cmsis-library-in-keil/
 2. LED_BUTTON - Project example for STM32F4/29 Discovery
 http://bit.ly/1nbAHbs
 3. DELAY - Delay library for STM32F4/29
