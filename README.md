@@ -78,7 +78,7 @@ http://bit.ly/1lAs4Im
 http://bit.ly/1tMP7AX
 31. USB HID HOST - Read USB mouse and keyboard on STM32F4xx
 http://bit.ly/1tKFMIn
-32- 4x4 Keypad - Read matrix keypad up to 4x4 with STM32F4xx
+32- 4x4 KEYPAD - Read matrix keypad up to 4x4 with STM32F4xx
 http://bit.ly/1qvYtyD
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
