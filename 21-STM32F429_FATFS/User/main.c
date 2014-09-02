@@ -1,13 +1,17 @@
 /**
- *	Keil project example for FATFS
+ *	Keil project
+ *
+ *	Before you start, select your target, on the right of the "Load" button
  *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@ide		Keil uVision 5
  */
-#include "defines.h"
+/* Include core modules */
 #include "stm32f4xx.h"
+/* Include my libraries here */
+#include "defines.h"
 #include "tm_stm32f4_delay.h"
 #include "tm_stm32f4_disco.h"
 #include "tm_stm32f4_fatfs.h"
@@ -15,46 +19,48 @@
 #include <string.h>
 
 int main(void) {
-	//Fatfs object
+	/* Fatfs object */
 	FATFS FatFs;
-	//File object
+	/* File object */
 	FIL fil;
-	//Free and total space
+	/* Free and total space */
 	uint32_t total, free;
 	
-	//Initialize system
+	/* Initialize system */
 	SystemInit();
-	//Initialize delays
+	
+	/* Initialize delays */
 	TM_DELAY_Init();
-	//Initialize LEDs
+	
+	/* Initialize LEDs */
 	TM_DISCO_LedInit();
 
-	//Mount drive
+	/* Mount drive */
 	if (f_mount(&FatFs, "0:", 1) == FR_OK) {
-		//Mounted OK, turn on RED LED
+		/* Mounted OK, turn on RED LED */
 		TM_DISCO_LedOn(LED_RED);
 		
-		//Try to open file
+		/* Try to open file */
 		if (f_open(&fil, "0:first_file.txt", FA_OPEN_ALWAYS | FA_READ | FA_WRITE) == FR_OK) {
-			//File opened, turn off RED and turn on GREEN led
+			/* File opened, turn off RED and turn on GREEN led */
 			TM_DISCO_LedOn(LED_GREEN);
 			TM_DISCO_LedOff(LED_RED);
 			
-			//If we put more than 0 characters (everything OK)
+			/* If we put more than 0 characters (everything OK) */
 			if (f_puts("First string in my file\n", &fil) > 0) {
 				if (TM_FATFS_DriveSize(&total, &free) == FR_OK) {
-					//Data for drive size are valid
+					/* Data for drive size are valid */
 				}
 				
-				//Turn on both leds
+				/* Turn on both leds */
 				TM_DISCO_LedOn(LED_GREEN | LED_RED);
 			}
 			
-			//Close file, don't forget this!
+			/* Close file, don't forget this! */
 			f_close(&fil);
 		}
 		
-		//Unmount drive, don't forget this!
+		/* Unmount drive, don't forget this! */
 		f_mount(0, "0:", 1);
 	}
 	
