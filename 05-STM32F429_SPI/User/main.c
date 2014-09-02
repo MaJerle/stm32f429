@@ -1,28 +1,29 @@
 /**
- * SPI example.
+ *	Keil project for SPI peripheral
  *
- * In example we have one slave and it's SS pin is connected to ground
- *
- * Note that if you want to use SS pin, you have to manually use pin you wish
- * and make sure, you put it low, before data is sent, otherwise data will
- * not be detected by slave.
+ *	Before you start, select your target, on the right of the "Load" button
  *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
- *	@ide		Keil uVision
+ *	@ide		Keil uVision 5
  */
+/* Include core modules */
 #include "stm32f4xx.h"
+/* Include my libraries here */
+#include "defines.h"
 #include "tm_stm32f4_spi.h"
 
 int main(void) {
-	//180MHz clock
+	/* Initialize system */
 	SystemInit();
 
-	//Initialize SPI
-	TM_SPI1_Init(TM_SPI_PinsPack_1);
-	//Send 0x15 over SPI1
+	/* Initialize SPI */
+	TM_SPI_Init(SPI1, TM_SPI_PinsPack_1);
+	
+	/* Send 0x15 over SPI1 */
 	TM_SPI_Send(SPI1, 0x15);
+	
     while(1) {
 
     }
