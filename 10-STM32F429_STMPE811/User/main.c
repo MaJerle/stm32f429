@@ -1,12 +1,18 @@
 /**
  *	Keil project for STMPE811 touch driver controller
+ *	
+ *	Works on STM32F429 Discovery board by default
+ *
+ *	Before you start, select your target, on the right of the "Load" button
  *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
- *	@website	http://majerle.eu
+ *	@website	http://stm32f4-discovery.com
  *	@ide		Keil uVision 5
  */
+/* Include core modules */
 #include "stm32f4xx.h"
+/* Include my libraries here */
 #include "defines.h"
 #include "tm_stm32f4_ili9341.h"
 #include "tm_stm32f4_stmpe811.h"
@@ -55,4 +61,3 @@ int main(void) {
 		}
 	}
 }
-
