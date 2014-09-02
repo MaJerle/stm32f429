@@ -1,13 +1,17 @@
 /**
- *	Keil project example for internal RTC on STM32F4xx devices
+ *	Keil project
+ *
+ *	Before you start, select your target, on the right of the "Load" button
  *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@ide		Keil uVision 5
  */
-#include "defines.h"
+/* Include core modules */
 #include "stm32f4xx.h"
+/* Include my libraries here */
+#include "defines.h"
 #include "tm_stm32f4_rtc.h"
 #include "tm_stm32f4_usart.h"
 #include "tm_stm32f4_disco.h"
@@ -19,30 +23,34 @@ char buf[50];
 TM_RTC_Time_t datatime;
 
 int main(void) {	
-	//Initialize system
+	/* Initialize system */
 	SystemInit();
-	//Initialize delay
+	
+	/* Initialize delay */
 	TM_DELAY_Init();
-	//Initiaize button
+	
+	/* Initiaize button */
 	TM_DISCO_ButtonInit();
-	//Initialize Leds
+	
+	/* Initialize Leds */
 	TM_DISCO_LedInit();
-	//Initialize USART, TX: PB10, RX: PB11
+	
+	/* Initialize USART, TX: PB10, RX: PB11 */
 	TM_USART_Init(USART3, TM_USART_PinsPack_1, 115200);
 	
-	//Initialize RTC with internal 32768Hz clock
-	//It's not very accurate
+	/* Initialize RTC with internal 32768Hz clock */
+	/* It's not very accurate */
 	if (!TM_RTC_Init(TM_RTC_ClockSource_Internal)) {
-		//RTC was first time initialized
-		//Do your stuf here
-		//eg. set default time
+		/* RTC was first time initialized */
+		/* Do your stuff here */
+		/* eg. set default time */
 	}
 	
-	//Set wakeup interrupt every 1 second
+	/* Set wakeup interrupt every 1 second */
 	TM_RTC_Interrupts(TM_RTC_Int_1s);
 	
 	while (1) {
-		//If button pressed
+		/* If button pressed */
 		if (TM_DISCO_ButtonPressed()) {
 			datatime.hours = 0;
 			datatime.minutes = 59;
@@ -51,18 +59,18 @@ int main(void) {
 			datatime.month = 6;
 			datatime.date = 30;
 			datatime.day = 6;
-			//Set new time
+			/* Set new time */
 			TM_RTC_SetDateTime(&datatime, TM_RTC_Format_BIN);
 		}
 	}
 }
-//Custom request handler function
-//Called on wakeup interrupt
+/* Custom request handler function */
+/* Called on wakeup interrupt */
 void TM_RTC_RequestHandler() {
-	//Get time
+	/* Get time */
 	TM_RTC_GetDateTime(&datatime, TM_RTC_Format_BIN);
 	
-	//Format time
+	/* Format time */
 	sprintf(buf, "%02d.%02d.%04d %02d:%02d:%02d  Unix: %u\n",
 				datatime.date,
 				datatime.month,
@@ -72,9 +80,8 @@ void TM_RTC_RequestHandler() {
 				datatime.seconds,
 				datatime.unix
 	);
-	//Send to USART
+	/* Send to USART */
 	TM_USART_Puts(USART3, buf);
-	//Toggle LED
+	/* Toggle LED */
 	TM_DISCO_LedToggle(LED_RED | LED_GREEN);
 }
-
