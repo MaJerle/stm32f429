@@ -1,5 +1,7 @@
-//Defines file for project
-#ifndef DEFINES_H
-#define DEFINES_H
+#ifndef TM_DEFINES
+#define TM_DEFINES
 
-#endif 
+/* Place your custom library settings */
+
+#endif
+
