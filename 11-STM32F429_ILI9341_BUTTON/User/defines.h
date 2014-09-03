@@ -1,10 +1,7 @@
-#ifndef DEFINES_H
-#define DEFINES_H
+#ifndef TM_DEFINES
+#define TM_DEFINES
 
-//Files used
-#include "stm32f4xx.h"
+/* Place your custom library settings */
 
-//Change SPI5 baudrate prescaler APB2 / 2
-#define TM_SPI5_PRESCALER	SPI_BaudRatePrescaler_2
+#endif
 
-#endif 
