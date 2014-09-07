@@ -82,6 +82,8 @@ http://bit.ly/1tMP7AX
 http://bit.ly/1tKFMIn
 32. 4x4 KEYPAD - Read matrix keypad up to 4x4 with STM32F4xx
 http://bit.ly/1qvYtyD
+33. PWM - Use PWM on all possible timers for STM32F4xx device
+http://bit.ly/1CFInc5
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB
