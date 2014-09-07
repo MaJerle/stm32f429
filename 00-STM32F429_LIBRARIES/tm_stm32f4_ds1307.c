@@ -23,7 +23,7 @@ uint8_t TM_DS1307_Months[] = {
 };
 
 void TM_DS1307_Init(void) {
-	TM_I2C_Init(TM_DS1307_I2C, TM_DS1307_I2C_PINSPACK, 100000);
+	TM_I2C_Init(TM_DS1307_I2C, TM_DS1307_I2C_PINSPACK, DS1307_I2C_CLOCK);
 }
 
 void TM_DS1307_GetDateTime(TM_DS1307_Time_t* time) {

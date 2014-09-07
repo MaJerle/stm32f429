@@ -188,7 +188,7 @@ uint16_t VCP_DataTx (uint8_t* Buf, uint32_t Len)
 		APP_Rx_ptr_in++;
 		
 		/* To avoid buffer overflow */
-		if (APP_Rx_ptr_in == APP_RX_DATA_SIZE) {
+		if (APP_Rx_ptr_in >= APP_RX_DATA_SIZE) {
 			APP_Rx_ptr_in = 0;
 		}
 		

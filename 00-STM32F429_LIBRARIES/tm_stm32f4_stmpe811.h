@@ -73,6 +73,10 @@
 #define STMPE811_I2C_PINSPACK			TM_I2C_PinsPack_1
 #endif
 
+#ifndef STMPE811_I2C_CLOCK
+#define STMPE811_I2C_CLOCK				100000
+#endif
+
 /* I2C address */
 #define STMPE811_ADDRESS				0x82
 

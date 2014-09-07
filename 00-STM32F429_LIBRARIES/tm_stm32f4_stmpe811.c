@@ -23,7 +23,7 @@ TM_STMPE811_State_t TM_STMPE811_Init(void) {
 	/* Initialize Delay */
 	TM_DELAY_Init();
 	/* Initialize I2C */
-	TM_I2C_Init(STMPE811_I2C, STMPE811_I2C_PINSPACK, 400000);
+	TM_I2C_Init(STMPE811_I2C, STMPE811_I2C_PINSPACK, STMPE811_I2C_CLOCK);
 	
 	/* Reset */
 	TM_I2C_Write(STMPE811_I2C, STMPE811_ADDRESS, STMPE811_SYS_CTRL1, 0x02);
@@ -111,9 +111,7 @@ uint8_t TM_STMPE811_Read(uint8_t reg) {
 }
 
 TM_STMPE811_State_t TM_STMPE811_ReadTouch(TM_STMPE811_TouchData *structdata) {
-	uint8_t val;
-	val = TM_STMPE811_Read(STMPE811_TSC_CTRL);
-	
+	uint8_t val = TM_STMPE811_Read(STMPE811_TSC_CTRL);
 	if ((val & 0x80) == 0) {
 		//Not pressed
 		structdata->x = 0;

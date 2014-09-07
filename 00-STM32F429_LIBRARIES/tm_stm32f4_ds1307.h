@@ -71,6 +71,10 @@
 #define TM_DS1307_I2C_PINSPACK		TM_I2C_PinsPack_1
 #endif
 
+#ifndef DS1307_I2C_CLOCK
+#define DS1307_I2C_CLOCK			100000
+#endif
+
 //I2C slave address for DS1307
 #define TM_DS1307_I2C_ADDR			0xD0
 

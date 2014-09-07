@@ -488,11 +488,6 @@
               <FilePath>..\00-STM32F429_LIBRARIES\usb_msc_host\usb_conf.h</FilePath>
             </File>
             <File>
-              <FileName>usb_conf_template.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\usb_msc_host\usb_conf_template.h</FilePath>
-            </File>
-            <File>
               <FileName>usb_core.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\usb_msc_host\usb_core.c</FilePath>
@@ -1487,11 +1482,6 @@
               <FileName>usb_conf.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\usb_msc_host\usb_conf.h</FilePath>
-            </File>
-            <File>
-              <FileName>usb_conf_template.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\usb_msc_host\usb_conf_template.h</FilePath>
             </File>
             <File>
               <FileName>usb_core.c</FileName>
@@ -2608,11 +2598,6 @@
               <FileName>usb_conf.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\usb_msc_host\usb_conf.h</FilePath>
-            </File>
-            <File>
-              <FileName>usb_conf_template.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\usb_msc_host\usb_conf_template.h</FilePath>
             </File>
             <File>
               <FileName>usb_core.c</FileName>
