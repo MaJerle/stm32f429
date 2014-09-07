@@ -709,7 +709,7 @@ void TM_ILI9341_DrawFilledCircle(int16_t x0, int16_t y0, int16_t r, uint16_t col
         TM_ILI9341_DrawLine(x0 + y, y0 - x, x0 - y, y0 - x, color);
     }
 }
-
+/*
 void TM_ILI9341_ScrollDown(uint16_t offset, uint16_t color) {
 	uint16_t *src, *dst;
 	int16_t i, j;
@@ -759,4 +759,4 @@ void TM_ILI9341_ScrollUp(uint16_t offset, uint16_t color) {
 		src -= offset;
 	}
 }
-
+*/
