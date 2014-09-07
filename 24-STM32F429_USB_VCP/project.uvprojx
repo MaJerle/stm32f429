@@ -364,7 +364,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER,STM32F4XX,HSE_VALUE=8000000,TM_DISCO_STM32F4_DISCOVERY</Define>
               <Undefine></Undefine>
-              <IncludePath>.\TM;.\User;..\00-STM32F429_LIBRARIES</IncludePath>
+              <IncludePath>.\TM;.\User;..\00-STM32F429_LIBRARIES;..\00-STM32F429_LIBRARIES\usb_cdc_device</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -2292,7 +2292,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER,STM32F4XX,HSE_VALUE=8000000,TM_DISCO_NUCLEO_F401</Define>
               <Undefine></Undefine>
-              <IncludePath>.\TM;.\User;..\00-STM32F429_LIBRARIES</IncludePath>
+              <IncludePath>.\TM;.\User;..\00-STM32F429_LIBRARIES;..\00-STM32F429_LIBRARIES\usb_cdc_device</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
