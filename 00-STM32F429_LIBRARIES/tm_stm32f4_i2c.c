@@ -208,12 +208,14 @@ void TM_I2C_WriteMulti(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t*
 	TM_I2C_Stop(I2Cx);
 }
 
-void TM_I2C_Start(I2C_TypeDef* I2Cx, uint8_t address, uint8_t direction, uint8_t ack) {
+int16_t TM_I2C_Start(I2C_TypeDef* I2Cx, uint8_t address, uint8_t direction, uint8_t ack) {
 	I2C_GenerateSTART(I2Cx, ENABLE);
 	
 	TM_I2C_Timeout = TM_I2C_TIMEOUT;
 	while (!I2C_GetFlagStatus(I2Cx, I2C_FLAG_SB) && TM_I2C_Timeout) {
-		TM_I2C_Timeout--;
+		if (--TM_I2C_Timeout == 0x00) {
+			return 1;
+		}
 	}
 
 	if (ack) {
@@ -225,15 +227,21 @@ void TM_I2C_Start(I2C_TypeDef* I2Cx, uint8_t address, uint8_t direction, uint8_t
 	if (direction == I2C_Direction_Transmitter) {
 		TM_I2C_Timeout = TM_I2C_TIMEOUT;
 		while (!I2C_GetFlagStatus(I2Cx, I2C_FLAG_ADDR) && TM_I2C_Timeout) {
-			TM_I2C_Timeout--;
+			if (--TM_I2C_Timeout == 0x00) {
+				return 1;
+			}
 		}
 	} else if (direction == I2C_Direction_Receiver) {
 		TM_I2C_Timeout = TM_I2C_TIMEOUT;
 		while (!I2C_CheckEvent(I2Cx, I2C_EVENT_MASTER_RECEIVER_MODE_SELECTED) && TM_I2C_Timeout) {
-			TM_I2C_Timeout--;
+			if (--TM_I2C_Timeout == 0x00) {
+				return 1;
+			}
 		}
 	}
 	I2Cx->SR2;
+	
+	return 0;
 }
 
 
@@ -276,12 +284,26 @@ uint8_t TM_I2C_ReadNack(I2C_TypeDef* I2Cx) {
 	return data;
 }
 
-void TM_I2C_Stop(I2C_TypeDef* I2Cx) {	
+uint8_t TM_I2C_Stop(I2C_TypeDef* I2Cx) {	
 	TM_I2C_Timeout = TM_I2C_TIMEOUT;
 	while (((!I2C_GetFlagStatus(I2Cx, I2C_FLAG_TXE)) || (!I2C_GetFlagStatus(I2Cx, I2C_FLAG_BTF))) && TM_I2C_Timeout) {
-		TM_I2C_Timeout--;
+		if (--TM_I2C_Timeout == 0x00) {
+			return 1;
+		}
 	}
 	
 	I2C_GenerateSTOP(I2Cx, ENABLE);
+	
+	return 0;
+}
+
+uint8_t TM_I2C_IsDeviceConnected(I2C_TypeDef* I2Cx, uint8_t address) {
+	uint8_t connected = 0;
+	if (!TM_I2C_Start(I2Cx, address, I2C_Direction_Transmitter, 1)) {
+		connected = 1;
+	}
+	TM_I2C_Stop(I2Cx);
+	
+	return connected;
 }
 

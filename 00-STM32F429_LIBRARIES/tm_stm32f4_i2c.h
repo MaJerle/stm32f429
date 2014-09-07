@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/05/library-09-i2c-for-stm32f4xx/
- *	@version 	v1.0
+ *	@version 	v1.1
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -25,7 +25,12 @@
  * | You should have received a copy of the GNU General Public License
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
- *	
+ *
+ * Version 1.1
+ *	- 08.09.2014
+ *	- Added support to check if device is connected to I2C bus
+ *
+ *
  *	Pinout on STM32F4 devices
  *	
  *			|PINSPACK 1		|PINSPACK 2	
@@ -51,7 +56,7 @@
  *
  */
 #ifndef TM_I2C_H
-#define TM_I2C_H 100
+#define TM_I2C_H 110
 /**
  * Library dependencies
  * - STM32F4xx
@@ -253,6 +258,17 @@ extern void TM_I2C_ReadMulti(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, ui
 extern void TM_I2C_WriteMulti(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t *data, uint16_t count);
 
 /**
+ * Checks if device is connected to I2C bus
+ *
+ * Parameters:
+ * 	- I2C_TypeDef* I2Cx: I2C used
+ * 	- uint8_t address: 7 bit slave address, left aligned, bits 7:1 are used, LSB bit is not used
+ * 
+ * Returns 1 if device is connected, or 0 if not
+ */
+extern uint8_t TM_I2C_IsDeviceConnected(I2C_TypeDef* I2Cx, uint8_t address);
+
+/**
  * I2C Start condition
  *
  * Parameters:
@@ -263,7 +279,7 @@ extern void TM_I2C_WriteMulti(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, u
  *
  * Private use
  */
-extern void TM_I2C_Start(I2C_TypeDef* I2Cx, uint8_t address, uint8_t direction, uint8_t ack);
+extern int16_t TM_I2C_Start(I2C_TypeDef* I2Cx, uint8_t address, uint8_t direction, uint8_t ack);
 
 /**
  * Stop condition
@@ -273,7 +289,7 @@ extern void TM_I2C_Start(I2C_TypeDef* I2Cx, uint8_t address, uint8_t direction, 
  *
  * Private use
  */
-extern void TM_I2C_Stop(I2C_TypeDef* I2Cx);
+extern uint8_t TM_I2C_Stop(I2C_TypeDef* I2Cx);
 
 /**
  * Read byte without ack
