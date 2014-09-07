@@ -6,8 +6,8 @@
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
- *	@link		http://bit.ly/1jeZaqH
- *	@version 	v1.0
+ *	@link		http://stm32f4-discovery.com/2014/06/library-18-ili9341-ltdc-stm32f429-discovery/
+ *	@version 	v1.1
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -27,9 +27,12 @@
  * | You should have received a copy of the GNU General Public License
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
+ *
+ * Version 1.1 - 07.08.2014
+ *	- Added scrool down and scroll up feature
  */
 #ifndef TM_ILI9341_H
-#define TM_ILI9341_H 100
+#define TM_ILI9341_H 110
 /**
  * Library dependencies
  * - STM32F4xx
@@ -433,6 +436,24 @@ extern void TM_ILI9341_Layer2To1(void);
  *
  */
 extern void TM_ILI9341_Layer1To2(void);
+
+/**
+ * Scroll down
+ *
+ * Parameters:
+ * - int16_t offset: offset to scroll screen down
+ * - uint16_t color: color to fill the bottom part
+ */
+extern void TM_ILI9341_ScrollDown(uint16_t offset, uint16_t color);
+
+/**
+ * Scroll up
+ *
+ * Parameters:
+ * - int16_t offset: offset to scroll screen down
+ * - uint16_t color: color to fill the bottom part
+ */
+extern void TM_ILI9341_ScrollUp(uint16_t offset, uint16_t color);
 
 #endif
 

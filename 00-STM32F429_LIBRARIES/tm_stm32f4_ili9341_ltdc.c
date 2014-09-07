@@ -710,3 +710,53 @@ void TM_ILI9341_DrawFilledCircle(int16_t x0, int16_t y0, int16_t r, uint16_t col
     }
 }
 
+void TM_ILI9341_ScrollDown(uint16_t offset, uint16_t color) {
+	uint16_t *src, *dst;
+	int16_t i, j;
+
+	if (offset == 0) {
+		return;
+	}
+	if (offset > ILI9341_Opts.Height) {
+		offset = ILI9341_Opts.Height;
+	}
+
+	dst = (uint16_t *) (ILI9341_FRAME_BUFFER + ILI9341_Opts.CurrentLayerOffset);
+	src = dst + offset;
+
+	for (i = 0; i < ILI9341_Opts.Width; i++) {
+		for (j = 0; j < ILI9341_Opts.Height - offset; j++) {
+			*dst++ = *src++;
+		}
+		for (j = 0; j < offset; j++) {
+			*dst++ = color;
+		}
+		src += offset;
+	}
+}
+
+void TM_ILI9341_ScrollUp(uint16_t offset, uint16_t color) {
+	uint16_t *src, *dst;
+	int16_t i, j;
+
+	if (offset == 0) {
+		return;
+	}
+	if (offset > ILI9341_Opts.Height) {
+		offset = ILI9341_Opts.Height;
+	}
+
+	dst = (uint16_t *) (ILI9341_FRAME_BUFFER + ILI9341_Opts.CurrentLayerOffset + ILI9341_PIXEL * 2 - 2);
+	src = dst - offset;
+
+	for (i = 0; i < ILI9341_Opts.Width; i++) {
+		for (j = 0; j < ILI9341_Opts.Height - offset; j++) {
+			*dst-- = *src--;
+		}
+		for (j = 0; j < offset; j++) {
+			*dst-- = color;
+		}
+		src -= offset;
+	}
+}
+
