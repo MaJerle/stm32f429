@@ -277,8 +277,6 @@ TM_PWM_Result_t TM_PWM_INT_InitTIM1Pins(TM_PWM_Channel_t Channel, TM_PWM_PinsPac
 					GPIO_Init(GPIOE, &GPIO_InitStruct);						/* Initialize pin */
 					result = TM_PWM_Result_Ok;								/* Result OK */
 					break;
-				case TM_PWM_PinsPack_3:
-					break;
 				default:
 					result = TM_PWM_Result_PinNotValid;
 					break;
@@ -299,9 +297,6 @@ TM_PWM_Result_t TM_PWM_INT_InitTIM1Pins(TM_PWM_Channel_t Channel, TM_PWM_PinsPac
 					GPIO_InitStruct.GPIO_Pin = GPIO_Pin_10;					/* Set pin */
 					GPIO_Init(GPIOE, &GPIO_InitStruct);						/* Initialize pin */
 					result = TM_PWM_Result_Ok;								/* Result OK */
-					break;
-				case TM_PWM_PinsPack_3:
-					result = TM_PWM_Result_PinNotValid;
 					break;
 				default:
 					result = TM_PWM_Result_PinNotValid;
@@ -324,9 +319,6 @@ TM_PWM_Result_t TM_PWM_INT_InitTIM1Pins(TM_PWM_Channel_t Channel, TM_PWM_PinsPac
 					GPIO_Init(GPIOE, &GPIO_InitStruct);						/* Initialize pin */
 					result = TM_PWM_Result_Ok;								/* Result OK */
 					break;
-				case TM_PWM_PinsPack_3:
-					result = TM_PWM_Result_PinNotValid;
-					break;
 				default:
 					result = TM_PWM_Result_PinNotValid;
 					break;
@@ -347,9 +339,6 @@ TM_PWM_Result_t TM_PWM_INT_InitTIM1Pins(TM_PWM_Channel_t Channel, TM_PWM_PinsPac
 					GPIO_InitStruct.GPIO_Pin = GPIO_Pin_14;					/* Set pin */
 					GPIO_Init(GPIOE, &GPIO_InitStruct);						/* Initialize pin */
 					result = TM_PWM_Result_Ok;								/* Result OK */
-					break;
-				case TM_PWM_PinsPack_3:
-					result = TM_PWM_Result_PinNotValid;
 					break;
 				default:
 					result = TM_PWM_Result_PinNotValid;
@@ -419,9 +408,6 @@ TM_PWM_Result_t TM_PWM_INT_InitTIM2Pins(TM_PWM_Channel_t Channel, TM_PWM_PinsPac
 					GPIO_Init(GPIOB, &GPIO_InitStruct);						/* Initialize pin */
 					result = TM_PWM_Result_Ok;								/* Result OK */
 					break;
-				case TM_PWM_PinsPack_3:
-					result = TM_PWM_Result_PinNotValid;
-					break;
 				default:
 					result = TM_PWM_Result_PinNotValid;
 					break;
@@ -443,9 +429,6 @@ TM_PWM_Result_t TM_PWM_INT_InitTIM2Pins(TM_PWM_Channel_t Channel, TM_PWM_PinsPac
 					GPIO_Init(GPIOB, &GPIO_InitStruct);						/* Initialize pin */
 					result = TM_PWM_Result_Ok;								/* Result OK */
 					break;
-				case TM_PWM_PinsPack_3:
-					result = TM_PWM_Result_PinNotValid;
-					break;
 				default:
 					result = TM_PWM_Result_PinNotValid;
 					break;
@@ -466,9 +449,6 @@ TM_PWM_Result_t TM_PWM_INT_InitTIM2Pins(TM_PWM_Channel_t Channel, TM_PWM_PinsPac
 					GPIO_InitStruct.GPIO_Pin = GPIO_Pin_11;					/* Set pin */
 					GPIO_Init(GPIOB, &GPIO_InitStruct);						/* Initialize pin */
 					result = TM_PWM_Result_Ok;								/* Result OK */
-					break;
-				case TM_PWM_PinsPack_3:
-					result = TM_PWM_Result_PinNotValid;
 					break;
 				default:
 					result = TM_PWM_Result_PinNotValid;
@@ -566,9 +546,6 @@ TM_PWM_Result_t TM_PWM_INT_InitTIM3Pins(TM_PWM_Channel_t Channel, TM_PWM_PinsPac
 					GPIO_Init(GPIOC, &GPIO_InitStruct);						/* Initialize pin */
 					result = TM_PWM_Result_Ok;								/* Result OK */
 					break;
-				case TM_PWM_PinsPack_3:
-					result = TM_PWM_Result_PinNotValid;
-					break;
 				default:
 					result = TM_PWM_Result_PinNotValid;
 					break;
@@ -589,9 +566,6 @@ TM_PWM_Result_t TM_PWM_INT_InitTIM3Pins(TM_PWM_Channel_t Channel, TM_PWM_PinsPac
 					GPIO_InitStruct.GPIO_Pin = GPIO_Pin_9;					/* Set pin */
 					GPIO_Init(GPIOC, &GPIO_InitStruct);						/* Initialize pin */
 					result = TM_PWM_Result_Ok;								/* Result OK */
-					break;
-				case TM_PWM_PinsPack_3:
-					result = TM_PWM_Result_PinNotValid;
 					break;
 				default:
 					result = TM_PWM_Result_PinNotValid;
@@ -633,9 +607,6 @@ TM_PWM_Result_t TM_PWM_INT_InitTIM4Pins(TM_PWM_Channel_t Channel, TM_PWM_PinsPac
 					GPIO_Init(GPIOD, &GPIO_InitStruct);						/* Initialize pin */
 					result = TM_PWM_Result_Ok;								/* Result OK */
 					break;
-				case TM_PWM_PinsPack_3:
-					result = TM_PWM_Result_PinNotValid;
-					break;
 				default:
 					result = TM_PWM_Result_PinNotValid;
 					break;
@@ -656,9 +627,6 @@ TM_PWM_Result_t TM_PWM_INT_InitTIM4Pins(TM_PWM_Channel_t Channel, TM_PWM_PinsPac
 					GPIO_InitStruct.GPIO_Pin = GPIO_Pin_13;					/* Set pin */
 					GPIO_Init(GPIOD, &GPIO_InitStruct);						/* Initialize pin */
 					result = TM_PWM_Result_Ok;								/* Result OK */
-					break;
-				case TM_PWM_PinsPack_3:
-					result = TM_PWM_Result_PinNotValid;
 					break;
 				default:
 					result = TM_PWM_Result_PinNotValid;
@@ -681,9 +649,6 @@ TM_PWM_Result_t TM_PWM_INT_InitTIM4Pins(TM_PWM_Channel_t Channel, TM_PWM_PinsPac
 					GPIO_Init(GPIOD, &GPIO_InitStruct);						/* Initialize pin */
 					result = TM_PWM_Result_Ok;								/* Result OK */
 					break;
-				case TM_PWM_PinsPack_3:
-					result = TM_PWM_Result_PinNotValid;
-					break;
 				default:
 					result = TM_PWM_Result_PinNotValid;
 					break;
@@ -704,9 +669,6 @@ TM_PWM_Result_t TM_PWM_INT_InitTIM4Pins(TM_PWM_Channel_t Channel, TM_PWM_PinsPac
 					GPIO_InitStruct.GPIO_Pin = GPIO_Pin_15;					/* Set pin */
 					GPIO_Init(GPIOD, &GPIO_InitStruct);						/* Initialize pin */
 					result = TM_PWM_Result_Ok;								/* Result OK */
-					break;
-				case TM_PWM_PinsPack_3:
-					result = TM_PWM_Result_PinNotValid;
 					break;
 				default:
 					result = TM_PWM_Result_PinNotValid;
@@ -748,9 +710,6 @@ TM_PWM_Result_t TM_PWM_INT_InitTIM5Pins(TM_PWM_Channel_t Channel, TM_PWM_PinsPac
 					GPIO_Init(GPIOH, &GPIO_InitStruct);						/* Initialize pin */
 					result = TM_PWM_Result_Ok;								/* Result OK */
 					break;
-				case TM_PWM_PinsPack_3:
-					result = TM_PWM_Result_PinNotValid;
-					break;
 				default:
 					result = TM_PWM_Result_PinNotValid;
 					break;
@@ -771,9 +730,6 @@ TM_PWM_Result_t TM_PWM_INT_InitTIM5Pins(TM_PWM_Channel_t Channel, TM_PWM_PinsPac
 					GPIO_InitStruct.GPIO_Pin = GPIO_Pin_11;					/* Set pin */
 					GPIO_Init(GPIOH, &GPIO_InitStruct);						/* Initialize pin */
 					result = TM_PWM_Result_Ok;								/* Result OK */
-					break;
-				case TM_PWM_PinsPack_3:
-					result = TM_PWM_Result_PinNotValid;
 					break;
 				default:
 					result = TM_PWM_Result_PinNotValid;
@@ -796,9 +752,6 @@ TM_PWM_Result_t TM_PWM_INT_InitTIM5Pins(TM_PWM_Channel_t Channel, TM_PWM_PinsPac
 					GPIO_Init(GPIOH, &GPIO_InitStruct);						/* Initialize pin */
 					result = TM_PWM_Result_Ok;								/* Result OK */
 					break;
-				case TM_PWM_PinsPack_3:
-					result = TM_PWM_Result_PinNotValid;
-					break;
 				default:
 					result = TM_PWM_Result_PinNotValid;
 					break;
@@ -819,9 +772,6 @@ TM_PWM_Result_t TM_PWM_INT_InitTIM5Pins(TM_PWM_Channel_t Channel, TM_PWM_PinsPac
 					GPIO_InitStruct.GPIO_Pin = GPIO_Pin_0;					/* Set pin */
 					GPIO_Init(GPIOI, &GPIO_InitStruct);						/* Initialize pin */
 					result = TM_PWM_Result_Ok;								/* Result OK */
-					break;
-				case TM_PWM_PinsPack_3:
-					result = TM_PWM_Result_PinNotValid;
 					break;
 				default:
 					result = TM_PWM_Result_PinNotValid;
@@ -863,9 +813,6 @@ TM_PWM_Result_t TM_PWM_INT_InitTIM8Pins(TM_PWM_Channel_t Channel, TM_PWM_PinsPac
 					GPIO_Init(GPIOI, &GPIO_InitStruct);						/* Initialize pin */
 					result = TM_PWM_Result_Ok;								/* Result OK */
 					break;
-				case TM_PWM_PinsPack_3:
-					result = TM_PWM_Result_PinNotValid;
-					break;
 				default:
 					result = TM_PWM_Result_PinNotValid;
 					break;
@@ -886,9 +833,6 @@ TM_PWM_Result_t TM_PWM_INT_InitTIM8Pins(TM_PWM_Channel_t Channel, TM_PWM_PinsPac
 					GPIO_InitStruct.GPIO_Pin = GPIO_Pin_6;					/* Set pin */
 					GPIO_Init(GPIOI, &GPIO_InitStruct);						/* Initialize pin */
 					result = TM_PWM_Result_Ok;								/* Result OK */
-					break;
-				case TM_PWM_PinsPack_3:
-					result = TM_PWM_Result_PinNotValid;
 					break;
 				default:
 					result = TM_PWM_Result_PinNotValid;
@@ -911,9 +855,6 @@ TM_PWM_Result_t TM_PWM_INT_InitTIM8Pins(TM_PWM_Channel_t Channel, TM_PWM_PinsPac
 					GPIO_Init(GPIOI, &GPIO_InitStruct);						/* Initialize pin */
 					result = TM_PWM_Result_Ok;								/* Result OK */
 					break;
-				case TM_PWM_PinsPack_3:
-					result = TM_PWM_Result_PinNotValid;
-					break;
 				default:
 					result = TM_PWM_Result_PinNotValid;
 					break;
@@ -934,9 +875,6 @@ TM_PWM_Result_t TM_PWM_INT_InitTIM8Pins(TM_PWM_Channel_t Channel, TM_PWM_PinsPac
 					GPIO_InitStruct.GPIO_Pin = GPIO_Pin_2;					/* Set pin */
 					GPIO_Init(GPIOI, &GPIO_InitStruct);						/* Initialize pin */
 					result = TM_PWM_Result_Ok;								/* Result OK */
-					break;
-				case TM_PWM_PinsPack_3:
-					result = TM_PWM_Result_PinNotValid;
 					break;
 				default:
 					result = TM_PWM_Result_PinNotValid;
@@ -978,9 +916,6 @@ TM_PWM_Result_t TM_PWM_INT_InitTIM9Pins(TM_PWM_Channel_t Channel, TM_PWM_PinsPac
 					GPIO_Init(GPIOE, &GPIO_InitStruct);						/* Initialize pin */
 					result = TM_PWM_Result_Ok;								/* Result OK */
 					break;
-				case TM_PWM_PinsPack_3:
-					result = TM_PWM_Result_PinNotValid;
-					break;
 				default:
 					result = TM_PWM_Result_PinNotValid;
 					break;
@@ -1002,19 +937,10 @@ TM_PWM_Result_t TM_PWM_INT_InitTIM9Pins(TM_PWM_Channel_t Channel, TM_PWM_PinsPac
 					GPIO_Init(GPIOE, &GPIO_InitStruct);						/* Initialize pin */
 					result = TM_PWM_Result_Ok;								/* Result OK */
 					break;
-				case TM_PWM_PinsPack_3:
-					result = TM_PWM_Result_PinNotValid;
-					break;
 				default:
 					result = TM_PWM_Result_PinNotValid;
 					break;
 			}
-			break;
-		case TM_PWM_Channel_3:
-			result = TM_PWM_Result_ChannelNotValid;
-			break;
-		case TM_PWM_Channel_4:
-			result = TM_PWM_Result_ChannelNotValid;
 			break;
 		default:
 			result = TM_PWM_Result_ChannelNotValid;
@@ -1051,22 +977,10 @@ TM_PWM_Result_t TM_PWM_INT_InitTIM10Pins(TM_PWM_Channel_t Channel, TM_PWM_PinsPa
 					GPIO_Init(GPIOF, &GPIO_InitStruct);						/* Initialize pin */
 					result = TM_PWM_Result_Ok;								/* Result OK */
 					break;
-				case TM_PWM_PinsPack_3:
-					result = TM_PWM_Result_PinNotValid;
-					break;
 				default:
 					result = TM_PWM_Result_PinNotValid;
 					break;
 			}
-			break;
-		case TM_PWM_Channel_2:
-			result = TM_PWM_Result_ChannelNotValid;
-			break;
-		case TM_PWM_Channel_3:
-			result = TM_PWM_Result_ChannelNotValid;
-			break;
-		case TM_PWM_Channel_4:
-			result = TM_PWM_Result_ChannelNotValid;
 			break;
 		default:
 			result = TM_PWM_Result_ChannelNotValid;
@@ -1103,22 +1017,10 @@ TM_PWM_Result_t TM_PWM_INT_InitTIM11Pins(TM_PWM_Channel_t Channel, TM_PWM_PinsPa
 					GPIO_Init(GPIOF, &GPIO_InitStruct);						/* Initialize pin */
 					result = TM_PWM_Result_Ok;								/* Result OK */
 					break;
-				case TM_PWM_PinsPack_3:
-					result = TM_PWM_Result_PinNotValid;
-					break;
 				default:
 					result = TM_PWM_Result_PinNotValid;
 					break;
 			}
-			break;
-		case TM_PWM_Channel_2:
-			result = TM_PWM_Result_ChannelNotValid;
-			break;
-		case TM_PWM_Channel_3:
-			result = TM_PWM_Result_ChannelNotValid;
-			break;
-		case TM_PWM_Channel_4:
-			result = TM_PWM_Result_ChannelNotValid;
 			break;
 		default:
 			result = TM_PWM_Result_ChannelNotValid;
@@ -1155,9 +1057,6 @@ TM_PWM_Result_t TM_PWM_INT_InitTIM12Pins(TM_PWM_Channel_t Channel, TM_PWM_PinsPa
 					GPIO_Init(GPIOH, &GPIO_InitStruct);						/* Initialize pin */
 					result = TM_PWM_Result_Ok;								/* Result OK */
 					break;
-				case TM_PWM_PinsPack_3:
-					result = TM_PWM_Result_PinNotValid;
-					break;
 				default:
 					result = TM_PWM_Result_PinNotValid;
 					break;
@@ -1179,19 +1078,10 @@ TM_PWM_Result_t TM_PWM_INT_InitTIM12Pins(TM_PWM_Channel_t Channel, TM_PWM_PinsPa
 					GPIO_Init(GPIOH, &GPIO_InitStruct);						/* Initialize pin */
 					result = TM_PWM_Result_Ok;								/* Result OK */
 					break;
-				case TM_PWM_PinsPack_3:
-					result = TM_PWM_Result_PinNotValid;
-					break;
 				default:
 					result = TM_PWM_Result_PinNotValid;
 					break;
 			}
-			break;
-		case TM_PWM_Channel_3:
-			result = TM_PWM_Result_ChannelNotValid;
-			break;
-		case TM_PWM_Channel_4:
-			result = TM_PWM_Result_ChannelNotValid;
 			break;
 		default:
 			result = TM_PWM_Result_ChannelNotValid;
@@ -1228,22 +1118,10 @@ TM_PWM_Result_t TM_PWM_INT_InitTIM13Pins(TM_PWM_Channel_t Channel, TM_PWM_PinsPa
 					GPIO_Init(GPIOF, &GPIO_InitStruct);						/* Initialize pin */
 					result = TM_PWM_Result_Ok;								/* Result OK */
 					break;
-				case TM_PWM_PinsPack_3:
-					result = TM_PWM_Result_PinNotValid;
-					break;
 				default:
 					result = TM_PWM_Result_PinNotValid;
 					break;
 			}
-			break;
-		case TM_PWM_Channel_2:
-			result = TM_PWM_Result_ChannelNotValid;
-			break;
-		case TM_PWM_Channel_3:
-			result = TM_PWM_Result_ChannelNotValid;
-			break;
-		case TM_PWM_Channel_4:
-			result = TM_PWM_Result_ChannelNotValid;
 			break;
 		default:
 			result = TM_PWM_Result_ChannelNotValid;
@@ -1280,22 +1158,10 @@ TM_PWM_Result_t TM_PWM_INT_InitTIM14Pins(TM_PWM_Channel_t Channel, TM_PWM_PinsPa
 					GPIO_Init(GPIOF, &GPIO_InitStruct);						/* Initialize pin */
 					result = TM_PWM_Result_Ok;								/* Result OK */
 					break;
-				case TM_PWM_PinsPack_3:
-					result = TM_PWM_Result_PinNotValid;
-					break;
 				default:
 					result = TM_PWM_Result_PinNotValid;
 					break;
 			}
-			break;
-		case TM_PWM_Channel_2:
-			result = TM_PWM_Result_ChannelNotValid;
-			break;
-		case TM_PWM_Channel_3:
-			result = TM_PWM_Result_ChannelNotValid;
-			break;
-		case TM_PWM_Channel_4:
-			result = TM_PWM_Result_ChannelNotValid;
 			break;
 		default:
 			result = TM_PWM_Result_ChannelNotValid;
