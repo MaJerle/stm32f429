@@ -1,5 +1,5 @@
 /**
- *	Keil project
+ *	Keil project for NRF24L01+ transceiver
  *
  *	Before you start, select your target, on the right of the "Load" button
  *
@@ -67,7 +67,7 @@ int main(void) {
 	TM_NRF24L01_SetTxAddress(TxAddress);
 	
 	/* Reset counter */
-	TM_DELAY_SetTime(0);
+	TM_DELAY_SetTime(2000001);
 	while (1) {
 		/* Every 2 seconds */
 		if (TM_DELAY_Time() > 2000000) {
@@ -92,7 +92,7 @@ int main(void) {
 			/* Go back to RX mode */
 			TM_NRF24L01_PowerUpRx();
 			
-			/* Wait received data, wait max 100ms, if time is larger, than data was probably lost */
+			/* Wait received data, wait max 100ms, if time is larger, then data were probably lost */
 			while (!TM_NRF24L01_DataReady() && TM_DELAY_Time() < 100000);
 			
 			/* Format time */
@@ -106,13 +106,13 @@ int main(void) {
 			/* Check transmit status */
 			if (transmissionStatus == TM_NRF24L01_Transmit_Status_Ok) {
 				/* Transmit went OK */
-				TM_USART_Puts(USART1, ": OK\n\r");
+				TM_USART_Puts(USART1, ": OK\n");
 			} else if (transmissionStatus == TM_NRF24L01_Transmit_Status_Lost) {
 				/* Message was LOST */
-				TM_USART_Puts(USART1, ": LOST\n\r");
+				TM_USART_Puts(USART1, ": LOST\n");
 			} else {
 				/* This should never happen */
-				TM_USART_Puts(USART1, ": SENDING\n\r");
+				TM_USART_Puts(USART1, ": SENDING\n");
 			}
 		}
 	}

@@ -68,10 +68,10 @@ uint8_t TM_NRF24L01_Init(uint8_t channel, uint8_t payload_size) {
 	//Set pipeline to max possible 32 bytes
 	TM_NRF24L01_WriteRegister(NRF24L01_REG_RX_PW_P0, TM_NRF24L01_Struct.PayloadSize); // Auto-ACK pipe
 	TM_NRF24L01_WriteRegister(NRF24L01_REG_RX_PW_P1, TM_NRF24L01_Struct.PayloadSize); // Data payload pipe
-	TM_NRF24L01_WriteRegister(NRF24L01_REG_RX_PW_P2, 0x00);
-	TM_NRF24L01_WriteRegister(NRF24L01_REG_RX_PW_P3, 0x00);
-	TM_NRF24L01_WriteRegister(NRF24L01_REG_RX_PW_P4, 0x00);
-	TM_NRF24L01_WriteRegister(NRF24L01_REG_RX_PW_P5, 0x00);
+	TM_NRF24L01_WriteRegister(NRF24L01_REG_RX_PW_P2, TM_NRF24L01_Struct.PayloadSize);
+	TM_NRF24L01_WriteRegister(NRF24L01_REG_RX_PW_P3, TM_NRF24L01_Struct.PayloadSize);
+	TM_NRF24L01_WriteRegister(NRF24L01_REG_RX_PW_P4, TM_NRF24L01_Struct.PayloadSize);
+	TM_NRF24L01_WriteRegister(NRF24L01_REG_RX_PW_P5, TM_NRF24L01_Struct.PayloadSize);
 	
 	//Set RF settings (2mbps, output power)
 	TM_NRF24L01_SetRF(TM_NRF24L01_Struct.DataRate, TM_NRF24L01_Struct.OutPwr);

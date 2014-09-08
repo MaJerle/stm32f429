@@ -1,5 +1,5 @@
 /**
- *	Keil project
+ *	Keil project for NRF24L01+ transceiver
  *
  *	Before you start, select your target, on the right of the "Load" button
  *
@@ -35,7 +35,6 @@ uint8_t MyAddress[] = {
 	0x7E
 };
 
-
 uint8_t dataOut[32], dataIn[32];
 
 int main(void) {
@@ -69,7 +68,7 @@ int main(void) {
 	while (1) {
 		/* If data is ready on NRF24L01+ */
 		if (TM_NRF24L01_DataReady()) {
-			/* Get data from NRF2L01+ */
+			/* Get data from NRF24L01+ */
 			TM_NRF24L01_GetData(dataIn);
 			
 			/* Send it back, automatically goes to TX mode */

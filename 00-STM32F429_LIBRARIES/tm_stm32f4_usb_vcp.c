@@ -26,6 +26,10 @@ uint8_t TM_USB_VCP_INT_Init = 0;
 
 USB_OTG_CORE_HANDLE	USB_OTG_dev;
 
+/* USB VCP Internal receive buffer */
+extern uint8_t TM_INT_USB_VCP_ReceiveBuffer[USB_VCP_RECEIVE_BUFFER_LENGTH];
+
+
 TM_USB_VCP_Result TM_USB_VCP_Init(void) {
 	/* Initialize USB */
 	USBD_Init(	&USB_OTG_dev,

@@ -114,9 +114,6 @@ typedef enum {
 	TM_USB_VCP_DEVICE_RESUMED
 } TM_USB_VCP_Result;
 
-/* USB VCP Internal receive buffer */
-extern uint8_t TM_INT_USB_VCP_ReceiveBuffer[USB_VCP_RECEIVE_BUFFER_LENGTH];
-
 /**
  * Initialize USB VCP
  *
@@ -174,6 +171,7 @@ extern TM_USB_VCP_Result TM_USB_VCP_Puts(char* str);
  * Returns TM_USB_VCP_CONNECTED if device is configured and drivers are OK on computer
  */
 extern TM_USB_VCP_Result TM_USB_VCP_GetStatus(void);
+
 
 /* Internal functions */
 extern TM_USB_VCP_Result TM_INT_USB_VCP_AddReceived(uint8_t c);
