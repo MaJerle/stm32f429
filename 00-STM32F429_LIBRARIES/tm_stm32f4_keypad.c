@@ -128,8 +128,7 @@ extern void TM_KEYPAD_Init(TM_KEYPAD_Type_t type) {
 	GPIO_InitStruct.GPIO_Pin = KEYPAD_ROW_4_PIN;
 	GPIO_Init(KEYPAD_ROW_4_PORT, &GPIO_InitStruct);
 	
-	
-	/* All rows high */
+	/* All columns high */
 	TM_KEYPAD_INT_SetColumn(0);
 }
 
@@ -220,19 +219,19 @@ uint8_t TM_KEYPAD_INT_CheckRow(uint8_t column) {
 	
 	/* Scan row 1 */
 	if (KEYPAD_ROW_1_CHECK) {
-		return KEYPAD_INT_Buttons[column - 1][0];	
+		return KEYPAD_INT_Buttons[0][column - 1];	
 	}
 	/* Scan row 2 */
 	if (KEYPAD_ROW_2_CHECK) {
-		return KEYPAD_INT_Buttons[column - 1][1];
+		return KEYPAD_INT_Buttons[1][column - 1];
 	}
 	/* Scan row 3 */
 	if (KEYPAD_ROW_3_CHECK) {
-		return KEYPAD_INT_Buttons[column - 1][2];
+		return KEYPAD_INT_Buttons[2][column - 1];
 	}
 	/* Scan row 4 */
 	if (TM_KEYPAD_INT_KeypadType == TM_KEYPAD_Type_Large && KEYPAD_ROW_4_CHECK) {
-		return KEYPAD_INT_Buttons[column - 1][3];
+		return KEYPAD_INT_Buttons[3][column - 1];
 	}	
 	/* Not pressed */
 	return KEYPAD_NO_PRESSED;

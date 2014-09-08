@@ -30,7 +30,7 @@
  * 	- Large
  * 		4x4 = 4 rows and 4 columns
  * 	- Small
- * 		3x4 = 3 rows and 4 columns
+ * 		3x4 = 4 rows and 3 columns
  *
  * Default pinout
  *
@@ -40,9 +40,9 @@
  *	C2			PD1				Column 2
  *	C3			PD2				Column 3
  *	C4			PD3				Column 4
- *	R1			PC0				Row 1
- *	R2			PC1				Row 2
- *	R3			PC2				Row 3
+ *	R1			PC1				Row 1
+ *	R2			PC2				Row 2
+ *	R3			PC3				Row 3
  *	R4			PC5				Row 4
  *
  * You can change pinout. Open defines.h file and change lines below:

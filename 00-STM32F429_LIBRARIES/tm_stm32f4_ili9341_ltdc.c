@@ -561,15 +561,15 @@ void TM_ILI9341_Putc(uint16_t x, uint16_t y, char c, TM_FontDef_t *font, uint16_
 
 
 void TM_ILI9341_DrawLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color) {
-	short dx, dy;
-	short temp;
+	int16_t dx, dy;
+	int16_t temp;
 
-	if (x0 > x1) {
+	if (x0 > x1) {		
 		temp = x1;
 		x1 = x0;
 		x0 = temp;
 	}
-	if (y0 > y1) {
+	if (y0 > y1) {		
 		temp = y1;
 		y1 = y0;
 		y0 = temp;
