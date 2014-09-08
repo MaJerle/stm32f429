@@ -373,7 +373,7 @@ typedef struct {
  * Parameters:
  * 	- float Latitude1
  * 		Latitude of starting point
- * 	- float Latitude1
+ * 	- float Longitude1
  * 		Longitude of starting point
  * 	- float Latitude2
  * 		Latitude of starting point
