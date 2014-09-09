@@ -1,5 +1,5 @@
 /**
- *	Keil project for PWM SERVO example
+ *	Keil project for PWM SERVO example controlled with keypad
  *
  *	Servo works with 50Hz (20ms) PWM frequency input.
  *	High pulse is between 1 and 2 ms, but some are working from 0.8 to 2.2ms
