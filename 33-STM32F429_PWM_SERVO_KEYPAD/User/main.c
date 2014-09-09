@@ -59,6 +59,9 @@ int main(void) {
 		if (Keypad_Button != TM_KEYPAD_Button_NOPRESSED) {
 			switch (Keypad_Button) {
 				case TM_KEYPAD_Button_0:	/* Got to the middle position */
+				case TM_KEYPAD_Button_2:
+				case TM_KEYPAD_Button_5:
+				case TM_KEYPAD_Button_8:
 					/* Go to the middle */
 					duration = SERVO_MIDDLE;
 					break;
