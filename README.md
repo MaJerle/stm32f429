@@ -1,9 +1,19 @@
-# STM32F429 Discovery board
+# STM32F4
 ## Libraries and projects
 
-Here are listed all libraries for STM32F429 Discovery board.
+Here are listed all libraries for STM32F4xx devices.
+Libraries are designed to work with STM32F4xx series of MCU.
+Every project here is created with Keil uVision, but tested with GCC compiler too (Coocox).
+Each project includes 3 targets:
 
-If you are working with STM32F4 Discovery board, than you have to download project template for this board for Keil to be able to run this libraries.
+1. STM32F429-Discovery board (STM32F429, 180MHz)
+2. STM32F4-Discovery board (STM32F407, 168MHz)
+3. Nucleo F401-RE (STM32F401, 84MHz)
+
+When you download repository and open project, you have to set correct your target, for device you use.
+If you use other device in your project, then set your project and copy settings there from target options.
+
+More information below
 http://stm32f4-discovery.com
 
 
