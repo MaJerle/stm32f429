@@ -1,7 +1,7 @@
 # STM32F4
 ## Libraries and projects
 
-Here are listed all libraries for STM32F4xx devices.
+Here are listed all libraries for STM32F4 devices.
 Libraries are designed to work with STM32F4xx series of MCU.
 Every project here is created with Keil uVision, but tested with GCC compiler too (Coocox).
 Each project includes 3 targets:
