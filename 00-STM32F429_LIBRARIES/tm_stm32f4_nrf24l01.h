@@ -324,6 +324,11 @@ extern uint8_t TM_NRF24L01_Init(uint8_t channel, uint8_t payload_size);
  */
 extern void TM_NRF24L01_SetMyAddress(uint8_t* adr);
 
+extern void TM_NRF24L01_SetPipe2Address(uint8_t adr);
+extern void TM_NRF24L01_SetPipe3Address(uint8_t adr);
+extern void TM_NRF24L01_SetPipe4Address(uint8_t adr);
+extern void TM_NRF24L01_SetPipe5Address(uint8_t adr);
+
 /**
  * Set address you will communicate with
  *

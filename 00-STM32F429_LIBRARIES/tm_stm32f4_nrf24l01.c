@@ -80,15 +80,15 @@ uint8_t TM_NRF24L01_Init(uint8_t channel, uint8_t payload_size) {
 	TM_NRF24L01_WriteRegister(NRF24L01_REG_CONFIG, NRF24L01_CONFIG);
 	
 	//Enable auto-acknowledgment for all pipes
-	TM_NRF24L01_WriteRegister(NRF24L01_REG_EN_AA, 0xFF);
+	TM_NRF24L01_WriteRegister(NRF24L01_REG_EN_AA, 0x3F);
 	
-	// Enable RX addresses
-	TM_NRF24L01_WriteRegister(NRF24L01_REG_EN_RXADDR, 0xFF);
+	//Enable RX addresses
+	TM_NRF24L01_WriteRegister(NRF24L01_REG_EN_RXADDR, 0x3F);
 
 	//Auto retransmit delay: 1000 (4x250) us and Up to 15 retransmit trials
 	TM_NRF24L01_WriteRegister(NRF24L01_REG_SETUP_RETR, 0x4F);
 	
-	// Dynamic length configurations: No dynamic length
+	//Dynamic length configurations: No dynamic length
 	TM_NRF24L01_WriteRegister(NRF24L01_REG_DYNPD, (0 << NRF24L01_DPL_P0) | (0 << NRF24L01_DPL_P1) | (0 << NRF24L01_DPL_P2) | (0 << NRF24L01_DPL_P3) | (0 << NRF24L01_DPL_P4) | (0 << NRF24L01_DPL_P5));
 	
 	//Clear FIFOs
@@ -110,6 +110,22 @@ void TM_NRF24L01_SetMyAddress(uint8_t *adr) {
 void TM_NRF24L01_SetTxAddress(uint8_t *adr) {
 	TM_NRF24L01_WriteRegisterMulti(NRF24L01_REG_RX_ADDR_P0, adr, 5);
 	TM_NRF24L01_WriteRegisterMulti(NRF24L01_REG_TX_ADDR, adr, 5);
+}
+
+void TM_NRF24L01_SetPipe2Address(uint8_t adr) {
+	TM_NRF24L01_WriteRegister(NRF24L01_REG_RX_ADDR_P2, adr);
+}
+
+void TM_NRF24L01_SetPipe3Address(uint8_t adr) {
+	TM_NRF24L01_WriteRegister(NRF24L01_REG_RX_ADDR_P3, adr);
+}
+
+void TM_NRF24L01_SetPipe4Address(uint8_t adr) {
+	TM_NRF24L01_WriteRegister(NRF24L01_REG_RX_ADDR_P4, adr);
+}
+
+void TM_NRF24L01_SetPipe5Address(uint8_t adr) {
+	TM_NRF24L01_WriteRegister(NRF24L01_REG_RX_ADDR_P5, adr);
 }
 
 void TM_NRF24L01_WriteBit(uint8_t reg, uint8_t bit, BitAction value) {
@@ -316,7 +332,6 @@ void TM_NRF24L01_SoftwareReset(void) {
 	TM_NRF24L01_WriteRegister(NRF24L01_REG_FIFO_STATUS, NRF24L01_REG_DEFAULT_VAL_FIFO_STATUS);
 	TM_NRF24L01_WriteRegister(NRF24L01_REG_DYNPD, 		NRF24L01_REG_DEFAULT_VAL_DYNPD);
 	TM_NRF24L01_WriteRegister(NRF24L01_REG_FEATURE, 	NRF24L01_REG_DEFAULT_VAL_FEATURE);
-	
 }
 
 uint8_t TM_NRF24L01_GetRetransmissionsCount(void) {
@@ -325,7 +340,7 @@ uint8_t TM_NRF24L01_GetRetransmissionsCount(void) {
 }
 
 void TM_NRF24L01_SetChannel(uint8_t channel) {
-	if (channel <= 125) {
+	if (channel <= 125 && channel != TM_NRF24L01_Struct.Channel) {
 		TM_NRF24L01_Struct.Channel = channel;
 		TM_NRF24L01_WriteRegister(NRF24L01_REG_RF_CH, channel);
 	}
