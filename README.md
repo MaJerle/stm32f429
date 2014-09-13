@@ -94,6 +94,8 @@ http://bit.ly/1tKFMIn
 http://bit.ly/1qvYtyD
 33. PWM - Use PWM on all possible timers for STM32F4xx device
 http://bit.ly/1CFInc5
+34. USB HID Device - Turn STM32F4 into USB HID Device
+http://bit.ly/1qRtTkL
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB
