@@ -19,56 +19,72 @@
 #include "tm_stm32f4_i2c.h"
 
 uint32_t TM_I2C_Timeout;
+uint32_t TM_I2C_INT_Clocks[3] = {0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF};
 
 void TM_I2C_Init(I2C_TypeDef* I2Cx, TM_I2C_PinsPack_t pinspack, uint32_t clockSpeed) {
 	I2C_InitTypeDef I2C_InitStruct;
 	
-	I2C_InitStruct.I2C_ClockSpeed = clockSpeed;
-	
-#ifdef I2C1
 	if (I2Cx == I2C1) {
+		/* Enable clock */
 		RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C1, ENABLE);
+		/* Enable pins */
 		TM_I2C1_InitPins(pinspack);
 		
+		/* Check clock */
+		if (clockSpeed < TM_I2C_INT_Clocks[0]) {
+			TM_I2C_INT_Clocks[0] = clockSpeed;
+		}
+		
+		/* Set values */
+		I2C_InitStruct.I2C_ClockSpeed = TM_I2C_INT_Clocks[0];
 		I2C_InitStruct.I2C_AcknowledgedAddress = TM_I2C1_ACKNOWLEDGED_ADDRESS;
 		I2C_InitStruct.I2C_Mode = TM_I2C1_MODE;
 		I2C_InitStruct.I2C_OwnAddress1 = TM_I2C1_OWN_ADDRESS;
 		I2C_InitStruct.I2C_Ack = TM_I2C1_ACK;
 		I2C_InitStruct.I2C_DutyCycle = TM_I2C1_DUTY_CYCLE;
-	}
-#endif
-#ifdef I2C2
-	if (I2Cx == I2C2) {
+	} else if (I2Cx == I2C2) {
+		/* Enable clock */
 		RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C2, ENABLE);
+		/* Enable pins */
 		TM_I2C2_InitPins(pinspack);
 		
+		/* Check clock */
+		if (clockSpeed < TM_I2C_INT_Clocks[1]) {
+			TM_I2C_INT_Clocks[1] = clockSpeed;
+		}
+		
+		/* Set values */
+		I2C_InitStruct.I2C_ClockSpeed = TM_I2C_INT_Clocks[1];
 		I2C_InitStruct.I2C_AcknowledgedAddress = TM_I2C2_ACKNOWLEDGED_ADDRESS;
 		I2C_InitStruct.I2C_Mode = TM_I2C2_MODE;
 		I2C_InitStruct.I2C_OwnAddress1 = TM_I2C2_OWN_ADDRESS;
 		I2C_InitStruct.I2C_Ack = TM_I2C2_ACK;
 		I2C_InitStruct.I2C_DutyCycle = TM_I2C2_DUTY_CYCLE;
-	}
-#endif
-#ifdef I2C3
-	if (I2Cx == I2C3) {
+	} else if (I2Cx == I2C3) {
+		/* Enable clock */
 		RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C3, ENABLE);
+		/* Enable pins */
 		TM_I2C3_InitPins(pinspack);
 		
+		/* Check clock */
+		if (clockSpeed < TM_I2C_INT_Clocks[2]) {
+			TM_I2C_INT_Clocks[2] = clockSpeed;
+		}
+		
+		/* Set values */
+		I2C_InitStruct.I2C_ClockSpeed = TM_I2C_INT_Clocks[2];
 		I2C_InitStruct.I2C_AcknowledgedAddress = TM_I2C3_ACKNOWLEDGED_ADDRESS;
 		I2C_InitStruct.I2C_Mode = TM_I2C3_MODE;
 		I2C_InitStruct.I2C_OwnAddress1 = TM_I2C3_OWN_ADDRESS;
 		I2C_InitStruct.I2C_Ack = TM_I2C3_ACK;
 		I2C_InitStruct.I2C_DutyCycle = TM_I2C3_DUTY_CYCLE;
 	}
-#endif
-
-
+	/* Initialize I2C */
 	I2C_Init(I2Cx, &I2C_InitStruct);
-
+	/* Enable I2C */
 	I2C_Cmd(I2Cx, ENABLE);
 }
 
-#ifdef I2C1
 void TM_I2C1_InitPins(TM_I2C_PinsPack_t pinspack) {
 	GPIO_InitTypeDef GPIO_InitDef;
 	
@@ -91,12 +107,16 @@ void TM_I2C1_InitPins(TM_I2C_PinsPack_t pinspack) {
 		
 		GPIO_PinAFConfig(GPIOB, GPIO_PinSource8, GPIO_AF_I2C1);
 		GPIO_PinAFConfig(GPIOB, GPIO_PinSource9, GPIO_AF_I2C1);
+	} else if (pinspack == TM_I2C_PinsPack_3) {
+		//                      SCL          SDA
+		GPIO_InitDef.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_9;
+		
+		GPIO_PinAFConfig(GPIOB, GPIO_PinSource6, GPIO_AF_I2C1);
+		GPIO_PinAFConfig(GPIOB, GPIO_PinSource9, GPIO_AF_I2C1);
 	}
 	GPIO_Init(GPIOB, &GPIO_InitDef);
 }
-#endif
 
-#ifdef I2C2
 void TM_I2C2_InitPins(TM_I2C_PinsPack_t pinspack) {
 	GPIO_InitTypeDef GPIO_InitDef;
 	
@@ -125,11 +145,19 @@ void TM_I2C2_InitPins(TM_I2C_PinsPack_t pinspack) {
 		GPIO_PinAFConfig(GPIOF, GPIO_PinSource1, GPIO_AF_I2C2);
 		
 		GPIO_Init(GPIOF, &GPIO_InitDef);
+	} else if (pinspack == TM_I2C_PinsPack_3) {
+		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOH, ENABLE);
+		
+		//                      SCL          SDA
+		GPIO_InitDef.GPIO_Pin = GPIO_Pin_4 | GPIO_Pin_5;
+		
+		GPIO_PinAFConfig(GPIOH, GPIO_PinSource4, GPIO_AF_I2C2);
+		GPIO_PinAFConfig(GPIOH, GPIO_PinSource5, GPIO_AF_I2C2);
+		
+		GPIO_Init(GPIOH, &GPIO_InitDef);
 	}
 }
-#endif
 
-#ifdef I2C3
 void TM_I2C3_InitPins(TM_I2C_PinsPack_t pinspack) {
 	GPIO_InitTypeDef GPIO_InitDef;
 
@@ -163,7 +191,6 @@ void TM_I2C3_InitPins(TM_I2C_PinsPack_t pinspack) {
 	}
 	GPIO_Init(GPIOH, &GPIO_InitDef);
 }
-#endif
 
 uint8_t TM_I2C_Read(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg) {
 	uint8_t received_data;

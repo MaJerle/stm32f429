@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/05/library-09-i2c-for-stm32f4xx/
- *	@version 	v1.1
+ *	@version 	v1.2
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -29,16 +29,20 @@
  * Version 1.1
  *	- 08.09.2014
  *	- Added support to check if device is connected to I2C bus
- *
- *
- *	Pinout on STM32F4 devices
  *	
- *			|PINSPACK 1		|PINSPACK 2	
- *	I2CX	|SCL	SDA		|SCL	SDA
- *			|				|
- *	I2C1	|PB6	PB7		|PB8	PB9
- *	I2C2	|PB10	PB11	|PF1	PF0
- *	I2C3	|PA8	PC9		|PH7	PH8
+ * Version 1.2
+ *	- 14.08.2014
+ *	- If you connect more devices on one I2C with different max SCL speed, low speed will be always selected.
+ *	- Added some additional pins for I2C
+ *
+ *	Pinout on STM32F4 device
+ *	
+ *			|PINSPACK 1		|PINSPACK 2		|PINSPACK 3
+ *	I2CX	|SCL	SDA		|SCL	SDA		|SCL	SDA
+ *			|				|				|
+ *	I2C1	|PB6	PB7		|PB8	PB9		|PB6	PB9
+ *	I2C2	|PB10	PB11	|PF1	PF0		|PH4	PH5
+ *	I2C3	|PA8	PC9		|PH7	PH8		|-		-
  *	
  *	Possible changes in your defines.h file:
  *	Change x to your I2C used, 1-3
@@ -131,17 +135,18 @@
 #endif
 
 //I2C speed modes
-#define TM_I2C_CLOCK_STANDARD					100000
-#define TM_I2C_CLOCK_FAST_MODE				400000
+#define TM_I2C_CLOCK_STANDARD			100000
+#define TM_I2C_CLOCK_FAST_MODE			400000
 #define TM_I2C_CLOCK_FAST_MODE_PLUS		1000000
-#define TM_I2C_CLOCK_HIGH_SPEED				3400000
+#define TM_I2C_CLOCK_HIGH_SPEED			3400000
 
 /**
  * Pins used
  */
 typedef enum {
 	TM_I2C_PinsPack_1,
-	TM_I2C_PinsPack_2
+	TM_I2C_PinsPack_2,
+	TM_I2C_PinsPack_3
 } TM_I2C_PinsPack_t;
 
 /**
