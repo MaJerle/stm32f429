@@ -19,6 +19,7 @@ int main(void) {
 	SystemInit();
 
 	/* Initialize SPI */
+	/* SCK = PA5, MOSI = PA7, MISO = PA6 */
 	TM_SPI_Init(SPI1, TM_SPI_PinsPack_1);
 	
 	/* Send 0x15 over SPI1 */
