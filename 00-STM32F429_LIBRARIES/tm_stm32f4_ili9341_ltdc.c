@@ -561,73 +561,30 @@ void TM_ILI9341_Putc(uint16_t x, uint16_t y, char c, TM_FontDef_t *font, uint16_
 
 
 void TM_ILI9341_DrawLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color) {
-	int16_t dx, dy;
-	int16_t temp;
+	/* Code by dewoller: https://github.com/dewoller */
+	
+	int16_t dx, dy, sx, sy, err, e2; 
+	
+	dx = (x0 < x1) ? (x1 - x0) : (x0 - x1); 
+	dy = (y0 < y1) ? (y1 - y0) : (y0 - y1); 
+	sx = (x0 < x1) ? 1 : -1; 
+	sy = (y0 < y1) ? 1 : -1; 
+	err = ((dx > dy) ? dx : -dy) / 2; 
 
-	if (x0 > x1) {		
-		temp = x1;
-		x1 = x0;
-		x0 = temp;
-	}
-	if (y0 > y1) {		
-		temp = y1;
-		y1 = y0;
-		y0 = temp;
-	}
-
-	dx = x1 - x0;
-	dy = y1 - y0;
-
-	if (dx == 0) {
-		do {
-			TM_ILI9341_DrawPixel(x0, y0, color);
-			y0++;
-		} while (y1 >= y0);
-		return;
-	}
-	if (dy == 0) {
-		do {
-			TM_ILI9341_DrawPixel(x0, y0, color);
-			x0++;
-		} while (x1 >= x0);
-		return;
-	}
-
-	/* Based on Bresenham's line algorithm  */
-	if (dx > dy) {
-		temp = 2 * dy - dx;
-		while (x0 != x1) {
-			TM_ILI9341_DrawPixel(x0, y0, color);
-			if (x0 < x1) {
-				x0++;
-			} else {
-				x0--;
-			}
-			if (temp > 0) {
-				y0++;
-				temp += 2 * dy - 2 * dx;
-			} else {
-				temp += 2 * dy;
-			}
+	while (1) {
+		TM_ILI9341_DrawPixel(x0, y0, color); 
+		if (x0 == x1 && y0 == y1) {
+			break;
 		}
-		TM_ILI9341_DrawPixel(x0, y0, color);
-	} else {
-		temp = 2 * dx - dy;
-		while (y0 != y1) {
-			TM_ILI9341_DrawPixel(x0, y0, color);
-			if (y0 < y1) {
-                y0++;
-            } else {
-                y0--;
-			}
-			if (temp > 0) {
-				x0++;
-				temp += 2 * dy - 2 * dx;
-			} else {
-				temp += 2 * dy;
-			}
-		}
-		TM_ILI9341_DrawPixel(x0, y0, color);
+		e2 = err; 
+		if (e2 > -dx) {
+			err -= dy;
+			x0 += sx;
+		} 
+		if (e2 < dy) {
+			err += dx;
+			y0 += sy;
+		} 
 	}
 }
 
