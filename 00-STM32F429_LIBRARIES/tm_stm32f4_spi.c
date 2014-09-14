@@ -19,39 +19,20 @@
 #include "tm_stm32f4_spi.h"
 
 void TM_SPI_Init(SPI_TypeDef* SPIx, TM_SPI_PinsPack_t pinspack) {
-#ifdef SPI1
 	if (SPIx == SPI1) {
 		TM_SPI1_Init(pinspack);
-	}
-#endif
-#ifdef SPI2
-	if (SPIx == SPI2) {
+	} else if (SPIx == SPI2) {
 		TM_SPI2_Init(pinspack);
-	}
-#endif
-#ifdef SPI3
-	if (SPIx == SPI3) {
+	} else if (SPIx == SPI3) {
 		TM_SPI3_Init(pinspack);
-	}
-#endif
-#ifdef SPI4
-	if (SPIx == SPI4) {
+	} else if (SPIx == SPI4) {
 		TM_SPI4_Init(pinspack);
-	}
-#endif
-#ifdef SPI5
-	if (SPIx == SPI5) {
+	} else if (SPIx == SPI5) {
 		TM_SPI5_Init(pinspack);
+	} else if (SPIx == SPI6) {
+		TM_SPI6_Init(pinspack);
 	}
-#endif
-#ifdef SPI6
-	if (SPIx == SPI6) {
-		TM_SPI6_Init();
-	}
-#endif
 }
-
-#ifdef SPI1
 
 void TM_SPI1_Init(TM_SPI_PinsPack_t pinspack) {
 	GPIO_InitTypeDef GPIO_InitStruct;
@@ -73,7 +54,7 @@ void TM_SPI1_Init(TM_SPI_PinsPack_t pinspack) {
 		GPIO_PinAFConfig(GPIOA, GPIO_PinSource5, GPIO_AF_SPI1);
 		GPIO_PinAFConfig(GPIOA, GPIO_PinSource6, GPIO_AF_SPI1);
 		GPIO_PinAFConfig(GPIOA, GPIO_PinSource7, GPIO_AF_SPI1);
-	} else {
+	} else if (pinspack == TM_SPI_PinsPack_2) {
 		//Enable clock for GPIOB
 		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
 		//Pinspack nr. 2        SCK          MISO         MOSI
@@ -110,9 +91,6 @@ void TM_SPI1_Init(TM_SPI_PinsPack_t pinspack) {
 	SPI_Init(SPI1, &SPI_InitStruct);
 	SPI_Cmd(SPI1, ENABLE);
 }
-#endif
-
-#ifdef SPI2
 
 void TM_SPI2_Init(TM_SPI_PinsPack_t pinspack) {
 	GPIO_InitTypeDef GPIO_InitStruct;
@@ -138,7 +116,7 @@ void TM_SPI2_Init(TM_SPI_PinsPack_t pinspack) {
 		GPIO_PinAFConfig(GPIOC, GPIO_PinSource2, GPIO_AF_SPI2);
 		GPIO_PinAFConfig(GPIOC, GPIO_PinSource3, GPIO_AF_SPI2);
 		GPIO_PinAFConfig(GPIOB, GPIO_PinSource10, GPIO_AF_SPI2);
-	} else {
+	} else if (pinspack == TM_SPI_PinsPack_2) {
 		//Enable clock
 		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
 		//Pinspack nr. 2        	SCK           MISO          MOSI
@@ -148,6 +126,16 @@ void TM_SPI2_Init(TM_SPI_PinsPack_t pinspack) {
 		GPIO_PinAFConfig(GPIOB, GPIO_PinSource13, GPIO_AF_SPI2);
 		GPIO_PinAFConfig(GPIOB, GPIO_PinSource14, GPIO_AF_SPI2);
 		GPIO_PinAFConfig(GPIOB, GPIO_PinSource15, GPIO_AF_SPI2);
+	} else if (pinspack == TM_SPI_PinsPack_3) {
+		//Enable clock
+		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOI, ENABLE);
+		//Pinspack nr. 2        	SCK         MISO         MOSI
+		GPIO_InitStruct.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_2 | GPIO_Pin_3;
+		GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+		GPIO_PinAFConfig(GPIOI, GPIO_PinSource0, GPIO_AF_SPI2);
+		GPIO_PinAFConfig(GPIOI, GPIO_PinSource2, GPIO_AF_SPI2);
+		GPIO_PinAFConfig(GPIOI, GPIO_PinSource3, GPIO_AF_SPI2);
 	}
 
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_SPI2, ENABLE);
@@ -175,9 +163,6 @@ void TM_SPI2_Init(TM_SPI_PinsPack_t pinspack) {
 	SPI_Init(SPI2, &SPI_InitStruct);
 	SPI_Cmd(SPI2, ENABLE);
 }
-#endif
-
-#ifdef SPI3
 
 void TM_SPI3_Init(TM_SPI_PinsPack_t pinspack) {
 	GPIO_InitTypeDef GPIO_InitStruct;
@@ -199,7 +184,7 @@ void TM_SPI3_Init(TM_SPI_PinsPack_t pinspack) {
 		GPIO_PinAFConfig(GPIOB, GPIO_PinSource3, GPIO_AF_SPI3);
 		GPIO_PinAFConfig(GPIOB, GPIO_PinSource4, GPIO_AF_SPI3);
 		GPIO_PinAFConfig(GPIOB, GPIO_PinSource5, GPIO_AF_SPI3);
-	} else {
+	} else if (pinspack == TM_SPI_PinsPack_2) {
 		//Enable clock
 		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);
 		//Pinspack nr. 2        SCK           MISO          MOSI
@@ -236,9 +221,6 @@ void TM_SPI3_Init(TM_SPI_PinsPack_t pinspack) {
 	SPI_Init(SPI3, &SPI_InitStruct);
 	SPI_Cmd(SPI3, ENABLE);
 }
-#endif
-
-#ifdef SPI4
 
 void TM_SPI4_Init(TM_SPI_PinsPack_t pinspack) {
 	GPIO_InitTypeDef GPIO_InitStruct;
@@ -260,7 +242,7 @@ void TM_SPI4_Init(TM_SPI_PinsPack_t pinspack) {
 		GPIO_PinAFConfig(GPIOE, GPIO_PinSource2, GPIO_AF_SPI4);
 		GPIO_PinAFConfig(GPIOE, GPIO_PinSource5, GPIO_AF_SPI4);
 		GPIO_PinAFConfig(GPIOE, GPIO_PinSource6, GPIO_AF_SPI4);
-	} else {
+	} else if (pinspack == TM_SPI_PinsPack_2) {
 		//Enable clock
 		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOE, ENABLE);
 		//Pinspack nr. 2        SCK           MISO          MOSI
@@ -297,9 +279,6 @@ void TM_SPI4_Init(TM_SPI_PinsPack_t pinspack) {
 	SPI_Init(SPI4, &SPI_InitStruct);
 	SPI_Cmd(SPI4, ENABLE);
 }
-#endif
-
-#ifdef SPI5
 
 void TM_SPI5_Init(TM_SPI_PinsPack_t pinspack) {
 	GPIO_InitTypeDef GPIO_InitStruct;
@@ -321,7 +300,7 @@ void TM_SPI5_Init(TM_SPI_PinsPack_t pinspack) {
 		GPIO_PinAFConfig(GPIOF, GPIO_PinSource7, GPIO_AF_SPI5);
 		GPIO_PinAFConfig(GPIOF, GPIO_PinSource8, GPIO_AF_SPI5);
 		GPIO_PinAFConfig(GPIOF, GPIO_PinSource9, GPIO_AF_SPI5);
-	} else {
+	} else if (pinspack == TM_SPI_PinsPack_2) {
 		//Enable clock
 		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOF, ENABLE);
 		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOH, ENABLE);
@@ -362,10 +341,8 @@ void TM_SPI5_Init(TM_SPI_PinsPack_t pinspack) {
 	SPI_Init(SPI5, &SPI_InitStruct);
 	SPI_Cmd(SPI5, ENABLE);
 }
-#endif
 
-#ifdef SPI6
-void TM_SPI6_Init(void) {
+void TM_SPI6_Init(TM_SPI_PinsPack_t pinspack) {
 	GPIO_InitTypeDef GPIO_InitStruct;
 	SPI_InitTypeDef SPI_InitStruct;
 
@@ -411,8 +388,6 @@ void TM_SPI6_Init(void) {
 	SPI_Init(SPI6, &SPI_InitStruct);
 	SPI_Cmd(SPI6, ENABLE);
 }
-
-#endif
 
 uint8_t TM_SPI_Send(SPI_TypeDef* SPIx, uint8_t data) {
 	//Fill output buffer with data

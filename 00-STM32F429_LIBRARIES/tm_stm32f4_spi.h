@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/04/library-05-spi-for-stm32f4xx/
- *	@version 	v1.2
+ *	@version 	v1.3
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -26,6 +26,10 @@
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
  *	
+ *	Version 1.3
+ *	 - 14.09.2014
+ *	 - Added additional pins for SPI2
+ *
  *	It support all 6 SPIs in master with 2Line Full Duplex mode
  *
  *	All six spis work the same principle by default.
@@ -38,14 +42,14 @@
  *	- direction is full duplex 2 wire
  *	
  *	Pinout
- *				|PINS PACK 1			|PINS PACK 2	
- *		SPIX	|MOSI	MISO	SCK		|MOSI	MISO	SCK	
- *				|
- *		SPI1	|PA7	PA6		PA5		|PB5	PB4		PB3
- *		SPI2	|PC3	PC2		PB10	|PB15	PB14	PB13
- *		SPI3	|PB5	PB4		PB3		|PC12	PC11	PC10
- *		SPI4	|PE6	PE5		PE2		|PE14	PE13	PE12
- *		SPI5	|PF9	PF8		PF7		|PF11	PH7		PH6
+ *				|PINS PACK 1			|PINS PACK 2			|PINS PACK 3
+ *		SPIX	|MOSI	MISO	SCK		|MOSI	MISO	SCK		|MOSI	MISO	SCK
+ *				|			
+ *		SPI1	|PA7	PA6		PA5		|PB5	PB4		PB3		|
+ *		SPI2	|PC3	PC2		PB10	|PB15	PB14	PB13	|PI3	PI2		PI0
+ *		SPI3	|PB5	PB4		PB3		|PC12	PC11	PC10	|
+ *		SPI4	|PE6	PE5		PE2		|PE14	PE13	PE12	|
+ *		SPI5	|PF9	PF8		PF7		|PF11	PH7		PH6		|
  *		SPI6	|PG14	PG12	PG13	|
  *	
  *	Possible changes to each SPI. Set this defines in your defines.h file.
@@ -65,7 +69,7 @@
  *	
  */
 #ifndef TM_SPI_H
-#define TM_SPI_H 120
+#define TM_SPI_H 130
 /**
  * Library dependencies
  * - STM32F4xx
@@ -88,7 +92,8 @@
  */
 typedef enum {
 	TM_SPI_PinsPack_1,
-	TM_SPI_PinsPack_2
+	TM_SPI_PinsPack_2,
+	TM_SPI_PinsPack_3
 } TM_SPI_PinsPack_t;
 
 /**
@@ -256,7 +261,7 @@ typedef enum {
  */
 extern void TM_SPI_Init(SPI_TypeDef* SPIx, TM_SPI_PinsPack_t pinspack);
 
-#ifdef SPI1
+
 /**
  * SPI1 uses pins:
  * 	- Pins pack 1:
@@ -269,9 +274,7 @@ extern void TM_SPI_Init(SPI_TypeDef* SPIx, TM_SPI_PinsPack_t pinspack);
  * 		- SCK:  PB3
  */
 extern void TM_SPI1_Init(TM_SPI_PinsPack_t pinspack);
-#endif
 
-#ifdef SPI2
 /**
  * SPI2 uses pins:
  * 	- Pins pack 1:
@@ -282,11 +285,13 @@ extern void TM_SPI1_Init(TM_SPI_PinsPack_t pinspack);
  * 		- MOSI: PB15
  * 		- MISO: PB14
  * 		- SCK:  PB13
+ * 	- Pins pack 3:
+ * 		- MOSI: PI3
+ * 		- MISO: PI2
+ * 		- SCK:  PI0
  */
 extern void TM_SPI2_Init(TM_SPI_PinsPack_t pinspack);
-#endif
 
-#ifdef SPI3
 /**
  * SPI3 uses pins:
  * 	- Pins pack 1:
@@ -299,9 +304,7 @@ extern void TM_SPI2_Init(TM_SPI_PinsPack_t pinspack);
  * 		- SCK:  PC10
  */
 extern void TM_SPI3_Init(TM_SPI_PinsPack_t pinspack);
-#endif
 
-#ifdef SPI4
 /**
  * SPI4 uses pins:
  * 	- Pins pack 1:
@@ -314,9 +317,7 @@ extern void TM_SPI3_Init(TM_SPI_PinsPack_t pinspack);
  * 		- SCK:  PE12
  */
 extern void TM_SPI4_Init(TM_SPI_PinsPack_t pinspack);
-#endif
 
-#ifdef SPI5
 /**
  * SPI5 uses pins:
  * 	- Pins pack 1:
@@ -329,9 +330,7 @@ extern void TM_SPI4_Init(TM_SPI_PinsPack_t pinspack);
  * 		- SCK:  PH6
  */
 extern void TM_SPI5_Init(TM_SPI_PinsPack_t pinspack);
-#endif
 
-#ifdef SPI6
 /**
  * SPI6 uses pins:
  * 	- Pins pack 1:
@@ -339,8 +338,7 @@ extern void TM_SPI5_Init(TM_SPI_PinsPack_t pinspack);
  * 		- MISO: PG12
  * 		- SCK:  PG13
  */
-extern void TM_SPI6_Init(void);
-#endif
+extern void TM_SPI6_Init(TM_SPI_PinsPack_t pinspack);
 
 /**
  * Send and receive data over SPI
