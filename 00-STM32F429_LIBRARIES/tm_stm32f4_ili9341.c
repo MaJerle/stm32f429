@@ -313,6 +313,20 @@ void TM_ILI9341_DrawLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uin
 	
 	int16_t dx, dy, sx, sy, err, e2; 
 	
+	/* Check for overflow */
+	if (x0 >= ILI9341_Opts.Width) {
+		x0 = ILI9341_Opts.Width - 1;
+	}
+	if (x1 >= ILI9341_Opts.Width) {
+		x1 = ILI9341_Opts.Width - 1;
+	}
+	if (y0 >= ILI9341_Opts.Height) {
+		y0 = ILI9341_Opts.Height - 1;
+	}
+	if (y1 >= ILI9341_Opts.Height) {
+		y1 = ILI9341_Opts.Height - 1;
+	}
+	
 	dx = (x0 < x1) ? (x1 - x0) : (x0 - x1); 
 	dy = (y0 < y1) ? (y1 - y0) : (y0 - y1); 
 	sx = (x0 < x1) ? 1 : -1; 

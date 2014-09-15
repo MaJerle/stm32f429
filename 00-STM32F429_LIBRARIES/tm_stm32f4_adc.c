@@ -181,9 +181,9 @@ void TM_ADC_InitPin(uint16_t RCCx, GPIO_TypeDef* GPIOx, uint16_t PinX) {
 
 	GPIO_InitDef.GPIO_Pin = PinX;
 	GPIO_InitDef.GPIO_Mode = GPIO_Mode_AN;
-	//GPIO_InitDef.GPIO_OType = GPIO_OType_PP;
+	GPIO_InitDef.GPIO_OType = GPIO_OType_PP;
 	GPIO_InitDef.GPIO_PuPd = GPIO_PuPd_NOPULL;
-	//GPIO_InitDef.GPIO_Speed = GPIO_Speed_100MHz;
+	GPIO_InitDef.GPIO_Speed = GPIO_Speed_100MHz;
 
 	GPIO_Init(GPIOx, &GPIO_InitDef);
 }
