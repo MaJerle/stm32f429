@@ -1,5 +1,5 @@
 /**
- *	Keil project
+ *	Keil project for LIS302DL or LIS3DSH accelerometer
  *
  *  Before you start, select your target, on the right of the "Load" button
  *
@@ -14,7 +14,6 @@
  * LED_BLUE and LED_ORANGE will be turned on for 2 seconds.
  *
  * If all leds are on, there was an error somewhere.
- *
  */
 /* Include core modules */
 #include "stm32f4xx.h"

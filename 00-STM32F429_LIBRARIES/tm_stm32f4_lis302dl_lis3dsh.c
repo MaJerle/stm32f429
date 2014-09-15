@@ -18,6 +18,16 @@
  */
 #include "tm_stm32f4_lis302dl_lis3dsh.h"
 
+/* Private */
+extern void TM_LIS302DL_LIS3DSH_INT_WriteSPI(uint8_t* data, uint8_t addr, uint8_t count);
+extern void TM_LIS302DL_LIS3DSH_INT_ReadSPI(uint8_t* data, uint8_t addr, uint8_t count);
+extern void TM_LIS302DL_LIS3DSH_INT_InitPins(void);
+extern void TM_LIS302DL_LIS3DSH_INT_InitLIS3DSH(TM_LIS302DL_LIS3DSH_Sensitivity_t Sensitivity, TM_LIS302DL_LIS3DSH_Filter_t Filter);
+extern void TM_LIS302DL_LIS3DSH_INT_InitLIS302DL(TM_LIS302DL_LIS3DSH_Sensitivity_t Sensitivity, TM_LIS302DL_LIS3DSH_Filter_t Filter);
+extern void TM_LIS3DSH_INT_ReadAxes(TM_LIS302DL_LIS3DSH_t* Axes_Data);
+extern void TM_LIS302DL_INT_ReadAxes(TM_LIS302DL_LIS3DSH_t* Axes_Data);
+extern void TM_LIS302DL_LIS3DSH_INT_Delay(void);
+
 TM_LIS302DL_LIS3DSH_Device_t TM_LIS302DL_LIS3DSH_INT_Device = TM_LIS302DL_LIS3DSH_Device_Error;
 float TM_LIS3DSH_INT_Sensitivity;
 
@@ -280,8 +290,7 @@ void TM_LIS302DL_INT_ReadAxes(TM_LIS302DL_LIS3DSH_t* Axes_Data) {
 	/* Set axes */
 	Axes_Data->X = (int16_t) (buffer[0]) * TM_LIS3DSH_INT_Sensitivity;
 	Axes_Data->Y = (int16_t) (buffer[1]) * TM_LIS3DSH_INT_Sensitivity;
-	Axes_Data->Z = (int16_t) (buffer[2]) * TM_LIS3DSH_INT_Sensitivity;
-	
+	Axes_Data->Z = (int16_t) (buffer[2]) * TM_LIS3DSH_INT_Sensitivity;	
 	/* Switch axes */
 	SwitchXY  = Axes_Data->X;
 	Axes_Data->X = Axes_Data->Y;

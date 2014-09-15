@@ -4,7 +4,7 @@
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
- *	@link		
+ *	@link		http://stm32f4-discovery.com/2014/09/library-35-lis302dl-or-lis3dsh-accelerometer
  *	@version 	v1.0
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
@@ -25,6 +25,32 @@
  * | You should have received a copy of the GNU General Public License
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
+ * 
+ * This library supports both devices. I connect both devices, because 
+ * old F4-Discovery board has LIS302DL accelerometer,
+ * new F4-Discovery board has LIS3DSH acelerometer. New accelerometer
+ * has some more features for sensitivity.
+ * 
+ * Default pinout on F4-Discovery board
+ * 
+ * 	LIS		STM32F4		Description
+ * 
+ * 	MOSI	PA7			Master out, Slave in for SPI1
+ * 	MISO	PA6			Master in, Slave out for SPI1
+ * 	SCK		PA5			Serial clock for SPI1
+ * 	CS		PE3			Chip select for LIS
+ * 
+ * Change default pinout. Open defines.h file and copy lines below and edit them
+ * 	
+ * 	//Select custom SPI
+ * 	//#define LIS302DL_LIS3DSH_SPI				SPI1
+ * 	//#define LIS302DL_LIS3DSH_SPI_PINSPACK		TM_SPI_PinsPack_1
+ * 	
+ * 	//Select custom CS pin for SPI
+ * 	//#define LIS302DL_LIS3DSH_CS_RCC			RCC_AHB1Periph_GPIOE
+ * 	//#define LIS302DL_LIS3DSH_CS_PORT			GPIOE
+ * 	//#define LIS302DL_LIS3DSH_CS_PIN			GPIO_Pin_3
+ * 
  */
 #ifndef TM_LIS302DL_LIS3DSH_H
 #define TM_LIS302DL_LIS3DSH_H 100
@@ -47,20 +73,20 @@
 
 /* SPI on STM32F4-Discovery board */
 #ifndef LIS302DL_LIS3DSH_SPI
-#define LIS302DL_LIS3DSH_SPI			SPI1
-#define LIS302DL_LIS3DSH_SPI_PINSPACK	TM_SPI_PinsPack_1
+#define LIS302DL_LIS3DSH_SPI				SPI1
+#define LIS302DL_LIS3DSH_SPI_PINSPACK		TM_SPI_PinsPack_1
 #endif
 
 /* CS pin on STM32F4-Discovery board */
 #ifndef LIS302DL_LIS3DSH_CS_PIN
-#define LIS302DL_LIS3DSH_CS_RCC			RCC_AHB1Periph_GPIOE
-#define LIS302DL_LIS3DSH_CS_PORT		GPIOE
-#define LIS302DL_LIS3DSH_CS_PIN			GPIO_Pin_3
+#define LIS302DL_LIS3DSH_CS_RCC				RCC_AHB1Periph_GPIOE
+#define LIS302DL_LIS3DSH_CS_PORT			GPIOE
+#define LIS302DL_LIS3DSH_CS_PIN				GPIO_Pin_3
 #endif
 
 /* CS pin settings */
-#define LIS302DL_LIS3DSH_CS_LOW			LIS302DL_LIS3DSH_CS_PORT->BSRRH = LIS302DL_LIS3DSH_CS_PIN
-#define LIS302DL_LIS3DSH_CS_HIGH		LIS302DL_LIS3DSH_CS_PORT->BSRRL = LIS302DL_LIS3DSH_CS_PIN
+#define LIS302DL_LIS3DSH_CS_LOW				LIS302DL_LIS3DSH_CS_PORT->BSRRH = LIS302DL_LIS3DSH_CS_PIN
+#define LIS302DL_LIS3DSH_CS_HIGH			LIS302DL_LIS3DSH_CS_PORT->BSRRL = LIS302DL_LIS3DSH_CS_PIN
 
 /* Who I am values */
 #define LIS302DL_ID							0x3B
@@ -85,7 +111,6 @@
 #define LIS3DSH_OUT_Y_H_ADDR				0x2B
 #define LIS3DSH_OUT_Z_L_ADDR				0x2C
 #define LIS3DSH_OUT_Z_H_ADDR				0x2D
-
 
 #define LIS3DSH_SENSITIVITY_0_06G            0.06  /* 0.06 mg/digit*/
 #define LIS3DSH_SENSITIVITY_0_12G            0.12  /* 0.12 mg/digit*/
@@ -113,7 +138,7 @@
 #define LIS3DSH_SM_DISABLE					((uint8_t)0x00)
 
 /* ----------------------------------------- */
-/* LIS302DL registers */
+/* LIS302DL registers                        */
 /* ----------------------------------------- */
 #define LIS302DL_CTRL_REG1_ADDR							0x20
 #define LIS302DL_CTRL_REG2_ADDR							0x21
@@ -146,12 +171,43 @@
 #define LIS302DL_HIGHPASSFILTER_LEVEL_2					((uint8_t)0x02)
 #define LIS302DL_HIGHPASSFILTER_LEVEL_3					((uint8_t)0x03)
 
+/**
+ * Typedef enumeration for returning from functions
+ * 
+ * Parameters:
+ * 	- TM_LIS302DL_LIS3DSH_Device_Error:
+ * 		Returned from function when device is not recognized
+ * 	- TM_LIS302DL_LIS3DSH_Device_LIS302DL:
+ * 		Returned from functions when device is LIS302DL on old boards
+ * 	- TM_LIS302DL_LIS3DSH_Device_LIS3DSH:
+ * 		Returned from functions when device is LIS3DSH on new boards
+ */
 typedef enum {
 	TM_LIS302DL_LIS3DSH_Device_Error,
 	TM_LIS302DL_LIS3DSH_Device_LIS302DL,
 	TM_LIS302DL_LIS3DSH_Device_LIS3DSH
 } TM_LIS302DL_LIS3DSH_Device_t;
 
+/**
+ * Possible sensitivities for both devices
+ * 
+ * Parameters:
+ * 	- TM_LIS3DSH_Sensitivity_2G:
+ * 		2G sensitivity on LIS3DSH device
+ * 	- TM_LIS3DSH_Sensitivity_4G:
+ * 		4G sensitivity on LIS3DSH device
+ * 	- TM_LIS3DSH_Sensitivity_6G:
+ * 		6G sensitivity on LIS3DSH device
+ * 	- TM_LIS3DSH_Sensitivity_8G:
+ * 		8G sensitivity on LIS3DSH device
+ * 	- TM_LIS3DSH_Sensitivity_16G:
+ * 		16G sensitivity on LIS3DSH device
+ * 
+ * 	- TM_LIS302DL_Sensitivity_2_3G:
+ * 		2.3G  sensitivity on LIS3DSH device
+ * 	- TM_LIS302DL_Sensitivity_9_2G:
+ * 		9.2G sensitivity on LIS3DSH device
+ */
 typedef enum {
 	/* LIS3DSH */
 	TM_LIS3DSH_Sensitivity_2G,
@@ -164,6 +220,28 @@ typedef enum {
 	TM_LIS302DL_Sensitivity_9_2G
 } TM_LIS302DL_LIS3DSH_Sensitivity_t;
 
+/**
+ * Filter values for both accelerometers
+ * 
+ * Parameters:
+ * 	- TM_LIS3DSH_Filter_800Hz:
+ * 		800 Hz high pass filter on LIS3DSH
+ * 	- TM_LIS3DSH_Filter_400Hz:
+ * 		400 Hz high pass filter on LIS3DSH
+ * 	- TM_LIS3DSH_Filter_200Hz:
+ * 		200 Hz high pass filter on LIS3DSH
+ * 	- TM_LIS3DSH_Filter_50Hz:
+ * 		50 Hz high pass filter on LIS3DSH
+ * 	
+ * 	- TM_LIS302DL_Filter_2Hz:
+ * 		2 Hz filter on LIS302DL
+ * 	- TM_LIS302DL_Filter_1Hz:
+ * 		1 Hz filter on LIS302DL
+ * 	- TM_LIS302DL_Filter_500mHz:
+ * 		500 mHz filter on LIS302DL
+ * 	- TM_LIS302DL_Filter_250mHz
+ * 		250 mHz filter on LIS302DL
+ */
 typedef enum {
 	/* LIS3DSH */
 	TM_LIS3DSH_Filter_800Hz,
@@ -177,26 +255,54 @@ typedef enum {
 	TM_LIS302DL_Filter_250mHz
 } TM_LIS302DL_LIS3DSH_Filter_t;
 
+/**
+ * Data structure
+ * 
+ * Parameters:
+ * 	- int16_t X:
+ * 		X axis value
+ * 	- int16_t Y:
+ * 		Y axis value
+ * 	- int16_t Z:
+ * 		Z axis value
+ */
 typedef struct {
 	int16_t X;
 	int16_t Y;
 	int16_t Z;
 } TM_LIS302DL_LIS3DSH_t;
 
-/* Public */
+/**
+ * Detect LIS302DL or LIS3DSH device connected on F4-Discovery board
+ * 
+ * Member of TM_LIS302DL_LIS3DSH_Device_t is returned
+ */
 extern TM_LIS302DL_LIS3DSH_Device_t TM_LIS302DL_LIS3DSH_Detect(void);
+
+/**
+ * Initialize proper device
+ * 
+ * Parameters:
+ * 	- TM_LIS302DL_LIS3DSH_Sensitivity_t Sensitivity:
+ * 		Select sensitivity for device. There are separate possible sensitivities for proper device
+ * 	- TM_LIS302DL_LIS3DSH_Filter_t Filter:
+ * 		Select filter for device. There are separate possible sensitivities for proper device
+ * 
+ * Member of TM_LIS302DL_LIS3DSH_Device_t is returned
+ */
 extern TM_LIS302DL_LIS3DSH_Device_t TM_LIS302DL_LIS3DSH_Init(TM_LIS302DL_LIS3DSH_Sensitivity_t Sensitivity, TM_LIS302DL_LIS3DSH_Filter_t Filter);
+
+/**
+ * Read axes from device
+ * 
+ * Parameters:
+ * 	- TM_LIS302DL_LIS3DSH_t* Axes_Data
+ * 		Pointer to TM_LIS302DL_LIS3DSH_t struct
+ * 
+ * Member of TM_LIS302DL_LIS3DSH_Device_t is returned
+ */
 extern TM_LIS302DL_LIS3DSH_Device_t TM_LIS302DL_LIS3DSH_ReadAxes(TM_LIS302DL_LIS3DSH_t* Axes_Data);
 
-/* Private */
-extern void TM_LIS302DL_LIS3DSH_INT_WriteSPI(uint8_t* data, uint8_t addr, uint8_t count);
-extern void TM_LIS302DL_LIS3DSH_INT_ReadSPI(uint8_t* data, uint8_t addr, uint8_t count);
-extern void TM_LIS302DL_LIS3DSH_INT_InitPins(void);
-extern void TM_LIS302DL_LIS3DSH_INT_InitLIS3DSH(TM_LIS302DL_LIS3DSH_Sensitivity_t Sensitivity, TM_LIS302DL_LIS3DSH_Filter_t Filter);
-extern void TM_LIS302DL_LIS3DSH_INT_InitLIS302DL(TM_LIS302DL_LIS3DSH_Sensitivity_t Sensitivity, TM_LIS302DL_LIS3DSH_Filter_t Filter);
-extern void TM_LIS3DSH_INT_ReadAxes(TM_LIS302DL_LIS3DSH_t* Axes_Data);
-extern void TM_LIS302DL_INT_ReadAxes(TM_LIS302DL_LIS3DSH_t* Axes_Data);
-extern void TM_LIS302DL_LIS3DSH_INT_Delay(void);
 #endif
 
 
