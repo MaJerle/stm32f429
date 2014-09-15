@@ -427,6 +427,16 @@
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_pwm.h</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32f4_timer_properties.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_timer_properties.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_timer_properties.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_timer_properties.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1195,6 +1205,16 @@
               <FileName>tm_stm32f4_pwm.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_pwm.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_timer_properties.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_timer_properties.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_timer_properties.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_timer_properties.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -2084,6 +2104,16 @@
               <FileName>tm_stm32f4_pwm.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_pwm.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_timer_properties.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_timer_properties.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_timer_properties.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_timer_properties.h</FilePath>
             </File>
           </Files>
         </Group>
