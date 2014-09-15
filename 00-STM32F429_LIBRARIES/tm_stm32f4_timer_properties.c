@@ -31,7 +31,7 @@ TM_TIMER_PROPERTIES_Result_t TM_TIMER_PROPERTIES_GetTimerProperties(TIM_TypeDef*
 		TIMx == TIM2 ||
 		TIMx == TIM5
 	) {
-		Timer_Data->Frequency = RCC_ClocksStruct.PCLK2_Frequency;	/* Clock */
+		Timer_Data->TimerFrequency = RCC_ClocksStruct.PCLK2_Frequency;	/* Clock */
 		Timer_Data->MaxPeriod = 0xFFFFFFFF;							/* Max period */
 		
 		return TM_TIMER_PROPERTIES_Result_Ok;
@@ -42,7 +42,7 @@ TM_TIMER_PROPERTIES_Result_t TM_TIMER_PROPERTIES_GetTimerProperties(TIM_TypeDef*
 		TIMx == TIM10 ||
 		TIMx == TIM11
 	) {
-		Timer_Data->Frequency = RCC_ClocksStruct.HCLK_Frequency;	/* Clock */
+		Timer_Data->TimerFrequency = RCC_ClocksStruct.HCLK_Frequency;	/* Clock */
 		Timer_Data->MaxPeriod = 0xFFFF;								/* Max period */
 		
 		return TM_TIMER_PROPERTIES_Result_Ok;
@@ -55,13 +55,65 @@ TM_TIMER_PROPERTIES_Result_t TM_TIMER_PROPERTIES_GetTimerProperties(TIM_TypeDef*
 		TIMx == TIM13 ||
 		TIMx == TIM14
 	) {
-		Timer_Data->Frequency = RCC_ClocksStruct.PCLK2_Frequency;	/* Clock */
+		Timer_Data->TimerFrequency = RCC_ClocksStruct.PCLK2_Frequency;	/* Clock */
 		Timer_Data->MaxPeriod = 0xFFFF;								/* Max period */
 		
 		return TM_TIMER_PROPERTIES_Result_Ok;
 	}
 	/* Timer is not valid */
 	return TM_TIMER_PROPERTIES_Result_TimerNotValid;
+}
+
+TM_TIMER_PROPERTIES_Result_t TM_TIMER_PROPERTIES_GenerateDataForWorkingFrequency(TM_TIMER_PROPERTIES_t* Timer_Data, uint32_t frequency) {
+	if (frequency > Timer_Data->TimerFrequency) {
+		/* Reset values */
+		Timer_Data->Prescaler = 0;
+		Timer_Data->Period = 0;
+		Timer_Data->Frequency = 0;
+		
+		/* Frequency too high */
+		return TM_TIMER_PROPERTIES_Result_FrequencyTooHigh;
+	} else if (frequency == 0) {
+		/* Reset values */
+		Timer_Data->Prescaler = 0;
+		Timer_Data->Period = 0;
+		Timer_Data->Frequency = 0;
+		
+		/* Not valid frequency */
+		return TM_TIMER_PROPERTIES_Result_FrequencyTooLow;
+	}
+	
+	/* Fix for 16/32bit timers */
+	if (Timer_Data->MaxPeriod <= 0xFFFF) {
+		Timer_Data->MaxPeriod++;
+	}
+	
+	/* Get minimum prescaler and maximum resolution for timer */
+	Timer_Data->Prescaler = 0;
+	do {
+		/* Get clock */
+		Timer_Data->Period = (Timer_Data->TimerFrequency / (Timer_Data->Prescaler + 1));
+		/* Get period */
+		Timer_Data->Period = (Timer_Data->Period / frequency);
+		/* Increase prescaler value */
+		Timer_Data->Prescaler++;
+	} while (Timer_Data->Period > (Timer_Data->MaxPeriod));
+	/* Check for too low frequency */ 
+	if (Timer_Data->Prescaler > (Timer_Data->MaxPrescaler + 1)) {
+		/* Reset values */
+		Timer_Data->Prescaler = 0;
+		Timer_Data->Period = 0;
+		Timer_Data->Frequency = 0;
+		
+		/* Prescaler too high, frequency is too low for use */
+		return TM_TIMER_PROPERTIES_Result_FrequencyTooLow;
+	}
+	
+	/* Set frequency */
+	Timer_Data->Frequency = frequency;
+	
+	/* Return OK */
+	return TM_TIMER_PROPERTIES_Result_Ok;
 }
 
 TM_TIMER_PROPERTIES_Result_t TM_TIMER_PROPERTIES_EnableClock(TIM_TypeDef* TIMx) {

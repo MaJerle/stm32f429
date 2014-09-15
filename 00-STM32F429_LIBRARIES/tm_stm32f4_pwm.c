@@ -47,46 +47,35 @@ TM_PWM_Result_t TM_PWM_InitTimer(TIM_TypeDef* TIMx, TM_PWM_TIM_t* TIM_Data, uint
 	/* Get timer properties */
 	TM_TIMER_PROPERTIES_GetTimerProperties(TIMx, &Timer_Data);
 	/* Check for maximum timer frequency */
-	if (PWMFrequency > Timer_Data.Frequency) {
+	if (PWMFrequency > Timer_Data.TimerFrequency) {
 		/* Frequency too high */
 		return TM_PWM_Result_FrequencyTooHigh;
 	} else if (PWMFrequency == 0) {
 		/* Not valid frequency */
 		return TM_PWM_Result_FrequencyTooLow;
 	}
+
+	/* Generate settings */
+	TM_TIMER_PROPERTIES_GenerateDataForWorkingFrequency(&Timer_Data, PWMFrequency);
 	
-	/* Fix for 16/32bit timers */
-	if (Timer_Data.MaxPeriod <= 0xFFFF) {
-		Timer_Data.MaxPeriod++;
-	}
-	
-	/* Get minimum prescaler and maximum resolution for timer */
-	TIM_Data->Prescaler = 0;
-	do {
-		/* Get clock */
-		TIM_Data->Period = (Timer_Data.Frequency / (TIM_Data->Prescaler + 1));
-		/* Get period */
-		TIM_Data->Period = (TIM_Data->Period / PWMFrequency);
-		/* Increase prescaler value */
-		TIM_Data->Prescaler++;
-	} while (TIM_Data->Period > (Timer_Data.MaxPeriod));
-	/* Check for too low frequency */ 
-	if (TIM_Data->Prescaler > (Timer_Data.MaxPrescaler + 1)) {
-		/* Prescaler too high, frequency is too low for use */
-		return TM_PWM_Result_FrequencyTooLow;
+	/* Check valid data */
+	if (Timer_Data.Period == 0) {
+		return TM_PWM_Result_FrequencyTooHigh;
 	}
 	
 	/* Tests are OK */
 	TIM_Data->Frequency = PWMFrequency;
 	TIM_Data->Micros = 1000000 / PWMFrequency;
+	TIM_Data->Period = Timer_Data.Period;
+	TIM_Data->Prescaler = Timer_Data.Prescaler;
 	
 	/* Enable clock for Timer */	
 	TM_TIMER_PROPERTIES_EnableClock(TIMx);
 
 	/* Set timer options */
-	TIM_BaseStruct.TIM_Prescaler = TIM_Data->Prescaler - 1;
+	TIM_BaseStruct.TIM_Prescaler = Timer_Data.Prescaler - 1;
 	TIM_BaseStruct.TIM_CounterMode = TIM_CounterMode_Up;
-	TIM_BaseStruct.TIM_Period = TIM_Data->Period - 1; 
+	TIM_BaseStruct.TIM_Period = Timer_Data.Period - 1; 
 	TIM_BaseStruct.TIM_ClockDivision = TIM_CKD_DIV1;
 	TIM_BaseStruct.TIM_RepetitionCounter = 0;
 	
