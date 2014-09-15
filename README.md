@@ -96,6 +96,8 @@ http://bit.ly/1qvYtyD
 http://bit.ly/1CFInc5
 34. USB HID Device - Turn STM32F4 into USB HID Device
 http://bit.ly/1qRtTkL
+35. LIS302DL/LIS3DSH - Accelerometers on STM32F4-Discovery board. Alyso can be used with any STM32F4 device
+http://bit.ly/X8z9UQ
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB
