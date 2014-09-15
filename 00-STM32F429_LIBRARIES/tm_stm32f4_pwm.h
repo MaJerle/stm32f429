@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/09/library-33-pwm-for-stm32f4xx/
- *	@version 	v1.0
+ *	@version 	v1.1
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -25,6 +25,11 @@
  * | You should have received a copy of the GNU General Public License
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
+ *
+ * Version 1.1
+ * 	- 15.09.2014
+ * 	- Split timer properties with enable/disable clocks into new library. This library will be used 
+ * 	in each project where timers are included.
  *
  * PWM pins are connected to fixed possible pins
  *
@@ -55,7 +60,7 @@
  * 	- All channels at one timer have the same PWM frequency!
  */
 #ifndef TM_PWM_H
-#define TM_PWM_H 100
+#define TM_PWM_H 110
 /**
  * Library dependencies
  * - STM32F4xx
@@ -63,6 +68,7 @@
  * - STM32F4xx GPIO
  * - STM32F4xx TIM
  * - defines.h
+ * - TM TIMER PROPERTIES
  */
 /**
  * Includes
@@ -71,6 +77,7 @@
 #include "stm32f4xx_rcc.h"
 #include "stm32f4xx_gpio.h"
 #include "stm32f4xx_tim.h"
+#include "tm_stm32f4_timer_properties.h"
 #include "defines.h"
 
 /**

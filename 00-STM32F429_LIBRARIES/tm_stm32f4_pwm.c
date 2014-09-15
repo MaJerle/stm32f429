@@ -37,12 +37,17 @@ TM_PWM_Result_t TM_PWM_INT_InitTIM14Pins(TM_PWM_Channel_t Channel, TM_PWM_PinsPa
 
 TM_PWM_Result_t TM_PWM_InitTimer(TIM_TypeDef* TIMx, TM_PWM_TIM_t* TIM_Data, uint32_t PWMFrequency) {
 	TIM_TimeBaseInitTypeDef TIM_BaseStruct;
-	uint32_t maxFrequency, maxPeriod;
+	TM_TIMER_PROPERTIES_t Timer_Data;
 
+	/* Check valid timer */
+	if (TIMx == TIM6 || TIMx == TIM7) {
+		return TM_PWM_Result_TimerNotValid;
+	}
+	
 	/* Get timer properties */
-	TM_PWM_INT_GetTimerProperties(TIMx, &maxFrequency, &maxPeriod);
+	TM_TIMER_PROPERTIES_GetTimerProperties(TIMx, &Timer_Data);
 	/* Check for maximum timer frequency */
-	if (PWMFrequency > maxFrequency) {
+	if (PWMFrequency > Timer_Data.Frequency) {
 		/* Frequency too high */
 		return TM_PWM_Result_FrequencyTooHigh;
 	} else if (PWMFrequency == 0) {
@@ -51,22 +56,22 @@ TM_PWM_Result_t TM_PWM_InitTimer(TIM_TypeDef* TIMx, TM_PWM_TIM_t* TIM_Data, uint
 	}
 	
 	/* Fix for 16/32bit timers */
-	if (maxPeriod <= 0xFFFF) {
-		maxPeriod++;
+	if (Timer_Data.MaxPeriod <= 0xFFFF) {
+		Timer_Data.MaxPeriod++;
 	}
 	
 	/* Get minimum prescaler and maximum resolution for timer */
 	TIM_Data->Prescaler = 0;
 	do {
 		/* Get clock */
-		TIM_Data->Period = (maxFrequency / (TIM_Data->Prescaler + 1));
+		TIM_Data->Period = (Timer_Data.Frequency / (TIM_Data->Prescaler + 1));
 		/* Get period */
 		TIM_Data->Period = (TIM_Data->Period / PWMFrequency);
 		/* Increase prescaler value */
 		TIM_Data->Prescaler++;
-	} while (TIM_Data->Period > (maxPeriod));
+	} while (TIM_Data->Period > (Timer_Data.MaxPeriod));
 	/* Check for too low frequency */ 
-	if (TIM_Data->Prescaler > 0x10000) {
+	if (TIM_Data->Prescaler > (Timer_Data.MaxPrescaler + 1)) {
 		/* Prescaler too high, frequency is too low for use */
 		return TM_PWM_Result_FrequencyTooLow;
 	}
@@ -76,7 +81,7 @@ TM_PWM_Result_t TM_PWM_InitTimer(TIM_TypeDef* TIMx, TM_PWM_TIM_t* TIM_Data, uint
 	TIM_Data->Micros = 1000000 / PWMFrequency;
 	
 	/* Enable clock for Timer */	
-	TM_PWM_INT_EnableClock(TIMx);
+	TM_TIMER_PROPERTIES_EnableClock(TIMx);
 
 	/* Set timer options */
 	TIM_BaseStruct.TIM_Prescaler = TIM_Data->Prescaler - 1;
@@ -177,77 +182,6 @@ TM_PWM_Result_t TM_PWM_SetChannelMicros(TIM_TypeDef* TIMx, TM_PWM_TIM_t* TIM_Dat
 		return TM_PWM_Result_PulseTooHigh;
 	}
 	return TM_PWM_SetChannel(TIMx, TIM_Data, Channel, (uint32_t)((TIM_Data->Period - 1) * micros) / TIM_Data->Micros);
-}
-
-
-/* Private */
-void TM_PWM_INT_EnableClock(TIM_TypeDef* TIMx) {
-	if (TIMx == TIM1) {
-		RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM1, ENABLE);
-	} else if (TIMx == TIM2) {
-		RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE);
-	} else if (TIMx == TIM3) {
-		RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE);
-	} else if (TIMx == TIM4) {
-		RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE);
-	} else if (TIMx == TIM5) {
-		RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM5, ENABLE);
-	}else if (TIMx == TIM8) {
-		RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM8, ENABLE);
-	} else if (TIMx == TIM9) {
-		RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM9, ENABLE);
-	} else if (TIMx == TIM10) {
-		RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM10, ENABLE);
-	} else if (TIMx == TIM11) {
-		RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM11, ENABLE);
-	} else if (TIMx == TIM12) {
-		RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM12, ENABLE);
-	} else if (TIMx == TIM13) {
-		RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM13, ENABLE);
-	} else if (TIMx == TIM14) {
-		RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM14, ENABLE);
-	}
-}
-
-TM_PWM_Result_t TM_PWM_INT_GetTimerProperties(TIM_TypeDef* TIMx, uint32_t* frequency, uint32_t* period) {
-	RCC_ClocksTypeDef RCC_ClocksStruct;
-
-	/* Get clocks */
-	RCC_GetClocksFreq(&RCC_ClocksStruct);
-	
-	if ( /* 32bit timers with PCLK2 max frequency */
-		TIMx == TIM2 ||
-		TIMx == TIM5
-	) {
-		*frequency = RCC_ClocksStruct.PCLK2_Frequency;	/* Clock */
-		*period = 0xFFFFFFFF;							/* Max period */
-		
-		return TM_PWM_Result_Ok;
-	} else if (	/* 16bit timers with HCLK clock frequency */
-		TIMx == TIM1 ||
-		TIMx == TIM8 ||
-		TIMx == TIM9 ||
-		TIMx == TIM10 ||
-		TIMx == TIM11
-	) {
-		*frequency = RCC_ClocksStruct.HCLK_Frequency;	/* Clock */
-		*period = 0xFFFF;								/* Max period */
-		
-		return TM_PWM_Result_Ok;
-	} else if (	/* 16bit timers with PCLK2 clock frequency */
-		TIMx == TIM3 ||
-		TIMx == TIM4 ||
-		TIMx == TIM12 ||
-		TIMx == TIM13 ||
-		TIMx == TIM14
-	) {
-		*frequency = RCC_ClocksStruct.PCLK2_Frequency;	/* Clock */
-		*period = 0xFFFF;								/* Max period */
-		
-		return TM_PWM_Result_Ok;
-	}
-	/* Timer is not valid */
-	return TM_PWM_Result_TimerNotValid;
 }
 
 TM_PWM_Result_t TM_PWM_INT_InitTIM1Pins(TM_PWM_Channel_t Channel, TM_PWM_PinsPack_t PinsPack) {
