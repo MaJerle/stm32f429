@@ -98,6 +98,8 @@ http://bit.ly/1CFInc5
 http://bit.ly/1qRtTkL
 35. LIS302DL/LIS3DSH - Accelerometers on STM32F4-Discovery board. Alyso can be used with any STM32F4 device
 http://bit.ly/X8z9UQ
+36- DAC SIGNAL - Create predefines signals with STM32F4 using DAC, DMA and TIM
+http://bit.ly/1phUdPD
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB
