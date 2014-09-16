@@ -19,10 +19,14 @@ int main(void) {
 	SystemInit();
 	
 	/* Initialize DAC channel 1, pin PA4 */
+	TM_DAC_Init(TM_DAC1);
+	/* Initialize DAC channel 2, pin PA5 */
 	TM_DAC_Init(TM_DAC2);
 	
 	/* Set 12bit analog value of 1500/4096 * 3.3V */
-	TM_DAC_SetValue(TM_DAC2, 1500);
+	TM_DAC_SetValue(TM_DAC1, 1500);
+	/* Set 12bit analog value of 2047/4096 * 3.3V */
+	TM_DAC_SetValue(TM_DAC2, 2047);
 	
 	while (1) {
 	
