@@ -100,6 +100,8 @@ http://bit.ly/1qRtTkL
 http://bit.ly/X8z9UQ
 36. DAC SIGNAL - Create predefines signals with STM32F4 using DAC, DMA and TIM
 http://bit.ly/1phUdPD
+37. BMP180 - Read atmosferic pressure on STM32F4 device
+http://bit.ly/1qfGTve
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB
