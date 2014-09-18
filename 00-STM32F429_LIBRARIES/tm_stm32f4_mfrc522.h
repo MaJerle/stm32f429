@@ -68,19 +68,20 @@
 #include "stm32f4xx_rcc.h"
 #include "stm32f4xx_gpio.h"
 #include "tm_stm32f4_spi.h"
+#include "defines.h"
 
 /**
  * Pinout
  *
  * Can be overwritten in defines.h file
  */
-//Default SPI used
+/* Default SPI used */
 #ifndef MFRC522_SPI
 #define MFRC522_SPI						SPI1
 #define MFRC522_SPI_PINSPACK			TM_SPI_PinsPack_2
 #endif
 
-//Default CS pin used
+/* Default CS pin used */
 #ifndef MFRC522_CS_PIN
 #define MFRC522_CS_RCC					RCC_AHB1Periph_GPIOG
 #define MFRC522_CS_PORT					GPIOG
@@ -101,7 +102,7 @@ typedef enum {
 #define MFRC522_CS_LOW					MFRC522_CS_PORT->BSRRH = MFRC522_CS_PIN;
 #define MFRC522_CS_HIGH					MFRC522_CS_PORT->BSRRL = MFRC522_CS_PIN;
 
-//MF522 Command word
+/* MFRC522 Commands */
 #define PCD_IDLE						0x00   //NO action; Cancel the current command
 #define PCD_AUTHENT						0x0E   //Authentication Key
 #define PCD_RECEIVE						0x08   //Receive Data
@@ -110,7 +111,7 @@ typedef enum {
 #define PCD_RESETPHASE					0x0F   //Reset
 #define PCD_CALCCRC						0x03   //CRC Calculate
 
-// Mifare_One card command word
+/* Mifare_One card command word */
 #define PICC_REQIDL						0x26   // find the antenna area does not enter hibernation
 #define PICC_REQALL						0x52   // find all the cards antenna area
 #define PICC_ANTICOLL					0x93   // anti-collision
@@ -125,7 +126,7 @@ typedef enum {
 #define PICC_TRANSFER					0xB0   // save the data in the buffer
 #define PICC_HALT						0x50   // Sleep
 
-//MFRC Registers
+/* MFRC522 Registers */
 //Page 0: Command and Status
 #define MFRC522_REG_RESERVED00			0x00    
 #define MFRC522_REG_COMMAND				0x01    
