@@ -115,7 +115,7 @@ extern TM_TIMER_PROPERTIES_Result_t TM_TIMER_PROPERTIES_GetTimerProperties(TIM_T
  *		
  * Member of TM_TIMER_PROPERTIES_Result_t is returned
  */
-extern TM_TIMER_PROPERTIES_Result_t TM_TIMER_PROPERTIES_GenerateDataForWorkingFrequency(TM_TIMER_PROPERTIES_t* Timer_Data, uint32_t frequency);
+extern TM_TIMER_PROPERTIES_Result_t TM_TIMER_PROPERTIES_GenerateDataForWorkingFrequency(TM_TIMER_PROPERTIES_t* Timer_Data, double frequency);
 
 /**
  * Enable timer's clock

@@ -64,7 +64,7 @@ TM_TIMER_PROPERTIES_Result_t TM_TIMER_PROPERTIES_GetTimerProperties(TIM_TypeDef*
 	return TM_TIMER_PROPERTIES_Result_TimerNotValid;
 }
 
-TM_TIMER_PROPERTIES_Result_t TM_TIMER_PROPERTIES_GenerateDataForWorkingFrequency(TM_TIMER_PROPERTIES_t* Timer_Data, uint32_t frequency) {
+TM_TIMER_PROPERTIES_Result_t TM_TIMER_PROPERTIES_GenerateDataForWorkingFrequency(TM_TIMER_PROPERTIES_t* Timer_Data, double frequency) {
 	if (frequency > Timer_Data->TimerFrequency) {
 		/* Reset values */
 		Timer_Data->Prescaler = 0;
@@ -97,7 +97,7 @@ TM_TIMER_PROPERTIES_Result_t TM_TIMER_PROPERTIES_GenerateDataForWorkingFrequency
 		Timer_Data->Period = (Timer_Data->Period / frequency);
 		/* Increase prescaler value */
 		Timer_Data->Prescaler++;
-	} while (Timer_Data->Period > (Timer_Data->MaxPeriod));
+	} while (Timer_Data->Period > (Timer_Data->MaxPeriod) && Timer_Data->Prescaler <= (Timer_Data->MaxPrescaler + 1));
 	/* Check for too low frequency */ 
 	if (Timer_Data->Prescaler > (Timer_Data->MaxPrescaler + 1)) {
 		/* Reset values */

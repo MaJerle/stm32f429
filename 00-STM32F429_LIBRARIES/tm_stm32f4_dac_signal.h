@@ -165,7 +165,7 @@ extern TM_DAC_SIGNAL_Result_t TM_DAC_SIGNAL_Init(TM_DAC_SIGNAL_Channel_t DACx, T
  * 		
  * Member of TM_DAC_SIGNAL_Result_t is returned
  */
-extern TM_DAC_SIGNAL_Result_t TM_DAC_SIGNAL_SetSignal(TM_DAC_SIGNAL_Channel_t DACx, TM_DAC_SIGNAL_Signal_t signal_type, uint32_t frequency);
+extern TM_DAC_SIGNAL_Result_t TM_DAC_SIGNAL_SetSignal(TM_DAC_SIGNAL_Channel_t DACx, TM_DAC_SIGNAL_Signal_t signal_type, double frequency);
 
 /* C++ detection */
 #ifdef __cplusplus

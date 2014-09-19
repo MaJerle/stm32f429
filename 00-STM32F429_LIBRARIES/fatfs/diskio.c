@@ -13,12 +13,12 @@
 /* Not USB in use */
 /* Define it in defines.h project file if you want to use USB */
 #ifndef FATFS_USE_USB
-	#define FATFS_USE_USB			0
+	#define FATFS_USE_USB				0
 #endif
 
 /* Set in defines.h file if you want it */
 #ifndef TM_FATFS_CUSTOM_FATTIME
-	#define TM_FATFS_CUSTOM_FATTIME	0
+	#define TM_FATFS_CUSTOM_FATTIME		0
 #endif
 
 /* Defined in defines.h */

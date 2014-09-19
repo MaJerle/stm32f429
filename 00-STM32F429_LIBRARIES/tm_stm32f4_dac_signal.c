@@ -18,7 +18,7 @@
  */
 #include "tm_stm32f4_dac_signal.h"
 
-TM_DAC_SIGNAL_Result_t TM_DAC_SIGNAL_SetCustomSignal(TM_DAC_SIGNAL_Channel_t DACx, uint16_t* Signal_Data, uint16_t Signal_Length, uint32_t frequency);
+TM_DAC_SIGNAL_Result_t TM_DAC_SIGNAL_SetCustomSignal(TM_DAC_SIGNAL_Channel_t DACx, uint16_t* Signal_Data, uint16_t Signal_Length, double frequency);
 
 uint16_t DAC_SIGNAL_Sinus[DAC_SIGNAL_SINUS_LENGTH] = {
 	2047, 2447, 2831, 3185, 3498, 3750, 3939, 4056,
@@ -91,7 +91,7 @@ TM_DAC_SIGNAL_Result_t TM_DAC_SIGNAL_Init(TM_DAC_SIGNAL_Channel_t DACx, TIM_Type
 	return TM_DAC_SIGNAL_Result_Ok;
 }
 
-TM_DAC_SIGNAL_Result_t TM_DAC_SIGNAL_SetSignal(TM_DAC_SIGNAL_Channel_t DACx, TM_DAC_SIGNAL_Signal_t signal_type, uint32_t frequency) {
+TM_DAC_SIGNAL_Result_t TM_DAC_SIGNAL_SetSignal(TM_DAC_SIGNAL_Channel_t DACx, TM_DAC_SIGNAL_Signal_t signal_type, double frequency) {
 	TM_DAC_SIGNAL_Result_t result;
 	switch (signal_type) {
 		case TM_DAC_SIGNAL_Signal_Sinus:
@@ -113,7 +113,7 @@ TM_DAC_SIGNAL_Result_t TM_DAC_SIGNAL_SetSignal(TM_DAC_SIGNAL_Channel_t DACx, TM_
 	return result;
 }
 
-TM_DAC_SIGNAL_Result_t TM_DAC_SIGNAL_SetCustomSignal(TM_DAC_SIGNAL_Channel_t DACx, uint16_t* Signal_Data, uint16_t Signal_Length, uint32_t frequency) {
+TM_DAC_SIGNAL_Result_t TM_DAC_SIGNAL_SetCustomSignal(TM_DAC_SIGNAL_Channel_t DACx, uint16_t* Signal_Data, uint16_t Signal_Length, double frequency) {
 	DAC_InitTypeDef DAC_InitStruct;
 	TIM_TimeBaseInitTypeDef TIM_TimeBaseStruct;
 	DMA_InitTypeDef DMA_InitStruct;

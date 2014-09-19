@@ -167,7 +167,7 @@ typedef enum {
  * 	- uint32_t PWMFrequency
  * 		Select custom frequency for PWM
  */
-extern TM_PWM_Result_t TM_PWM_InitTimer(TIM_TypeDef* TIMx, TM_PWM_TIM_t* TIM_Data, uint32_t PWMFrequency);
+extern TM_PWM_Result_t TM_PWM_InitTimer(TIM_TypeDef* TIMx, TM_PWM_TIM_t* TIM_Data, double PWMFrequency);
 
 /**
  * Initialize channel used for specific timer
