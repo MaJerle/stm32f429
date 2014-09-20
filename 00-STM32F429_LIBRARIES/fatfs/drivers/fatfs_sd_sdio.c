@@ -263,8 +263,8 @@ static SD_Error FindSCR (uint16_t rca, uint32_t *pscr);
 uint8_t convert_from_bytes_to_power_of_two (uint16_t NumberOfBytes);
 
 
-
 static volatile DSTATUS TM_FATFS_SD_SDIO_Stat = STA_NOINIT;	/* Physical drive status */
+
 
 uint8_t TM_FATFS_SDIO_WriteEnabled(void) {
 #if FATFS_USE_WRITEPROTECT_PIN > 0
@@ -337,13 +337,11 @@ DSTATUS TM_FATFS_SD_SDIO_disk_initialize(void) {
 
 DSTATUS TM_FATFS_SD_SDIO_disk_status(void) {
 	if (SD_Detect() != SD_PRESENT) {
-		FATFS_DEBUG_SEND_USART("disk_status: not detected");
 		return STA_NOINIT;
 	}
 	
 	if (!TM_FATFS_SDIO_WriteEnabled()) {
 		TM_FATFS_SD_SDIO_Stat |= STA_PROTECT;
-		FATFS_DEBUG_SEND_USART("disk_status: write protected");
 	} else {
 		TM_FATFS_SD_SDIO_Stat &= ~STA_PROTECT;
 	}
@@ -357,8 +355,8 @@ DRESULT TM_FATFS_SD_SDIO_disk_read(BYTE *buff, DWORD sector, UINT count) {
 	if ((TM_FATFS_SD_SDIO_Stat & STA_NOINIT)) {
 		return RES_NOTRDY;
 	}
-	
-	SD_ReadMultiBlocks(buff, sector << 9, 512, 1);
+
+	SD_ReadMultiBlocks(buff, sector << 9, 512, count);
 
 	/* Check if the Transfer is finished */
 	status =  SD_WaitReadOperation();
@@ -374,11 +372,10 @@ DRESULT TM_FATFS_SD_SDIO_disk_write(BYTE *buff, DWORD sector, UINT count) {
 	SD_Error status = SD_OK;
 
 	if (!TM_FATFS_SDIO_WriteEnabled()) {
-		FATFS_DEBUG_SEND_USART("disk_write: Write protected!!! \n---------------------------------------------");
 		return RES_WRPRT;
 	}
 	
-	SD_WriteMultiBlocks((BYTE *)buff, sector << 9, 512, 1);
+	SD_WriteMultiBlocks((BYTE *)buff, sector << 9, 512, count);
 
 	/* Check if the Transfer is finished */
 	status = SD_WaitWriteOperation();

@@ -36,7 +36,7 @@ int main(void) {
 	TM_ILI9341_SetLayer1();
 	
 	/* Fill data on layer 1 */
-	TM_ILI9341_Fill(ILI9341_COLOR_WHITE);
+	TM_ILI9341_Fill(ILI9341_COLOR_ORANGE);
 	
 	/* Show text */
 	TM_ILI9341_Puts(65, 30, "Layer 1", &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_BLUE2);
