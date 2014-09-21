@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/05/library-15-ds1307-real-time-clock-for-stm32f429-discovery/
- *	@version 	v1.1
+ *	@version 	v1.2
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -32,6 +32,9 @@
  * 	- Added 2 new functions to work with SQW/OUT pin on DS1307
  * 		TM_DS1307_EnableOutputPin
  * 		TM_DS1307_DisableOutputPin
+ * 	Version 1.2
+ *	- 21.09.2014
+ * 	- Added support for check if DS1307 module is connected to I2C on initialization
  * 		
  * Default pinout
  * 
@@ -48,7 +51,7 @@
  *	#define TM_DS1307_I2C_PINSPACK		TM_I2C_PinsPack_1
  */
 #ifndef TM_DS1307_H
-#define TM_DS1307_H 100
+#define TM_DS1307_H 120
 /**
  * Library dependencies
  * - STM32F4xx
@@ -66,9 +69,9 @@
 #include "defines.h"
 
 //I2C settings for I2C library
-#ifndef TM_DS1307_I2C
-#define TM_DS1307_I2C				I2C1
-#define TM_DS1307_I2C_PINSPACK		TM_I2C_PinsPack_1
+#ifndef DS1307_I2C
+#define DS1307_I2C					I2C1
+#define DS1307_I2C_PINSPACK			TM_I2C_PinsPack_1
 #endif
 
 #ifndef DS1307_I2C_CLOCK
@@ -93,6 +96,23 @@
 #define TM_DS1307_CONTROL_SQWE		4
 #define TM_DS1307_CONTROL_RS1		1
 #define TM_DS1307_CONTROL_RS0		0
+
+/**
+ * Result typedef
+ *
+ * Parameters:
+ * 	- TM_DS1307_Result_Ok:
+ * 		Everything OK
+ * 	- TM_DS1307_Result_Error:
+ * 		An error occured
+ * 	- TM_DS1307_Result_DeviceNotConnected:
+ *		Device is not connected
+ */
+typedef enum {
+	TM_DS1307_Result_Ok = 0,
+	TM_DS1307_Result_Error,
+	TM_DS1307_Result_DeviceNotConnected
+} TM_DS1307_Result_t;
 
 /**
  * Struct for date/time
@@ -155,7 +175,7 @@ typedef enum {
  *
  * No returns
  */
-extern void TM_DS1307_Init(void);
+extern TM_DS1307_Result_t TM_DS1307_Init(void);
 
 /**
  * Get seconds from DS1307

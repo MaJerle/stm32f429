@@ -14,14 +14,19 @@
 #include "defines.h"
 #include "tm_stm32f4_ds1307.h"
 #include "tm_stm32f4_ili9341.h"
+#include "tm_stm32f4_disco.h"
 #include <stdio.h>
 
 int main(void) {
 	char str[100];
 	TM_DS1307_Time_t time;
+	uint8_t last;
 	
 	/* Initialize system */
 	SystemInit();
+		
+	/* Initialize LEDS */
+	TM_DISCO_LedInit();
 	
 	/* Initialize ILI9341 LCD on board */
 	TM_ILI9341_Init();
@@ -30,7 +35,15 @@ int main(void) {
 	TM_ILI9341_Puts(90, 310, "stm32f4-discovery.com", &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_ORANGE);
 	
 	/* Initialize DS1307 */
-	TM_DS1307_Init();
+	if (TM_DS1307_Init() != TM_DS1307_Result_Ok) {
+		/* Red LED on */
+		TM_DISCO_LedOn(LED_RED);
+		
+		/* Show on LCD */
+		TM_ILI9341_Puts(10, 10, "ERROR", &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_ORANGE);
+		
+		while (1);
+	}
 	
 	/* Set date and time */
 	/* Day 7, 26th May 2014, 02:05:00 */
@@ -46,8 +59,16 @@ int main(void) {
 	while (1) {
 		/* Get date and time */
 		TM_DS1307_GetDateTime(&time);
+		
 		/* Display on LCD */
 		sprintf(str, "Day: %d\nDate: %02d\nMonth: %02d\nYear: %04d\nHours: %02d\nMinutes: %02d\nSeconds: %02d", time.day, time.date, time.month, time.year + 2000, time.hours, time.minutes, time.seconds);
 		TM_ILI9341_Puts(10, 15, str, &TM_Font_11x18, ILI9341_COLOR_ORANGE, 0x0000);
+		/* Toggle GREEN led if needed */
+		if (last != time.seconds) {
+			last = time.seconds;
+			
+			/* Toggle GREEN LED */
+			TM_DISCO_LedToggle(LED_GREEN);
+		}
 	}
 }
