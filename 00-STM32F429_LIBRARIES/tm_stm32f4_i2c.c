@@ -93,7 +93,7 @@ void TM_I2C1_InitPins(TM_I2C_PinsPack_t pinspack) {
 	GPIO_InitDef.GPIO_Mode = GPIO_Mode_AF;
 	GPIO_InitDef.GPIO_OType = GPIO_OType_OD;
 	GPIO_InitDef.GPIO_PuPd = GPIO_PuPd_UP;
-	GPIO_InitDef.GPIO_Speed = GPIO_Speed_2MHz;
+	GPIO_InitDef.GPIO_Speed = GPIO_Speed_100MHz;
 	
 	if (pinspack == TM_I2C_PinsPack_1) {
 		//                      SCL          SDA
@@ -123,7 +123,7 @@ void TM_I2C2_InitPins(TM_I2C_PinsPack_t pinspack) {
 	GPIO_InitDef.GPIO_Mode = GPIO_Mode_AF;
 	GPIO_InitDef.GPIO_OType = GPIO_OType_OD;
 	GPIO_InitDef.GPIO_PuPd = GPIO_PuPd_UP;
-	GPIO_InitDef.GPIO_Speed = GPIO_Speed_2MHz;
+	GPIO_InitDef.GPIO_Speed = GPIO_Speed_100MHz;
 	
 	if (pinspack == TM_I2C_PinsPack_1) {
 		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
@@ -164,7 +164,7 @@ void TM_I2C3_InitPins(TM_I2C_PinsPack_t pinspack) {
 	GPIO_InitDef.GPIO_Mode = GPIO_Mode_AF;
 	GPIO_InitDef.GPIO_OType = GPIO_OType_OD;
 	GPIO_InitDef.GPIO_PuPd = GPIO_PuPd_UP;
-	GPIO_InitDef.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_InitDef.GPIO_Speed = GPIO_Speed_100MHz;
 	
 	if (pinspack == TM_I2C_PinsPack_1) {
 		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
