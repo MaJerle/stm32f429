@@ -31,9 +31,9 @@ int main(void) {
 	/* Initialize DAC2, use TIM5 for signal generation */
 	TM_DAC_SIGNAL_Init(TM_DAC2, TIM5);
 	
-	/* Set predefines triangle signal with frequency of 5kHz */
+	/* Output predefined triangle signal with frequency of 5kHz */
 	TM_DAC_SIGNAL_SetSignal(TM_DAC1, TM_DAC_SIGNAL_Signal_Triangle, 5000);
-	/* Set predefines square signal with frequency of 10kHz */
+	/* Output predefined square signal with frequency of 10kHz */
 	TM_DAC_SIGNAL_SetSignal(TM_DAC2, TM_DAC_SIGNAL_Signal_Square, 10000);
 	
 	while (1) {
