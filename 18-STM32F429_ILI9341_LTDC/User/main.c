@@ -33,10 +33,11 @@ int main(void) {
 	/* Rotate LCD for 90 degrees */
 	TM_ILI9341_Rotate(TM_ILI9341_Orientation_Landscape_2);
 	
+	/* Go to layer 1 */
 	TM_ILI9341_SetLayer1();
 	
 	/* Fill data on layer 1 */
-	TM_ILI9341_Fill(ILI9341_COLOR_ORANGE);
+	TM_ILI9341_Fill(ILI9341_COLOR_BLUE);
 	
 	/* Show text */
 	TM_ILI9341_Puts(65, 30, "Layer 1", &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_BLUE2);
