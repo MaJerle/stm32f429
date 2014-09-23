@@ -40,7 +40,7 @@ int main(void) {
 		TM_DISCO_LedOn(LED_RED);
 		
 		/* Show on LCD */
-		TM_ILI9341_Puts(10, 10, "ERROR", &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_ORANGE);
+		TM_ILI9341_Puts(10, 10, "DS1307 Error", &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_ORANGE);
 		
 		while (1);
 	}

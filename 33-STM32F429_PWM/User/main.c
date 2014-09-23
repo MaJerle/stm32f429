@@ -32,7 +32,7 @@ int main(void) {
 	
 	/* Set PWM to 1kHz frequency on timer TIM4 */
 	/* 1 kHz = 1ms = 1000us */
-	if (TM_PWM_InitTimer(TIM4, &TIM4_Data, 1000));
+	TM_PWM_InitTimer(TIM4, &TIM4_Data, 1000);
 	
 	/* Initialize PWM on TIM4, Channel 1 and PinsPack 2 = PD12 */
 	TM_PWM_InitChannel(TIM4, TM_PWM_Channel_1, TM_PWM_PinsPack_2);
