@@ -18,6 +18,9 @@
  */
 #include "tm_stm32f4_rtc.h"
 
+/* Internal functions */
+void TM_RTC_Config(TM_RTC_ClockSource_t source);
+
 uint32_t TM_RTC_Status = RTC_STATUS_ZERO;
 uint16_t uwSynchPrediv = 0xFF, uwAsynchPrediv = 0x7F;
 
@@ -78,7 +81,7 @@ uint32_t TM_RTC_Init(TM_RTC_ClockSource_t source) {
 		TM_RTC_GetDateTime(&datatime, TM_RTC_Format_BIN);
 	} else {
 		TM_RTC_Status = RTC_STATUS_ZERO;
-		/* Return status = 0 > RTC Never initialized before */
+		/* Return status = 0 -> RTC Never initialized before */
 		stat = RTC_STATUS_ZERO;
 		/* Config RTC */
 		TM_RTC_Config(source);

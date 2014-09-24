@@ -64,6 +64,7 @@ int main(void) {
 		}
 	}
 }
+
 /* Custom request handler function */
 /* Called on wakeup interrupt */
 void TM_RTC_RequestHandler() {

@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/07/library-19-use-internal-rtc-on-stm32f4xx-devices/
- *	@version 	v1.0.1
+ *	@version 	v1.0.2
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -27,11 +27,16 @@
  * |----------------------------------------------------------------------
  *
  * Version 1.0.1
- *	- 01.09.2014
+ *	- September 01, 2014
  *	- Date to unix convert bug fix
+ * 
+ * Version 1.0.2
+ *	- September 24, 2014
+ *	- TM_RTC_RequestHandler function has now "__weak" attribute to prevent errors,
+ *	  if function is not implemented by user
  */
 #ifndef TM_RTC_H
-#define TM_RTC_H 101
+#define TM_RTC_H 102
 /**
  * Library dependencies
  * - STM32F4xx
@@ -53,25 +58,26 @@
 #include "misc.h"
 #include "defines.h"
 
+/* Priority set */
+#ifndef RTC_PRIORITY
+#define RTC_PRIORITY					4
+#endif
+/* Sub priority */
+#ifndef RTC_SUBPRIORITY
+#define RTC_SUBPRIORITY					0
+#endif
+
 #define RTC_STATUS_REG      			RTC_BKP_DR0  // Status Register
 #define RTC_STATUS_INIT_OK  			0x1234       // RTC initialised
 #define RTC_STATUS_TIME_OK  			0x4321       // RTC time ok
 #define	RTC_STATUS_ZERO					0x0000
 
-#define TM_RTC_LEAP_YEAR(year) 			(((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0))// ? 1 : 0
+#define TM_RTC_LEAP_YEAR(year) 			(((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0))
 #define TM_RTC_DAYS_IN_YEAR(x)			TM_RTC_LEAP_YEAR(x) ? 366 : 365
 #define TM_RTC_OFFSET_YEAR				1970
 #define TM_RTC_SECONDS_PER_DAY			86400
 #define TM_RTC_SECONDS_PER_HOUR			3600
 #define TM_RTC_SECONDS_PER_MINUTE		60
-
-#ifndef RTC_PRIORITY
-#define RTC_PRIORITY					4
-#endif
-
-#ifndef RTC_SUBPRIORITY
-#define RTC_SUBPRIORITY					0
-#endif
 
 /**
  * Struct for date/time
@@ -109,10 +115,9 @@ typedef struct {
  * Set format of date and time
  *
  * - TM_RTC_Format_BIN
- * 	binary format
+ * 	Binary format
  * - TM_RTC_Format_BCD
  * 	BCD format
- *
  */
 typedef enum {
 	TM_RTC_Format_BIN,
@@ -216,17 +221,7 @@ extern void TM_RTC_GetDateTime(TM_RTC_Time_t* data, TM_RTC_Format_t format);
  *
  * Called from main handler
  */
-extern void TM_RTC_RequestHandler(void);
-
-/**
- * Internal functions
- */
-/**
- * RTC Config
- *
- * Internal
- */
-extern void TM_RTC_Config(TM_RTC_ClockSource_t source);
+extern __weak void TM_RTC_RequestHandler(void);
 
 #endif
 
