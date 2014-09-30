@@ -85,7 +85,7 @@ int main(void) {
 	TM_DS18B20_DisableAlarmTemperature(&device[1][0]);
 	
 	while (1) {
-		/* Start temperature conversion on all bits */
+		/* Start temperature conversion on all devices */
 		TM_DS18B20_StartAll();
 		/* Wait until all are done */
 		while (!TM_DS18B20_AllDone());

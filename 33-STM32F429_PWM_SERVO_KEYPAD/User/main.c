@@ -58,29 +58,29 @@ int main(void) {
 		/* If any button pressed */
 		if (Keypad_Button != TM_KEYPAD_Button_NOPRESSED) {
 			switch (Keypad_Button) {
-				case TM_KEYPAD_Button_0:	/* Got to the middle position */
+				case TM_KEYPAD_Button_0:	/* Go to the middle position */
 				case TM_KEYPAD_Button_2:
 				case TM_KEYPAD_Button_5:
 				case TM_KEYPAD_Button_8:
 					/* Go to the middle */
 					duration = SERVO_MIDDLE;
 					break;
-				case TM_KEYPAD_Button_1:	/* 1us increase pulse length */
+				case TM_KEYPAD_Button_1:	/* 1us decrease pulse length */
 					duration--;
 					break;
-				case TM_KEYPAD_Button_3:	/* 1us decrease pulse length */
+				case TM_KEYPAD_Button_3:	/* 1us increase pulse length */
 					duration++;
 					break;
-				case TM_KEYPAD_Button_4:	/* 10us increase pulse length */
+				case TM_KEYPAD_Button_4:	/* 10us decrease pulse length */
 					duration -= 10;
 					break;
-				case TM_KEYPAD_Button_6:	/* 10us decrease pulse length */
+				case TM_KEYPAD_Button_6:	/* 10us increase pulse length */
 					duration += 10;
 					break;
-				case TM_KEYPAD_Button_7:	/* 100us increase pulse length */
+				case TM_KEYPAD_Button_7:	/* 100us decrease pulse length */
 					duration -= 100;
 					break;
-				case TM_KEYPAD_Button_9:	/* 100us decrease pulse length */
+				case TM_KEYPAD_Button_9:	/* 100us increase pulse length */
 					duration += 100;
 					break;
 				case TM_KEYPAD_Button_STAR:	/* Turn totally left */
