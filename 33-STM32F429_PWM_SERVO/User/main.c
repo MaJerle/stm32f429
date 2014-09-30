@@ -51,10 +51,10 @@ int main(void) {
 			/* Change direction */
 			position = 1000;
 		}
-		
+
 		/* Set servo position */
 		TM_PWM_SetChannelMicros(TIM2, &TIM2_Data, TM_PWM_Channel_1, position);
-		
+
 		/* Set some delay for servo to set to correct position */
 		Delayms(1500);
 	}
