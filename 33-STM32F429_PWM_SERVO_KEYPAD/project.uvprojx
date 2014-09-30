@@ -14,6 +14,8 @@
         <TargetCommonOption>
           <Device>STM32F407VG</Device>
           <Vendor>STMicroelectronics</Vendor>
+          <PackID>Keil.STM32F4xx_DFP.1.0.8</PackID>
+          <PackURL>http://www.keil.com/pack</PackURL>
           <Cpu>IROM(0x08000000,0x100000) IRAM(0x20000000,0x20000) IRAM2(0x10000000,0x10000) CPUTYPE("Cortex-M4") FPU2 CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
           <StartupFile></StartupFile>
@@ -143,7 +145,6 @@
             <RestoreToolbox>1</RestoreToolbox>
             <RestoreTracepoints>1</RestoreTracepoints>
             <RestoreSysVw>1</RestoreSysVw>
-            <UsePdscDebugDescription>1</UsePdscDebugDescription>
           </Target>
           <RunDebugAfterBuild>0</RunDebugAfterBuild>
           <TargetSelection>11</TargetSelection>
@@ -436,6 +437,16 @@
               <FileName>tm_stm32f4_keypad.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_keypad.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_timer_properties.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_timer_properties.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_timer_properties.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_timer_properties.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -922,7 +933,6 @@
             <RestoreToolbox>1</RestoreToolbox>
             <RestoreTracepoints>1</RestoreTracepoints>
             <RestoreSysVw>1</RestoreSysVw>
-            <UsePdscDebugDescription>1</UsePdscDebugDescription>
           </Target>
           <RunDebugAfterBuild>0</RunDebugAfterBuild>
           <TargetSelection>11</TargetSelection>
@@ -1215,6 +1225,16 @@
               <FileName>tm_stm32f4_keypad.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_keypad.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_timer_properties.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_timer_properties.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_timer_properties.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_timer_properties.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1821,7 +1841,6 @@
             <RestoreToolbox>1</RestoreToolbox>
             <RestoreTracepoints>1</RestoreTracepoints>
             <RestoreSysVw>1</RestoreSysVw>
-            <UsePdscDebugDescription>1</UsePdscDebugDescription>
           </Target>
           <RunDebugAfterBuild>0</RunDebugAfterBuild>
           <TargetSelection>11</TargetSelection>
@@ -2114,6 +2133,16 @@
               <FileName>tm_stm32f4_keypad.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_keypad.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_timer_properties.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_timer_properties.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_timer_properties.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_timer_properties.h</FilePath>
             </File>
           </Files>
         </Group>

@@ -22,7 +22,7 @@
 
 int main(void) {
 	TM_PWM_TIM_t TIM2_Data;
-	uint8_t direction = 1;
+	uint16_t position = 1000;
 	
 	/* Initialize system */
 	SystemInit();
@@ -44,17 +44,16 @@ int main(void) {
 	Delayms(1000);
 
 	while (1) {
-		if (direction == 1) {
-			/* Set servo position = 1000us pulse length */
-			TM_PWM_SetChannelMicros(TIM2, &TIM2_Data, TM_PWM_Channel_1, 1000);
+		if (position == 1000) {
 			/* Change direction */
-			direction = 0;
+			position = 2000;
 		} else {
-			/* Set servo position = 2000us pulse length */
-			TM_PWM_SetChannelMicros(TIM2, &TIM2_Data, TM_PWM_Channel_1, 2000);
 			/* Change direction */
-			direction = 1;
+			position = 1000;
 		}
+		
+		/* Set servo position */
+		TM_PWM_SetChannelMicros(TIM2, &TIM2_Data, TM_PWM_Channel_1, position);
 		
 		/* Set some delay for servo to set to correct position */
 		Delayms(1500);

@@ -143,7 +143,6 @@
         <tRtrace>1</tRtrace>
         <sRSysVw>1</sRSysVw>
         <tRSysVw>1</tRSysVw>
-        <tPdscDbg>1</tPdscDbg>
         <sRunDeb>0</sRunDeb>
         <sLrtime>0</sLrtime>
         <nTsel>11</nTsel>
@@ -297,7 +296,6 @@
         <tRtrace>1</tRtrace>
         <sRSysVw>1</sRSysVw>
         <tRSysVw>1</tRSysVw>
-        <tPdscDbg>1</tPdscDbg>
         <sRunDeb>0</sRunDeb>
         <sLrtime>0</sLrtime>
         <nTsel>11</nTsel>
@@ -445,17 +443,17 @@
         <Book>
           <Number>5</Number>
           <Title>User Manual (NUCLEO-F401RE)</Title>
-          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32NUCLEO_BSP\1.0.0\Documents\DM00105823.pdf</Path>
+          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32NUCLEO_BSP\1.1.0\Documents\DM00105823.pdf</Path>
         </Book>
         <Book>
           <Number>6</Number>
           <Title>Getting started (NUCLEO-F401RE)</Title>
-          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32NUCLEO_BSP\1.0.0\Documents\DM00105925.pdf</Path>
+          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32NUCLEO_BSP\1.1.0\Documents\DM00105925.pdf</Path>
         </Book>
         <Book>
           <Number>7</Number>
           <Title>Schematics (NUCLEO-F401RE)</Title>
-          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32NUCLEO_BSP\1.0.0\Documents\MB1136.pdf</Path>
+          <Path>C:\Keil_v5\ARM\PACK\Keil\STM32NUCLEO_BSP\1.1.0\Documents\MB1136.pdf</Path>
         </Book>
         <Book>
           <Number>8</Number>
@@ -488,7 +486,6 @@
         <tRtrace>1</tRtrace>
         <sRSysVw>1</sRSysVw>
         <tRSysVw>1</tRSysVw>
-        <tPdscDbg>1</tPdscDbg>
         <sRunDeb>0</sRunDeb>
         <sLrtime>0</sLrtime>
         <nTsel>11</nTsel>
@@ -537,6 +534,7 @@
           <WinNumber>1</WinNumber>
           <SubType>0</SubType>
           <ItemText>0x40020000</ItemText>
+          <AccSizeX>0</AccSizeX>
         </Mm>
       </MemoryWindow1>
       <MemoryWindow2>
@@ -544,6 +542,7 @@
           <WinNumber>2</WinNumber>
           <SubType>0</SubType>
           <ItemText>0x40020000</ItemText>
+          <AccSizeX>0</AccSizeX>
         </Mm>
       </MemoryWindow2>
       <Tracepoint>
