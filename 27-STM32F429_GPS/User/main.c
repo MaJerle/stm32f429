@@ -78,7 +78,7 @@ int main(void) {
 			
 			/* Is GPS signal valid? */
 			if (GPS_Data.Validity) {
-				/* If you want to make a GPS tracker, not is the time to save your data on SD card */
+				/* If you want to make a GPS tracker, now is the time to save your data on SD card */
 				
 				/* We have valid GPS signal */
 				TM_USART_Puts(USART3, "New received data have valid GPS signal\n");
