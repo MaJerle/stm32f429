@@ -168,7 +168,7 @@ extern TM_EXTI_Result_t TM_EXTI_Attach(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, T
  * 	- uint16_t GPIO_Pin:
  * 		GPIO pin in use. Valid GPIO is GPIO_Pin_0 to GPIO_Pin_15
  * 
- * Returns OK if detached or error if alterady detached
+ * Returns OK if detached or error if already detached
  */
 extern TM_EXTI_Result_t TM_EXTI_Detach(uint16_t GPIO_Pin);
 
