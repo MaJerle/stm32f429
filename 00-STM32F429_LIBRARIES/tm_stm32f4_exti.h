@@ -143,7 +143,7 @@ typedef enum {
  * depending on trigger you use.
  * 	- Falling edge: pull up is enabled
  * 	- Rising edge: pull down is enabled
- * 	- Any edeg: no pull activated
+ * 	- Any edge: no pull activated
  * 
  * Also, you can attach only one GPIOx to specific GPIO_Pin.
  * In other words, GPIO_Pin_5 can not be attached to GPIOA and GPIOB at the same time.
