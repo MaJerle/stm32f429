@@ -56,6 +56,8 @@ int main(void) {
 	time.year = 14;
 	TM_DS1307_SetDateTime(&time);
 	
+	/* Disable output first */
+	TM_DS1307_DisableOutputPin();
 	/* Set output pin to 4096 Hz */
 	TM_DS1307_EnableOutputPin(TM_DS1307_OutputFrequency_4096Hz);
 	
