@@ -2,14 +2,14 @@
   ******************************************************************************
   * @file    stm32f4xx_gpio.h
   * @author  MCD Application Team
-  * @version V1.3.0
-  * @date    08-November-2013
+  * @version V1.4.0
+  * @date    04-August-2014
   * @brief   This file contains all the functions prototypes for the GPIO firmware
   *          library.  
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2014 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -58,7 +58,7 @@
                                     ((PERIPH) == GPIOI) || \
                                     ((PERIPH) == GPIOJ) || \
                                     ((PERIPH) == GPIOK))
-                                                                                             
+
 /** 
   * @brief  GPIO Configuration Mode enumeration 
   */   
@@ -174,7 +174,8 @@ typedef struct
 #define GPIO_Pin_15                ((uint16_t)0x8000)  /* Pin 15 selected */
 #define GPIO_Pin_All               ((uint16_t)0xFFFF)  /* All pins selected */
 
-#define IS_GPIO_PIN(PIN) ((((PIN) & (uint16_t)0x00) == 0x00) && ((PIN) != (uint16_t)0x00))
+#define GPIO_PIN_MASK              ((uint32_t)0x0000FFFF) /* PIN mask for assert test */
+#define IS_GPIO_PIN(PIN)           (((PIN) & GPIO_PIN_MASK ) != (uint32_t)0x00)
 #define IS_GET_GPIO_PIN(PIN) (((PIN) == GPIO_Pin_0) || \
                               ((PIN) == GPIO_Pin_1) || \
                               ((PIN) == GPIO_Pin_2) || \
@@ -279,9 +280,10 @@ typedef struct
 /** 
   * @brief   AF 5 selection  
   */ 
-#define GPIO_AF_SPI1          ((uint8_t)0x05)  /* SPI1 Alternate Function mapping      */
+#define GPIO_AF_SPI1          ((uint8_t)0x05)  /* SPI1/I2S1 Alternate Function mapping */
 #define GPIO_AF_SPI2          ((uint8_t)0x05)  /* SPI2/I2S2 Alternate Function mapping */
-#define GPIO_AF_SPI4          ((uint8_t)0x05)  /* SPI4 Alternate Function mapping      */
+#define GPIO_AF5_SPI3         ((uint8_t)0x05)  /* SPI3/I2S3 Alternate Function mapping (Only for STM32F411xE Devices) */
+#define GPIO_AF_SPI4          ((uint8_t)0x05)  /* SPI4/I2S4 Alternate Function mapping */
 #define GPIO_AF_SPI5          ((uint8_t)0x05)  /* SPI5 Alternate Function mapping      */
 #define GPIO_AF_SPI6          ((uint8_t)0x05)  /* SPI6 Alternate Function mapping      */
 
@@ -289,16 +291,23 @@ typedef struct
   * @brief   AF 6 selection  
   */ 
 #define GPIO_AF_SPI3          ((uint8_t)0x06)  /* SPI3/I2S3 Alternate Function mapping */
-
+#define GPIO_AF6_SPI2         ((uint8_t)0x06)  /* SPI2 Alternate Function mapping (Only for STM32F411xE Devices) */
+#define GPIO_AF6_SPI4         ((uint8_t)0x06)  /* SPI4 Alternate Function mapping (Only for STM32F411xE Devices) */
+#define GPIO_AF6_SPI5         ((uint8_t)0x06)  /* SPI5 Alternate Function mapping (Only for STM32F411xE Devices) */
 #define GPIO_AF_SAI1          ((uint8_t)0x06)  /* SAI1 Alternate Function mapping      */
 
 /** 
   * @brief   AF 7 selection  
   */ 
-#define GPIO_AF_USART1        ((uint8_t)0x07)  /* USART1 Alternate Function mapping  */
-#define GPIO_AF_USART2        ((uint8_t)0x07)  /* USART2 Alternate Function mapping  */
-#define GPIO_AF_USART3        ((uint8_t)0x07)  /* USART3 Alternate Function mapping  */
-#define GPIO_AF_I2S3ext       ((uint8_t)0x07)  /* I2S3ext Alternate Function mapping */
+#define GPIO_AF_USART1         ((uint8_t)0x07)  /* USART1 Alternate Function mapping  */
+#define GPIO_AF_USART2         ((uint8_t)0x07)  /* USART2 Alternate Function mapping  */
+#define GPIO_AF_USART3         ((uint8_t)0x07)  /* USART3 Alternate Function mapping  */
+#define GPIO_AF7_SPI3          ((uint8_t)0x07)  /* SPI3/I2S3ext Alternate Function mapping */
+
+/** 
+  * @brief   AF 7 selection Legacy 
+  */ 
+#define GPIO_AF_I2S3ext   GPIO_AF7_SPI3
 
 /** 
   * @brief   AF 8 selection  
@@ -318,8 +327,8 @@ typedef struct
 #define GPIO_AF_TIM13         ((uint8_t)0x09)  /* TIM13 Alternate Function mapping */
 #define GPIO_AF_TIM14         ((uint8_t)0x09)  /* TIM14 Alternate Function mapping */
 
-#define GPIO_AF9_I2C2          ((uint8_t)0x09)  /* I2C2 Alternate Function mapping (Only for STM32F401xx Devices) */
-#define GPIO_AF9_I2C3          ((uint8_t)0x09)  /* I2C3 Alternate Function mapping (Only for STM32F401xx Devices) */
+#define GPIO_AF9_I2C2         ((uint8_t)0x09)  /* I2C2 Alternate Function mapping (Only for STM32F401xx/STM32F411xE Devices) */
+#define GPIO_AF9_I2C3         ((uint8_t)0x09)  /* I2C3 Alternate Function mapping (Only for STM32F401xx/STM32F411xE Devices) */
 
 /** 
   * @brief   AF 10 selection  
@@ -400,6 +409,10 @@ typedef struct
                           ((AF) == GPIO_AF_EVENTOUT)  || ((AF) == GPIO_AF_SPI4))
 #endif /* STM32F401xx */
 
+#if defined (STM32F411xE)
+#define IS_GPIO_AF(AF)   (((AF) < 16) && ((AF) != 11) && ((AF) != 13) && ((AF) != 14))
+#endif /* STM32F411xE */
+
 #if defined (STM32F427_437xx) || defined (STM32F429_439xx)
 #define IS_GPIO_AF(AF)   (((AF) == GPIO_AF_RTC_50Hz)  || ((AF) == GPIO_AF_TIM14)     || \
                           ((AF) == GPIO_AF_MCO)       || ((AF) == GPIO_AF_TAMPER)    || \
@@ -448,7 +461,7 @@ typedef struct
   */
 
 /* Exported macro ------------------------------------------------------------*/
-/* Exported functions --------------------------------------------------------*/ 
+/* Exported functions --------------------------------------------------------*/
 
 /*  Function used to set the GPIO configuration to the default reset state ****/
 void GPIO_DeInit(GPIO_TypeDef* GPIOx);

@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_fmc.c
   * @author  MCD Application Team
-  * @version V1.3.0
-  * @date    08-November-2013
+  * @version V1.4.0
+  * @date    04-August-2014
   * @brief   This file provides firmware functions to manage the following 
   *          functionalities of the FMC peripheral:           
   *           + Interface with SRAM, PSRAM, NOR and OneNAND memories
@@ -15,7 +15,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2014 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -46,8 +46,14 @@
   */ 
 
 /* Private typedef -----------------------------------------------------------*/
-/* Private define ------------------------------------------------------------*/
-
+const FMC_NORSRAMTimingInitTypeDef FMC_DefaultTimingStruct = {0x0F, /* FMC_AddressSetupTime */
+                                                              0x0F, /* FMC_AddressHoldTime */
+                                                              0xFF, /* FMC_DataSetupTime */
+                                                              0x0F, /* FMC_BusTurnAroundDuration */
+                                                              0x0F, /* FMC_CLKDivision */
+                                                              0x0F, /* FMC_DataLatency */
+                                                              FMC_AccessMode_A /* FMC_AccessMode */
+                                                              };
 /* --------------------- FMC registers bit mask ---------------------------- */
 /* FMC BCRx Mask */
 #define BCR_MBKEN_SET              ((uint32_t)0x00000001)
@@ -272,20 +278,8 @@ void FMC_NORSRAMStructInit(FMC_NORSRAMInitTypeDef* FMC_NORSRAMInitStruct)
   FMC_NORSRAMInitStruct->FMC_WriteBurst = FMC_WriteBurst_Disable;
   FMC_NORSRAMInitStruct->FMC_ContinousClock = FMC_CClock_SyncOnly;
   
-  FMC_NORSRAMInitStruct->FMC_ReadWriteTimingStruct->FMC_AddressSetupTime = 15;
-  FMC_NORSRAMInitStruct->FMC_ReadWriteTimingStruct->FMC_AddressHoldTime = 15;
-  FMC_NORSRAMInitStruct->FMC_ReadWriteTimingStruct->FMC_DataSetupTime = 255;
-  FMC_NORSRAMInitStruct->FMC_ReadWriteTimingStruct->FMC_BusTurnAroundDuration = 15;
-  FMC_NORSRAMInitStruct->FMC_ReadWriteTimingStruct->FMC_CLKDivision = 15;
-  FMC_NORSRAMInitStruct->FMC_ReadWriteTimingStruct->FMC_DataLatency = 15;
-  FMC_NORSRAMInitStruct->FMC_ReadWriteTimingStruct->FMC_AccessMode = FMC_AccessMode_A; 
-  FMC_NORSRAMInitStruct->FMC_WriteTimingStruct->FMC_AddressSetupTime = 15;
-  FMC_NORSRAMInitStruct->FMC_WriteTimingStruct->FMC_AddressHoldTime = 15;
-  FMC_NORSRAMInitStruct->FMC_WriteTimingStruct->FMC_DataSetupTime = 255;
-  FMC_NORSRAMInitStruct->FMC_WriteTimingStruct->FMC_BusTurnAroundDuration = 15;
-  FMC_NORSRAMInitStruct->FMC_WriteTimingStruct->FMC_CLKDivision = 15;
-  FMC_NORSRAMInitStruct->FMC_WriteTimingStruct->FMC_DataLatency = 15;
-  FMC_NORSRAMInitStruct->FMC_WriteTimingStruct->FMC_AccessMode = FMC_AccessMode_A;
+  FMC_NORSRAMInitStruct->FMC_ReadWriteTimingStruct = (FMC_NORSRAMTimingInitTypeDef*)&FMC_DefaultTimingStruct;
+  FMC_NORSRAMInitStruct->FMC_WriteTimingStruct = (FMC_NORSRAMTimingInitTypeDef*)&FMC_DefaultTimingStruct;
 }
 
 /**

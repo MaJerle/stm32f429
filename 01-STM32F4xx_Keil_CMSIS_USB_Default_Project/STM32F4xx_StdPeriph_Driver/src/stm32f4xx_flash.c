@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_flash.c
   * @author  MCD Application Team
-  * @version V1.3.0
-  * @date    08-November-2013
+  * @version V1.4.0
+  * @date    04-August-2014
   * @brief   This file provides firmware functions to manage the following 
   *          functionalities of the FLASH peripheral:
   *            + FLASH Interface configuration
@@ -47,11 +47,11 @@
         (++) Clear flags
         (++) Get FLASH operation status
         (++) Wait for last FLASH operation   
- @endverbatim                      
+ @endverbatim
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2014 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -109,84 +109,107 @@
           (HCLK) and the supply voltage of the device.
     [..]      
       For STM32F405xx/07xx and STM32F415xx/17xx devices
- +-------------------------------------------------------------------------------------+     
+ +-------------------------------------------------------------------------------------+
  | Latency       |                HCLK clock frequency (MHz)                           |
- |               |---------------------------------------------------------------------|     
+ |               |---------------------------------------------------------------------|
  |               | voltage range  | voltage range  | voltage range   | voltage range   |
  |               | 2.7 V - 3.6 V  | 2.4 V - 2.7 V  | 2.1 V - 2.4 V   | 1.8 V - 2.1 V   |
- |---------------|----------------|----------------|-----------------|-----------------|              
+ |---------------|----------------|----------------|-----------------|-----------------|
  |0WS(1CPU cycle)|0 < HCLK <= 30  |0 < HCLK <= 24  |0 < HCLK <= 22   |0 < HCLK <= 20   |
- |---------------|----------------|----------------|-----------------|-----------------|   
- |1WS(2CPU cycle)|30 < HCLK <= 60 |24 < HCLK <= 48 |22 < HCLK <= 44  |20 < HCLK <= 40  | 
- |---------------|----------------|----------------|-----------------|-----------------|   
+ |---------------|----------------|----------------|-----------------|-----------------|
+ |1WS(2CPU cycle)|30 < HCLK <= 60 |24 < HCLK <= 48 |22 < HCLK <= 44  |20 < HCLK <= 40  |
+ |---------------|----------------|----------------|-----------------|-----------------|
  |2WS(3CPU cycle)|60 < HCLK <= 90 |48 < HCLK <= 72 |44 < HCLK <= 66  |40 < HCLK <= 60  |
- |---------------|----------------|----------------|-----------------|-----------------| 
+ |---------------|----------------|----------------|-----------------|-----------------|
  |3WS(4CPU cycle)|90 < HCLK <= 120|72 < HCLK <= 96 |66 < HCLK <= 88  |60 < HCLK <= 80  |
- |---------------|----------------|----------------|-----------------|-----------------| 
+ |---------------|----------------|----------------|-----------------|-----------------|
  |4WS(5CPU cycle)|120< HCLK <= 150|96 < HCLK <= 120|88 < HCLK <= 110 |80 < HCLK <= 100 |
- |---------------|----------------|----------------|-----------------|-----------------| 
- |5WS(6CPU cycle)|150< HCLK <= 168|120< HCLK <= 144|110 < HCLK <= 132|100 < HCLK <= 120| 
- |---------------|----------------|----------------|-----------------|-----------------| 
- |6WS(7CPU cycle)|      NA        |144< HCLK <= 168|132 < HCLK <= 154|120 < HCLK <= 140| 
- |---------------|----------------|----------------|-----------------|-----------------| 
+ |---------------|----------------|----------------|-----------------|-----------------|
+ |5WS(6CPU cycle)|150< HCLK <= 168|120< HCLK <= 144|110 < HCLK <= 132|100 < HCLK <= 120|
+ |---------------|----------------|----------------|-----------------|-----------------|
+ |6WS(7CPU cycle)|      NA        |144< HCLK <= 168|132 < HCLK <= 154|120 < HCLK <= 140|
+ |---------------|----------------|----------------|-----------------|-----------------|
  |7WS(8CPU cycle)|      NA        |      NA        |154 < HCLK <= 168|140 < HCLK <= 160|
- +---------------|----------------|----------------|-----------------|-----------------+ 
+ +---------------|----------------|----------------|-----------------|-----------------+
 
     [..]      
       For STM32F42xxx/43xxx devices
- +-------------------------------------------------------------------------------------+     
+ +-------------------------------------------------------------------------------------+
  | Latency       |                HCLK clock frequency (MHz)                           |
- |               |---------------------------------------------------------------------|     
+ |               |---------------------------------------------------------------------|
  |               | voltage range  | voltage range  | voltage range   | voltage range   |
  |               | 2.7 V - 3.6 V  | 2.4 V - 2.7 V  | 2.1 V - 2.4 V   | 1.8 V - 2.1 V   |
- |---------------|----------------|----------------|-----------------|-----------------|              
+ |---------------|----------------|----------------|-----------------|-----------------|
  |0WS(1CPU cycle)|0 < HCLK <= 30  |0 < HCLK <= 24  |0 < HCLK <= 22   |0 < HCLK <= 20   |
- |---------------|----------------|----------------|-----------------|-----------------|   
- |1WS(2CPU cycle)|30 < HCLK <= 60 |24 < HCLK <= 48 |22 < HCLK <= 44  |20 < HCLK <= 40  | 
- |---------------|----------------|----------------|-----------------|-----------------|   
+ |---------------|----------------|----------------|-----------------|-----------------|
+ |1WS(2CPU cycle)|30 < HCLK <= 60 |24 < HCLK <= 48 |22 < HCLK <= 44  |20 < HCLK <= 40  |
+ |---------------|----------------|----------------|-----------------|-----------------|
  |2WS(3CPU cycle)|60 < HCLK <= 90 |48 < HCLK <= 72 |44 < HCLK <= 66  |40 < HCLK <= 60  |
- |---------------|----------------|----------------|-----------------|-----------------| 
+ |---------------|----------------|----------------|-----------------|-----------------|
  |3WS(4CPU cycle)|90 < HCLK <= 120|72 < HCLK <= 96 |66 < HCLK <= 88  |60 < HCLK <= 80  |
- |---------------|----------------|----------------|-----------------|-----------------| 
+ |---------------|----------------|----------------|-----------------|-----------------|
  |4WS(5CPU cycle)|120< HCLK <= 150|96 < HCLK <= 120|88 < HCLK <= 110 |80 < HCLK <= 100 |
- |---------------|----------------|----------------|-----------------|-----------------| 
- |5WS(6CPU cycle)|120< HCLK <= 180|120< HCLK <= 144|110 < HCLK <= 132|100 < HCLK <= 120| 
- |---------------|----------------|----------------|-----------------|-----------------| 
- |6WS(7CPU cycle)|      NA        |144< HCLK <= 168|132 < HCLK <= 154|120 < HCLK <= 140| 
- |---------------|----------------|----------------|-----------------|-----------------| 
+ |---------------|----------------|----------------|-----------------|-----------------|
+ |5WS(6CPU cycle)|120< HCLK <= 180|120< HCLK <= 144|110 < HCLK <= 132|100 < HCLK <= 120|
+ |---------------|----------------|----------------|-----------------|-----------------|
+ |6WS(7CPU cycle)|      NA        |144< HCLK <= 168|132 < HCLK <= 154|120 < HCLK <= 140|
+ |---------------|----------------|----------------|-----------------|-----------------|
  |7WS(8CPU cycle)|      NA        |168< HCLK <= 180|154 < HCLK <= 176|140 < HCLK <= 160|
- |---------------|----------------|----------------|-----------------|-----------------| 
+ |---------------|----------------|----------------|-----------------|-----------------|
  |8WS(9CPU cycle)|      NA        |      NA        |176 < HCLK <= 180|160 < HCLK <= 168|
  +-------------------------------------------------------------------------------------+
    
     [..]
     For STM32F401x devices
- +-------------------------------------------------------------------------------------+     
+ +-------------------------------------------------------------------------------------+
  | Latency       |                HCLK clock frequency (MHz)                           |
- |               |---------------------------------------------------------------------|     
+ |               |---------------------------------------------------------------------|
  |               | voltage range  | voltage range  | voltage range   | voltage range   |
  |               | 2.7 V - 3.6 V  | 2.4 V - 2.7 V  | 2.1 V - 2.4 V   | 1.8 V - 2.1 V   |
- |---------------|----------------|----------------|-----------------|-----------------|              
+ |---------------|----------------|----------------|-----------------|-----------------|
  |0WS(1CPU cycle)|0 < HCLK <= 30  |0 < HCLK <= 24  |0 < HCLK <= 22   |0 < HCLK <= 20   |
- |---------------|----------------|----------------|-----------------|-----------------|   
- |1WS(2CPU cycle)|30 < HCLK <= 60 |24 < HCLK <= 48 |22 < HCLK <= 44  |20 < HCLK <= 40  | 
- |---------------|----------------|----------------|-----------------|-----------------|   
+ |---------------|----------------|----------------|-----------------|-----------------|
+ |1WS(2CPU cycle)|30 < HCLK <= 60 |24 < HCLK <= 48 |22 < HCLK <= 44  |20 < HCLK <= 40  |
+ |---------------|----------------|----------------|-----------------|-----------------|
  |2WS(3CPU cycle)|60 < HCLK <= 84 |48 < HCLK <= 72 |44 < HCLK <= 66  |40 < HCLK <= 60  |
- |---------------|----------------|----------------|-----------------|-----------------| 
+ |---------------|----------------|----------------|-----------------|-----------------|
  |3WS(4CPU cycle)|      NA        |72 < HCLK <= 84 |66 < HCLK <= 84  |60 < HCLK <= 80  |
- |---------------|----------------|----------------|-----------------|-----------------| 
- |4WS(5CPU cycle)|      NA        |      NA        |      NA         |80 < HCLK <= 84  | 
- +-------------------------------------------------------------------------------------+ 
+ |---------------|----------------|----------------|-----------------|-----------------|
+ |4WS(5CPU cycle)|      NA        |      NA        |      NA         |80 < HCLK <= 84  |
+ +-------------------------------------------------------------------------------------+
+
+    [..]
+    For STM32F411xE devices
+ +-------------------------------------------------------------------------------------+
+ | Latency       |                HCLK clock frequency (MHz)                           |
+ |               |---------------------------------------------------------------------|
+ |               | voltage range  | voltage range  | voltage range   | voltage range   |
+ |               | 2.7 V - 3.6 V  | 2.4 V - 2.7 V  | 2.1 V - 2.4 V   | 1.8 V - 2.1 V   |
+ |---------------|----------------|----------------|-----------------|-----------------|
+ |0WS(1CPU cycle)|0 < HCLK <= 30  |0 < HCLK <= 24  |0 < HCLK <= 18   |0 < HCLK <= 16   |
+ |---------------|----------------|----------------|-----------------|-----------------|
+ |1WS(2CPU cycle)|30 < HCLK <= 64 |24 < HCLK <= 48 |18 < HCLK <= 36  |16 < HCLK <= 32  |
+ |---------------|----------------|----------------|-----------------|-----------------|
+ |2WS(3CPU cycle)|64 < HCLK <= 90 |48 < HCLK <= 72 |36 < HCLK <= 54  |32 < HCLK <= 48  |
+ |---------------|----------------|----------------|-----------------|-----------------|
+ |3WS(4CPU cycle)|90 < HCLK <= 100|72 < HCLK <= 96 |54 < HCLK <= 72  |48 < HCLK <= 64  |
+ |---------------|----------------|----------------|-----------------|-----------------|
+ |4WS(5CPU cycle)|      NA        |96 < HCLK <= 100|72 < HCLK <= 90  |64 < HCLK <= 80  |
+ |---------------|----------------|----------------|-----------------|-----------------|
+ |5WS(6CPU cycle)|      NA        |       NA       |90 < HCLK <= 100 |80 < HCLK <= 96  |
+ |---------------|----------------|----------------|-----------------|-----------------|
+ |6WS(7CPU cycle)|      NA        |       NA       |        NA       |96 < HCLK <= 100 |
+ +-------------------------------------------------------------------------------------+
  
  [..]
  +-------------------------------------------------------------------------------------------------------------------+
  |               | voltage range  | voltage range  | voltage range   | voltage range   | voltage range 2.7 V - 3.6 V |
  |               | 2.7 V - 3.6 V  | 2.4 V - 2.7 V  | 2.1 V - 2.4 V   | 1.8 V - 2.1 V   | with External Vpp = 9V      |
- |---------------|----------------|----------------|-----------------|-----------------|-----------------------------| 
- |Max Parallelism|      x32       |               x16                |       x8        |          x64                |              
- |---------------|----------------|----------------|-----------------|-----------------|-----------------------------|   
+ |---------------|----------------|----------------|-----------------|-----------------|-----------------------------|
+ |Max Parallelism|      x32       |               x16                |       x8        |          x64                |
+ |---------------|----------------|----------------|-----------------|-----------------|-----------------------------|
  |PSIZE[1:0]     |      10        |               01                 |       00        |           11                |
- +-------------------------------------------------------------------------------------------------------------------+  
+ +-------------------------------------------------------------------------------------------------------------------+
 
       -@- On STM32F405xx/407xx and STM32F415xx/417xx devices: 
            (++) when VOS = '0' Scale 2 mode, the maximum value of fHCLK = 144MHz. 
@@ -196,13 +219,19 @@
            (++) when VOS[1:0] = '0x01' Scale 3 mode, the maximum value of fHCLK is 120MHz.
            (++) when VOS[1:0] = '0x10' Scale 2 mode, the maximum value of fHCLK is 144MHz if OverDrive OFF and 168MHz if OverDrive ON.
            (++) when VOS[1:0] = '0x11' Scale 1 mode, the maximum value of fHCLK is 168MHz if OverDrive OFF and 180MHz if OverDrive ON. 
-          [..]  
+          [..]
           On STM32F401x devices:
            (++) when VOS[1:0] = '0x01' Scale 3 mode, the maximum value of fHCLK is 60MHz.
            (++) when VOS[1:0] = '0x10' Scale 2 mode, the maximum value of fHCLK is 84MHz.
-           For more details please refer product DataSheet 
+          [..]  
+          On STM32F411xE devices:
+           (++) when VOS[1:0] = '0x01' Scale 3 mode, the maximum value of fHCLK is 64MHz.
+           (++) when VOS[1:0] = '0x10' Scale 2 mode, the maximum value of fHCLK is 84MHz.
+           (++) when VOS[1:0] = '0x11' Scale 1 mode, the maximum value of fHCLK is 100MHz.
+
+        For more details please refer product DataSheet 
            You can use PWR_MainRegulatorModeConfig() function to control VOS bits.
-                 
+
       (+) void FLASH_PrefetchBufferCmd(FunctionalState NewState)
       (+) void FLASH_InstructionCacheCmd(FunctionalState NewState)
       (+) void FLASH_DataCacheCmd(FunctionalState NewState)
@@ -233,13 +262,13 @@
   *            @arg FLASH_Latency_10: FLASH Teen Latency cycles 
   *            @arg FLASH_Latency_11: FLASH Eleven Latency cycles 
   *            @arg FLASH_Latency_12: FLASH Twelve Latency cycles
-  *            @arg FLASH_Latency_13: FLASH Thirteen Latency cycles        
+  *            @arg FLASH_Latency_13: FLASH Thirteen Latency cycles
   *            @arg FLASH_Latency_14: FLASH Fourteen Latency cycles
   *            @arg FLASH_Latency_15: FLASH Fifteen Latency cycles 
   *              
-  * @note For STM32F405xx/407xx, STM32F415xx/417xx and STM32F401xx devices this parameter    
+  * @note For STM32F405xx/407xx, STM32F415xx/417xx and STM32F401xx/411xE devices this parameter
   *       can be a value between FLASH_Latency_0 and FLASH_Latency_7.
-  *         
+  *
   * @note For STM32F42xxx/43xxx devices this parameter can be a value between 
   *       FLASH_Latency_0 and FLASH_Latency_15. 
   *         
@@ -408,18 +437,21 @@ void FLASH_Lock(void)
   *
   * @note   If an erase and a program operations are requested simustaneously,    
   *         the erase operation is performed before the program one.
-  *   
+  *
   * @param  FLASH_Sector: The Sector number to be erased.
   *
   *  @note  For STM32F405xx/407xx and STM32F415xx/417xx devices this parameter can 
   *         be a value between FLASH_Sector_0 and FLASH_Sector_11.
-  *           
+  *
   *         For STM32F42xxx/43xxx devices this parameter can be a value between 
   *         FLASH_Sector_0 and FLASH_Sector_23.
-  *           
+  *
   *         For STM32F401xx devices this parameter can be a value between 
-  *         FLASH_Sector_0 and FLASH_Sector_5.             
-  *    
+  *         FLASH_Sector_0 and FLASH_Sector_5.
+  *
+  *         For STM32F411xE devices this parameter can be a value between 
+  *         FLASH_Sector_0 and FLASH_Sector_7.
+  *
   * @param  VoltageRange: The device voltage range which defines the erase parallelism.  
   *          This parameter can be one of the following values:
   *            @arg VoltageRange_1: when the device voltage range is 1.8V to 2.1V, 
@@ -543,7 +575,7 @@ FLASH_Status FLASH_EraseAllSectors(uint8_t VoltageRange)
     FLASH->CR &= ~(FLASH_CR_MER1 | FLASH_CR_MER2);
 #endif /* STM32F427_437xx ||  STM32F429_439xx */
 
-#if defined (STM32F40_41xxx) || defined (STM32F401xx) 
+#if defined (STM32F40_41xxx) || defined (STM32F401xx) || defined (STM32F411xE) 
     FLASH->CR &= CR_PSIZE_MASK;
     FLASH->CR |= tmp_psize;
     FLASH->CR |= FLASH_CR_MER;
@@ -554,7 +586,7 @@ FLASH_Status FLASH_EraseAllSectors(uint8_t VoltageRange)
 
     /* if the erase operation is completed, disable the MER Bit */
     FLASH->CR &= (~FLASH_CR_MER);
-#endif /* STM32F40_41xxx || STM32F401xx */
+#endif /* STM32F40_41xxx || STM32F401xx || STM32F411xE */
 
   }   
   /* Return the Erase Status */
@@ -887,14 +919,14 @@ FLASH_Status FLASH_ProgramByte(uint32_t Address, uint8_t Data)
       (+) void FLASH_OB_RDPConfig(uint8_t OB_RDP)
       (+) void FLASH_OB_UserConfig(uint8_t OB_IWDG, uint8_t OB_STOP, uint8_t OB_STDBY)
       (+) void FLASH_OB_BORConfig(uint8_t OB_BOR)
-      (+) FLASH_Status FLASH_ProgramOTP(uint32_t Address, uint32_t Data)							
+      (+) FLASH_Status FLASH_ProgramOTP(uint32_t Address, uint32_t Data)
       (+) FLASH_Status FLASH_OB_Launch(void)
-      (+) uint32_t FLASH_OB_GetUser(void)						
+      (+) uint32_t FLASH_OB_GetUser(void)
       (+) uint8_t FLASH_OB_GetWRP(void)
       (+) uint8_t FLASH_OB_GetWRP1(void)
       (+) uint8_t FLASH_OB_GetPCROP(void)
-      (+) uint8_t FLASH_OB_GetPCROP1(void)    						
-      (+) uint8_t FLASH_OB_GetRDP(void)							
+      (+) uint8_t FLASH_OB_GetPCROP1(void)
+      (+) uint8_t FLASH_OB_GetRDP(void)
       (+) uint8_t FLASH_OB_GetBOR(void)
     [..]  
       The following function can be used only for STM32F42xxx/43xxx devices. 
@@ -1039,7 +1071,7 @@ void FLASH_OB_WRP1Config(uint32_t OB_WRP, FunctionalState NewState)
 /**
   * @brief  Select the Protection Mode (SPRMOD). 
   * 
-  * @note   This function can be used only for STM32F42xxx/43xxx and STM32F401xx devices.       
+  * @note   This function can be used only for STM32F42xxx/43xxx and STM32F401xx/411xE devices.       
   * 
   * @note   After PCROP activation, Option Byte modification is not possible. 
   *         Exception made for the global Read Out Protection modification level (level1 to level0) 
@@ -1081,14 +1113,14 @@ void FLASH_OB_PCROPSelectionConfig(uint8_t OB_PcROP)
   * @brief  Enables or disables the read/write protection (PCROP) of the desired 
   *         sectors, for the first 1 MB of the Flash.
   *           
-  * @note   This function can be used only for STM32F42xxx/43xxx and STM32F401xx devices. 
+  * @note   This function can be used only for STM32F42xxx/43xxx and STM32F401xx/411xE devices. 
   *   
   * @param  OB_PCROP: specifies the sector(s) to be read/write protected or unprotected.
   *          This parameter can be one of the following values:
   *            @arg OB_PCROP: A value between OB_PCROP_Sector0 and OB_PCROP_Sector11 for 
   *                           STM32F42xxx/43xxx devices and between OB_PCROP_Sector0 and 
-  *                           OB_PCROP_Sector5 for STM32F401xx devices.
-  *            @arg OB_PCROP_Sector_All                         
+  *                           OB_PCROP_Sector5 for STM32F401xx/411xE devices.
+  *            @arg OB_PCROP_Sector_All
   * @param  Newstate: new state of the Write Protection.
   *          This parameter can be: ENABLE or DISABLE.
   * @retval None  
@@ -1125,7 +1157,7 @@ void FLASH_OB_PCROPConfig(uint32_t OB_PCROP, FunctionalState NewState)
   * @param  OB_PCROP: specifies the sector(s) to be read/write protected or unprotected.
   *          This parameter can be one of the following values:
   *            @arg OB_PCROP: A value between OB_PCROP_Sector12 and OB_PCROP_Sector23 
-  *            @arg OB_PCROP_Sector_All                    
+  *            @arg OB_PCROP_Sector_All
   * @param  Newstate: new state of the Write Protection.
   *          This parameter can be: ENABLE or DISABLE.
   * @retval None  
@@ -1213,15 +1245,15 @@ void FLASH_OB_UserConfig(uint8_t OB_IWDG, uint8_t OB_STOP, uint8_t OB_STDBY)
   
   if(status == FLASH_COMPLETE)
   { 
-#if defined (STM32F427_437xx) || defined (STM32F429_439xx)     
+#if defined (STM32F427_437xx) || defined (STM32F429_439xx)
     /* Mask OPTLOCK, OPTSTRT, BOR_LEV and BFB2 bits */
     optiontmp =  (uint8_t)((*(__IO uint8_t *)OPTCR_BYTE0_ADDRESS) & (uint8_t)0x1F);
 #endif /* STM32F427_437xx ||  STM32F429_439xx */
 
-#if defined (STM32F40_41xxx) || defined (STM32F401xx) 
+#if defined (STM32F40_41xxx) || defined (STM32F401xx) || defined (STM32F411xE)
     /* Mask OPTLOCK, OPTSTRT and BOR_LEV bits */
     optiontmp =  (uint8_t)((*(__IO uint8_t *)OPTCR_BYTE0_ADDRESS) & (uint8_t)0x0F); 
-#endif /* STM32F40_41xxx || STM32F401xx */ 
+#endif /* STM32F40_41xxx || STM32F401xx || STM32F411xE */ 
 
     /* Update User Option Byte */
     *(__IO uint8_t *)OPTCR_BYTE0_ADDRESS = OB_IWDG | (uint8_t)(OB_STDBY | (uint8_t)(OB_STOP | ((uint8_t)optiontmp))); 
@@ -1330,7 +1362,7 @@ uint16_t FLASH_OB_GetWRP1(void)
 /**
   * @brief  Returns the FLASH PC Read/Write Protection Option Bytes value.
   *   
-  * @note   This function can be used only for STM32F42xxx/43xxx devices and STM32F401xx devices.
+  * @note   This function can be used only for STM32F42xxx/43xxx devices and STM32F401xx/411xE devices.
   *   
   * @param  None
   * @retval The FLASH PC Read/Write Protection Option Bytes value
@@ -1443,7 +1475,7 @@ void FLASH_ITConfig(uint32_t FLASH_IT, FunctionalState NewState)
   *            @arg FLASH_FLAG_PGAERR: FLASH Programming Alignment error flag
   *            @arg FLASH_FLAG_PGPERR: FLASH Programming Parallelism error flag
   *            @arg FLASH_FLAG_PGSERR: FLASH Programming Sequence error flag
-  *            @arg FLASH_FLAG_RDERR: FLASH (PCROP) Read Protection error flag (STM32F42/43xxx and STM32F401xx devices) 
+  *            @arg FLASH_FLAG_RDERR: FLASH (PCROP) Read Protection error flag (STM32F42xx/43xxx and STM32F401xx/411xE devices) 
   *            @arg FLASH_FLAG_BSY: FLASH Busy flag
   * @retval The new state of FLASH_FLAG (SET or RESET).
   */
@@ -1475,7 +1507,7 @@ FlagStatus FLASH_GetFlagStatus(uint32_t FLASH_FLAG)
   *            @arg FLASH_FLAG_PGAERR: FLASH Programming Alignment error flag 
   *            @arg FLASH_FLAG_PGPERR: FLASH Programming Parallelism error flag
   *            @arg FLASH_FLAG_PGSERR: FLASH Programming Sequence error flag
-  *            @arg FLASH_FLAG_RDERR: FLASH Read Protection error flag (STM32F42/43xxx and STM32F401xx devices)   
+  *            @arg FLASH_FLAG_RDERR: FLASH Read Protection error flag (STM32F42xx/43xxx and STM32F401xx/411xE devices)   
   * @retval None
   */
 void FLASH_ClearFlag(uint32_t FLASH_FLAG)

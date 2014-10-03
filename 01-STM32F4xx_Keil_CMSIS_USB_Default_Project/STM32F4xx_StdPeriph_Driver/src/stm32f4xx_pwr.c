@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_pwr.c
   * @author  MCD Application Team
-  * @version V1.3.0
-  * @date    08-November-2013
+  * @version V1.4.0
+  * @date    04-August-2014
   * @brief   This file provides firmware functions to manage the following 
   *          functionalities of the Power Controller (PWR) peripheral:           
   *           + Backup Domain Access
@@ -17,7 +17,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2014 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -78,6 +78,14 @@
 /* Alias word address of ODSWEN bit */
 #define ODSWEN_BitNumber         0x11
 #define CR_ODSWEN_BB             (PERIPH_BB_BASE + (CR_OFFSET * 32) + (ODSWEN_BitNumber * 4))
+
+/* Alias word address of MRLVDS bit */
+#define MRLVDS_BitNumber         0x0B
+#define CR_MRLVDS_BB             (PERIPH_BB_BASE + (CR_OFFSET * 32) + (MRLVDS_BitNumber * 4))
+
+/* Alias word address of LPLVDS bit */
+#define LPLVDS_BitNumber         0x0A
+#define CR_LPLVDS_BB             (PERIPH_BB_BASE + (CR_OFFSET * 32) + (LPLVDS_BitNumber * 4))
 
 /* --- CSR Register ---*/
 
@@ -470,6 +478,54 @@ void PWR_UnderDriveCmd(FunctionalState NewState)
 }
 
 /**
+  * @brief Enables or disables the Main Regulator low voltage mode.
+  *
+  * @note  This mode is only available for STM32F401xx/STM32F411xx devices.
+  *
+  * @param  NewState: new state of the Under Drive mode.
+  *          This parameter can be: ENABLE or DISABLE.
+  * @retval None
+  */
+void PWR_MainRegulatorLowVoltageCmd(FunctionalState NewState)
+{ 
+  /* Check the parameters */
+  assert_param(IS_FUNCTIONAL_STATE(NewState));
+  
+  if (NewState != DISABLE)
+  {
+    *(__IO uint32_t *) CR_MRLVDS_BB = (uint32_t)ENABLE;
+  }
+  else
+  {
+    *(__IO uint32_t *) CR_MRLVDS_BB = (uint32_t)DISABLE;
+  }
+}
+
+/**
+  * @brief Enables or disables the Low Power Regulator low voltage mode.
+  *
+  * @note  This mode is only available for STM32F401xx/STM32F411xx devices.
+  *
+  * @param  NewState: new state of the Under Drive mode.
+  *          This parameter can be: ENABLE or DISABLE.
+  * @retval None
+  */
+void PWR_LowRegulatorLowVoltageCmd(FunctionalState NewState)
+{
+  /* Check the parameters */
+  assert_param(IS_FUNCTIONAL_STATE(NewState));
+  
+  if (NewState != DISABLE)
+  {
+    *(__IO uint32_t *) CR_LPLVDS_BB = (uint32_t)ENABLE;
+  }
+  else
+  {
+    *(__IO uint32_t *) CR_LPLVDS_BB = (uint32_t)DISABLE;
+  }
+}
+
+/**
   * @}
   */
 
@@ -750,22 +806,20 @@ void PWR_EnterUnderDriveSTOPMode(uint32_t PWR_Regulator, uint8_t PWR_STOPEntry)
   *          - RTC_AF1 pin (PC13) if configured for tamper, time-stamp, RTC 
   *            Alarm out, or RTC clock calibration out.
   *          - RTC_AF2 pin (PI8) if configured for tamper or time-stamp.  
-  *          - WKUP pin 1 (PA0) if enabled.       
+  *          - WKUP pin 1 (PA0) if enabled.
+  * @note   The Wakeup flag (WUF) need to be cleared at application level before to call this function 
   * @param  None
   * @retval None
   */
 void PWR_EnterSTANDBYMode(void)
 {
-  /* Clear Wakeup flag */
-  PWR->CR |= PWR_CR_CWUF;
-  
   /* Select STANDBY mode */
   PWR->CR |= PWR_CR_PDDS;
   
   /* Set SLEEPDEEP bit of Cortex System Control Register */
   SCB->SCR |= SCB_SCR_SLEEPDEEP_Msk;
   
-/* This option is used to ensure that store operations are completed */
+  /* This option is used to ensure that store operations are completed */
 #if defined ( __CC_ARM   )
   __force_stores();
 #endif
@@ -861,9 +915,9 @@ void PWR_ClearFlag(uint32_t PWR_FLAG)
   }
 #endif /* STM32F427_437xx ||  STM32F429_439xx */
 
-#if defined (STM32F40_41xxx) || defined (STM32F401xx) 
+#if defined (STM32F40_41xxx) || defined (STM32F401xx) || defined (STM32F411xE) 
   PWR->CR |=  PWR_FLAG << 2;
-#endif /* STM32F40_41xxx */
+#endif /* STM32F40_41xxx  || STM32F401xx || STM32F411xE */
 }
 
 /**

@@ -2,13 +2,13 @@
   ******************************************************************************
   * @file    stm32f4xx_rcc.h
   * @author  MCD Application Team
-  * @version V1.3.0
-  * @date    08-November-2013
+  * @version V1.4.0
+  * @date    04-August-2014
   * @brief   This file contains all the functions prototypes for the RCC firmware library.  
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2014 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -70,7 +70,18 @@ typedef struct
 /**
   * @}
   */ 
-  
+
+/** @defgroup RCC_LSE_Dual_Mode_Selection
+  * @{
+  */
+#define RCC_LSE_LOWPOWER_MODE           ((uint8_t)0x00)
+#define RCC_LSE_HIGHDRIVE_MODE          ((uint8_t)0x01)
+#define IS_RCC_LSE_MODE(MODE)           (((MODE) == RCC_LSE_LOWPOWER_MODE) || \
+                                         ((MODE) == RCC_LSE_HIGHDRIVE_MODE))
+/**
+  * @}
+  */
+
 /** @defgroup RCC_PLL_Clock_Source 
   * @{
   */
@@ -85,6 +96,7 @@ typedef struct
  
 #define IS_RCC_PLLI2SN_VALUE(VALUE) ((192 <= (VALUE)) && ((VALUE) <= 432))
 #define IS_RCC_PLLI2SR_VALUE(VALUE) ((2 <= (VALUE)) && ((VALUE) <= 7))  
+#define IS_RCC_PLLI2SM_VALUE(VALUE) ((VALUE) <= 63)  
 
 #define IS_RCC_PLLI2SQ_VALUE(VALUE) ((2 <= (VALUE)) && ((VALUE) <= 15))
 #define IS_RCC_PLLSAIN_VALUE(VALUE) ((192 <= (VALUE)) && ((VALUE) <= 432))
@@ -103,7 +115,7 @@ typedef struct
                                         ((VALUE) == RCC_PLLSAIDivR_Div8)  ||\
                                         ((VALUE) == RCC_PLLSAIDivR_Div16))
  
-/**                                                                     
+/**
   * @}
   */ 
   
@@ -540,11 +552,12 @@ void        RCC_PLLCmd(FunctionalState NewState);
 
 #if defined (STM32F40_41xxx) || defined (STM32F401xx)
 void        RCC_PLLI2SConfig(uint32_t PLLI2SN, uint32_t PLLI2SR);
-#endif /* STM32F40_41xxx || STM32F401xx */
-
-#if defined (STM32F427_437xx) || defined (STM32F429_439xx)
+#elif defined (STM32F411xE)
+void        RCC_PLLI2SConfig(uint32_t PLLI2SN, uint32_t PLLI2SR, uint32_t PLLI2SM);
+#elif defined (STM32F427_437xx) || defined (STM32F429_439xx)
 void        RCC_PLLI2SConfig(uint32_t PLLI2SN, uint32_t PLLI2SQ, uint32_t PLLI2SR);
-#endif /* STM32F41_43xxx */
+#else
+#endif /* STM32F40_41xxx || STM32F401xx */
 
 void        RCC_PLLI2SCmd(FunctionalState NewState);
 void        RCC_PLLSAIConfig(uint32_t PLLSAIN, uint32_t PLLSAIQ, uint32_t PLLSAIR);
@@ -590,6 +603,8 @@ void        RCC_AHB2PeriphClockLPModeCmd(uint32_t RCC_AHB2Periph, FunctionalStat
 void        RCC_AHB3PeriphClockLPModeCmd(uint32_t RCC_AHB3Periph, FunctionalState NewState);
 void        RCC_APB1PeriphClockLPModeCmd(uint32_t RCC_APB1Periph, FunctionalState NewState);
 void        RCC_APB2PeriphClockLPModeCmd(uint32_t RCC_APB2Periph, FunctionalState NewState);
+
+void        RCC_LSEModeConfig(uint8_t Mode);
 
 /* Interrupts and flags management functions **********************************/
 void        RCC_ITConfig(uint8_t RCC_IT, FunctionalState NewState);

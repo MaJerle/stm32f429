@@ -2,10 +2,10 @@
   ******************************************************************************
   * @file    stm32f4xx_cryp.c
   * @author  MCD Application Team
-  * @version V1.3.0
-  * @date    08-November-2013
+  * @version V1.4.0
+  * @date    04-August-2014
   * @brief   This file provides firmware functions to manage the following 
-  *          functionalities of the  Cryptographic processor (CRYP) peripheral:           
+  *          functionalities of the  Cryptographic processor (CRYP) peripheral:
   *           + Initialization and Configuration functions
   *           + Data treatment functions 
   *           + Context swapping functions     
@@ -143,7 +143,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2014 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.

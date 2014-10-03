@@ -2,14 +2,14 @@
   ******************************************************************************
   * @file    stm32f4xx_pwr.h
   * @author  MCD Application Team
-  * @version V1.3.0
-  * @date    08-November-2013
+  * @version V1.4.0
+  * @date    04-August-2014
   * @brief   This file contains all the functions prototypes for the PWR firmware 
   *          library.
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2014 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -180,6 +180,8 @@ void PWR_MainRegulatorModeConfig(uint32_t PWR_Regulator_Voltage);
 void PWR_OverDriveCmd(FunctionalState NewState);
 void PWR_OverDriveSWCmd(FunctionalState NewState);
 void PWR_UnderDriveCmd(FunctionalState NewState);
+void PWR_MainRegulatorLowVoltageCmd(FunctionalState NewState);
+void PWR_LowRegulatorLowVoltageCmd(FunctionalState NewState);
 
 /* FLASH Power Down configuration functions ***********************************/ 
 void PWR_FlashPowerDownCmd(FunctionalState NewState);

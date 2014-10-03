@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_wwdg.c
   * @author  MCD Application Team
-  * @version V1.3.0
-  * @date    08-November-2013
+  * @version V1.4.0
+  * @date    04-August-2014
   * @brief   This file provides firmware functions to manage the following 
   *          functionalities of the Window watchdog (WWDG) peripheral:           
   *           + Prescaler, Refresh window and Counter configuration
@@ -23,7 +23,7 @@
         before the counter has reached the refresh window value. This 
         implies that the counter must be refreshed in a limited window.
               
-        Once enabled the WWDG cannot be disabled except by a system reset.                          
+        Once enabled the WWDG cannot be disabled except by a system reset.
           
         WWDGRST flag in RCC_CSR register can be used to inform when a WWDG
         reset occurs.
@@ -59,11 +59,11 @@
           the counter value is lower than the refresh window value, 
           programmed using WWDG_SetWindowValue().         
   
-    @endverbatim                               
+    @endverbatim
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2014 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.

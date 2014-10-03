@@ -2,22 +2,22 @@
   ******************************************************************************
   * @file    stm32f4xx_can.c
   * @author  MCD Application Team
-  * @version V1.3.0
-  * @date    08-November-2013
+  * @version V1.4.0
+  * @date    04-August-2014
   * @brief   This file provides firmware functions to manage the following 
-  *          functionalities of the Controller area network (CAN) peripheral:           
+  *          functionalities of the Controller area network (CAN) peripheral:
   *           + Initialization and Configuration 
-  *           + CAN Frames Transmission 
-  *           + CAN Frames Reception    
-  *           + Operation modes switch  
-  *           + Error management          
-  *           + Interrupts and flags        
-  *         
-@verbatim                                 
- ===============================================================================      
+  *           + CAN Frames Transmission
+  *           + CAN Frames Reception
+  *           + Operation modes switch
+  *           + Error management
+  *           + Interrupts and flags
+  *
+@verbatim
+ ===============================================================================
                         ##### How to use this driver #####
  ===============================================================================
-    [..]            
+    [..]
       (#) Enable the CAN controller interface clock using 
           RCC_APB1PeriphClockCmd(RCC_APB1Periph_CAN1, ENABLE); for CAN1 
           and RCC_APB1PeriphClockCmd(RCC_APB1Periph_CAN2, ENABLE); for CAN2
@@ -57,14 +57,13 @@
              After checking on a flag you should clear it using CAN_ClearFlag()
              function. And after checking on an interrupt event you should 
              clear it using CAN_ClearITPendingBit() function.            
-                 
-                
+
 @endverbatim
            
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2014 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.

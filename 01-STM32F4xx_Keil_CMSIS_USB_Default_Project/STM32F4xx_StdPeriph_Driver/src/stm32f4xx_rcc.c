@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_rcc.c
   * @author  MCD Application Team
-  * @version V1.3.0
-  * @date    08-November-2013
+  * @version V1.4.0
+  * @date    04-August-2014
   * @brief   This file provides firmware functions to manage the following 
   *          functionalities of the Reset and clock control (RCC) peripheral:
   *           + Internal/external clocks, PLL, CSS and MCO configuration
@@ -38,7 +38,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2014 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -238,7 +238,6 @@ void RCC_DeInit(void)
 
   /* Disable Timers clock prescalers selection, only available for STM32F42/43xxx devices */
   RCC->DCKCFGR = 0x00000000; 
-
 }
 
 /**
@@ -521,9 +520,46 @@ void RCC_PLLI2SConfig(uint32_t PLLI2SN, uint32_t PLLI2SR)
 
   RCC->PLLI2SCFGR = (PLLI2SN << 6) | (PLLI2SR << 28);
 }
-#endif /* STM32F40_41xxx || STM32F401xx */
 
-#if defined (STM32F427_437xx) || defined (STM32F429_439xx)
+#elif defined (STM32F411xE)
+/**
+  * @brief  Configures the PLLI2S clock multiplication and division factors.
+  *  
+  * @note   This function can be used only for STM32F411xE devices. 
+  *    
+  * @note   This function must be used only when the PLLI2S is disabled.
+  * @note   PLLI2S clock source is common with the main PLL (configured in 
+  *         RCC_PLLConfig function )  
+  *
+  * @param  PLLI2SM: specifies the division factor for PLLI2S VCO input clock
+  *         This parameter must be a number between Min_Data = 2 and Max_Data = 63.
+  * @note   You have to set the PLLI2SM parameter correctly to ensure that the VCO input
+  *         frequency ranges from 1 to 2 MHz. It is recommended to select a frequency
+  *         of 2 MHz to limit PLLI2S jitter.
+  *
+  * @param  PLLI2SN: specifies the multiplication factor for PLLI2S VCO output clock
+  *          This parameter must be a number between 192 and 432.
+  * @note   You have to set the PLLI2SN parameter correctly to ensure that the VCO 
+  *         output frequency is between 192 and 432 MHz.
+  *    
+  * @param  PLLI2SR: specifies the division factor for I2S clock
+  *          This parameter must be a number between 2 and 7.
+  * @note   You have to set the PLLI2SR parameter correctly to not exceed 192 MHz
+  *         on the I2S clock frequency.
+  *   
+  * @retval None
+  */
+void RCC_PLLI2SConfig(uint32_t PLLI2SN, uint32_t PLLI2SR, uint32_t PLLI2SM)
+{
+  /* Check the parameters */
+  assert_param(IS_RCC_PLLI2SN_VALUE(PLLI2SN));
+  assert_param(IS_RCC_PLLI2SM_VALUE(PLLI2SM));
+  assert_param(IS_RCC_PLLI2SR_VALUE(PLLI2SR));
+
+  RCC->PLLI2SCFGR = (PLLI2SN << 6) | (PLLI2SR << 28) | PLLI2SM;
+}
+
+#elif defined (STM32F427_437xx) || defined (STM32F429_439xx)
 /**
   * @brief  Configures the PLLI2S clock multiplication and division factors.
   * 
@@ -558,7 +594,8 @@ void RCC_PLLI2SConfig(uint32_t PLLI2SN, uint32_t PLLI2SQ, uint32_t PLLI2SR)
 
   RCC->PLLI2SCFGR = (PLLI2SN << 6) | (PLLI2SQ << 24) | (PLLI2SR << 28);
 }
-#endif /* STM32F427_437xx ||  STM32F429_439xx */
+#else
+#endif /* STM32F40_41xxx || STM32F401xx */
 
 /**
   * @brief  Enables or disables the PLLI2S. 
@@ -821,7 +858,31 @@ void RCC_MCO2Config(uint32_t RCC_MCO2Source, uint32_t RCC_MCO2Div)
  |3WS(4CPU cycle)|      NA        |72 < HCLK <= 84 |66 < HCLK <= 84  |60 < HCLK <= 80  |
  |---------------|----------------|----------------|-----------------|-----------------| 
  |4WS(5CPU cycle)|      NA        |      NA        |      NA         |80 < HCLK <= 84  | 
- +-------------------------------------------------------------------------------------+ 
+ +-------------------------------------------------------------------------------------+
+
+      (#) For STM32F411xE devices, the maximum frequency of the SYSCLK and HCLK is 100 MHz, 
+          PCLK2 100 MHz and PCLK1 50 MHz. Depending on the device voltage range, the maximum 
+          frequency should be adapted accordingly:
+ +-------------------------------------------------------------------------------------+
+ | Latency       |                HCLK clock frequency (MHz)                           |
+ |               |---------------------------------------------------------------------|
+ |               | voltage range  | voltage range  | voltage range   | voltage range   |
+ |               | 2.7 V - 3.6 V  | 2.4 V - 2.7 V  | 2.1 V - 2.4 V   | 1.8 V - 2.1 V   |
+ |---------------|----------------|----------------|-----------------|-----------------|
+ |0WS(1CPU cycle)|0 < HCLK <= 30  |0 < HCLK <= 24  |0 < HCLK <= 18   |0 < HCLK <= 16   |
+ |---------------|----------------|----------------|-----------------|-----------------|
+ |1WS(2CPU cycle)|30 < HCLK <= 64 |24 < HCLK <= 48 |18 < HCLK <= 36  |16 < HCLK <= 32  |
+ |---------------|----------------|----------------|-----------------|-----------------|
+ |2WS(3CPU cycle)|64 < HCLK <= 90 |48 < HCLK <= 72 |36 < HCLK <= 54  |32 < HCLK <= 48  |
+ |---------------|----------------|----------------|-----------------|-----------------|
+ |3WS(4CPU cycle)|90 < HCLK <= 100|72 < HCLK <= 96 |54 < HCLK <= 72  |48 < HCLK <= 64  |
+ |---------------|----------------|----------------|-----------------|-----------------|
+ |4WS(5CPU cycle)|      NA        |96 < HCLK <= 100|72 < HCLK <= 90  |64 < HCLK <= 80  |
+ |---------------|----------------|----------------|-----------------|-----------------|
+ |5WS(6CPU cycle)|      NA        |       NA       |90 < HCLK <= 100 |80 < HCLK <= 96  |
+ |---------------|----------------|----------------|-----------------|-----------------|
+ |6WS(7CPU cycle)|      NA        |       NA       |        NA       |96 < HCLK <= 100 |
+ +-------------------------------------------------------------------------------------+
   
       -@- On STM32F405xx/407xx and STM32F415xx/417xx devices: 
            (++) when VOS = '0', the maximum value of fHCLK = 144MHz. 
@@ -835,7 +896,12 @@ void RCC_MCO2Config(uint32_t RCC_MCO2Source, uint32_t RCC_MCO2Div)
           On STM32F401x devices:
            (++) when VOS[1:0] = '0x01', the maximum value of fHCLK is 64MHz.
            (++) when VOS[1:0] = '0x10', the maximum value of fHCLK is 84MHz.
-           You can use PWR_MainRegulatorModeConfig() function to control VOS bits.
+          On STM32F411xE devices:
+           (++) when VOS[1:0] = '0x01' the maximum value of fHCLK is 64MHz.
+           (++) when VOS[1:0] = '0x10' the maximum value of fHCLK is 84MHz.
+           (++) when VOS[1:0] = '0x11' the maximum value of fHCLK is 100MHz.
+
+       You can use PWR_MainRegulatorModeConfig() function to control VOS bits.
 
 @endverbatim
   * @{
@@ -1399,7 +1465,7 @@ void RCC_LTDCCLKDivConfig(uint32_t RCC_PLLSAIDivR)
 /**
   * @brief  Configures the Timers clocks prescalers selection.
   * 
-  * @note   This function can be used only for STM32F42xxx/43xxx and STM32F401xx devices. 
+  * @note   This function can be used only for STM32F42xxx/43xxx and STM32F401xx/411xE devices. 
   *   
   * @param  RCC_TIMCLKPrescaler : specifies the Timers clocks prescalers selection
   *         This parameter can be one of the following values:
@@ -2018,6 +2084,30 @@ void RCC_APB2PeriphClockLPModeCmd(uint32_t RCC_APB2Periph, FunctionalState NewSt
   else
   {
     RCC->APB2LPENR &= ~RCC_APB2Periph;
+  }
+}
+
+/**
+  * @brief Configures the External Low Speed oscillator mode (LSE mode).
+  * @note This mode is only available for STM32F411xx devices.
+  * @param  Mode: specifies the LSE mode.
+  *          This parameter can be one of the following values:
+  *            @arg RCC_LSE_LOWPOWER_MODE:  LSE oscillator in low power mode.
+  *            @arg RCC_LSE_HIGHDRIVE_MODE: LSE oscillator in High Drive mode.
+  * @retval None
+  */
+void RCC_LSEModeConfig(uint8_t Mode)
+{
+  /* Check the parameters */
+  assert_param(IS_RCC_LSE_MODE(Mode));
+  
+  if(Mode == RCC_LSE_HIGHDRIVE_MODE)
+  {
+    SET_BIT(RCC->BDCR, RCC_BDCR_LSEMOD);
+  }
+  else
+  {
+    CLEAR_BIT(RCC->BDCR, RCC_BDCR_LSEMOD);
   }
 }
 

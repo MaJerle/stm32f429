@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_spi.c
   * @author  MCD Application Team
-  * @version V1.3.0
-  * @date    08-November-2013
+  * @version V1.4.0
+  * @date    04-August-2014
   * @brief   This file provides firmware functions to manage the following 
   *          functionalities of the Serial peripheral interface (SPI):
   *           + Initialization and Configuration
@@ -138,7 +138,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2014 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -421,10 +421,17 @@ void I2S_Init(SPI_TypeDef* SPIx, I2S_InitTypeDef* I2S_InitStruct)
                       (RCC_PLLI2SCFGR_PLLI2SR >> 28));
     
     /* Get the PLLM value */
-    pllm = (uint32_t)(RCC->PLLCFGR & RCC_PLLCFGR_PLLM);      
+    pllm = (uint32_t)(RCC->PLLCFGR & RCC_PLLCFGR_PLLM);
 
-    /* Get the I2S source clock value */
-    i2sclk = (uint32_t)(((HSE_VALUE / pllm) * plln) / pllr);
+    if((RCC->PLLCFGR & RCC_PLLCFGR_PLLSRC) == RCC_PLLCFGR_PLLSRC_HSE)
+    {
+      /* Get the I2S source clock value */
+      i2sclk = (uint32_t)(((HSE_VALUE / pllm) * plln) / pllr);
+    }
+    else
+    { /* Get the I2S source clock value */
+      i2sclk = (uint32_t)(((HSI_VALUE / pllm) * plln) / pllr);
+    }
   #endif /* I2S_EXTERNAL_CLOCK_VAL */
     
     /* Compute the Real divider depending on the MCLK output state, with a floating point */

@@ -1,11 +1,10 @@
 /**
   ******************************************************************************
-  * @file    stm32f4xx_crc.h
+  * @file    stm32f4xx_flash_ramfunc.h
   * @author  MCD Application Team
   * @version V1.4.0
   * @date    04-August-2014
-  * @brief   This file contains all the functions prototypes for the CRC firmware 
-  *          library.
+  * @brief   Header file of FLASH RAMFUNC driver.
   ******************************************************************************
   * @attention
   *
@@ -26,9 +25,10 @@
   ******************************************************************************
   */
 
+
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __STM32F4xx_CRC_H
-#define __STM32F4xx_CRC_H
+#ifndef __STM32F4xx_FLASH_RAMFUNC_H
+#define __STM32F4xx_FLASH_RAMFUNC_H
 
 #ifdef __cplusplus
  extern "C" {
@@ -41,43 +41,63 @@
   * @{
   */
 
-/** @addtogroup CRC
+/** @addtogroup FLASH RAMFUNC
   * @{
-  */
+  */ 
 
 /* Exported types ------------------------------------------------------------*/
+/* Private define ------------------------------------------------------------*/
+/** 
+  * @brief  __RAM_FUNC definition
+  */ 
+#if defined ( __CC_ARM   )
+/* ARM Compiler
+   ------------
+   RAM functions are defined using the toolchain options. 
+   Functions that are executed in RAM should reside in a separate source module.
+   Using the 'Options for File' dialog you can simply change the 'Code / Const' 
+   area of a module to a memory space in physical RAM.
+   Available memory areas are declared in the 'Target' tab of the 'Options for Target'
+   dialog. 
+*/
+#define __RAM_FUNC void 
+
+#elif defined ( __ICCARM__ )
+/* ICCARM Compiler
+   ---------------
+   RAM functions are defined using a specific toolchain keyword "__ramfunc". 
+*/
+#define __RAM_FUNC __ramfunc void
+
+#elif defined   (  __GNUC__  )
+/* GNU Compiler
+   ------------
+  RAM functions are defined using a specific toolchain attribute 
+   "__attribute__((section(".RamFunc")))".
+*/
+#define __RAM_FUNC void  __attribute__((section(".RamFunc")))
+
+#endif
 /* Exported constants --------------------------------------------------------*/
-
-/** @defgroup CRC_Exported_Constants
-  * @{
-  */
-
-/**
-  * @}
-  */
-
 /* Exported macro ------------------------------------------------------------*/
-/* Exported functions --------------------------------------------------------*/  
+/* Exported functions --------------------------------------------------------*/
+__RAM_FUNC FLASH_FlashInterfaceCmd(FunctionalState NewState);
+__RAM_FUNC FLASH_FlashSleepModeCmd(FunctionalState NewState);
 
-void CRC_ResetDR(void);
-uint32_t CRC_CalcCRC(uint32_t Data);
-uint32_t CRC_CalcBlockCRC(uint32_t pBuffer[], uint32_t BufferLength);
-uint32_t CRC_GetCRC(void);
-void CRC_SetIDRegister(uint8_t IDValue);
-uint8_t CRC_GetIDRegister(void);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* __STM32F4xx_CRC_H */
+#endif /* __STM32F4xx_FLASH_RAMFUNC_H */
 
 /**
   * @}
-  */
+  */ 
 
 /**
   * @}
-  */
+  */ 
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+
