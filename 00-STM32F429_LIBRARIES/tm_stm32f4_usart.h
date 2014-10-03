@@ -116,11 +116,11 @@
 #define TM_USE_UART7
 #define TM_USE_UART8
 #endif /* STM32F427_437x || STM32F429_439xx */
-#if defined (STM32F401xx)
+#if defined (STM32F401xx) || defined(STM32F411xE)
 #define TM_USE_USART1
 #define TM_USE_USART2
 #define TM_USE_USART6
-#endif /* STM32F401xx */
+#endif /* STM32F401xx || STM32F411xx */
 
 //Buffer size
 #ifndef TM_USART_BUFFER_SIZE
