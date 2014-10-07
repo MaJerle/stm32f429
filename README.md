@@ -102,6 +102,8 @@ http://bit.ly/X8z9UQ
 http://bit.ly/1phUdPD
 37. BMP180 - Read atmosferic pressure on STM32F4 device
 http://bit.ly/1qfGTve
+38. EXTI - Use external interrupts with STM32F4
+http://bit.ly/10ltRHI
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB
