@@ -29,6 +29,9 @@ void TM_MFRC522_Init(void) {
 	TM_MFRC522_WriteRegister(MFRC522_REG_T_RELOAD_L, 30);           
 	TM_MFRC522_WriteRegister(MFRC522_REG_T_RELOAD_H, 0);
 
+	/* 48dB gain */
+	TM_MFRC522_WriteRegister(MFRC522_REG_RF_CFG, 0x70);
+	
 	TM_MFRC522_WriteRegister(MFRC522_REG_TX_AUTO, 0x40);
 	TM_MFRC522_WriteRegister(MFRC522_REG_MODE, 0x3D);
 
