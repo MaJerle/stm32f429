@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/04/library-04-connect-stm32f429-discovery-to-computer-with-usart/
- *	@version 	v1.3
+ *	@version 	v1.4
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -78,8 +78,8 @@
  *	//Set USART datasize
  *	#define TM_X_WORD_LENGTH				USART_WordLength_8b
  */
-#ifndef TM_USART_
-#define TM_USART_ 130
+#ifndef TM_USART_H
+#define TM_USART_H 140
 /**
  * Library dependencies
  * - STM32F4xx
@@ -124,12 +124,12 @@
 
 //Buffer size
 #ifndef TM_USART_BUFFER_SIZE
-#define TM_USART_BUFFER_SIZE 		32
+#define TM_USART_BUFFER_SIZE 				32
 #endif
 
 //NVIC Priority
 #ifndef TM_USART_NVIC_PRIORITY
-#define TM_USART_NVIC_PRIORITY		0x00
+#define TM_USART_NVIC_PRIORITY				0x00
 #endif
 
 //U(S)ART settings, can be changed in your defines.h project file
@@ -492,7 +492,7 @@ extern uint16_t TM_USART_Gets(USART_TypeDef* USARTx, char* buffer, uint16_t bufs
  */
 extern void USART1_IRQHandler(void);
 
-extern void TM_USART1_ReceiveHandler(uint8_t c);
+__weak void TM_USART1_ReceiveHandler(uint8_t c);
 #endif
 
 #ifdef USART2
@@ -503,7 +503,7 @@ extern void TM_USART1_ReceiveHandler(uint8_t c);
  */
 extern void USART2_IRQHandler(void);
 
-extern void TM_USART2_ReceiveHandler(uint8_t c);
+__weak void TM_USART2_ReceiveHandler(uint8_t c);
 #endif
 
 #ifdef USART3
@@ -514,7 +514,7 @@ extern void TM_USART2_ReceiveHandler(uint8_t c);
  */
 extern void USART3_IRQHandler(void);
 
-extern void TM_USART3_ReceiveHandler(uint8_t c);
+__weak void TM_USART3_ReceiveHandler(uint8_t c);
 #endif
 
 #ifdef UART4
@@ -525,7 +525,7 @@ extern void TM_USART3_ReceiveHandler(uint8_t c);
  */
 extern void UART4_IRQHandler(void);
 
-extern void TM_UART4_ReceiveHandler(uint8_t c);
+__weak void TM_UART4_ReceiveHandler(uint8_t c);
 #endif
 
 #ifdef UART5
@@ -536,7 +536,7 @@ extern void TM_UART4_ReceiveHandler(uint8_t c);
  */
 extern void UART5_IRQHandler(void);
 
-extern void TM_UART5_ReceiveHandler(uint8_t c);
+__weak void TM_UART5_ReceiveHandler(uint8_t c);
 #endif
 
 #ifdef USART6
@@ -547,7 +547,7 @@ extern void TM_UART5_ReceiveHandler(uint8_t c);
  */
 extern void USART6_IRQHandler(void);
 
-extern void TM_USART6_ReceiveHandler(uint8_t c);
+__weak void TM_USART6_ReceiveHandler(uint8_t c);
 #endif
 
 #ifdef UART7
@@ -558,7 +558,7 @@ extern void TM_USART6_ReceiveHandler(uint8_t c);
  */
 extern void UART7_IRQHandler(void);
 
-extern void TM_UART7_ReceiveHandler(uint8_t c);
+__weak void TM_UART7_ReceiveHandler(uint8_t c);
 #endif
 
 #ifdef UART8
@@ -569,7 +569,7 @@ extern void TM_UART7_ReceiveHandler(uint8_t c);
  */
 extern void UART8_IRQHandler(void);
 
-extern void TM_UART8_ReceiveHandler(uint8_t c);
+__weak void TM_UART8_ReceiveHandler(uint8_t c);
 #endif
 
 /**
@@ -593,6 +593,17 @@ extern void TM_USART_InsertToBuffer(uint8_t USARTnum, uint8_t c);
  * Returns 1 if buffer is empty, otherwise 0
  */
 extern uint8_t TM_USART_BufferEmpty(USART_TypeDef* USARTx);
+
+/**
+ * Clear USART internal cyclic buffer
+ *
+ * Parameters:
+ * 	- USART_TypeDef* USARTx: which USART channel
+ * 		USART1, USART2, USART3, UART4, UART5, USART6, UART7. UART8
+ *
+ * No return
+ */
+extern void TM_USART_ClearBuffer(USART_TypeDef* USARTx);
 
 /**
  * Get USART number

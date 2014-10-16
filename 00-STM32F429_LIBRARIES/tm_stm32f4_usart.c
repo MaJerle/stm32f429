@@ -659,6 +659,13 @@ uint8_t TM_USART_BufferEmpty(USART_TypeDef* USARTx) {
 	return !(tm_usart_buf_num[usart_num] > 0);
 }
 
+void TM_USART_ClearBuffer(USART_TypeDef* USARTx) {
+	uint8_t usart_num = TM_USART_GetUsartNumber(USARTx);
+	tm_usart_buf_num[usart_num] = 0;
+	tm_usart_buf_in[usart_num] = 0;
+	tm_usart_buf_out[usart_num] = 0;
+}
+
 uint8_t TM_USART_GetUsartNumber(USART_TypeDef* USARTx) {
 #ifdef USART1
 	if (USARTx == USART1) {
