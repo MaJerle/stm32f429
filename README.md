@@ -104,6 +104,8 @@ http://bit.ly/1phUdPD
 http://bit.ly/1qfGTve
 38. EXTI - Use external interrupts with STM32F4
 http://bit.ly/10ltRHI
+39. LOW POWER - Power consumption modes for STM32F4
+http://bit.ly/ZIxAys
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB
