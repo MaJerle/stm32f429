@@ -56,7 +56,7 @@ int main(void) {
 		TM_BMP180_StartTemperature(&BMP180_Data);
 		
 		/* Wait delay in microseconds */
-		/* You can do other this here instead of delay */
+		/* You can do other things here instead of delay */
 		Delay(BMP180_Data.Delay);
 		
 		/* Read temperature first */
@@ -66,7 +66,7 @@ int main(void) {
 		TM_BMP180_StartPressure(&BMP180_Data, TM_BMP180_Oversampling_UltraHighResolution);
 		
 		/* Wait delay in microseconds */
-		/* You can do other this here instead of delay */
+		/* You can do other things here instead of delay */
 		Delay(BMP180_Data.Delay);
 		
 		/* Read pressure value */
