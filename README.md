@@ -108,6 +108,8 @@ http://bit.ly/10ltRHI
 http://bit.ly/ZIxAys
 40. MCO OUTPUT - Output different clocks from STM32F4
 http://bit.ly/1vsPy4y
+41. STDIO - Use printf and fprintf/vfprintf on STM32F4
+http://bit.ly/1qRc9lQ
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB
