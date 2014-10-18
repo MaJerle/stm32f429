@@ -51,6 +51,19 @@ void TM_LOWPOWER_Standby(void) {
 	PWR_EnterSTANDBYMode();
 }
 
+uint8_t TM_LOWPOWER_StandbyReset(void) {
+	/* Check Standby Flag */
+	if (PWR_GetFlagStatus(PWR_FLAG_SB) != RESET) {
+		/* Clear StandBy flag */
+		PWR_ClearFlag(PWR_FLAG_SB);
+		
+		/* Reset was from wakeup from standy */
+		return 1;
+	}
+	/* Reset was not from standby */
+	return 0;
+}
+
 void TM_LOWPOWER_StopUntilInterrupt(void) {
 	/* Go to STOP mode */
 	PWR_EnterSTOPMode(PWR_Regulator_LowPower, PWR_STOPEntry_WFI);

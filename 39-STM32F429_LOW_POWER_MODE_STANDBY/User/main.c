@@ -29,6 +29,16 @@ int main(void) {
 	/* Initialize LEDS */
 	TM_DISCO_LedInit();
 	
+	/* Checks if reset was because of wakeup from standby */
+	if (TM_LOWPOWER_StandbyReset()) {
+		for (i = 0; i < 10; i++) {
+			/* Toggle LED red to indicate this */
+			TM_DISCO_LedToggle(LED_RED);
+			/* Delay */
+			Delayms(100);
+		}
+	}
+	
 	/* Initialize RTC with internal clock */
 	TM_RTC_Init(TM_RTC_ClockSource_Internal);
 	

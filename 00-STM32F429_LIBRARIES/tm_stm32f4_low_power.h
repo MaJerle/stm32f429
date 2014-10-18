@@ -25,10 +25,15 @@
  * | You should have received a copy of the GNU General Public License
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
+ *	
+ * Changelog
+ *	- Version 1.1
+ *	- October 18, 2014
+ *	- Added TM_LOWPOWER_StandbyReset(). This allows you to check if sytemwas reset from standby wakeup
  *
- *	This library can put MCU into 3 different modes:
+ * This library can put MCU into 3 different modes:
  *
- *	SLEEP mode
+ * SLEEP mode
  *
  *	- Cortex-M4 core is stopped
  *	- Peripherals kept running
@@ -38,7 +43,7 @@
  *	- How to exit this mode?
  *		- Any peripheral interrupt acknowledged by the nested vectored interrupt controller (NVIC)
  *
- *	STOP mode
+ * STOP mode
  *
  *	- All clocks in 1.2V domain are stopped
  *	- PLL, HSI and HSE RC oscillators disabled
@@ -50,7 +55,7 @@
  *	- How to exit this mode?
  *		- Any EXTI Line (Internal or External) configured in Interrupt/Event mode
  *
- *	STANDBY mode
+ * STANDBY mode
  *
  *	- Cortex-M4 deepsleep mode
  *	- Voltage regulator disabled
@@ -67,7 +72,7 @@
  *		- IWDG reset
  */
 #ifndef TM_LOWPOWER_H
-#define TM_LOWPOWER_H 100
+#define TM_LOWPOWER_H 110
 
 /* C++ detection */
 #ifdef __cplusplus
@@ -135,6 +140,15 @@ extern void TM_LOWPOWER_StopUntilEvent(void);
  * No return
  */
 extern void TM_LOWPOWER_Standby(void);
+
+/**
+ * Check if system was reset because of wakeup from standby mode
+ *
+ * Returns
+ * 	0: System was not reset because of wake up from standby mode
+ * 	1: System was reset because of wake up from standby mode
+ */
+extern uint8_t TM_LOWPOWER_StandbyReset(void);
 
 /**
  * Enable wakeup pin, fixed pin, PA0.
