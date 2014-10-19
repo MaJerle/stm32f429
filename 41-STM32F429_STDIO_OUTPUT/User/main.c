@@ -59,8 +59,8 @@ int main(void) {
 	}
 }
 
-/* Handle printf actions */
-int TM_STDIO_PrintfHandler(int ch, FILE* f) {
+/* Handle stdout actions */
+int TM_STDIO_StdoutHandler(int ch, FILE* f) {
 	/* Send data to USART1 */
 	TM_USART_Putc(USART1, (char) ch);
 	
