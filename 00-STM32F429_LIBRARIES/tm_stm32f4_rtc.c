@@ -27,6 +27,8 @@ uint16_t uwSynchPrediv = 0xFF, uwAsynchPrediv = 0x7F;
 RTC_TimeTypeDef RTC_TimeStruct;
 RTC_InitTypeDef RTC_InitStruct;
 RTC_DateTypeDef RTC_DateStruct;
+NVIC_InitTypeDef NVIC_InitStruct;
+EXTI_InitTypeDef EXTI_InitStruct;
 
 uint8_t TM_RTC_Months[2][12] = {
 	{31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31},	/* Not leap year */
@@ -204,8 +206,6 @@ void TM_RTC_Config(TM_RTC_ClockSource_t source) {
 }
 
 void TM_RTC_Interrupts(TM_RTC_Int_t int_value) {
-	NVIC_InitTypeDef NVIC_InitStruct;
-	EXTI_InitTypeDef EXTI_InitStruct;
 	uint32_t int_val;
 	
 	/* Clear pending bit */
@@ -214,7 +214,7 @@ void TM_RTC_Interrupts(TM_RTC_Int_t int_value) {
 	/* NVIC init for RTC */
 	NVIC_InitStruct.NVIC_IRQChannel = RTC_WKUP_IRQn;
 	NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority = RTC_PRIORITY;
-	NVIC_InitStruct.NVIC_IRQChannelSubPriority = RTC_SUBPRIORITY;
+	NVIC_InitStruct.NVIC_IRQChannelSubPriority = RTC_WAKEUP_SUBPRIORITY;
 	
 	/* RTC connected to EXTI_Line22 */
 	EXTI_InitStruct.EXTI_Line = EXTI_Line22;
@@ -307,10 +307,6 @@ uint32_t TM_RTC_GetUnixTimeStamp(TM_RTC_Time_t* data) {
 	return seconds;
 }
 
-uint16_t TM_RTC_DaysInYear(uint16_t year) {
-	return TM_RTC_DAYS_IN_YEAR(year);
-}
-
 void TM_RTC_GetDateTimeFromUnix(TM_RTC_Time_t* data, uint32_t unix) {
 	uint16_t year;
 	
@@ -365,6 +361,126 @@ void TM_RTC_GetDateTimeFromUnix(TM_RTC_Time_t* data, uint32_t unix) {
 	data->date = unix + 1;
 }
 
+void TM_RTC_SetAlarm(TM_RTC_Alarm_t Alarm, TM_RTC_AlarmTime_t* DataTime, TM_RTC_Format_t format) {
+	RTC_AlarmTypeDef RTC_AlarmStruct;
+	
+	/* Disable alarm first */
+	TM_RTC_DisableAlarm(Alarm);
+	
+	/* Set RTC alarm settings */
+	/* Set alarm time */
+	RTC_AlarmStruct.RTC_AlarmTime.RTC_Hours = DataTime->hours;
+	RTC_AlarmStruct.RTC_AlarmTime.RTC_Minutes = DataTime->minutes;
+	RTC_AlarmStruct.RTC_AlarmTime.RTC_Seconds = DataTime->seconds;
+	RTC_AlarmStruct.RTC_AlarmMask = RTC_AlarmMask_DateWeekDay;
+	
+	/* Alarm type is every week the same day in a week */
+	if (DataTime->alarmtype == TM_RTC_AlarmType_DayInMonth) {
+		/* Alarm trigger every week the same day in a week */
+		RTC_AlarmStruct.RTC_AlarmDateWeekDaySel = RTC_AlarmDateWeekDaySel_WeekDay;
+		
+		/* Week day can be between 1 and 7 */
+		if (DataTime->day == 0) {
+			RTC_AlarmStruct.RTC_AlarmDateWeekDay = 1;
+		} else if (DataTime->day > 7) {
+			RTC_AlarmStruct.RTC_AlarmDateWeekDay = 7;
+		} else {
+			RTC_AlarmStruct.RTC_AlarmDateWeekDay = DataTime->day;
+		}
+	} else { /* Alarm type is every month the same day */
+		/* Alarm trigger every month the same day in a month */
+		RTC_AlarmStruct.RTC_AlarmDateWeekDaySel = RTC_AlarmDateWeekDaySel_Date;
+	
+		/* Month day can be between 1 and 31 */
+		if (DataTime->day == 0) {
+			RTC_AlarmStruct.RTC_AlarmDateWeekDay = 1;
+		} else if (DataTime->day > 31) {
+			RTC_AlarmStruct.RTC_AlarmDateWeekDay = 31;
+		} else {
+			RTC_AlarmStruct.RTC_AlarmDateWeekDay = DataTime->day;
+		}
+	}
+
+	switch (Alarm) {
+		case TM_RTC_Alarm_A:		
+			/* Configure the RTC Alarm A */
+			RTC_SetAlarm(format, RTC_Alarm_A, &RTC_AlarmStruct);
+		
+			/* Enable Alarm A */
+			RTC_AlarmCmd(RTC_Alarm_A, ENABLE);
+			
+			/* Enable Alarm A interrupt */
+			RTC_ITConfig(RTC_IT_ALRA, ENABLE);
+		
+			/* Clear Alarm A pending bit */
+			RTC_ClearFlag(RTC_IT_ALRA);
+			break;
+		case TM_RTC_Alarm_B:
+			/* Configure the RTC Alarm B */
+			RTC_SetAlarm(format, RTC_Alarm_B, &RTC_AlarmStruct);
+		
+			/* Enable Alarm B */
+			RTC_AlarmCmd(RTC_Alarm_B, ENABLE);
+		
+			/* Enable Alarm B interrupt */
+			RTC_ITConfig(RTC_IT_ALRB, ENABLE);
+		
+			/* Clear Alarm B pending bit */
+			RTC_ClearFlag(RTC_IT_ALRB);
+			break;
+		default:
+			break;
+	}
+}
+
+void TM_RTC_DisableAlarm(TM_RTC_Alarm_t Alarm) {
+	switch (Alarm) {
+		case TM_RTC_Alarm_A:
+			/* Disable Alarm A */
+			RTC_AlarmCmd(RTC_Alarm_A, DISABLE);
+			
+			/* Disable Alarm A interrupt */
+			RTC_ITConfig(RTC_IT_ALRA, DISABLE);
+		
+			/* Clear Alarm A pending bit */
+			RTC_ClearFlag(RTC_IT_ALRA);
+			break;
+		case TM_RTC_Alarm_B:
+			/* Disable Alarm B */
+			RTC_AlarmCmd(RTC_Alarm_B, DISABLE);
+		
+			/* Disable Alarm B interrupt */
+			RTC_ITConfig(RTC_IT_ALRB, DISABLE);
+		
+			/* Clear Alarm B pending bit */
+			RTC_ClearFlag(RTC_IT_ALRB);
+			break;
+		default:
+			break;
+	}
+	
+	/* Clear RTC Alarm pending bit */
+	EXTI_ClearITPendingBit(EXTI_Line17);
+	
+	/* Configure EXTI 17 as interrupt */
+	EXTI_InitStruct.EXTI_Line = EXTI_Line17;
+	EXTI_InitStruct.EXTI_Mode = EXTI_Mode_Interrupt;
+	EXTI_InitStruct.EXTI_Trigger = EXTI_Trigger_Rising;
+	EXTI_InitStruct.EXTI_LineCmd = ENABLE;
+	
+	/* Initialite Alarm EXTI interrupt */
+	EXTI_Init(&EXTI_InitStruct);
+
+	/* Configure the RTC Alarm Interrupt */
+	NVIC_InitStruct.NVIC_IRQChannel = RTC_Alarm_IRQn;
+	NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority = RTC_PRIORITY;
+	NVIC_InitStruct.NVIC_IRQChannelSubPriority = RTC_ALARM_SUBPRIORITY;
+	NVIC_InitStruct.NVIC_IRQChannelCmd = ENABLE;
+	
+	/* Initialize RTC Alarm Interrupt */
+	NVIC_Init(&NVIC_InitStruct);
+}
+
 void RTC_WKUP_IRQHandler(void) {
 	if (RTC_GetITStatus(RTC_IT_WUT) != RESET) {
 		/* Clear interrupt flags */
@@ -376,3 +492,25 @@ void RTC_WKUP_IRQHandler(void) {
 	}
 }
 
+void RTC_Alarm_IRQHandler(void) {
+	/* RTC Alarm A check */
+	if (RTC_GetITStatus(RTC_IT_ALRA) != RESET) {
+		/* Clear RTC Alarm A interrupt flag */
+		RTC_ClearITPendingBit(RTC_IT_ALRA);
+		
+		/* Call user function for Alarm A */
+		TM_RTC_AlarmAHandler();
+	}
+	
+	/* RTC Alarm B check */
+	if (RTC_GetITStatus(RTC_IT_ALRB) != RESET) {
+		/* Clear RTC Alarm A interrupt flag */
+		RTC_ClearITPendingBit(RTC_IT_ALRB);
+		
+		/* Call user function for Alarm B */
+		TM_RTC_AlarmBHandler();
+	}
+	
+	/* Clear EXTI line 17 bit */
+	EXTI_ClearITPendingBit(EXTI_Line17);
+}
