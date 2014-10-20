@@ -30,7 +30,7 @@ int main(void) {
 	/* By default layer 1 is used */
 	TM_ILI9341_Init();
 	
-	/* Rotate LCD for 180 degrees */
+	/* Rotate LCD for 90 degrees */
 	TM_ILI9341_Rotate(TM_ILI9341_Orientation_Landscape_2);
 	
 	/* Go to layer 1 */
