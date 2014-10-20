@@ -40,7 +40,7 @@ uint32_t TM_RTC_Init(TM_RTC_ClockSource_t source) {
 	uint8_t stat = 1;
 	TM_RTC_Time_t datatime;
 	
-	/* Enable RTC Clock*/
+	/* Enable RTC peripheral clock */
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_PWR, ENABLE);
 
 	/* Allow access to BKP Domain */
@@ -64,6 +64,7 @@ uint32_t TM_RTC_Init(TM_RTC_ClockSource_t source) {
 		RTC_ClearITPendingBit(RTC_IT_WUT);
 		EXTI_ClearITPendingBit(EXTI_Line22);
 		
+		/* Get date and time */
 		TM_RTC_GetDateTime(&datatime, TM_RTC_Format_BIN);
 	} else if (status == RTC_STATUS_INIT_OK) {
 		TM_RTC_Status = RTC_STATUS_INIT_OK;
@@ -80,6 +81,7 @@ uint32_t TM_RTC_Init(TM_RTC_ClockSource_t source) {
 		RTC_ClearITPendingBit(RTC_IT_WUT);
 		EXTI_ClearITPendingBit(EXTI_Line22);
 		
+		/* Get date and time */
 		TM_RTC_GetDateTime(&datatime, TM_RTC_Format_BIN);
 	} else {
 		TM_RTC_Status = RTC_STATUS_ZERO;
@@ -96,6 +98,8 @@ uint32_t TM_RTC_Init(TM_RTC_ClockSource_t source) {
 		datatime.hours = 0;
 		datatime.minutes = 0;
 		datatime.seconds = 0;
+		
+		/* Set date and time */
 		TM_RTC_SetDateTime(&datatime, TM_RTC_Format_BIN);
 		
 		/* Initialized OK */
