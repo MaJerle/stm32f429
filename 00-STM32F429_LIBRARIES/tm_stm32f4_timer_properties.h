@@ -50,12 +50,18 @@
 
 /**
  * Result enumeration
- * 	- TM_TIMER_PROPERTIES_Result_Ok
+ *
+ * Parameters:
+ * 	- TM_TIMER_PROPERTIES_Result_Ok:
  * 		Everything OK
- * 	- TM_TIMER_PROPERTIES_Result_Error
+ * 	- TM_TIMER_PROPERTIES_Result_Error:
  * 		An error occured
- * 	- TM_TIMER_PROPERTIES_Result_TimerNotValid
+ * 	- TM_TIMER_PROPERTIES_Result_TimerNotValid:
  * 		Timer is not valid
+ * 	- TM_TIMER_PROPERTIES_Result_FrequencyTooHigh:
+ * 		Frequency for timer is too high
+ * 	- TM_TIMER_PROPERTIES_Result_FrequencyTooLow
+ * 		Frequency for timer is too low
  */
 typedef enum {
 	TM_TIMER_PROPERTIES_Result_Ok,
@@ -71,15 +77,15 @@ typedef enum {
  * Parameters:
  * 	- uint32_t TimerFrequency:
  * 		timer's working frequency
- * 	- uint32_t MaxPeriod
+ * 	- uint32_t MaxPeriod:
  * 		Max timer period
- * 	- uint32_t MaxPrescaler
+ * 	- uint32_t MaxPrescaler:
  * 		Max timer prescaler
- * 	- uint32_t Period
- * 		Timer's working period
- * 	- uint32_t Prescaler
+ * 	- uint32_t Period:
+ * 		Timer's working period:
+ * 	- uint32_t Prescaler:
  * 		Timer's working prescaler
- * 	- uint32_t Frequency
+ * 	- uint32_t Frequency:
  * 		Timer's reload frequency
  */
 typedef struct {
