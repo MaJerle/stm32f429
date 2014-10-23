@@ -50,7 +50,7 @@ int main(void) {
 			/* Increase counter */
 			i++;
 			
-			/* After 20 toggles, put STM32F4 into sleep mode */
+			/* After 20 toggles, put STM32F4 into STOP mode */
 			if (i == 20) {
 				/* Reset counter */
 				i = 0;
