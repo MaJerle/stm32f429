@@ -4,7 +4,7 @@
  *      *** Do not modify ! ***
  *
  * Project: 'project' 
- * Target:  'Nucleo F401RE' 
+ * Target:  'STM32F429-Discovery' 
  */
 
 #ifndef RTE_COMPONENTS_H
