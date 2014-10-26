@@ -14,6 +14,8 @@
         <TargetCommonOption>
           <Device>STM32F407VG</Device>
           <Vendor>STMicroelectronics</Vendor>
+          <PackID>Keil.STM32F4xx_DFP.1.0.8</PackID>
+          <PackURL>http://www.keil.com/pack</PackURL>
           <Cpu>IROM(0x08000000,0x100000) IRAM(0x20000000,0x20000) IRAM2(0x10000000,0x10000) CPUTYPE("Cortex-M4") FPU2 CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
           <StartupFile></StartupFile>
@@ -143,7 +145,6 @@
             <RestoreToolbox>1</RestoreToolbox>
             <RestoreTracepoints>1</RestoreTracepoints>
             <RestoreSysVw>1</RestoreSysVw>
-            <UsePdscDebugDescription>1</UsePdscDebugDescription>
           </Target>
           <RunDebugAfterBuild>0</RunDebugAfterBuild>
           <TargetSelection>11</TargetSelection>
@@ -680,7 +681,7 @@
             <File>
               <FileName>arm_cortexM4lf_math.lib</FileName>
               <FileType>4</FileType>
-              <FilePath>C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Lib\ARM\arm_cortexM4lf_math.lib</FilePath>
+              <FilePath>C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Lib\ARM\arm_cortexM4lf_math.lib</FilePath>
             </File>
           </Files>
         </Group>
@@ -1010,6 +1011,8 @@
         <TargetCommonOption>
           <Device>STM32F429ZI</Device>
           <Vendor>STMicroelectronics</Vendor>
+          <PackID>Keil.STM32F4xx_DFP.1.0.8</PackID>
+          <PackURL>http://www.keil.com/pack</PackURL>
           <Cpu>IROM(0x08000000,0x200000) IRAM(0x20000000,0x30000) IRAM2(0x10000000,0x10000) CPUTYPE("Cortex-M4") FPU2 CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
           <StartupFile></StartupFile>
@@ -1139,7 +1142,6 @@
             <RestoreToolbox>1</RestoreToolbox>
             <RestoreTracepoints>1</RestoreTracepoints>
             <RestoreSysVw>1</RestoreSysVw>
-            <UsePdscDebugDescription>1</UsePdscDebugDescription>
           </Target>
           <RunDebugAfterBuild>0</RunDebugAfterBuild>
           <TargetSelection>11</TargetSelection>
@@ -1358,7 +1360,7 @@
             <useXO>0</useXO>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>USE_STDPERIPH_DRIVER,STM32F4XX,HSE_VALUE=8000000,TM_DISCO_STM32F429_DISCOVERY</Define>
+              <Define>USE_STDPERIPH_DRIVER,STM32F4XX,HSE_VALUE=8000000,TM_DISCO_STM32F429_DISCOVERY,USE_USB_OTG_HS</Define>
               <Undefine></Undefine>
               <IncludePath>.\TM;.\User;..\00-STM32F429_LIBRARIES;..\00-STM32F429_LIBRARIES\usb_msc_host;..\00-STM32F429_LIBRARIES\fatfs;..\00-STM32F429_LIBRARIES\fatfs\option;..\00-STM32F429_LIBRARIES\fatfs\drivers</IncludePath>
             </VariousControls>
@@ -1736,7 +1738,7 @@
             <File>
               <FileName>arm_cortexM4lf_math.lib</FileName>
               <FileType>4</FileType>
-              <FilePath>C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Lib\ARM\arm_cortexM4lf_math.lib</FilePath>
+              <FilePath>C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Lib\ARM\arm_cortexM4lf_math.lib</FilePath>
             </File>
           </Files>
         </Group>
@@ -2255,7 +2257,6 @@
             <RestoreToolbox>1</RestoreToolbox>
             <RestoreTracepoints>1</RestoreTracepoints>
             <RestoreSysVw>1</RestoreSysVw>
-            <UsePdscDebugDescription>1</UsePdscDebugDescription>
           </Target>
           <RunDebugAfterBuild>0</RunDebugAfterBuild>
           <TargetSelection>11</TargetSelection>
@@ -2792,7 +2793,7 @@
             <File>
               <FileName>arm_cortexM4lf_math.lib</FileName>
               <FileType>4</FileType>
-              <FilePath>C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.1.1\CMSIS\Lib\ARM\arm_cortexM4lf_math.lib</FilePath>
+              <FilePath>C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.2.0\CMSIS\Lib\ARM\arm_cortexM4lf_math.lib</FilePath>
             </File>
           </Files>
         </Group>
