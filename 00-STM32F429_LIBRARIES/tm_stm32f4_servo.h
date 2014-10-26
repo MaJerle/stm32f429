@@ -4,7 +4,7 @@
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
- *	@link		
+ *	@link		http://stm32f4-discovery.com/2014/10/library-42-control-rc-servo-stm32f4
  *	@version 	v1.0
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
@@ -26,9 +26,9 @@
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
  *
- * This library allows you to control RC servo with STM32F4xx
- *
- *
+ * This library allows you to control RC servo with STM32F4xx.
+ * 
+ * Basically, only limitation for number of servos is number of timers in MCU.
  */
 #ifndef TM_SERVO_H
 #define TM_SERVO_H 100
@@ -36,14 +36,6 @@
 /* C++ detection */
 #ifdef __cplusplus
 extern C {
-#endif
-/* Minimal pulse length */
-#ifndef SERVO_MICROS_MIN
-#define SERVO_MICROS_MIN	1000
-#endif
-/* Maximal pulse length */
-#ifndef SERVO_MICROS_MAX
-#define SERVO_MICROS_MAX	2000
 #endif
 	
 /**
@@ -63,6 +55,15 @@ extern C {
 #include "tm_stm32f4_timer_properties.h"
 #include "defines.h"
 
+/* Minimal pulse length */
+#ifndef SERVO_MICROS_MIN
+#define SERVO_MICROS_MIN	1000
+#endif
+/* Maximal pulse length */
+#ifndef SERVO_MICROS_MAX
+#define SERVO_MICROS_MAX	2000
+#endif
+	
 /**
  * Servo struct
  *
