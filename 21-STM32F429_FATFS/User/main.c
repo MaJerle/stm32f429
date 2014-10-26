@@ -41,7 +41,7 @@ int main(void) {
 		TM_DISCO_LedOn(LED_RED);
 		
 		/* Try to open file */
-		if (f_open(&fil, "0:1stfile.txt", FA_OPEN_ALWAYS | FA_READ | FA_WRITE) == FR_OK) {
+		if (f_open(&fil, "0:1stfile.txt", FA_CREATE_ALWAYS | FA_READ | FA_WRITE) == FR_OK) {
 			/* File opened, turn off RED and turn on GREEN led */
 			TM_DISCO_LedOn(LED_GREEN);
 			TM_DISCO_LedOff(LED_RED);
