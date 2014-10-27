@@ -22,7 +22,6 @@
 void TM_RTC_Config(TM_RTC_ClockSource_t source);
 
 uint32_t TM_RTC_Status = RTC_STATUS_ZERO;
-uint16_t uwSynchPrediv = 0xFF, uwAsynchPrediv = 0x7F;
 
 RTC_TimeTypeDef RTC_TimeStruct;
 RTC_InitTypeDef RTC_InitStruct;
@@ -40,7 +39,7 @@ uint32_t TM_RTC_Init(TM_RTC_ClockSource_t source) {
 	uint8_t stat = 1;
 	TM_RTC_Time_t datatime;
 	
-	/* Enable RTC peripheral clock */
+	/* Enable PWR peripheral clock */
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_PWR, ENABLE);
 
 	/* Allow access to BKP Domain */
@@ -125,8 +124,8 @@ void TM_RTC_SetDateTime(TM_RTC_Time_t* data, TM_RTC_Format_t format) {
 	
 	/* Set the RTC time base to 1s and hours format to 24h */
 	RTC_InitStruct.RTC_HourFormat = RTC_HourFormat_24;
-	RTC_InitStruct.RTC_AsynchPrediv = uwAsynchPrediv;
-	RTC_InitStruct.RTC_SynchPrediv = uwSynchPrediv;
+	RTC_InitStruct.RTC_AsynchPrediv = RTC_ASYNC_PREDIV;
+	RTC_InitStruct.RTC_SynchPrediv = RTC_SYNC_PREDIV;
 	RTC_Init(&RTC_InitStruct);
 
 	if (format == TM_RTC_Format_BCD) {
@@ -160,6 +159,9 @@ void TM_RTC_GetDateTime(TM_RTC_Time_t* data, TM_RTC_Format_t format) {
 	data->hours = RTC_TimeStruct.RTC_Hours;
 	data->minutes = RTC_TimeStruct.RTC_Minutes;
 	data->seconds = RTC_TimeStruct.RTC_Seconds;
+	
+	/* Get subseconds */
+	data->subseconds = RTC_GetSubSecond();
 	
 	/* Get date */
 	if (format == TM_RTC_Format_BIN) {

@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/07/library-19-use-internal-rtc-on-stm32f4xx-devices/
- *	@version 	v1.1
+ *	@version 	v1.2
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -25,6 +25,11 @@
  * | You should have received a copy of the GNU General Public License
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
+ *
+ * Version 1.2
+ *	- October 27, 2014
+ *	- Added support to read subseconds from time
+ *	- This can be used for stopwatch
  *
  * Version 1.1
  *	- October 20, 2014
@@ -47,7 +52,7 @@
  *	PC15			OSC2			Oscillator terminal 2
  */
 #ifndef TM_RTC_H
-#define TM_RTC_H 110
+#define TM_RTC_H 120
 /**
  * Library dependencies
  * - STM32F4xx
@@ -69,17 +74,26 @@
 #include "misc.h"
 #include "defines.h"
 
+/* RTC clock is: f_clk = RTCCLK(LSI or LSE) / ((RTC_SYNC_PREDIV + 1) * (RTC_ASYNC_PREDIV + 1)) */
+/* Sync pre division for clock */
+#ifndef RTC_SYNC_PREDIV
+#define RTC_SYNC_PREDIV					0x3FF
+#endif
+/* Async pre division for clock */
+#ifndef RTC_ASYNC_PREDIV
+#define RTC_ASYNC_PREDIV				0x1F
+#endif
 /* NVIC global Priority set */
 #ifndef RTC_PRIORITY
-#define RTC_PRIORITY					4
+#define RTC_PRIORITY					0x04
 #endif
 /* Sub priority for wakeup trigger */
 #ifndef RTC_WAKEUP_SUBPRIORITY
-#define RTC_WAKEUP_SUBPRIORITY			0
+#define RTC_WAKEUP_SUBPRIORITY			0x00
 #endif
 /* Sub priority for alarm trigger */
 #ifndef RTC_ALARM_SUBPRIORITY
-#define RTC_ALARM_SUBPRIORITY			1
+#define RTC_ALARM_SUBPRIORITY			0x01
 #endif
 
 /* Internal status registers for RTC */
@@ -102,6 +116,9 @@
  * Parameters:
  * 	- uint8_t seconds:
  * 		Seconds parameter, from 00 to 59
+ * 	- uint16_t subseconds:
+ * 		Subsecond downcounter. When it reaches zero, it's reload value is the same as
+ *		RTC_SYNC_PREDIV, so in our case 0x3FF = 1023, 1024 steps in one second
  * 	- uint8_t minutes:
  * 		Minutes parameter, from 00 to 59
  * 	- uint8_t hours:
@@ -119,6 +136,7 @@
  */
 typedef struct {
 	uint8_t seconds;
+	uint16_t subseconds;
 	uint8_t minutes;
 	uint8_t hours;
 	uint8_t day;
