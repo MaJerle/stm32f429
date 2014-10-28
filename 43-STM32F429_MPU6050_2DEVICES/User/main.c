@@ -1,5 +1,5 @@
 /**
- *	Keil project example for MPU6050 6-axes
+ *	Keil project example for 2 MPU6050 6-axes sensors
  *
  *	Before you start, select your target, on the right of the "Load" button
  *

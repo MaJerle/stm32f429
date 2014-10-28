@@ -30,4 +30,8 @@
 
 /* Put your global defines for all libraries here used in your project */
 
+/* If you need to select custom I2C pins, uncomment and edit here */
+//#define MPU6050_I2C			I2C3
+//#define MPU6050_I2C_PINSPACK	TM_I2C_PinsPack_1
+
 #endif
