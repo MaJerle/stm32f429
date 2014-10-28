@@ -112,6 +112,8 @@ http://bit.ly/1vsPy4y
 http://bit.ly/1qRc9lQ
 42. SERVO - Control RC servo with STM32F4
 http://bit.ly/1oMbaYV
+43. MPU-6050 - Read accelerometer and gyroscope data with STM32F4
+http://bit.ly/ZZlzEE
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB
