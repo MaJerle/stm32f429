@@ -402,21 +402,21 @@ uint8_t TM_SPI_Send(SPI_TypeDef* SPIx, uint8_t data) {
 	return SPIx->DR;
 }
 
-void TM_SPI_SendMulti(SPI_TypeDef* SPIx, uint8_t *dataOut, uint8_t *dataIn, uint16_t count) {
-	uint8_t i;
+void TM_SPI_SendMulti(SPI_TypeDef* SPIx, uint8_t* dataOut, uint8_t* dataIn, uint16_t count) {
+	uint16_t i;
 	for (i = 0; i < count; i++) {
 		dataIn[i] = TM_SPI_Send(SPIx, dataOut[i]);
 	}
 }
 
-void TM_SPI_WriteMulti(SPI_TypeDef* SPIx, uint8_t *dataOut, uint16_t count) {
+void TM_SPI_WriteMulti(SPI_TypeDef* SPIx, uint8_t* dataOut, uint16_t count) {
 	uint16_t i;
 	for (i = 0; i < count; i++) {
 		TM_SPI_Send(SPIx, dataOut[i]);
 	}
 }
 
-void TM_SPI_ReadMulti(SPI_TypeDef* SPIx, uint8_t *dataIn, uint8_t dummy, uint16_t count) {
+void TM_SPI_ReadMulti(SPI_TypeDef* SPIx, uint8_t* dataIn, uint8_t dummy, uint16_t count) {
 	uint16_t i;
 	for (i = 0; i < count; i++) {
 		dataIn[i] = TM_SPI_Send(SPIx, dummy);
