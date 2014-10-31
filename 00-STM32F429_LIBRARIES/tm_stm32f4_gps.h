@@ -104,6 +104,7 @@
 #include "stm32f4xx_rcc.h"
 #include "stm32f4xx_gpio.h"
 #include "tm_stm32f4_usart.h"
+#include "tm_stm32f4_disco.h"
 #include "defines.h"
 #include "math.h"
 
@@ -461,18 +462,5 @@ extern void TM_GPS_ConvertFloat(float num, TM_GPS_Float_t* Float_Data, uint8_t d
  */
 extern void TM_GPS_DistanceBetween(TM_GPS_Distance_t* Distance_Data);
 
-/* Private */
-extern TM_GPS_Result_t 	TM_GPS_INT_Do(TM_GPS_Data_t* GPS_Data, char c);
-extern void 			TM_GPS_INT_CheckTerm(TM_GPS_Data_t* GPS_Data);
-extern TM_GPS_Result_t 	TM_GPS_INT_Return(TM_GPS_Data_t* GPS_Data);
-extern uint8_t 			TM_GPS_INT_StringStartsWith(char* string, const char* str);
-extern uint8_t 			TM_GPS_INT_Atoi(char* str, uint32_t* val);
-extern uint32_t			TM_GPS_INT_Pow(uint8_t x, uint8_t y);
-extern void 			TM_GPS_INT_Add2CRC(char c);
-extern uint8_t 			TM_GPS_INT_Hex2Dec(char c);
-extern TM_GPS_Result_t 	TM_GPS_INT_ReturnWithStatus(TM_GPS_Data_t* GPS_Data, TM_GPS_Result_t status);
-extern uint8_t			TM_GPS_INT_FlagsOk(void);
-extern void				TM_GPS_INT_ClearFlags(void);
-extern void 			TM_GPS_INT_SetFlag(uint32_t flag);
 #endif
 

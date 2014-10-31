@@ -29,6 +29,21 @@ TM_GPS_Result_t TM_GPS_INT_Result;
 TM_GPS_Data_t TM_GPS_INT_Data;
 uint8_t TM_GPS_FirstTime;
 
+/* Private */
+TM_GPS_Result_t TM_GPS_INT_Do(TM_GPS_Data_t* GPS_Data, char c);
+void TM_GPS_INT_CheckTerm(TM_GPS_Data_t* GPS_Data);
+TM_GPS_Result_t TM_GPS_INT_Return(TM_GPS_Data_t* GPS_Data);
+uint8_t TM_GPS_INT_StringStartsWith(char* string, const char* str);
+uint8_t TM_GPS_INT_Atoi(char* str, uint32_t* val);
+uint32_t TM_GPS_INT_Pow(uint8_t x, uint8_t y);
+void TM_GPS_INT_Add2CRC(char c);
+uint8_t TM_GPS_INT_Hex2Dec(char c);
+TM_GPS_Result_t TM_GPS_INT_ReturnWithStatus(TM_GPS_Data_t* GPS_Data, TM_GPS_Result_t status);
+uint8_t TM_GPS_INT_FlagsOk(void);
+void TM_GPS_INT_ClearFlags(void);
+void TM_GPS_INT_SetFlag(uint32_t flag);
+void TM_GPS_INT_CheckEmpty(TM_GPS_Data_t* GPS_Data);
+
 /* Public */
 void TM_GPS_Init(TM_GPS_Data_t* GPS_Data, uint32_t baudrate) {
 	/* Initialize USART */
@@ -190,6 +205,9 @@ extern TM_GPS_Result_t TM_GPS_INT_Do(TM_GPS_Data_t* GPS_Data, char c) {
 		/* Add 0 at the end */
 		TM_GPS_Term[TM_GPS_Term_Pos++] = 0;
 		
+		/* Check empty */
+		TM_GPS_INT_CheckEmpty(GPS_Data);
+		
 		/* Check term */
 		TM_GPS_INT_CheckTerm(GPS_Data);
 		
@@ -215,6 +233,9 @@ extern TM_GPS_Result_t TM_GPS_INT_Do(TM_GPS_Data_t* GPS_Data, char c) {
 		TM_GPS_Star = 1;
 		/* Add 0 at the end */
 		TM_GPS_Term[TM_GPS_Term_Pos++] = 0;
+		
+		/* Check empty */
+		TM_GPS_INT_CheckEmpty(GPS_Data);
 		
 		/* Check term */
 		TM_GPS_INT_CheckTerm(GPS_Data);
@@ -593,3 +614,102 @@ void TM_GPS_INT_SetFlag(uint32_t flag) {
 	TM_GPS_Flags |= flag;
 }
 
+void TM_GPS_INT_CheckEmpty(TM_GPS_Data_t* GPS_Data) {
+	if (TM_GPS_Term_Pos == 1) {
+		switch (GPS_CONCAT(TM_GPS_Statement, TM_GPS_Term_Number)) {
+#ifndef GPS_DISABLE_GPGGA
+			case GPS_POS_LATITUDE:	/* GPGGA */
+				/* Set flag */
+				TM_GPS_INT_SetFlag(GPS_FLAG_LATITUDE);
+				break;
+			case GPS_POS_NS: /* GPGGA */
+				/* Set flag */
+				TM_GPS_INT_SetFlag(GPS_FLAG_NS);
+				break;
+			case GPS_POS_LONGITUDE: /* GPGGA */
+				/* Set flag */
+				TM_GPS_INT_SetFlag(GPS_FLAG_LONGITUDE);
+				break;
+			case GPS_POS_EW: /* GPGGA */
+				/* Set flag */
+				TM_GPS_INT_SetFlag(GPS_FLAG_EW);
+				break;
+			case GPS_POS_SATS: /* GPGGA */
+				/* Set flag */
+				TM_GPS_INT_SetFlag(GPS_FLAG_SATS);
+				break;
+			case GPS_POS_FIX: /* GPGGA */
+				/* Set flag */
+				TM_GPS_INT_SetFlag(GPS_FLAG_FIX);
+				break;
+			case GPS_POS_ALTITUDE: /* GPGGA */
+				/* Set flag */
+				TM_GPS_INT_SetFlag(GPS_FLAG_ALTITUDE);
+				break;
+			case GPS_POS_TIME: /* GPGGA */
+				/* Set flag */
+				TM_GPS_INT_SetFlag(GPS_FLAG_TIME);
+				break;
+#endif
+#ifndef GPS_DISABLE_GPRMC
+			case GPS_POS_SPEED:	/* GPRMC */	
+				/* Set flag */
+				TM_GPS_INT_SetFlag(GPS_FLAG_SPEED);
+				break;
+			case GPS_POS_DATE: /* GPRMC */
+				/* Set flag */
+				TM_GPS_INT_SetFlag(GPS_FLAG_DATE);
+				break;
+			case GPS_POS_VALIDITY: /* GPRMC */
+				/* Set flag */
+				TM_GPS_INT_SetFlag(GPS_FLAG_VALIDITY);
+				break;
+			case GPS_POS_DIRECTION: /* GPRMC */
+				/* Set flag */
+				TM_GPS_INT_SetFlag(GPS_FLAG_DIRECTION);
+				break;
+#endif
+#ifndef GPS_DISABLE_GPGSA
+			case GPS_POS_HDOP: /* GPGSA */
+				/* Set flag */
+				TM_GPS_INT_SetFlag(GPS_FLAG_HDOP);
+				break;
+			case GPS_POS_PDOP: /* GPGSA */
+				/* Set flag */
+				TM_GPS_INT_SetFlag(GPS_FLAG_PDOP);
+				break;
+			case GPS_POS_VDOP: /* GPGSA */
+				/* Set flag */
+				TM_GPS_INT_SetFlag(GPS_FLAG_VDOP);
+				break;
+			case GPS_POS_FIXMODE: /* GPGSA */
+				/* Set flag */
+				TM_GPS_INT_SetFlag(GPS_FLAG_FIXMODE);
+				break;
+			case GPS_POS_SAT1:
+			case GPS_POS_SAT2:
+			case GPS_POS_SAT3:
+			case GPS_POS_SAT4:
+			case GPS_POS_SAT5:
+			case GPS_POS_SAT6:
+			case GPS_POS_SAT7:
+			case GPS_POS_SAT8:
+			case GPS_POS_SAT9:
+			case GPS_POS_SAT10:
+			case GPS_POS_SAT11:
+			case GPS_POS_SAT12:
+				/* Set flag */
+				TM_GPS_INT_SetFlag(GPS_FLAG_SATS1_12);
+				break;
+#endif
+#ifndef GPS_DISABLE_GPGSV
+			case GPS_POS_SATSINVIEW: /* GPGSV */
+				/* Set flag */
+				TM_GPS_INT_SetFlag(GPS_FLAG_SATSINVIEW);
+				break;
+#endif
+			default: 
+				break;
+		}
+	}
+}
