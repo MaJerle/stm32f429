@@ -1,5 +1,5 @@
 /**
- *	Keil project for GP
+ *	Keil project for GPS
  *
  *	Before you start, select your target, on the right of the "Load" button
  *
