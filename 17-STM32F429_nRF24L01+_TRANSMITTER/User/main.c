@@ -1,6 +1,8 @@
 /**
  *	Keil project for NRF24L01+ transceiver
  *
+ *	Transmitter code
+ *
  *	Before you start, select your target, on the right of the "Load" button
  *
  *	@author 	Tilen Majerle
