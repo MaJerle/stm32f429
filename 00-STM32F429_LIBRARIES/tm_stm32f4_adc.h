@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/04/library-06-ad-converter-on-stm32f4xx/
- *	@version 	v1.0
+ *	@version 	v1.1
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -26,27 +26,30 @@
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
  *	
- *	Pinout
- *		CHANNEL			ADC1	ADC2	ADC3
- *		0				PA0		PA0		PA0
- *		1				PA1		PA1		PA1
- *		2				PA2		PA2		PA2
- *		3				PA3		PA3		PA3
- *		4				PA4		PA4		PF6
- *		5				PA5		PA5		PF7
- *		6				PA6		PA6		PF8
- *		7				PA7		PA7		PF9
- *		8				PB0		PB0		PF10
- *		9				PB1		PB1		PF3
- *		10				PC0		PC0		PC0
- *		11				PC1		PC1		PC1
- *		12				PC2		PC2		PC2
- *		13				PC3		PC3		PC3
- *		14				PC4		PC4		PF4
- *		15				PC5		PC5		PF5
+ * November 02, 2014
+ *	- Added support for measure Vbat pin with ADC
+ *	
+ * Pinout
+ *	CHANNEL			ADC1	ADC2	ADC3
+ *	0				PA0		PA0		PA0
+ *	1				PA1		PA1		PA1
+ *	2				PA2		PA2		PA2
+ *	3				PA3		PA3		PA3
+ *	4				PA4		PA4		PF6
+ *	5				PA5		PA5		PF7
+ *	6				PA6		PA6		PF8
+ *	7				PA7		PA7		PF9
+ *	8				PB0		PB0		PF10
+ *	9				PB1		PB1		PF3
+ *	10				PC0		PC0		PC0
+ *	11				PC1		PC1		PC1
+ *	12				PC2		PC2		PC2
+ *	13				PC3		PC3		PC3
+ *	14				PC4		PC4		PF4
+ *	15				PC5		PC5		PF5
  */
-#ifndef TM_ADC_
-#define TM_ADC_ 100
+#ifndef TM_ADC_H
+#define TM_ADC_H 110
 /**
  * Library dependencies
  * - STM32F4xx
@@ -79,6 +82,28 @@
 #define TM_ADC3_RESOLUTION		ADC_Resolution_12b
 #endif
 
+/* Supply voltage is 3.3V */
+#ifndef ADC_SUPPLY_VOLTAGE
+#define ADC_SUPPLY_VOLTAGE		3300
+#endif
+
+/* Get multipliers for vbat, vref measurements */
+#if defined (STM32F40_41xxx)
+#define ADC_VBAT_MULTI			2
+#endif
+#if defined (STM32F427_437xx) || defined (STM32F429_439xx) || defined (STM32F401xx) || defined (STM32F411xE)
+#define ADC_VBAT_MULTI			4
+#endif
+
+/**
+ * Initialize ADCx peripheral
+ *
+ * Parameters:
+ * 	- ADC_TypeDef* ADCx: ADCx
+ * 		ADC1, ADC2, ADC3
+ */
+void TM_ADC_InitADC(ADC_TypeDef* ADCx);
+
 /**
  * Initialize ADCx with ADCx channel
  *
@@ -102,39 +127,28 @@ extern void TM_ADC_Init(ADC_TypeDef* ADCx, uint8_t channel);
 extern uint16_t TM_ADC_Read(ADC_TypeDef* ADCx, uint8_t channel);
 
 /**
- * Initialize pin for ADC
- * 
- * Parameters:
- * 	- uint16_t RCCx: RCC constant
- * 	- GPIO_TypeDef* GPIOx: pointer to GPIOx port
- * 	- uint16_t PinX: pin number
- * 	
- * Called internally
+ * Enable Vbat channel for ADC
+ *
+ * No return
  */
-extern void TM_ADC_InitPin(uint16_t RCCx, GPIO_TypeDef* GPIOx, uint16_t PinX);
+extern void TM_ADC_EnableVbat(void);
 
 /**
- * Initialize ADC pins
+ * Disable Vbat channel for ADC
+ *
+ * No return
+ */
+extern void TM_ADC_DisableVbat(void);
+
+/**
+ * Read vbat pin voltage
  *
  * Parameters:
- * 	- ADC_TypeDef* ADCx: Select ADC
- *		- ADC1, ADC2, ADC3
+ * 	- ADC_TypeDef* ADCx: ADCx
+ * 		ADC1, ADC2, ADC3
+ *
+ * Result is in mV
  */
-extern void TM_ADC_Channel_0_Init(ADC_TypeDef* ADCx);
-extern void TM_ADC_Channel_1_Init(ADC_TypeDef* ADCx);
-extern void TM_ADC_Channel_2_Init(ADC_TypeDef* ADCx);
-extern void TM_ADC_Channel_3_Init(ADC_TypeDef* ADCx);
-extern void TM_ADC_Channel_4_Init(ADC_TypeDef* ADCx);
-extern void TM_ADC_Channel_5_Init(ADC_TypeDef* ADCx);
-extern void TM_ADC_Channel_6_Init(ADC_TypeDef* ADCx);
-extern void TM_ADC_Channel_7_Init(ADC_TypeDef* ADCx);
-extern void TM_ADC_Channel_8_Init(ADC_TypeDef* ADCx);
-extern void TM_ADC_Channel_9_Init(ADC_TypeDef* ADCx);
-extern void TM_ADC_Channel_10_Init(ADC_TypeDef* ADCx);
-extern void TM_ADC_Channel_11_Init(ADC_TypeDef* ADCx);
-extern void TM_ADC_Channel_12_Init(ADC_TypeDef* ADCx);
-extern void TM_ADC_Channel_13_Init(ADC_TypeDef* ADCx);
-extern void TM_ADC_Channel_14_Init(ADC_TypeDef* ADCx);
-extern void TM_ADC_Channel_15_Init(ADC_TypeDef* ADCx);
+extern uint16_t TM_ADC_ReadVbat(ADC_TypeDef* ADCx);
 
 #endif
