@@ -40,8 +40,10 @@ int main(void) {
 		/* 							Read ADC1 Channel0					Read ADC1 Channel3 */
 		sprintf(str, "%4d: %4d\n\r", TM_ADC_Read(ADC1, ADC_Channel_0), TM_ADC_Read(ADC1, ADC_Channel_3));
 		
+		/* Display data on STM32F429-Discovery board */
 		TM_ILI9341_Puts(10, 10, str, &TM_Font_11x18, 0x0000, 0xFFFF);
 		
+		/* Little delay */
 		Delayms(100);
 	}
 }
