@@ -1,4 +1,3 @@
-#ifndef TM_DEFINES
 /**
  *  Defines for your entire project at one place
  * 
