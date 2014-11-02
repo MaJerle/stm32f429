@@ -125,11 +125,6 @@ uint16_t TM_ADC_Read(ADC_TypeDef* ADCx, uint8_t channel) {
 	return ADC_GetConversionValue(ADCx);
 }
 
-void TM_ADC_EnableTempSensor(void) {
-	/* Enable temperature sensor and internal voltage reference channels */
-	ADC_TempSensorVrefintCmd(ENABLE);
-}
-
 void TM_ADC_EnableVbat(void) {
 	/* Enable VBAT */
 	ADC_VBATCmd(ENABLE);
@@ -138,48 +133,12 @@ void TM_ADC_EnableVbat(void) {
 	vbatEnabled = 1;
 }
 
-void TM_ADC_DisableTempSensor(void) {
-	/* Disable temperature sensor */
-	ADC_TempSensorVrefintCmd(DISABLE);
-}
-
 void TM_ADC_DisableVbat(void) {
 	/* Disable VBAT */
 	ADC_VBATCmd(DISABLE);
 	
 	/* Store vbat enabled */
 	vbatEnabled = 0;
-}
-
-float TM_ADC_ReadTempSensor(ADC_TypeDef* ADCx) {
-	uint16_t result;
-	/* If Vbat and Temp sensor channels are the same */
-	if (vbatEnabled && ADC_Channel_TempSensor == ADC_Channel_Vbat) {
-		/* Disable Vbat */
-		ADC_VBATCmd(DISABLE);
-	}
-	
-	/* Start conversion */
-	ADC_RegularChannelConfig(ADCx, ADC_Channel_TempSensor, 1, ADC_SampleTime_112Cycles);
-	ADC_SoftwareStartConv(ADCx);
-	
-	/* Wait till done */
-	while (ADC_GetFlagStatus(ADCx, ADC_FLAG_EOC) == RESET);
-	
-	/* Get result */
-	result = ADC_GetConversionValue(ADCx);
-	
-	/* Enable back */
-	if (vbatEnabled && ADC_Channel_TempSensor == ADC_Channel_Vbat) {
-		/* Disable Vbat */
-		ADC_VBATCmd(ENABLE);
-	}
-	
-	/* Convert to voltage */
-	result = result * ADC_SUPPLY_VOLTAGE / 0xFFF;
-	
-	/* Format and return */
-	return (float)((float)((float)result - (float)760) / (float)2.5) + (float)25.0;
 }
 
 uint16_t TM_ADC_ReadVbat(ADC_TypeDef* ADCx) {
