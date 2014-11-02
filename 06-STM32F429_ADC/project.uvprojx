@@ -427,34 +427,14 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_fonts.c</FileName>
+              <FileName>tm_stm32f4_usart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.c</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_fonts.h</FileName>
+              <FileName>tm_stm32f4_usart.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_ili9341.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_ili9341.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_spi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_spi.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.h</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -799,6 +779,11 @@
               <FileName>stm32f4xx_spi.c</FileName>
               <FileType>1</FileType>
               <FilePath>C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\StdPeriph_Driver\src\stm32f4xx_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\StdPeriph_Driver\src\stm32f4xx_usart.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1227,34 +1212,14 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_fonts.c</FileName>
+              <FileName>tm_stm32f4_usart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.c</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_fonts.h</FileName>
+              <FileName>tm_stm32f4_usart.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_ili9341.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_ili9341.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_spi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_spi.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.h</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1719,6 +1684,11 @@
               <FileName>stm32f4xx_spi.c</FileName>
               <FileType>1</FileType>
               <FilePath>C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\StdPeriph_Driver\src\stm32f4xx_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\StdPeriph_Driver\src\stm32f4xx_usart.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2145,34 +2115,14 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_fonts.c</FileName>
+              <FileName>tm_stm32f4_usart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.c</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_fonts.h</FileName>
+              <FileName>tm_stm32f4_usart.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_ili9341.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_ili9341.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_spi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_spi.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.h</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -2518,6 +2468,11 @@
               <FileType>1</FileType>
               <FilePath>C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\StdPeriph_Driver\src\stm32f4xx_spi.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f4xx_usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\1.0.8\Device\StdPeriph_Driver\src\stm32f4xx_usart.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
@@ -2527,8 +2482,8 @@
   <RTE>
     <apis/>
     <components>
-      <component Cclass="CMSIS" Cgroup="CORE" Cvendor="ARM" Cversion="3.30.0" condition="CMSIS Core">
-        <package name="CMSIS" schemaVersion="1.2" url="http://www.keil.com/pack/" vendor="ARM" version="4.1.1"/>
+      <component Cclass="CMSIS" Cgroup="CORE" Cvendor="ARM" Cversion="3.40.0" condition="CMSIS Core">
+        <package name="CMSIS" schemaVersion="1.3" url="http://www.keil.com/pack/" vendor="ARM" version="4.2.0"/>
         <targetInfos>
           <targetInfo name="Nucleo F401RE"/>
           <targetInfo name="STM32F4-Discovery"/>
@@ -2576,6 +2531,14 @@
         </targetInfos>
       </component>
       <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="SPI" Cvendor="Keil" Cversion="1.3.0" condition="STM32F4 STDPERIPH RCC">
+        <package name="STM32F4xx_DFP" schemaVersion="1.2" url="http://www.keil.com/pack" vendor="Keil" version="1.0.8"/>
+        <targetInfos>
+          <targetInfo name="Nucleo F401RE"/>
+          <targetInfo name="STM32F4-Discovery"/>
+          <targetInfo name="STM32F429-Discovery"/>
+        </targetInfos>
+      </component>
+      <component Cclass="Device" Cgroup="StdPeriph Drivers" Csub="USART" Cvendor="Keil" Cversion="1.3.0" condition="STM32F4 STDPERIPH RCC">
         <package name="STM32F4xx_DFP" schemaVersion="1.2" url="http://www.keil.com/pack" vendor="Keil" version="1.0.8"/>
         <targetInfos>
           <targetInfo name="Nucleo F401RE"/>

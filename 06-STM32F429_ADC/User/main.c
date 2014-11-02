@@ -13,7 +13,7 @@
 /* Include my libraries here */
 #include "defines.h"
 #include "tm_stm32f4_delay.h"
-#include "tm_stm32f4_ili9341.h"
+#include "tm_stm32f4_usart.h"
 #include "tm_stm32f4_adc.h"
 #include <stdio.h>
 
@@ -26,9 +26,8 @@ int main(void) {
 	/* Initialize Delay library */
 	TM_DELAY_Init();
 	
-	/* Init ILI9341 on board */
-	TM_ILI9341_Init();
-	TM_ILI9341_Rotate(TM_ILI9341_Orientation_Portrait_2);
+	/* Initialize USART1, 115200baud, TX: PB6 */
+	TM_USART_Init(USART1, TM_USART_PinsPack_2, 115200);
 	
 	/* Initialize ADC1 on channel 0, this is pin PA0 */
 	TM_ADC_Init(ADC1, ADC_Channel_0);
@@ -40,8 +39,8 @@ int main(void) {
 		/* 							Read ADC1 Channel0					Read ADC1 Channel3 */
 		sprintf(str, "%4d: %4d\n\r", TM_ADC_Read(ADC1, ADC_Channel_0), TM_ADC_Read(ADC1, ADC_Channel_3));
 		
-		/* Display data on STM32F429-Discovery board */
-		TM_ILI9341_Puts(10, 10, str, &TM_Font_11x18, 0x0000, 0xFFFF);
+		/* Put to USART */
+		TM_USART_Puts(USART1, str);
 		
 		/* Little delay */
 		Delayms(100);
