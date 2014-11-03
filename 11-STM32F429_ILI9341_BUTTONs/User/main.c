@@ -1,14 +1,12 @@
 /**
- *	Keil project template
+ *	Keil project for ILI9341 Button
  *
- *  Before you start, select your target, on the right of the "Load" button
+ *	Before you start, select your target, on the right of the "Load" button
  *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@ide		Keil uVision 5
- *	@packs		STM32F4xx Keil packs version 2.2.0 or greater required
- *	@stdperiph	STM32F4xx Standard peripheral drivers version 1.4.0 or greater required
  */
 /* Include core modules */
 #include "stm32f4xx.h"
@@ -28,7 +26,6 @@ int main(void) {
 	TM_ILI9341_Button_t button;
 	int8_t buttonPressed, button1, button2, button3;
 	char str[30];
-	
 	/* Initialize system */
 	SystemInit();
 	
@@ -50,8 +47,8 @@ int main(void) {
 	
 	/* Button 1, default configuration */
 	/* Red with black border and black font 11x18 */
-	button.x = 10;	/* X location */
-	button.y = 30;	/* Y location */
+	button.x = 10;
+	button.y = 30;
 	button.width = 219;
 	button.height = 50;
 	button.background = ILI9341_COLOR_RED;
@@ -139,3 +136,4 @@ int main(void) {
 		TM_ILI9341_Puts(10, 5, str, &TM_Font_11x18, ILI9341_COLOR_GREEN, ILI9341_COLOR_GRAY);
 	}
 }
+

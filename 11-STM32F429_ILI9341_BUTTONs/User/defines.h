@@ -30,8 +30,4 @@
 
 /* Put your global defines for all libraries here used in your project */
 
-/* Increase clock for SPI5 for LCD on STM32F429 Discovery board */
-/* Set clock to APB2 / 2 = 180 / 2 / 2 = 45MHz */
-#define TM_SPI5_PRESCALER	SPI_BaudRatePrescaler_2
-
 #endif
