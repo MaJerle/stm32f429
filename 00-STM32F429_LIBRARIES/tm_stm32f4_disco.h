@@ -6,7 +6,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/04/stm32f429-discovery-gpio-tutorial-with-onboard-leds-and-button/
- *	@version 	v1.3
+ *	@version 	v1.4
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -28,6 +28,9 @@
  * |----------------------------------------------------------------------
  *
  * 	CHANGELOG
+ *
+ *	- Version 1.4
+ *		Added support for Nucleo F411-RE Discovery board
  *
  *	- Version 1.3
  *		Added support for STM32F401 Discovery board
@@ -62,6 +65,7 @@
  *			- Blue button	on PA0	
  *
  *	NUCLEO-F401: (STM32F401RE)
+ *	NUCLEO-F411: (STM32F411RE)
  * 		Open project options and add "STM32F401RE" define (without quotes)
  *		- Led:
  *			- LED_GREEN 	on PA5
@@ -108,9 +112,14 @@
 		#define TM_DISCO_STM32F4_DISCOVERY
 	#endif
 #elif defined (STM32F401xx) || defined(STM32F401RE) || defined(STM32F401RB)
-	/* Nucleo board support */
+	/* Nucleo F401RE board support */
 	#ifndef TM_DISCO_NUCLEO_F401
 		#define TM_DISCO_NUCLEO_F401
+	#endif
+#elif defined (STM32F411xx) || defined(STM32F411RE) || defined(STM32F411RB)
+	/* Nucleo F411RE board support */
+	#ifndef TM_DISCO_NUCLEO_F401
+		#define TM_DISCO_NUCLEO_F411
 	#endif
 #endif
 
@@ -123,6 +132,7 @@
 	#define LED_RED						GPIO_Pin_14
 	#define LED_ORANGE					0
 	#define LED_BLUE					0
+	#define LED_ALL						LED_GREEN | LED_RED
 	
 	#define TM_DISCO_LED_RCC			RCC_AHB1Periph_GPIOG
 	#define TM_DISCO_LED_PORT			GPIOG
@@ -138,6 +148,8 @@
 	#define LED_ORANGE					GPIO_Pin_13
 	#define LED_RED						GPIO_Pin_14
 	#define LED_BLUE					GPIO_Pin_15
+	#define LED_ALL						LED_GREEN | LED_RED | LED_ORANGE | LED_BLUE
+	
 	#define TM_DISCO_LED_RCC			RCC_AHB1Periph_GPIOD
 	#define TM_DISCO_LED_PORT			GPIOD
 	#define TM_DISCO_LED_PINS			LED_GREEN | LED_RED | LED_ORANGE | LED_BLUE
@@ -146,12 +158,13 @@
 	#define TM_DISCO_BUTTON_PORT		GPIOA
 	#define TM_DISCO_BUTTON_PIN			GPIO_Pin_0
 	#define TM_DISCO_BUTTON_PRESSED		Bit_SET
-/* Nucleo F401-RE */
-#elif defined(TM_DISCO_NUCLEO_F401)
+/* Nucleo F401-RE & F411-RE */
+#elif defined(TM_DISCO_NUCLEO_F401) || defined(TM_DISCO_NUCLEO_F411)
 	#define LED_GREEN					GPIO_Pin_5
 	#define LED_RED						0
 	#define LED_ORANGE					0
 	#define LED_BLUE					0
+	#define LED_ALL						LED_GREEN
 	
 	#define TM_DISCO_LED_RCC			RCC_AHB1Periph_GPIOA
 	#define TM_DISCO_LED_PORT			GPIOA
@@ -162,8 +175,9 @@
 	#define TM_DISCO_BUTTON_PIN			GPIO_Pin_13
 	#define TM_DISCO_BUTTON_PRESSED		Bit_RESET
 #else
-	#error "Please select your board"
+	#error "tm_stm32f4_disco.h: Please select your board"
 #endif
+
 /**
  * Configure led pins to output
  *
