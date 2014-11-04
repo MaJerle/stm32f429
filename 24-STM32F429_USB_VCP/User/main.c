@@ -1,10 +1,12 @@
-/*
-*    USB VCP for STM32F4xx example.
+/**
+ *	USB VCP for STM32F4xx example.
  *    
- *    @author     Tilen Majerle
- *    @email      tilen@majerle.eu
- *    @website    http://stm32f4-discovery.com
- *    @ide        Keil uVision
+ *	@author		Tilen Majerle
+ *	@email		tilen@majerle.eu
+ *	@website	http://stm32f4-discovery.com
+ *	@ide		Keil uVision
+ *	@packs		STM32F4xx Keil packs version 2.2.0 or greater required
+ *	@stdperiph	STM32F4xx Standard peripheral drivers version 1.4.0 or greater required
  *
  * Add line below to use this example with F429 Discovery board (in defines.h file)
  *

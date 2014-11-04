@@ -31,8 +31,8 @@
 /* Put your global defines for all libraries here used in your project */
 
 /* By default, USB CDC works in USB FS mode */
-/* If you want to use this on STM32F429-Discovery, uncomment lines below */
-/* I set this here in target C/C++ preprocessor defines */
+/* If you want to use this on STM32F429-Discovery, uncomment line below */
+/* I set this in target C/C++ preprocessor defines */
 //#define USE_USB_OTG_HS
 
 #endif

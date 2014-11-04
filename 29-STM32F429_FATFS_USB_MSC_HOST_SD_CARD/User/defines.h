@@ -40,7 +40,7 @@
 
 /* Uncomment if you want to enable USB HS in FS mode */
 /* By default, FS mode is used */
-#define USE_USB_OTG_HS		/* STM32F429-Discovery */
+//#define USE_USB_OTG_HS		/* STM32F429-Discovery */
 
 /* This line MUST BE ADDED in order to use FATFS with USB */
 /* Otherwise you will have errors */

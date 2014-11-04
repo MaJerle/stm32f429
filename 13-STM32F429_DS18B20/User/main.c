@@ -9,10 +9,12 @@
  *
  *	Before you start, select your target, on the right of the "Load" button
  *
- *	@author 	Tilen Majerle
+ *	@author		Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@ide		Keil uVision 5
+ *	@packs		STM32F4xx Keil packs version 2.2.0 or greater required
+ *	@stdperiph	STM32F4xx Standard peripheral drivers version 1.4.0 or greater required
  */
 /* Include core modules */
 #include "stm32f4xx.h"
@@ -50,12 +52,12 @@ int main(void) {
 	TM_DISCO_LedOn(LED_RED | LED_GREEN);
 	
 	/* Checks for any device on 1-wire */
-	devices = TM_OneWire_First();
 	count = 0;
+	devices = TM_OneWire_First();
 	while (devices) {
 		count++;
 		/* Get full ROM value, 8 bytes, give location of first byte where to save */
-		TM_OneWire_GetFullROM(&device[count - 1][0]);
+		TM_OneWire_GetFullROM(device[count - 1]);
 		/* Get next device */
 		devices = TM_OneWire_Next();
 	}
@@ -80,9 +82,9 @@ int main(void) {
 		TM_DS18B20_SetResolution(&device[i][0], TM_DS18B20_Resolution_12bits);
 	}
 	/* Set high temperature alarm on device number 0, 25degrees celcius */
-	TM_DS18B20_SetAlarmHighTemperature(&device[0][0], 25);
+	TM_DS18B20_SetAlarmHighTemperature(device[0], 25);
 	/* Disable alarm temperatures on device number 1 */
-	TM_DS18B20_DisableAlarmTemperature(&device[1][0]);
+	TM_DS18B20_DisableAlarmTemperature(device[1]);
 	
 	while (1) {
 		/* Start temperature conversion on all devices */
@@ -92,7 +94,7 @@ int main(void) {
 		/* Read temperature from each device separatelly */
 		for (i = 0; i < count; i++) {
 			/* Read temperature from ROM address and store it to temps variable */
-			TM_DS18B20_Read(&device[i][0], &temps[i]);
+			TM_DS18B20_Read(device[i], &temps[i]);
 			/* Print temperature */
 			sprintf(buf, "Temp %d: %3.5f; ", i, temps[i]);
 			TM_USART_Puts(USART1, buf);
@@ -101,7 +103,7 @@ int main(void) {
 		/* Check if any device has alarm flag set */
 		while (TM_DS18B20_AlarmSearch()) {
 			/* Store ROM of device which has alarm flag set */
-			TM_OneWire_GetFullROM(&alarm_device[alarm_count][0]);
+			TM_OneWire_GetFullROM(alarm_device[alarm_count]);
 			alarm_count++;
 		}
 		sprintf(buf, "alarm: %d\n\r", alarm_count);

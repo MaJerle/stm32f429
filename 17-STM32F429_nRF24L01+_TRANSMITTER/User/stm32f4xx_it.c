@@ -135,13 +135,23 @@ void PendSV_Handler(void)
 }
 
 /**
+  * @brief  This function decrement timing variable
+  *	@with __weak parameter to prevent errors
+  * @param  None
+  * @retval None
+  */
+__weak void TimingDelay_Decrement(void) {
+
+}
+
+/**
   * @brief  This function handles SysTick Handler.
   * @param  None
   * @retval None
   */
 void SysTick_Handler(void)
 {
-  TimingDelay_Decrement();
+	TimingDelay_Decrement();
 }
 
 /******************************************************************************/

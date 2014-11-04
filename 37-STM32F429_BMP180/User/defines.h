@@ -30,4 +30,8 @@
 
 /* Put your global defines for all libraries here used in your project */
 
+/* Uncomment if you want to change I2C settings for BMP180 sensor */
+//#define BMP180_I2C				I2C3
+//#define BMP180_I2C_PINSPACK		TM_I2C_PinsPack_1
+
 #endif

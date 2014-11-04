@@ -1,13 +1,14 @@
 /**
- *	Keil project for ILI9341 LCD example
+ *	Keil project for ILI9341 LCD example with LTDC support
  *	
  *	Works only on STM32F429-Discovery!
- *	Make sure, correct target is selected
  *
- *	@author 	Tilen Majerle
+ *	@author		Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@ide		Keil uVision 5
+ *	@packs		STM32F4xx Keil packs version 2.2.0 or greater required
+ *	@stdperiph	STM32F4xx Standard peripheral drivers version 1.4.0 or greater required
  */
 /* Include core modules */
 #include "stm32f4xx.h"

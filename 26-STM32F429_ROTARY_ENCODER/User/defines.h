@@ -30,4 +30,7 @@
 
 /* Put your global defines for all libraries here used in your project */
 
+/* Increase clock for SPI5 => ILI9341 LCD on STM32F429 Discovery board */
+#define TM_SPI5_PRESCALER	SPI_BaudRatePrescaler_2
+
 #endif

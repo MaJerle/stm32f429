@@ -1,12 +1,14 @@
 /**
- *	Keil project for LIS302DL or LIS3DSH accelerometer
+ *	Keil project for LIS302DL or LIS3DSH accelerometer on STM32F4-Discovery board
  *
- *  Before you start, select your target, on the right of the "Load" button
+ *  Designed to work with STM32F4-Discovery board with onboard device
  *
- *	@author 	Tilen Majerle
+ *	@author		Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@ide		Keil uVision 5
+ *	@packs		STM32F4xx Keil packs version 2.2.0 or greater required
+ *	@stdperiph	STM32F4xx Standard peripheral drivers version 1.4.0 or greater required
  *
  * On init, if you have old LIS302DL on STM32F4-Discovery board,
  * LED_GREEN and LED_RED will be turned on for 2 seconds,

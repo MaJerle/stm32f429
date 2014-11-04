@@ -4,16 +4,18 @@
  *	Before you start, select your target, on the right of the "Load" button
  *	
  *	STM32F429-Discovery doesn't have leds connected to PWM pins,
- *	so you can test this with STM32F4-Discovery or Nucleo-F401RE boards with leds.
+ *	so you can test this with STM32F4-Discovery or Nucleo-F4(0/1)1RE boards with leds.
  *	
  *	Below is code for both boards in main.c
  *	You have to set correct target above first, but code will be always compiled,
  *	if you select STM32F4-Discovery or Nucleo F401RE boards
  *
- *	@author 	Tilen Majerle
+ *	@author		Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@ide		Keil uVision 5
+ *	@packs		STM32F4xx Keil packs version 2.2.0 or greater required
+ *	@stdperiph	STM32F4xx Standard peripheral drivers version 1.4.0 or greater required
  */
 /* Include core modules */
 #include "stm32f4xx.h"
@@ -53,7 +55,7 @@ int main(void) {
 	TM_PWM_SetChannelPercent(TIM4, &TIM4_Data, TM_PWM_Channel_4, 5);
 /* STM32F4-Discovery LEDS stop */
 
-/* Nucleo F401-RE LED start */
+/* Nucleo F4(0/1)1-RE LED start */
 /* Led connected to PA5 */
 
 	/* Set PWM to 1kHz frequency on timer TIM2 */

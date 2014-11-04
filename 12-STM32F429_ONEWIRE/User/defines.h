@@ -30,4 +30,9 @@
 
 /* Put your global defines for all libraries here used in your project */
 
+/* If you want to select custom pin for onewire, change it here */
+//#define TM_ONEWIRE_RCC			RCC_AHB1Periph_GPIOD
+//#define TM_ONEWIRE_PORT			GPIOD
+//#define TM_ONEWIRE_PIN			GPIO_Pin_0
+
 #endif

@@ -43,7 +43,7 @@
 //#define USB_HID_HOST_DISABLE_VBUS
 
 /* Keyboard supports for QWERTY mode */
-/* If you want to enable it, uncomment defines below */
+/* If you want to enable it, uncomment define below */
 #define QWERTY_KEYBOARD
 
 #endif

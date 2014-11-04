@@ -1,10 +1,12 @@
 /**
  *	Keil project for USB MSC HOST
  *
- *	@author 	Tilen Majerle
+ *	@author		Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@ide		Keil uVision 5
+ *	@packs		STM32F4xx Keil packs version 2.2.0 or greater required
+ *	@stdperiph	STM32F4xx Standard peripheral drivers version 1.4.0 or greater required
  *
  * Select your target right of the "Load" button, compile and download to your discovery board
  * Works with F4-Discovery in USB FS mode and on F429-Discovery with USB HS in FS mode

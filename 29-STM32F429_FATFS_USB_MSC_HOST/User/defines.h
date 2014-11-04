@@ -38,6 +38,7 @@
 //#define USB_MSC_HOST_DISABLE_VBUS
 
 /* Uncomment if you want to enable USB HS in FS mode */
+/* I have set this in "Options for target" -> "C/C++" -> "Define" */
 /* By default, FS mode is used */
 //#define USE_USB_OTG_HS		/* STM32F429-Discovery */
 

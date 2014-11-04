@@ -1,10 +1,14 @@
 /**
  *	Keil project for L3GD20 3x Gryo on STM32F429 Discovery board
  *
- *	@author 	Tilen Majerle
+ *	Designed for STM32F429-Discovery board
+ *
+ *	@author		Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@ide		Keil uVision 5
+ *	@packs		STM32F4xx Keil packs version 2.2.0 or greater required
+ *	@stdperiph	STM32F4xx Standard peripheral drivers version 1.4.0 or greater required
  */
 #include "defines.h"
 #include "stm32f4xx.h"
