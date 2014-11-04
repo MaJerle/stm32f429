@@ -344,6 +344,13 @@
 #endif /* STM32F401xx */
 
 #if defined (STM32F411xE)
+
+/* Added by Tilen Majerle to set 48MHz for USB, SDIO and RNG */		
+#ifdef PLL_Q	
+#undef PLL_Q	
+#endif
+#define PLL_Q      8
+
 #define PLL_N      384		/* Slowed down for USB configuration; Default = 400 */
 /* SYSCLK = PLL_VCO / PLL_P */
 #define PLL_P      4   
