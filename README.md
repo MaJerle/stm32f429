@@ -4,11 +4,12 @@
 Here are listed all libraries for STM32F4 devices.
 Libraries are designed to work with STM32F4xx series of MCU.
 Every project here is created with Keil uVision, but tested with GCC compiler too (Coocox).
-Each project includes 3 targets:
+Each project includes 4 targets:
 
-1. STM32F429-Discovery board (STM32F429, 180MHz)
-2. STM32F4-Discovery board (STM32F407, 168MHz)
-3. Nucleo F401-RE (STM32F401, 84MHz)
+1. STM32F429-Discovery board (STM32F429ZI, 180MHz)
+2. STM32F4-Discovery board (STM32F407VG, 168MHz)
+3. Nucleo F411-RE (STM32F411RE, 100MHz)
+4. Nucleo F401-RE (STM32F401RE, 84MHz)
 
 When you download repository and open project, you have to set correct your target, for device you use.
 If you use other device in your project, then set your project and copy settings there from target options.
@@ -26,10 +27,7 @@ Current librarires:
 
 1. Two default projects are included
 	1. Default Keil project, with CMSIS files v.1.4.0 included
-	2. Default Keil project, with CMSIS files v.1.4.0 included and clock for STM32F429-Discovery slowed down to 168MHz for USB configuration
-	3. Default Keil project, without CMSIS files included, because they are in Keil packs
-	4. Default Keil project, without CMSIS files included, because they are in Keil packs and clock for STM32F429-Discovery slowed down to 168MHz for USB configuration
-	5. How to make own Keil project? http://stm32f4-discovery.com/2014/04/stm32f429-discovery-with-cmsis-library-in-keil/
+	2. Default Keil project, with CMSIS files v.1.4.0 included and clock for STM32F429-Discovery slowed down to 168MHz and for Nucleo F411 down to 96MHz for USB communication
 2. LED_BUTTON - Project example for STM32F4/29 Discovery
 http://bit.ly/1nbAHbs
 3. DELAY - Delay library for STM32F4/29
