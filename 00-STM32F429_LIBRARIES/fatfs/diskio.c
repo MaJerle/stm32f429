@@ -208,12 +208,12 @@ DRESULT disk_ioctl (
 			#if FATFS_USE_SDIO == 1
 				status = TM_FATFS_SD_SDIO_disk_ioctl(cmd, buff);					/* SDIO communication */
 			#elif FATFS_USE_SDIO == 0
-				status = TM_FATFS_SD_disk_ioctl(buff, buff);						/* SPI communication */
+				status = TM_FATFS_SD_disk_ioctl(cmd, buff);							/* SPI communication */
 			#endif
 			break;
 		case USB:	/* USB storage */
 			#if FATFS_USE_USB == 1
-				status = TM_FATFS_USB_disk_ioctl(cmd, buff);							/* USB */
+				status = TM_FATFS_USB_disk_ioctl(cmd, buff);						/* USB */
 			#endif
 			break;
 		default:
