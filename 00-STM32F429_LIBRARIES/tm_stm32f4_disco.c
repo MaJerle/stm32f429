@@ -78,6 +78,14 @@ uint8_t TM_DISCO_LedIsOn(uint16_t led) {
 	return GPIO_ReadOutputDataBit(TM_DISCO_LED_PORT, led) == Bit_SET;
 }
 
+void TM_DISCO_SetLed(uint16_t led, uint8_t state) {
+	if (state) {
+		TM_DISCO_LedOn(led);
+	} else {
+		TM_DISCO_LedOff(led);
+	}
+}
+
 uint8_t TM_DISCO_ButtonPressed(void) {
 	return GPIO_ReadInputDataBit(TM_DISCO_BUTTON_PORT, TM_DISCO_BUTTON_PIN) == TM_DISCO_BUTTON_PRESSED;
 }

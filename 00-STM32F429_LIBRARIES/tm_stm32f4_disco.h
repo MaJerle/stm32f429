@@ -6,7 +6,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/04/stm32f429-discovery-gpio-tutorial-with-onboard-leds-and-button/
- *	@version 	v1.4
+ *	@version 	v1.5
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -28,6 +28,9 @@
  * |----------------------------------------------------------------------
  *
  * 	CHANGELOG
+ *
+ *	- Version 1.5
+ *		Added function TM_DISCO_SetLed()
  *
  *	- Version 1.4
  *		Added support for Nucleo F411-RE Discovery board
@@ -82,8 +85,8 @@
  *		- Button: (HIGH when pressed)
  *			- Blue button	on PA0
  */
-#ifndef TM_DISCO_
-#define TM_DISCO_ 130
+#ifndef TM_DISCO_H
+#define TM_DISCO_H 150
 /**
  * Library dependencies
  * - STM32F4xx
@@ -239,6 +242,23 @@ extern void TM_DISCO_LedToggle(uint16_t led);
  * Return 1 if turned on, otherwise 0
  */
 extern uint8_t TM_DISCO_LedIsOn(uint16_t led);
+
+/**
+ * Set led's state with one function
+ *
+ * Parameters:
+ * 	- uint16_t led:
+ * 		LED_GREEN
+ * 		LED_RED
+ *		LED_ORANGE
+ *		LED_BLUE
+ *	- uint8_t state:
+ *		0: led is off
+ *		> 0: led is on
+ * 
+ * Return 1 if turned on, otherwise 0
+ */
+extern void TM_DISCO_SetLed(uint16_t led, uint8_t state);
 
 /**
  * Checks if button is pressed
