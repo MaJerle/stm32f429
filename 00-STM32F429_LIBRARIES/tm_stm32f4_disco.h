@@ -66,7 +66,7 @@
  *
  *	NUCLEO-F401: (STM32F401RE)
  *	NUCLEO-F411: (STM32F411RE)
- * 		Open project options and add "STM32F401RE" define (without quotes)
+ * 		Open project options and add "STM32F401RE" or "STM32F411RE" define (without quotes)
  *		- Led:
  *			- LED_GREEN 	on PA5
  *		- Button: (LOW when pressed)
@@ -118,7 +118,7 @@
 	#endif
 #elif defined (STM32F411xx) || defined(STM32F411RE) || defined(STM32F411RB)
 	/* Nucleo F411RE board support */
-	#ifndef TM_DISCO_NUCLEO_F401
+	#ifndef TM_DISCO_NUCLEO_F411
 		#define TM_DISCO_NUCLEO_F411
 	#endif
 #endif
