@@ -30,10 +30,11 @@
  * 	CHANGELOG
  *
  *	- Version 1.5
+ *		November 06, 2014
  *		Added function TM_DISCO_SetLed()
  *
  *	- Version 1.4
- *		Added support for Nucleo F411-RE Discovery board
+ *		Added support for Nucleo F411-RE board
  *
  *	- Version 1.3
  *		Added support for STM32F401 Discovery board
