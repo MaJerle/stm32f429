@@ -146,7 +146,8 @@ typedef enum {
  * 	- TM_DAC_SIGNAL_Channel_t DACx:
  * 		DAC channel you will use. Parameter is member of TM_DAC_SIGNAL_Channel_t enumeration
  * 	- TIM_TypeDef* TIMx:
- * 		Timer used for DMA and DAC output generation
+ * 		Timer used for DMA and DAC output generation.
+ *		TIM2, TIM4, TIM5, TIM6, TIM7 and TIM8 can be used.
  * 		
  * Member of TM_DAC_SIGNAL_Result_t is returned
  */
