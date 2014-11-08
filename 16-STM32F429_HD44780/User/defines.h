@@ -53,13 +53,13 @@
 //#define TM_HD44780_D5_PORT			GPIOC
 //#define TM_HD44780_D5_PIN				GPIO_Pin_13
 /* D6 - Data 6 pin */
-//#define TM_HD44780_D6_RCC				RCC_AHB1Periph_GPIOC
-//#define TM_HD44780_D6_PORT			GPIOC
-//#define TM_HD44780_D6_PIN				GPIO_Pin_14
+//#define TM_HD44780_D6_RCC				RCC_AHB1Periph_GPIOB
+//#define TM_HD44780_D6_PORT			GPIOB
+//#define TM_HD44780_D6_PIN				GPIO_Pin_12
 /* D7 - Data 7 pin */
-//#define TM_HD44780_D7_RCC				RCC_AHB1Periph_GPIOC
-//#define TM_HD44780_D7_PORT			GPIOC
-//#define TM_HD44780_D7_PIN				GPIO_Pin_15
+//#define TM_HD44780_D7_RCC				RCC_AHB1Periph_GPIOB
+//#define TM_HD44780_D7_PORT			GPIOB
+//#define TM_HD44780_D7_PIN				GPIO_Pin_13
 
 #endif
 

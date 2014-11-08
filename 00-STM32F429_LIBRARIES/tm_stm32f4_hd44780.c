@@ -18,6 +18,23 @@
  */
 #include "tm_stm32f4_hd44780.h"
 
+/* Private */
+void TM_HD44780_InitPins(void);
+void TM_HD44780_Cmd(uint8_t cmd);
+void TM_HD44780_Cmd4bit(uint8_t cmd);
+void TM_HD44780_Data(uint8_t data);
+void TM_HD44780_CursorSet(uint8_t col, uint8_t row);
+
+typedef struct {
+	uint8_t DisplayControl;
+	uint8_t DisplayFunction;
+	uint8_t DisplayMode;
+	uint8_t Rows;
+	uint8_t Cols;
+	uint8_t currentX;
+	uint8_t currentY;
+} TM_HD44780_Options_t;
+
 TM_HD44780_Options_t TM_HD44780_Opts;
 
 void TM_HD44780_Init(uint8_t cols, uint8_t rows) {
