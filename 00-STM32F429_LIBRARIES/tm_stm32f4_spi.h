@@ -362,7 +362,7 @@ extern void TM_SPI_WriteMulti16(SPI_TypeDef* SPIx, uint16_t* dataOut, uint16_t c
  * Parameters:
  * 	- SPI_TypeDef* SPIx: Select SPI which will operate with data
  *	- uint16_t dataIn: pointer to received data
- *	- uint16_t dummy: dummy 2-bytes to be sent to SPI
+ *	- uint16_t dummy: dummy 16bit to be sent to SPI
  *	- uint16_t count: number of bytes to receive
  *
  * No returns
