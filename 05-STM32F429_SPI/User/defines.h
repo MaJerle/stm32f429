@@ -30,4 +30,19 @@
 
 /* Put your global defines for all libraries here used in your project */
 
+/* If you need to change settings for your SPI, then uncomment lines you want to change */
+/* Replace x with SPI number, 1 - 6 */
+/* If you need to change for more SPI's, copy content below more times and edit */
+
+/* Default prescaler */
+//#define TM_SPIx_PRESCALER	SPI_BaudRatePrescaler_32
+/* Specify datasize */
+//#define TM_SPIx_DATASIZE 	SPI_DataSize_8b
+/* Specify which bit is first */
+//#define TM_SPIx_FIRSTBIT 	SPI_FirstBit_MSB
+/* Mode, master or slave */
+//#define TM_SPIx_MASTERSLAVE	SPI_Mode_Master
+/* Specify mode of operation, clock polarity and clock phase */
+//#define TM_SPIx_MODE		TM_SPI_Mode_0
+
 #endif
