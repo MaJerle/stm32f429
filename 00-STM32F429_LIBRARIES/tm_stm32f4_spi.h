@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/04/library-05-spi-for-stm32f4xx/
- *	@version 	v1.3
+ *	@version 	v1.4
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -26,8 +26,12 @@
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
  *	
+ *	Version 1.4
+ *	 - November 09, 2014
+ *	 - Added methods for 16-bit SPI mode
+ *
  *	Version 1.3
- *	 - 14.09.2014
+ *	 - September 14, 2014
  *	 - Added additional pins for SPI2
  *
  *	It support all 6 SPIs in master with 2Line Full Duplex mode
@@ -69,7 +73,13 @@
  *	
  */
 #ifndef TM_SPI_H
-#define TM_SPI_H 130
+#define TM_SPI_H 140
+
+/* C++ detection */
+#ifdef __cplusplus
+extern C {
+#endif
+
 /**
  * Library dependencies
  * - STM32F4xx
@@ -86,15 +96,6 @@
 #include "stm32f4xx_gpio.h"
 #include "stm32f4xx_spi.h"
 #include "defines.h"
-
-/**
- * Every SPIx has 2 pins for MISO, MOSI and SCK
- */
-typedef enum {
-	TM_SPI_PinsPack_1,
-	TM_SPI_PinsPack_2,
-	TM_SPI_PinsPack_3
-} TM_SPI_PinsPack_t;
 
 /**
  * Every SPIx can work in 4 different modes
@@ -244,11 +245,15 @@ typedef enum {
 #endif
 //----- SPI6 options end -------
 
-
 /**
- * Initialize each SPIx separately
- *
+ * Every SPIx has 3 pins for MISO, MOSI and SCK
  */
+typedef enum {
+	TM_SPI_PinsPack_1,
+	TM_SPI_PinsPack_2,
+	TM_SPI_PinsPack_3
+} TM_SPI_PinsPack_t;
+
 /**
  * Initialize SPIx
  *
@@ -258,87 +263,9 @@ typedef enum {
  * 	- TM_SPI_PinsPack_t pinspack: select pins pack to use
  * 		- TM_SPI_PinsPack_1
  * 		- TM_SPI_PinsPack_2
+ *		- TM_SPI_PinsPack_3
  */
 extern void TM_SPI_Init(SPI_TypeDef* SPIx, TM_SPI_PinsPack_t pinspack);
-
-
-/**
- * SPI1 uses pins:
- * 	- Pins pack 1:
- * 		- MOSI: PA7 
- * 		- MISO: PA6
- * 		- SCK:  PA5
- * 	- Pins pack 2:
- * 		- MOSI: PB5
- * 		- MISO: PB4
- * 		- SCK:  PB3
- */
-extern void TM_SPI1_Init(TM_SPI_PinsPack_t pinspack);
-
-/**
- * SPI2 uses pins:
- * 	- Pins pack 1:
- * 		- MOSI: PC3
- * 		- MISO: PC2
- * 		- SCK:  PB10
- * 	- Pins pack 2:
- * 		- MOSI: PB15
- * 		- MISO: PB14
- * 		- SCK:  PB13
- * 	- Pins pack 3:
- * 		- MOSI: PI3
- * 		- MISO: PI2
- * 		- SCK:  PI0
- */
-extern void TM_SPI2_Init(TM_SPI_PinsPack_t pinspack);
-
-/**
- * SPI3 uses pins:
- * 	- Pins pack 1:
- * 		- MOSI: PB5
- * 		- MISO: PB4
- * 		- SCK:  PB3
- * 	- Pins pack 2:
- * 		- MOSI: PC12
- * 		- MISO: PC11
- * 		- SCK:  PC10
- */
-extern void TM_SPI3_Init(TM_SPI_PinsPack_t pinspack);
-
-/**
- * SPI4 uses pins:
- * 	- Pins pack 1:
- * 		- MOSI: PE6
- * 		- MISO: PE5
- * 		- SCK:  PE2
- * 	- Pins pack 2:
- * 		- MOSI: PE14
- * 		- MISO: PE13
- * 		- SCK:  PE12
- */
-extern void TM_SPI4_Init(TM_SPI_PinsPack_t pinspack);
-
-/**
- * SPI5 uses pins:
- * 	- Pins pack 1:
- * 		- MOSI: PF9
- * 		- MISO: PF8
- * 		- SCK:  PF7
- * 	- Pins pack 2:
- * 		- MOSI: PF11
- * 		- MISO: PH7
- * 		- SCK:  PH6
- */
-extern void TM_SPI5_Init(TM_SPI_PinsPack_t pinspack);
-
-/**
- * SPI6 uses pins:
- * 	- Pins pack 1:
- * 		- MOSI: PG14
- * 		- MISO: PG12
- * 		- SCK:  PG13
- */
-extern void TM_SPI6_Init(TM_SPI_PinsPack_t pinspack);
 
 /**
  * Send and receive data over SPI
@@ -358,11 +285,11 @@ extern uint8_t TM_SPI_Send(SPI_TypeDef* SPIx, uint8_t data);
  * 	- SPI_TypeDef* SPIx: Select SPI which will operate with data
  * 	- uint8_t dataOut: pointer to data to be sent out
  *	- uint8_t dataIn: pointer to received data
- *	- uint8_t count: number of bytes to send
+ *	- uint16_t count: number of bytes to send
  *
  * No returns
  */
-extern void TM_SPI_SendMulti(SPI_TypeDef* SPIx, uint8_t *dataOut, uint8_t *dataIn, uint16_t count);
+extern void TM_SPI_SendMulti(SPI_TypeDef* SPIx, uint8_t* dataOut, uint8_t* dataIn, uint16_t count);
 
 /**
  * Write multiple data via SPI
@@ -370,11 +297,11 @@ extern void TM_SPI_SendMulti(SPI_TypeDef* SPIx, uint8_t *dataOut, uint8_t *dataI
  * Parameters:
  * 	- SPI_TypeDef* SPIx: Select SPI which will operate with data
  * 	- uint8_t dataOut: pointer to data to be sent out
- *	- uint8_t count: number of bytes to send
+ *	- uint16_t count: number of bytes to send
  *
  * No returns
  */
-extern void TM_SPI_WriteMulti(SPI_TypeDef* SPIx, uint8_t *dataOut, uint16_t count);
+extern void TM_SPI_WriteMulti(SPI_TypeDef* SPIx, uint8_t* dataOut, uint16_t count);
 
 /**
  * Send and receive multiple data bytes over SPI
@@ -383,11 +310,69 @@ extern void TM_SPI_WriteMulti(SPI_TypeDef* SPIx, uint8_t *dataOut, uint16_t coun
  * 	- SPI_TypeDef* SPIx: Select SPI which will operate with data
  *	- uint8_t dataIn: pointer to received data
  *	- uint8_t dummy: dummy byte to be sent to SPI
- *	- uint8_t count: number of bytes to receive
+ *	- uint16_t count: number of bytes to receive
  *
  * No returns
  */
 extern void TM_SPI_ReadMulti(SPI_TypeDef* SPIx, uint8_t *dataIn, uint8_t dummy, uint16_t count);
+
+/**
+ * Send and receive data over SPI in 16-bit SPI mode
+ * Selected SPI must be set in 16-bit mode
+ *
+ * Parameters:
+ * 	- SPI_TypeDef* SPIx: Select SPI which will operate with data
+ * 	- uint16_t data: data to be sent
+ *
+ * Returns: Data returned from slave
+ */
+extern uint16_t TM_SPI_Send16(SPI_TypeDef* SPIx, uint16_t data);
+
+/**
+ * Send and receive multiple data bytes over SPI in 16-bit SPI mode
+ * Selected SPI must be set in 16-bit mode
+ *
+ * Parameters:
+ * 	- SPI_TypeDef* SPIx: Select SPI which will operate with data
+ * 	- uint16_t dataOut: pointer to data to be sent out
+ *	- uint16_t dataIn: pointer to received data
+ *	- uint16_t count: number of bytes to send
+ *
+ * No returns
+ */
+extern void TM_SPI_SendMulti16(SPI_TypeDef* SPIx, uint16_t* dataOut, uint16_t* dataIn, uint16_t count);
+
+/**
+ * Write multiple data via SPI in 16-bit SPI mode
+ * Selected SPI must be set in 16-bit mode
+ *
+ * Parameters:
+ * 	- SPI_TypeDef* SPIx: Select SPI which will operate with data
+ * 	- uint16_t dataOut: pointer to data to be sent out
+ *	- uint16_t count: number of bytes to send
+ *
+ * No returns
+ */
+extern void TM_SPI_WriteMulti16(SPI_TypeDef* SPIx, uint16_t* dataOut, uint16_t count);
+
+/**
+ * Send and receive multiple data bytes over SPI in 16-bit SPI mode
+ * Selected SPI must be set in 16-bit mode
+ *
+ * Parameters:
+ * 	- SPI_TypeDef* SPIx: Select SPI which will operate with data
+ *	- uint16_t dataIn: pointer to received data
+ *	- uint16_t dummy: dummy 2-bytes to be sent to SPI
+ *	- uint16_t count: number of bytes to receive
+ *
+ * No returns
+ */
+extern void TM_SPI_ReadMulti16(SPI_TypeDef* SPIx, uint16_t* dataIn, uint16_t dummy, uint16_t count);
+
+/* C++ detection */
+#ifdef __cplusplus
+}
+#endif
 
 #endif
 

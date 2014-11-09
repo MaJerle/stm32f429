@@ -18,6 +18,14 @@
  */
 #include "tm_stm32f4_spi.h"
 
+
+extern void TM_SPI1_Init(TM_SPI_PinsPack_t pinspack);
+extern void TM_SPI2_Init(TM_SPI_PinsPack_t pinspack);
+extern void TM_SPI3_Init(TM_SPI_PinsPack_t pinspack);
+extern void TM_SPI4_Init(TM_SPI_PinsPack_t pinspack);
+extern void TM_SPI5_Init(TM_SPI_PinsPack_t pinspack);
+extern void TM_SPI6_Init(TM_SPI_PinsPack_t pinspack);
+
 void TM_SPI_Init(SPI_TypeDef* SPIx, TM_SPI_PinsPack_t pinspack) {
 	if (SPIx == SPI1) {
 		TM_SPI1_Init(pinspack);
@@ -31,6 +39,74 @@ void TM_SPI_Init(SPI_TypeDef* SPIx, TM_SPI_PinsPack_t pinspack) {
 		TM_SPI5_Init(pinspack);
 	} else if (SPIx == SPI6) {
 		TM_SPI6_Init(pinspack);
+	}
+}
+
+uint8_t TM_SPI_Send(SPI_TypeDef* SPIx, uint8_t data) {
+	/* Fill output buffer with data */
+	SPIx->DR = data;
+	/* Wait for transmission to complete */
+	while (!SPI_I2S_GetFlagStatus(SPIx, SPI_I2S_FLAG_TXE));
+	/* Wait for received data to complete */
+	while (!SPI_I2S_GetFlagStatus(SPIx, SPI_I2S_FLAG_RXNE));
+	/* Wait for SPI to be ready */
+	while (SPI_I2S_GetFlagStatus(SPIx, SPI_I2S_FLAG_BSY));
+	/* Return data from buffer */
+	return SPIx->DR;
+}
+
+void TM_SPI_SendMulti(SPI_TypeDef* SPIx, uint8_t* dataOut, uint8_t* dataIn, uint16_t count) {
+	uint16_t i;
+	for (i = 0; i < count; i++) {
+		dataIn[i] = TM_SPI_Send(SPIx, dataOut[i]);
+	}
+}
+
+void TM_SPI_WriteMulti(SPI_TypeDef* SPIx, uint8_t* dataOut, uint16_t count) {
+	uint16_t i;
+	for (i = 0; i < count; i++) {
+		TM_SPI_Send(SPIx, dataOut[i]);
+	}
+}
+
+void TM_SPI_ReadMulti(SPI_TypeDef* SPIx, uint8_t* dataIn, uint8_t dummy, uint16_t count) {
+	uint16_t i;
+	for (i = 0; i < count; i++) {
+		dataIn[i] = TM_SPI_Send(SPIx, dummy);
+	}
+}
+
+uint16_t TM_SPI_Send16(SPI_TypeDef* SPIx, uint16_t data) {
+	/* Fill output buffer with data */
+	SPIx->DR = data;
+	/* Wait for transmission to complete */
+	while (!SPI_I2S_GetFlagStatus(SPIx, SPI_I2S_FLAG_TXE));
+	/* Wait for received data to complete */
+	while (!SPI_I2S_GetFlagStatus(SPIx, SPI_I2S_FLAG_RXNE));
+	/* Wait for SPI to be ready */
+	while (SPI_I2S_GetFlagStatus(SPIx, SPI_I2S_FLAG_BSY));
+	/* Return data from buffer */
+	return SPIx->DR;
+}
+
+void TM_SPI_SendMulti16(SPI_TypeDef* SPIx, uint16_t* dataOut, uint16_t* dataIn, uint16_t count) {
+	uint16_t i;
+	for (i = 0; i < count; i++) {
+		dataIn[i] = TM_SPI_Send16(SPIx, dataOut[i]);
+	}
+}
+
+void TM_SPI_WriteMulti16(SPI_TypeDef* SPIx, uint16_t* dataOut, uint16_t count) {
+	uint16_t i;
+	for (i = 0; i < count; i++) {
+		TM_SPI_Send16(SPIx, dataOut[i]);
+	}
+}
+
+void TM_SPI_ReadMulti16(SPI_TypeDef* SPIx, uint16_t* dataIn, uint16_t dummy, uint16_t count) {
+	uint16_t i;
+	for (i = 0; i < count; i++) {
+		dataIn[i] = TM_SPI_Send16(SPIx, dummy);
 	}
 }
 
@@ -388,38 +464,3 @@ void TM_SPI6_Init(TM_SPI_PinsPack_t pinspack) {
 	SPI_Init(SPI6, &SPI_InitStruct);
 	SPI_Cmd(SPI6, ENABLE);
 }
-
-uint8_t TM_SPI_Send(SPI_TypeDef* SPIx, uint8_t data) {
-	//Fill output buffer with data
-	SPIx->DR = data;
-	//Wait for transmission to complete
-	while (!SPI_I2S_GetFlagStatus(SPIx, SPI_I2S_FLAG_TXE));
-	//Wait for received data to complete
-	while (!SPI_I2S_GetFlagStatus(SPIx, SPI_I2S_FLAG_RXNE));
-	//Wait for SPI to be ready
-	while (SPI_I2S_GetFlagStatus(SPIx, SPI_I2S_FLAG_BSY));
-	//Return data from buffer
-	return SPIx->DR;
-}
-
-void TM_SPI_SendMulti(SPI_TypeDef* SPIx, uint8_t* dataOut, uint8_t* dataIn, uint16_t count) {
-	uint16_t i;
-	for (i = 0; i < count; i++) {
-		dataIn[i] = TM_SPI_Send(SPIx, dataOut[i]);
-	}
-}
-
-void TM_SPI_WriteMulti(SPI_TypeDef* SPIx, uint8_t* dataOut, uint16_t count) {
-	uint16_t i;
-	for (i = 0; i < count; i++) {
-		TM_SPI_Send(SPIx, dataOut[i]);
-	}
-}
-
-void TM_SPI_ReadMulti(SPI_TypeDef* SPIx, uint8_t* dataIn, uint8_t dummy, uint16_t count) {
-	uint16_t i;
-	for (i = 0; i < count; i++) {
-		dataIn[i] = TM_SPI_Send(SPIx, dummy);
-	}
-}
-
