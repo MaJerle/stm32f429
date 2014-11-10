@@ -31,13 +31,14 @@
  * Version 1.1 - 07.08.2014
  *	- Added scrool down and scroll up feature
  */
-#ifndef TM_ILI9341_H
-#define TM_ILI9341_H 110
+#ifndef TM_ILI9341_LTDC_H
+#define TM_ILI9341_LTDC_H 110
 /**
  * Library dependencies
  * - STM32F4xx
  * - STM32F4xx RCC
  * - STM32F4xx GPIO
+ * - STM32F4xx LTDC
  * - defines.h
  * - TM SPI
  * - TM FONTS
@@ -50,6 +51,7 @@
 #include "stm32f4xx.h"
 #include "stm32f4xx_rcc.h"
 #include "stm32f4xx_gpio.h"
+#include "stm32f4xx_ltdc.h"
 #include "defines.h"
 #include "tm_stm32f4_spi.h"
 #include "tm_stm32f4_fonts.h"
