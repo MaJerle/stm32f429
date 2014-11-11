@@ -69,6 +69,12 @@
  *
  * 	//Disable VBUS pin
  * 	#define USB_HID_HOST_DISABLE_VBUS
+ *	
+ * Default configuration for keyboard is AZERTY style. If you want to use QWERTY keyboard style,
+ * then add line below in defines.h to activate it.
+ *
+ *	//Enable QUERTY keyboard style
+ *	#define QWERTY_KEYBOARD
  * */
 #ifndef TM_USB_HID_HOST_H
 #define TM_USB_HID_HOST_H 100

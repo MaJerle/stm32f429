@@ -64,8 +64,10 @@
 /** @defgroup USBH_HID_KEYBD_Exported_Defines
   * @{
   */ 
-//#define QWERTY_KEYBOARD
+/* Default keyboard configuration is AZERTY */
+#if !defined(QWERTY_KEYBOARD) && !defined(AZERTY_KEYBOARD)
 #define AZERTY_KEYBOARD
+#endif
 
 #define  KBD_LEFT_CTRL                                  0x01
 #define  KBD_LEFT_SHIFT                                 0x02
