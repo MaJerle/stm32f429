@@ -1,7 +1,7 @@
 /**
  *	Keil project for delay time
  *
- *  Before you start, select your target, on the right of the "Load" button
+ *	Before you start, select your target, on the right of the "Load" button
  *
  *	@author		Tilen Majerle
  *	@email		tilen@majerle.eu
@@ -18,7 +18,7 @@
 #include "tm_stm32f4_disco.h"
 
 int main(void) {
-	//Initialize system */
+	/* Initialize system */
 	SystemInit();
 	
 	/* Initialize delay */
