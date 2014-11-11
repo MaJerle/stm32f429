@@ -18,6 +18,20 @@
  */
 #include "tm_stm32f4_mpu6050.h"
 
+float TM_MPU6050_INT_Gyro_Sens[4] = {
+	MPU6050_GYRO_SENS_250,
+	MPU6050_GYRO_SENS_500,
+	MPU6050_GYRO_SENS_1000,
+	MPU6050_GYRO_SENS_2000
+};
+
+float TM_MPU6050_INT_Acce_Sens[4] = {
+	MPU6050_ACCE_SENS_2,
+	MPU6050_ACCE_SENS_4,
+	MPU6050_ACCE_SENS_8,
+	MPU6050_ACCE_SENS_16
+};
+
 TM_MPU6050_Result_t TM_MPU6050_Init(TM_MPU6050_t* DataStruct, TM_MPU6050_Device_t DeviceNumber, TM_MPU6050_Accelerometer_t AccelerometerSensitivity, TM_MPU6050_Gyroscope_t GyroscopeSensitivity) {
 	uint8_t temp;
 	
@@ -52,6 +66,10 @@ TM_MPU6050_Result_t TM_MPU6050_Init(TM_MPU6050_t* DataStruct, TM_MPU6050_Device_
 	temp = (temp & 0xE7) | (uint8_t)GyroscopeSensitivity << 3;
 	TM_I2C_Write(MPU6050_I2C, DataStruct->Address, MPU6050_GYRO_CONFIG, temp);
 	
+	/* Set working sensitivity */
+	DataStruct->Gyro_Mult = (float)1.0 / TM_MPU6050_INT_Gyro_Sens[(uint8_t)GyroscopeSensitivity];
+	DataStruct->Acce_Mult = (float)1.0 / TM_MPU6050_INT_Acce_Sens[(uint8_t)AccelerometerSensitivity];
+	
 	/* Return OK */
 	return TM_MPU6050_Result_Ok;
 }
@@ -63,9 +81,9 @@ TM_MPU6050_Result_t TM_MPU6050_ReadAccelerometer(TM_MPU6050_t* DataStruct) {
 	TM_I2C_ReadMulti(MPU6050_I2C, DataStruct->Address, MPU6050_ACCEL_XOUT_H, data, 6);
 	
 	/* Format */
-	DataStruct->Accelerometer_X = data[0] << 8 | data[1];
-	DataStruct->Accelerometer_Y = data[2] << 8 | data[3];
-	DataStruct->Accelerometer_Z = data[4] << 8 | data[5];
+	DataStruct->Accelerometer_X = (float)(data[0] << 8 | data[1]) * DataStruct->Acce_Mult;
+	DataStruct->Accelerometer_Y = (float)(data[2] << 8 | data[3]) * DataStruct->Acce_Mult;
+	DataStruct->Accelerometer_Z = (float)(data[4] << 8 | data[5]) * DataStruct->Acce_Mult;
 	
 	/* Return OK */
 	return TM_MPU6050_Result_Ok;
@@ -78,9 +96,9 @@ TM_MPU6050_Result_t TM_MPU6050_ReadGyroscope(TM_MPU6050_t* DataStruct) {
 	TM_I2C_ReadMulti(MPU6050_I2C, DataStruct->Address, MPU6050_GYRO_XOUT_H, data, 6);
 	
 	/* Format */
-	DataStruct->Gyroscope_X = data[0] << 8 | data[1];
-	DataStruct->Gyroscope_Y = data[2] << 8 | data[3];
-	DataStruct->Gyroscope_Z = data[4] << 8 | data[5];
+	DataStruct->Gyroscope_X = (float)(data[0] << 8 | data[1]) * DataStruct->Gyro_Mult;
+	DataStruct->Gyroscope_Y = (float)(data[2] << 8 | data[3]) * DataStruct->Gyro_Mult;
+	DataStruct->Gyroscope_Z = (float)(data[4] << 8 | data[5]) * DataStruct->Gyro_Mult;
 
 	/* Return OK */
 	return TM_MPU6050_Result_Ok;
@@ -95,7 +113,7 @@ TM_MPU6050_Result_t TM_MPU6050_ReadTemperature(TM_MPU6050_t* DataStruct) {
 	
 	/* Format temperature */
 	temp = (data[0] << 8 | data[1]);
-	DataStruct->Temperature = (float) ((int16_t)temp / (float) 340.0 + (float)36.53);
+	DataStruct->Temperature = (float)((int16_t)temp / (float)340.0 + (float)36.53);
 	
 	/* Return OK */
 	return TM_MPU6050_Result_Ok;
@@ -109,18 +127,18 @@ TM_MPU6050_Result_t TM_MPU6050_ReadAll(TM_MPU6050_t* DataStruct) {
 	TM_I2C_ReadMulti(MPU6050_I2C, DataStruct->Address, MPU6050_ACCEL_XOUT_H, data, 14);
 	
 	/* Format accelerometer data */
-	DataStruct->Accelerometer_X = data[0] << 8 | data[1];
-	DataStruct->Accelerometer_Y = data[2] << 8 | data[3];
-	DataStruct->Accelerometer_Z = data[4] << 8 | data[5];
+	DataStruct->Accelerometer_X = (float)(data[0] << 8 | data[1]) * DataStruct->Acce_Mult;
+	DataStruct->Accelerometer_Y = (float)(data[2] << 8 | data[3]) * DataStruct->Acce_Mult;
+	DataStruct->Accelerometer_Z = (float)(data[4] << 8 | data[5]) * DataStruct->Acce_Mult;
 
 	/* Format temperature */
 	temp = (data[6] << 8 | data[7]);
 	DataStruct->Temperature = (float) ((int16_t)temp / (float) 340.0 + (float)36.53);
 	
 	/* Format gyroscope data */
-	DataStruct->Gyroscope_X = data[8] << 8 | data[9];
-	DataStruct->Gyroscope_Y = data[10] << 8 | data[11];
-	DataStruct->Gyroscope_Z = data[12] << 8 | data[13];
+	DataStruct->Gyroscope_X = (float)(data[8] << 8 | data[9]) * DataStruct->Gyro_Mult;
+	DataStruct->Gyroscope_Y = (float)(data[10] << 8 | data[11]) * DataStruct->Gyro_Mult;
+	DataStruct->Gyroscope_Z = (float)(data[12] << 8 | data[13]) * DataStruct->Gyro_Mult;
 
 	/* Return OK */
 	return TM_MPU6050_Result_Ok;
