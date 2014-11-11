@@ -119,7 +119,7 @@ extern C {
 #define MPU6050_FIFO_R_W			0x74
 #define MPU6050_WHO_AM_I			0x75
 
-/* Gyro sensitivities in °/s */
+/* Gyro sensitivities in Â°/s */
 #define MPU6050_GYRO_SENS_250		131
 #define MPU6050_GYRO_SENS_500		65.5
 #define MPU6050_GYRO_SENS_1000		32.8
@@ -188,13 +188,13 @@ typedef enum {
  * 
  * Parameters:
  * 	- TM_MPU6050_Gyroscope_250s:
- * 		Range is +- 250°/s
+ * 		Range is +- 250Â°/s
  * 	- TM_MPU6050_Gyroscope_500s:
- * 		Range is +- 500°/s
+ * 		Range is +- 500Â°/s
  * 	- TM_MPU6050_Gyroscope_1000s:
- * 		Range is +- 1000°/s
+ * 		Range is +- 1000Â°/s
  * 	- TM_MPU6050_Gyroscope_2000s:
- * 		Range is +- 20000°/s
+ * 		Range is +- 20000Â°/s
  */
 typedef enum {
 	TM_MPU6050_Gyroscope_250s = 0x00,
@@ -225,7 +225,7 @@ typedef enum {
  * 	- float Temperature:
  * 		Temperature in degrees
  * 	- float Gyro_Mult:
- * 		Gyroscope corrector from raw data to "°/C"
+ * 		Gyroscope corrector from raw data to "Â°/s"
  *		Only for private use
  * 	- float Acce_Mult:
  * 		Accelerometer corrector from raw data to "g"
