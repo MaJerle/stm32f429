@@ -28,7 +28,7 @@
  * 
  * Version 1.1
  *	- November 11, 2014
- *	- Output data are not converted, not just raw data
+ *	- Output data are now converted, not just raw data
  *
  * Default pinout
  * 
@@ -211,7 +211,7 @@ typedef enum {
  * 		I2C address of device
  * 		Only for private use
  * 	- float Gyro_Mult:
- * 		Gyroscope corrector from raw data to "°/s"
+ * 		Gyroscope corrector from raw data to "ï¿½/s"
  *		Only for private use
  * 	- float Acce_Mult:
  * 		Accelerometer corrector from raw data to "g"
