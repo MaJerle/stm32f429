@@ -47,7 +47,7 @@ int main(void) {
 		TM_MPU6050_ReadAll(&MPU6050_Data);
 		
 		/* Format data */
-		sprintf(str, "Accelerometer\n- X:%6d\n- Y:%6d\n- Z:%6d\nGyroscope\n- X:%6d\n- Y:%6d\n- Z:%6d\nTemperature\n- %3.4f\n\n\n",
+		sprintf(str, "Accelerometer\n- X:%f\n- Y:%f\n- Z:%f\nGyroscope\n- X:%f\n- Y:%f\n- Z:%f\nTemperature\n- %3.4f\n\n\n",
 			MPU6050_Data.Accelerometer_X,
 			MPU6050_Data.Accelerometer_Y,
 			MPU6050_Data.Accelerometer_Z,

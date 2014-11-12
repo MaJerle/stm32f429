@@ -132,14 +132,14 @@ extern C {
 #define MPU6050_ACCE_SENS_16		2048
 
 /**
- * MPU6050 can have 2 different slave addresses, dependes on it's input AD0 pin
+ * MPU6050 can have 2 different slave addresses, depends on it's input AD0 pin
  * This feature allows you to use 2 different sensors with this library at the same time
  * 
  * Parameters:
  * 	- TM_MPU6050_Device_0:
- * 		Pin is set to low
+ * 		AD0 pin is set to low
  * 	- TM_MPU6050_Device_1:
- * 		Pin is set to high
+ * 		AD0 pin is set to high
  */
 typedef enum {
 	TM_MPU6050_Device_0 = 0,
@@ -155,7 +155,7 @@ typedef enum {
  * 	- TM_MPU6050_Result_DeviceNotConnected:
  * 		There is no device with valid slave address
  * 	- TM_MPU6050_Result_DeviceInvalid:
- * 		Connected device is not MPU6050
+ * 		Connected device with address is not MPU6050
  */
 typedef enum {
 	TM_MPU6050_Result_Ok = 0x00,
@@ -210,6 +210,13 @@ typedef enum {
  * 	- uint8_t Address:
  * 		I2C address of device
  * 		Only for private use
+ * 	- float Gyro_Mult:
+ * 		Gyroscope corrector from raw data to "°/s"
+ *		Only for private use
+ * 	- float Acce_Mult:
+ * 		Accelerometer corrector from raw data to "g"
+ *		Only for private use
+ *
  * 	- float Accelerometer_X:
  * 		Accelerometer value X axis
  * 	- float Accelerometer_Y:
@@ -224,15 +231,13 @@ typedef enum {
  * 		Gyroscope value Z axis
  * 	- float Temperature:
  * 		Temperature in degrees
- * 	- float Gyro_Mult:
- * 		Gyroscope corrector from raw data to "°/C"
- *		Only for private use
- * 	- float Acce_Mult:
- * 		Accelerometer corrector from raw data to "g"
- *		Only for private use
  */
 typedef struct {
+	/* Private */
 	uint8_t Address;
+	float Gyro_Mult;
+	float Acce_Mult;
+	/* Public */
 	float Accelerometer_X;
 	float Accelerometer_Y;
 	float Accelerometer_Z;
@@ -240,8 +245,6 @@ typedef struct {
 	float Gyroscope_Y;
 	float Gyroscope_Z;
 	float Temperature;
-	float Gyro_Mult;
-	float Acce_Mult;
 } TM_MPU6050_t;
 
 
@@ -250,7 +253,7 @@ typedef struct {
  * 
  * Parameters:
  * 	- TM_MPU6050_t* DataStruct:
- * 		Pointer to TM_MPU6050_t empty struct
+ * 		Pointer to TM_MPU6050_t empty working struct
  * 	- TM_MPU6050_Device_t DeviceNumber:
  * 		Device number. MPU6050 has one pin, AD0 which can be used to set address of device.
  * 		This feature allows you to use 2 different sensors on the same board with same library.
@@ -270,7 +273,7 @@ extern TM_MPU6050_Result_t TM_MPU6050_Init(TM_MPU6050_t* DataStruct, TM_MPU6050_
  * 
  * Parameters:
  * 	- TM_MPU6050_t* DataStruct:
- * 		Pointer to MPU6050 struct to store accelerometer data
+ * 		Pointer to TM_MPU6050_t struct to store accelerometer data
  * 
  * Returns TM_MPU6050_Result_Ok if everything is OK
  */
@@ -281,7 +284,7 @@ extern TM_MPU6050_Result_t TM_MPU6050_ReadAccelerometer(TM_MPU6050_t* DataStruct
  * 
  * Parameters:
  * 	- TM_MPU6050_t* DataStruct:
- * 		Pointer to MPU6050 struct to store gyroscope data
+ * 		Pointer to TM_MPU6050_t struct to store gyroscope data
  * 
  * Returns TM_MPU6050_Result_Ok if everything is OK
  */
@@ -292,7 +295,7 @@ extern TM_MPU6050_Result_t TM_MPU6050_ReadGyroscope(TM_MPU6050_t* DataStruct);
  * 
  * Parameters:
  * 	- TM_MPU6050_t* DataStruct:
- * 		Pointer to MPU6050 struct to store temperature data
+ * 		Pointer to TM_MPU6050_t struct to store temperature data
  * 
  * Returns TM_MPU6050_Result_Ok if everything is OK
  */
@@ -303,7 +306,7 @@ extern TM_MPU6050_Result_t TM_MPU6050_ReadTemperature(TM_MPU6050_t* DataStruct);
  * 
  * Parameters:
  * 	- TM_MPU6050_t* DataStruct:
- * 		Pointer to MPU6050 struct to store data
+ * 		Pointer to TM_MPU6050_t struct to store data
  * 
  * Returns TM_MPU6050_Result_Ok if everything is OK
  */
