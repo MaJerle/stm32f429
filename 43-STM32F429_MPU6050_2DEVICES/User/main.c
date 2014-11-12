@@ -47,7 +47,11 @@ int main(void) {
 	/* Initialize MPU6050 sensor 1, address = 0xD2, AD0 pin on sensor is high */
 	if (TM_MPU6050_Init(&MPU6050_Data1, TM_MPU6050_Device_1, TM_MPU6050_Accelerometer_8G, TM_MPU6050_Gyroscope_250s) == TM_MPU6050_Result_Ok) {
 		/* Display message to user */
+<<<<<<< HEAD
 		TM_USART_Puts(USART1, "MPU6050 sensor 1 is ready to use!\n");
+=======
+		TM_USART_Puts(USART1, "MPU6050 sensor 1 is ready to use\n");
+>>>>>>> origin/master
 		
 		/* Sensor 2 OK */
 		sensor2 = 1;
