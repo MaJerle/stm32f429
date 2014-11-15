@@ -47,11 +47,7 @@ int main(void) {
 	/* Initialize MPU6050 sensor 1, address = 0xD2, AD0 pin on sensor is high */
 	if (TM_MPU6050_Init(&MPU6050_Data1, TM_MPU6050_Device_1, TM_MPU6050_Accelerometer_8G, TM_MPU6050_Gyroscope_250s) == TM_MPU6050_Result_Ok) {
 		/* Display message to user */
-<<<<<<< HEAD
 		TM_USART_Puts(USART1, "MPU6050 sensor 1 is ready to use!\n");
-=======
-		TM_USART_Puts(USART1, "MPU6050 sensor 1 is ready to use\n");
->>>>>>> origin/master
 		
 		/* Sensor 2 OK */
 		sensor2 = 1;
@@ -69,7 +65,7 @@ int main(void) {
 				TM_MPU6050_ReadAll(&MPU6050_Data0);
 				
 				/* Format data */
-				sprintf(str, "1. Accelerometer\n- X:%f\n- Y:%f\n- Z:%f\nGyroscope\n- X:%f\n- Y:%f\n- Z:%f\nTemperature\n- %3.4f\n\n\n",
+				sprintf(str, "1. Accelerometer\n- X:%d\n- Y:%d\n- Z:%d\nGyroscope\n- X:%d\n- Y:%d\n- Z:%d\nTemperature\n- %3.4f\n\n\n",
 					MPU6050_Data0.Accelerometer_X,
 					MPU6050_Data0.Accelerometer_Y,
 					MPU6050_Data0.Accelerometer_Z,
@@ -89,7 +85,7 @@ int main(void) {
 				TM_MPU6050_ReadAll(&MPU6050_Data1);
 				
 				/* Format data */
-				sprintf(str, "2. Accelerometer\n- X:%f\n- Y:%f\n- Z:%f\nGyroscope\n- X:%f\n- Y:%f\n- Z:%f\nTemperature\n- %3.4f\n\n\n",
+				sprintf(str, "2. Accelerometer\n- X:%d\n- Y:%d\n- Z:%d\nGyroscope\n- X:%d\n- Y:%d\n- Z:%d\nTemperature\n- %3.4f\n\n\n",
 					MPU6050_Data1.Accelerometer_X,
 					MPU6050_Data1.Accelerometer_Y,
 					MPU6050_Data1.Accelerometer_Z,

@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/10/library-43-mpu-6050-6-axes-gyro-accelerometer-stm32f4/
- *	@version 	v1.1
+ *	@version 	v1.0
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -25,10 +25,6 @@
  * | You should have received a copy of the GNU General Public License
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
- * 
- * Version 1.1
- *	- November 11, 2014
- *	- Output data are now converted, not just raw data
  *
  * Default pinout
  * 
@@ -41,7 +37,7 @@
  *	AD0			-			If pin is low, address is 0xD0, if pin is high, the address is 0xD2
  */
 #ifndef TM_MPU6050_H
-#define TM_MPU6050_H 110
+#define TM_MPU6050_H 100
 
 /* C++ detection */
 #ifdef __cplusplus
@@ -120,16 +116,16 @@ extern C {
 #define MPU6050_WHO_AM_I			0x75
 
 /* Gyro sensitivities in °/s */
-#define MPU6050_GYRO_SENS_250		131
-#define MPU6050_GYRO_SENS_500		65.5
-#define MPU6050_GYRO_SENS_1000		32.8
-#define MPU6050_GYRO_SENS_2000		16.4
+#define MPU6050_GYRO_SENS_250		((float) 131)
+#define MPU6050_GYRO_SENS_500		((float) 65.5)
+#define MPU6050_GYRO_SENS_1000		((float) 32.8)
+#define MPU6050_GYRO_SENS_2000		((float) 16.4)
 
 /* Acce sensitivities in g */
-#define MPU6050_ACCE_SENS_2			16384
-#define MPU6050_ACCE_SENS_4			8192
-#define MPU6050_ACCE_SENS_8			4096
-#define MPU6050_ACCE_SENS_16		2048
+#define MPU6050_ACCE_SENS_2			((float) 16384)
+#define MPU6050_ACCE_SENS_4			((float) 8192)
+#define MPU6050_ACCE_SENS_8			((float) 4096)
+#define MPU6050_ACCE_SENS_16		((float) 2048)
 
 /**
  * MPU6050 can have 2 different slave addresses, depends on it's input AD0 pin
@@ -217,29 +213,20 @@ typedef enum {
  * 		Accelerometer corrector from raw data to "g"
  *		Only for private use
  *
- * 	- float Accelerometer_X:
+ * 	- int16_t Accelerometer_X:
  * 		Accelerometer value X axis
- * 	- float Accelerometer_Y:
+ * 	- int16_t Accelerometer_Y:
  * 		Accelerometer value Y axis
- * 	- float Accelerometer_Z:
+ * 	- int16_t Accelerometer_Z:
  * 		Accelerometer value Z axis
- * 	- float Gyroscope_X:
+ * 	- int16_t Gyroscope_X:
  * 		Gyroscope value X axis
- * 	- float Gyroscope_Y:
+ * 	- int16_t Gyroscope_Y:
  * 		Gyroscope value Y axis
- * 	- float Gyroscope_Z:
+ * 	- int16_t Gyroscope_Z:
  * 		Gyroscope value Z axis
  * 	- float Temperature:
  * 		Temperature in degrees
-<<<<<<< HEAD
-=======
- * 	- float Gyro_Mult:
- * 		Gyroscope corrector from raw data to "°/s"
- *		Only for private use
- * 	- float Acce_Mult:
- * 		Accelerometer corrector from raw data to "g"
- *		Only for private use
->>>>>>> origin/master
  */
 typedef struct {
 	/* Private */
@@ -247,12 +234,12 @@ typedef struct {
 	float Gyro_Mult;
 	float Acce_Mult;
 	/* Public */
-	float Accelerometer_X;
-	float Accelerometer_Y;
-	float Accelerometer_Z;
-	float Gyroscope_X;
-	float Gyroscope_Y;
-	float Gyroscope_Z;
+	int16_t Accelerometer_X;
+	int16_t Accelerometer_Y;
+	int16_t Accelerometer_Z;
+	int16_t Gyroscope_X;
+	int16_t Gyroscope_Y;
+	int16_t Gyroscope_Z;
 	float Temperature;
 } TM_MPU6050_t;
 

@@ -34,7 +34,7 @@ int main(void) {
 	TM_USART_Init(USART1, TM_USART_PinsPack_2, 115200);
 	
 	/* Initialize MPU6050 sensor */
-	if (TM_MPU6050_Init(&MPU6050_Data,  TM_MPU6050_Device_0, TM_MPU6050_Accelerometer_8G, TM_MPU6050_Gyroscope_2000s ) != TM_MPU6050_Result_Ok) {
+	if (TM_MPU6050_Init(&MPU6050_Data, TM_MPU6050_Device_0, TM_MPU6050_Accelerometer_8G, TM_MPU6050_Gyroscope_2000s) != TM_MPU6050_Result_Ok) {
 		/* Display error to user */
 		TM_USART_Puts(USART1, "MPU6050 Error\n");
 		
@@ -46,8 +46,8 @@ int main(void) {
 		/* Read all data from sensor */
 		TM_MPU6050_ReadAll(&MPU6050_Data);
 		
-		/* Format data */
-		sprintf(str, "Accelerometer\n- X:%f\n- Y:%f\n- Z:%f\nGyroscope\n- X:%f\n- Y:%f\n- Z:%f\nTemperature\n- %3.4f\n\n\n",
+		/* Format data */		
+		sprintf(str, "Accelerometer\n- X:%d\n- Y:%d\n- Z:%d\nGyroscope\n- X:%d\n- Y:%d\n- Z:%d\nTemperature\n- %3.4f\n\n\n",
 			MPU6050_Data.Accelerometer_X,
 			MPU6050_Data.Accelerometer_Y,
 			MPU6050_Data.Accelerometer_Z,
