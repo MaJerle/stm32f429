@@ -31,7 +31,6 @@
 #include "usbh_hid_keybd.h"
 #include "tm_stm32f4_usb_hid_host.h"
 
-#include "tm_stm32f4_usart.h"
 
 /** @addtogroup USBH_USER
 * @{

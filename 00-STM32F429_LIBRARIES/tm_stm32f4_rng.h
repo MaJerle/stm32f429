@@ -28,8 +28,8 @@
  *	
  *	This peripheral provides you a true random 32bit number
  */
-#ifndef TM_RNG_
-#define TM_RNG_ 100
+#ifndef TM_RNG_H
+#define TM_RNG_H 100
 /**
  * Dependencies
  * - STM32F4xx
@@ -55,7 +55,7 @@ extern void TM_RNG_Init(void);
 /**
  * Get 32bit random number
  *
- * Returns 32bit randon number
+ * Returns 32bit random number
  */
 extern uint32_t TM_RNG_Get(void);
 
