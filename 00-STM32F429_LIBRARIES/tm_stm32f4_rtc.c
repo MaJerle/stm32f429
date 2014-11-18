@@ -381,7 +381,7 @@ void TM_RTC_SetAlarm(TM_RTC_Alarm_t Alarm, TM_RTC_AlarmTime_t* DataTime, TM_RTC_
 	RTC_AlarmStruct.RTC_AlarmMask = RTC_AlarmMask_DateWeekDay;
 	
 	/* Alarm type is every week the same day in a week */
-	if (DataTime->alarmtype == TM_RTC_AlarmType_DayInMonth) {
+	if (DataTime->alarmtype == TM_RTC_AlarmType_DayInWeek) {
 		/* Alarm trigger every week the same day in a week */
 		RTC_AlarmStruct.RTC_AlarmDateWeekDaySel = RTC_AlarmDateWeekDaySel_WeekDay;
 		

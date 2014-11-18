@@ -45,15 +45,19 @@ extern C {
  * - STM32F4xx GPIO
  * - STM32F4xx TIM
  * - defines.h
+ * - TM PWM
+ * - TM TIMER PROPERTIES
  */
 /**
  * Includes
  */
 #include "stm32f4xx.h"
 #include "stm32f4xx_rcc.h"
+#include "stm32f4xx_gpio.h"
+#include "stm32f4xx_tim.h"
+#include "defines.h"
 #include "tm_stm32f4_pwm.h"
 #include "tm_stm32f4_timer_properties.h"
-#include "defines.h"
 
 /* Minimal pulse length */
 #ifndef SERVO_MICROS_MIN
