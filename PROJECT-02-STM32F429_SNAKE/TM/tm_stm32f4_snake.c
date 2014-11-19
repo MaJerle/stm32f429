@@ -366,7 +366,7 @@ void TM_SNAKE_PrepareDisplay(void) {
 }
 
 void TM_SNAKE_SetFirstOptions(void) {
-	Settings.Speed = 3;
+	Settings.Speed = SNAKE_SPEED_DEFAULT;
 	Settings.Micros = 1000000 / Settings.Speed;
 	Settings.Pause = 0;
 	Settings.Overflow = 1;

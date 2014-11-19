@@ -4,7 +4,7 @@
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
- *	@link		
+ *	@link		http://stm32f4-discovery.com/2014/11/project-02-snake-game-stm32f429-discovery-board/
  *	@version 	v1.0
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
@@ -62,8 +62,10 @@ extern C {
 #define SNAKE_BACK_START_Y		20	/* Y coordinate where snake area starts */
 
 #define SNAKE_DEFAULT_LENGTH	8	/* Default snake length */
+
 #define SNAKE_SPEED_MAX			15	/* 15Hz movement */
 #define SNAKE_SPEED_MIN			1	/* 1Hz movement */
+#define SNAKE_SPEED_DEFAULT		15
 
 /* Directions for snake */
 #define SNAKE_DIRECTION_LEFT	0

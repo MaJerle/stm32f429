@@ -59,8 +59,6 @@ DAQ
 *.dep
 *.map
 *.bak
-*.Tilen
-*.tilz0R
 *.axf
 *.lnp
 *.lst
