@@ -21,12 +21,13 @@
 TM_USB_HIDHOST_Keyboard_t Keyboard;
 int8_t Random[2], Snake_Food[2];
 int8_t Snake_Head[2], Snake_Head_Last[2], Snake_Foot[2];
+volatile uint8_t Snake_FirstTime = 1;
 volatile uint8_t GameOver = 0, GameOverDisplay = 0;
 char Buffer[50];
 volatile TM_SNAKE_t Snake, Snake1;
 volatile TM_SNAKE_Settings_t Settings, Settings1;
 
-void TM_SNAKE_DrawPixel(uint8_t x, uint8_t y, uint8_t value);
+void TM_SNAKE_DrawPixel(uint8_t x, uint8_t y, uint16_t value);
 void TM_SNAKE_PrepareDisplay(void);
 void TM_SNAKE_DrawArea(void);
 void TM_SNAKE_SetDefaultSnake(void);
@@ -100,22 +101,24 @@ void TM_SNAKE_Start(void) {
 			Snake_Head_Last[0] = Snake_Head[0];
 			Snake_Head_Last[1] = Snake_Head[1];
 			
-			/* Move snake */
-			switch (Snake.Direction) {
-				case SNAKE_DIRECTION_LEFT:
-					Snake_Head[0] -= 1;
-					break;
-				case SNAKE_DIRECTION_RIGHT:
-					Snake_Head[0] += 1;
-					break;
-				case SNAKE_DIRECTION_UP:
-					Snake_Head[1] -= 1;
-					break;
-				case SNAKE_DIRECTION_DOWN:
-					Snake_Head[1] += 1;
-					break;
-				default:
-					break;
+			if (!Snake_FirstTime) {
+				/* Move snake */
+				switch (Snake.Direction) {
+					case SNAKE_DIRECTION_LEFT:
+						Snake_Head[0] -= 1;
+						break;
+					case SNAKE_DIRECTION_RIGHT:
+						Snake_Head[0] += 1;
+						break;
+					case SNAKE_DIRECTION_UP:
+						Snake_Head[1] -= 1;
+						break;
+					case SNAKE_DIRECTION_DOWN:
+						Snake_Head[1] += 1;
+						break;
+					default:
+						break;
+				}
 			}
 			
 			/* Overflow is activated */
@@ -144,10 +147,16 @@ void TM_SNAKE_Start(void) {
 					GameOver = 1;
 				}
 			}
-			
-			/* Check if snake hit itself */
-			if (!GameOver && TM_SNAKE_MatchesSnakeLocations(Snake_Head)) {
-				GameOver = 1;
+					
+			if (!Snake_FirstTime) {
+				/* Clear first value from array = snake foot */
+				TM_SNAKE_DeleteFromArray(0, Snake_Foot);
+				
+				/* Check if snake hit itself */
+				if (TM_SNAKE_MatchesSnakeLocations(Snake_Head)) {
+					/* Set gameover flag */
+					GameOver = 1;
+				}
 			}
 			
 			/* Check if target is reached */
@@ -167,18 +176,25 @@ void TM_SNAKE_Start(void) {
 			}
 			
 			if (!GameOver) {
-				/* Add new value to the array = new snake head */
-				TM_SNAKE_AddToArray(Snake_Head);
+				if (!Snake_FirstTime) {
+					/* Add new value to the array = new snake head */
+					TM_SNAKE_AddToArray(Snake_Head);
+				}
 				
-				/* Clear first value from array = snake foot */
-				TM_SNAKE_DeleteFromArray(0, Snake_Foot);
+				/* Clear pixel on LCD for foot */
+				/* First clear foot, maybe is new head on the same position */
+				TM_SNAKE_DrawPixel(Snake_Foot[0], Snake_Foot[1], 0);
 				
 				/* Draw pixel on LCD for new head position with head color */
 				TM_SNAKE_DrawPixel(Snake_Head[0], Snake_Head[1], 3);
 				/* Draw new pixel for the second pixel after head with new color to delete head color */
 				TM_SNAKE_DrawPixel(Snake_Head_Last[0], Snake_Head_Last[1], 1);
-				/* Clear pixel on LCD for foot */
-				TM_SNAKE_DrawPixel(Snake_Foot[0], Snake_Foot[1], 0);
+			}
+			
+			
+			/* Clear flag if needed */
+			if (Snake_FirstTime) {
+				Snake_FirstTime = 0;
 			}
 		}
 		
@@ -286,6 +302,8 @@ void TM_SNAKE_Start(void) {
 						TM_SNAKE_GenerateTarget();
 						/* Disable gameover */
 						GameOver = 0;
+						/* Reset first time flag */
+						Snake_FirstTime = 1;
 						break;
 					case SNAKE_KEY_OVERFLOW:
 						/* Toggle overflow mode */
@@ -330,7 +348,7 @@ void TM_SNAKE_Start(void) {
 }
 
 /* Draw snake pixel */
-void TM_SNAKE_DrawPixel(uint8_t x, uint8_t y, uint8_t value) {
+void TM_SNAKE_DrawPixel(uint8_t x, uint8_t y, uint16_t value) {
 	uint16_t color;
 	
 	/* Get pixel color */
@@ -378,7 +396,7 @@ void TM_SNAKE_SetDefaultSnake() {
 	/* Set default options */
 	Snake.Direction = Snake1.Direction = SNAKE_DIRECTION_RIGHT;
 	Snake.LastIndex = 0;
-	Snake.Length = 1;
+	Snake.Length = 0;
 	Snake.Hits = 0;
 	
 	/* Set default snake1 settings */
@@ -388,17 +406,23 @@ void TM_SNAKE_SetDefaultSnake() {
 	/* Get random number */
 	TM_SNAKE_Random(Random);
 	
-	/* Add first to array */
+	Random[0] = 3;
+	Random[1] = 3;
+
+	/* Add first to array, foot */
 	TM_SNAKE_AddToArray(Random);
 	
 	/* Store values */
 	for (i = 0; i < SNAKE_DEFAULT_LENGTH - 1; i++) {
+		if (i == (SNAKE_DEFAULT_LENGTH - 2)) {
+			Random[0]++;
+		}
 		TM_SNAKE_AddToArray(Random);
 	}
 }
 
 void TM_SNAKE_DeleteFromArray(uint16_t index, int8_t* twobytesarray) {
-	if (index < Snake.LastIndex) {
+	if (index < Snake.Length) {
 		/* Store value that will be removed */
 		twobytesarray[0] = Snake.Snake[index][0];
 		twobytesarray[1] = Snake.Snake[index][1];
@@ -419,8 +443,12 @@ void TM_SNAKE_AddToArray(int8_t* twobytesarray) {
 	/* Add new position to the snake array */
 	
 	/* Increase counters */
-	Snake.LastIndex++;
-	Snake.Length++;
+	if (Snake.Length == 0) {
+		Snake.Length++;
+	} else {
+		Snake.LastIndex++;
+		Snake.Length++;
+	}
 	
 	/* Add new values to array */
 	Snake.Snake[Snake.LastIndex][0] = twobytesarray[0];

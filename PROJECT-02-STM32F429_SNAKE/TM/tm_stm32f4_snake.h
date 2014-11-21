@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/11/project-02-snake-game-stm32f429-discovery-board/
- *	@version 	v1.0
+ *	@version 	v1.1
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -25,9 +25,16 @@
  * | You should have received a copy of the GNU General Public License
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
+ *
+ * Version 1.1
+ *	- Fixed bug when snake's length is the same as game area and snake is 
+ *	  in strait line position.
+ * 
+ * Version 1.0
+ *	- Initial release
  */
 #ifndef TM_SNAKE_H
-#define TM_SNAKE_H 100
+#define TM_SNAKE_H 110
 
 /* C++ detection */
 #ifdef __cplusplus
@@ -65,7 +72,7 @@ extern C {
 
 #define SNAKE_SPEED_MAX			15	/* 15Hz movement */
 #define SNAKE_SPEED_MIN			1	/* 1Hz movement */
-#define SNAKE_SPEED_DEFAULT		15
+#define SNAKE_SPEED_DEFAULT		5	/* Default speed in Hz */
 
 /* Directions for snake */
 #define SNAKE_DIRECTION_LEFT	0

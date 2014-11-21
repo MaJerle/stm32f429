@@ -24,7 +24,7 @@
 /* Defined in defines.h */
 /* We are using FATFS with USB */
 #if FATFS_USE_USB == 1
-	/* If SDIO is not defines, set to 2, to disable SD card */
+	/* If SDIO is not defined, set to 2, to disable SD card */
 	/* You can set FATFS_USE_SDIO in defines.h file */
 	/* This is for error fixes */
 	#ifndef FATFS_USE_SDIO
