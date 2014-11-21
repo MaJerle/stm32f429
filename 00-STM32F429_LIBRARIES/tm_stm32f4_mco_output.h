@@ -70,15 +70,15 @@ extern C {
  * Prescaler value for output clock
  *
  * Parameters:
- * 	- TM_MCOOUTPUT_Prescaler_1
+ * 	- TM_MCOOUTPUT_Prescaler_1:
  * 		Output original value of clock on MCO pin
- * 	- TM_MCOOUTPUT_Prescaler_2
+ * 	- TM_MCOOUTPUT_Prescaler_2:
  * 		Output clock is orignial / 2
- * 	- TM_MCOOUTPUT_Prescaler_3
+ * 	- TM_MCOOUTPUT_Prescaler_3:
  * 		Output clock is original / 3
- * 	- TM_MCOOUTPUT_Prescaler_4
+ * 	- TM_MCOOUTPUT_Prescaler_4:
  * 		Output clock is original / 4
- * 	- TM_MCOOUTPUT_Prescaler_5
+ * 	- TM_MCOOUTPUT_Prescaler_5:
  * 		Output clock is original / 5
  */
 typedef enum {
@@ -93,13 +93,13 @@ typedef enum {
  * Possible output clocks on MCO1 pin
  *
  * Parameters:
- *	- TM_MCOOUTPUT1_Source_HSI
+ *	- TM_MCOOUTPUT1_Source_HSI:
  *		High Speed Internal clock, 16MHz RC oscillator
- *	- TM_MCOOUTPUT1_Source_HSE
+ *	- TM_MCOOUTPUT1_Source_HSE:
  *		High Speed External clock, external crystal or user clock
- *	- TM_MCOOUTPUT1_Source_LSE
+ *	- TM_MCOOUTPUT1_Source_LSE:
  *		External 32738Hz low-speed oscillator or ceramic resonator
- *	- TM_MCOOUTPUT1_Source_PLLCLK
+ *	- TM_MCOOUTPUT1_Source_PLLCLK:
  *		Output from PLL
  */
 typedef enum {
@@ -113,13 +113,13 @@ typedef enum {
  * Possible output clocks on MCO2 pin
  *
  * Parameters:
- * 	- TM_MCOOUTPUT2_Source_SYSCLK
+ * 	- TM_MCOOUTPUT2_Source_SYSCLK:
  * 		System core clock
- * 	- TM_MCOOUTPUT2_Source_PLLI2SCLK
+ * 	- TM_MCOOUTPUT2_Source_PLLI2SCLK:
  * 		Accurate clock for high-quality audio performance in I2S and SAI interfaces
- * 	- TM_MCOOUTPUT2_Source_HSE
+ * 	- TM_MCOOUTPUT2_Source_HSE:
  * 		High Speed External clock, external crystal or user clock
- * 	- TM_MCOOUTPUT2_Source_PLLCLK
+* 	- TM_MCOOUTPUT2_Source_PLLCLK:
  * 		Output from PLL
  *
  */
@@ -141,15 +141,33 @@ extern void TM_MCOOUTPUT_InitMCO1(void);
  * Set output for MCO1 pin
  *
  * Parameters:
- * 	- TM_MCOOUTPUT1_Source_t Source
+ * 	- TM_MCOOUTPUT1_Source_t Source:
  * 		Specific clock source
- * 	- TM_MCOOUTPUT_Prescaler_t Prescaler
+ * 	- TM_MCOOUTPUT_Prescaler_t Prescaler:
  * 		Prescaler used for clock
  *
  * No return
  */
 extern void TM_MCOOUTPUT_SetOutput1(TM_MCOOUTPUT1_Source_t Source, TM_MCOOUTPUT_Prescaler_t Prescaler);
+
+/**
+ * Initialize and prepare MCO2 pin to output clock
+ *
+ * No return
+ */
 extern void TM_MCOOUTPUT_InitMCO2(void);
+ 
+/**
+ * Set output for MCO2 pin
+ *
+ * Parameters:
+ * 	- TM_MCOOUTPUT2_Source_t Source:
+ *		Specific clock source for MCO2
+ *	- TM_MCOOUTPUT_Prescaler_t Prescaler:
+ *		Prescaler used for clock
+ *
+ * No return
+ */
 extern void TM_MCOOUTPUT_SetOutput2(TM_MCOOUTPUT2_Source_t Source, TM_MCOOUTPUT_Prescaler_t Prescaler);
 
 /* C++ detection */

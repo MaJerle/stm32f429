@@ -51,7 +51,7 @@ TM_L3GD20_Result_t TM_L3GD20_Init(TM_L3GD20_Scale_t scale) {
 	TM_L3GD20_INT_WriteSPI(L3GD20_REG_CTRL_REG2, 0x00);
 
 	/* Enable high-pass filter */
-	TM_L3GD20_INT_WriteSPI(L3GD20_REG_CTRL_REG5, 0x01);
+	TM_L3GD20_INT_WriteSPI(L3GD20_REG_CTRL_REG5, 0x10);
 	
 	/* Everything OK */
 	return TM_L3GD20_Result_Ok;
