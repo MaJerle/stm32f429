@@ -68,7 +68,7 @@
 #include "defines.h"
 
 /**
- * This values can be overwriten in defines.h file
+ * This values can be overwritten in defines.h file
  */
 #ifndef TM_ADC1_RESOLUTION
 #define TM_ADC1_RESOLUTION		ADC_Resolution_12b
@@ -102,7 +102,7 @@
  * 	- ADC_TypeDef* ADCx: ADCx
  * 		ADC1, ADC2, ADC3
  */
-void TM_ADC_InitADC(ADC_TypeDef* ADCx);
+extern void TM_ADC_InitADC(ADC_TypeDef* ADCx);
 
 /**
  * Initialize ADCx with ADCx channel
