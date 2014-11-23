@@ -1,0 +1,230 @@
+Expected:   23.500 C
+Actual:     23.188 C
+Error:      -0.312 C
+Duty cycle: 0.00 %
+----
+Expected:   23.500 C
+Actual:     23.188 C
+Error:      -0.312 C
+Duty cycle: 0.00 %
+----
+Expected:   23.500 C
+Actual:     23.250 C
+Error:      -0.250 C
+Duty cycle: 0.00 %
+----
+Expected:   23.562 C
+Actual:     24.000 C
+Error:      0.438 C
+Duty cycle: 57.49 %
+----
+Expected:   23.562 C
+Actual:     25.188 C
+Error:      1.625 C
+Duty cycle: 100.00 %
+----
+Expected:   23.562 C
+Actual:     26.000 C
+Error:      2.438 C
+Duty cycle: 100.00 %
+----
+Expected:   23.562 C
+Actual:     26.625 C
+Error:      3.062 C
+Duty cycle: 100.00 %
+----
+Expected:   23.562 C
+Actual:     27.125 C
+Error:      3.562 C
+Duty cycle: 100.00 %
+----
+Expected:   23.562 C
+Actual:     27.562 C
+Error:      4.000 C
+Duty cycle: 100.00 %
+----
+Expected:   23.562 C
+Actual:     27.875 C
+Error:      4.312 C
+Duty cycle: 100.00 %
+----
+Expected:   23.500 C
+Actual:     27.875 C
+Error:      4.375 C
+Duty cycle: 100.00 %
+----
+Expected:   23.562 C
+Actual:     27.438 C
+Error:      3.875 C
+Duty cycle: 100.00 %
+----
+Expected:   23.500 C
+Actual:     26.938 C
+Error:      3.438 C
+Duty cycle: 100.00 %
+----
+Expected:   23.562 C
+Actual:     26.562 C
+Error:      3.000 C
+Duty cycle: 100.00 %
+----
+Expected:   23.500 C
+Actual:     26.188 C
+Error:      2.688 C
+Duty cycle: 100.00 %
+----
+Expected:   23.500 C
+Actual:     25.812 C
+Error:      2.312 C
+Duty cycle: 100.00 %
+----
+Expected:   23.500 C
+Actual:     25.500 C
+Error:      2.000 C
+Duty cycle: 100.00 %
+----
+Expected:   23.500 C
+Actual:     25.188 C
+Error:      1.688 C
+Duty cycle: 100.00 %
+----
+Expected:   23.500 C
+Actual:     24.938 C
+Error:      1.438 C
+Duty cycle: 100.00 %
+----
+Expected:   23.500 C
+Actual:     24.750 C
+Error:      1.250 C
+Duty cycle: 100.00 %
+----
+Expected:   23.500 C
+Actual:     24.562 C
+Error:      1.062 C
+Duty cycle: 100.00 %
+----
+Expected:   23.500 C
+Actual:     24.438 C
+Error:      0.938 C
+Duty cycle: 92.42 %
+----
+Expected:   23.500 C
+Actual:     24.312 C
+Error:      0.812 C
+Duty cycle: 79.94 %
+----
+Expected:   23.500 C
+Actual:     24.188 C
+Error:      0.688 C
+Duty cycle: 67.45 %
+----
+Expected:   23.500 C
+Actual:     24.000 C
+Error:      0.500 C
+Duty cycle: 47.47 %
+----
+Expected:   23.500 C
+Actual:     23.938 C
+Error:      0.438 C
+Duty cycle: 43.73 %
+----
+Expected:   23.500 C
+Actual:     23.812 C
+Error:      0.312 C
+Duty cycle: 29.98 %
+----
+Expected:   23.500 C
+Actual:     23.750 C
+Error:      0.250 C
+Duty cycle: 24.99 %
+----
+Expected:   23.500 C
+Actual:     23.688 C
+Error:      0.188 C
+Duty cycle: 18.75 %
+----
+Expected:   23.500 C
+Actual:     23.625 C
+Error:      0.125 C
+Duty cycle: 12.50 %
+----
+Expected:   23.438 C
+Actual:     23.625 C
+Error:      0.188 C
+Duty cycle: 21.25 %
+----
+Expected:   23.438 C
+Actual:     23.625 C
+Error:      0.188 C
+Duty cycle: 20.01 %
+----
+Expected:   23.500 C
+Actual:     23.562 C
+Error:      0.062 C
+Duty cycle: 5.01 %
+----
+Expected:   23.438 C
+Actual:     23.562 C
+Error:      0.125 C
+Duty cycle: 15.01 %
+----
+Expected:   23.438 C
+Actual:     23.562 C
+Error:      0.125 C
+Duty cycle: 13.77 %
+----
+Expected:   23.500 C
+Actual:     23.562 C
+Error:      0.062 C
+Duty cycle: 6.27 %
+----
+Expected:   23.500 C
+Actual:     23.500 C
+Error:      0.000 C
+Duty cycle: 0.02 %
+----
+Expected:   23.500 C
+Actual:     23.500 C
+Error:      0.000 C
+Duty cycle: 1.27 %
+----
+Expected:   23.438 C
+Actual:     23.500 C
+Error:      0.062 C
+Duty cycle: 8.77 %
+----
+Expected:   23.438 C
+Actual:     23.500 C
+Error:      0.062 C
+Duty cycle: 7.52 %
+----
+Expected:   23.438 C
+Actual:     23.500 C
+Error:      0.062 C
+Duty cycle: 7.52 %
+----
+Expected:   23.438 C
+Actual:     23.500 C
+Error:      0.062 C
+Duty cycle: 7.52 %
+----
+Expected:   23.438 C
+Actual:     23.438 C
+Error:      0.000 C
+Duty cycle: 0.02 %
+----
+Expected:   23.500 C
+Actual:     23.438 C
+Error:      -0.062 C
+Duty cycle: 0.00 %
+----
+Expected:   23.500 C
+Actual:     23.438 C
+Error:      -0.062 C
+Duty cycle: 0.00 %
+----
+Expected:   23.500 C
+Actual:     23.438 C
+Error:      -0.062 C
+Duty cycle: 0.00 %
+----
