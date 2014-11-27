@@ -20,58 +20,63 @@
 
 uint8_t TM_WATCHDOG_Init(TM_WATCHDOG_Timeout_t timeout) {
 	uint8_t result = 0;
+	uint16_t reload;
 
-	// Check if the system has resumed from IWDG reset
+	/* Check if the system has resumed from IWDG reset */
 	if (RCC_GetFlagStatus(RCC_FLAG_IWDGRST) != RESET) {
 		// Reset by IWDG
 		result = 1;
 		
-		// Clear reset flags
+		/* Clear reset flags */
 		RCC_ClearFlag();
 	}
 
-	// Enable write access to IWDG_PR and IWDG_RLR registers
+	/* Enable write access to IWDG_PR and IWDG_RLR registers */
 	IWDG_WriteAccessCmd(IWDG_WriteAccess_Enable);
 
-	// IWDG counter clock: LSI/32 = 1024Hz
+	/* IWDG counter clock: LSI/32 = 1024Hz */
 	IWDG_SetPrescaler(IWDG_Prescaler_32);
 	
-	// Set counter reload value.  
+	/* Set counter reload value */
 	if (timeout == TM_WATCHDOG_Timeout_5ms) {
-		IWDG_SetReload(5);
+		reload = 5;
 	} else if (timeout == TM_WATCHDOG_Timeout_10ms) {
-		IWDG_SetReload(10);
+		reload = 10;
 	} else if (timeout == TM_WATCHDOG_Timeout_15ms) {
-		IWDG_SetReload(15);
+		reload = 15;
 	} else if (timeout == TM_WATCHDOG_Timeout_30ms) {
-		IWDG_SetReload(31);
+		reload = 31;
 	} else if (timeout == TM_WATCHDOG_Timeout_60ms) {
-		IWDG_SetReload(61);
+		reload = 61;
 	} else if (timeout == TM_WATCHDOG_Timeout_120ms) {
-		IWDG_SetReload(123);
+		reload = 123;
 	} else if (timeout == TM_WATCHDOG_Timeout_250ms) {
-		IWDG_SetReload(256);
+		reload = 256;
 	} else if (timeout == TM_WATCHDOG_Timeout_500ms) {
-		IWDG_SetReload(512);
+		reload = 512;
 	} else if (timeout == TM_WATCHDOG_Timeout_1s) {
-		IWDG_SetReload(1024);
+		reload = 1024;
 	} else if (timeout == TM_WATCHDOG_Timeout_2s) {
-		IWDG_SetReload(2048);
+		reload = 2048;
 	} else if (timeout == TM_WATCHDOG_Timeout_4s) {
-		IWDG_SetReload(4095);
+		reload = 4095;
 	}
+	
+	/* Set reload */
+	IWDG_SetReload(reload);
 
-	// Reload IWDG counter
+	/* Reload IWDG counter */
 	IWDG_ReloadCounter();
 
-	// Enable IWDG (the LSI oscillator will be enabled by hardware)
+	/* Enable IWDG (the LSI oscillator will be enabled by hardware) */
 	IWDG_Enable();
 	
+	/* Return status */
 	return result;
 }
 
 void TM_WATCHDOG_Reset(void) {
-	// Reload IWDG counter
+	/* Reload IWDG counter */
     IWDG_ReloadCounter(); 
 }
 

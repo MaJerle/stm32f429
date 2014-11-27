@@ -1,5 +1,5 @@
 /**
- *	Keil project for delay
+ *	Keil project for delay using TIM6 or TIM7 timers
  *
  *  Before you start, select your target, on the right of the "Load" button
  *

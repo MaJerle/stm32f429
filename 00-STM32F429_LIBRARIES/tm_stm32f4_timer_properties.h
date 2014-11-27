@@ -60,7 +60,7 @@
  * 		Timer is not valid
  * 	- TM_TIMER_PROPERTIES_Result_FrequencyTooHigh:
  * 		Frequency for timer is too high
- * 	- TM_TIMER_PROPERTIES_Result_FrequencyTooLow
+ * 	- TM_TIMER_PROPERTIES_Result_FrequencyTooLow:
  * 		Frequency for timer is too low
  */
 typedef enum {
@@ -82,7 +82,7 @@ typedef enum {
  * 	- uint32_t MaxPrescaler:
  * 		Max timer prescaler
  * 	- uint32_t Period:
- * 		Timer's working period:
+ * 		Timer's working period
  * 	- uint32_t Prescaler:
  * 		Timer's working prescaler
  * 	- uint32_t Frequency:
@@ -103,7 +103,7 @@ typedef struct {
  * Parameters:
  *	- TIM_TypeDef* TIMx:
  *		Timer used to get settings for
- *	- TM_TIMER_PROPERTIES_t* Timer_Data
+ *	- TM_TIMER_PROPERTIES_t* Timer_Data:
  *		Pointer to TM_TIMER_PROPERTIES_t struct to store data to
  *		
  * Member of TM_TIMER_PROPERTIES_Result_t is returned
@@ -116,7 +116,7 @@ extern TM_TIMER_PROPERTIES_Result_t TM_TIMER_PROPERTIES_GetTimerProperties(TIM_T
  * Parameters:
  *	- TM_TIMER_PROPERTIES_t* Timer_Data:
  *		Pointer for timer data
- *	- uint32_t frequency
+ *	- uint32_t frequency:
  *		Frequency used
  *		
  * Member of TM_TIMER_PROPERTIES_Result_t is returned
@@ -127,7 +127,7 @@ extern TM_TIMER_PROPERTIES_Result_t TM_TIMER_PROPERTIES_GenerateDataForWorkingFr
  * Enable timer's clock
  * 
  * Parameters:
- * 	- TIM_TypeDef* TIMx
+ * 	- TIM_TypeDef* TIMx:
  * 		Timer to enable clock for
  * 		
  * Member of TM_TIMER_PROPERTIES_Result_t is returned
@@ -138,7 +138,7 @@ extern TM_TIMER_PROPERTIES_Result_t TM_TIMER_PROPERTIES_EnableClock(TIM_TypeDef*
  * Disable timer's clock
  * 
  * Parameters:
- * 	- TIM_TypeDef* TIMx
+ * 	- TIM_TypeDef* TIMx:
  * 		Timer to disable clock for
  * 		
  * Member of TM_TIMER_PROPERTIES_Result_t is returned
