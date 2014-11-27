@@ -92,7 +92,7 @@
 #define HCSR04_ECHO_CHECK		GPIO_ReadInputDataBit(HCSR04_ECHO_PORT, HCSR04_ECHO_PIN)
 
 /* Time to cm */
-#define HCSR04_NUMBER			58.2
+#define HCSR04_NUMBER			((float)0.0171821)
 
 /**
  * Initialize HC-SR04 sensor

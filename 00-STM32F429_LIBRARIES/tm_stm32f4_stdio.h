@@ -52,6 +52,7 @@ extern C {
  * Library dependencies
  * - STM32F4xx
  * - defines.h
+ * - attributes.h
  * - stdio.h
  */
 /**
@@ -59,6 +60,7 @@ extern C {
  */
 #include "stm32f4xx.h"
 #include "defines.h"
+#include "attributes.h"
 #include "stdio.h"
 
 /**

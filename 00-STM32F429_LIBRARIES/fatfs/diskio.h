@@ -10,6 +10,7 @@
 
 #include "integer.h"
 #include "defines.h"
+#include "attributes.h"
 
 /* Status of Disk Functions */
 typedef BYTE	DSTATUS;

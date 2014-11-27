@@ -87,6 +87,7 @@
  * - STM32F4xx GPIO
  * - STM32F4xx USART
  * - defines.h
+ * - attributes
  */
 /**
  * Includes
@@ -97,6 +98,7 @@
 #include "stm32f4xx_gpio.h"
 #include "stm32f4xx_usart.h"
 #include "defines.h"
+#include "attributes.h"
 
 #if defined (STM32F40_41xxx)
 #define TM_USE_USART1

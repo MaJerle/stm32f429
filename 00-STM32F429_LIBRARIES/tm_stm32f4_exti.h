@@ -89,6 +89,7 @@ extern C {
  * - STM32F4xx SYSCFG
  * - misc.h
  * - defines.h
+ * - attributes.h
  */
 /**
  * Includes
@@ -100,6 +101,7 @@ extern C {
 #include "stm32f4xx_syscfg.h"
 #include "misc.h"
 #include "defines.h"
+#include "attributes.h"
 
 /* Default priority for NVIC */
 #ifndef TM_EXTI_PRIORITY

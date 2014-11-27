@@ -83,7 +83,7 @@ float TM_HCSR04_Read(void) {
 	/* Get HIGH time */
 	time = TM_DELAY_Time() - time;
 	/* Convert us to cm */
-	dis = (float)time / (float)HCSR04_NUMBER;
+	dis = (float)time * HCSR04_NUMBER;
 	/* Return distance */
 	return dis;
 }

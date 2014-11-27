@@ -18,7 +18,6 @@
 #include "tm_stm32f4_usart.h"
 #include "tm_stm32f4_disco.h"
 #include "tm_stm32f4_delay.h"
-
 #include <stdio.h>
 
 char buf[50];

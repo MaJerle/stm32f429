@@ -1,5 +1,5 @@
 /**
- *	Keil project for PCD8544 lcd driver
+ *	Keil project example for PCD8544 LCD controller
  *
  *	Before you start, select your target, on the right of the "Load" button
  *
@@ -7,14 +7,14 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@ide		Keil uVision 5
+ *	@packs		STM32F4xx Keil packs version 2.2.0 or greater required
+ *	@stdperiph	STM32F4xx Standard peripheral drivers version 1.4.0 or greater required
  */
 /* Include core modules */
 #include "stm32f4xx.h"
 /* Include my libraries here */
 #include "defines.h"
 #include "tm_stm32f4_pcd8544.h"
-
-#include <stdio.h>
 
 int main(void) {
 	/* Initialize system */
@@ -27,9 +27,11 @@ int main(void) {
 	PCD8544_GotoXY(14, 3);
 	
 	/* Print data with Pixel Set mode and Fontsize of 5x7px */
-	PCD8544_Puts("STM32F429", PCD8544_Pixel_Set, PCD8544_FontSize_5x7);
+	PCD8544_Puts("STM32F4xx", PCD8544_Pixel_Set, PCD8544_FontSize_5x7);
+	/* Go to new location and write new string */
 	PCD8544_GotoXY(15, 13);
 	PCD8544_Puts("Discovery", PCD8544_Pixel_Set, PCD8544_FontSize_5x7);
+	/* Go to new location and write new string */
 	PCD8544_GotoXY(30, 26);
 	PCD8544_Puts("2014", PCD8544_Pixel_Set, PCD8544_FontSize_5x7);
 
@@ -46,3 +48,4 @@ int main(void) {
 
     }
 }
+

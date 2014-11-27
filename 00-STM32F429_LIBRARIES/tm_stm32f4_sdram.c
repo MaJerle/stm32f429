@@ -18,6 +18,9 @@
  */
 #include "tm_stm32f4_sdram.h"
 
+/* Internal functions */
+void TM_SDRAM_InitPins(void);
+
 uint8_t TM_SDRAM_Init(void) {
 	FMC_SDRAMInitTypeDef FMC_SDRAMInitDef;
 	FMC_SDRAMTimingInitTypeDef FMC_SDRAMTimingInitDef;
@@ -231,40 +234,3 @@ void TM_SDRAM_InitPins(void) {
 	GPIO_InitDef.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_1 | GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_8 | GPIO_Pin_15;
 	GPIO_Init(GPIOG, &GPIO_InitDef);
 }
-
-uint8_t TM_SDRAM_Write8(uint32_t address, uint8_t value) {
-	if (address > SDRAM_MEMORY_WIDTH - 1) {
-		return 0;
-	}
-	*(uint8_t*) (SDRAM_START_ADR + address) = value;
-	return 1;
-}
-
-uint8_t TM_SDRAM_Read8(uint32_t address) {
-	return  *(__IO uint8_t*) (SDRAM_START_ADR + address);
-}
-
-uint8_t TM_SDRAM_Write16(uint32_t address, uint16_t value) {
-	if (address > SDRAM_MEMORY_WIDTH - 2) {
-		return 0;
-	}
-	*(uint16_t*) (SDRAM_START_ADR + address) = value;
-	return 1;
-}
-
-uint16_t TM_SDRAM_Read16(uint32_t address) {
-	return  *(__IO uint16_t*) (SDRAM_START_ADR + address);
-}
-
-uint8_t TM_SDRAM_Write32(uint32_t address, uint32_t value) {
-	if (address > SDRAM_MEMORY_WIDTH - 4) {
-		return 0;
-	}
-	*(uint32_t*) (SDRAM_START_ADR + address) = value;
-	return 1;
-}
-
-uint32_t TM_SDRAM_Read32(uint32_t address) {
-	return  *(__IO uint32_t*) (SDRAM_START_ADR + address);
-}
-

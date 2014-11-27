@@ -1,5 +1,5 @@
 /**
- *  Defines for your entire project at one place
+ *  Attributes for different compilers
  * 
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
@@ -24,10 +24,21 @@
  * | You should have received a copy of the GNU General Public License
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
+ *
+ * Different compilers uses different special keywords for functions/variables. etc.
+ * For this purpose that file has been made. On one place to all possible attributes used in my libs.
  */
-#ifndef TM_DEFINES_H
-#define TM_DEFINES_H
+#ifndef TM_ATTRIBUTES_H
+#define TM_ATTRIBUTES_H
 
-/* Put your global defines for all libraries here used in your project */
+/* Check for GNUC */
+#if defined (__GNUC__)
+	#ifndef __weak		
+		#define __weak   	__attribute__((weak))
+	#endif	/* Weak attribute */
+	#ifndef __packed	
+		#define __packed 	__attribute__((__packed__))
+	#endif	/* Packed attribute */
+#endif
 
 #endif

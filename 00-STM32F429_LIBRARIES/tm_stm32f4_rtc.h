@@ -62,6 +62,7 @@
  * - STM32F4xx EXTI
  * - MISC
  * - defines.h
+ * - attributes.h
  */
 /**
  * Includes
@@ -73,6 +74,7 @@
 #include "stm32f4xx_exti.h"
 #include "misc.h"
 #include "defines.h"
+#include "attributes.h"
 
 /* RTC clock is: f_clk = RTCCLK(LSI or LSE) / ((RTC_SYNC_PREDIV + 1) * (RTC_ASYNC_PREDIV + 1)) */
 /* Sync pre division for clock */
@@ -364,7 +366,7 @@ extern void TM_RTC_DisableAlarm(TM_RTC_Alarm_t Alarm);
  *
  * Called from main handler when wakeup interrupt occured
  *
- * WIth __weak parameter to prevent link errors if not defined by user
+ * With __weak parameter to prevent link errors if not defined by user
  */
 extern __weak void TM_RTC_RequestHandler(void);
 
@@ -373,7 +375,7 @@ extern __weak void TM_RTC_RequestHandler(void);
  *
  * Called when Alarm A interrupt is triggered
  *
- * WIth __weak parameter to prevent link errors if not defined by user
+ * With __weak parameter to prevent link errors if not defined by user
  */
 extern __weak void TM_RTC_AlarmAHandler(void);
 
@@ -382,7 +384,7 @@ extern __weak void TM_RTC_AlarmAHandler(void);
  *
  * Called when Alarm B interrupt is triggered
  *
- * WIth __weak parameter to prevent link errors if not defined by user
+ * With __weak parameter to prevent link errors if not defined by user
  */
 extern __weak void TM_RTC_AlarmBHandler(void);
 

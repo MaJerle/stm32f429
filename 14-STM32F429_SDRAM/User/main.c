@@ -36,6 +36,7 @@ int main(void) {
 	} else {
 		TM_DISCO_LedOn(LED_RED);
 	}
+	
 	/* Some delay */
 	Delayms(2000);
 	
