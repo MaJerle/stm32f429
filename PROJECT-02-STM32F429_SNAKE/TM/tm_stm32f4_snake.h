@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/11/project-02-snake-game-stm32f429-discovery-board/
- *	@version 	v1.1
+ *	@version 	v1.2
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -25,6 +25,9 @@
  * | You should have received a copy of the GNU General Public License
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
+ *
+ * Version 1.2
+ *	- Added support for new delay system
  *
  * Version 1.1
  *	- Fixed bug when snake's length is the same as game area and snake is 

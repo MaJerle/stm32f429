@@ -29,7 +29,7 @@
  * Changelog
  *	- Version 1.1
  *	- October 18, 2014
- *	- Added TM_LOWPOWER_StandbyReset(). This allows you to check if sytemwas reset from standby wakeup
+ *	- Added TM_LOWPOWER_StandbyReset(). This allows you to check if system was reset from standby wakeup
  *
  * This library can put MCU into 3 different modes:
  *
@@ -104,7 +104,7 @@ extern C {
  * This can be done with this function
  *
  * Parameters:
- * 	- uint8_t timer:
+ * 	- uint8_t delay_timer:
  * 		0: Leave delay timer as it is
  * 		> 0: Before enter sleep mode, disable delay timer, after wakeup, enable delay timer back
  *

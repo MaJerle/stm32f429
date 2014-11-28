@@ -46,7 +46,6 @@ void TM_SNAKE_GenerateTarget(void);
 /* Check if given X and Y location matches coordinates where snake is */
 uint8_t TM_SNAKE_MatchesSnakeLocations(int8_t* twobytesarray);
 
-
 void TM_SNAKE_Start(void) {
 	/* Initialize delay */
 	TM_DELAY_Init();
@@ -385,7 +384,7 @@ void TM_SNAKE_PrepareDisplay(void) {
 
 void TM_SNAKE_SetFirstOptions(void) {
 	Settings.Speed = SNAKE_SPEED_DEFAULT;
-	Settings.Micros = 1000000 / Settings.Speed;
+	Settings.Micros = 1000 / Settings.Speed;
 	Settings.Pause = 0;
 	Settings.Overflow = 1;
 }
@@ -465,7 +464,7 @@ void TM_SNAKE_SpeedUp(void) {
 	/* Max speed is 10Hz */
 	if (Settings.Speed < SNAKE_SPEED_MAX) {
 		Settings.Speed++;
-		Settings.Micros = 1000000 / Settings.Speed;
+		Settings.Micros = 1000 / Settings.Speed;
 	}
 }
 
@@ -473,7 +472,7 @@ void TM_SNAKE_SpeedDown(void) {
 	/* Min speed is 1Hz */
 	if (Settings.Speed > SNAKE_SPEED_MIN) {
 		Settings.Speed--;
-		Settings.Micros = 1000000 / Settings.Speed;
+		Settings.Micros = 1000 / Settings.Speed;
 	}
 }
 
