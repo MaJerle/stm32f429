@@ -1,7 +1,9 @@
 /**
- *	Keil project for delay using TIM6 or TIM7 timers
+ *	Keil project for delay using TIMx
  *
  *  Before you start, select your target, on the right of the "Load" button
+ *
+ *	To see, how timer is configured for delay, open project's defines.h file
  *
  *	@author		Tilen Majerle
  *	@email		tilen@majerle.eu
@@ -21,19 +23,17 @@ int main(void) {
 	/* Initialize system */
 	SystemInit();
 	
+	/* Init LEDs */
+	TM_DISCO_LedInit();
+	
 	/* Initialize delay */
 	TM_DELAY_Init();
 	
-	/* Initialize onboard leds */
-	TM_DISCO_LedInit();
-
 	while (1) {
-		/* Toggle leds */
-		TM_DISCO_LedToggle(LED_GREEN);
+		/* Toggle all leds */
+		TM_DISCO_LedToggle(LED_ALL);
 		
-		/* Delay 500ms */
-		Delayms(500);
-		/* Delay 500 us */
-		//Delay(500);
+		/* Delay 100000us */
+		Delay(100000);
 	}
 }

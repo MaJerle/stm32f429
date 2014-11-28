@@ -90,9 +90,8 @@ int main(void) {
 		/* Actually, best solution is double buffered DMA with timer for ADC treshold */
 		/* But this is only for show principle on how FFT works */
 		for (i = 0; i < SAMPLES; i += 2) {
-			/* Each 22us ~ 45kHz sample rate */
-			while (TM_DELAY_Time() < 22);
-			TM_DELAY_SetTime(0);
+			/* Each ~22us ~ 45kHz sample rate */
+			Delay(21);
 			
 			/* Real part, must be between -1 and 1 */
 			Input[(uint16_t)i] = (float32_t)((float32_t)TM_ADC_Read(ADC1, ADC_Channel_0) - (float32_t)2048.0) / (float32_t)2048.0;

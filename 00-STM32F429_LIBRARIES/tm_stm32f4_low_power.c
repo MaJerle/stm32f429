@@ -20,24 +20,24 @@
 
 void TM_LOWPOWER_SleepUntilInterrupt(uint8_t systick) {
 	/* Disable systick */
-	if (systick) {
-		TM_DELAY_DisableSystick();
+	if (delay_timer) {
+		TM_DELAY_DisableDelayTimer();
 	}
 	
 	/* Wait for interrupt command */
 	__WFI();
 	
-	/* At this stage, MCU will be in sleep mode, and when interrupt wake it up */
+	/* At this stage, MCU will be in sleep mode, and when interrupt wake it up, */
 	/* it will begin here */
 	
-	/* Enable systick back */
-	if (systick) {
-		TM_DELAY_EnableSystick();
+	/* Enable delay timer back */
+	if (delay_timer) {
+		TM_DELAY_EnableDelayTimer();
 	}
 }
 
 void TM_LOWPOWER_SleepUntilEvent(void) {
-	/* We don't need systick disable, because systick does not make an event */
+	/* We don't need delay timer disable, because delay timer does not make an event */
 	
 	/* Wait for interrupt */
 	__WFE();

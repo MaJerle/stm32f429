@@ -55,7 +55,7 @@ int main(void) {
 	
 	while (1) {
 		/* Toggle LEDs every 200ms */
-		if (TM_DELAY_Time() >= 200000) {
+		if (TM_DELAY_Time() >= 200) {
 			/* Reset time */
 			TM_DELAY_SetTime(0);
 			

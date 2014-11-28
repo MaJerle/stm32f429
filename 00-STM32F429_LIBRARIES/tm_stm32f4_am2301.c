@@ -20,16 +20,19 @@
 
 GPIO_InitTypeDef AM2301_GPIO_InitStruct;
 
+TM_AM2301_t TM_AM2301_INT_Read(TM_AM2301_Data_t* data);
+TM_AM2301_t TM_AM2301_INT_InitPins(void);
+
 TM_AM2301_t TM_AM2301_Init(void) {
 	/* Initialize delay */
 	TM_DELAY_Init();
 	/* Set pin */
-	TM_AM2301_InitPins();
+	TM_AM2301_INT_InitPins();
 	/* Return OK */
 	return TM_AM2301_OK;
 }
 
-TM_AM2301_t TM_AM2301_InitPins(void) {
+TM_AM2301_t TM_AM2301_INT_InitPins(void) {
 	/* Enable clock */
 	RCC_AHB1PeriphClockCmd(AM2301_RCC, ENABLE);
 	/* Set options */
@@ -48,10 +51,10 @@ TM_AM2301_t TM_AM2301_InitPins(void) {
 }
 
 TM_AM2301_t TM_AM2301_Read(TM_AM2301_Data_t* data) {
-	return TM_INT_AM2301_Read(data);
+	return TM_AM2301_INT_Read(data);
 }
 
-TM_AM2301_t TM_INT_AM2301_Read(TM_AM2301_Data_t* data) {
+TM_AM2301_t TM_AM2301_INT_Read(TM_AM2301_Data_t* data) {
 	volatile uint32_t time;
 	uint8_t i, j, d[5];
 	
@@ -67,51 +70,70 @@ TM_AM2301_t TM_INT_AM2301_Read(TM_AM2301_Data_t* data) {
 	/* Read mode */
 	AM2301_PIN_IN;
 	
-	time = TM_DELAY_Time();
+	time = 0;
 	/* Wait 20us for acknowledgment, low signal */
 	while (AM2301_PIN_READ == Bit_SET) {
-		if ((TM_DELAY_Time() - time) > 20) {
+		if (time > 20) {
 			return TM_AM2301_CONNECTION_ERROR;
 		}
+		/* Increase time */
+		time++;
+		/* Wait 1 us */
+		Delay(1);
 	}
 	
-	time = TM_DELAY_Time();
+	time = 0;
 	/* Wait high signal, about 80-85us long (measured with logic analyzer) */
 	while (AM2301_PIN_READ == Bit_RESET) {
-		if ((TM_DELAY_Time() - time) > 85) {
+		if (time > 85) {
 			return TM_AM2301_WAITHIGH_ERROR;
 		}
+		/* Increase time */
+		time++;
+		/* Wait 1 us */
+		Delay(1);
 	}
 	
-	time = TM_DELAY_Time();
+	time = 0;
 	/* Wait low signal, about 80-85us long (measured with logic analyzer) */
 	while (AM2301_PIN_READ == Bit_SET) {
-		if ((TM_DELAY_Time() - time) > 85) {
+		if (time > 85) {
 			return TM_AM2301_WAITLOW_ERROR;
 		}
+		/* Increase time */
+		time++;
+		/* Wait 1 us */
+		Delay(1);
 	}
 	
 	for (j = 0; j < 5; j++) {
 		d[j] = 0;
 		for (i = 8; i > 0; i--) {
 			/* We are in low signal now, wait for high signal and measure time */
-			time = TM_DELAY_Time();
+			time = 0;
 			/* Wait high signal, about 57-63us long (measured with logic analyzer) */
 			while (AM2301_PIN_READ == Bit_RESET) {
-				if ((TM_DELAY_Time() - time) > 65) {
+				if (time > 65) {
 					return TM_AM2301_WAITHIGH_LOOP_ERROR;
 				}
+				/* Increase time */
+				time++;
+				/* Wait 1 us */
+				Delay(1);
 			}
 			/* High signal detected, start measure high signal, it can be 26us for 0 or 70us for 1 */
-			time = TM_DELAY_Time();
+			time = 0;
 			/* Wait low signal, between 26 and 70us long (measured with logic analyzer) */
 			while (AM2301_PIN_READ == Bit_SET) {
-				if ((TM_DELAY_Time() - time) > 80) {
+				if (time > 80) {
 					return TM_AM2301_WAITLOW_LOOP_ERROR;
 				}
+				/* Increase time */
+				time++;
+				/* Wait 1 us */
+				Delay(1);
 			}
 			
-			time = TM_DELAY_Time() - time;
 			if (time > 20 && time < 33) {
 				/* We read 0 */
 			} else {

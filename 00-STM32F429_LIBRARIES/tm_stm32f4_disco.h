@@ -6,7 +6,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/04/stm32f429-discovery-gpio-tutorial-with-onboard-leds-and-button/
- *	@version 	v1.5
+ *	@version 	v1.6
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -28,6 +28,10 @@
  * |----------------------------------------------------------------------
  *
  * 	CHANGELOG
+ 
+ *	- Version 1.6
+ *		November 28, 2014
+ *		Almost all functions now inline, for faster execution		
  *
  *	- Version 1.5
  *		November 06, 2014
@@ -179,7 +183,7 @@
 	#define TM_DISCO_BUTTON_PIN			GPIO_Pin_13
 	#define TM_DISCO_BUTTON_PRESSED		Bit_RESET
 #else
-	#error "tm_stm32f4_disco.h: Please select your board"
+	#error "tm_stm32f4_disco.h: Please select your board. Open tm_stm32f4_disco.h and follow instructions!!"
 #endif
 
 /**
@@ -198,37 +202,40 @@ extern void TM_DISCO_ButtonInit(void);
  * Turn on LED
  *
  * Parameters:
- * 	- uint16_t led:
+ * 	- led:
+ *		LED_ALL
  * 		LED_GREEN
  * 		LED_RED
  *		LED_ORANGE
  *		LED_BLUE
  */
-extern void TM_DISCO_LedOn(uint16_t led);
+#define TM_DISCO_LedOn(led)			(TM_DISCO_LED_PORT->BSRRL = led)
 
 /**
  * Turn off LED
  *
  * Parameters:
- * 	- uint16_t led:
+ * 	- led:
+ *		LED_ALL
  * 		LED_GREEN
  * 		LED_RED
  *		LED_ORANGE
  *		LED_BLUE
  */
-extern void TM_DISCO_LedOff(uint16_t led);
+#define TM_DISCO_LedOff(led)		(TM_DISCO_LED_PORT->BSRRH = led)
 
 /**
  * Toggle LED
  *
  * Parameters:
- * 	- uint16_t led:
+ * 	- led:
+ *		LED_ALL
  * 		LED_GREEN
  * 		LED_RED
  *		LED_ORANGE
  *		LED_BLUE
  */
-extern void TM_DISCO_LedToggle(uint16_t led);
+#define TM_DISCO_LedToggle(led)		(TM_DISCO_LED_PORT->ODR ^= led)
 
 /**
  * Check's if led is on
@@ -242,7 +249,7 @@ extern void TM_DISCO_LedToggle(uint16_t led);
  * 
  * Return 1 if turned on, otherwise 0
  */
-extern uint8_t TM_DISCO_LedIsOn(uint16_t led);
+#define TM_DISCO_LedIsOn(led)		((TM_DISCO_LED_PORT->ODR &= led) != Bit_RESET)
 
 /**
  * Set led's state with one function
@@ -259,13 +266,13 @@ extern uint8_t TM_DISCO_LedIsOn(uint16_t led);
  * 
  * Return 1 if turned on, otherwise 0
  */
-extern void TM_DISCO_SetLed(uint16_t led, uint8_t state);
+#define TM_DISCO_SetLed(led, state)	((state) ? TM_DISCO_LedOn(led): TM_DISCO_LedOff(led))
 
 /**
  * Checks if button is pressed
  *
  * Returns 1 if is pressed, otherwise 0
  */
-extern uint8_t TM_DISCO_ButtonPressed(void);
+#define TM_DISCO_ButtonPressed()	(((TM_DISCO_BUTTON_PORT->IDR & TM_DISCO_BUTTON_PIN) == 0) != TM_DISCO_BUTTON_PRESSED)
 
 #endif

@@ -31,7 +31,7 @@ int main(void) {
 	TM_DELAY_SetTime(0);
 	while (1) {
 		/* If time is more than 500ms */
-		if (TM_DELAY_Time() >= 500000) {
+		if (TM_DELAY_Time() >= 500) {
 			/* Reset time */
 			TM_DELAY_SetTime(0);
 			/* Toggle leds here */

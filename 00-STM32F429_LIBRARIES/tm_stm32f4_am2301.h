@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/08/library-25-am2301-dht21-sensor-stm32f4xx/
- *	@version 	v1.0
+ *	@version 	v1.1
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -26,6 +26,12 @@
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
  *
+ * CHANGELOG
+ *	
+ * Version 1.1
+ *	- November 28, 2014
+ *	- Designed for new Delay system
+ 
  *	This library does not use any timers and interrupts to increase speed, only basic pooling mode.
  *
  *	Pinout
@@ -47,7 +53,7 @@
  * This values are also returned from my library, you have to manually convert them (divide by 10)
  */
 #ifndef TM_AM2301_H
-#define TM_AM2301_H
+#define TM_AM2301_H 110
 /**
  * Dependencies
  * - STM32F4xx
@@ -110,13 +116,6 @@ extern GPIO_InitTypeDef AM2301_GPIO_InitStruct;
  */
 extern TM_AM2301_t TM_AM2301_Init(void);
 
-/*
- * Initialize data pin
- *
- * TM_AM2301_OK is returned
- */
-extern TM_AM2301_t TM_AM2301_InitPins(void);
-
 /**
  * Read data from sensor
  *
@@ -126,8 +125,6 @@ extern TM_AM2301_t TM_AM2301_InitPins(void);
  * TM_AM2301_OK returned in case data is valid, otherwise anything from TM_AM2301_t typedef
  */
 extern TM_AM2301_t TM_AM2301_Read(TM_AM2301_Data_t* data);
-/* Internal */
-extern TM_AM2301_t TM_INT_AM2301_Read(TM_AM2301_Data_t* data);
 
 #endif
 

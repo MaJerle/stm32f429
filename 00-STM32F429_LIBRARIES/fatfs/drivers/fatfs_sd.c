@@ -90,7 +90,7 @@ static int wait_ready (	/* 1:Ready, 0:Timeout */
 {
 	BYTE d;
 
-	TM_DELAY_SetTime2(wt * 1000);
+	TM_DELAY_SetTime2(wt);
 	do {
 		d = xchg_spi(0xFF);
 	} while (d != 0xFF && TM_DELAY_Time2());	/* Wait for card goes ready or timeout */
@@ -152,7 +152,7 @@ static int rcvr_datablock (	/* 1:OK, 0:Error */
 	
 	//Timer1 = 200;
 	
-	TM_DELAY_SetTime2(200000);
+	TM_DELAY_SetTime2(200);
 	do {							// Wait for DataStart token in timeout of 200ms 
 		token = xchg_spi(0xFF);
 		// This loop will take a time. Insert rot_rdq() here for multitask envilonment. 
@@ -330,7 +330,7 @@ DSTATUS TM_FATFS_SD_disk_initialize (void) {
 	if (send_cmd(CMD0, 0) == 1) {				/* Put the card SPI/Idle state */
 		FATFS_DEBUG_SEND_USART("disk_initialize: CMD0 = 1");
 		//Timer1 = 1000;						/* Initialization timeout = 1 sec */
-		TM_DELAY_SetTime2(1000000);
+		TM_DELAY_SetTime2(1000);
 		if (send_cmd(CMD8, 0x1AA) == 1) {	/* SDv2? */
 			for (n = 0; n < 4; n++) ocr[n] = xchg_spi(0xFF);	/* Get 32 bit return value of R7 resp */
 			if (ocr[2] == 0x01 && ocr[3] == 0xAA) {				/* Is the card supports vcc of 2.7-3.6V? */

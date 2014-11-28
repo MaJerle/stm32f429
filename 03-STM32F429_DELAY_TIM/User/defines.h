@@ -30,6 +30,10 @@
 
 /* Put your global defines for all libraries here used in your project */
 
-#define TM_DELAY_USE_TIM6
+/*
+#define TM_DELAY_TIM				TIM4
+#define TM_DELAY_TIM_IRQ			TIM4_IRQn
+#define TM_DELAY_TIM_IRQ_HANDLER	TIM4_IRQHandler
+*/
 
 #endif

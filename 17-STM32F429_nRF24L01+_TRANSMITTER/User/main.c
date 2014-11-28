@@ -71,10 +71,10 @@ int main(void) {
 	TM_NRF24L01_SetTxAddress(TxAddress);
 	
 	/* Reset counter */
-	TM_DELAY_SetTime(2000001);
+	TM_DELAY_SetTime(2001);
 	while (1) {
 		/* Every 2 seconds */
-		if (TM_DELAY_Time() > 2000000) {
+		if (TM_DELAY_Time() > 2000) {
 			/* Fill data with something */
 			sprintf((char *)dataOut, "abcdefghijklmnoszxABCDEFCBDA");
 			/* Display on USART */
@@ -97,10 +97,10 @@ int main(void) {
 			TM_NRF24L01_PowerUpRx();
 			
 			/* Wait received data, wait max 100ms, if time is larger, then data were probably lost */
-			while (!TM_NRF24L01_DataReady() && TM_DELAY_Time() < 100000);
+			while (!TM_NRF24L01_DataReady() && TM_DELAY_Time() < 100);
 			
 			/* Format time */
-			sprintf(str, "%d us", TM_DELAY_Time());
+			sprintf(str, "%d ms", TM_DELAY_Time());
 			/* Show ping time */
 			TM_USART_Puts(USART1, str);
 			

@@ -44,12 +44,15 @@ int main(void) {
 	TM_DELAY_SetTime(0);
 	while (1) {
 		/* Every 1 second */
-		if (TM_DELAY_Time() > 1000000) {
+		if (TM_DELAY_Time() > 1000) {
+			/* Reset time */
 			TM_DELAY_SetTime(0);
+			
 			/* Data valid */
 			if (TM_AM2301_Read(&data) == TM_AM2301_OK) {
 				/* Show on LCD */
 				sprintf(str, "Humidity: %2.1f %%\nTemperature: %2.1f C", (float)data.Hum / 10, (float)data.Temp / 10);
+				/* Put to LCD */
 				TM_ILI9341_Puts(10, 100, str, &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_ORANGE);
 			}
 		}

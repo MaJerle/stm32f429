@@ -91,7 +91,7 @@ int main(void) {
 		/* Call this as faster as possible */
 		result = TM_GPS_Update(&GPS_Data);
 		/* If we didn't receive any useful data in the start */
-		if (result == TM_GPS_Result_FirstDataWaiting && TM_DELAY_Time() > 3000000) {
+		if (result == TM_GPS_Result_FirstDataWaiting && TM_DELAY_Time() > 3000) {
 			/* If we didn't receive nothing within 3 seconds */
 			TM_DELAY_SetTime(0);
 			/* Display data on LCD */

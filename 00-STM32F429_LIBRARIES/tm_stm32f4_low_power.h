@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/10/library-39-power-consumption-modes-for-stm32f4
- *	@version 	v1.0
+ *	@version 	v1.1
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -99,18 +99,18 @@ extern C {
 /**
  * Go to sleep mode
  * MCU will be in sleep mode until next interrupt occured.
- * This means, that Systick can wakeup STM32F4 too.
- * If you want prevent this, you have to disable it.
+ * This means, that delay timer (Systick or any user selectable delay timer) can wakeup STM32F4 too.
+ * If you want prevent this, you have to disable delay timer as well it.
  * This can be done with this function
  *
  * Parameters:
- * 	- uint8_t systick
- * 		0: Leave systick as it is
- * 		> 0: Before enter sleep mode, disable systick, after wakeup, enable systick back
+ * 	- uint8_t timer:
+ * 		0: Leave delay timer as it is
+ * 		> 0: Before enter sleep mode, disable delay timer, after wakeup, enable delay timer back
  *
  * No return
  */
-extern void TM_LOWPOWER_SleepUntilInterrupt(uint8_t systick);
+extern void TM_LOWPOWER_SleepUntilInterrupt(uint8_t delay_timer);
 
 /**
  * Go to sleep mode
