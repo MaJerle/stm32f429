@@ -63,8 +63,13 @@ void TM_DELAY_Init(void) {
 		while (1);
 	}
 	
-	/* Set multiplier for delay under 1us with pooling mode = not so accurate */
-	mult = SystemCoreClock / 3000000;
+	#ifdef __GNUC__
+		/* Set multiplier for delay under 1us with pooling mode = not so accurate */
+		mult = SystemCoreClock / 7000000;
+	#else
+		/* Set multiplier for delay under 1us with pooling mode = not so accurate */
+		mult = SystemCoreClock / 3000000;
+	#endif
 #endif
 	
 	/* Set initialized flag */
