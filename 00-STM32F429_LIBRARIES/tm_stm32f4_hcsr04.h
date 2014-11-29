@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/08/library-30-measure-distance-with-hc-sr04-and-stm32f4xx
- *	@version 	v1.0
+ *	@version 	v1.1
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -25,7 +25,13 @@
  * | You should have received a copy of the GNU General Public License
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
- *	
+ * 
+ * CHANGELOG
+ *
+ * Version 1.1
+ *	- November 29, 2014
+ * 	- Update to fit new delay system 
+ *
  * Default pinout
  * 
  * 	HC-SR04			STM32F4xx		Description
@@ -49,7 +55,7 @@
  * 
  */
 #ifndef TM_HCSR04_H
-#define TM_HCSR04_H 100
+#define TM_HCSR04_H 110
 /**
  * Library dependencies
  * - STM32F4xx

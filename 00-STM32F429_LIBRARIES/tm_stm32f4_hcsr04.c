@@ -76,15 +76,19 @@ float TM_HCSR04_Read(void) {
 			return -1;
 		}
 	}
+	
 	/* Start time */
-	time = TM_DELAY_Time();
+	time = 0;
 	/* Wait till signal is low */
-	while (HCSR04_ECHO_CHECK == Bit_SET);
-	/* Get HIGH time */
-	time = TM_DELAY_Time() - time;
+	while (HCSR04_ECHO_CHECK == Bit_SET) {
+		/* Increase time */
+		time++;
+		/* Delay 1us */
+		Delay(1);
+	}
+	
 	/* Convert us to cm */
 	dis = (float)time * HCSR04_NUMBER;
 	/* Return distance */
 	return dis;
 }
-
