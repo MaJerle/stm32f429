@@ -113,7 +113,7 @@ TM_AM2301_t TM_AM2301_INT_Read(TM_AM2301_Data_t* data) {
 			time = 0;
 			/* Wait high signal, about 57-63us long (measured with logic analyzer) */
 			while (AM2301_PIN_READ == Bit_RESET) {
-				if (time > 65) {
+				if (time > 75) {
 					return TM_AM2301_WAITHIGH_LOOP_ERROR;
 				}
 				/* Increase time */
@@ -125,7 +125,7 @@ TM_AM2301_t TM_AM2301_INT_Read(TM_AM2301_Data_t* data) {
 			time = 0;
 			/* Wait low signal, between 26 and 70us long (measured with logic analyzer) */
 			while (AM2301_PIN_READ == Bit_SET) {
-				if (time > 80) {
+				if (time > 90) {
 					return TM_AM2301_WAITLOW_LOOP_ERROR;
 				}
 				/* Increase time */
@@ -134,7 +134,7 @@ TM_AM2301_t TM_AM2301_INT_Read(TM_AM2301_Data_t* data) {
 				Delay(1);
 			}
 			
-			if (time > 20 && time < 33) {
+			if (time > 18 && time < 37) {
 				/* We read 0 */
 			} else {
 				/* We read 1 */

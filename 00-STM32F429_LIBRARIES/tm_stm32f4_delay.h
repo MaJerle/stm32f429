@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/04/library-03-stm32f429-discovery-system-clock-and-pretty-precise-delay-library/
- *	@version 	v2.0
+ *	@version 	v2.1
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -33,6 +33,10 @@
  *	Or use ARM compiler!
  * ------!!!!!!!!!!!------
  *	
+ * Version 2.1
+ *	- GCC compiler fixes
+ *	- Still prefer that you use TIM for delay if you are working with ARM-GCC compiler
+ *
  * Version 2.0
  *	- November 28, 2014
  *	- Delay library has been totally rewritten. Because Systick is designed to be used
@@ -77,7 +81,7 @@
  *	- Under "Define" add "KEIL_IDE", without quotes
  */
 #ifndef TM_DELAY_H
-#define TM_DELAY_H 200
+#define TM_DELAY_H 210
 /**
  * Library dependencies
  * - STM32F4xx
@@ -115,7 +119,7 @@ extern __IO uint32_t mult;
  * 	- uint32_t micros:
  *		Time in microseconds for delay
  */
-void Delay(uint32_t micros);
+//void Delay(uint32_t micros);
 
 /**
  * Delay for specific amount of milliseconds
@@ -124,7 +128,51 @@ void Delay(uint32_t micros);
  * 	- uint32_t millis:
  *		Time in milliseconds for delay
  */
-void Delayms(uint32_t millis);
+//void Delayms(uint32_t millis);
+
+
+__STATIC_INLINE void Delay(uint32_t micros) {
+#if defined(TM_DELAY_TIM)
+	volatile uint32_t timer = TM_DELAY_TIM->CNT;
+
+	do {
+		/* Count timer ticks */
+		while ((TM_DELAY_TIM->CNT - timer) == 0);
+
+		/* Increase timer */
+		timer = TM_DELAY_TIM->CNT;
+
+		/* Decrease microseconds */
+	} while (--micros);
+#else
+	uint32_t amicros;
+	
+	/* Multiply micro seconds */
+	amicros = (micros) * (mult);
+
+	#ifdef __GNUC__
+		if (SystemCoreClock == 180000000 || SystemCoreClock == 100000000) {
+			amicros -= (float)mult;
+		}
+	#endif
+
+	/* If clock is 100MHz, then add additional multiplier */
+	/* 100/3 = 33.3 = 33 and delay wouldn't be so accurate */
+	#if defined(STM32F411xE)
+	amicros += mult;
+	#endif
+
+	/* While loop */
+	while (amicros--);
+#endif /* TM_DELAY_TIM */
+}
+
+__STATIC_INLINE void Delayms(uint32_t millis) {
+	volatile uint32_t timer = TM_Time;
+
+	/* Wait for timer to count milliseconds */
+	while ((TM_Time - timer) < millis);
+}
 
 /**
  * Initialize timer settings for delay
