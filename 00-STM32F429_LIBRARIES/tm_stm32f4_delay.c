@@ -116,7 +116,7 @@ void TM_DELAY_INT_InitTIM(void) {
 	TIM_TimeBaseStruct.TIM_ClockDivision = 0;
 	TIM_TimeBaseStruct.TIM_CounterMode = TIM_CounterMode_Up;
 	TIM_TimeBaseStruct.TIM_Period = 999; /* 1 millisecond */
-	TIM_TimeBaseStruct.TIM_Prescaler = SystemCoreClock / (1000000 * (SystemCoreClock / TIM_Data.TimerFrequency)); /* With prescaler for 1 microsecond tick */
+	TIM_TimeBaseStruct.TIM_Prescaler = SystemCoreClock / (1000000 * (SystemCoreClock / TIM_Data.TimerFrequency)) - 1; /* With prescaler for 1 microsecond tick */
 	TIM_TimeBaseStruct.TIM_RepetitionCounter = 0;
 	
 	/* Initialize timer */
@@ -137,4 +137,39 @@ void TM_DELAY_INT_InitTIM(void) {
 	TIM_Cmd(TM_DELAY_TIM, ENABLE);
 }
 #endif
+
+void Delay(uint32_t micros) {
+#if defined(TM_DELAY_TIM)
+	volatile uint32_t timer = TM_DELAY_TIM->CNT;
+
+	do {
+		/* Count timer ticks */
+		while ((TM_DELAY_TIM->CNT - timer) == 0);
+
+		/* Increase timer */
+		timer = TM_DELAY_TIM->CNT;
+
+		/* Decrease microseconds */
+	} while (--micros);
+#else
+	/* Multiply micro seconds */
+	micros = (micros) * (mult);
+
+	/* If clock is 100MHz, then add additional multiplier */
+	/* 100/3 = 33.3 = 33 and delay wouldn't be so accurate */
+	#if defined(STM32F411xE)
+	micros += mult;
+	#endif
+
+	/* While loop */
+	while (micros--);
+#endif /* TM_DELAY_TIM */
+}
+
+void Delayms(uint32_t millis) {
+	volatile uint32_t timer = TM_Time;
+
+	/* Wait for timer to count milliseconds */
+	while ((TM_Time - timer) < millis);
+}
 

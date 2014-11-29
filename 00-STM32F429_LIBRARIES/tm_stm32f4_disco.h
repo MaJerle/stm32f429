@@ -91,7 +91,7 @@
  *			- Blue button	on PA0
  */
 #ifndef TM_DISCO_H
-#define TM_DISCO_H 150
+#define TM_DISCO_H 160
 /**
  * Library dependencies
  * - STM32F4xx

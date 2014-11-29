@@ -199,11 +199,11 @@
 /**
  * Possible return statements
  *
- * 	- TM_GPS_Result_NewData
+ * 	- TM_GPS_Result_NewData:
  * 		We received completely new data, which were never read.
- * 	- TM_GPS_Result_OldData
+ * 	- TM_GPS_Result_OldData:
  * 		We already read this data, no new data.
- * 	- TM_GPS_Result_FirstDataWaiting
+ * 	- TM_GPS_Result_FirstDataWaiting:
  * 		We never receive any useful data.
  * 		Returned at the beginning of the program
  */
@@ -217,7 +217,7 @@ typedef enum {
  * Enumeration for speed conversion.
  *
  * GPS returns speed in knots, if you want to display a human value,
- * use this enumeration with TM_GPS_ConvertSpeed. function
+ * use this enumeration with TM_GPS_ConvertSpeed function
  */
 typedef enum {
 	/* Metric */
@@ -250,9 +250,9 @@ typedef enum {
  * to an integer and decimal part.
  *
  * Parameters:
- * 	- int32_t Integer
+ * 	- int32_t Integer:
  * 		- Integer part of float number
- * 	- uint32_t Decimal
+ * 	- uint32_t Decimal:
  * 		- Decimal part of float number in integer format
  */
 typedef struct {
@@ -264,9 +264,9 @@ typedef struct {
  * Date struct for GPS
  *
  * Parameters:
- * 	- uint8_t Date
- * 	- uint8_t Month
- * 	- uint8_t Year
+ * 	- uint8_t Date:
+ * 	- uint8_t Month:
+ * 	- uint8_t Year:
  */
 typedef struct {
 	uint8_t Date;					/* GPGMC */
@@ -278,10 +278,10 @@ typedef struct {
  * Time struct for GPS
  *
  * Parameters:
- * 	- uint8_t Hours
- * 	- uint8_t Minutes
- * 	- uint8_t Seconds
- * 	- uint8_t Hundredths
+ * 	- uint8_t Hours:
+ * 	- uint8_t Minutes:
+ * 	- uint8_t Seconds:
+ * 	- uint8_t Hundredths:
  */
 typedef struct {
 	uint8_t Hours;					/* GPGGA */
@@ -296,46 +296,46 @@ typedef struct {
  * Parameters in this struct depends on which GPS NMEA statements you have activated.
  * By default all parameters are active. These are.
  *
- *  - float Latitude
+ *  - float Latitude:
  *  	Latitude. From -90 to 90 degrees response
- *  - float Longitude
+ *  - float Longitude:
  *  	Longitude, from -180 to 180 degrees response
- *  - uint8_t Satellites
+ *  - uint8_t Satellites:
  *  	Number of satellites in use
- *  - uint8_t Fix
+ *  - uint8_t Fix:
  *  	Fix.
  *  	0 = Invalid
  *  	1 = GPS Fix
  *  	2 = DGPS Fix
- *  - float Altitude
+ *  - float Altitude:
  *  	Altitude above the sea
- *  - TM_GPS_Time_t Time
+ *  - TM_GPS_Time_t Time:
  *  	Time struct
- *  - TM_GPS_Date_t Date
+ *  - TM_GPS_Date_t Date:
  *  	Date struct
- *  - float Speed
+ *  - float Speed:
  *  	Speed in knots
- *  - uint8_t Validity
+ *  - uint8_t Validity:
  *  	GPS Signal valid?
  *  	1 = Valid
  *  	0 = Invalid
- *  - float Direction
+ *  - float Direction:
  *  	Course on the ground
- *  - float HDOP
+ *  - float HDOP:
  *  	Horizontal dilution of precision
- *  - float PDOP
+ *  - float PDOP:
  *  	Position dilution od precision
- *  - float VDOP
+ *  - float VDOP:
  *  	Vertical dilution of precision
- *  - uint8_t FixMode
+ *  - uint8_t FixMode:
  *  	Current fix mode in use:
  *		1 = Fix not available
  *		2 = 2D
  *		3 = 3D
- *  - uint8_t SatelliteIDs[12]
+ *  - uint8_t SatelliteIDs[12]:
  *  	Array with IDs of satellites in use.
  *  	Only first data are valid, so if you have 5 satellites in use, only SatelliteIDs[4:0] are valid
- *  - uint8_t SatellitesInView
+ *  - uint8_t SatellitesInView:
  *  	Number of satellites in view
  */
 typedef struct {
@@ -372,19 +372,18 @@ typedef struct {
  * GPS Distance struct
  *
  * Parameters:
- * 	- float Latitude1
+ * 	- float Latitude1:
  * 		Latitude of starting point
- * 	- float Longitude1
+ * 	- float Longitude1:
  * 		Longitude of starting point
- * 	- float Latitude2
+ * 	- float Latitude2:
  * 		Latitude of starting point
- * 	- float Longitude2
+ * 	- float Longitude2:
  * 		Longitude of starting point
- * 	- float Distance
+ * 	- float Distance:
  * 		Distance returned in meters
- * 	- float Bearing
+ * 	- float Bearing:
  * 		Bearing returned in degrees
- *
  */
 typedef struct {
 	float Latitude1;
@@ -400,10 +399,10 @@ typedef struct {
  * Initialize GPS
  *
  * Parameters:
- * 	- TM_GPS_Data_t* GPS_Data
+ * 	- TM_GPS_Data_t* GPS_Data:
  * 		Pointer to TM_GPS_Data_t struct variable
- * 	- uint32_t baudrate
- * 		baudrate used for USART
+ * 	- uint32_t baudrate:
+ * 		Baudrate used for USART
  */
 extern void TM_GPS_Init(TM_GPS_Data_t* GPS_Data, uint32_t baudrate);
 
@@ -413,7 +412,7 @@ extern void TM_GPS_Init(TM_GPS_Data_t* GPS_Data, uint32_t baudrate);
  * It basically checks if data is available on USART and parse it to useful value.
  *
  * Parameters:
- *	- TM_GPS_Data_t* GPS_Data
+ *	- TM_GPS_Data_t* GPS_Data:
  *		Pointer to TM_GPS_Data_t struct variable
  *
  * When you first call this function and there is not available data from GPS, this function will return TM_GPS_Result_FirstTimeWaiting.
@@ -427,10 +426,10 @@ extern TM_GPS_Result_t TM_GPS_Update(TM_GPS_Data_t* GPS_Data);
  * Convert speed from knots to desired value
  *
  * Parameters:
- * 	- double SpeedInKnots
+ * 	- double SpeedInKnots:
  * 		Speed from GPS, in knots
- * 	- TM_GPS_Speed_t toSpeed
- * 		Parameter of TM_GPS_Speed_t typedef to convert data to
+ * 	- TM_GPS_Speed_t toSpeed:
+ * 		Parameter of TM_GPS_Speed_t enumeration to convert data to
  *
  * Returns speed in desired format
  */
@@ -442,9 +441,9 @@ extern float TM_GPS_ConvertSpeed(float SpeedInKnots, TM_GPS_Speed_t toSpeed);
  * Parameters:
  *  - float num:
  *  	Float number to convert
- *  - TM_GPS_Float_t* Float_Data
+ *  - TM_GPS_Float_t* Float_Data:
  *  	Pointer to TM_GPS_Float_t struct to store data into
- *  - uint8_t decimals
+ *  - uint8_t decimals:
  *  	Number of decimals places
  */
 extern void TM_GPS_ConvertFloat(float num, TM_GPS_Float_t* Float_Data, uint8_t decimals);
@@ -452,7 +451,7 @@ extern void TM_GPS_ConvertFloat(float num, TM_GPS_Float_t* Float_Data, uint8_t d
 /**
  * Added in version v1.1
  *
- * Calculates distance between 2 coordinates on earth and bearing in realtion to the north
+ * Calculates distance between 2 coordinates on earth and bearing in relation to the north
  *
  * Distance is returned in meters and bearing in degrees
  *

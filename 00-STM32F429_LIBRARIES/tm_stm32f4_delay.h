@@ -25,6 +25,13 @@
  * | You should have received a copy of the GNU General Public License
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
+ *
+ * ------!!!!!!!!!!!------
+ *	If you are using GCC (sucks) compiler, then your delay is probably totally inaccurate.
+ *	USE TIMER FOR DELAY, otherwise your delay will not be accurate
+ *
+ *	Or use ARM compiler!
+ * ------!!!!!!!!!!!------
  *	
  * Version 2.0
  *	- November 28, 2014
@@ -75,8 +82,9 @@
  * Library dependencies
  * - STM32F4xx
  * - STM32F4xx RCC
- * - STM32F4xx TIM (Only if you want to use TIMx for delay instead of Systick)
- * - MISC          (Only if you want to use TIMx for delay instead of Systick)
+ * - STM32F4xx TIM 			(Only if you want to use TIMx for delay instead of Systick)
+ * - MISC         			(Only if you want to use TIMx for delay instead of Systick)
+ * - TM TIMER PROPERTIES	(Only if you want to use TIMx for delay instead of Systick)
  * - defines.h
  */
 /**
@@ -85,9 +93,9 @@
 #include "stm32f4xx.h"
 #include "stm32f4xx_rcc.h"
 #include "defines.h"
-#include "misc.h"
 /* If user selectable timer is selected for delay */
 #if defined(TM_DELAY_TIM)
+#include "misc.h"
 #include "stm32f4xx_tim.h"
 #include "tm_stm32f4_timer_properties.h"
 #endif
@@ -104,55 +112,19 @@ extern __IO uint32_t mult;
  * Delay for specific amount of microseconds
  *
  * Parameters:
- * 	- uint32_t micros;
+ * 	- uint32_t micros:
  *		Time in microseconds for delay
- * 
- * With __INLINE parameter for faster execution
  */
-__INLINE void Delay(uint32_t micros) {
-#if defined(TM_DELAY_TIM)
-	volatile uint32_t timer = TM_DELAY_TIM->CNT;
-	
-	do {
-		/* Count timer ticks */
-		while ((TM_DELAY_TIM->CNT - timer) == 0);
-		
-		/* Increase timer */
-		timer = TM_DELAY_TIM->CNT;
-		
-		/* Decrease microseconds */
-		micros--;
-	} while (micros);
-#else
-	/* Multiply micro seconds */
-	micros = (micros) * (mult);
-	
-	/* If clock is 100MHz, then add additional multiplier */
-	/* 100/3 = 33.3 = 33 and delay wouldn't be so accurate */
-	#if defined(STM32F411xE)
-	micros += mult;
-	#endif
-	
-	/* While loop */
-	while (micros--);
-#endif /* TM_DELAY_TIM */
-}
+void Delay(uint32_t micros);
 
 /**
  * Delay for specific amount of milliseconds
  *
  * Parameters:
- * 	- uint32_t millis;
+ * 	- uint32_t millis:
  *		Time in milliseconds for delay
- * 
- * With __INLINE parameter for faster execution
  */
-__INLINE void Delayms(uint32_t millis) {
-	uint32_t timer = TM_Time;
-	
-	/* Wait for timer to count milliseconds */
-	while ((TM_Time - timer) < millis);
-}
+void Delayms(uint32_t millis);
 
 /**
  * Initialize timer settings for delay

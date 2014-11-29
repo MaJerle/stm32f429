@@ -33,7 +33,7 @@ int main(void) {
 		/* Toggle all leds */
 		TM_DISCO_LedToggle(LED_ALL);
 		
-		/* Delay 100000us */
-		Delay(100000);
+		/* Delay 500us */
+		Delay(500);
 	}
 }
