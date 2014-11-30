@@ -119,18 +119,6 @@ extern __IO uint32_t mult;
  * 	- uint32_t micros:
  *		Time in microseconds for delay
  */
-//void Delay(uint32_t micros);
-
-/**
- * Delay for specific amount of milliseconds
- *
- * Parameters:
- * 	- uint32_t millis:
- *		Time in milliseconds for delay
- */
-//void Delayms(uint32_t millis);
-
-
 __STATIC_INLINE void Delay(uint32_t micros) {
 #if defined(TM_DELAY_TIM)
 	volatile uint32_t timer = TM_DELAY_TIM->CNT;
@@ -167,6 +155,13 @@ __STATIC_INLINE void Delay(uint32_t micros) {
 #endif /* TM_DELAY_TIM */
 }
 
+/**
+ * Delay for specific amount of milliseconds
+ *
+ * Parameters:
+ * 	- uint32_t millis:
+ *		Time in milliseconds for delay
+ */
 __STATIC_INLINE void Delayms(uint32_t millis) {
 	volatile uint32_t timer = TM_Time;
 
