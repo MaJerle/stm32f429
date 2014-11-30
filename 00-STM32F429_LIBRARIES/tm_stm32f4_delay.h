@@ -8,20 +8,20 @@
  *	@version 	v2.1
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
- *	
+ *
  * |----------------------------------------------------------------------
  * | Copyright (C) Tilen Majerle, 2014
- * | 
+ * |
  * | This program is free software: you can redistribute it and/or modify
  * | it under the terms of the GNU General Public License as published by
  * | the Free Software Foundation, either version 3 of the License, or
  * | any later version.
- * |  
+ * |
  * | This program is distributed in the hope that it will be useful,
  * | but WITHOUT ANY WARRANTY; without even the implied warranty of
  * | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * | GNU General Public License for more details.
- * | 
+ * |
  * | You should have received a copy of the GNU General Public License
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
@@ -32,7 +32,7 @@
  *
  *	Or use ARM compiler!
  * ------!!!!!!!!!!!------
- *	
+ *
  * Version 2.1
  *	- GCC compiler fixes
  *	- Still prefer that you use TIM for delay if you are working with ARM-GCC compiler
@@ -55,7 +55,7 @@
  *
  * By default, Systick timer is used for delay. If you want your custom timer,
  * open defines.h file, add lines below and edit for your needs:
- *	
+ *
  *	//Select custom timer for delay, here is TIM2 selected.
  *	//If you want custom TIMx, just replace number "2" for your TIM's number.
  *	#define TM_DELAY_TIM				TIM2
@@ -146,13 +146,13 @@ __STATIC_INLINE void Delay(uint32_t micros) {
 	} while (--micros);
 #else
 	uint32_t amicros;
-	
+
 	/* Multiply micro seconds */
 	amicros = (micros) * (mult);
 
 	#ifdef __GNUC__
 		if (SystemCoreClock == 180000000 || SystemCoreClock == 100000000) {
-			amicros -= (float)mult;
+			amicros -= mult;
 		}
 	#endif
 
@@ -183,7 +183,7 @@ void TM_DELAY_Init(void);
 
 /**
  * Get the TM_Time variable value
- * 
+ *
  * Current time in milliseconds is returned
  */
 #define TM_DELAY_Time()					(TM_Time)
@@ -214,7 +214,7 @@ void TM_DELAY_DisableDelayTimer(void);
 
 /**
  * Get the TM_Time2 variable value
- * 
+ *
  * Current time in milliseconds is returned
  *
  * This is not meant for public use
@@ -227,7 +227,7 @@ void TM_DELAY_DisableDelayTimer(void);
  * Parameters:
  *	- time:
  *		Time in milliseconds
- * 
+ *
  * This is not meant for public use
  */
 #define TM_DELAY_SetTime2(time)			(TM_Time2 = (time))
