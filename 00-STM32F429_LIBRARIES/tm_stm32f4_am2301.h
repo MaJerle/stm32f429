@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/08/library-25-am2301-dht21-sensor-stm32f4xx/
- *	@version 	v1.1
+ *	@version 	v1.2
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -28,6 +28,10 @@
  *
  * CHANGELOG
  *	
+ * Version 1.2
+ *	- December 01, 2014
+ *	- Added comments
+ *
  * Version 1.1
  *	- November 28, 2014
  *	- Designed for new Delay system
@@ -42,18 +46,19 @@
  *	GND			GND				Ground
  *	DATA		PD1				Data line
  *
- * By default, PD1 pin is used for data. If you want to change it, use lines below:
+ * By default, PD1 pin is used for data. If you want to change it, use lines below in defines.h to and edit them:
  *
+ *	//Select custom pin for AM2301 sensor
  *	#define AM2301_RCC				RCC_AHB1Periph_GPIOD
  *	#define AM2301_PORT				GPIOD
  *	#define AM2301_PIN				GPIO_Pin_1
  *
- * Temperature and humidity is returned from sensor in x10 multiplyer, so like 55.5% humidity,
+ * Temperature and humidity are returned from sensor in x10 multiplyer, so like 55.5% humidity,
  * sensor will return 555 and 27.3°C, sensor will return 273.
  * This values are also returned from my library, you have to manually convert them (divide by 10)
  */
 #ifndef TM_AM2301_H
-#define TM_AM2301_H 110
+#define TM_AM2301_H 120
 /**
  * Dependencies
  * - STM32F4xx
@@ -85,8 +90,13 @@
 #define AM2301_PIN_OUT			AM2301_GPIO_InitStruct.GPIO_Mode = GPIO_Mode_OUT; GPIO_Init(AM2301_PORT, &AM2301_GPIO_InitStruct)
 #define AM2301_PIN_READ			GPIO_ReadInputDataBit(AM2301_PORT, AM2301_PIN)
 
+extern GPIO_InitTypeDef AM2301_GPIO_InitStruct;
+
 /**
  * Enumerations
+ *
+ * There are several different possible results.
+ * If TM_AM2301_OK is returned from read function then you have valid data.
  */
 typedef enum {
 	TM_AM2301_OK,						/* Data OK */
@@ -101,13 +111,19 @@ typedef enum {
 
 /**
  * Data structure
+ *
+ * Parameters:
+ *	- int16_t Temp: 
+ *		Temperature in tenths of degrees.
+ *		If real temperature is 27.3°C, this variable's value is 273
+ *  - uint16_t Hum:
+ *		Humidity in tenths of percent
+ *		If real humidity is 55.5%, this variable's value is 555
  */
 typedef struct {
-	int16_t Temp;	/* Temperature */
-	uint16_t Hum;	/* Humidity */
+	int16_t Temp;
+	uint16_t Hum;
 } TM_AM2301_Data_t;
-
-extern GPIO_InitTypeDef AM2301_GPIO_InitStruct;
 
 /**
  * Initialize AM2301 sensor
@@ -120,7 +136,8 @@ extern TM_AM2301_t TM_AM2301_Init(void);
  * Read data from sensor
  *
  * Parameters:
- * 	- TM_AM2301_Data_t* data: pointer to data structure
+ * 	- TM_AM2301_Data_t* data:
+ *		Pointer to data structure
  *
  * TM_AM2301_OK returned in case data is valid, otherwise anything from TM_AM2301_t typedef
  */
