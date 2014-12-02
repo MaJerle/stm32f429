@@ -6,7 +6,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/04/stm32f429-discovery-gpio-tutorial-with-onboard-leds-and-button/
- *	@version 	v1.6
+ *	@version 	v1.7
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -28,10 +28,13 @@
  * |----------------------------------------------------------------------
  *
  * 	CHANGELOG
- 
+ *	- Version 1.7
+ *		December 02, 2014
+ *		Fixed bug with checking if led is on
+ *
  *	- Version 1.6
  *		November 28, 2014
- *		Almost all functions now inline, for faster execution		
+ *		Almost all functions are now defines, for faster execution		
  *
  *	- Version 1.5
  *		November 06, 2014
@@ -91,7 +94,7 @@
  *			- Blue button	on PA0
  */
 #ifndef TM_DISCO_H
-#define TM_DISCO_H 160
+#define TM_DISCO_H 170
 /**
  * Library dependencies
  * - STM32F4xx
@@ -249,7 +252,7 @@ extern void TM_DISCO_ButtonInit(void);
  * 
  * Return 1 if turned on, otherwise 0
  */
-#define TM_DISCO_LedIsOn(led)		((TM_DISCO_LED_PORT->ODR &= led) != Bit_RESET)
+#define TM_DISCO_LedIsOn(led)		((TM_DISCO_LED_PORT->ODR & led) != Bit_RESET)
 
 /**
  * Set led's state with one function
