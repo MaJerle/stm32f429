@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/07/library-19-use-internal-rtc-on-stm32f4xx-devices/
- *	@version 	v1.2
+ *	@version 	v1.3
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -25,6 +25,10 @@
  * | You should have received a copy of the GNU General Public License
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
+ *
+ * Version 1.3
+ *	- December 03, 2014
+ *	- Fixed bug when reading month in december was set to 0
  *
  * Version 1.2
  *	- October 27, 2014
@@ -52,7 +56,7 @@
  *	PC15			OSC2			Oscillator terminal 2
  */
 #ifndef TM_RTC_H
-#define TM_RTC_H 120
+#define TM_RTC_H 130
 /**
  * Library dependencies
  * - STM32F4xx
