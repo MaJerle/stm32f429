@@ -287,7 +287,6 @@ void TM_RTC_Interrupts(TM_RTC_Int_t int_value) {
 
 uint32_t TM_RTC_GetUnixTimeStamp(TM_RTC_Time_t* data) {
 	uint32_t days = 0, seconds = 0;
-	uint8_t month_temp;
 	uint16_t i;
 	uint16_t year = (uint16_t) (data->year + 2000);
 	/* Year is below offset year */
@@ -299,8 +298,7 @@ uint32_t TM_RTC_GetUnixTimeStamp(TM_RTC_Time_t* data) {
 		days += TM_RTC_DAYS_IN_YEAR(i);
 	}
 	/* Days in current year */
-	month_temp = data->month % 12;
-	for (i = 1; i < month_temp; i++) {
+	for (i = 1; i < data->month; i++) {
 		days += TM_RTC_Months[TM_RTC_LEAP_YEAR(year)][i - 1];
 	}
 	/* Day starts with 1 */
