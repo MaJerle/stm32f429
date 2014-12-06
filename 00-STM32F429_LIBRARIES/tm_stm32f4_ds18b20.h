@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/05/13-reading-temperature-with-dallas-ds18b20-on-stm32f429-discovery-board/
- *	@version 	v1.0
+ *	@version 	v1.1
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -26,6 +26,11 @@
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
  *	
+ * Version 1.1
+ *	- December 06, 2014
+ *	- Now CRC is calculated and checked if data are valid
+ *	- New version of OneWire library is required, download already available on stm32f4-discovery.com
+ *
  * With this you can read temperature, set and get temperature resolution from 9 to 12 bits
  * and check if device is DS18B20
  * 
@@ -46,6 +51,11 @@
 #include "tm_stm32f4_onewire.h"
 #include "defines.h"
 
+/* Version check */
+#if TM_ONEWIRE_H < 110
+#error "Please update TM ONEWIRE LIB, minimum required version is 1.1.0"
+#endif
+
 //Every onewire chip has different ROM code, but all the same chips has same family code,
 //in case of DS18B20 this is 0x28 and this is first byte of ROM address
 #define TM_DS18B20_FAMILY_CODE				0x28
@@ -61,6 +71,12 @@
 //Bits locations for resolution
 #define TM_DS18B20_RESOLUTION_R1			6
 #define TM_DS18B20_RESOLUTION_R0			5
+
+#ifdef DS18B20_USE_CRC	
+#define DS18B20_DATA_LEN	9
+#else
+#define DS18B20_DATA_LEN	2
+#endif
 
 /**
  * Resolutions available
@@ -96,7 +112,7 @@ extern void TM_DS18B20_StartAll(void);
  * 	- uint8_t *ROM: pointer to first byte of ROM address
  * 	- float *destination: pointer to float variable to store temperature
  * 	
- * Returns 1 if temperature is read or 0 if device is not DS18B20 or conversion is not done yet
+ * Returns 1 if temperature is read OK or 0 if device is not DS18B20 or conversion is not done yet or CRC failed
  */
 extern uint8_t TM_DS18B20_Read(uint8_t *ROM, float *destination);
 

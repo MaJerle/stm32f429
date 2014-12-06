@@ -30,4 +30,6 @@
 
 /* Put your global defines for all libraries here used in your project */
 
+#define DS18B20_USE_CRC
+
 #endif

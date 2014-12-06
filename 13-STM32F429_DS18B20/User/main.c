@@ -94,10 +94,14 @@ int main(void) {
 		/* Read temperature from each device separatelly */
 		for (i = 0; i < count; i++) {
 			/* Read temperature from ROM address and store it to temps variable */
-			TM_DS18B20_Read(device[i], &temps[i]);
-			/* Print temperature */
-			sprintf(buf, "Temp %d: %3.5f; ", i, temps[i]);
-			TM_USART_Puts(USART1, buf);
+			if (TM_DS18B20_Read(device[i], &temps[i])) {
+				/* Print temperature */
+				sprintf(buf, "Temp %d: %3.5f; ", i, temps[i]);
+				TM_USART_Puts(USART1, buf);
+			} else {
+				/* Reading error */
+				TM_USART_Puts(USART1, "Reading error; ");
+			}
 		}
 		alarm_count = 0;
 		/* Check if any device has alarm flag set */

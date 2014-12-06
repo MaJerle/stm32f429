@@ -338,3 +338,22 @@ void TM_OneWire_GetFullROM(uint8_t *firstIndex) {
 		*(firstIndex + i) = TM_OneWire_ROM_NO[i];
 	}
 }
+
+uint8_t TM_OneWire_CRC8( uint8_t *addr, uint8_t len) {
+	uint8_t crc = 0, inbyte, i, mix;
+	
+	while (len--) {
+		inbyte = *addr++;
+		for (i = 8; i; i--) {
+			mix = (crc ^ inbyte) & 0x01;
+			crc >>= 1;
+			if (mix) {
+				crc ^= 0x8C;
+			}
+			inbyte >>= 1;
+		}
+	}
+	
+	/* Return calculated CRC */
+	return crc;
+}

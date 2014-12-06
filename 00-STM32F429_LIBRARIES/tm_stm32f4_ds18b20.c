@@ -46,42 +46,65 @@ uint8_t TM_DS18B20_Read(uint8_t *ROM, float *destination) {
 	uint8_t resolution;
 	int8_t digit, minus = 0;
 	float decimal;
+	uint8_t i = 0;
+	uint8_t data[9];
+	uint8_t crc;
 	
+	/* Check if device is DS18B20 */
 	if (!TM_DS18B20_Is(ROM)) {
 		return 0;
 	}
 	
-	//Check if line is released, if it is, then conversion is complete
+	/* Check if line is released, if it is, then conversion is complete */
 	if (!TM_OneWire_ReadBit()) {
-		return 0; //Conversion is not finished yet
+		/* Conversion is not finished yet */
+		return 0; 
 	}
 
-	//Reset line
+	/* Reset line */
 	TM_OneWire_Reset();
-	//Select ROM number
+	/* Select ROM number */
 	TM_OneWire_SelectWithPointer(ROM);
-	//Read scratchpad command by onewire protocol
+	/* Read scratchpad command by onewire protocol */
 	TM_OneWire_WriteByte(TM_ONEWIRE_CMD_RSCRATCHPAD);
 	
-	//First two bytes of scratchpad are temperature values
-	temperature = TM_OneWire_ReadByte() | (TM_OneWire_ReadByte() << 8);
+	/* Get data */
+	for (i = 0; i < 9; i++) {
+		data[i] = TM_OneWire_ReadByte();
+	}
+	
+	/* Calculate CRC */
+	crc = TM_OneWire_CRC8(data, 8);
+	
+	/* Check if CRC is ok */
+	if (crc != data[8]) {
+		/* CRC invalid */
+		return 0;
+	}
+	
+	/* First two bytes of scratchpad are temperature values */
+	temperature = data[0] | (data[1] << 8);
 
-	//Reset line
+	/* Reset line */
 	TM_OneWire_Reset();
 	
+	/* Check if temperature is negative */
 	if (((temperature >> 15)) == 1) {
-		//Two's complement, temperature is negative
+		/* Two's complement, temperature is negative */
 		temperature = ~temperature + 1;
 		minus = 1;
 	}
 
-	//Get sensor resolution
-	resolution = TM_DS18B20_GetResolution(ROM);
 	
-	//Store temperature integer digits and decimal digits
+	/* Get sensor resolution */
+	resolution = ((data[4] & 0x60) >> 5) + 9;
+
+	
+	/* Store temperature integer digits and decimal digits */
 	digit = temperature >> 4;
 	digit |= ((temperature >> 8) & 0x7) << 4;
-	//Store decimal digits
+	
+	/* Store decimal digits */
 	switch (resolution) {
 		case 9: {
 			decimal = (temperature >> 3) & 0x01;
@@ -105,21 +128,26 @@ uint8_t TM_DS18B20_Read(uint8_t *ROM, float *destination) {
 		}
 	}
 	
+	/* Check for negative part */
 	decimal = digit + decimal;
 	if (minus) {
 		decimal = 0 - decimal;
 	}
 	
+	/* Set to pointer */
 	*destination = decimal;
 	
+	/* Return 1, temperature valid */
 	return 1;
 }
 
 uint8_t TM_DS18B20_GetResolution(uint8_t *ROM) {
 	uint8_t conf;
+	
 	if (!TM_DS18B20_Is(ROM)) {
 		return 0;
 	}
+	
 	//Reset line
 	TM_OneWire_Reset();
 	//Select ROM number
