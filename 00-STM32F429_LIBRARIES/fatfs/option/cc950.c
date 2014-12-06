@@ -6791,10 +6791,10 @@ WCHAR ff_convert (	/* Converted code, 0 means conversion error */
 	} else {
 		if (dir) {		/* OEMCP to unicode */
 			p = oem2uni;
-			hi = sizeof(oem2uni) / 4 - 1;
+			hi = sizeof oem2uni / 4 - 1;
 		} else {		/* Unicode to OEMCP */
 			p = uni2oem;
-			hi = sizeof(uni2oem) / 4 - 1;
+			hi = sizeof uni2oem / 4 - 1;
 		}
 		li = 0;
 		for (n = 16; n; n--) {

@@ -15,7 +15,7 @@
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/07/library-21-read-sd-card-fatfs-stm32f4xx-devices/
  *	@link		http://stm32f4-discovery.com/2014/08/library-29-usb-msc-host-usb-flash-drive-stm32f4xx-devices
- *	@version 	v1.2
+ *	@version 	v1.3
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -36,8 +36,12 @@
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
  *	
+ * Version 1.3V
+ *	- December 06, 2014
+ *	- FatFs R0.10C supported
+ 
  * Version 1.2
- *	- 28.08.2014
+ *	- August 28, 2014
  *	- Added support for USB
  *
  *
@@ -242,7 +246,7 @@
  * This allows you to copy data from one SD card to USB and back too.
  */
 #ifndef TM_FATFS_H
-#define TM_FATFS_H	120
+#define TM_FATFS_H	130
 /**
  * Dependencies
  *	- STM32F4xx

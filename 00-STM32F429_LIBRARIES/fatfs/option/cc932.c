@@ -3739,10 +3739,10 @@ WCHAR ff_convert (	/* Converted code, 0 means conversion error */
 #if !_TINY_TABLE
 		if (dir) {		/* OEMCP to unicode */
 			p = sjis2uni;
-			hi = sizeof(sjis2uni) / 4 - 1;
+			hi = sizeof sjis2uni / 4 - 1;
 		} else {		/* Unicode to OEMCP */
 			p = uni2sjis;
-			hi = sizeof(uni2sjis) / 4 - 1;
+			hi = sizeof uni2sjis / 4 - 1;
 		}
 		li = 0;
 		for (n = 16; n; n--) {
@@ -3764,7 +3764,7 @@ WCHAR ff_convert (	/* Converted code, 0 means conversion error */
 			p -= 3;
 			c = *p;
 		} else {		/* Unicode to OEMCP */
-			li = 0; hi = sizeof(uni2sjis) / 4 - 1;
+			li = 0; hi = sizeof uni2sjis / 4 - 1;
 			for (n = 16; n; n--) {
 				i = li + (hi - li) / 2;
 				if (chr == uni2sjis[i * 2]) break;
