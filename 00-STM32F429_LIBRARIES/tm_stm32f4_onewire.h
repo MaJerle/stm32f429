@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/05/library-12-onewire-library-for-stm43f4xx/
- *	@version 	v1.0
+ *	@version 	v1.1
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -26,6 +26,10 @@
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
  *	
+ * Version 1.1
+ *	- December 06, 2014
+ *	- Added 8-bit CRC calculation for 1-Wire devices, algorythm from Dallas
+ *
  *	Onewire default pin: PD0
  *	
  *	If you want to use other pin, edit lines below in your defines.h file
@@ -36,14 +40,14 @@
  *	#define TM_ONEWIRE_PIN			GPIO_Pin_0
  */
 #ifndef TM_ONEWIRE_H
-#define TM_ONEWIRE_H 100
+#define TM_ONEWIRE_H 110
 /**
  * Library dependencies
  * - STM32F4xx
  * - STM32F4xx RCC
  * - STM32F4xx GPIO
- * - TM_DELAY
  * - defines.h
+ * - TM_DELAY
  */
 /**
  * Includes
@@ -51,8 +55,8 @@
 #include "stm32f4xx.h"
 #include "stm32f4xx_rcc.h"
 #include "stm32f4xx_gpio.h"
-#include "tm_stm32f4_delay.h"
 #include "defines.h"
+#include "tm_stm32f4_delay.h"
 
 //Owerwrite this in defines.h if you want to use other pin
 #ifndef TM_ONEWIRE_PIN	
@@ -191,6 +195,19 @@ extern void TM_OneWire_Select(uint8_t addr[]);
  * 		pointer to first byte of ROM address
  */
 extern void TM_OneWire_SelectWithPointer(uint8_t *ROM);
+
+/**
+ * Calculate 8-bit CRC for Dallas 1-wire devices
+ *
+ * Parameters:
+ * 	- uint8_t* addr:
+ * 		Pointer t odata to calculate with
+ *	- uint8_t len:
+ *		Number of bytes to check
+ *
+ * Calculated CRC is returned
+ */
+extern uint8_t TM_OneWire_CRC8(uint8_t* addr, uint8_t len);
 
 #endif
 
