@@ -114,6 +114,8 @@ http://bit.ly/1oMbaYV
 http://bit.ly/ZZlzEE
 44. Identification - Read identification bytes and 96-bits long UNIQUE ID from STM32F4
 http://bit.ly/1sbPXte
+45. BKPSRAM - Interface backup SRAM on STM32F4
+http://bit.ly/1qALFKQ
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB
