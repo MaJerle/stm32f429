@@ -461,7 +461,7 @@ void TM_SNAKE_ReplaceArray(uint16_t index, int8_t* twobytesarray) {
 }
 
 void TM_SNAKE_SpeedUp(void) {
-	/* Max speed is 10Hz */
+	/* Check for maximum speed */
 	if (Settings.Speed < SNAKE_SPEED_MAX) {
 		Settings.Speed++;
 		Settings.Micros = 1000 / Settings.Speed;

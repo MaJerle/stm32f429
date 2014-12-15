@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/06/library-17-nrf24l01-stm32f4xx/
- *	@version 	v1.0
+ *	@version 	v1.0.1
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -25,7 +25,11 @@
  * | You should have received a copy of the GNU General Public License
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
- * 
+ *
+ * Version 1.0.1
+ *	- December 14, 2014
+ * 	- Activated all 3 interrupts in NRF24L01+ 
+ *
  * This library allows you to work with nRF24L01+ modules.
  * 
  * You can send and receive data from nRF24L01+ modules.
@@ -65,7 +69,7 @@
  * 	
  */
 #ifndef TM_NRF24L01_H
-#define TM_NRF24L01_H	100
+#define TM_NRF24L01_H 101
 /**
  * Library dependencies
  * - STM32F4xx
@@ -251,6 +255,7 @@
 #define NRF24L01_1MBPS			1
 #define NRF24L01_250KBPS		2
 
+/* Configuration */
 #define NRF24L01_CONFIG			((1 << NRF24L01_EN_CRC) | (0 << NRF24L01_CRCO))
 
 //Instruction Mnemonics
