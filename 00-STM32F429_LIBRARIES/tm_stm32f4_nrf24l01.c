@@ -95,6 +95,9 @@ uint8_t TM_NRF24L01_Init(uint8_t channel, uint8_t payload_size) {
 	NRF24L01_FLUSH_TX;
 	NRF24L01_FLUSH_RX;
 	
+	//Clear interrupts
+	NRF24L01_CLEAR_INTERRUPTS;
+	
 	//Go to RX mode
 	TM_NRF24L01_PowerUpRx();
 	
