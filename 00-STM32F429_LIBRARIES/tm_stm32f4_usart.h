@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/04/library-04-connect-stm32f429-discovery-to-computer-with-usart/
- *	@version 	v1.4
+ *	@version 	v1.5
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -79,7 +79,7 @@
  *	#define TM_X_WORD_LENGTH				USART_WordLength_8b
  */
 #ifndef TM_USART_H
-#define TM_USART_H 140
+#define TM_USART_H 150
 /**
  * Library dependencies
  * - STM32F4xx
@@ -471,10 +471,10 @@ extern uint8_t TM_USART_Getc(USART_TypeDef* USARTx);
 /**
  * Get string from USART
  *
- * This function can create a string from usart received data.
- * It generates string until "\n" is not recognized.
- * So when you call this function, make sure your string ends with \n or
- * you may stop in infinite loop.
+ * This function can create a string from USART received data.
+ * It generates string until "\n" is not recognized or buffer length is full.
+ *
+ * As of version 1.5, this function automatically adds "\n" at the end of string
  *
  * Parameters:
  * 	- USART_TypeDef* USARTx: which USART channel
@@ -485,6 +485,18 @@ extern uint8_t TM_USART_Getc(USART_TypeDef* USARTx);
  * Returns number of valid characters in buffer
  */
 extern uint16_t TM_USART_Gets(USART_TypeDef* USARTx, char* buffer, uint16_t bufsize);
+
+/**
+ * Check if character is available in internal buffer
+ *
+ * Parameters:
+ * 	- USART_TypeDef* USARTx: which USART channel
+ * 		USART1, USART2, USART3, UART4, UART5, USART6, UART7. UART8
+ * 	- volatile char c: character you want to check if is available in buffer
+ *
+ * Returns 1 if character is available or 0 if not
+ */
+extern uint8_t TM_USART_FindCharacter(USART_TypeDef* USARTx, volatile char c);
 
 #ifdef USART1
 /**

@@ -616,7 +616,7 @@ void TM_USART_InsertToBuffer(uint8_t usart_num, uint8_t c) {
 uint8_t TM_USART_Getc(USART_TypeDef* USARTx) {
 	uint8_t usart_num = TM_USART_GetUsartNumber(USARTx);
 	uint8_t c = 0;
-	//Check if we have any data in buffer
+	/* Check if we have any data in buffer */
 	if (tm_usart_buf_num[usart_num] > 0) {
 		if (tm_usart_buf_out[usart_num] > (TM_USART_BUFFER_SIZE - 1)) {
 			tm_usart_buf_out[usart_num] = 0;
@@ -630,26 +630,29 @@ uint8_t TM_USART_Getc(USART_TypeDef* USARTx) {
 }
 
 uint16_t TM_USART_Gets(USART_TypeDef* USARTx, char* buffer, uint16_t bufsize) {
-	uint16_t i = 0;                             
-	uint8_t eol = 0;
-	if (TM_USART_BufferEmpty(USARTx)) {
+	uint16_t i = 0;
+	
+	/* Check for any data on USART */
+	if (TM_USART_BufferEmpty(USARTx) || !TM_USART_FindCharacter(USARTx, '\n')) {
 		return 0;
 	}
-	if (bufsize > 0) {
-		while (!eol) {
-			while (TM_USART_BufferEmpty(USARTx));
-			buffer[i] = (char) TM_USART_Getc(USARTx);   
-			if (buffer[i] == '\n') {
-				eol = 1;                
-			} else {            
-				if (i < (bufsize - 1)) {
-					i++; 	
-				}
-			}
+	
+	/* If available buffer size is more than 0 characters */
+	while (i < (bufsize - 1)) {
+		/* We have available data */
+		buffer[i] = (char) TM_USART_Getc(USARTx);
+		/* Check for end of string */
+		if (buffer[i] == '\n') {
+			/* Done */
+			break;
 		}
-		//Add zero to the end of string
-		buffer[i] = 0;               
+		
+		/* Next index */
+		i++;
 	}
+	
+	/* Add zero to the end of string */
+	buffer[++i] = 0;               
 
 	return (i);
 }
@@ -665,6 +668,30 @@ void TM_USART_ClearBuffer(USART_TypeDef* USARTx) {
 	tm_usart_buf_in[usart_num] = 0;
 	tm_usart_buf_out[usart_num] = 0;
 }
+
+uint8_t TM_USART_FindCharacter(USART_TypeDef* USARTx, volatile char c) {
+	uint16_t num, out;
+	uint8_t usart_num = TM_USART_GetUsartNumber(USARTx);
+	
+	num = tm_usart_buf_num[usart_num];
+	out = tm_usart_buf_out[usart_num];
+	
+	while (num > 0) {
+		if (out > (TM_USART_BUFFER_SIZE - 1)) {
+			out = 0;
+		}
+		if (TM_USART_Buffer[usart_num][out] == c) {
+			/* Character founc */
+			return 1;
+		}
+		out++;
+		num--;
+	}
+	
+	/* Character is not in buffer */
+	return 0;
+}
+
 
 uint8_t TM_USART_GetUsartNumber(USART_TypeDef* USARTx) {
 #ifdef USART1

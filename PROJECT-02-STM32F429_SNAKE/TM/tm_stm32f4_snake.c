@@ -85,7 +85,7 @@ void TM_SNAKE_Start(void) {
 		TM_USB_HIDHOST_Process();
 		
 		/* Check for timeout, move snake here */
-		if (TM_DELAY_Time() >= Settings.Micros && !Settings.Pause && !GameOver) {
+		if (TM_DELAY_Time() >= Settings.Millis && !Settings.Pause && !GameOver) {
 			/* Reset time */
 			TM_DELAY_SetTime(0);
 			
@@ -384,7 +384,7 @@ void TM_SNAKE_PrepareDisplay(void) {
 
 void TM_SNAKE_SetFirstOptions(void) {
 	Settings.Speed = SNAKE_SPEED_DEFAULT;
-	Settings.Micros = 1000 / Settings.Speed;
+	Settings.Millis = 1000 / Settings.Speed;
 	Settings.Pause = 0;
 	Settings.Overflow = 1;
 }
@@ -464,7 +464,7 @@ void TM_SNAKE_SpeedUp(void) {
 	/* Check for maximum speed */
 	if (Settings.Speed < SNAKE_SPEED_MAX) {
 		Settings.Speed++;
-		Settings.Micros = 1000 / Settings.Speed;
+		Settings.Millis = 1000 / Settings.Speed;
 	}
 }
 
@@ -472,7 +472,7 @@ void TM_SNAKE_SpeedDown(void) {
 	/* Min speed is 1Hz */
 	if (Settings.Speed > SNAKE_SPEED_MIN) {
 		Settings.Speed--;
-		Settings.Micros = 1000 / Settings.Speed;
+		Settings.Millis = 1000 / Settings.Speed;
 	}
 }
 

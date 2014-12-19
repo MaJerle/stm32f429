@@ -110,7 +110,7 @@ typedef struct {
 typedef struct {
 	uint8_t Overflow;
 	uint8_t Speed;
-	uint32_t Micros;
+	uint32_t Millis;
 	uint8_t Pause;
 } TM_SNAKE_Settings_t;
 
