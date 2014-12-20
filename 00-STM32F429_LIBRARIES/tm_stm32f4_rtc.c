@@ -111,7 +111,45 @@ uint32_t TM_RTC_Init(TM_RTC_ClockSource_t source) {
 	return TM_RTC_Status;
 }
 
-void TM_RTC_SetDateTime(TM_RTC_Time_t* data, TM_RTC_Format_t format) {	
+TM_RTC_Result_t TM_RTC_SetDateTime(TM_RTC_Time_t* data, TM_RTC_Format_t format) {
+	TM_RTC_Time_t tmp;
+	
+	/* Check date and time validation */
+	if (format == TM_RTC_Format_BCD) {
+		tmp.date = TM_RTC_BCD2BIN(data->date);
+		tmp.month = TM_RTC_BCD2BIN(data->month);
+		tmp.year = TM_RTC_BCD2BIN(data->year);
+		tmp.hours = TM_RTC_BCD2BIN(data->hours);
+		tmp.minutes = TM_RTC_BCD2BIN(data->minutes);
+		tmp.seconds = TM_RTC_BCD2BIN(data->seconds);
+		tmp.day = TM_RTC_BCD2BIN(data->day);
+	} else {
+		tmp.date = data->date;
+		tmp.month = data->month;
+		tmp.year = data->year;
+		tmp.hours = data->hours;
+		tmp.minutes = data->minutes;
+		tmp.seconds = data->seconds;
+		tmp.day = data->day;
+	}
+	
+	/* Check year and month */
+	if (
+		tmp.year > 99 || 
+		tmp.month == 0 || 
+		tmp.month > 12 ||
+		tmp.date == 0 ||
+		tmp.date > TM_RTC_Months[TM_RTC_LEAP_YEAR(2000 + tmp.year) ? 1 : 0][tmp.month - 1] ||
+		tmp.hours > 23 ||
+		tmp.minutes > 59 ||
+		tmp.seconds > 59 ||
+		tmp.day == 0 ||
+		tmp.day > 7
+	) {
+		/* Invalid date */
+		return TM_RTC_Result_Error; 
+	}
+	
 	/* Fill time */
 	RTC_TimeStruct.RTC_Hours = data->hours;
 	RTC_TimeStruct.RTC_Minutes = data->minutes;
@@ -128,12 +166,14 @@ void TM_RTC_SetDateTime(TM_RTC_Time_t* data, TM_RTC_Format_t format) {
 	RTC_InitStruct.RTC_SynchPrediv = RTC_SYNC_PREDIV;
 	RTC_Init(&RTC_InitStruct);
 
+	/* Set time */
 	if (format == TM_RTC_Format_BCD) {
 		RTC_SetTime(RTC_Format_BCD, &RTC_TimeStruct);
 	} else {
 		RTC_SetTime(RTC_Format_BIN, &RTC_TimeStruct);
 	}
 	
+	/* Set date */
 	if (format == TM_RTC_Format_BCD) {
 		RTC_SetDate(RTC_Format_BCD, &RTC_DateStruct);
 	} else {
@@ -144,6 +184,73 @@ void TM_RTC_SetDateTime(TM_RTC_Time_t* data, TM_RTC_Format_t format) {
 		/* Write backup registers */
 		RTC_WriteBackupRegister(RTC_STATUS_REG, RTC_STATUS_TIME_OK);
 	}
+	
+	/* Return OK */
+	return TM_RTC_Result_Ok;
+}
+
+TM_RTC_Result_t TM_RTC_SetDateTimeString(char* str) {
+	TM_RTC_Time_t tmp;
+	uint8_t i = 0;
+	
+	/* Get date */
+	tmp.date = 0;
+	while (TM_RTC_CHARISNUM(*(str + i))) {
+		tmp.date = tmp.date * 10 + TM_RTC_CHAR2NUM(*(str + i));
+		i++;
+	}
+	i++;
+	
+	/* Get month */
+	tmp.month = 0;
+	while (TM_RTC_CHARISNUM(*(str + i))) {
+		tmp.month = tmp.month * 10 + TM_RTC_CHAR2NUM(*(str + i));
+		i++;
+	}
+	i++;
+	
+	/* Get year */
+	tmp.year = 0;
+	while (TM_RTC_CHARISNUM(*(str + i))) {
+		tmp.year = tmp.year * 10 + TM_RTC_CHAR2NUM(*(str + i));
+		i++;
+	}
+	i++;
+	
+	/* Get day in a week */
+	tmp.day = 0;
+	while (TM_RTC_CHARISNUM(*(str + i))) {
+		tmp.day = tmp.day * 10 + TM_RTC_CHAR2NUM(*(str + i));
+		i++;
+	}
+	i++;
+	
+	/* Get hours */
+	tmp.hours = 0;
+	while (TM_RTC_CHARISNUM(*(str + i))) {
+		tmp.hours = tmp.hours * 10 + TM_RTC_CHAR2NUM(*(str + i));
+		i++;
+	}
+	i++;
+	
+	/* Get minutes */
+	tmp.minutes = 0;
+	while (TM_RTC_CHARISNUM(*(str + i))) {
+		tmp.minutes = tmp.minutes * 10 + TM_RTC_CHAR2NUM(*(str + i));
+		i++;
+	}
+	i++;
+	
+	/* Get seconds */
+	tmp.seconds = 0;
+	while (TM_RTC_CHARISNUM(*(str + i))) {
+		tmp.seconds = tmp.seconds * 10 + TM_RTC_CHAR2NUM(*(str + i));
+		i++;
+	}
+	i++;
+	
+	/* Return status from set date time function */
+	return TM_RTC_SetDateTime(&tmp, TM_RTC_Format_BIN);
 }
 
 void TM_RTC_GetDateTime(TM_RTC_Time_t* data, TM_RTC_Format_t format) {

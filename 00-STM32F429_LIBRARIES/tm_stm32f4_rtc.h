@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/07/library-19-use-internal-rtc-on-stm32f4xx-devices/
- *	@version 	v1.3
+ *	@version 	v1.4
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -25,6 +25,12 @@
  * | You should have received a copy of the GNU General Public License
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
+ *
+ * Version 1.4
+ *	- December 21, 2014
+ *	- TM_RTC_SetDateTime now checks for valid input data before save
+ *	- Added function TM_RTC_SetDateTimeString which allows you to set your
+ *		date and time using string format
  *
  * Version 1.3
  *	- December 03, 2014
@@ -56,7 +62,7 @@
  *	PC15			OSC2			Oscillator terminal 2
  */
 #ifndef TM_RTC_H
-#define TM_RTC_H 130
+#define TM_RTC_H 140
 /**
  * Library dependencies
  * - STM32F4xx
@@ -109,12 +115,15 @@
 #define	RTC_STATUS_ZERO					0x0000
 
 /* Internal RTC defines */
-#define TM_RTC_LEAP_YEAR(year) 			(((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0))
+#define TM_RTC_LEAP_YEAR(year) 			((((year) % 4 == 0) && ((year) % 100 != 0)) || ((year) % 400 == 0))
 #define TM_RTC_DAYS_IN_YEAR(x)			TM_RTC_LEAP_YEAR(x) ? 366 : 365
 #define TM_RTC_OFFSET_YEAR				1970
 #define TM_RTC_SECONDS_PER_DAY			86400
 #define TM_RTC_SECONDS_PER_HOUR			3600
 #define TM_RTC_SECONDS_PER_MINUTE		60
+#define TM_RTC_BCD2BIN(x)				((((x) >> 4) & 0x0F) * 10 + ((x) & 0x0F))
+#define TM_RTC_CHAR2NUM(x)				((x) - '0')
+#define TM_RTC_CHARISNUM(x)				((x) >= '0' && (x) <= '9')
 
 /**
  * Struct for date/time
@@ -151,6 +160,20 @@ typedef struct {
 	uint8_t year;
 	uint32_t unix;
 } TM_RTC_Time_t;
+
+/**
+ * Result enumeration
+ *
+ * Parameters:
+ * 	- TM_RTC_Result_Ok:
+ * 		Everything OK
+ * 	- TM_RTC_Result_Error:
+ * 		An error occured
+ */
+typedef enum {
+	TM_RTC_Result_Ok,
+	TM_RTC_Result_Error
+} TM_RTC_Result_t;
 
 /**
  * Set format of date and time
@@ -329,7 +352,34 @@ extern void TM_RTC_Interrupts(TM_RTC_Int_t int_value);
  * 	- TM_RTC_Format_t format:
  * 		Member of struct TM_RTC_Format_t
  */
-extern void TM_RTC_SetDateTime(TM_RTC_Time_t* data, TM_RTC_Format_t format);
+extern TM_RTC_Result_t TM_RTC_SetDateTime(TM_RTC_Time_t* data, TM_RTC_Format_t format);
+
+/**
+ * Set date and time using string format
+ *
+ * Valid string format is:
+ *
+ *	dd.mm.YY.x;HH:ii:ss
+ *
+ * - dd: date, 2 digits, decimal
+ * - mm: month, 2 digits, decimal
+ * - YY: year, last 2 digits, decimal
+ * - x: day in a week: 1 digit,
+ * - HH: hours, 24-hour mode, 2 digits, decimal
+ * - ii: minutes, 2 digits, decimal
+ * - ss: seconds, 2 ditigs, decimal
+ *
+ * Example:
+ *	- For date&time Thursday, December 25, 2014 22:05:12, you have to use string below:
+ *		25.12.14.4;22:05:12
+ *
+ * Parameters:
+ * 	- char* str:
+ *		Date in string format.
+ *
+ * If date and time are valid, function will return TM_RTC_Result_Ok
+ */
+extern TM_RTC_Result_t TM_RTC_SetDateTimeString(char* str);
 
 /**
  * Get date and time
