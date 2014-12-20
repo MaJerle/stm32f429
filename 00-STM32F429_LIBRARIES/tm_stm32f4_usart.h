@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/04/library-04-connect-stm32f429-discovery-to-computer-with-usart/
- *	@version 	v1.5
+ *	@version 	v2.0
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -26,6 +26,14 @@
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
  *	
+ * Version 2.0
+ *	- December 21, 2014
+ *	- New cyclic buffer system,
+ *		each U(S)ART can have different buffer size (less RAM can be used for USART purpose)
+ *	- Added function to check if buffer is full,
+ *	- TM_USART_Gets now returns 0 till '\n' is not available in buffer or buffer is full
+ *		Useful for prevent infinite loop if '\n' never happen
+ *
  *	Library works for all 8 U(S)ARTs which are supported on STM32F429.
  *
  *	Every USART channel has it's own receive interrupt which stores incoming data into cyclic buffer.
@@ -48,7 +56,27 @@
  *
  *	#define TM_USART_BUFFER_SIZE number_of_bytes
  *
- *	in your project's defines.h file.
+ *	in your project's defines.h file. This will set default length for each buffer.
+ *	So if you are working with F429 (it has 8 U(S)ARTs) then you will use 8kB RAM if 
+ *	you set define above to 1024.
+ *
+ * 	As of version 2.0, you can now set different buffer sizes for different U(S)ARTs.
+ *	If you don't change anything, then all USART's have buffer length of value, stored in
+ *	TM_USART_BUFFER_SIZE define. If you want let's say just for USART1 to be 1kB, but others default value,
+ *	you can add define below in defines.h file:
+ *
+ *	//Buffer length for USART1 is 1kB
+ *	#define TM_USART1_BUFFER_SIZE 1024
+ *
+ *	Other possible settings are (for other U(S)ARTs):
+ *		- TM_USART1_BUFFER_SIZE
+ *		- TM_USART2_BUFFER_SIZE
+ *		- TM_USART3_BUFFER_SIZE
+ *		- TM_UART4_BUFFER_SIZE
+ *		- TM_UART5_BUFFER_SIZE
+ *		- TM_USART6_BUFFER_SIZE
+ *		- TM_UART7_BUFFER_SIZE
+ *		- TM_UART8_BUFFER_SIZE
  *	
  *	Pinout
  *
@@ -79,7 +107,7 @@
  *	#define TM_X_WORD_LENGTH				USART_WordLength_8b
  */
 #ifndef TM_USART_H
-#define TM_USART_H 150
+#define TM_USART_H 200
 /**
  * Library dependencies
  * - STM32F4xx
@@ -124,12 +152,38 @@
 #define TM_USE_USART6
 #endif /* STM32F401xx || STM32F411xx */
 
-//Buffer size
+/* Default buffer size for each USART */
 #ifndef TM_USART_BUFFER_SIZE
 #define TM_USART_BUFFER_SIZE 				32
 #endif
 
-//NVIC Priority
+/* Set default buffer size for specific USART if not set by user */
+#ifndef TM_USART1_BUFFER_SIZE
+#define TM_USART1_BUFFER_SIZE				TM_USART_BUFFER_SIZE
+#endif
+#ifndef TM_USART2_BUFFER_SIZE
+#define TM_USART2_BUFFER_SIZE				TM_USART_BUFFER_SIZE
+#endif
+#ifndef TM_USART3_BUFFER_SIZE
+#define TM_USART3_BUFFER_SIZE				TM_USART_BUFFER_SIZE
+#endif
+#ifndef TM_UART4_BUFFER_SIZE
+#define TM_UART4_BUFFER_SIZE				TM_USART_BUFFER_SIZE
+#endif
+#ifndef TM_UART5_BUFFER_SIZE
+#define TM_UART5_BUFFER_SIZE				TM_USART_BUFFER_SIZE
+#endif
+#ifndef TM_USART6_BUFFER_SIZE
+#define TM_USART6_BUFFER_SIZE				TM_USART_BUFFER_SIZE
+#endif
+#ifndef TM_UART7_BUFFER_SIZE
+#define TM_UART7_BUFFER_SIZE				TM_USART_BUFFER_SIZE
+#endif
+#ifndef TM_UART8_BUFFER_SIZE
+#define TM_UART8_BUFFER_SIZE				TM_USART_BUFFER_SIZE
+#endif
+
+/* NVIC Priority */
 #ifndef TM_USART_NVIC_PRIORITY
 #define TM_USART_NVIC_PRIORITY				0x00
 #endif
@@ -296,147 +350,6 @@ typedef enum {
  */
 extern void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t baudrate);
 
-#ifdef USART1
-/**
- * Initialize USART1 pins
- *
- * Parameters:
- * 	- TM_USART_PinsPack_t pinspack: Pinspack used
- * 		- TM_USART_PinsPack_1
- * 			- TX: PA9
- * 			- RX: PA10
- * 		- TM_USART_PinsPack_2
- * 			- TX: PB6
- * 			- RX: PB7
- *
- * Called from TM_USART_Init()
- */
-extern void TM_USART1_InitPins(TM_USART_PinsPack_t pinspack);
-#endif
-
-#ifdef USART2
-/**
- * Initialize USART2 pins
- *
- * Parameters:
- * 	- TM_USART_PinsPack_t pinspack: Pinspack used
- * 		- TM_USART_PinsPack_1
- * 			- TX: PA2
- * 			- RX: PA3
- * 		- TM_USART_PinsPack_2
- * 			- TX: PD5
- * 			- RX: PD6
- *
- * Called from TM_USART_Init()
- */
-extern void TM_USART2_InitPins(TM_USART_PinsPack_t pinspack);
-#endif
-
-#ifdef USART3
-/**
- * Initialize USART3 pins
- *
- * Parameters:
- * 	- TM_USART_PinsPack_t pinspack: Pinspack used
- * 		- TM_USART_PinsPack_1
- * 			- TX: PB10
- * 			- RX: PB11
- * 		- TM_USART_PinsPack_2
- * 			- TX: PC10
- * 			- RX: PC11
- * 		- TM_USART_PinsPack_3
- * 			- TX: PD8
- * 			- RX: PD9
- *
- * Called from TM_USART_Init()
- */
-extern void TM_USART3_InitPins(TM_USART_PinsPack_t pinspack);
-#endif
-
-#ifdef UART4
-/**
- * Initialize UART4 pins
- *
- * Parameters:
- * 	- TM_USART_PinsPack_t pinspack: Pinspack used
- * 		- TM_USART_PinsPack_1
- * 			- TX: PA0
- * 			- RX: PA1
- * 		- TM_USART_PinsPack_2
- * 			- TX: PC10
- * 			- RX: PC11
- *
- * Called from TM_USART_Init()
- */
-extern void TM_UART4_InitPins(TM_USART_PinsPack_t pinspack);
-#endif
-
-#ifdef UART5
-/**
- * Initialize UART5 pins
- *
- * Parameters:
- * 	- TM_USART_PinsPack_t pinspack: Pinspack used
- * 		- TM_USART_PinsPack_1
- * 			- TX: PC12
- * 			- RX: PD2
- *
- * Called from TM_USART_Init()
- */
-extern void TM_UART5_InitPins(TM_USART_PinsPack_t pinspack);
-#endif
-
-#ifdef USART6
-/**
- * Initialize USART6 pins
- *
- * Parameters:
- * 	- TM_USART_PinsPack_t pinspack: Pinspack used
- * 		- TM_USART_PinsPack_1
- * 			- TX: PC6
- * 			- RX: PC7
- * 		- TM_USART_PinsPack_2
- * 			- TX: PG14
- * 			- RX: PG9
- *
- * Called from TM_USART_Init()
- */
-extern void TM_USART6_InitPins(TM_USART_PinsPack_t pinspack);
-#endif
-
-#ifdef UART7
-/**
- * Initialize UART7 pins
- *
- * Parameters:
- * 	- TM_USART_PinsPack_t pinspack: Pinspack used
- * 		- TM_USART_PinsPack_1
- * 			- TX: PE8
- * 			- RX: PE7
- * 		- TM_USART_PinsPack_2
- * 			- TX: PF7
- * 			- RX: PF6
- *
- * Called from TM_USART_Init()
- */
-extern void TM_UART7_InitPins(TM_USART_PinsPack_t pinspack);
-#endif
-
-#ifdef UART8
-/**
- * Initialize UART8 pins
- *
- * Parameters:
- * 	- TM_USART_PinsPack_t pinspack: Pinspack used
- * 		- TM_USART_PinsPack_1
- * 			- TX: PE1
- * 			- RX: PE0
- *
- * Called from TM_USART_Init()
- */
-extern void TM_UART8_InitPins(TM_USART_PinsPack_t pinspack);
-#endif
-
 /**
  * Put character to USARTx
  *
@@ -498,107 +411,8 @@ extern uint16_t TM_USART_Gets(USART_TypeDef* USARTx, char* buffer, uint16_t bufs
  */
 extern uint8_t TM_USART_FindCharacter(USART_TypeDef* USARTx, volatile char c);
 
-#ifdef USART1
 /**
- * USART1 Interrupt handler
- *
- * Called by systen when data is received on USART1
- */
-extern void USART1_IRQHandler(void);
-
-__weak void TM_USART1_ReceiveHandler(uint8_t c);
-#endif
-
-#ifdef USART2
-/**
- * USART2 Interrupt handler
- *
- * Called by systen when data is received on USART2
- */
-extern void USART2_IRQHandler(void);
-
-__weak void TM_USART2_ReceiveHandler(uint8_t c);
-#endif
-
-#ifdef USART3
-/**
- * USART3 Interrupt handler
- *
- * Called by systen when data is received on USART3
- */
-extern void USART3_IRQHandler(void);
-
-__weak void TM_USART3_ReceiveHandler(uint8_t c);
-#endif
-
-#ifdef UART4
-/**
- * UART4 Interrupt handler
- *
- * Called by systen when data is received on UART4
- */
-extern void UART4_IRQHandler(void);
-
-__weak void TM_UART4_ReceiveHandler(uint8_t c);
-#endif
-
-#ifdef UART5
-/**
- * UART5 Interrupt handler
- *
- * Called by systen when data is received on UART5
- */
-extern void UART5_IRQHandler(void);
-
-__weak void TM_UART5_ReceiveHandler(uint8_t c);
-#endif
-
-#ifdef USART6
-/**
- * USART6 Interrupt handler
- *
- * Called by systen when data is received on USART6
- */
-extern void USART6_IRQHandler(void);
-
-__weak void TM_USART6_ReceiveHandler(uint8_t c);
-#endif
-
-#ifdef UART7
-/**
- * UART7 Interrupt handler
- *
- * Called by systen when data is received on UART7
- */
-extern void UART7_IRQHandler(void);
-
-__weak void TM_UART7_ReceiveHandler(uint8_t c);
-#endif
-
-#ifdef UART8
-/**
- * UART8 Interrupt handler
- *
- * Called by systen when data is received on UART8
- */
-extern void UART8_IRQHandler(void);
-
-__weak void TM_UART8_ReceiveHandler(uint8_t c);
-#endif
-
-/**
- * Insert received data into internal buffer
- * Called in interrupt
- *
- * Parameters:
- * 	- uint8_t USARTnum
- * 		- USART number: starting from 0
- * 	- char c: character to be inserted in buffer
- */
-extern void TM_USART_InsertToBuffer(uint8_t USARTnum, uint8_t c);
-
-/**
- * Check's if internal buffer is empty
+ * Checks if internal buffer is empty
  *
  * Parameters:
  * 	- USART_TypeDef* USARTx: which USART channel
@@ -607,6 +421,17 @@ extern void TM_USART_InsertToBuffer(uint8_t USARTnum, uint8_t c);
  * Returns 1 if buffer is empty, otherwise 0
  */
 extern uint8_t TM_USART_BufferEmpty(USART_TypeDef* USARTx);
+
+/**
+ * Checks if internal buffer is full
+ *
+ * Parameters:
+ * 	- USART_TypeDef* USARTx: which USART channel
+ * 		USART1, USART2, USART3, UART4, UART5, USART6, UART7. UART8
+ *
+ * Returns 1 if buffer is full, otherwise 0
+ */
+extern uint8_t TM_USART_BufferFull(USART_TypeDef* USARTx);
 
 /**
  * Clear USART internal cyclic buffer
@@ -620,17 +445,28 @@ extern uint8_t TM_USART_BufferEmpty(USART_TypeDef* USARTx);
 extern void TM_USART_ClearBuffer(USART_TypeDef* USARTx);
 
 /**
- * Get USART number
+ * These functions are used, if you want to make yourself interrupt handler.
  *
- * Called internally
+ * To enable them, you have to add corresponsing define in you defines.h file.
+ * For example:
+ *	- If you want to enable USART1 custom handler, then add following line in defines.h file:
+ *		#define TM_USART_USE_CUSTOM_IRQ
+ *		and create function TM_USART1_ReceiveHandler somewhere in your project
  *
  * Parameters:
- * 	- USART_TypeDef* USARTx: which USART channel
- * 		USART1, USART2, USART3, UART4, UART5, USART6, UART7. UART8
+ *	- uint8_t c: Character, received from USART
  *
- * Returns x - 1 number.
+ * Returns void
+ * With '__weak' parameter for prevent link errors if function is not declared
  */
-uint8_t TM_USART_GetUsartNumber(USART_TypeDef* USARTx);
+__weak void TM_USART1_ReceiveHandler(uint8_t c);
+__weak void TM_USART2_ReceiveHandler(uint8_t c);
+__weak void TM_USART3_ReceiveHandler(uint8_t c);
+__weak void TM_UART4_ReceiveHandler(uint8_t c);
+__weak void TM_UART5_ReceiveHandler(uint8_t c);
+__weak void TM_USART6_ReceiveHandler(uint8_t c);
+__weak void TM_UART7_ReceiveHandler(uint8_t c);
+__weak void TM_UART8_ReceiveHandler(uint8_t c);
 
 
 #endif

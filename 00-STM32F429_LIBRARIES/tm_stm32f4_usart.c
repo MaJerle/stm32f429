@@ -17,14 +17,83 @@
  * |----------------------------------------------------------------------
  */
 #include "tm_stm32f4_usart.h"
+
 /**
- * Variables
- *
+ * Internal USART struct
  */
-int8_t TM_USART_Buffer[8][TM_USART_BUFFER_SIZE];
-uint16_t tm_usart_buf_in[8] = {0, 0, 0, 0, 0, 0, 0, 0};
-uint16_t tm_usart_buf_out[8] = {0, 0, 0, 0, 0, 0, 0, 0};
-uint16_t tm_usart_buf_num[8] = {0, 0, 0, 0, 0, 0, 0, 0};
+typedef struct {
+	int8_t *Buffer;
+	uint16_t Size;
+	uint16_t Num;
+	uint16_t In;
+	uint16_t Out;
+} TM_USART_t;
+
+/* Set variables for buffers */
+#ifdef TM_USE_USART1
+int8_t TM_USART1_Buffer[TM_USART1_BUFFER_SIZE];
+#endif
+#ifdef TM_USE_USART2
+int8_t TM_USART2_Buffer[TM_USART2_BUFFER_SIZE];
+#endif
+#ifdef TM_USE_USART3
+int8_t TM_USART3_Buffer[TM_USART3_BUFFER_SIZE];
+#endif
+#ifdef TM_USE_UART4
+int8_t TM_UART4_Buffer[TM_UART4_BUFFER_SIZE];
+#endif
+#ifdef TM_USE_UART5
+int8_t TM_UART5_Buffer[TM_UART5_BUFFER_SIZE];
+#endif
+#ifdef TM_USE_USART6
+int8_t TM_USART6_Buffer[TM_USART6_BUFFER_SIZE];
+#endif
+#ifdef TM_USE_UART7
+int8_t TM_UART7_Buffer[TM_UART7_BUFFER_SIZE];
+#endif
+#ifdef TM_USE_UART8
+int8_t TM_UART8_Buffer[TM_UART8_BUFFER_SIZE];
+#endif
+
+#ifdef TM_USE_USART1
+TM_USART_t TM_USART1 = {TM_USART1_Buffer, TM_USART1_BUFFER_SIZE, 0, 0, 0};
+#endif
+#ifdef TM_USE_USART2
+TM_USART_t TM_USART2 = {TM_USART2_Buffer, TM_USART2_BUFFER_SIZE, 0, 0, 0};
+#endif
+#ifdef TM_USE_USART3
+TM_USART_t TM_USART3 = {TM_USART3_Buffer, TM_USART3_BUFFER_SIZE, 0, 0, 0};
+#endif
+#ifdef TM_USE_UART4
+TM_USART_t TM_UART4 = {TM_UART4_Buffer, TM_UART4_BUFFER_SIZE, 0, 0, 0};
+#endif
+#ifdef TM_USE_UART5
+TM_USART_t TM_UART5 = {TM_UART5_Buffer, TM_UART5_BUFFER_SIZE, 0, 0, 0};
+#endif
+#ifdef TM_USE_USART6
+TM_USART_t TM_USART6 = {TM_USART6_Buffer, TM_USART6_BUFFER_SIZE, 0, 0, 0};
+#endif
+#ifdef TM_USE_UART7
+TM_USART_t TM_UART7 = {TM_UART7_Buffer, TM_UART7_BUFFER_SIZE, 0, 0, 0};
+#endif
+#ifdef TM_USE_UART8
+TM_USART_t TM_UART8 = {TM_UART8_Buffer, TM_UART8_BUFFER_SIZE, 0, 0, 0};
+#endif
+
+GPIO_InitTypeDef GPIO_InitStruct;
+
+void TM_USART1_InitPins(TM_USART_PinsPack_t pinspack);
+void TM_USART2_InitPins(TM_USART_PinsPack_t pinspack);
+void TM_USART3_InitPins(TM_USART_PinsPack_t pinspack);
+void TM_UART4_InitPins(TM_USART_PinsPack_t pinspack);
+void TM_UART5_InitPins(TM_USART_PinsPack_t pinspack);
+void TM_USART6_InitPins(TM_USART_PinsPack_t pinspack);
+void TM_UART7_InitPins(TM_USART_PinsPack_t pinspack);
+void TM_UART8_InitPins(TM_USART_PinsPack_t pinspack);
+void TM_USART_INT_InsertToBuffer(TM_USART_t* u, uint8_t c);
+TM_USART_t* TM_USART_INT_GetUsart(USART_TypeDef* USARTx);
+uint8_t TM_USART_INT_GetSubPriority(USART_TypeDef* USARTx);
+uint8_t TM_USART_BufferFull(USART_TypeDef* USARTx);
 
 void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t baudrate) {
 	/**
@@ -36,6 +105,12 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 	USART_InitTypeDef 	USART_InitStruct;
 	NVIC_InitTypeDef	NVIC_InitStruct;
 
+	/* Set default GPIO settings */
+	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
+	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
+	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
+	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
+	
 	/**
 	 * Default settings:
 	 * 
@@ -148,13 +223,18 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 		USART_InitStruct.USART_WordLength = TM_UART8_WORD_LENGTH;
 	}
 #endif
-
+	
+	/* Disable */
+	USART_Cmd(USARTx, DISABLE);
+	/* Deinit first */
+	USART_DeInit(USARTx);
+	
+	/* Init */
 	USART_Init(USARTx, &USART_InitStruct);
+	/* Enable */
 	USART_Cmd(USARTx, ENABLE);
 	
-	/**
-	 * Enable RX interrupt
-	 */
+	/* Enable RX interrupt */
 	USART_ITConfig(USARTx, USART_IT_RXNE, ENABLE);
 
 	/**
@@ -166,22 +246,224 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 	 */
 	NVIC_InitStruct.NVIC_IRQChannelCmd = ENABLE;
 	NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority = TM_USART_NVIC_PRIORITY;
-	NVIC_InitStruct.NVIC_IRQChannelSubPriority = TM_USART_GetUsartNumber(USARTx);
+	NVIC_InitStruct.NVIC_IRQChannelSubPriority = TM_USART_INT_GetSubPriority(USARTx);
 	NVIC_Init(&NVIC_InitStruct);
 }
 
-#ifdef TM_USE_USART1
-void TM_USART1_InitPins(TM_USART_PinsPack_t pinspack) {
-	//GPIO Structure
-	GPIO_InitTypeDef GPIO_InitStruct;
+uint8_t TM_USART_Getc(USART_TypeDef* USARTx) {
+	int8_t c = 0;
+	TM_USART_t* u = TM_USART_INT_GetUsart(USARTx);
 	
+	/* Check if we have any data in buffer */
+	if (u->Num > 0) {
+		if (u->Out == u->Size) {
+			u->Out = 0;
+		}
+		c = *(u->Buffer + u->Out);
+		u->Out++;
+		u->Num--;
+	}
+	return c;
+}
+
+uint16_t TM_USART_Gets(USART_TypeDef* USARTx, char* buffer, uint16_t bufsize) {
+	uint16_t i = 0;
+	
+	/* Check for any data on USART */
+	if (TM_USART_BufferEmpty(USARTx) || (!TM_USART_FindCharacter(USARTx, '\n') && !TM_USART_BufferFull(USARTx))) {
+		return 0;
+	}
+	
+	/* If available buffer size is more than 0 characters */
+	while (i < (bufsize - 1)) {
+		/* We have available data */
+		buffer[i] = (char) TM_USART_Getc(USARTx);
+		/* Check for end of string */
+		if (buffer[i] == '\n') {
+			i++;
+			/* Done */
+			break;
+		} else {
+			i++;
+		}
+	}
+	
+	/* Add zero to the end of string */
+	buffer[i] = 0;               
+
+	return (i);
+}
+
+uint8_t TM_USART_BufferEmpty(USART_TypeDef* USARTx) {
+	TM_USART_t* u = TM_USART_INT_GetUsart(USARTx);
+	return (u->Num == 0);
+}
+
+uint8_t TM_USART_BufferFull(USART_TypeDef* USARTx) {
+	TM_USART_t* u = TM_USART_INT_GetUsart(USARTx);
+	return (u->Num == u->Size);
+}
+
+void TM_USART_ClearBuffer(USART_TypeDef* USARTx) {
+	TM_USART_t* u = TM_USART_INT_GetUsart(USARTx);
+	
+	u->Num = 0;
+	u->In = 0;
+	u->Out = 0;
+}
+
+uint8_t TM_USART_FindCharacter(USART_TypeDef* USARTx, volatile char c) {
+	uint16_t num, out;
+	TM_USART_t* u = TM_USART_INT_GetUsart(USARTx);
+	
+	/* Temp variables */
+	num = u->Num;
+	out = u->Out;
+	
+	while (num > 0) {
+		/* Check overflow */
+		if (out == u->Size) {
+			out = 0;
+		}
+		if (u->Buffer[out] == c) {
+			/* Character found */
+			return 1;
+		}
+		out++;
+		num--;
+	}
+	
+	/* Character is not in buffer */
+	return 0;
+}
+
+void TM_USART_Puts(USART_TypeDef* USARTx, char* str) {
+	while (*str) {
+		/* Send char by char */
+		TM_USART_Putc(USARTx, *str++);
+	}
+}
+
+void TM_USART_Putc(USART_TypeDef* USARTx, volatile char c) {
+	/* Wait to be ready */
+	while (!USART_GetFlagStatus(USARTx, USART_FLAG_TXE));
+	/* Send data */
+	USARTx->DR = (uint16_t)(c & 0x01FF);
+}
+
+/* Private functions */
+void TM_USART_INT_InsertToBuffer(TM_USART_t* u, uint8_t c) {
+	/* Still available space in buffer */
+	if (u->Num < u->Size) {
+		/* Check overflow */
+		if (u->In == u->Size) {
+			u->In = 0;
+		}
+		/* Add to buffer */
+		u->Buffer[u->In] = c;
+		u->In++;
+		u->Num++;
+	}
+}
+
+TM_USART_t* TM_USART_INT_GetUsart(USART_TypeDef* USARTx) {
+	TM_USART_t* u;
+	
+#ifdef TM_USE_USART1
+	if (USARTx == USART1) {
+		u = &TM_USART1;
+	}
+#endif
+#ifdef TM_USE_USART2
+	if (USARTx == USART2) {
+		u = &TM_USART2;
+	}
+#endif
+#ifdef TM_USE_USART3
+	if (USARTx == USART3) {
+		u = &TM_USART3;
+	}
+#endif
+#ifdef TM_USE_UART4
+	if (USARTx == UART4) {
+		u = &TM_UART4;
+	}
+#endif
+#ifdef TM_USE_UART5
+	if (USARTx == UART5) {
+		u = &TM_UART5;
+	}
+#endif
+#ifdef TM_USE_USART6
+	if (USARTx == USART6) {
+		u = &TM_USART6;
+	}
+#endif
+#ifdef TM_USE_UART7
+	if (USARTx == UART7) {
+		u = &TM_UART7;
+	}
+#endif
+#ifdef TM_USE_UART8
+	if (USARTx == UART8) {
+		u = &TM_UART8;
+	}
+#endif
+
+	return u;
+}
+
+uint8_t TM_USART_INT_GetSubPriority(USART_TypeDef* USARTx) {
+	uint8_t u;
+	
+#ifdef TM_USE_USART1
+	if (USARTx == USART1) {
+		u = 0;
+	}
+#endif
+#ifdef TM_USE_USART2
+	if (USARTx == USART2) {
+		u = 1;
+	}
+#endif
+#ifdef TM_USE_USART3
+	if (USARTx == USART3) {
+		u = 2;
+	}
+#endif
+#ifdef TM_USE_UART4
+	if (USARTx == UART4) {
+		u = 4;
+	}
+#endif
+#ifdef TM_USE_UART5
+	if (USARTx == UART5) {
+		u = 5;
+	}
+#endif
+#ifdef TM_USE_USART6
+	if (USARTx == USART6) {
+		u = 6;
+	}
+#endif
+#ifdef TM_USE_UART7
+	if (USARTx == UART7) {
+		u = 7;
+	}
+#endif
+#ifdef TM_USE_UART8
+	if (USARTx == UART8) {
+		u = 8;
+	}
+#endif
+	
+	return u;
+}
+
+#ifdef TM_USE_USART1
+void TM_USART1_InitPins(TM_USART_PinsPack_t pinspack) {	
 	//Enable clock for USART1
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, ENABLE);
-
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
-	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
-	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
 
 	if (pinspack == TM_USART_PinsPack_1) {
 		// Enable clock for GPIOA
@@ -211,15 +493,8 @@ void TM_USART1_InitPins(TM_USART_PinsPack_t pinspack) {
 
 #ifdef TM_USE_USART2
 void TM_USART2_InitPins(TM_USART_PinsPack_t pinspack) {
-	//GPIO Structure
-	GPIO_InitTypeDef GPIO_InitStruct;
 	//Enable clock for USART2
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART2, ENABLE);
-
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
-	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
-	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
 
 	if (pinspack == TM_USART_PinsPack_1) {
 		// Enable clock for GPIOA
@@ -249,15 +524,8 @@ void TM_USART2_InitPins(TM_USART_PinsPack_t pinspack) {
 
 #ifdef TM_USE_USART3
 void TM_USART3_InitPins(TM_USART_PinsPack_t pinspack) {
-	//GPIO Structure
-	GPIO_InitTypeDef GPIO_InitStruct;
 	//Enable clock for USART3
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART3, ENABLE);
-
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
-	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
-	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
 
 	if (pinspack == TM_USART_PinsPack_1) {
 		// Enable clock for GPIOB
@@ -298,15 +566,8 @@ void TM_USART3_InitPins(TM_USART_PinsPack_t pinspack) {
 
 #ifdef TM_USE_UART4
 void TM_UART4_InitPins(TM_USART_PinsPack_t pinspack) {
-	//GPIO Structure
-	GPIO_InitTypeDef GPIO_InitStruct;
 	//Enable clock for UART4
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_UART4, ENABLE);
-
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
-	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
-	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
 
 	if (pinspack == TM_USART_PinsPack_1) {
 		// Enable clock for GPIOA
@@ -336,15 +597,8 @@ void TM_UART4_InitPins(TM_USART_PinsPack_t pinspack) {
 
 #ifdef TM_USE_UART5
 void TM_UART5_InitPins(TM_USART_PinsPack_t pinspack) {
-	//GPIO Structure
-	GPIO_InitTypeDef GPIO_InitStruct;
 	//Enable clock for UART5
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_UART5, ENABLE);
-
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
-	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
-	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
 
 	if (pinspack == TM_USART_PinsPack_1) {
 		// Enable clock for GPIOC and GPIOD
@@ -366,15 +620,8 @@ void TM_UART5_InitPins(TM_USART_PinsPack_t pinspack) {
 
 #ifdef TM_USE_USART6
 void TM_USART6_InitPins(TM_USART_PinsPack_t pinspack) {
-	//GPIO Structure
-	GPIO_InitTypeDef GPIO_InitStruct;
 	//Enable clock for USART6
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART6, ENABLE);
-
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
-	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
-	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
 
 	if (pinspack == TM_USART_PinsPack_1) {
 		// Enable clock for GPIOC
@@ -404,15 +651,8 @@ void TM_USART6_InitPins(TM_USART_PinsPack_t pinspack) {
 
 #ifdef TM_USE_UART7
 void TM_UART7_InitPins(TM_USART_PinsPack_t pinspack) {
-	//GPIO Structure
-	GPIO_InitTypeDef GPIO_InitStruct;
 	//Enable clock for UART7
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_UART7, ENABLE);
-
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
-	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
-	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
 
 	if (pinspack == TM_USART_PinsPack_1) {
 		// Enable clock for GPIOE
@@ -442,15 +682,8 @@ void TM_UART7_InitPins(TM_USART_PinsPack_t pinspack) {
 
 #ifdef TM_USE_UART8
 void TM_UART8_InitPins(TM_USART_PinsPack_t pinspack) {
-	//GPIO Structure
-	GPIO_InitTypeDef GPIO_InitStruct;
 	//Enable clock for UART8
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_UART8, ENABLE);
-
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
-	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
-	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
 
 	if (pinspack == TM_USART_PinsPack_1) {
 		// Enable clock for GPIOE
@@ -467,20 +700,7 @@ void TM_UART8_InitPins(TM_USART_PinsPack_t pinspack) {
 }
 #endif
 
-void TM_USART_Putc(USART_TypeDef* USARTx, volatile char c) {
-	//Wait until transmitter is empty
-	while (!USART_GetFlagStatus(USARTx, USART_FLAG_TXE));
-	//Send data
-	USART_SendData(USARTx, c);
-}
-
-void TM_USART_Puts(USART_TypeDef* USARTx, char* str) {
-	while (*str) {
-		TM_USART_Putc(USARTx, *str++);
-	}
-}
-
-#ifdef USART1
+#ifdef TM_USE_USART1
 void USART1_IRQHandler(void) {
 	//Check if interrupt was because data is received
 	if (USART_GetITStatus(USART1, USART_IT_RXNE)) {
@@ -489,13 +709,13 @@ void USART1_IRQHandler(void) {
 			TM_USART1_ReceiveHandler(USART1->DR);
 		#else
 			//Put received data into internal buffer
-			TM_USART_InsertToBuffer(0, USART1->DR);
+			TM_USART_INT_InsertToBuffer(&TM_USART1, USART1->DR);
 		#endif
 	}
 }
 #endif
 
-#ifdef USART2
+#ifdef TM_USE_USART2
 void USART2_IRQHandler(void) {
 	//Check if interrupt was because data is received
 	if (USART_GetITStatus(USART2, USART_IT_RXNE)) {
@@ -504,13 +724,13 @@ void USART2_IRQHandler(void) {
 			TM_USART2_ReceiveHandler(USART2->DR);
 		#else 
 			//Put received data into internal buffer
-			TM_USART_InsertToBuffer(1, USART2->DR);
+			TM_USART_INT_InsertToBuffer(&TM_USART2, USART2->DR);
 		#endif
 	}
 }
 #endif
 
-#ifdef USART3
+#ifdef TM_USE_USART3
 void USART3_IRQHandler(void) {
 	//Check if interrupt was because data is received
 	if (USART_GetITStatus(USART3, USART_IT_RXNE)) {
@@ -519,13 +739,13 @@ void USART3_IRQHandler(void) {
 			TM_USART3_ReceiveHandler(USART3->DR);
 		#else
 			//Put received data into internal buffer
-			TM_USART_InsertToBuffer(2, USART3->DR);
+			TM_USART_INT_InsertToBuffer(&TM_USART3, USART3->DR);
 		#endif
 	}
 }
 #endif
 
-#ifdef UART4
+#ifdef TM_USE_UART4
 void UART4_IRQHandler(void) {
 	//Check if interrupt was because data is received
 	if (USART_GetITStatus(UART4, USART_IT_RXNE)) {
@@ -534,13 +754,13 @@ void UART4_IRQHandler(void) {
 			TM_UART4_ReceiveHandler(UART4->DR);
 		#else
 			//Put received data into internal buffer
-			TM_USART_InsertToBuffer(3, UART4->DR);
+			TM_USART_INT_InsertToBuffer(&TM_UART4, UART4->DR);
 		#endif
 	}
 }
 #endif
 
-#ifdef UART5
+#ifdef TM_USE_UART5
 void UART5_IRQHandler(void) {
 	//Check if interrupt was because data is received
 	if (USART_GetITStatus(UART5, USART_IT_RXNE)) {
@@ -549,13 +769,13 @@ void UART5_IRQHandler(void) {
 			TM_UART5_ReceiveHandler(UART5->DR);
 		#else
 			//Put received data into internal buffer
-			TM_USART_InsertToBuffer(4, UART5->DR);
+			TM_USART_INT_InsertToBuffer(&TM_UART5, UART5->DR);
 		#endif
 	}
 }
 #endif
 
-#ifdef USART6
+#ifdef TM_USE_USART6
 void USART6_IRQHandler(void) {
 	//Check if interrupt was because data is received
 	if (USART_GetITStatus(USART6, USART_IT_RXNE)) {
@@ -564,13 +784,13 @@ void USART6_IRQHandler(void) {
 			TM_USART6_ReceiveHandler(USART6->DR);
 		#else
 			//Put received data into internal buffer
-			TM_USART_InsertToBuffer(5, USART6->DR);
+			TM_USART_INT_InsertToBuffer(&TM_USART6, USART6->DR);
 		#endif
 	}
 }
 #endif
 
-#ifdef UART7
+#ifdef TM_USE_UART7
 void UART7_IRQHandler(void) {
 	//Check if interrupt was because data is received
 	if (USART_GetITStatus(UART7, USART_IT_RXNE)) {
@@ -579,13 +799,13 @@ void UART7_IRQHandler(void) {
 			TM_UART7_ReceiveHandler(UART7->DR);
 		#else
 			//Put received data into internal buffer
-			TM_USART_InsertToBuffer(6, UART7->DR);
+			TM_USART_INT_InsertToBuffer(&TM_UART7, UART7->DR);
 		#endif
 	}
 }
 #endif
 
-#ifdef UART8
+#ifdef TM_USE_UART8
 void UART8_IRQHandler(void) {
 	//Check if interrupt was because data is received
 	if (USART_GetITStatus(UART8, USART_IT_RXNE)) {
@@ -594,146 +814,8 @@ void UART8_IRQHandler(void) {
 			TM_UART8_ReceiveHandler(UART8->DR);
 		#else
 			//Put received data into internal buffer
-			TM_USART_InsertToBuffer(7, UART8->DR);
+			TM_USART_INT_InsertToBuffer(&TM_UART8, UART8->DR);
 		#endif
 	}
 }
 #endif
-
-void TM_USART_InsertToBuffer(uint8_t usart_num, uint8_t c) {
-	//uint8_t usart_num = TM_USART_GetUsartNumber(USARTx);
-	//Still available space in buffer
-	if (tm_usart_buf_num[usart_num] < TM_USART_BUFFER_SIZE) {
-		if (tm_usart_buf_in[usart_num] > (TM_USART_BUFFER_SIZE - 1)) {
-			tm_usart_buf_in[usart_num] = 0;
-		}
-		TM_USART_Buffer[usart_num][tm_usart_buf_in[usart_num]] = c;
-		tm_usart_buf_in[usart_num]++;
-		tm_usart_buf_num[usart_num]++;
-	}
-}
-
-uint8_t TM_USART_Getc(USART_TypeDef* USARTx) {
-	uint8_t usart_num = TM_USART_GetUsartNumber(USARTx);
-	uint8_t c = 0;
-	/* Check if we have any data in buffer */
-	if (tm_usart_buf_num[usart_num] > 0) {
-		if (tm_usart_buf_out[usart_num] > (TM_USART_BUFFER_SIZE - 1)) {
-			tm_usart_buf_out[usart_num] = 0;
-		}
-		c = TM_USART_Buffer[usart_num][tm_usart_buf_out[usart_num]];
-		TM_USART_Buffer[usart_num][tm_usart_buf_out[usart_num]] = 0;
-		tm_usart_buf_out[usart_num]++;
-		tm_usart_buf_num[usart_num]--;
-	}
-	return c;
-}
-
-uint16_t TM_USART_Gets(USART_TypeDef* USARTx, char* buffer, uint16_t bufsize) {
-	uint16_t i = 0;
-	
-	/* Check for any data on USART */
-	if (TM_USART_BufferEmpty(USARTx) || !TM_USART_FindCharacter(USARTx, '\n')) {
-		return 0;
-	}
-	
-	/* If available buffer size is more than 0 characters */
-	while (i < (bufsize - 1)) {
-		/* We have available data */
-		buffer[i] = (char) TM_USART_Getc(USARTx);
-		/* Check for end of string */
-		if (buffer[i] == '\n') {
-			/* Done */
-			break;
-		}
-		
-		/* Next index */
-		i++;
-	}
-	
-	/* Add zero to the end of string */
-	buffer[++i] = 0;               
-
-	return (i);
-}
-
-uint8_t TM_USART_BufferEmpty(USART_TypeDef* USARTx) {
-	uint8_t usart_num = TM_USART_GetUsartNumber(USARTx);
-	return !(tm_usart_buf_num[usart_num] > 0);
-}
-
-void TM_USART_ClearBuffer(USART_TypeDef* USARTx) {
-	uint8_t usart_num = TM_USART_GetUsartNumber(USARTx);
-	tm_usart_buf_num[usart_num] = 0;
-	tm_usart_buf_in[usart_num] = 0;
-	tm_usart_buf_out[usart_num] = 0;
-}
-
-uint8_t TM_USART_FindCharacter(USART_TypeDef* USARTx, volatile char c) {
-	uint16_t num, out;
-	uint8_t usart_num = TM_USART_GetUsartNumber(USARTx);
-	
-	num = tm_usart_buf_num[usart_num];
-	out = tm_usart_buf_out[usart_num];
-	
-	while (num > 0) {
-		if (out > (TM_USART_BUFFER_SIZE - 1)) {
-			out = 0;
-		}
-		if (TM_USART_Buffer[usart_num][out] == c) {
-			/* Character founc */
-			return 1;
-		}
-		out++;
-		num--;
-	}
-	
-	/* Character is not in buffer */
-	return 0;
-}
-
-
-uint8_t TM_USART_GetUsartNumber(USART_TypeDef* USARTx) {
-#ifdef USART1
-	if (USARTx == USART1) {
-		return 0;
-	}
-#endif
-#ifdef USART2
-	if (USARTx == USART2) {
-		return 1;
-	}
-#endif
-#ifdef USART3
-	if (USARTx == USART3) {
-		return 2;
-	}
-#endif
-#ifdef UART4
-	if (USARTx == UART4) {
-		return 3;
-	}
-#endif
-#ifdef UART5
-	if (USARTx == UART5) {
-		return 4;
-	}
-#endif
-#ifdef USART6
-	if (USARTx == USART6) {
-		return 5;
-	}
-#endif
-#ifdef UART7
-	if (USARTx == UART7) {
-		return 6;
-	}
-#endif
-#ifdef UART8
-	if (USARTx == UART8) {
-		return 7;
-	}
-#endif
-
-	return 0;
-}
