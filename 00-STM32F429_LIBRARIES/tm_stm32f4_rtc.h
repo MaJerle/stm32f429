@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/07/library-19-use-internal-rtc-on-stm32f4xx-devices/
- *	@version 	v1.4
+ *	@version 	v1.5
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -25,6 +25,12 @@
  * | You should have received a copy of the GNU General Public License
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
+ *
+ * Version 1.5
+ *	- December 21, 2014
+ *	- Added 2 new functions:
+ *		TM_RTC_GetDaysInMonth: returns number of days in specific month and year
+ *		TM_RTC_GetDaysInYear: returns number of days in specific year
  *
  * Version 1.4
  *	- December 21, 2014
@@ -62,7 +68,7 @@
  *	PC15			OSC2			Oscillator terminal 2
  */
 #ifndef TM_RTC_H
-#define TM_RTC_H 140
+#define TM_RTC_H 150
 /**
  * Library dependencies
  * - STM32F4xx
@@ -302,6 +308,17 @@ typedef struct {
 } TM_RTC_AlarmTime_t;
 
 /**
+ * Initialize RTC
+ *
+ * Parameters:
+ * 	- TM_RTC_ClockSource_t source:
+ * 		Select RTC clock source
+ *
+ * Returns 0 if RTC was initialized first time (power up), so you know when to set date and time
+ */
+extern uint32_t TM_RTC_Init(TM_RTC_ClockSource_t source);
+
+/**
  * Get number of seconds from 01.01.1970 00:00:00
  *
  * Parameters:
@@ -323,16 +340,6 @@ extern uint32_t TM_RTC_GetUnixTimeStamp(TM_RTC_Time_t* data);
  * 		Seconds from 01.01.1970 00:00:00
  */
 extern void TM_RTC_GetDateTimeFromUnix(TM_RTC_Time_t* data, uint32_t unix);
-
-/**
- * Initialize RTC
- *
- * Parameters:
- * 	- TM_RTC_ClockSource_t source:
- * 		Select RTC clock source
- * Returns 0 if RTC was initialized first time (power up), so you know when to set date and time
- */
-extern uint32_t TM_RTC_Init(TM_RTC_ClockSource_t source);
 
 /**
  * Select RTC interrupt
@@ -393,6 +400,26 @@ extern TM_RTC_Result_t TM_RTC_SetDateTimeString(char* str);
 extern void TM_RTC_GetDateTime(TM_RTC_Time_t* data, TM_RTC_Format_t format);
 
 /**
+ * Get number of days in month
+ *
+ * Parameters:
+ * 	- uint8_t month:
+ * 		Month, for which you need number of days (1 - 12)
+ * 	- uint8_t year:
+ *		Specify year you want to know, last 2 digits only (00-99)
+ */
+extern uint8_t TM_RTC_GetDaysInMonth(uint8_t month, uint8_t year);
+
+/**
+ * Get number of days in year
+ *
+ * Parameters:
+ * 	- uint8_t year:
+ *		Specify year you want to know days in, last 2 digits only (00-99)
+ */
+extern uint16_t TM_RTC_GetDaysInYear(uint8_t year);
+
+/**
  * Enable Alarm A or Alarm B for RTC
  *
  * Parameters:
@@ -404,7 +431,6 @@ extern void TM_RTC_GetDateTime(TM_RTC_Time_t* data, TM_RTC_Format_t format);
  * 		Stored date and time format, can be binary or "binary coded decimal"
  */
 extern void TM_RTC_SetAlarm(TM_RTC_Alarm_t Alarm, TM_RTC_AlarmTime_t* AlarmTime, TM_RTC_Format_t format);
-
 
 /**
  * Disable specific alarm

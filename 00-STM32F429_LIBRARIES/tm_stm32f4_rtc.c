@@ -277,6 +277,7 @@ void TM_RTC_GetDateTime(TM_RTC_Time_t* data, TM_RTC_Format_t format) {
 		RTC_GetDate(RTC_Format_BCD, &RTC_DateStruct);
 	}
 	
+	/* Get date from RTC */
 	data->year = RTC_DateStruct.RTC_Year;
 	data->month = RTC_DateStruct.RTC_Month;
 	data->date = RTC_DateStruct.RTC_Date;
@@ -285,6 +286,25 @@ void TM_RTC_GetDateTime(TM_RTC_Time_t* data, TM_RTC_Format_t format) {
 	/* Calculate unix offset */
 	unix = TM_RTC_GetUnixTimeStamp(data);
 	data->unix = unix;
+}
+
+uint8_t TM_RTC_GetDaysInMonth(uint8_t month, uint8_t year) {
+	/* Check input data */
+	if (
+		month == 0 ||
+		month > 12
+	) {
+		/* Error */
+		return 0;
+	}
+	
+	/* Return days in month */
+	return TM_RTC_Months[TM_RTC_LEAP_YEAR(2000 + year) ? 1 : 0][month - 1];
+}
+
+uint16_t TM_RTC_GetDaysInYear(uint8_t year) {
+	/* Return days in year */
+	return TM_RTC_DAYS_IN_YEAR(2000 + year);
 }
 
 void TM_RTC_Config(TM_RTC_ClockSource_t source) {
@@ -444,8 +464,12 @@ void TM_RTC_GetDateTimeFromUnix(TM_RTC_Time_t* data, uint32_t unix) {
 	/* Get year */
 	year = 1970;
 	while (1) {
-		if (TM_RTC_LEAP_YEAR(year) && unix >= 366) {
-			unix -= 366;
+		if (TM_RTC_LEAP_YEAR(year)) {
+			if (unix >= 366) {
+				unix -= 366;
+			} else {
+				break;
+			}
 		} else if (unix >= 365) {
 			unix -= 365;
 		} else {
