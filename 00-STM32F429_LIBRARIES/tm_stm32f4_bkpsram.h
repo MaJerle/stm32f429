@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/12/library-45-interface-backup-sram-on-stm32f4
- *	@version 	v1.0
+ *	@version 	v1.1
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -25,6 +25,10 @@
  * | You should have received a copy of the GNU General Public License
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
+ * 
+ * Version 1.1
+ *	- December 22, 2014
+ *	- You can now store float variables, too
  *
  *  This library is not supported for STM32F401 and STM32F411,
  *	because they don't have backup SRAM.
@@ -33,7 +37,7 @@
  *	you will get a "HardFault" error.
  */
 #ifndef TM_BKPSRAM_H
-#define TM_BKPSRAM_H 100
+#define TM_BKPSRAM_H 110
 
 /* C++ detection */
 #ifdef __cplusplus
@@ -139,7 +143,7 @@ extern void TM_BKPSRAM_Init(void);
  * 	- uint16_t address:
  * 		Address where to save data in SRAM.
  * 		Value between 0 and TM_BKPSRAM_GetMemorySize() - 4 is valid, if more, HardFault error can happen.
- * - uint8_t value:
+ * - uint32_t value:
  * 		32-bit value which will be stored to backup SRAM
  *
  * No return
@@ -161,6 +165,36 @@ extern void TM_BKPSRAM_Init(void);
  * Defined as macro
  */
 #define TM_BKPSRAM_Read32(address)			(*(__IO uint32_t *) (BKPSRAM_BASE + address))
+
+/**
+ * Write 32-bit float value to backup SRAM at desired location
+ *
+ * Parameters:
+ * 	- uint16_t address:
+ * 		Address where to save data in SRAM.
+ * 		Value between 0 and TM_BKPSRAM_GetMemorySize() - 4 is valid, if more, HardFault error can happen.
+ * - float value:
+ * 		32-bit float value which will be stored to backup SRAM
+ *
+ * No return
+ *
+ * Defined as macro
+ */
+#define TM_BKPSRAM_WriteFloat(address, value)	(*(__IO float *) (BKPSRAM_BASE + (address)) = (value))
+
+/**
+ * Read 32-bit float value from backup SRAM at desired location
+ *
+ * Parameters:
+ * 	- uint16_t address:
+ * 		Address from where read data in SRAM.
+ * 		Value between 0 and TM_BKPSRAM_GetMemorySize() - 4 is valid, if more, HardFault error can happen.
+ *
+ * 32-bit float value at specific location is returned
+ *
+ * Defined as macro
+ */
+#define TM_BKPSRAM_ReadFloat(address)			(*(__IO float *) (BKPSRAM_BASE + address))
 
 /* C++ detection */
 #ifdef __cplusplus

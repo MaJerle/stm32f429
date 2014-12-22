@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/05/library-09-i2c-for-stm32f4xx/
- *	@version 	v1.2
+ *	@version 	v1.3
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -26,14 +26,19 @@
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
  *
- * Version 1.1
- *	- 08.09.2014
- *	- Added support to check if device is connected to I2C bus
- *	
+ * Version 1.3
+ *	- December 22, 2014
+ *	- Added option to read multi bytes from device without setting register from where
+ *
  * Version 1.2
- *	- 14.08.2014
+ *	- August 14, 2014
  *	- If you connect more devices on one I2C with different max SCL speed, low speed will be always selected.
  *	- Added some additional pins for I2C
+ *
+ * Version 1.1
+ *	- September 08, 2014
+ *	- Added support to check if device is connected to I2C bus
+ *	
  *
  *	Pinout on STM32F4 device
  *	
@@ -60,7 +65,7 @@
  *
  */
 #ifndef TM_I2C_H
-#define TM_I2C_H 110
+#define TM_I2C_H 130
 /**
  * Library dependencies
  * - STM32F4xx
@@ -167,54 +172,6 @@ typedef enum {
  */
 extern void TM_I2C_Init(I2C_TypeDef* I2Cx, TM_I2C_PinsPack_t pinspack, uint32_t clockSpeed);
 
-#ifdef I2C1
-/**
- * Initialize I2C1
- *
- * Parameters:
- * 	- TM_I2C_PinsPack_t pinspack
- * 		- TM_I2C_PinsPack_1:
- * 			- SCL: PB6
- * 			- SDA: PB7
- * 		- TM_I2C_PinsPack_2:
- * 			- SCL: PB8
- * 			- SDA: PB9
- */
-extern void TM_I2C1_InitPins(TM_I2C_PinsPack_t pinspack);
-#endif
-
-#ifdef I2C2
-/**
- * Initialize I2C2
- *
- * Parameters:
- * 	- TM_I2C_PinsPack_t pinspack
- * 		- TM_I2C_PinsPack_1:
- * 			- SCL: PB10
- * 			- SDA: PB11
- * 		- TM_I2C_PinsPack_2:
- * 			- SCL: PF1
- * 			- SDA: PF0
- */
-extern void TM_I2C2_InitPins(TM_I2C_PinsPack_t pinspack);
-#endif
-
-#ifdef I2C3
-/**
- * Initialize I2C3
- *
- * Parameters:
- * 	- TM_I2C_PinsPack_t pinspack
- * 		- TM_I2C_PinsPack_1:
- * 			- SCL: PA8
- * 			- SDA: PC9
- * 		- TM_I2C_PinsPack_2:
- * 			- SCL: PH7
- * 			- SDA: PH8
- */
-extern void TM_I2C3_InitPins(TM_I2C_PinsPack_t pinspack);
-#endif
-
 /**
  * Read single byte from slave
  *
@@ -249,6 +206,17 @@ extern void TM_I2C_Write(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_
  *	- uint8_t count: how many bytes will be read
  */
 extern void TM_I2C_ReadMulti(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t *data, uint16_t count);
+
+/**
+ * Read multi bytes from slave without setting register from where to start read
+ *
+ * Parameters:
+ * 	- I2C_TypeDef* I2Cx: I2C used
+ * 	- uint8_t address: 7 bit slave address, left aligned, bits 7:1 are used, LSB bit is not used
+ *	- uint8_t *data: pointer to data array to store data from slave
+ *	- uint8_t count: how many bytes will be read
+ */
+extern void TM_I2C_ReadMultiNoRegister(I2C_TypeDef* I2Cx, uint8_t address, uint8_t* data, uint16_t count);
 
 /**
  * Write multi bytes from slave

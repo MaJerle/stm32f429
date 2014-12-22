@@ -20,13 +20,26 @@
 
 uint32_t TM_I2C_Timeout;
 uint32_t TM_I2C_INT_Clocks[3] = {0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF};
+GPIO_InitTypeDef GPIO_I2C_InitStruct;
+
+/* Private functions */
+void TM_I2C1_InitPins(TM_I2C_PinsPack_t pinspack);
+void TM_I2C2_InitPins(TM_I2C_PinsPack_t pinspack);
+void TM_I2C3_InitPins(TM_I2C_PinsPack_t pinspack);
 
 void TM_I2C_Init(I2C_TypeDef* I2Cx, TM_I2C_PinsPack_t pinspack, uint32_t clockSpeed) {
 	I2C_InitTypeDef I2C_InitStruct;
 	
+	/* Set default I2C GPIO	settings */
+	GPIO_I2C_InitStruct.GPIO_Mode = GPIO_Mode_AF;
+	GPIO_I2C_InitStruct.GPIO_OType = GPIO_OType_OD;
+	GPIO_I2C_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
+	GPIO_I2C_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
+	
 	if (I2Cx == I2C1) {
 		/* Enable clock */
 		RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C1, ENABLE);
+		
 		/* Enable pins */
 		TM_I2C1_InitPins(pinspack);
 		
@@ -79,117 +92,13 @@ void TM_I2C_Init(I2C_TypeDef* I2Cx, TM_I2C_PinsPack_t pinspack, uint32_t clockSp
 		I2C_InitStruct.I2C_Ack = TM_I2C3_ACK;
 		I2C_InitStruct.I2C_DutyCycle = TM_I2C3_DUTY_CYCLE;
 	}
+	
+	/* Disable I2C first */
+	I2C_Cmd(I2Cx, DISABLE);
 	/* Initialize I2C */
 	I2C_Init(I2Cx, &I2C_InitStruct);
 	/* Enable I2C */
 	I2C_Cmd(I2Cx, ENABLE);
-}
-
-void TM_I2C1_InitPins(TM_I2C_PinsPack_t pinspack) {
-	GPIO_InitTypeDef GPIO_InitDef;
-	
-	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
-	
-	GPIO_InitDef.GPIO_Mode = GPIO_Mode_AF;
-	GPIO_InitDef.GPIO_OType = GPIO_OType_OD;
-	GPIO_InitDef.GPIO_PuPd = GPIO_PuPd_UP;
-	GPIO_InitDef.GPIO_Speed = GPIO_Speed_100MHz;
-	
-	if (pinspack == TM_I2C_PinsPack_1) {
-		//                      SCL          SDA
-		GPIO_InitDef.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7;
-		
-		GPIO_PinAFConfig(GPIOB, GPIO_PinSource6, GPIO_AF_I2C1);
-		GPIO_PinAFConfig(GPIOB, GPIO_PinSource7, GPIO_AF_I2C1);
-	} else if (pinspack == TM_I2C_PinsPack_2) {
-		//                      SCL          SDA
-		GPIO_InitDef.GPIO_Pin = GPIO_Pin_8 | GPIO_Pin_9;
-		
-		GPIO_PinAFConfig(GPIOB, GPIO_PinSource8, GPIO_AF_I2C1);
-		GPIO_PinAFConfig(GPIOB, GPIO_PinSource9, GPIO_AF_I2C1);
-	} else if (pinspack == TM_I2C_PinsPack_3) {
-		//                      SCL          SDA
-		GPIO_InitDef.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_9;
-		
-		GPIO_PinAFConfig(GPIOB, GPIO_PinSource6, GPIO_AF_I2C1);
-		GPIO_PinAFConfig(GPIOB, GPIO_PinSource9, GPIO_AF_I2C1);
-	}
-	GPIO_Init(GPIOB, &GPIO_InitDef);
-}
-
-void TM_I2C2_InitPins(TM_I2C_PinsPack_t pinspack) {
-	GPIO_InitTypeDef GPIO_InitDef;
-	
-	GPIO_InitDef.GPIO_Mode = GPIO_Mode_AF;
-	GPIO_InitDef.GPIO_OType = GPIO_OType_OD;
-	GPIO_InitDef.GPIO_PuPd = GPIO_PuPd_UP;
-	GPIO_InitDef.GPIO_Speed = GPIO_Speed_100MHz;
-	
-	if (pinspack == TM_I2C_PinsPack_1) {
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
-		
-		//                      SCL           SDA
-		GPIO_InitDef.GPIO_Pin = GPIO_Pin_10 | GPIO_Pin_11;
-		
-		GPIO_PinAFConfig(GPIOB, GPIO_PinSource10, GPIO_AF_I2C2);
-		GPIO_PinAFConfig(GPIOB, GPIO_PinSource11, GPIO_AF_I2C2);
-		
-		GPIO_Init(GPIOB, &GPIO_InitDef);
-	} else if (pinspack == TM_I2C_PinsPack_2) {
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOF, ENABLE);
-		
-		//                      SCL          SDA
-		GPIO_InitDef.GPIO_Pin = GPIO_Pin_1 | GPIO_Pin_0;
-		
-		GPIO_PinAFConfig(GPIOF, GPIO_PinSource0, GPIO_AF_I2C2);
-		GPIO_PinAFConfig(GPIOF, GPIO_PinSource1, GPIO_AF_I2C2);
-		
-		GPIO_Init(GPIOF, &GPIO_InitDef);
-	} else if (pinspack == TM_I2C_PinsPack_3) {
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOH, ENABLE);
-		
-		//                      SCL          SDA
-		GPIO_InitDef.GPIO_Pin = GPIO_Pin_4 | GPIO_Pin_5;
-		
-		GPIO_PinAFConfig(GPIOH, GPIO_PinSource4, GPIO_AF_I2C2);
-		GPIO_PinAFConfig(GPIOH, GPIO_PinSource5, GPIO_AF_I2C2);
-		
-		GPIO_Init(GPIOH, &GPIO_InitDef);
-	}
-}
-
-void TM_I2C3_InitPins(TM_I2C_PinsPack_t pinspack) {
-	GPIO_InitTypeDef GPIO_InitDef;
-
-	GPIO_InitDef.GPIO_Mode = GPIO_Mode_AF;
-	GPIO_InitDef.GPIO_OType = GPIO_OType_OD;
-	GPIO_InitDef.GPIO_PuPd = GPIO_PuPd_UP;
-	GPIO_InitDef.GPIO_Speed = GPIO_Speed_100MHz;
-	
-	if (pinspack == TM_I2C_PinsPack_1) {
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);
-		
-		GPIO_PinAFConfig(GPIOA, GPIO_PinSource8, GPIO_AF_I2C3);
-		GPIO_PinAFConfig(GPIOC, GPIO_PinSource9, GPIO_AF_I2C3);
-		
-		//                      SCL
-		GPIO_InitDef.GPIO_Pin = GPIO_Pin_8;
-		GPIO_Init(GPIOA, &GPIO_InitDef);
-		
-		//                      SDA
-		GPIO_InitDef.GPIO_Pin = GPIO_Pin_9;
-		GPIO_Init(GPIOC, &GPIO_InitDef);
-	} else if (pinspack == TM_I2C_PinsPack_2) {
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOH, ENABLE);
-		
-		//                      SCL          SDA
-		GPIO_InitDef.GPIO_Pin = GPIO_Pin_7 | GPIO_Pin_8;
-		
-		GPIO_PinAFConfig(GPIOH, GPIO_PinSource7, GPIO_AF_I2C3);
-		GPIO_PinAFConfig(GPIOH, GPIO_PinSource8, GPIO_AF_I2C3);
-	}
-	GPIO_Init(GPIOH, &GPIO_InitDef);
 }
 
 uint8_t TM_I2C_Read(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg) {
@@ -214,6 +123,19 @@ void TM_I2C_ReadMulti(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t* 
 	TM_I2C_Start(I2Cx, address, I2C_Direction_Transmitter, 1);
 	TM_I2C_WriteData(I2Cx, reg);
 	TM_I2C_Stop(I2Cx);
+	TM_I2C_Start(I2Cx, address, I2C_Direction_Receiver, 1);
+	for (i = 0; i < count; i++) {
+		if (i == (count - 1)) {
+			//Last byte
+			data[i] = TM_I2C_ReadNack(I2Cx);
+		} else {
+			data[i] = TM_I2C_ReadAck(I2Cx);
+		}
+	}
+}
+
+void TM_I2C_ReadMultiNoRegister(I2C_TypeDef* I2Cx, uint8_t address, uint8_t* data, uint16_t count) {
+	uint8_t i;
 	TM_I2C_Start(I2Cx, address, I2C_Direction_Receiver, 1);
 	for (i = 0; i < count; i++) {
 		if (i == (count - 1)) {
@@ -318,7 +240,6 @@ uint8_t TM_I2C_Stop(I2C_TypeDef* I2Cx) {
 			return 1;
 		}
 	}
-	
 	I2C_GenerateSTOP(I2Cx, ENABLE);
 	
 	return 0;
@@ -334,3 +255,92 @@ uint8_t TM_I2C_IsDeviceConnected(I2C_TypeDef* I2Cx, uint8_t address) {
 	return connected;
 }
 
+/* Private functions */
+void TM_I2C1_InitPins(TM_I2C_PinsPack_t pinspack) {
+	/* Enable clock */
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
+	
+	if (pinspack == TM_I2C_PinsPack_1) {
+		//                      SCL          SDA
+		GPIO_I2C_InitStruct.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7;
+		
+		GPIO_PinAFConfig(GPIOB, GPIO_PinSource6, GPIO_AF_I2C1);
+		GPIO_PinAFConfig(GPIOB, GPIO_PinSource7, GPIO_AF_I2C1);
+	} else if (pinspack == TM_I2C_PinsPack_2) {
+		//                      SCL          SDA
+		GPIO_I2C_InitStruct.GPIO_Pin = GPIO_Pin_8 | GPIO_Pin_9;
+		
+		GPIO_PinAFConfig(GPIOB, GPIO_PinSource8, GPIO_AF_I2C1);
+		GPIO_PinAFConfig(GPIOB, GPIO_PinSource9, GPIO_AF_I2C1);
+	} else if (pinspack == TM_I2C_PinsPack_3) {
+		//                      SCL          SDA
+		GPIO_I2C_InitStruct.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_9;
+		
+		GPIO_PinAFConfig(GPIOB, GPIO_PinSource6, GPIO_AF_I2C1);
+		GPIO_PinAFConfig(GPIOB, GPIO_PinSource9, GPIO_AF_I2C1);
+	}
+	/* Init pins */
+	GPIO_Init(GPIOB, &GPIO_I2C_InitStruct);
+}
+
+void TM_I2C2_InitPins(TM_I2C_PinsPack_t pinspack) {
+	
+	if (pinspack == TM_I2C_PinsPack_1) {
+		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
+		
+		//                      SCL           SDA
+		GPIO_I2C_InitStruct.GPIO_Pin = GPIO_Pin_10 | GPIO_Pin_11;
+		
+		GPIO_PinAFConfig(GPIOB, GPIO_PinSource10, GPIO_AF_I2C2);
+		GPIO_PinAFConfig(GPIOB, GPIO_PinSource11, GPIO_AF_I2C2);
+		
+		GPIO_Init(GPIOB, &GPIO_I2C_InitStruct);
+	} else if (pinspack == TM_I2C_PinsPack_2) {
+		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOF, ENABLE);
+		
+		//                      SCL          SDA
+		GPIO_I2C_InitStruct.GPIO_Pin = GPIO_Pin_1 | GPIO_Pin_0;
+		
+		GPIO_PinAFConfig(GPIOF, GPIO_PinSource0, GPIO_AF_I2C2);
+		GPIO_PinAFConfig(GPIOF, GPIO_PinSource1, GPIO_AF_I2C2);
+		
+		GPIO_Init(GPIOF, &GPIO_I2C_InitStruct);
+	} else if (pinspack == TM_I2C_PinsPack_3) {
+		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOH, ENABLE);
+		
+		//                      SCL          SDA
+		GPIO_I2C_InitStruct.GPIO_Pin = GPIO_Pin_4 | GPIO_Pin_5;
+		
+		GPIO_PinAFConfig(GPIOH, GPIO_PinSource4, GPIO_AF_I2C2);
+		GPIO_PinAFConfig(GPIOH, GPIO_PinSource5, GPIO_AF_I2C2);
+		
+		GPIO_Init(GPIOH, &GPIO_I2C_InitStruct);
+	}
+}
+
+void TM_I2C3_InitPins(TM_I2C_PinsPack_t pinspack) {	
+	if (pinspack == TM_I2C_PinsPack_1) {
+		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
+		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);
+		
+		GPIO_PinAFConfig(GPIOA, GPIO_PinSource8, GPIO_AF_I2C3);
+		GPIO_PinAFConfig(GPIOC, GPIO_PinSource9, GPIO_AF_I2C3);
+		
+		//                      SCL
+		GPIO_I2C_InitStruct.GPIO_Pin = GPIO_Pin_8;
+		GPIO_Init(GPIOA, &GPIO_I2C_InitStruct);
+		
+		//                      SDA
+		GPIO_I2C_InitStruct.GPIO_Pin = GPIO_Pin_9;
+		GPIO_Init(GPIOC, &GPIO_I2C_InitStruct);
+	} else if (pinspack == TM_I2C_PinsPack_2) {
+		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOH, ENABLE);
+		
+		//                      SCL          SDA
+		GPIO_I2C_InitStruct.GPIO_Pin = GPIO_Pin_7 | GPIO_Pin_8;
+		
+		GPIO_PinAFConfig(GPIOH, GPIO_PinSource7, GPIO_AF_I2C3);
+		GPIO_PinAFConfig(GPIOH, GPIO_PinSource8, GPIO_AF_I2C3);
+	}
+	GPIO_Init(GPIOH, &GPIO_I2C_InitStruct);
+}
