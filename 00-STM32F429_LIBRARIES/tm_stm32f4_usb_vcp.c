@@ -54,6 +54,38 @@ TM_USB_VCP_Result TM_USB_VCP_Init(void) {
 	return TM_USB_VCP_OK;
 }
 
+uint8_t TM_USB_VCP_BufferEmpty(void) {
+	return (tm_int_usb_vcp_buf_num == 0);
+}
+
+uint8_t TM_USB_VCP_BufferFull(void) {
+	return (tm_int_usb_vcp_buf_num == USB_VCP_RECEIVE_BUFFER_LENGTH);
+}
+
+uint8_t TM_USB_VCP_FindCharacter(volatile char c) {
+	uint16_t num, out;
+	
+	/* Temp variables */
+	num = tm_int_usb_vcp_buf_num;
+	out = tm_int_usb_vcp_buf_out;
+	
+	while (num > 0) {
+		/* Check overflow */
+		if (out == USB_VCP_RECEIVE_BUFFER_LENGTH) {
+			out = 0;
+		}
+		if (TM_INT_USB_VCP_ReceiveBuffer[out] == c) {
+			/* Character found */
+			return 1;
+		}
+		out++;
+		num--;
+	}
+	
+	/* Character is not in buffer */
+	return 0;
+}
+
 TM_USB_VCP_Result TM_USB_VCP_Getc(uint8_t* c) {
 	/* Any data in buffer */
 	if (tm_int_usb_vcp_buf_num > 0) {
@@ -76,33 +108,6 @@ TM_USB_VCP_Result TM_USB_VCP_Getc(uint8_t* c) {
 	return TM_USB_VCP_DATA_EMPTY;
 }
 
-TM_USB_VCP_Result TM_USB_VCP_Gets(char* buffer, uint8_t bufsize) {
-	uint16_t i = 0;                             
-	uint8_t eol = 0;
-	uint8_t c;
-	if (TM_USB_VCP_Getc(&c) != TM_USB_VCP_DATA_OK) {
-		return TM_USB_VCP_DATA_EMPTY;
-	}
-	if (bufsize > 0) {
-		buffer[i++] = (char) c;
-		while (!eol) {
-			while (TM_USB_VCP_Getc(&c) != TM_USB_VCP_DATA_OK);
-			buffer[i] = (char) c;   
-			if (buffer[i] == '\n') {
-				eol = 1;                
-			} else {            
-				if (i < (bufsize - 1)) {
-					i++; 	
-				}
-			}
-		}
-		/* Add zero to the end of string */
-		buffer[i] = 0;               
-	}
-	/* Data ok */
-	return TM_USB_VCP_DATA_OK;
-}
-
 TM_USB_VCP_Result TM_USB_VCP_Putc(volatile char c) {
 	uint8_t ce = (uint8_t)c;
 	/* Send data over USB */
@@ -119,6 +124,38 @@ TM_USB_VCP_Result TM_USB_VCP_Puts(char* str) {
 	
 	/* Return OK */
 	return TM_USB_VCP_OK;
+}
+
+uint16_t TM_USB_VCP_Gets(char* buffer, uint16_t bufsize) {
+	uint16_t i = 0;
+	uint8_t c;
+	
+	/* Check for any data on USART */
+	if (TM_USB_VCP_BufferEmpty() || (!TM_USB_VCP_FindCharacter('\n') && !TM_USB_VCP_BufferFull())) {
+		return 0;
+	}
+	
+	/* If available buffer size is more than 0 characters */
+	while (i < (bufsize - 1)) {
+		/* We have available data */
+		while (TM_USB_VCP_Getc(&c) != TM_USB_VCP_DATA_OK);
+		/* Save new data */
+		buffer[i] = (char) c;
+		/* Check for end of string */
+		if (buffer[i] == '\n') {
+			i++;
+			/* Done */
+			break;
+		} else {
+			i++;
+		}
+	}
+	
+	/* Add zero to the end of string */
+	buffer[i] = 0;               
+
+	/* Return number of characters in string */
+	return i;
 }
 
 TM_USB_VCP_Result TM_INT_USB_VCP_AddReceived(uint8_t c) {

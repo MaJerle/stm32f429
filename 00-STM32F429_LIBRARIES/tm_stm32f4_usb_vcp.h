@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/08/library-24-virtual-com-port-vcp-stm32f4xx/
- *	@version 	v1.0
+ *	@version 	v1.1
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -25,6 +25,12 @@
  * | You should have received a copy of the GNU General Public License
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
+ *
+ * Version 1.1
+ *	- December 27, 2014
+ *	- Added advanced functions for string operations
+ *	- Now, Gets function will wait till buffer is full or \n is received
+ *	- This is prevent for while loop if \n character is not received
  *
  *	With this library, your STM32F4xx will be seen to your computer as Virtual COM Port (VCP).
  *	To be able to work, you have to install ST's VCP Driver, from link below:
@@ -68,7 +74,7 @@
  *
  */
 #ifndef TM_USB_VCP_H
-#define TM_USB_VCP_H 	100
+#define TM_USB_VCP_H 	110
 /**
  * Dependencies:
  * 	- STM32F4xx
@@ -151,9 +157,9 @@ extern TM_USB_VCP_Result TM_USB_VCP_Putc(volatile char c);
  * 	- char* buffer: pointer to buffer variable
  * 	- uint8_t bufsize: maximum buffer size
  *
- * TM_USB_VCP_DATA_OK is returned if data are valid, otherwise TM_USB_VCP_DATA_EMPTY
+ * Returns number of characters in string or 0 if not valid
  */
-extern TM_USB_VCP_Result TM_USB_VCP_Gets(char* buffer, uint8_t bufsize);
+extern uint16_t TM_USB_VCP_Gets(char* buffer, uint16_t bufsize);
 
 /**
  * Put string to USB VCP
@@ -172,6 +178,29 @@ extern TM_USB_VCP_Result TM_USB_VCP_Puts(char* str);
  */
 extern TM_USB_VCP_Result TM_USB_VCP_GetStatus(void);
 
+/**
+ * This function checks if USB VCP buffer is empty
+ *
+ * Returns 1 if empty, 0 if not
+ */
+extern uint8_t TM_USB_VCP_BufferEmpty(void);
+
+/**
+ * This function checks if USB VCP buffer is full
+ *
+ * Returns 1 if full, 0 if not
+ */
+extern uint8_t TM_USB_VCP_BufferFull(void);
+
+/**
+ * This function checks if character is available in buffer
+ * 
+ * Parameters:
+ *	- volatile char c: Character to be checked if available
+ *
+ * Returns 1 if available, 0 if not
+ */
+extern uint8_t TM_USB_VCP_FindCharacter(volatile char c);
 
 /* Internal functions */
 extern TM_USB_VCP_Result TM_INT_USB_VCP_AddReceived(uint8_t c);
