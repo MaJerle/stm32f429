@@ -24,6 +24,12 @@ uint16_t ILI9341_y;
 TM_ILI931_Options_t ILI9341_Opts;
 uint8_t ILI9341_INT_CalledFromPuts = 0;
 
+void TM_ILI9341_InitLCD(void);
+void TM_ILI9341_SendData(uint8_t data);
+void TM_ILI9341_SendCommand(uint8_t data);
+void TM_ILI9341_Delay(volatile unsigned int delay);
+void TM_ILI9341_SetCursorPosition(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2);
+
 void TM_ILI9341_Init() {
 	GPIO_InitTypeDef GPIO_InitDef;
 
@@ -182,7 +188,7 @@ void TM_ILI9341_SendData(uint8_t data) {
 	ILI9341_CS_SET;
 }
 
-void TM_ILI9341_DrawPixel(uint16_t x, uint16_t y, uint16_t color) {
+void TM_ILI9341_DrawPixel(uint16_t x, uint16_t y, uint32_t color) {
 	TM_ILI9341_SetCursorPosition(x, y, x, y);
 
 	TM_ILI9341_SendCommand(ILI9341_GRAM);
@@ -205,7 +211,7 @@ void TM_ILI9341_SetCursorPosition(uint16_t x1, uint16_t y1, uint16_t x2, uint16_
 	TM_ILI9341_SendData(y2 & 0xFF);
 }
 
-void TM_ILI9341_Fill(uint16_t color) {
+void TM_ILI9341_Fill(uint32_t color) {
 	unsigned int n, i, j;
 	i = color >> 8;
 	j = color & 0xFF;
@@ -246,7 +252,7 @@ void TM_ILI9341_Rotate(TM_ILI9341_Orientation_t orientation) {
 	}
 }
 
-void TM_ILI9341_Puts(uint16_t x, uint16_t y, char *str, TM_FontDef_t *font, uint16_t foreground, uint16_t background) {
+void TM_ILI9341_Puts(uint16_t x, uint16_t y, char *str, TM_FontDef_t *font, uint32_t foreground, uint32_t background) {
 	uint16_t startX = x;
 	
 	/* Set X and Y coordinates */
@@ -284,7 +290,7 @@ void TM_ILI9341_GetStringSize(char *str, TM_FontDef_t *font, uint16_t *width, ui
 	*width = w;
 }
 
-void TM_ILI9341_Putc(uint16_t x, uint16_t y, char c, TM_FontDef_t *font, uint16_t foreground, uint16_t background) {
+void TM_ILI9341_Putc(uint16_t x, uint16_t y, char c, TM_FontDef_t *font, uint32_t foreground, uint32_t background) {
 	uint32_t i, b, j;
 	/* Set coordinates */
 	ILI9341_x = x;
@@ -299,7 +305,7 @@ void TM_ILI9341_Putc(uint16_t x, uint16_t y, char c, TM_FontDef_t *font, uint16_
 		for (j = 0; j < font->FontWidth; j++) {
 			if ((b << j) & 0x8000) {
 				TM_ILI9341_DrawPixel(ILI9341_x + j, (ILI9341_y + i), foreground);
-			} else {
+			} else if ((background & ILI9341_TRANSPARENT) == 0) {
 				TM_ILI9341_DrawPixel(ILI9341_x + j, (ILI9341_y + i), background);
 			}
 		}
@@ -308,7 +314,7 @@ void TM_ILI9341_Putc(uint16_t x, uint16_t y, char c, TM_FontDef_t *font, uint16_
 }
 
 
-void TM_ILI9341_DrawLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color) {
+void TM_ILI9341_DrawLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint32_t color) {
 	/* Code by dewoller: https://github.com/dewoller */
 	
 	int16_t dx, dy, sx, sy, err, e2; 
@@ -350,20 +356,20 @@ void TM_ILI9341_DrawLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uin
 	}
 }
 
-void TM_ILI9341_DrawRectangle(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color) {
+void TM_ILI9341_DrawRectangle(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint32_t color) {
 	TM_ILI9341_DrawLine(x0, y0, x1, y0, color); //Top
 	TM_ILI9341_DrawLine(x0, y0, x0, y1, color);	//Left
 	TM_ILI9341_DrawLine(x1, y0, x1, y1, color);	//Right
 	TM_ILI9341_DrawLine(x0, y1, x1, y1, color);	//Bottom
 }
 
-void TM_ILI9341_DrawFilledRectangle(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color) {
+void TM_ILI9341_DrawFilledRectangle(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint32_t color) {
 	for (; y0 < y1; y0++) {
 		TM_ILI9341_DrawLine(x0, y0, x1, y0, color);
 	}
 }
 
-void TM_ILI9341_DrawCircle(int16_t x0, int16_t y0, int16_t r, uint16_t color) {
+void TM_ILI9341_DrawCircle(int16_t x0, int16_t y0, int16_t r, uint32_t color) {
 	int16_t f = 1 - r;
 	int16_t ddF_x = 1;
 	int16_t ddF_y = -2 * r;
@@ -397,7 +403,7 @@ void TM_ILI9341_DrawCircle(int16_t x0, int16_t y0, int16_t r, uint16_t color) {
     }
 }
 
-void TM_ILI9341_DrawFilledCircle(int16_t x0, int16_t y0, int16_t r, uint16_t color) {
+void TM_ILI9341_DrawFilledCircle(int16_t x0, int16_t y0, int16_t r, uint32_t color) {
 	int16_t f = 1 - r;
 	int16_t ddF_x = 1;
 	int16_t ddF_y = -2 * r;

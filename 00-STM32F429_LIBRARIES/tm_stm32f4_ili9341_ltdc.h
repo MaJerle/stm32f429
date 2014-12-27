@@ -7,7 +7,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/06/library-18-ili9341-ltdc-stm32f429-discovery/
- *	@version 	v1.1
+ *	@version 	v1.2
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -28,11 +28,16 @@
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
  *
- * Version 1.1 - 07.08.2014
+ * Version 1.2
+ *	- December 27, 2014
+ *	- Added transparent option for strings and chars
+ *	
+ * Version 1.1
+ *	- August 07, 2014
  *	- Added scrool down and scroll up feature
  */
 #ifndef TM_ILI9341_LTDC_H
-#define TM_ILI9341_LTDC_H 110
+#define TM_ILI9341_LTDC_H 120
 /**
  * Library dependencies
  * - STM32F4xx
@@ -118,6 +123,10 @@
 #define ILI9341_COLOR_MAGENTA		0xA254
 #define ILI9341_COLOR_GRAY			0x7BEF //1111 0111 1101 1110
 #define ILI9341_COLOR_BROWN			0xBBCA
+
+//Bits
+//Transparent background, only for chars and strings
+#define ILI9341_TRANSPARENT			0x80000000
 
 //Commands
 #define ILI9341_RESET				0x01
@@ -269,7 +278,7 @@ extern void TM_ILI9341_SetCursorPosition(uint16_t x1, uint16_t y1, uint16_t x2, 
  * 	- uint16_t y: Y position for pixel
  * 	- uint16_t color: color of pixel
  */
-extern void TM_ILI9341_DrawPixel(uint16_t x, uint16_t y, uint16_t color);
+extern void TM_ILI9341_DrawPixel(uint16_t x, uint16_t y, uint32_t color);
 
 /**
  * Fill entire LCD with color
@@ -277,7 +286,7 @@ extern void TM_ILI9341_DrawPixel(uint16_t x, uint16_t y, uint16_t color);
  * Parameters:
  * 	- uint16_t color: Color to be used in fill
  */
-extern void TM_ILI9341_Fill(uint16_t color);
+extern void TM_ILI9341_Fill(uint32_t color);
 
 /**
  * Rotate LCD
@@ -303,7 +312,7 @@ extern void TM_ILI9341_Rotate(TM_ILI9341_Orientation_t orientation);
  * 	- uint16_t foreground: color for char
  * 	- uint16_t background: color for char background
  */
-extern void TM_ILI9341_Putc(uint16_t x, uint16_t y, char c, TM_FontDef_t *font, uint16_t foreground, uint16_t background);
+extern void TM_ILI9341_Putc(uint16_t x, uint16_t y, char c, TM_FontDef_t *font, uint32_t foreground, uint32_t background);
 
 /**
  * Put string to LCD
@@ -316,7 +325,7 @@ extern void TM_ILI9341_Putc(uint16_t x, uint16_t y, char c, TM_FontDef_t *font, 
  * 	- uint16_t foreground: color for string
  * 	- uint16_t background: color for string background
  */
-extern void TM_ILI9341_Puts(uint16_t x, uint16_t y, char *str, TM_FontDef_t *font, uint16_t foreground, uint16_t background);
+extern void TM_ILI9341_Puts(uint16_t x, uint16_t y, char *str, TM_FontDef_t *font, uint32_t foreground, uint32_t background);
 
 /**
  * Get width and height of box with text
@@ -339,7 +348,7 @@ extern void TM_ILI9341_GetStringSize(char *str, TM_FontDef_t *font, uint16_t *wi
  * 	- uint16_t y1: Y coordinate of ending point
  * 	- uint16_t color: line color
  */
-extern void TM_ILI9341_DrawLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color);
+extern void TM_ILI9341_DrawLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint32_t color);
 
 /**
  * Draw rectangle on LCD
@@ -351,7 +360,7 @@ extern void TM_ILI9341_DrawLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t 
  * - uint16_t y1: Y coordinate of bottom right point
  * - uint16_t color: rectangle color
  */
-extern void TM_ILI9341_DrawRectangle(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color);
+extern void TM_ILI9341_DrawRectangle(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint32_t color);
 
 /**
  * Draw filled rectangle on LCD
@@ -363,7 +372,7 @@ extern void TM_ILI9341_DrawRectangle(uint16_t x0, uint16_t y0, uint16_t x1, uint
  * - uint16_t y1: Y coordinate of bottom right point
  * - uint16_t color: rectangle color
  */
-extern void TM_ILI9341_DrawFilledRectangle(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color);
+extern void TM_ILI9341_DrawFilledRectangle(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint32_t color);
 
 /**
  * Draw circle on LCD
@@ -374,7 +383,7 @@ extern void TM_ILI9341_DrawFilledRectangle(uint16_t x0, uint16_t y0, uint16_t x1
  * - int16_t r: circle radius
  * - uint16_t color: circle color
  */
-extern void TM_ILI9341_DrawCircle(int16_t x0, int16_t y0, int16_t r, uint16_t color);
+extern void TM_ILI9341_DrawCircle(int16_t x0, int16_t y0, int16_t r, uint32_t color);
 
 /**
  * Draw filled on LCD
@@ -385,7 +394,7 @@ extern void TM_ILI9341_DrawCircle(int16_t x0, int16_t y0, int16_t r, uint16_t co
  * - int16_t r: circle radius
  * - uint16_t color: circle color
  */
-extern void TM_ILI9341_DrawFilledCircle(int16_t x0, int16_t y0, int16_t r, uint16_t color);
+extern void TM_ILI9341_DrawFilledCircle(int16_t x0, int16_t y0, int16_t r, uint32_t color);
 
 /**
  * Set layer 1 to drive data on it
