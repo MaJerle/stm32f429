@@ -20,10 +20,7 @@
 
 /* Create main __stdout for printf */
 /* Set funcPointer to 0 */
-__weak FILE __stdout = {
-	0,
-	0
-};
+__weak FILE __stdout = {0, 0};
 __weak FILE __stdin = {0, 0};
 __weak FILE __stderr;
 
@@ -36,7 +33,7 @@ int fputc(int ch, FILE* f) {
 		return f->outputFuncPointer(ch, f);
 	}
 	
-	/* Printf was call probably = stdout */
+	/* Printf was called probably = stdout */
 	return TM_STDIO_StdoutHandler(ch, f);
 }
 

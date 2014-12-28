@@ -26,13 +26,13 @@
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
  *
- * Version 1.0
- * 	- October 18, 2014
- * 	- Initiatial release
- *
  * Version 1.1
  * 	- October 19, 2014
  * 	- Added input options
+ *
+ * Version 1.0
+ * 	- October 18, 2014
+ * 	- Initial release
  *
  * This library allows you to use printf (stdout) and fprintf functions on STM32F4
  * to output data to the stream.
@@ -68,7 +68,7 @@ extern C {
  *
  * Parameters:
  * 	- int (*outputFuncPointer)(int, FILE *):
- * 		Pointer to function to call when need to output data
+ * 		Pointer to function to call when need to output data to stream
  * 	- int (*inputFuncPointer)(FILE *):
  * 		Pointer to function to call when trying to get data from stream
  */
