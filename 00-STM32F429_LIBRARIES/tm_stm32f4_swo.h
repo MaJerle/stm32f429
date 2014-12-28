@@ -102,6 +102,7 @@ extern C {
 	/* FILE struct for working with stream */
 	extern FILE TM_SWO_File;
 #endif
+
 /**
  * Initialize SWO debug output
  * 

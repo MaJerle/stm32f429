@@ -1,5 +1,5 @@
 /**
- *	Keil project template
+ *	Keil project example for SWO debug feature
  *
  *	Before you start, select your target, on the right of the "Load" button
  *
@@ -18,10 +18,6 @@
 #include "tm_stm32f4_disco.h"
 #include "tm_stm32f4_swo.h"
 
-#include <stdio.h>
-
-volatile uint32_t i;
-
 int main(void) {
 	SystemInit();
 	
@@ -35,14 +31,16 @@ int main(void) {
 	TM_DELAY_Init();
 	
 	/* Print via SWO, debug purpose */
-	TM_SWO_Printf("123");
-	
-	//TM_SWO_Printf();
+	TM_SWO_Printf("Hello from MCU via SWO\n");
 	
 	while (1) {		
+		/* Toggle LEDs */
+		TM_DISCO_LedToggle(LED_ALL);
+		
 		/* Print via SWO */
 		TM_SWO_Printf("%d\n", TM_DELAY_Time());
 		
-		Delayms(100);
+		/* Delay some time */
+		Delayms(500);
 	}
 }

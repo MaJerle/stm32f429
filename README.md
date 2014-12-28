@@ -116,6 +116,8 @@ http://bit.ly/ZZlzEE
 http://bit.ly/1sbPXte
 45. BKPSRAM - Interface backup SRAM on STM32F4
 http://bit.ly/1qALFKQ
+46. SWO DEBUG - Debug STM32F4 using SWO output
+http://bit.ly/1vkRqbi
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB
