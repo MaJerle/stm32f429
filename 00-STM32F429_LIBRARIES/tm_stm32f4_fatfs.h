@@ -15,7 +15,7 @@
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/07/library-21-read-sd-card-fatfs-stm32f4xx-devices/
  *	@link		http://stm32f4-discovery.com/2014/08/library-29-usb-msc-host-usb-flash-drive-stm32f4xx-devices
- *	@version 	v1.3
+ *	@version 	v1.4
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -36,7 +36,11 @@
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
  *	
- * Version 1.3V
+ * Version 1.4
+ *	- December 29, 2014
+ *	- Support for truncate file from beginning
+ *
+ * Version 1.3
  *	- December 06, 2014
  *	- FatFs R0.10C supported
  
@@ -246,7 +250,7 @@
  * This allows you to copy data from one SD card to USB and back too.
  */
 #ifndef TM_FATFS_H
-#define TM_FATFS_H	130
+#define TM_FATFS_H	140
 /**
  * Dependencies
  *	- STM32F4xx
@@ -270,12 +274,19 @@
 #include "defines.h"
 #include "ff.h"
 
+/* Default truncate buffer size in bytes */
+#ifndef FATFS_TRUNCATE_BUFFER_SIZE
+#define FATFS_TRUNCATE_BUFFER_SIZE	256
+#endif
+
 /**
  * Get SD card drive size
  *
  * Parameters:
- * 	- uint32_t* total: pointer to variable to store total size of card
- * 	- uint32_t* free: pointer to variable to store free space on card
+ * 	- uint32_t* total:
+ *		Pointer to variable to store total size of card
+ * 	- uint32_t* free:
+ *		Pointer to variable to store free space on card
  *
  * Returns FRESULT struct members. If data are valid, FR_OK is returned.
  */
@@ -285,12 +296,34 @@ FRESULT TM_FATFS_DriveSize(uint32_t* total, uint32_t* free);
  * Get SD card drive size
  *
  * Parameters:
- * 	- uint32_t* total: pointer to variable to store total size of card
- * 	- uint32_t* free: pointer to variable to store free space on card
+ * 	- uint32_t* total:
+ *		Pointer to variable to store total size of card
+ * 	- uint32_t* free:
+ *		Pointer to variable to store free space on card
  *
  * Returns FRESULT struct members. If data are valid, FR_OK is returned.
  */
 FRESULT TM_FATFS_USBDriveSize(uint32_t* total, uint32_t* free);
+
+/**
+ * Truncate beginning of file
+ *
+ * Parameters:
+ * 	- FIL* fil: 
+ *		Pointer to already opened file
+ * 	- uint32_t index:
+ *		Number of characters that will be truncated from beginning.
+ *		If index is more than file size, everything will be truncated, but file will not be deleted
+ *		
+ * Example
+ *	- You have a file, it's content is: "abcdefghijklmnoprstuvwxyz",
+ *	- You want to truncate first 5 bytes,
+ *	- Call TM_FATFS_TruncateBeginning(&opened_file, 5);
+ *	- You will get new file data: "fghijklmnoprstuvwxyz"
+ *
+ * Returns FRESULT struct members. If everything ok, FR_OK is returned.
+ */
+FRESULT TM_FATFS_TruncateBeginning(FIL* fil, uint32_t index);
 
 #endif
 
