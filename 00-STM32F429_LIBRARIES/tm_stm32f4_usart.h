@@ -405,11 +405,11 @@ extern uint16_t TM_USART_Gets(USART_TypeDef* USARTx, char* buffer, uint16_t bufs
  * Parameters:
  * 	- USART_TypeDef* USARTx: which USART channel
  * 		USART1, USART2, USART3, UART4, UART5, USART6, UART7. UART8
- * 	- volatile char c: character you want to check if is available in buffer
+ * 	- uint8_t c: character you want to check if is available in buffer
  *
  * Returns 1 if character is available or 0 if not
  */
-extern uint8_t TM_USART_FindCharacter(USART_TypeDef* USARTx, volatile char c);
+extern uint8_t TM_USART_FindCharacter(USART_TypeDef* USARTx, uint8_t c);
 
 /**
  * Checks if internal buffer is empty

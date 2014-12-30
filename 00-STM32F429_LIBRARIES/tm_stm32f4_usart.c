@@ -22,7 +22,7 @@
  * Internal USART struct
  */
 typedef struct {
-	int8_t *Buffer;
+	uint8_t *Buffer;
 	uint16_t Size;
 	uint16_t Num;
 	uint16_t In;
@@ -31,28 +31,28 @@ typedef struct {
 
 /* Set variables for buffers */
 #ifdef TM_USE_USART1
-int8_t TM_USART1_Buffer[TM_USART1_BUFFER_SIZE];
+uint8_t TM_USART1_Buffer[TM_USART1_BUFFER_SIZE];
 #endif
 #ifdef TM_USE_USART2
-int8_t TM_USART2_Buffer[TM_USART2_BUFFER_SIZE];
+uint8_t TM_USART2_Buffer[TM_USART2_BUFFER_SIZE];
 #endif
 #ifdef TM_USE_USART3
-int8_t TM_USART3_Buffer[TM_USART3_BUFFER_SIZE];
+uint8_t TM_USART3_Buffer[TM_USART3_BUFFER_SIZE];
 #endif
 #ifdef TM_USE_UART4
-int8_t TM_UART4_Buffer[TM_UART4_BUFFER_SIZE];
+uint8_t TM_UART4_Buffer[TM_UART4_BUFFER_SIZE];
 #endif
 #ifdef TM_USE_UART5
-int8_t TM_UART5_Buffer[TM_UART5_BUFFER_SIZE];
+uint8_t TM_UART5_Buffer[TM_UART5_BUFFER_SIZE];
 #endif
 #ifdef TM_USE_USART6
-int8_t TM_USART6_Buffer[TM_USART6_BUFFER_SIZE];
+uint8_t TM_USART6_Buffer[TM_USART6_BUFFER_SIZE];
 #endif
 #ifdef TM_USE_UART7
-int8_t TM_UART7_Buffer[TM_UART7_BUFFER_SIZE];
+uint8_t TM_UART7_Buffer[TM_UART7_BUFFER_SIZE];
 #endif
 #ifdef TM_USE_UART8
-int8_t TM_UART8_Buffer[TM_UART8_BUFFER_SIZE];
+uint8_t TM_UART8_Buffer[TM_UART8_BUFFER_SIZE];
 #endif
 
 #ifdef TM_USE_USART1
@@ -312,7 +312,7 @@ void TM_USART_ClearBuffer(USART_TypeDef* USARTx) {
 	u->Out = 0;
 }
 
-uint8_t TM_USART_FindCharacter(USART_TypeDef* USARTx, volatile char c) {
+uint8_t TM_USART_FindCharacter(USART_TypeDef* USARTx, uint8_t c) {
 	uint16_t num, out;
 	TM_USART_t* u = TM_USART_INT_GetUsart(USARTx);
 	
@@ -325,7 +325,7 @@ uint8_t TM_USART_FindCharacter(USART_TypeDef* USARTx, volatile char c) {
 		if (out == u->Size) {
 			out = 0;
 		}
-		if (u->Buffer[out] == c) {
+		if (*(u->Buffer + out) == (uint8_t)c) {
 			/* Character found */
 			return 1;
 		}

@@ -51,8 +51,8 @@
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
-          <DebugInformation>1</DebugInformation>
-          <BrowseInformation>1</BrowseInformation>
+          <DebugInformation>0</DebugInformation>
+          <BrowseInformation>0</BrowseInformation>
           <ListingPath>.\</ListingPath>
           <HexFormatSelection>1</HexFormatSelection>
           <Merge32K>0</Merge32K>
@@ -611,6 +611,11 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f4xx_usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -637,24 +642,34 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_swo.c</FileName>
+              <FileName>tm_stm32f4_usart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_swo.c</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_swo.h</FileName>
+              <FileName>tm_stm32f4_usart.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_swo.h</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_stdio.c</FileName>
+              <FileName>tm_stm32f4_softcrc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_stdio.c</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_softcrc.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_stdio.h</FileName>
+              <FileName>tm_stm32f4_softcrc.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_stdio.h</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_softcrc.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_rs485.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_rs485.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_rs485.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_rs485.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -745,8 +760,8 @@
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
-          <DebugInformation>1</DebugInformation>
-          <BrowseInformation>1</BrowseInformation>
+          <DebugInformation>0</DebugInformation>
+          <BrowseInformation>0</BrowseInformation>
           <ListingPath>.\</ListingPath>
           <HexFormatSelection>1</HexFormatSelection>
           <Merge32K>0</Merge32K>
@@ -1057,7 +1072,7 @@
             <useXO>0</useXO>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>STM32F429_439xx,USE_STDPERIPH_DRIVER,STM32F4XX,__ASSEMBLY__,KEIL_IDE,TM_DISCO_STM32F429_DISCOVERY,__DBG_ITM</Define>
+              <Define>STM32F429_439xx,USE_STDPERIPH_DRIVER,STM32F4XX,__ASSEMBLY__,KEIL_IDE,TM_DISCO_STM32F429_DISCOVERY</Define>
               <Undefine></Undefine>
               <IncludePath>.\User;.\TM;..\00-STM32F429_LIBRARIES;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\inc;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Include;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Include</IncludePath>
             </VariousControls>
@@ -1305,6 +1320,11 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f4xx_usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1331,24 +1351,34 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_swo.c</FileName>
+              <FileName>tm_stm32f4_usart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_swo.c</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_swo.h</FileName>
+              <FileName>tm_stm32f4_usart.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_swo.h</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_stdio.c</FileName>
+              <FileName>tm_stm32f4_softcrc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_stdio.c</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_softcrc.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_stdio.h</FileName>
+              <FileName>tm_stm32f4_softcrc.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_stdio.h</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_softcrc.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_rs485.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_rs485.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_rs485.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_rs485.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1999,6 +2029,11 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f4xx_usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -2025,24 +2060,34 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_swo.c</FileName>
+              <FileName>tm_stm32f4_usart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_swo.c</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_swo.h</FileName>
+              <FileName>tm_stm32f4_usart.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_swo.h</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_stdio.c</FileName>
+              <FileName>tm_stm32f4_softcrc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_stdio.c</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_softcrc.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_stdio.h</FileName>
+              <FileName>tm_stm32f4_softcrc.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_stdio.h</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_softcrc.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_rs485.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_rs485.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_rs485.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_rs485.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -2133,8 +2178,8 @@
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
-          <DebugInformation>1</DebugInformation>
-          <BrowseInformation>1</BrowseInformation>
+          <DebugInformation>0</DebugInformation>
+          <BrowseInformation>0</BrowseInformation>
           <ListingPath>.\</ListingPath>
           <HexFormatSelection>1</HexFormatSelection>
           <Merge32K>0</Merge32K>
@@ -2229,7 +2274,7 @@
             <RestoreSysVw>1</RestoreSysVw>
           </Target>
           <RunDebugAfterBuild>0</RunDebugAfterBuild>
-          <TargetSelection>1</TargetSelection>
+          <TargetSelection>11</TargetSelection>
           <SimDlls>
             <CpuDll></CpuDll>
             <CpuDllArguments></CpuDllArguments>
@@ -2243,7 +2288,7 @@
             <PeripheralDll></PeripheralDll>
             <PeripheralDllArguments></PeripheralDllArguments>
             <InitializationFile></InitializationFile>
-            <Driver>BIN\UL2CM3.DLL</Driver>
+            <Driver>STLink\ST-LINKIII-KEIL_SWO.dll</Driver>
           </TargetDlls>
         </DebugOption>
         <Utilities>
@@ -2693,6 +2738,11 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f4xx_usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -2719,24 +2769,34 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_swo.c</FileName>
+              <FileName>tm_stm32f4_usart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_swo.c</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_swo.h</FileName>
+              <FileName>tm_stm32f4_usart.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_swo.h</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_stdio.c</FileName>
+              <FileName>tm_stm32f4_softcrc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_stdio.c</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_softcrc.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_stdio.h</FileName>
+              <FileName>tm_stm32f4_softcrc.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_stdio.h</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_softcrc.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_rs485.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_rs485.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_rs485.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_rs485.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -2827,8 +2887,8 @@
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
-          <DebugInformation>1</DebugInformation>
-          <BrowseInformation>1</BrowseInformation>
+          <DebugInformation>0</DebugInformation>
+          <BrowseInformation>0</BrowseInformation>
           <ListingPath>.\</ListingPath>
           <HexFormatSelection>1</HexFormatSelection>
           <Merge32K>0</Merge32K>
@@ -3387,6 +3447,11 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f4xx_usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -3413,24 +3478,34 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_swo.c</FileName>
+              <FileName>tm_stm32f4_usart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_swo.c</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_swo.h</FileName>
+              <FileName>tm_stm32f4_usart.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_swo.h</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_stdio.c</FileName>
+              <FileName>tm_stm32f4_softcrc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_stdio.c</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_softcrc.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_stdio.h</FileName>
+              <FileName>tm_stm32f4_softcrc.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_stdio.h</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_softcrc.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_rs485.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_rs485.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_rs485.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_rs485.h</FilePath>
             </File>
           </Files>
         </Group>

@@ -1,12 +1,11 @@
 /**
- * 16bit CRC Software Generator
- *
+ *  Defines for your entire project at one place
+ * 
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
- *	@link		
  *	@version 	v1.0
- *	@ide		Keil uVision
+ *	@ide		Keil uVision 5
  *	@license	GNU GPL v3
  *	
  * |----------------------------------------------------------------------
@@ -26,29 +25,9 @@
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
  */
-#ifndef TM_SOFTCRC_H
-#define TM_SOFTCRC_H 100
-/**
- * Library dependencies
- * - STM32F4xx
- */
-/**
- * Includes
- */
-#include "stm32f4xx.h"
+#ifndef TM_DEFINES_H
+#define TM_DEFINES_H
 
-/**
- * Generate CRC from given data
- *
- * Parameters:
- * 	- uint8_t* data:
- *		Pointer to data array from where calculate CRC
- * 	- uint8_t length:
- *		Length of data
- *
- * Returns 16-bit CRC generated
- */
-extern uint16_t TM_SOFTCRC_Generate(uint8_t* data, uint8_t length);
+/* Put your global defines for all libraries here used in your project */
 
 #endif
-
