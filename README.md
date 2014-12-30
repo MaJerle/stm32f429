@@ -118,6 +118,8 @@ http://bit.ly/1sbPXte
 http://bit.ly/1qALFKQ
 46. SWO DEBUG - Debug STM32F4 using SWO output
 http://bit.ly/1vkRqbi
+47. RS-485 - RS-485 network library for STM32F4 devices
+http://bit.ly/1xwjAo5
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB
