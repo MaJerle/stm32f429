@@ -29,7 +29,7 @@ void TM_MCOOUTPUT_InitMCO1(void) {
 	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
 	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
 	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;  
+	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
 
 	/* Initialize GPIOA */
 	GPIO_Init(GPIOA, &GPIO_InitStruct);
@@ -46,7 +46,7 @@ void TM_MCOOUTPUT_InitMCO2(void) {
 	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
 	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
 	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;  
+	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
 
 	/* Initialize GPIOC */
 	GPIO_Init(GPIOC, &GPIO_InitStruct);
@@ -54,6 +54,7 @@ void TM_MCOOUTPUT_InitMCO2(void) {
 
 void TM_MCOOUTPUT_SetOutput1(TM_MCOOUTPUT1_Source_t Source, TM_MCOOUTPUT_Prescaler_t Prescaler) {
 	uint32_t presc = 0, src = 0;
+	
 	/* Get prescaler */
 	switch (Prescaler) {
 		case TM_MCOOUTPUT_Prescaler_1:
@@ -74,10 +75,14 @@ void TM_MCOOUTPUT_SetOutput1(TM_MCOOUTPUT1_Source_t Source, TM_MCOOUTPUT_Prescal
 		default:
 			break;
 	}
+	
 	/* Get source */
 	switch (Source) {
 		case TM_MCOOUTPUT1_Source_HSE:
 			src = RCC_MCO1Source_HSE;
+		
+			/* Enable RCC HSE oscillator */
+			RCC_HSEConfig(RCC_HSE_ON);
 			break;
 		case TM_MCOOUTPUT1_Source_HSI:
 			src = RCC_MCO1Source_HSI;
@@ -87,16 +92,22 @@ void TM_MCOOUTPUT_SetOutput1(TM_MCOOUTPUT1_Source_t Source, TM_MCOOUTPUT_Prescal
 			break;
 		case TM_MCOOUTPUT1_Source_LSE:		
 			src = RCC_MCO1Source_LSE;
+		
+			/* Start LSE clock if available */
+			RCC_LSEConfig(RCC_LSE_ON);
 			break;
 		default:
 			break;
 	}
-	/* Set */
+	
+	
+	/* Set source and prescaler  */
 	RCC_MCO1Config(src, presc);
 }
 
 void TM_MCOOUTPUT_SetOutput2(TM_MCOOUTPUT2_Source_t Source, TM_MCOOUTPUT_Prescaler_t Prescaler) {
 	uint32_t presc, src;
+	
 	/* Get prescaler */
 	switch (Prescaler) {
 		case TM_MCOOUTPUT_Prescaler_1:
@@ -117,6 +128,7 @@ void TM_MCOOUTPUT_SetOutput2(TM_MCOOUTPUT2_Source_t Source, TM_MCOOUTPUT_Prescal
 		default:
 			break;
 	}
+	
 	/* Get clock source */
 	switch (Source) {
 		case TM_MCOOUTPUT2_Source_SYSCLK:
@@ -134,6 +146,7 @@ void TM_MCOOUTPUT_SetOutput2(TM_MCOOUTPUT2_Source_t Source, TM_MCOOUTPUT_Prescal
 		default:
 			break;
 	}
-	/* Set */
+	
+	/* Set source and prescaler  */
 	RCC_MCO2Config(src, presc);
 }

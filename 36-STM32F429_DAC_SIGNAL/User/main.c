@@ -27,12 +27,12 @@ int main(void) {
 	/* Initialize DAC1, use TIM4 for signal generation */
 	TM_DAC_SIGNAL_Init(TM_DAC1, TIM4);
 	/* Initialize DAC2, use TIM5 for signal generation */
-	TM_DAC_SIGNAL_Init(TM_DAC2, TIM5);
+	TM_DAC_SIGNAL_Init(TM_DAC2, TIM4);
 	
 	/* Output predefined triangle signal with frequency of 5kHz */
 	TM_DAC_SIGNAL_SetSignal(TM_DAC1, TM_DAC_SIGNAL_Signal_Triangle, 5000);
 	/* Output predefined square signal with frequency of 10kHz */
-	TM_DAC_SIGNAL_SetSignal(TM_DAC2, TM_DAC_SIGNAL_Signal_Square, 10000);
+	TM_DAC_SIGNAL_SetSignal(TM_DAC2, TM_DAC_SIGNAL_Signal_Square, 50000);
 	
 	while (1) {
 		

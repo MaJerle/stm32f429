@@ -37,10 +37,10 @@ int main(void) {
 	TM_PWM_InitTimer(TIM2, &TIM2_Data, 50);
 	
 	/* Initialize PWM on TIM2, Channel 1 and PinsPack 2 = PA5 */
-	TM_PWM_InitChannel(TIM2, TM_PWM_Channel_1, TM_PWM_PinsPack_2);
+	TM_PWM_InitChannel(&TIM2_Data, TM_PWM_Channel_1, TM_PWM_PinsPack_2);
 	
 	/* Set channel 1 value, 1500us = servo at center position */
-	TM_PWM_SetChannelMicros(TIM2, &TIM2_Data, TM_PWM_Channel_1, 1500);
+	TM_PWM_SetChannelMicros(&TIM2_Data, TM_PWM_Channel_1, 1500);
 	
 	/* Servo in position */
 	Delayms(1000);
@@ -55,7 +55,7 @@ int main(void) {
 		}
 
 		/* Set servo position */
-		TM_PWM_SetChannelMicros(TIM2, &TIM2_Data, TM_PWM_Channel_1, position);
+		TM_PWM_SetChannelMicros(&TIM2_Data, TM_PWM_Channel_1, position);
 
 		/* Set some delay for servo to set to correct position */
 		Delayms(1500);

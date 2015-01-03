@@ -19,6 +19,7 @@
 #include "tm_stm32f4_swo.h"
 
 int main(void) {
+	uint32_t send = 0;
 	SystemInit();
 	
 	/* Initialize SWO output */
@@ -29,7 +30,7 @@ int main(void) {
 	
 	/* Delay init */
 	TM_DELAY_Init();
-	
+
 	/* Print via SWO, debug purpose */
 	TM_SWO_Printf("Hello from MCU via SWO\n");
 	

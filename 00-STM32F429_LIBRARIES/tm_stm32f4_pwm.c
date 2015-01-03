@@ -41,11 +41,16 @@ TM_PWM_Result_t TM_PWM_InitTimer(TIM_TypeDef* TIMx, TM_PWM_TIM_t* TIM_Data, doub
 
 	/* Check valid timer */
 	if (TIMx == TIM6 || TIMx == TIM7) {
+		/* Timers TIM6 and TIM7 can not provide PWM feature */
 		return TM_PWM_Result_TimerNotValid;
 	}
 	
+	/* Save timer */
+	TIM_Data->TIM = TIMx;
+	
 	/* Get timer properties */
 	TM_TIMER_PROPERTIES_GetTimerProperties(TIMx, &Timer_Data);
+	
 	/* Check for maximum timer frequency */
 	if (PWMFrequency > Timer_Data.TimerFrequency) {
 		/* Frequency too high */
@@ -60,6 +65,7 @@ TM_PWM_Result_t TM_PWM_InitTimer(TIM_TypeDef* TIMx, TM_PWM_TIM_t* TIM_Data, doub
 	
 	/* Check valid data */
 	if (Timer_Data.Period == 0) {
+		/* Too high frequency */
 		return TM_PWM_Result_FrequencyTooHigh;
 	}
 	
@@ -81,6 +87,7 @@ TM_PWM_Result_t TM_PWM_InitTimer(TIM_TypeDef* TIMx, TM_PWM_TIM_t* TIM_Data, doub
 	
 	/* Initialize timer */
 	TIM_TimeBaseInit(TIMx, &TIM_BaseStruct);
+	
 	/* Start timer */
 	TIM_Cmd(TIMx, ENABLE);
 	
@@ -89,41 +96,42 @@ TM_PWM_Result_t TM_PWM_InitTimer(TIM_TypeDef* TIMx, TM_PWM_TIM_t* TIM_Data, doub
 }
 
 
-TM_PWM_Result_t TM_PWM_InitChannel(TIM_TypeDef* TIMx, TM_PWM_Channel_t Channel, TM_PWM_PinsPack_t PinsPack) {
-	if (TIMx == TIM1) {
+TM_PWM_Result_t TM_PWM_InitChannel(TM_PWM_TIM_t* TIM_Data, TM_PWM_Channel_t Channel, TM_PWM_PinsPack_t PinsPack) {
+	if (TIM_Data->TIM == TIM1) {
 		return TM_PWM_INT_InitTIM1Pins(Channel, PinsPack);
-	} else if (TIMx == TIM2) {
+	} else if (TIM_Data->TIM == TIM2) {
 		return TM_PWM_INT_InitTIM2Pins(Channel, PinsPack);
-	} else if (TIMx == TIM3) {
+	} else if (TIM_Data->TIM == TIM3) {
 		return TM_PWM_INT_InitTIM3Pins(Channel, PinsPack);
-	} else if (TIMx == TIM4) {
+	} else if (TIM_Data->TIM == TIM4) {
 		return TM_PWM_INT_InitTIM4Pins(Channel, PinsPack);
-	} else if (TIMx == TIM5) {
+	} else if (TIM_Data->TIM == TIM5) {
 		return TM_PWM_INT_InitTIM5Pins(Channel, PinsPack);
-	} else if (TIMx == TIM8) {
+	} else if (TIM_Data->TIM == TIM8) {
 		return TM_PWM_INT_InitTIM8Pins(Channel, PinsPack);
-	} else if (TIMx == TIM9) {
+	} else if (TIM_Data->TIM == TIM9) {
 		return TM_PWM_INT_InitTIM9Pins(Channel, PinsPack);
-	} else if (TIMx == TIM10) {
+	} else if (TIM_Data->TIM == TIM10) {
 		return TM_PWM_INT_InitTIM10Pins(Channel, PinsPack);
-	} else if (TIMx == TIM11) {
+	} else if (TIM_Data->TIM == TIM11) {
 		return TM_PWM_INT_InitTIM11Pins(Channel, PinsPack);
-	} else if (TIMx == TIM12) {
+	} else if (TIM_Data->TIM == TIM12) {
 		return TM_PWM_INT_InitTIM12Pins(Channel, PinsPack);
-	} else if (TIMx == TIM13) {
+	} else if (TIM_Data->TIM == TIM13) {
 		return TM_PWM_INT_InitTIM13Pins(Channel, PinsPack);
-	} else if (TIMx == TIM14) {
+	} else if (TIM_Data->TIM == TIM14) {
 		return TM_PWM_INT_InitTIM14Pins(Channel, PinsPack);
 	}
 	/* Timer is not valid */
 	return TM_PWM_Result_TimerNotValid;
 }
 
-TM_PWM_Result_t TM_PWM_SetChannel(TIM_TypeDef* TIMx, TM_PWM_TIM_t* TIM_Data, TM_PWM_Channel_t Channel, uint32_t Pulse) {
+TM_PWM_Result_t TM_PWM_SetChannel(TM_PWM_TIM_t* TIM_Data, TM_PWM_Channel_t Channel, uint32_t Pulse) {
 	TIM_OCInitTypeDef TIM_OCStruct;
 	
 	/* Check pulse length */
 	if (Pulse > (TIM_Data->Period - 1)) {
+		/* Pulse too high */
 		return TM_PWM_Result_PulseTooHigh;
 	}
 
@@ -135,20 +143,20 @@ TM_PWM_Result_t TM_PWM_SetChannel(TIM_TypeDef* TIMx, TM_PWM_TIM_t* TIM_Data, TM_
 	
 	switch (Channel) {
 		case TM_PWM_Channel_1:
-			TIM_OC1Init(TIMx, &TIM_OCStruct);
-			TIM_OC1PreloadConfig(TIMx, TIM_OCPreload_Enable);
+			TIM_OC1Init(TIM_Data->TIM, &TIM_OCStruct);
+			TIM_OC1PreloadConfig(TIM_Data->TIM, TIM_OCPreload_Enable);
 			break;
 		case TM_PWM_Channel_2:
-			TIM_OC2Init(TIMx, &TIM_OCStruct);
-			TIM_OC2PreloadConfig(TIMx, TIM_OCPreload_Enable);
+			TIM_OC2Init(TIM_Data->TIM, &TIM_OCStruct);
+			TIM_OC2PreloadConfig(TIM_Data->TIM, TIM_OCPreload_Enable);
 			break;
 		case TM_PWM_Channel_3:
-			TIM_OC3Init(TIMx, &TIM_OCStruct);
-			TIM_OC3PreloadConfig(TIMx, TIM_OCPreload_Enable);
+			TIM_OC3Init(TIM_Data->TIM, &TIM_OCStruct);
+			TIM_OC3PreloadConfig(TIM_Data->TIM, TIM_OCPreload_Enable);
 			break;
 		case TM_PWM_Channel_4:
-			TIM_OC4Init(TIMx, &TIM_OCStruct);
-			TIM_OC4PreloadConfig(TIMx, TIM_OCPreload_Enable);
+			TIM_OC4Init(TIM_Data->TIM, &TIM_OCStruct);
+			TIM_OC4PreloadConfig(TIM_Data->TIM, TIM_OCPreload_Enable);
 			break;
 		default:
 			break;
@@ -157,20 +165,24 @@ TM_PWM_Result_t TM_PWM_SetChannel(TIM_TypeDef* TIMx, TM_PWM_TIM_t* TIM_Data, TM_
 	return TM_PWM_Result_Ok;
 }
 
-TM_PWM_Result_t TM_PWM_SetChannelPercent(TIM_TypeDef* TIMx, TM_PWM_TIM_t* TIM_Data, TM_PWM_Channel_t Channel, float percent) {
+TM_PWM_Result_t TM_PWM_SetChannelPercent(TM_PWM_TIM_t* TIM_Data, TM_PWM_Channel_t Channel, float percent) {
 	if (percent > 100) {
-		return TM_PWM_SetChannel(TIMx, TIM_Data, Channel, TIM_Data->Period);
+		return TM_PWM_SetChannel(TIM_Data, Channel, TIM_Data->Period);
 	} else if (percent <= 0) {
-		return TM_PWM_SetChannel(TIMx, TIM_Data, Channel, 0);
+		return TM_PWM_SetChannel(TIM_Data, Channel, 0);
 	}
-	return TM_PWM_SetChannel(TIMx, TIM_Data, Channel, (uint32_t)((float)(TIM_Data->Period - 1) * percent) / 100);
+	return TM_PWM_SetChannel(TIM_Data, Channel, (uint32_t)((float)(TIM_Data->Period - 1) * percent) / 100);
 }
 
-TM_PWM_Result_t TM_PWM_SetChannelMicros(TIM_TypeDef* TIMx, TM_PWM_TIM_t* TIM_Data, TM_PWM_Channel_t Channel, uint32_t micros) {
+TM_PWM_Result_t TM_PWM_SetChannelMicros(TM_PWM_TIM_t* TIM_Data, TM_PWM_Channel_t Channel, uint32_t micros) {
+	/* If we choose too much micro seconds that we have valid */
 	if (micros > TIM_Data->Micros) {
+		/* Too high pulse */
 		return TM_PWM_Result_PulseTooHigh;
 	}
-	return TM_PWM_SetChannel(TIMx, TIM_Data, Channel, (uint32_t)((TIM_Data->Period - 1) * micros) / TIM_Data->Micros);
+	
+	/* Set PWM channel */
+	return TM_PWM_SetChannel(TIM_Data, Channel, (uint32_t)((TIM_Data->Period - 1) * micros) / TIM_Data->Micros);
 }
 
 TM_PWM_Result_t TM_PWM_INT_InitTIM1Pins(TM_PWM_Channel_t Channel, TM_PWM_PinsPack_t PinsPack) {
