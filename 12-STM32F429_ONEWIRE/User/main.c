@@ -22,6 +22,8 @@
 int main(void) {
 	char buf[30];
 	uint8_t devices, i, j, count, device[2][8];
+	/* OneWire working structure */
+	TM_OneWire_t OneWire1;
 	
 	/* Initialize system */
 	SystemInit();
@@ -29,37 +31,42 @@ int main(void) {
 	/* Initialize delay */
 	TM_DELAY_Init();
 	
-	/* Initialize One Wire on pin PD0 */
-	TM_OneWire_Init();
+	/* Initialize OneWire1 instance on pin PD0 */
+	TM_OneWire_Init(&OneWire1, GPIOD, GPIO_Pin_0, RCC_AHB1Periph_GPIOD);
 	
 	/* Initialize USART, TX: PB6, RX: PB7 */
 	TM_USART_Init(USART1, TM_USART_PinsPack_2, 115200);
 	
-	/* Checks for any device on 1-wire */
-	devices = TM_OneWire_First();
+	/* Check for any device on 1-wire */
+	devices = TM_OneWire_First(&OneWire1);
 	count = 0;
 	while (devices) {
+		/* Increase count variable */
 		count++;
-		for (i = 0; i < 8; i++) {
-			device[count - 1][i] = TM_OneWire_GetROM(i);
-		}
+		
+		/* Get full 8-bytes rom address */
+		TM_OneWire_GetFullROM(&OneWire1, device[count - 1]);
+		
 		/* Check for new device */
-		devices = TM_OneWire_Next();
+		devices = TM_OneWire_Next(&OneWire1);
 	}
+	
 	/* If any devices on 1-wire */
 	if (count > 0) {
-		sprintf(buf, "Devices found on 1-wire: %d\n\r", count);
+		sprintf(buf, "Devices found on 1-wire instance: %d\n", count);
 		TM_USART_Puts(USART1, buf);
+		
 		/* Display 64bit rom code */
 		for (j = 0; j < count; j++) {
 			for (i = 0; i < 8; i++) {
 				sprintf(buf, "0x%02X ", device[j][i]);
 				TM_USART_Puts(USART1, buf);
 			}
-			TM_USART_Puts(USART1, "\n\r");
+			TM_USART_Puts(USART1, "\n");
 		}
 	} else {
-		TM_USART_Puts(USART1, "No devices on OneWire.\n\r");
+		/* Nothing on OneWire */
+		TM_USART_Puts(USART1, "No devices on OneWire.\n\n");
 	}
 	
 	while (1) {
