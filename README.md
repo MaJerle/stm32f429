@@ -120,6 +120,8 @@ http://bit.ly/1qALFKQ
 http://bit.ly/1vkRqbi
 47. RS-485 - RS-485 network library for STM32F4 devices
 http://bit.ly/1xwjAo5
+48. PWM IN - Measure input PWM signal on STM32F4
+http://bit.ly/1BEWaND
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB
