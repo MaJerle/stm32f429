@@ -185,7 +185,7 @@
 
 /* NVIC Priority */
 #ifndef TM_USART_NVIC_PRIORITY
-#define TM_USART_NVIC_PRIORITY				0x00
+#define TM_USART_NVIC_PRIORITY				0x06
 #endif
 
 //U(S)ART settings, can be changed in your defines.h project file

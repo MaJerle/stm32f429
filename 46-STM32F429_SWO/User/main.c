@@ -19,7 +19,6 @@
 #include "tm_stm32f4_swo.h"
 
 int main(void) {
-	uint32_t send = 0;
 	SystemInit();
 	
 	/* Initialize SWO output */
