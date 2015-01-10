@@ -122,6 +122,8 @@ http://bit.ly/1vkRqbi
 http://bit.ly/1xwjAo5
 48. PWM IN - Measure input PWM signal on STM32F4
 http://bit.ly/1BEWaND
+49. OTP - One-time programmable memory on STM32F4
+http://bit.ly/1AY3tlE
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB
