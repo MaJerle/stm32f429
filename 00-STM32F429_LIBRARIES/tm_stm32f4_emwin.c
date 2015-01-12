@@ -119,7 +119,10 @@ TM_EMWIN_Result_t TM_EMWIN_UpdateTouch(void) {
 		TS_State.Layer = 0;
 		
 		/* Update only if we have difference */
-		if (TS_State.Pressed != last) {
+		if (
+			TS_State.Pressed != last ||
+			last
+		) {
 			/* Save new state */
 			last = TS_State.Pressed;
 			
