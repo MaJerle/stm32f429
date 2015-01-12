@@ -51,7 +51,7 @@ int main(void) {
 	TM_ILI9341_SetLayer2();
 	
 	/* Fill screen on layer 2 */
-	TM_ILI9341_Fill(ILI9341_COLOR_GREEN2);
+	TM_ILI9341_Fill(ILI9341_COLOR_GREEN);
 	
 	/* Show text */
 	TM_ILI9341_Puts(65, 30, "Layer 2", &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_BLUE);
@@ -66,7 +66,7 @@ int main(void) {
 		/* This will set opacity of one layer to 0, other to max (255) each time */
 		/* This is like toggle function */
 		TM_ILI9341_ChangeLayers();
-		Delayms(500);
+		Delayms(1000);
 		 
 		/*
 		//Bottom code works the same as one before inside while loop

@@ -30,10 +30,12 @@ int main(void) {
 	
 	/* Initialize LCD */
 	TM_ILI9341_Init();
-	/* Fill with orange color */
-	TM_ILI9341_Fill(ILI9341_COLOR_ORANGE);
+	
 	/* Rotate LCD */
 	TM_ILI9341_Rotate(TM_ILI9341_Orientation_Portrait_2);
+	
+	/* Fill with orange color */
+	TM_ILI9341_Fill(ILI9341_COLOR_ORANGE);
 	
 	/* Initialize Touch */
 	if (TM_STMPE811_Init() != TM_STMPE811_State_Ok) {
@@ -50,6 +52,7 @@ int main(void) {
 	TM_ILI9341_Puts(93, 310, "stm32f4-discovery.com", &TM_Font_7x10, ILI9341_COLOR_GREEN, ILI9341_COLOR_BLACK);
 	
 	while (1) {
+		/* If touch pressed */
 		if (TM_STMPE811_ReadTouch(&touchData) == TM_STMPE811_State_Pressed) {
 			/* Touch valid */
 			sprintf(str, "Pressed    \n\nX: %03d\nY: %03d", touchData.x, touchData.y);

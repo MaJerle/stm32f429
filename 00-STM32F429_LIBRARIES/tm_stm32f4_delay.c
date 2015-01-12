@@ -40,6 +40,9 @@ void SysTick_Handler(void) {
 	if (TM_Time2 != 0x00) {
 		TM_Time2--;
 	}
+	
+	/* Call user function */
+	TM_DELAY_1msHandler();
 }
 
 void TM_DELAY_Init(void) {

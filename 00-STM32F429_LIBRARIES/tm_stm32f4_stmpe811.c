@@ -97,9 +97,21 @@ TM_STMPE811_State_t TM_STMPE811_Init(void) {
 	*/
 	TM_I2C_Write(STMPE811_I2C, STMPE811_ADDRESS, STMPE811_TSC_CTRL, 0x03);
 
-	/*  Clear all the status pending bits if any */
+	/* Clear all the status pending bits if any */
 	TM_I2C_Write(STMPE811_I2C, STMPE811_ADDRESS, STMPE811_INT_STA, 0xFF);
-
+	
+	/* Enable global interrupts */
+	/*
+	mode = TM_I2C_Read(STMPE811_I2C, STMPE811_ADDRESS, STMPE811_INT_CTRL);
+	mode |= 0x01;
+	TM_I2C_Write(STMPE811_I2C, STMPE811_ADDRESS, STMPE811_INT_CTRL, mode);
+	*/
+	/* Enable touch interrupt */
+	/*
+	mode = TM_I2C_Read(STMPE811_I2C, STMPE811_ADDRESS, STMPE811_INT_EN);
+	mode |= 0x01;
+	TM_I2C_Write(STMPE811_I2C, STMPE811_ADDRESS, STMPE811_INT_EN, mode);
+	*/
 	/* Wait for 2 ms delay */
 	Delayms(2); 
 	
@@ -124,6 +136,10 @@ TM_STMPE811_State_t TM_STMPE811_ReadTouch(TM_STMPE811_TouchData *structdata) {
 		
 		return TM_STMPE811_State_Released;
 	}
+	
+	/* Clear all the status pending bits if any */
+	//TM_I2C_Write(STMPE811_I2C, STMPE811_ADDRESS, STMPE811_INT_STA, 0xFF);
+	
 	//Pressed
 	if (structdata->orientation == TM_STMPE811_Orientation_Portrait_1) {
 		structdata->x = 239 - TM_STMPE811_ReadX(structdata->x);
@@ -144,18 +160,22 @@ TM_STMPE811_State_t TM_STMPE811_ReadTouch(TM_STMPE811_TouchData *structdata) {
 	TM_I2C_Write(STMPE811_I2C, STMPE811_ADDRESS, STMPE811_FIFO_STA, 0x00);
 	
 	//Check for valid data
-	structdata->pressed = TM_STMPE811_State_Pressed;
 	if (structdata->orientation == TM_STMPE811_Orientation_Portrait_1 || structdata->orientation == TM_STMPE811_Orientation_Portrait_2) {
 		//Portrait
 		if (structdata->x > 0 && structdata->x < 239 && structdata->y > 0 && structdata->y < 319) {
+			structdata->pressed = TM_STMPE811_State_Pressed;
 			return TM_STMPE811_State_Pressed;
 		}
 	} else {
 		//Landscape
-		if (structdata->x > 0 && structdata->x < 319 && structdata->y > 0 && structdata->y < 239) {
+		if (structdata->x > 0 && structdata->x < 319 && structdata->y > 0 && structdata->y < 239) {	
+			structdata->pressed = TM_STMPE811_State_Pressed;
 			return TM_STMPE811_State_Pressed;
 		}
 	}
+	
+	structdata->pressed = TM_STMPE811_State_Released;
+	
 	return TM_STMPE811_State_Released;
 }
 

@@ -83,8 +83,8 @@ void TM_ILI9341_InitPins(void) {
 	GPIO_PinAFConfig(GPIOA, GPIO_PinSource6, GPIO_AF_LTDC);
 	GPIO_PinAFConfig(GPIOA, GPIO_PinSource11, GPIO_AF_LTDC);
 	GPIO_PinAFConfig(GPIOA, GPIO_PinSource12, GPIO_AF_LTDC);
-	GPIO_PinAFConfig(GPIOB, GPIO_PinSource0, GPIO_AF_CAN1);
-	GPIO_PinAFConfig(GPIOB, GPIO_PinSource1, GPIO_AF_CAN1);
+	GPIO_PinAFConfig(GPIOB, GPIO_PinSource0, 0x09);
+	GPIO_PinAFConfig(GPIOB, GPIO_PinSource1, 0x09);
 	GPIO_PinAFConfig(GPIOB, GPIO_PinSource8, GPIO_AF_LTDC);
 	GPIO_PinAFConfig(GPIOB, GPIO_PinSource9, GPIO_AF_LTDC);
 	GPIO_PinAFConfig(GPIOB, GPIO_PinSource10, GPIO_AF_LTDC);
@@ -97,9 +97,9 @@ void TM_ILI9341_InitPins(void) {
 	GPIO_PinAFConfig(GPIOF, GPIO_PinSource10, GPIO_AF_LTDC);
 	GPIO_PinAFConfig(GPIOG, GPIO_PinSource6, GPIO_AF_LTDC);
 	GPIO_PinAFConfig(GPIOG, GPIO_PinSource7, GPIO_AF_LTDC);
-	GPIO_PinAFConfig(GPIOG, GPIO_PinSource10, GPIO_AF_CAN1);
+	GPIO_PinAFConfig(GPIOG, GPIO_PinSource10, 0x09);
 	GPIO_PinAFConfig(GPIOG, GPIO_PinSource11, GPIO_AF_LTDC);
-	GPIO_PinAFConfig(GPIOG, GPIO_PinSource12, GPIO_AF_CAN1);
+	GPIO_PinAFConfig(GPIOG, GPIO_PinSource12, 0x09);
 	
 	//Common settings
 	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
@@ -330,7 +330,6 @@ void TM_ILI9341_InitLayers(void) {
     LTDC_Layer_InitStruct.LTDC_BlendingFactor_1 = LTDC_BlendingFactor1_CA;    
     LTDC_Layer_InitStruct.LTDC_BlendingFactor_2 = LTDC_BlendingFactor2_CA;
 
-
     /* the length of one line of pixels in bytes + 3 then :
     Line Lenth = Active high width x number of bytes per pixel + 3 
     Active high width         = LCD_PIXEL_WIDTH 
@@ -362,9 +361,12 @@ void TM_ILI9341_InitLayers(void) {
 	LTDC_LayerInit(LTDC_Layer2, &LTDC_Layer_InitStruct);
 
 	LTDC_ReloadConfig(LTDC_IMReload);
+	
 	/* Enable foreground & background Layers */
 	LTDC_LayerCmd(LTDC_Layer1, ENABLE);
 	LTDC_LayerCmd(LTDC_Layer2, ENABLE);
+	
+	/* Reload immediate */
 	LTDC_ReloadConfig(LTDC_IMReload);
 
 	LTDC_DitherCmd(ENABLE);
@@ -372,8 +374,11 @@ void TM_ILI9341_InitLayers(void) {
 	/* Display On */
 	LTDC_Cmd(ENABLE);
 	
+	/* Set opacity */
 	LTDC_LayerAlpha(LTDC_Layer1, 255);
 	LTDC_LayerAlpha(LTDC_Layer2, 0);
+	
+	/* Immediate reload */
 	LTDC_ReloadConfig(LTDC_IMReload);
 }
 
@@ -423,8 +428,9 @@ void TM_ILI9341_DrawPixel(uint16_t x, uint16_t y, uint32_t color) {
 
 void TM_ILI9341_Fill(uint32_t color) {
 	uint32_t i;
-	for (i = 0; i < ILI9341_PIXEL; i++) {
-		*(uint16_t *) (ILI9341_FRAME_BUFFER + ILI9341_Opts.CurrentLayerOffset + 2 * i) = color;
+	uint32_t pixels = ILI9341_PIXEL * 2;
+	for (i = 0; i < pixels; i += 2) {
+		*(uint16_t *) (ILI9341_FRAME_BUFFER + ILI9341_Opts.CurrentLayerOffset + i) = color;
 	}
 }
 
@@ -469,6 +475,7 @@ void TM_ILI9341_UpdateLayerOpacity(void) {
 	LTDC_LayerAlpha(LTDC_Layer1, ILI9341_Opts.Layer1Opacity);
 	LTDC_LayerAlpha(LTDC_Layer2, ILI9341_Opts.Layer2Opacity);
 
+	/* Immidiate reload */
 	LTDC_ReloadConfig(LTDC_IMReload);
 }
 
@@ -486,15 +493,17 @@ void TM_ILI9341_ChangeLayers(void) {
 
 void TM_ILI9341_Layer2To1(void) {
 	uint32_t i;
-	for (i = 0; i < ILI9341_PIXEL; i++) {
-		*(uint16_t *) (ILI9341_FRAME_BUFFER + 2 * i) = *(uint16_t *) (ILI9341_FRAME_BUFFER + ILI9341_FRAME_OFFSET + 2 * i);
+	uint32_t pixels = ILI9341_PIXEL * 2;
+	for (i = 0; i < pixels; i += 2) {
+		*(uint16_t *) (ILI9341_FRAME_BUFFER + i) = *(uint16_t *) (ILI9341_FRAME_BUFFER + ILI9341_FRAME_OFFSET + i);
 	}
 }
 
 void TM_ILI9341_Layer1To2(void) {
 	uint32_t i;
-	for (i = 0; i < ILI9341_PIXEL; i++) {
-		*(uint16_t *) (ILI9341_FRAME_BUFFER + ILI9341_FRAME_OFFSET + 2 * i) = *(uint16_t *) (ILI9341_FRAME_BUFFER + 2 * i);
+	uint32_t pixels = ILI9341_PIXEL * 2;
+	for (i = 0; i < pixels; i += 2) {
+		*(uint16_t *) (ILI9341_FRAME_BUFFER + ILI9341_FRAME_OFFSET + i) = *(uint16_t *) (ILI9341_FRAME_BUFFER + i);
 	}
 }
 
@@ -506,10 +515,10 @@ void TM_ILI9341_Puts(uint16_t x, uint16_t y, char *str, TM_FontDef_t *font, uint
 	ILI9341_y = y;
 	
 	while (*str) {
-		//New line
+		/* New line */
 		if (*str == '\n') {
 			ILI9341_y += font->FontHeight + 1;
-			//if after \n is also \r, than go to the left of the screen
+			/* if after \n is also \r, than go to the left of the screen */
 			if (*(str + 1) == '\r') {
 				ILI9341_x = 0;
 				str++;
@@ -523,16 +532,20 @@ void TM_ILI9341_Puts(uint16_t x, uint16_t y, char *str, TM_FontDef_t *font, uint
 			continue;
 		}
 		
+		/* Put character */
 		TM_ILI9341_Putc(ILI9341_x, ILI9341_y, *str++, font, foreground, background);
 	}
 }
 
 void TM_ILI9341_GetStringSize(char *str, TM_FontDef_t *font, uint16_t *width, uint16_t *height) {
 	uint16_t w = 0;
+	/* Get height */
 	*height = font->FontHeight;
+	/* Get length */
 	while (*str++) {
 		w += font->FontWidth;
 	}
+	/* Width */
 	*width = w;
 }
 
@@ -542,7 +555,7 @@ void TM_ILI9341_Putc(uint16_t x, uint16_t y, char c, TM_FontDef_t *font, uint32_
 	ILI9341_x = x;
 	ILI9341_y = y;
 	if ((ILI9341_x + font->FontWidth) > ILI9341_Opts.Width) {
-		//If at the end of a line of display, go to new line and set x to 0 position
+		/* If at the end of a line of display, go to new line and set x to 0 position */
 		ILI9341_y += font->FontHeight;
 		ILI9341_x = 0;
 	}
@@ -556,6 +569,7 @@ void TM_ILI9341_Putc(uint16_t x, uint16_t y, char c, TM_FontDef_t *font, uint32_
 			}
 		}
 	}
+	/* Go to new X location */
 	ILI9341_x += font->FontWidth;
 }
 
@@ -604,10 +618,10 @@ void TM_ILI9341_DrawLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uin
 
 
 void TM_ILI9341_DrawRectangle(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint32_t color) {
-	TM_ILI9341_DrawLine(x0, y0, x1, y0, color); //Top
-	TM_ILI9341_DrawLine(x0, y0, x0, y1, color);	//Left
-	TM_ILI9341_DrawLine(x1, y0, x1, y1, color);	//Right
-	TM_ILI9341_DrawLine(x0, y1, x1, y1, color);	//Bottom
+	TM_ILI9341_DrawLine(x0, y0, x1, y0, color); /* Top */
+	TM_ILI9341_DrawLine(x0, y0, x0, y1, color);	/* Left */
+	TM_ILI9341_DrawLine(x1, y0, x1, y1, color);	/* Right */
+	TM_ILI9341_DrawLine(x0, y1, x1, y1, color);	/* Bottom */
 }
 
 void TM_ILI9341_DrawFilledRectangle(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint32_t color) {

@@ -647,16 +647,6 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_ili9341.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_ili9341.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341.h</FilePath>
-            </File>
-            <File>
               <FileName>tm_stm32f4_stmpe811.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_stmpe811.c</FilePath>
@@ -685,6 +675,16 @@
               <FileName>tm_stm32f4_i2c.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_i2c.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ili9341.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ili9341.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341.h</FilePath>
             </File>
           </Files>
         </Group>

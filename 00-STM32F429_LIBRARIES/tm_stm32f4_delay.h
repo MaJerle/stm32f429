@@ -26,6 +26,12 @@
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
  *
+ * Version 2.2
+ *	- January 12, 2015
+ *	- Added support for custom function call each time 1ms interrupt happen
+ *	- Function is called TM_DELAY_1msHandler(void), with __weak parameter
+ *	- attributes.h file needed
+ *
  * ------!!!!!!!!!!!------
  *	If you are using GCC (sucks) compiler, then your delay is probably totally inaccurate.
  *	USE TIMER FOR DELAY, otherwise your delay will not be accurate
@@ -90,6 +96,7 @@
  * - MISC         			(Only if you want to use TIMx for delay instead of Systick)
  * - TM TIMER PROPERTIES	(Only if you want to use TIMx for delay instead of Systick)
  * - defines.h
+ * - attributes.h
  */
 /**
  * Includes
@@ -97,6 +104,7 @@
 #include "stm32f4xx.h"
 #include "stm32f4xx_rcc.h"
 #include "defines.h"
+#include "attributes.h"
 /* If user selectable timer is selected for delay */
 #if defined(TM_DELAY_TIM)
 #include "misc.h"
@@ -226,5 +234,12 @@ void TM_DELAY_DisableDelayTimer(void);
  * This is not meant for public use
  */
 #define TM_DELAY_SetTime2(time)			(TM_Time2 = (time))
+
+/**
+ * User function, called each 1ms when interrupt from timer happen
+ *
+ * Here user should put things which has to be called periodically
+ */
+__weak void TM_DELAY_1msHandler(void);
 
 #endif
