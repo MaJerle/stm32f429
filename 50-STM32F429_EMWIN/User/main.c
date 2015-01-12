@@ -48,7 +48,7 @@ int main(void) {
 	}
 	
 	/* Create progress bar at location x = 10, y = 10, length = 219, height = 30 */
-	hProgbar = PROGBAR_CreateEx(i ? 10 : 0, 10, 219, 30, 0, WM_CF_SHOW, 0, GUI_ID_PROGBAR0);
+	hProgbar = PROGBAR_CreateEx(10, 10, 219, 30, 0, WM_CF_SHOW, 0, GUI_ID_PROGBAR0);
 	/* Set progress bar font */
 	PROGBAR_SetFont(hProgbar, &GUI_Font8x16);
 	/* Set progress bar text */
