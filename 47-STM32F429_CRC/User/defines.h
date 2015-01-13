@@ -1,16 +1,15 @@
 /**
- *	
- *
+ *  Defines for your entire project at one place
+ * 
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
- *	@link		
  *	@version 	v1.0
- *	@ide		Keil uVision
+ *	@ide		Keil uVision 5
  *	@license	GNU GPL v3
  *	
  * |----------------------------------------------------------------------
- * | Copyright (C) Tilen Majerle, 2015
+ * | Copyright (C) Tilen Majerle, 2014
  * | 
  * | This program is free software: you can redistribute it and/or modify
  * | it under the terms of the GNU General Public License as published by
@@ -26,32 +25,9 @@
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
  */
-#ifndef TM_LIBRARY_H
-#define TM_LIBRARY_H 100
+#ifndef TM_DEFINES_H
+#define TM_DEFINES_H
 
-/* C++ detection */
-#ifdef __cplusplus
-extern C {
-#endif
-
-/**
- * Library dependencies
- * - STM32F4xx
- * - STM32F4xx RCC
- * - defines.h
- */
-/**
- * Includes
- */
-#include "stm32f4xx.h"
-#include "stm32f4xx_rcc.h"
-#include "defines.h"
-
-
-
-/* C++ detection */
-#ifdef __cplusplus
-}
-#endif
+/* Put your global defines for all libraries here used in your project */
 
 #endif

@@ -118,8 +118,8 @@ http://bit.ly/1sbPXte
 http://bit.ly/1qALFKQ
 46. SWO DEBUG - Debug STM32F4 using SWO output
 http://bit.ly/1vkRqbi
-47. RS-485 - RS-485 network library for STM32F4 devices
-http://bit.ly/1xwjAo5
+47. CRC - STM32F4 CRC Hardware module
+http://bit.ly/1xliSGA
 48. PWM IN - Measure input PWM signal on STM32F4
 http://bit.ly/1BEWaND
 49. OTP - One-time programmable memory on STM32F4
