@@ -399,7 +399,7 @@ void TM_RTC_Interrupts(TM_RTC_Int_t int_value) {
 			int_val = 0x1FF;		/* 125 ms */
 		}		
 
-		/* Clock divided by 8, 32768 / 8 = 4068 */
+		/* Clock divided by 8, 32768 / 8 = 4096 */
 		/* 4096 ticks for 1second interrupt */
 		RTC_WakeUpClockConfig(RTC_WakeUpClock_RTCCLK_Div8);
 		

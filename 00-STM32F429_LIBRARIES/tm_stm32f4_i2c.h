@@ -185,7 +185,7 @@ extern void TM_I2C_Init(I2C_TypeDef* I2Cx, TM_I2C_PinsPack_t pinspack, uint32_t 
 extern uint8_t TM_I2C_Read(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg);
 
 /**
- * Read single byte from slave
+ * Write single byte to slave
  *
  * Parameters:
  * 	- I2C_TypeDef* I2Cx: I2C used
