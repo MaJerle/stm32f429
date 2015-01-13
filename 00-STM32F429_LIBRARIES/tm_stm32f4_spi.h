@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/04/library-05-spi-for-stm32f4xx/
- *	@version 	v1.4
+ *	@version 	v1.5
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -25,18 +25,22 @@
  * | You should have received a copy of the GNU General Public License
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
- *	
- *	Version 1.4
- *	 - November 09, 2014
- *	 - Added methods for 16-bit SPI mode
  *
- *	Version 1.3
+ * Version 1.5	
+ *	- January 13, 2015
+ *	- Added function TM_SPI_InitWithMode() to initialize SPI with custom SPI mode on the fly
+ *
+ * Version 1.4
+ *	- November 09, 2014
+ *	- Added methods for 16-bit SPI mode
+ *
+ * Version 1.3
  *	 - September 14, 2014
  *	 - Added additional pins for SPI2
  *
- *	It support all 6 SPIs in master with 2Line Full Duplex mode
+ * It supports all 6 SPIs in master with 2Line Full Duplex mode
  *
- *	All six spis work the same principle by default.
+ * All six spis work the same principle by default.
  *	- Master
  *	- 8data bits
  *	- data sampled at first edge
@@ -73,7 +77,7 @@
  *	
  */
 #ifndef TM_SPI_H
-#define TM_SPI_H 140
+#define TM_SPI_H 150
 
 /* C++ detection */
 #ifdef __cplusplus
@@ -266,6 +270,24 @@ typedef enum {
  *		- TM_SPI_PinsPack_3
  */
 extern void TM_SPI_Init(SPI_TypeDef* SPIx, TM_SPI_PinsPack_t pinspack);
+
+/**
+ * Initialize SPIx with SPI mode
+ *
+ * Parameters:
+ * 	- SPI_TypeDef* SPIx:
+ * 		SPI 1 - 6
+ * 	- TM_SPI_PinsPack_t pinspack: select pins pack to use
+ * 		- TM_SPI_PinsPack_1
+ * 		- TM_SPI_PinsPack_2
+ *		- TM_SPI_PinsPack_3
+ *	- TM_SPI_Mode_t SPI_Mode:
+ *		SPI mode to be initialize
+ *
+ * No return
+ */
+extern void TM_SPI_InitWithMode(SPI_TypeDef* SPIx, TM_SPI_PinsPack_t pinspack, TM_SPI_Mode_t SPI_Mode);
+
 
 /**
  * Send and receive data over SPI

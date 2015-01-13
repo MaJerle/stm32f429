@@ -19,26 +19,42 @@
 #include "tm_stm32f4_spi.h"
 
 
-extern void TM_SPI1_Init(TM_SPI_PinsPack_t pinspack);
-extern void TM_SPI2_Init(TM_SPI_PinsPack_t pinspack);
-extern void TM_SPI3_Init(TM_SPI_PinsPack_t pinspack);
-extern void TM_SPI4_Init(TM_SPI_PinsPack_t pinspack);
-extern void TM_SPI5_Init(TM_SPI_PinsPack_t pinspack);
-extern void TM_SPI6_Init(TM_SPI_PinsPack_t pinspack);
+extern void TM_SPI1_Init(TM_SPI_PinsPack_t pinspack, TM_SPI_Mode_t SPI_Mode);
+extern void TM_SPI2_Init(TM_SPI_PinsPack_t pinspack, TM_SPI_Mode_t SPI_Mode);
+extern void TM_SPI3_Init(TM_SPI_PinsPack_t pinspack, TM_SPI_Mode_t SPI_Mode);
+extern void TM_SPI4_Init(TM_SPI_PinsPack_t pinspack, TM_SPI_Mode_t SPI_Mode);
+extern void TM_SPI5_Init(TM_SPI_PinsPack_t pinspack, TM_SPI_Mode_t SPI_Mode);
+extern void TM_SPI6_Init(TM_SPI_PinsPack_t pinspack, TM_SPI_Mode_t SPI_Mode);
 
 void TM_SPI_Init(SPI_TypeDef* SPIx, TM_SPI_PinsPack_t pinspack) {
 	if (SPIx == SPI1) {
-		TM_SPI1_Init(pinspack);
+		TM_SPI1_Init(pinspack, TM_SPI1_MODE);
 	} else if (SPIx == SPI2) {
-		TM_SPI2_Init(pinspack);
+		TM_SPI2_Init(pinspack, TM_SPI2_MODE);
 	} else if (SPIx == SPI3) {
-		TM_SPI3_Init(pinspack);
+		TM_SPI3_Init(pinspack, TM_SPI3_MODE);
 	} else if (SPIx == SPI4) {
-		TM_SPI4_Init(pinspack);
+		TM_SPI4_Init(pinspack, TM_SPI4_MODE);
 	} else if (SPIx == SPI5) {
-		TM_SPI5_Init(pinspack);
+		TM_SPI5_Init(pinspack, TM_SPI5_MODE);
 	} else if (SPIx == SPI6) {
-		TM_SPI6_Init(pinspack);
+		TM_SPI6_Init(pinspack, TM_SPI6_MODE);
+	}
+}
+
+void TM_SPI_InitWithMode(SPI_TypeDef* SPIx, TM_SPI_PinsPack_t pinspack, TM_SPI_Mode_t SPI_Mode) {
+	if (SPIx == SPI1) {
+		TM_SPI1_Init(pinspack, SPI_Mode);
+	} else if (SPIx == SPI2) {
+		TM_SPI2_Init(pinspack, SPI_Mode);
+	} else if (SPIx == SPI3) {
+		TM_SPI3_Init(pinspack, SPI_Mode);
+	} else if (SPIx == SPI4) {
+		TM_SPI4_Init(pinspack, SPI_Mode);
+	} else if (SPIx == SPI5) {
+		TM_SPI5_Init(pinspack, SPI_Mode);
+	} else if (SPIx == SPI6) {
+		TM_SPI6_Init(pinspack, SPI_Mode);
 	}
 }
 
@@ -110,7 +126,7 @@ void TM_SPI_ReadMulti16(SPI_TypeDef* SPIx, uint16_t* dataIn, uint16_t dummy, uin
 	}
 }
 
-void TM_SPI1_Init(TM_SPI_PinsPack_t pinspack) {
+void TM_SPI1_Init(TM_SPI_PinsPack_t pinspack, TM_SPI_Mode_t SPI_Mode) {
 	GPIO_InitTypeDef GPIO_InitStruct;
 	SPI_InitTypeDef SPI_InitStruct;
 
@@ -150,25 +166,29 @@ void TM_SPI1_Init(TM_SPI_PinsPack_t pinspack) {
 	SPI_InitStruct.SPI_Direction = SPI_Direction_2Lines_FullDuplex;
 	SPI_InitStruct.SPI_FirstBit = TM_SPI1_FIRSTBIT;
 	SPI_InitStruct.SPI_Mode = TM_SPI1_MASTERSLAVE;
-	if (TM_SPI1_MODE == TM_SPI_Mode_0) {
+	if (SPI_Mode == TM_SPI_Mode_0) {
 		SPI_InitStruct.SPI_CPOL = SPI_CPOL_Low;
 		SPI_InitStruct.SPI_CPHA = SPI_CPHA_1Edge;
-	} else if (TM_SPI1_MODE == TM_SPI_Mode_1) {
+	} else if (SPI_Mode == TM_SPI_Mode_1) {
 		SPI_InitStruct.SPI_CPOL = SPI_CPOL_Low;
 		SPI_InitStruct.SPI_CPHA = SPI_CPHA_2Edge;
-	} else if (TM_SPI1_MODE == TM_SPI_Mode_2) {
+	} else if (SPI_Mode == TM_SPI_Mode_2) {
 		SPI_InitStruct.SPI_CPOL = SPI_CPOL_High;
 		SPI_InitStruct.SPI_CPHA = SPI_CPHA_1Edge;
-	} else if (TM_SPI1_MODE == TM_SPI_Mode_3) {
+	} else if (SPI_Mode == TM_SPI_Mode_3) {
 		SPI_InitStruct.SPI_CPOL = SPI_CPOL_High;
 		SPI_InitStruct.SPI_CPHA = SPI_CPHA_2Edge;
 	}
 	SPI_InitStruct.SPI_NSS = SPI_NSS_Soft;
+	
+	SPI_Cmd(SPI1, DISABLE);
+	SPI_DeInit(SPI1);
+	
 	SPI_Init(SPI1, &SPI_InitStruct);
 	SPI_Cmd(SPI1, ENABLE);
 }
 
-void TM_SPI2_Init(TM_SPI_PinsPack_t pinspack) {
+void TM_SPI2_Init(TM_SPI_PinsPack_t pinspack, TM_SPI_Mode_t SPI_Mode) {
 	GPIO_InitTypeDef GPIO_InitStruct;
 	SPI_InitTypeDef SPI_InitStruct;
 
@@ -222,25 +242,29 @@ void TM_SPI2_Init(TM_SPI_PinsPack_t pinspack) {
 	SPI_InitStruct.SPI_Direction = SPI_Direction_2Lines_FullDuplex;
 	SPI_InitStruct.SPI_FirstBit = TM_SPI2_FIRSTBIT;
 	SPI_InitStruct.SPI_Mode = TM_SPI2_MASTERSLAVE;
-	if (TM_SPI2_MODE == TM_SPI_Mode_0) {
+	if (SPI_Mode == TM_SPI_Mode_0) {
 		SPI_InitStruct.SPI_CPOL = SPI_CPOL_Low;
 		SPI_InitStruct.SPI_CPHA = SPI_CPHA_1Edge;
-	} else if (TM_SPI2_MODE == TM_SPI_Mode_1) {
+	} else if (SPI_Mode == TM_SPI_Mode_1) {
 		SPI_InitStruct.SPI_CPOL = SPI_CPOL_Low;
 		SPI_InitStruct.SPI_CPHA = SPI_CPHA_2Edge;
-	} else if (TM_SPI2_MODE == TM_SPI_Mode_2) {
+	} else if (SPI_Mode == TM_SPI_Mode_2) {
 		SPI_InitStruct.SPI_CPOL = SPI_CPOL_High;
 		SPI_InitStruct.SPI_CPHA = SPI_CPHA_1Edge;
-	} else if (TM_SPI2_MODE == TM_SPI_Mode_3) {
+	} else if (SPI_Mode == TM_SPI_Mode_3) {
 		SPI_InitStruct.SPI_CPOL = SPI_CPOL_High;
 		SPI_InitStruct.SPI_CPHA = SPI_CPHA_2Edge;
 	}
 	SPI_InitStruct.SPI_NSS = SPI_NSS_Soft;
+	
+	SPI_Cmd(SPI2, DISABLE);
+	SPI_DeInit(SPI2);
+	
 	SPI_Init(SPI2, &SPI_InitStruct);
 	SPI_Cmd(SPI2, ENABLE);
 }
 
-void TM_SPI3_Init(TM_SPI_PinsPack_t pinspack) {
+void TM_SPI3_Init(TM_SPI_PinsPack_t pinspack, TM_SPI_Mode_t SPI_Mode) {
 	GPIO_InitTypeDef GPIO_InitStruct;
 	SPI_InitTypeDef SPI_InitStruct;
 
@@ -280,25 +304,29 @@ void TM_SPI3_Init(TM_SPI_PinsPack_t pinspack) {
 	SPI_InitStruct.SPI_Direction = SPI_Direction_2Lines_FullDuplex;
 	SPI_InitStruct.SPI_FirstBit = TM_SPI3_FIRSTBIT;
 	SPI_InitStruct.SPI_Mode = TM_SPI3_MASTERSLAVE;
-	if (TM_SPI3_MODE == TM_SPI_Mode_0) {
+	if (SPI_Mode == TM_SPI_Mode_0) {
 		SPI_InitStruct.SPI_CPOL = SPI_CPOL_Low;
 		SPI_InitStruct.SPI_CPHA = SPI_CPHA_1Edge;
-	} else if (TM_SPI3_MODE == TM_SPI_Mode_1) {
+	} else if (SPI_Mode == TM_SPI_Mode_1) {
 		SPI_InitStruct.SPI_CPOL = SPI_CPOL_Low;
 		SPI_InitStruct.SPI_CPHA = SPI_CPHA_2Edge;
-	} else if (TM_SPI3_MODE == TM_SPI_Mode_2) {
+	} else if (SPI_Mode == TM_SPI_Mode_2) {
 		SPI_InitStruct.SPI_CPOL = SPI_CPOL_High;
 		SPI_InitStruct.SPI_CPHA = SPI_CPHA_1Edge;
-	} else if (TM_SPI3_MODE == TM_SPI_Mode_3) {
+	} else if (SPI_Mode == TM_SPI_Mode_3) {
 		SPI_InitStruct.SPI_CPOL = SPI_CPOL_High;
 		SPI_InitStruct.SPI_CPHA = SPI_CPHA_2Edge;
 	}
 	SPI_InitStruct.SPI_NSS = SPI_NSS_Soft;
+	
+	SPI_Cmd(SPI3, DISABLE);
+	SPI_DeInit(SPI3);
+	
 	SPI_Init(SPI3, &SPI_InitStruct);
 	SPI_Cmd(SPI3, ENABLE);
 }
 
-void TM_SPI4_Init(TM_SPI_PinsPack_t pinspack) {
+void TM_SPI4_Init(TM_SPI_PinsPack_t pinspack, TM_SPI_Mode_t SPI_Mode) {
 	GPIO_InitTypeDef GPIO_InitStruct;
 	SPI_InitTypeDef SPI_InitStruct;
 
@@ -338,25 +366,29 @@ void TM_SPI4_Init(TM_SPI_PinsPack_t pinspack) {
 	SPI_InitStruct.SPI_Direction = SPI_Direction_2Lines_FullDuplex;
 	SPI_InitStruct.SPI_FirstBit = TM_SPI4_FIRSTBIT;
 	SPI_InitStruct.SPI_Mode = TM_SPI4_MASTERSLAVE;
-	if (TM_SPI4_MODE == TM_SPI_Mode_0) {
+	if (SPI_Mode == TM_SPI_Mode_0) {
 		SPI_InitStruct.SPI_CPOL = SPI_CPOL_Low;
 		SPI_InitStruct.SPI_CPHA = SPI_CPHA_1Edge;
-	} else if (TM_SPI4_MODE == TM_SPI_Mode_1) {
+	} else if (SPI_Mode == TM_SPI_Mode_1) {
 		SPI_InitStruct.SPI_CPOL = SPI_CPOL_Low;
 		SPI_InitStruct.SPI_CPHA = SPI_CPHA_2Edge;
-	} else if (TM_SPI4_MODE == TM_SPI_Mode_2) {
+	} else if (SPI_Mode == TM_SPI_Mode_2) {
 		SPI_InitStruct.SPI_CPOL = SPI_CPOL_High;
 		SPI_InitStruct.SPI_CPHA = SPI_CPHA_1Edge;
-	} else if (TM_SPI4_MODE == TM_SPI_Mode_3) {
+	} else if (SPI_Mode == TM_SPI_Mode_3) {
 		SPI_InitStruct.SPI_CPOL = SPI_CPOL_High;
 		SPI_InitStruct.SPI_CPHA = SPI_CPHA_2Edge;
 	}
 	SPI_InitStruct.SPI_NSS = SPI_NSS_Soft;
+	
+	SPI_Cmd(SPI4, DISABLE);
+	SPI_DeInit(SPI4);
+	
 	SPI_Init(SPI4, &SPI_InitStruct);
 	SPI_Cmd(SPI4, ENABLE);
 }
 
-void TM_SPI5_Init(TM_SPI_PinsPack_t pinspack) {
+void TM_SPI5_Init(TM_SPI_PinsPack_t pinspack, TM_SPI_Mode_t SPI_Mode) {
 	GPIO_InitTypeDef GPIO_InitStruct;
 	SPI_InitTypeDef SPI_InitStruct;
 
@@ -400,25 +432,29 @@ void TM_SPI5_Init(TM_SPI_PinsPack_t pinspack) {
 	SPI_InitStruct.SPI_Direction = SPI_Direction_2Lines_FullDuplex;
 	SPI_InitStruct.SPI_FirstBit = TM_SPI5_FIRSTBIT;
 	SPI_InitStruct.SPI_Mode = TM_SPI5_MASTERSLAVE;
-	if (TM_SPI5_MODE == TM_SPI_Mode_0) {
+	if (SPI_Mode == TM_SPI_Mode_0) {
 		SPI_InitStruct.SPI_CPOL = SPI_CPOL_Low;
 		SPI_InitStruct.SPI_CPHA = SPI_CPHA_1Edge;
-	} else if (TM_SPI5_MODE == TM_SPI_Mode_1) {
+	} else if (SPI_Mode == TM_SPI_Mode_1) {
 		SPI_InitStruct.SPI_CPOL = SPI_CPOL_Low;
 		SPI_InitStruct.SPI_CPHA = SPI_CPHA_2Edge;
-	} else if (TM_SPI5_MODE == TM_SPI_Mode_2) {
+	} else if (SPI_Mode == TM_SPI_Mode_2) {
 		SPI_InitStruct.SPI_CPOL = SPI_CPOL_High;
 		SPI_InitStruct.SPI_CPHA = SPI_CPHA_1Edge;
-	} else if (TM_SPI5_MODE == TM_SPI_Mode_3) {
+	} else if (SPI_Mode == TM_SPI_Mode_3) {
 		SPI_InitStruct.SPI_CPOL = SPI_CPOL_High;
 		SPI_InitStruct.SPI_CPHA = SPI_CPHA_2Edge;
 	}
 	SPI_InitStruct.SPI_NSS = SPI_NSS_Soft;
+	
+	SPI_Cmd(SPI5, DISABLE);
+	SPI_DeInit(SPI5);
+	
 	SPI_Init(SPI5, &SPI_InitStruct);
 	SPI_Cmd(SPI5, ENABLE);
 }
 
-void TM_SPI6_Init(TM_SPI_PinsPack_t pinspack) {
+void TM_SPI6_Init(TM_SPI_PinsPack_t pinspack, TM_SPI_Mode_t SPI_Mode) {
 	GPIO_InitTypeDef GPIO_InitStruct;
 	SPI_InitTypeDef SPI_InitStruct;
 
@@ -447,20 +483,24 @@ void TM_SPI6_Init(TM_SPI_PinsPack_t pinspack) {
 	SPI_InitStruct.SPI_Direction = SPI_Direction_2Lines_FullDuplex;
 	SPI_InitStruct.SPI_FirstBit = TM_SPI6_FIRSTBIT;
 	SPI_InitStruct.SPI_Mode = TM_SPI6_MASTERSLAVE;
-	if (TM_SPI6_MODE == TM_SPI_Mode_0) {
+	if (SPI_Mode == TM_SPI_Mode_0) {
 		SPI_InitStruct.SPI_CPOL = SPI_CPOL_Low;
 		SPI_InitStruct.SPI_CPHA = SPI_CPHA_1Edge;
-	} else if (TM_SPI6_MODE == TM_SPI_Mode_1) {
+	} else if (SPI_Mode == TM_SPI_Mode_1) {
 		SPI_InitStruct.SPI_CPOL = SPI_CPOL_Low;
 		SPI_InitStruct.SPI_CPHA = SPI_CPHA_2Edge;
-	} else if (TM_SPI6_MODE == TM_SPI_Mode_2) {
+	} else if (SPI_Mode == TM_SPI_Mode_2) {
 		SPI_InitStruct.SPI_CPOL = SPI_CPOL_High;
 		SPI_InitStruct.SPI_CPHA = SPI_CPHA_1Edge;
-	} else if (TM_SPI6_MODE == TM_SPI_Mode_3) {
+	} else if (SPI_Mode == TM_SPI_Mode_3) {
 		SPI_InitStruct.SPI_CPOL = SPI_CPOL_High;
 		SPI_InitStruct.SPI_CPHA = SPI_CPHA_2Edge;
 	}
 	SPI_InitStruct.SPI_NSS = SPI_NSS_Soft;
+	
+	SPI_Cmd(SPI6, DISABLE);
+	SPI_DeInit(SPI6);
+	
 	SPI_Init(SPI6, &SPI_InitStruct);
 	SPI_Cmd(SPI6, ENABLE);
 }
