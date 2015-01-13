@@ -570,14 +570,14 @@
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.c</FilePath>
             </File>
             <File>
-              <FileName>misc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\misc.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f4xx_spi.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>misc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\misc.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1279,14 +1279,14 @@
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.c</FilePath>
             </File>
             <File>
-              <FileName>misc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\misc.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f4xx_spi.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>misc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\misc.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1988,14 +1988,14 @@
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.c</FilePath>
             </File>
             <File>
-              <FileName>misc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\misc.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f4xx_spi.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>misc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\misc.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2697,14 +2697,14 @@
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.c</FilePath>
             </File>
             <File>
-              <FileName>misc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\misc.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f4xx_spi.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>misc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\misc.c</FilePath>
             </File>
           </Files>
         </Group>

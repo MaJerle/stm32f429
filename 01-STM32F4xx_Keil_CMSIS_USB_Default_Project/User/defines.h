@@ -9,7 +9,7 @@
  *	@license	GNU GPL v3
  *	
  * |----------------------------------------------------------------------
- * | Copyright (C) Tilen Majerle, 2014
+ * | Copyright (C) Tilen Majerle, 2015
  * | 
  * | This program is free software: you can redistribute it and/or modify
  * | it under the terms of the GNU General Public License as published by
