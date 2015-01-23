@@ -74,7 +74,6 @@
  *	#define TM_SPIx_MASTERSLAVE	SPI_Mode_Master
  *	//Specify mode of operation, clock polarity and clock phase
  *	#define TM_SPIx_MODE		TM_SPI_Mode_0
- *	
  */
 #ifndef TM_SPI_H
 #define TM_SPI_H 150

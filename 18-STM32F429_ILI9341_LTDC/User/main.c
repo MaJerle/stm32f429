@@ -59,13 +59,15 @@ int main(void) {
 	TM_ILI9341_Puts(60, 150, "ILI9341 LCD Module", &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_BLUE2);
 	TM_ILI9341_Puts(70, 170, "with LTDC support", &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_BLUE2);
 	TM_ILI9341_Puts(170, 230, "stm32f4-discovery.com", &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_ORANGE);
+	
 	/* Draw circle on layer 2 */
 	TM_ILI9341_DrawCircle(150, 150, 140, ILI9341_COLOR_BLACK);
-	
+
 	while (1) {		
 		/* This will set opacity of one layer to 0, other to max (255) each time */
 		/* This is like toggle function */
 		TM_ILI9341_ChangeLayers();
+		/* Every 1 second */
 		Delayms(1000);
 		 
 		/*

@@ -18,7 +18,7 @@
  */
 #include "tm_stm32f4_low_power.h"
 
-void TM_LOWPOWER_SleepUntilInterrupt(uint8_t systick) {
+void TM_LOWPOWER_SleepUntilInterrupt(uint8_t delay_timer) {
 	/* Disable systick */
 	if (delay_timer) {
 		TM_DELAY_DisableDelayTimer();

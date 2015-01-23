@@ -7,7 +7,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/06/library-18-ili9341-ltdc-stm32f429-discovery/
- *	@version 	v1.2
+ *	@version 	v1.3
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -28,6 +28,10 @@
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
  *
+ * Version 1.3
+ *	- January 21, 2015,
+ *	- Added support for rounded rectangles
+ *	
  * Version 1.2
  *	- December 27, 2014
  *	- Added transparent option for strings and chars
@@ -37,7 +41,7 @@
  *	- Added scrool down and scroll up feature
  */
 #ifndef TM_ILI9341_LTDC_H
-#define TM_ILI9341_LTDC_H 120
+#define TM_ILI9341_LTDC_H 130
 /**
  * Library dependencies
  * - STM32F4xx
@@ -211,66 +215,6 @@ extern TM_FontDef_t TM_Font_16x26;
 extern void TM_ILI9341_Init(void);
 
 /**
- * Initialize all use LCD pins
- *
- */
-extern void TM_ILI9341_InitPins(void);
-
-/**
- * Initialize LTDC peripheral
- *
- */
-extern void TM_LCD9341_InitLTDC(void);
-
-/**
- * Initialize Layers for LTDC
- *
- */
-extern void TM_ILI9341_InitLayers(void);
-
-/**
- * Init LCD pins
- *
- * Called private
- */
-extern void TM_ILI9341_InitLCD(void);
-
-/**
- * Send data to LCD via SPI
- *
- * Called private
- *
- * Parameters:
- * 	- uint8_t data: data to be sent
- */
-extern void TM_ILI9341_SendData(uint8_t data);
-
-/**
- * Send command to LCD via SPI
- *
- * Called private
- *
- * Parameters:
- * 	- uint8_t data: data to be sent
- */
-extern void TM_ILI9341_SendCommand(uint8_t data);
-
-/**
- * Simple delay
- *
- * Parameters:
- * 	- volatile unsigned int delay: clock cycles
- */
-extern void TM_ILI9341_Delay(volatile unsigned int delay);
-
-/**
- * Set cursor position
- *
- * Called private
- */
-extern void TM_ILI9341_SetCursorPosition(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2);
-
-/**
  * Draw single pixel to LCD
  *
  * Parameters:
@@ -375,6 +319,32 @@ extern void TM_ILI9341_DrawRectangle(uint16_t x0, uint16_t y0, uint16_t x1, uint
 extern void TM_ILI9341_DrawFilledRectangle(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint32_t color);
 
 /**
+ * Draw rounded rectangle on LCD
+ *
+ * Parameters:
+ * - uint16_t x0: X coordinate of top left point
+ * - uint16_t y0: Y coordinate of top left point
+ * - uint16_t x1: X coordinate of bottom right point
+ * - uint16_t y1: Y coordinate of bottom right point
+ * - uint16_t r: radius for corners
+ * - uint16_t color: rectangle color
+ */
+extern void TM_ILI9341_DrawRoundedRectangle(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t r, uint32_t color);
+
+/**
+ * Draw filled rounded rectangle on LCD
+ *
+ * Parameters:
+ * - uint16_t x0: X coordinate of top left point
+ * - uint16_t y0: Y coordinate of top left point
+ * - uint16_t x1: X coordinate of bottom right point
+ * - uint16_t y1: Y coordinate of bottom right point
+ * - uint16_t r: radius for corners
+ * - uint16_t color: rectangle color
+ */
+extern void TM_ILI9341_DrawFilledRoundedRectangle(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t r, uint32_t color);
+
+/**
  * Draw circle on LCD
  *
  * Parameters:
@@ -447,24 +417,6 @@ extern void TM_ILI9341_Layer2To1(void);
  *
  */
 extern void TM_ILI9341_Layer1To2(void);
-
-/**
- * Scroll down
- *
- * Parameters:
- * - int16_t offset: offset to scroll screen down
- * - uint16_t color: color to fill the bottom part
- */
-extern void TM_ILI9341_ScrollDown(uint16_t offset, uint16_t color);
-
-/**
- * Scroll up
- *
- * Parameters:
- * - int16_t offset: offset to scroll screen down
- * - uint16_t color: color to fill the bottom part
- */
-extern void TM_ILI9341_ScrollUp(uint16_t offset, uint16_t color);
 
 #endif
 

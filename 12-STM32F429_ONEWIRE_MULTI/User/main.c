@@ -93,7 +93,7 @@ int main(void) {
 		devices = TM_OneWire_Next(&OneWire2);
 	}
 	
-	/* If any devices on 1-wire on pin PA3 */
+	/* If any devices on 1-wire on pin PD0 */
 	if (count > 0) {
 		sprintf(buf, "Devices found on 1-wire instance 2 (PD0): %d\n", count);
 		TM_USART_Puts(USART1, buf);

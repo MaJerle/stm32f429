@@ -89,7 +89,7 @@ void TM_SNAKE_Start(void) {
 			/* Reset time */
 			TM_DELAY_SetTime(0);
 			
-			/* Get new direction value */
+			/* Get new direction value from temporary variable */
 			Snake.Direction = Snake1.Direction;
 			
 			/* Get last x/y value from snake array = snake head */
@@ -120,7 +120,7 @@ void TM_SNAKE_Start(void) {
 				}
 			}
 			
-			/* Overflow is activated */
+			/* Overflow mode is activated */
 			if (Settings.Overflow) {
 				/* Check X */
 				if (Snake_Head[0] == -1) {
@@ -197,6 +197,7 @@ void TM_SNAKE_Start(void) {
 			}
 		}
 		
+		/* Game over happen */
 		if (GameOver) {
 			/* Check flag */
 			if (!GameOverDisplay) {
@@ -233,7 +234,7 @@ void TM_SNAKE_Start(void) {
 						) {
 							/* Disable pause mode */
 							Settings.Pause = 0;
-							/* Set direction */
+							/* Set temporary direction */
 							Snake1.Direction = SNAKE_DIRECTION_LEFT;
 						}
 						break;
@@ -246,7 +247,7 @@ void TM_SNAKE_Start(void) {
 						) {
 							/* Disable pause mode */
 							Settings.Pause = 0;
-							/* Set direction */
+							/* Set temporary direction */
 							Snake1.Direction = SNAKE_DIRECTION_RIGHT;
 						}
 						break;
@@ -259,7 +260,7 @@ void TM_SNAKE_Start(void) {
 						) {
 							/* Disable pause mode */
 							Settings.Pause = 0;
-							/* Set direction */
+							/* Set temporary direction */
 							Snake1.Direction = SNAKE_DIRECTION_UP;
 						}
 						break;
@@ -272,7 +273,7 @@ void TM_SNAKE_Start(void) {
 						) {
 							/* Disable pause mode */
 							Settings.Pause = 0;
-							/* Set direction */
+							/* Set temporary direction */
 							Snake1.Direction = SNAKE_DIRECTION_DOWN;
 						}
 						break;
@@ -301,6 +302,8 @@ void TM_SNAKE_Start(void) {
 						TM_SNAKE_GenerateTarget();
 						/* Disable gameover */
 						GameOver = 0;
+						/* Disable pause mode */
+						Settings.Pause = 0;
 						/* Reset first time flag */
 						Snake_FirstTime = 1;
 						break;
@@ -317,7 +320,7 @@ void TM_SNAKE_Start(void) {
 				}
 			}
 		} else {
-			/* Green LED OFF */
+			/* Green LED OFF, keyboard not connected */
 			TM_DISCO_LedOff(LED_GREEN);
 		}
 		
@@ -334,7 +337,8 @@ void TM_SNAKE_Start(void) {
 			sprintf(Buffer, "Mode:%4d; Speed: %2d/%2d", Settings.Overflow, Settings.Speed, SNAKE_SPEED_MAX);
 			TM_ILI9341_Puts(10, SNAKE_TEXT_LINE1, Buffer, &TM_Font_7x10, 0x0000, SNAKE_COLOR_MAIN_BCK);
 		}
-		/* Check snake hits */
+		
+		/* Check snake hits for LCD display */
 		if (Snake1.Hits != Snake.Hits) {
 			/* Save new */
 			Snake1.Hits = Snake.Hits;
@@ -359,6 +363,8 @@ void TM_SNAKE_DrawPixel(uint8_t x, uint8_t y, uint16_t value) {
 		color = SNAKE_COLOR_TARGET;		/* Set target pixel */
 	} else if (value == 3) {
 		color = SNAKE_COLOR_HEAD;		/* Set head pixel for snake */
+	} else {
+		color = value;					/* Custom color */
 	}
 	
 	/* Draw Filled rectangle */
@@ -378,7 +384,7 @@ void TM_SNAKE_PrepareDisplay(void) {
 	/* Draw snake area */
 	TM_SNAKE_DrawArea();
 	
-	/* Show text */
+	/* Show game title text */
 	TM_ILI9341_Puts(40, 5, SNAKE_GAME_TITLE, &TM_Font_7x10, 0x0000, SNAKE_COLOR_MAIN_BCK);
 }
 
@@ -389,7 +395,7 @@ void TM_SNAKE_SetFirstOptions(void) {
 	Settings.Overflow = 1;
 }
 
-void TM_SNAKE_SetDefaultSnake() {
+void TM_SNAKE_SetDefaultSnake(void) {
 	uint16_t i;
 	
 	/* Set default options */
@@ -403,8 +409,9 @@ void TM_SNAKE_SetDefaultSnake() {
 	
 	/* Default X and Y values */
 	/* Get random number */
-	TM_SNAKE_Random(Random);
+	//TM_SNAKE_Random(Random);
 	
+	/* Start location */
 	Random[0] = 3;
 	Random[1] = 3;
 
@@ -463,7 +470,9 @@ void TM_SNAKE_ReplaceArray(uint16_t index, int8_t* twobytesarray) {
 void TM_SNAKE_SpeedUp(void) {
 	/* Check for maximum speed */
 	if (Settings.Speed < SNAKE_SPEED_MAX) {
+		/* Increase speed */
 		Settings.Speed++;
+		/* Calculate new millis value */
 		Settings.Millis = 1000 / Settings.Speed;
 	}
 }
@@ -471,7 +480,9 @@ void TM_SNAKE_SpeedUp(void) {
 void TM_SNAKE_SpeedDown(void) {
 	/* Min speed is 1Hz */
 	if (Settings.Speed > SNAKE_SPEED_MIN) {
+		/* Decrease speed */
 		Settings.Speed--;
+		/* Calculate new millis value */
 		Settings.Millis = 1000 / Settings.Speed;
 	}
 }
@@ -508,6 +519,8 @@ void TM_SNAKE_GenerateTarget(void) {
 	do {
 		/* Generate random X and Y locations */
 		TM_SNAKE_Random(Snake_Food);
+		
+		/* While we are on snake */
 	} while (TM_SNAKE_MatchesSnakeLocations(Snake_Food));
 	
 	/* Display target on LCD */

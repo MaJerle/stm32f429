@@ -1,5 +1,5 @@
 /**
- *	Simple snake game for STM32F4/29-Discovery board
+ *	Simple snake game for STM32F429-Discovery board
  *
  *	@author		Tilen Majerle
  *	@email		tilen@majerle.eu
