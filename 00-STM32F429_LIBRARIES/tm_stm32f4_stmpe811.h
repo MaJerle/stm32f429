@@ -6,7 +6,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/05/library-10-stmpe811-touch-screen-driver-for-stm32f429-discovery-board/
- *	@version 	v1.1
+ *	@version 	v1.2
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -27,8 +27,12 @@
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
  *
+ * Version 1.2
+ *	- January 27, 2015
+ *	- Added support for last pressed state
+ *
  * Version 1.1
- * 	- 22.08.2014
+ * 	- August 22, 2014
  * 	- Fixes because on some boards my library for these touch didn't work
  *
  * Default pinout
@@ -47,7 +51,7 @@
  * 
  */
 #ifndef TM_STMPE811_H
-#define TM_STMPE811_H	110
+#define TM_STMPE811_H	120
 /**
  * Library dependencies
  * * STM32F4xx
@@ -165,12 +169,16 @@ typedef enum {
  * 	- TM_STMPE811_State_t pressed:
  * 		- TM_STMPE811_State_Pressed when pressed
  * 		- TM_STMPE811_State_Released when released
+ * 	- TM_STMPE811_State_t last_pressed:
+ * 		- TM_STMPE811_State_Pressed when was pressed
+ * 		- TM_STMPE811_State_Released when was released
  * 	- TM_STMPE811_Orientation_t orientation: Set touch screen orientation to read
  */
 typedef struct {
 	uint16_t x;
 	uint16_t y;
 	TM_STMPE811_State_t pressed;
+	TM_STMPE811_State_t last_pressed;
 	TM_STMPE811_Orientation_t orientation;
 } TM_STMPE811_TouchData;
 
@@ -179,7 +187,7 @@ typedef struct {
  *
  * Returns 0 on success
  */
-TM_STMPE811_State_t TM_STMPE811_Init(void);
+extern TM_STMPE811_State_t TM_STMPE811_Init(void);
 
 /**
  * Read touch coordinates
@@ -189,36 +197,9 @@ TM_STMPE811_State_t TM_STMPE811_Init(void);
  *
  * Returns TM_STMPE811_State_Pressed is pressed, otherwise TM_STMPE811_State_Released
  */
-TM_STMPE811_State_t TM_STMPE811_ReadTouch(TM_STMPE811_TouchData *structdata);
+extern TM_STMPE811_State_t TM_STMPE811_ReadTouch(TM_STMPE811_TouchData *structdata);
 
-/**
- * Internal functions
- */
-/**
- * Read from STMPE811 register
- *
- * Parameters:
- * 	- uint8_t reg: register address
- *
- * Returns register data
- */
-uint8_t TM_STMPE811_Read(uint8_t reg);
-
-/**
- * Read X coordinate
- *
- * Parameters:
- * 	- uint16_t x: last x read coordinate
- */
-uint16_t TM_STMPE811_ReadX(uint16_t x);
-
-/**
- * Read Y coordinate
- *
- * Parameters:
- * 	- uint16_t y: last y read coordinate
- */
-uint16_t TM_STMPE811_ReadY(uint16_t y);
+#define TM_STMPE811_TouchInRectangle(sd, xPos, yPos, w, h)	(((sd)->x >= (xPos)) && ((sd)->x < (xPos + w)) && ((sd)->y >= (yPos)) && ((sd)->y < (yPos + h)))
 
 #endif
 

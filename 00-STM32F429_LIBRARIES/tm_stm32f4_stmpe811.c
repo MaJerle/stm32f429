@@ -18,6 +18,10 @@
  */
 #include "tm_stm32f4_stmpe811.h"
 
+uint8_t TM_STMPE811_Read(uint8_t reg);
+uint16_t TM_STMPE811_ReadX(uint16_t x);
+uint16_t TM_STMPE811_ReadY(uint16_t y);
+
 TM_STMPE811_State_t TM_STMPE811_Init(void) {
 	uint8_t bytes[2], mode;
 	/* Initialize Delay */
@@ -123,11 +127,15 @@ uint8_t TM_STMPE811_Read(uint8_t reg) {
 }
 
 TM_STMPE811_State_t TM_STMPE811_ReadTouch(TM_STMPE811_TouchData *structdata) {
-	uint8_t val = TM_STMPE811_Read(STMPE811_TSC_CTRL);
+	uint8_t val;
+	
+	/* Save state */
+	structdata->last_pressed = structdata->pressed;
+	
+	/* Read */
+	val = TM_STMPE811_Read(STMPE811_TSC_CTRL);
 	if ((val & 0x80) == 0) {
 		//Not pressed
-		structdata->x = 0;
-		structdata->y = 0;
 		structdata->pressed = TM_STMPE811_State_Released;
 		
 		//Reset Fifo

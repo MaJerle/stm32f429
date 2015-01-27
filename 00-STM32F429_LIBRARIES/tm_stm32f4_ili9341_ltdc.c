@@ -731,7 +731,7 @@ void TM_ILI9341_DrawFilledRoundedRectangle(uint16_t x0, uint16_t y0, uint16_t x1
 }
 
 void TM_ILI9341_DrawFilledRectangle(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint32_t color) {
-	for (; y0 < y1; y0++) {
+	for (; y0 <= y1; y0++) {
 		TM_ILI9341_DrawLine(x0, y0, x1, y0, color);
 	}
 }
