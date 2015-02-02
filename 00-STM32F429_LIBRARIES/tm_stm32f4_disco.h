@@ -6,7 +6,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/04/stm32f429-discovery-gpio-tutorial-with-onboard-leds-and-button/
- *	@version 	v1.7
+ *	@version 	v1.8
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -28,6 +28,10 @@
  * |----------------------------------------------------------------------
  *
  * 	CHANGELOG
+ *	- Version 1.8
+ *		February 01, 2015
+ *		Added support for button OnPress and OnRelease events
+ *
  *	- Version 1.7
  *		December 02, 2014
  *		Fixed bug with checking if led is on
@@ -94,7 +98,7 @@
  *			- Blue button	on PA0
  */
 #ifndef TM_DISCO_H
-#define TM_DISCO_H 170
+#define TM_DISCO_H 180
 /**
  * Library dependencies
  * - STM32F4xx
@@ -277,5 +281,23 @@ extern void TM_DISCO_ButtonInit(void);
  * Returns 1 if is pressed, otherwise 0
  */
 #define TM_DISCO_ButtonPressed()	(((TM_DISCO_BUTTON_PORT->IDR & TM_DISCO_BUTTON_PIN) == 0) != TM_DISCO_BUTTON_PRESSED)
+
+/**
+ * Check if button was pressed now, but was not already pressed
+ *
+ * Returns:
+ *	0: in case that button has been already pressed on last call or was not pressed at all yet
+ *	1: button was pressed, but state before was released
+ */
+extern uint8_t TM_DISCO_ButtonOnPressed(void);
+
+/**
+ * Check if button was released now, but was not already released
+ *
+ * Returns:
+ *	0: in case that button has been already released on last call or was not released at all yet
+ *	1: button was released, but state before was pressed
+ */
+extern uint8_t TM_DISCO_ButtonOnReleased(void);
 
 #endif

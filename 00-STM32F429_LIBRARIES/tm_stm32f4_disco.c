@@ -18,6 +18,8 @@
  */
 #include "tm_stm32f4_disco.h"
 
+volatile uint8_t TM_INT_DISCO_ButtonPressed = 0;
+
 void TM_DISCO_LedInit(void) {
 	GPIO_InitTypeDef GPIO_InitStruct;
 	
@@ -62,4 +64,32 @@ void TM_DISCO_ButtonInit(void) {
 	
 	/* Initialize pin */
 	GPIO_Init(TM_DISCO_BUTTON_PORT, &GPIO_InitStruct);
+}
+
+uint8_t TM_DISCO_ButtonOnPressed(void) {
+	/* If button is now pressed, but was not already pressed */
+	if (TM_DISCO_ButtonPressed() && !TM_INT_DISCO_ButtonPressed) {
+		/* Set flag */
+		TM_INT_DISCO_ButtonPressed = 1;
+		
+		/* Return button onpressed */
+		return 1;
+	}
+	
+	/* Button is not pressed or it was already pressed before */
+	return 0;
+}
+
+uint8_t TM_DISCO_ButtonOnReleased(void) {
+	/* If button is now released, but was not already released */
+	if (!TM_DISCO_ButtonPressed() && TM_INT_DISCO_ButtonPressed) {
+		/* Clear flag */
+		TM_INT_DISCO_ButtonPressed = 0;
+		
+		/* Return button onreleased */
+		return 1;
+	}
+	
+	/* Button is not released or it was already released before */
+	return 0;
 }
