@@ -18,7 +18,7 @@
 
 int main(void) {
 	/* Initialize System */
-	//SystemInit();
+	SystemInit();
 	
 	/* Initialize leds on board */
 	TM_DISCO_LedInit();
@@ -41,14 +41,14 @@ int main(void) {
 			/* Do here stuff only once */
 			/* This function will return 0 until you release button and press it again */
 			/* For example, you can send data here to USART, but only once when button is pressed */
-			GPIOA->BSRRL = GPIO_Pin_1;
+			GPIOD->BSRRL = LED_BLUE;
 		}
 		
 		/* Do the stuff only once when button is released */
 		if (TM_DISCO_ButtonOnReleased()) {
 			/* DO here stuff only once */
 			/* This function will return 0 until you press button and release it again */
-			GPIOA->BSRRH = GPIO_Pin_1;
+			GPIOD->BSRRH = LED_BLUE;
 		}
     }
 }

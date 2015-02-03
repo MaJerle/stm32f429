@@ -7,6 +7,9 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@ide		Keil uVision 5
+ *	@conf		System clock configured for USB if needed;
+ *	@conf		STM32F429 is set to 168MHz and STM32F411xx to 96MHz for USB 48MHz clock.
+ *	@conf		PLL parameters are set in "Options for Target" -> "C/C++" -> "Defines"
  *	@packs		STM32F4xx Keil packs version 2.2.0 or greater required
  *	@stdperiph	STM32F4xx Standard peripheral drivers version 1.4.0 or greater required
  */
