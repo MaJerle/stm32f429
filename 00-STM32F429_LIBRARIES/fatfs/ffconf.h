@@ -97,7 +97,7 @@
 /   1    - ASCII (No extended character. Valid for only non-LFN configuration.) */
 
 
-#define	_USE_LFN	0
+#define	_USE_LFN	1
 #define	_MAX_LFN	255
 /* The _USE_LFN option switches the LFN feature.
 /
@@ -131,7 +131,7 @@
 /  When _LFN_UNICODE is 0, this option has no effect. */
 
 
-#define _FS_RPATH	0
+#define _FS_RPATH	2
 /* This option configures relative path feature.
 /
 /   0: Disable relative path feature and remove related functions.

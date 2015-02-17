@@ -16,8 +16,8 @@
 #include "defines.h"
 #include "tm_stm32f4_i2c.h"
 
-//Slave address
-#define ADDRESS		0xD0 // 1101 000 0
+/* Slave address */
+#define ADDRESS		0xD0 // 1101 000 0 - left aligned 7-bit address
 
 int main(void) {
 	uint8_t data[] = {0, 1, 2};

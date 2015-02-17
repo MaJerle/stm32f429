@@ -68,12 +68,17 @@ void TM_DISCO_ButtonInit(void) {
 
 uint8_t TM_DISCO_ButtonOnPressed(void) {
 	/* If button is now pressed, but was not already pressed */
-	if (TM_DISCO_ButtonPressed() && !TM_INT_DISCO_ButtonPressed) {
-		/* Set flag */
-		TM_INT_DISCO_ButtonPressed = 1;
-		
-		/* Return button onpressed */
-		return 1;
+	if (TM_DISCO_ButtonPressed()) {
+		if (!TM_INT_DISCO_ButtonPressed) {
+			/* Set flag */
+			TM_INT_DISCO_ButtonPressed = 1;
+			
+			/* Return button onpressed */
+			return 1;
+		}
+	} else {
+		/* Clear flag */
+		TM_INT_DISCO_ButtonPressed = 0;
 	}
 	
 	/* Button is not pressed or it was already pressed before */
@@ -82,12 +87,17 @@ uint8_t TM_DISCO_ButtonOnPressed(void) {
 
 uint8_t TM_DISCO_ButtonOnReleased(void) {
 	/* If button is now released, but was not already released */
-	if (!TM_DISCO_ButtonPressed() && TM_INT_DISCO_ButtonPressed) {
+	if (!TM_DISCO_ButtonPressed()) {
+		if (TM_INT_DISCO_ButtonPressed) {
+			/* Set flag */
+			TM_INT_DISCO_ButtonPressed = 0;
+			
+			/* Return button onreleased */
+			return 1;
+		}
+	} else {
 		/* Clear flag */
-		TM_INT_DISCO_ButtonPressed = 0;
-		
-		/* Return button onreleased */
-		return 1;
+		TM_INT_DISCO_ButtonPressed = 1;
 	}
 	
 	/* Button is not released or it was already released before */

@@ -26,6 +26,10 @@
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
  *
+ * Version 1.6
+ *	- February 17, 2015
+ *	- Created typedef TM_RTC_t from TM_RTC_Time_t
+ *
  * Version 1.5
  *	- December 21, 2014
  *	- Added 2 new functions:
@@ -165,8 +169,9 @@ typedef struct {
 	uint8_t month;
 	uint8_t year;
 	uint32_t unix;
-} TM_RTC_Time_t;
-
+} TM_RTC_t;
+/* Backward compatibility */
+typedef TM_RTC_t TM_RTC_Time_t;
 /**
  * Result enumeration
  *
@@ -327,7 +332,7 @@ extern uint32_t TM_RTC_Init(TM_RTC_ClockSource_t source);
  *
  * Returns Unix seconds
  */
-extern uint32_t TM_RTC_GetUnixTimeStamp(TM_RTC_Time_t* data);
+extern uint32_t TM_RTC_GetUnixTimeStamp(TM_RTC_t* data);
 
 /**
  * Get formatted time from seconds till 01.01.1970 00:00:00
@@ -339,7 +344,7 @@ extern uint32_t TM_RTC_GetUnixTimeStamp(TM_RTC_Time_t* data);
  * 	- uint32_t unix:
  * 		Seconds from 01.01.1970 00:00:00
  */
-extern void TM_RTC_GetDateTimeFromUnix(TM_RTC_Time_t* data, uint32_t unix);
+extern void TM_RTC_GetDateTimeFromUnix(TM_RTC_t* data, uint32_t unix);
 
 /**
  * Select RTC interrupt
@@ -359,7 +364,7 @@ extern void TM_RTC_Interrupts(TM_RTC_Int_t int_value);
  * 	- TM_RTC_Format_t format:
  * 		Member of struct TM_RTC_Format_t
  */
-extern TM_RTC_Result_t TM_RTC_SetDateTime(TM_RTC_Time_t* data, TM_RTC_Format_t format);
+extern TM_RTC_Result_t TM_RTC_SetDateTime(TM_RTC_t* data, TM_RTC_Format_t format);
 
 /**
  * Set date and time using string format
@@ -397,7 +402,7 @@ extern TM_RTC_Result_t TM_RTC_SetDateTimeString(char* str);
  * 	- TM_RTC_Format_t format:
  * 		Member of struct TM_RTC_Format_t
  */
-extern void TM_RTC_GetDateTime(TM_RTC_Time_t* data, TM_RTC_Format_t format);
+extern void TM_RTC_GetDateTime(TM_RTC_t* data, TM_RTC_Format_t format);
 
 /**
  * Get number of days in month

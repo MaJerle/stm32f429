@@ -37,7 +37,7 @@ uint8_t TM_RTC_Months[2][12] = {
 uint32_t TM_RTC_Init(TM_RTC_ClockSource_t source) {
 	uint32_t status;
 	uint8_t stat = 1;
-	TM_RTC_Time_t datatime;
+	TM_RTC_t datatime;
 	
 	/* Enable PWR peripheral clock */
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_PWR, ENABLE);
@@ -111,8 +111,8 @@ uint32_t TM_RTC_Init(TM_RTC_ClockSource_t source) {
 	return TM_RTC_Status;
 }
 
-TM_RTC_Result_t TM_RTC_SetDateTime(TM_RTC_Time_t* data, TM_RTC_Format_t format) {
-	TM_RTC_Time_t tmp;
+TM_RTC_Result_t TM_RTC_SetDateTime(TM_RTC_t* data, TM_RTC_Format_t format) {
+	TM_RTC_t tmp;
 	
 	/* Check date and time validation */
 	if (format == TM_RTC_Format_BCD) {
@@ -190,7 +190,7 @@ TM_RTC_Result_t TM_RTC_SetDateTime(TM_RTC_Time_t* data, TM_RTC_Format_t format) 
 }
 
 TM_RTC_Result_t TM_RTC_SetDateTimeString(char* str) {
-	TM_RTC_Time_t tmp;
+	TM_RTC_t tmp;
 	uint8_t i = 0;
 	
 	/* Get date */
@@ -253,7 +253,7 @@ TM_RTC_Result_t TM_RTC_SetDateTimeString(char* str) {
 	return TM_RTC_SetDateTime(&tmp, TM_RTC_Format_BIN);
 }
 
-void TM_RTC_GetDateTime(TM_RTC_Time_t* data, TM_RTC_Format_t format) {
+void TM_RTC_GetDateTime(TM_RTC_t* data, TM_RTC_Format_t format) {
 	uint32_t unix;
 
 	/* Get time */
@@ -412,7 +412,7 @@ void TM_RTC_Interrupts(TM_RTC_Int_t int_value) {
 	}
 }
 
-uint32_t TM_RTC_GetUnixTimeStamp(TM_RTC_Time_t* data) {
+uint32_t TM_RTC_GetUnixTimeStamp(TM_RTC_t* data) {
 	uint32_t days = 0, seconds = 0;
 	uint16_t i;
 	uint16_t year = (uint16_t) (data->year + 2000);
@@ -439,7 +439,7 @@ uint32_t TM_RTC_GetUnixTimeStamp(TM_RTC_Time_t* data) {
 	return seconds;
 }
 
-void TM_RTC_GetDateTimeFromUnix(TM_RTC_Time_t* data, uint32_t unix) {
+void TM_RTC_GetDateTimeFromUnix(TM_RTC_t* data, uint32_t unix) {
 	uint16_t year;
 	
 	/* Store unix time to unix in struct */
