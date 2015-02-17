@@ -15,7 +15,7 @@
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/07/library-21-read-sd-card-fatfs-stm32f4xx-devices/
  *	@link		http://stm32f4-discovery.com/2014/08/library-29-usb-msc-host-usb-flash-drive-stm32f4xx-devices
- *	@version 	v1.4
+ *	@version 	v1.5
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -36,6 +36,11 @@
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
  *	
+ * Version 1.5
+ *	- February 17, 2015
+ *	- FatFs R0.11 supported
+ *	- Fixed some problems when using SDIO
+ *
  * Version 1.4
  *	- December 29, 2014
  *	- Support for truncate file from beginning
@@ -250,7 +255,7 @@
  * This allows you to copy data from one SD card to USB and back too.
  */
 #ifndef TM_FATFS_H
-#define TM_FATFS_H	140
+#define TM_FATFS_H	150
 /**
  * Dependencies
  *	- STM32F4xx

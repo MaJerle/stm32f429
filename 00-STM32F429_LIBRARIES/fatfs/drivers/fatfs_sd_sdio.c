@@ -2981,12 +2981,12 @@ void SD_LowLevel_DMA_TxConfig (uint32_t *BufferSRC, uint32_t BufferSize) {
 	SDDMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
 	SDDMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
 	SDDMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Word;
-	SDDMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_Word;
+	SDDMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_Byte; /* DMA_MemoryDataSize_Word */
 	SDDMA_InitStructure.DMA_Mode = DMA_Mode_Normal;
 	SDDMA_InitStructure.DMA_Priority = DMA_Priority_VeryHigh;
 	SDDMA_InitStructure.DMA_FIFOMode = DMA_FIFOMode_Enable;
-	SDDMA_InitStructure.DMA_FIFOThreshold = DMA_FIFOThreshold_Full;
-	SDDMA_InitStructure.DMA_MemoryBurst = DMA_MemoryBurst_INC4;
+	SDDMA_InitStructure.DMA_FIFOThreshold = DMA_FIFOThreshold_HalfFull; /* DMA_FIFOThreshold_Full */
+	SDDMA_InitStructure.DMA_MemoryBurst = DMA_MemoryBurst_Single; /* DMA_MemoryBurst_INC4 */
 	SDDMA_InitStructure.DMA_PeripheralBurst = DMA_PeripheralBurst_INC4;
 	DMA_Init (SD_SDIO_DMA_STREAM, &SDDMA_InitStructure);
 	DMA_ITConfig (SD_SDIO_DMA_STREAM, DMA_IT_TC, ENABLE);

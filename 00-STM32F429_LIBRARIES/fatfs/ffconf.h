@@ -1,8 +1,8 @@
 /*---------------------------------------------------------------------------/
-/  FatFs - FAT file system module configuration file  R0.10c (C)ChaN, 2014
+/  FatFs - FAT file system module configuration file  R0.11 (C)ChaN, 2015
 /---------------------------------------------------------------------------*/
 
-#define _FFCONF 80376	/* Revision ID */
+#define _FFCONF 32020	/* Revision ID */
 
 /*---------------------------------------------------------------------------/
 / Functions and Buffer Configurations
@@ -18,13 +18,13 @@
 
 #define _FS_READONLY	0
 /* This option switches read-only configuration. (0:Read/Write or 1:Read-only)
-/  Read-only configuration removes basic writing API functions, f_write(),
-/  f_sync(), f_unlink(), f_mkdir(), f_chmod(), f_rename(), f_truncate(),
-/  f_getfree() and optional writing functions as well. */
+/  Read-only configuration removes writing API functions, f_write(), f_sync(),
+/  f_unlink(), f_mkdir(), f_chmod(), f_rename(), f_truncate(), f_getfree()
+/  and optional writing functions as well. */
 
 
 #define _FS_MINIMIZE	0
-/* This option defines minimization level to remove some API functions.
+/* This option defines minimization level to remove some basic API functions.
 /
 /   0: All basic functions are enabled.
 /   1: f_stat(), f_getfree(), f_unlink(), f_mkdir(), f_chmod(), f_utime(),
@@ -42,9 +42,13 @@
 /  2: Enable with LF-CRLF conversion. */
 
 
+#define _USE_FIND		1
+/* This option switches filtered directory read feature and related functions,
+/  f_findfirst() and f_findnext(). (0:Disable or 1:Enable) */
+
+
 #define	_USE_MKFS		0
-/* This option switches f_mkfs() function. (0:Disable or 1:Enable)
-/  To enable it, also _FS_READONLY need to be set to 0. */
+/* This option switches f_mkfs() function. (0:Disable or 1:Enable) */
 
 
 #define	_USE_FASTSEEK	0
@@ -57,8 +61,8 @@
 
 
 #define	_USE_FORWARD	0
-/* This option switches f_forward() function. (0:Disable or 1:Enable) */
-/* To enable it, also _FS_TINY need to be set to 1. */
+/* This option switches f_forward() function. (0:Disable or 1:Enable)
+/  To enable it, also _FS_TINY need to be set to 1. */
 
 
 /*---------------------------------------------------------------------------/
@@ -163,7 +167,7 @@
 /  number is bound to the same physical drive number and only an FAT volume found on
 /  the physical drive will be mounted. When multi-partition feature is enabled (1),
 /  each logical drive number is bound to arbitrary physical drive and partition
-/  listed in the VolToPart[]. Also f_fdisk() funciton will be enabled. */
+/  listed in the VolToPart[]. Also f_fdisk() funciton will be available. */
 
 
 #define	_MIN_SS		512
@@ -200,9 +204,9 @@
 /---------------------------------------------------------------------------*/
 
 #define _FS_NORTC	0
-#define _NORTC_MON	11
-#define _NORTC_MDAY	9
-#define _NORTC_YEAR	2014
+#define _NORTC_MON	2
+#define _NORTC_MDAY	1
+#define _NORTC_YEAR	2015
 /* The _FS_NORTC option switches timestamp feature. If the system does not have
 /  an RTC function or valid timestamp is not needed, set _FS_NORTC to 1 to disable
 /  the timestamp feature. All objects modified by FatFs will have a fixed timestamp
