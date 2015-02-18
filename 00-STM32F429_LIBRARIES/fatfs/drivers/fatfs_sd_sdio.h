@@ -376,8 +376,8 @@ typedef struct {
 /**
  * @brief  SDIO Data Transfer Frequency (25MHz max)
  */
-//#define SDIO_TRANSFER_CLK_DIV         ((uint8_t)0x0)
-#define SDIO_TRANSFER_CLK_DIV         ((uint8_t)0x76)
+#define SDIO_TRANSFER_CLK_DIV         ((uint8_t)0x0)
+//#define SDIO_TRANSFER_CLK_DIV         ((uint8_t)0x76)
 
 #define SD_SDIO_DMA						DMA2
 #define SD_SDIO_DMA_CLK					RCC_AHB1Periph_DMA2
@@ -506,8 +506,10 @@ extern SD_Error SD_EnableWideBusOperation (uint32_t WideMode);
 extern SD_Error SD_SelectDeselect (uint64_t addr);
 extern SD_Error SD_ReadBlock (uint8_t *readbuff, uint64_t ReadAddr, uint16_t BlockSize);
 extern SD_Error SD_ReadMultiBlocks (uint8_t *readbuff, uint64_t ReadAddr, uint16_t BlockSize, uint32_t NumberOfBlocks);
+extern SD_Error SD_ReadMultiBlocksFIXED (uint8_t *readbuff, uint64_t ReadAddr, uint16_t BlockSize, uint32_t NumberOfBlocks);
 extern SD_Error SD_WriteBlock (uint8_t *writebuff, uint64_t WriteAddr, uint16_t BlockSize);
 extern SD_Error SD_WriteMultiBlocks (uint8_t *writebuff, uint64_t WriteAddr, uint16_t BlockSize, uint32_t NumberOfBlocks);
+extern SD_Error SD_WriteMultiBlocksFIXED(uint8_t *writebuff, uint64_t WriteAddr, uint16_t BlockSize, uint32_t NumberOfBlocks);
 extern SDTransferState SD_GetTransferState (void);
 extern SD_Error SD_StopTransfer (void);
 extern SD_Error SD_Erase (uint64_t startaddr, uint64_t endaddr);

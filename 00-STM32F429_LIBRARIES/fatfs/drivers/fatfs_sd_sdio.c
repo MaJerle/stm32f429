@@ -226,6 +226,7 @@
 //#include "stm324x9i_eval_ioe16.h"
 #include "stm32f4xx.h"
 #include "fatfs_sd_sdio.h"
+#include <string.h>
 /*
 #include "tm_stm32f4_usart.h"
 #define logf(x)	TM_USART_Puts(USART1, x); TM_USART_Puts(USART1, "\n");
@@ -349,8 +350,10 @@ DSTATUS TM_FATFS_SD_SDIO_disk_status(void) {
 	return TM_FATFS_SD_SDIO_Stat;
 }
 
+#define BLOCK_SIZE            512
+
 DRESULT TM_FATFS_SD_SDIO_disk_read(BYTE *buff, DWORD sector, UINT count) {
-	SD_Error status = SD_OK;
+	SD_Error Status = SD_OK;
 
 	if ((TM_FATFS_SD_SDIO_Stat & STA_NOINIT)) {
 		return RES_NOTRDY;
@@ -358,33 +361,113 @@ DRESULT TM_FATFS_SD_SDIO_disk_read(BYTE *buff, DWORD sector, UINT count) {
 
 	SD_ReadMultiBlocks(buff, sector << 9, 512, count);
 
-	/* Check if the Transfer is finished */
-	status =  SD_WaitReadOperation();
+	//Check if the Transfer is finished
+	Status =  SD_WaitReadOperation();
 	while(SD_GetStatus() != SD_TRANSFER_OK);
 
-	if (status == SD_OK) {
+	if (Status == SD_OK) {
 		return RES_OK;
 	}
 	return RES_ERROR;
+/*
+	if ((DWORD)buff & 3) {
+		DRESULT res = RES_OK;
+		DWORD scratch[BLOCK_SIZE / 4];
+
+		while (count--) {
+			res = TM_FATFS_SD_SDIO_disk_read((void *)scratch, sector++, 1);
+
+			if (res != RES_OK) {
+				break;
+			}
+
+			memcpy(buff, scratch, BLOCK_SIZE);
+
+			buff += BLOCK_SIZE;
+		}
+
+		return res;
+	}
+
+	Status = SD_ReadMultiBlocksFIXED(buff, sector, BLOCK_SIZE, count);
+
+	if (Status == SD_OK) {
+		SDTransferState State;
+
+		Status = SD_WaitReadOperation();
+
+		while ((State = SD_GetStatus()) == SD_TRANSFER_BUSY);
+
+		if ((State == SD_TRANSFER_ERROR) || (Status != SD_OK)) {
+			return RES_ERROR;
+		} else {
+			return RES_OK;
+		}			
+	} else {
+		return RES_ERROR;
+	}
+*/
 }
 
 DRESULT TM_FATFS_SD_SDIO_disk_write(BYTE *buff, DWORD sector, UINT count) {
-	SD_Error status = SD_OK;
+	SD_Error Status = SD_OK;
 
 	if (!TM_FATFS_SDIO_WriteEnabled()) {
 		return RES_WRPRT;
 	}
+
+	if (SD_Detect() != SD_PRESENT) {
+		return RES_NOTRDY;
+	}
 	
 	SD_WriteMultiBlocks((BYTE *)buff, sector << 9, 512, count);
 
-	/* Check if the Transfer is finished */
-	status = SD_WaitWriteOperation();
+	//Check if the Transfer is finished
+	Status = SD_WaitWriteOperation();
 	while(SD_GetStatus() != SD_TRANSFER_OK);     
 
-	if (status == SD_OK) {
+	if (Status == SD_OK) {
 		return RES_OK;
 	}
 	return RES_ERROR;
+	
+/*
+	if ((DWORD)buff & 3) {
+		DRESULT res = RES_OK;
+		DWORD scratch[BLOCK_SIZE / 4];
+
+		while (count--) {
+			memcpy(scratch, buff, BLOCK_SIZE);
+			res = TM_FATFS_SD_SDIO_disk_write((void *)scratch, sector++, 1);
+
+			if (res != RES_OK) {
+				break;
+			}
+
+			buff += BLOCK_SIZE;
+		}
+
+		return(res);
+	}
+
+	Status = SD_WriteMultiBlocksFIXED((uint8_t *)buff, sector, BLOCK_SIZE, count); // 4GB Compliant
+
+	if (Status == SD_OK) {
+		SDTransferState State;
+
+		Status = SD_WaitWriteOperation(); // Check if the Transfer is finished
+
+		while((State = SD_GetStatus()) == SD_TRANSFER_BUSY); // BUSY, OK (DONE), ERROR (FAIL)
+
+		if ((State == SD_TRANSFER_ERROR) || (Status != SD_OK)) {
+			return RES_ERROR;
+		} else {
+			return RES_OK;
+		}
+	} else {
+		return RES_ERROR;
+	}
+*/
 }
 
 DRESULT TM_FATFS_SD_SDIO_disk_ioctl(BYTE cmd, char *buff) {
@@ -1394,6 +1477,64 @@ SD_Error SD_ReadMultiBlocks (uint8_t *readbuff, uint64_t ReadAddr, uint16_t Bloc
         return (errorstatus);
 }
 
+SD_Error SD_ReadMultiBlocksFIXED(uint8_t *readbuff, uint64_t ReadAddr, uint16_t BlockSize, uint32_t NumberOfBlocks) {
+  SD_Error errorstatus = SD_OK;
+  TransferError = SD_OK;
+  TransferEnd = 0;
+  StopCondition = 1;
+
+  SDIO->DCTRL = 0x0;
+
+  if (CardType == SDIO_HIGH_CAPACITY_SD_CARD)
+    BlockSize = 512;
+  else
+    ReadAddr *= BlockSize; // Convert to Bytes for NON SDHC
+
+  /*!< Set Block Size for Card */
+  SDIO_CmdInitStructure.SDIO_Argument = (uint32_t) BlockSize;
+  SDIO_CmdInitStructure.SDIO_CmdIndex = SD_CMD_SET_BLOCKLEN;
+  SDIO_CmdInitStructure.SDIO_Response = SDIO_Response_Short;
+  SDIO_CmdInitStructure.SDIO_Wait = SDIO_Wait_No;
+  SDIO_CmdInitStructure.SDIO_CPSM = SDIO_CPSM_Enable;
+  SDIO_SendCommand(&SDIO_CmdInitStructure);
+
+  errorstatus = CmdResp1Error(SD_CMD_SET_BLOCKLEN);
+
+  if (SD_OK != errorstatus)
+  {
+    return(errorstatus);
+  }
+
+  SDIO_DataInitStructure.SDIO_DataTimeOut = SD_DATATIMEOUT;
+  SDIO_DataInitStructure.SDIO_DataLength = NumberOfBlocks * BlockSize;
+  SDIO_DataInitStructure.SDIO_DataBlockSize = (uint32_t) 9 << 4;
+  SDIO_DataInitStructure.SDIO_TransferDir = SDIO_TransferDir_ToSDIO;
+  SDIO_DataInitStructure.SDIO_TransferMode = SDIO_TransferMode_Block;
+  SDIO_DataInitStructure.SDIO_DPSM = SDIO_DPSM_Enable;
+  SDIO_DataConfig(&SDIO_DataInitStructure);
+
+  /*!< Send CMD18 READ_MULT_BLOCK with argument data address */
+  SDIO_CmdInitStructure.SDIO_Argument = (uint32_t)ReadAddr;
+  SDIO_CmdInitStructure.SDIO_CmdIndex = SD_CMD_READ_MULT_BLOCK;
+  SDIO_CmdInitStructure.SDIO_Response = SDIO_Response_Short;
+  SDIO_CmdInitStructure.SDIO_Wait = SDIO_Wait_No;
+  SDIO_CmdInitStructure.SDIO_CPSM = SDIO_CPSM_Enable;
+  SDIO_SendCommand(&SDIO_CmdInitStructure);
+
+  errorstatus = CmdResp1Error(SD_CMD_READ_MULT_BLOCK);
+
+  if (errorstatus != SD_OK)
+  {
+    return(errorstatus);
+  }
+
+  SDIO_ITConfig(SDIO_IT_DCRCFAIL | SDIO_IT_DTIMEOUT | SDIO_IT_DATAEND | SDIO_IT_RXOVERR | SDIO_IT_STBITERR, ENABLE);
+  SDIO_DMACmd(ENABLE);
+  SD_LowLevel_DMA_RxConfig((uint32_t *)readbuff, (NumberOfBlocks * BlockSize));
+
+  return(errorstatus);
+}
+
 /**
  * @brief  This function waits until the SDIO DMA data transfer is finished.
  *         This function should be called after SDIO_ReadMultiBlocks() function
@@ -1680,6 +1821,112 @@ SD_Error SD_WriteMultiBlocks (uint8_t *writebuff, uint64_t WriteAddr, uint16_t B
         SDIO_DataConfig (&SDIO_DataInitStructure);
 
         return (errorstatus);
+}
+
+/**
+ * @brief  Allows to write blocks starting from a specified address in a card.
+ *         The Data transfer can be managed by DMA mode only.
+ * @note   This operation should be followed by two functions to check if the
+ *         DMA Controller and SD Card status.
+ *          - SD_ReadWaitOperation(): this function insure that the DMA
+ *            controller has finished all data transfer.
+ *          - SD_GetStatus(): to check that the SD Card has finished the
+ *            data transfer and it is ready for data.
+ * @param  WriteAddr: Address from where data are to be read.
+ * @param  writebuff: pointer to the buffer that contain the data to be transferred.
+ * @param  BlockSize: the SD card Data block size. The Block size should be 512.
+ * @param  NumberOfBlocks: number of blocks to be written.
+ * @retval SD_Error: SD Card Error code.
+ */
+SD_Error SD_WriteMultiBlocksFIXED (uint8_t *writebuff, uint64_t WriteAddr, uint16_t BlockSize, uint32_t NumberOfBlocks)
+{
+  SD_Error errorstatus = SD_OK;
+
+  TransferError = SD_OK;
+  TransferEnd = 0;
+  StopCondition = 1;
+
+  SDIO->DCTRL = 0x0;
+
+  if (CardType == SDIO_HIGH_CAPACITY_SD_CARD)
+    BlockSize = 512;
+  else
+    WriteAddr *= BlockSize; // Convert to Bytes for NON SDHC
+
+  /* Set Block Size for Card */
+  SDIO_CmdInitStructure.SDIO_Argument = (uint32_t) BlockSize;
+  SDIO_CmdInitStructure.SDIO_CmdIndex = SD_CMD_SET_BLOCKLEN;
+  SDIO_CmdInitStructure.SDIO_Response = SDIO_Response_Short;
+  SDIO_CmdInitStructure.SDIO_Wait = SDIO_Wait_No;
+  SDIO_CmdInitStructure.SDIO_CPSM = SDIO_CPSM_Enable;
+  SDIO_SendCommand(&SDIO_CmdInitStructure);
+
+  errorstatus = CmdResp1Error(SD_CMD_SET_BLOCKLEN);
+
+  if (SD_OK != errorstatus)
+  {
+    return(errorstatus);
+  }
+
+  /*!< To improve performance */
+  SDIO_CmdInitStructure.SDIO_Argument = (uint32_t) (RCA << 16);
+  SDIO_CmdInitStructure.SDIO_CmdIndex = SD_CMD_APP_CMD;
+  SDIO_CmdInitStructure.SDIO_Response = SDIO_Response_Short;
+  SDIO_CmdInitStructure.SDIO_Wait = SDIO_Wait_No;
+  SDIO_CmdInitStructure.SDIO_CPSM = SDIO_CPSM_Enable;
+  SDIO_SendCommand(&SDIO_CmdInitStructure);
+
+
+  errorstatus = CmdResp1Error(SD_CMD_APP_CMD);
+
+  if (errorstatus != SD_OK)
+  {
+    return(errorstatus);
+  }
+  /*!< To improve performance */
+  SDIO_CmdInitStructure.SDIO_Argument = (uint32_t)NumberOfBlocks;
+  SDIO_CmdInitStructure.SDIO_CmdIndex = SD_CMD_SET_BLOCK_COUNT;
+  SDIO_CmdInitStructure.SDIO_Response = SDIO_Response_Short;
+  SDIO_CmdInitStructure.SDIO_Wait = SDIO_Wait_No;
+  SDIO_CmdInitStructure.SDIO_CPSM = SDIO_CPSM_Enable;
+  SDIO_SendCommand(&SDIO_CmdInitStructure);
+
+  errorstatus = CmdResp1Error(SD_CMD_SET_BLOCK_COUNT);
+
+  if (errorstatus != SD_OK)
+  {
+    return(errorstatus);
+  }
+
+
+  /*!< Send CMD25 WRITE_MULT_BLOCK with argument data address */
+  SDIO_CmdInitStructure.SDIO_Argument = (uint32_t)WriteAddr;
+  SDIO_CmdInitStructure.SDIO_CmdIndex = SD_CMD_WRITE_MULT_BLOCK;
+  SDIO_CmdInitStructure.SDIO_Response = SDIO_Response_Short;
+  SDIO_CmdInitStructure.SDIO_Wait = SDIO_Wait_No;
+  SDIO_CmdInitStructure.SDIO_CPSM = SDIO_CPSM_Enable;
+  SDIO_SendCommand(&SDIO_CmdInitStructure);
+
+  errorstatus = CmdResp1Error(SD_CMD_WRITE_MULT_BLOCK);
+
+  if (SD_OK != errorstatus)
+  {
+    return(errorstatus);
+  }
+
+  SDIO_DataInitStructure.SDIO_DataTimeOut = SD_DATATIMEOUT;
+  SDIO_DataInitStructure.SDIO_DataLength = NumberOfBlocks * BlockSize;
+  SDIO_DataInitStructure.SDIO_DataBlockSize = (uint32_t) 9 << 4;
+  SDIO_DataInitStructure.SDIO_TransferDir = SDIO_TransferDir_ToCard;
+  SDIO_DataInitStructure.SDIO_TransferMode = SDIO_TransferMode_Block;
+  SDIO_DataInitStructure.SDIO_DPSM = SDIO_DPSM_Enable;
+  SDIO_DataConfig(&SDIO_DataInitStructure);
+
+  SDIO_ITConfig(SDIO_IT_DCRCFAIL | SDIO_IT_DTIMEOUT | SDIO_IT_DATAEND | SDIO_IT_RXOVERR | SDIO_IT_STBITERR, ENABLE);
+  SDIO_DMACmd(ENABLE);
+  SD_LowLevel_DMA_TxConfig((uint32_t *)writebuff, (NumberOfBlocks * BlockSize));
+
+  return(errorstatus);
 }
 
 /**
