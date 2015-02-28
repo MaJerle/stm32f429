@@ -128,6 +128,8 @@ http://bit.ly/1AY3tlE
 http://bit.ly/1z1znP1
 51. DMA2D GRAPHIC- Chrom-ART Accelerator on STM32F429-Discovery board
 http://bit.ly/1H7V83S
+52. ETHERNET - Connect ethernet to STM32F4xx
+http://bit.ly/1EzX4z7
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB
