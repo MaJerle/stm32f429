@@ -1,0 +1,263 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<history>
+   <processor signature="arm-none-eabi-gcc noversion nomachine -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wall -ffunction-sections -g -O0 -c -DSTM32F4XX -DUSE_STDPERIPH_DRIVER -D__ASSEMBLY__ -D__FPU_USED -DSTM32F407VG -DSTM32F40_41xxx -DTM_DISCO_STM32F4_DISCOVERY -I..\..\..\..\..\Users\tilz0R\Google Drive\JAVNO\ELEKTRONIKA\ARM\STM32F429\majerle.eu\52_STM32F429_ETHERNET_SERVER_COOCOX -I..\..\..\..\..\Users\tilz0R\Google Drive\JAVNO\ELEKTRONIKA\ARM\STM32F429 -I..\..\..\..\..\Users\tilz0R\Google Drive\JAVNO\ELEKTRONIKA\ARM\STM32F429\majerle.eu\52_STM32F429_ETHERNET_SERVER_COOCOX\cmsis_lib\include -I..\..\..\..\..\Users\tilz0R\Google Drive\JAVNO\ELEKTRONIKA\ARM\STM32F429\majerle.eu\00-STM32F429_LIBRARIES\lwip\src -I..\..\..\..\..\Users\tilz0R\Google Drive\JAVNO\ELEKTRONIKA\ARM\STM32F429\majerle.eu -I..\..\..\..\..\Users\tilz0R\Google Drive\JAVNO\ELEKTRONIKA\ARM\STM32F429\majerle.eu\52_STM32F429_ETHERNET_SERVER_COOCOX\cmsis_boot -I..\..\..\..\..\Users\tilz0R\Google Drive\JAVNO\ELEKTRONIKA\ARM\STM32F429\majerle.eu\00-STM32F429_LIBRARIES\lwip -I..\..\..\..\..\Users\tilz0R\Google Drive\JAVNO\ELEKTRONIKA\ARM\STM32F429\majerle.eu\00-STM32F429_LIBRARIES\lwip\src\include\netif -I..\..\..\..\..\Users\tilz0R\Google Drive\JAVNO\ELEKTRONIKA\ARM\STM32F429\majerle.eu\00-STM32F429_LIBRARIES -I..\..\..\..\..\Users\tilz0R\Google Drive\JAVNO\ELEKTRONIKA\ARM\STM32F429\majerle.eu\00-STM32F429_LIBRARIES\lwip\src\include\ipv4 -I..\..\..\..\..\Users\tilz0R\Google Drive\JAVNO\ELEKTRONIKA\ARM\STM32F429\majerle.eu\00-STM32F429_LIBRARIES\lwip\port -I..\..\..\..\..\Users\tilz0R\Google Drive\JAVNO\ELEKTRONIKA\ARM\STM32F429\majerle.eu\00-STM32F429_LIBRARIES\lwip\src\include -I..\..\..\..\..\Users\tilz0R\Google Drive\JAVNO\ELEKTRONIKA\ARM\STM32F429\majerle.eu\00-STM32F429_LIBRARIES\lwip\src\include\ipv4\lwip -I..\..\..\..\..\Users\tilz0R\Google Drive\JAVNO\ELEKTRONIKA\ARM\STM32F429\majerle.eu\52_STM32F429_ETHERNET_SERVER_COOCOX\cmsis -I..\..\..\..\..\Users\tilz0R\Google Drive\JAVNO\ELEKTRONIKA\ARM\STM32F429\majerle.eu\52_STM32F429_ETHERNET_SERVER_COOCOX\cmsis_lib -I..\..\..\..\..\Users\tilz0R\Google Drive\JAVNO\ELEKTRONIKA\ARM\STM32F429\majerle.eu\00-STM32F429_LIBRARIES\lwip\src\include\lwip">
+      <target file="icmp.o" lastModified="14bd1fe367b">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\lwip\src\core\ipv4\icmp.c" lastModified="14033ea88dd"/>
+      </target>
+      <target file="fs.o" lastModified="14bd1fe1590">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\lwip\fs.c" lastModified="14bd1a395df"/>
+      </target>
+      <target file="dhcp.o" lastModified="14bd1fe39da">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\lwip\src\core\dhcp.c" lastModified="14033ea8dcd"/>
+      </target>
+      <target file="tm_stm32f4_delay.o" lastModified="14bd1fe2492">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c" lastModified="14ade7bdbeb"/>
+      </target>
+      <target file="stm32f4xx_usart.o" lastModified="14bd1fe0de1">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_usart.c" lastModified="14239bc98a0"/>
+      </target>
+      <target file="api_msg.o" lastModified="14bd1fe2bd3">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\lwip\src\api\api_msg.c" lastModified="14033ea90ba"/>
+      </target>
+      <target file="misc.o" lastModified="14bd1fe37f3">
+         <source file="..\..\..\cmsis_lib\source\misc.c" lastModified="14239bc941c"/>
+      </target>
+      <target file="sockets.o" lastModified="14bd1fe3181">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\lwip\src\api\sockets.c" lastModified="14033ea91c3"/>
+      </target>
+      <target file="stm32f4xx_gpio.o" lastModified="14bd1fe2c78">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_gpio.c" lastModified="14239bc965e"/>
+      </target>
+      <target file="stm32f4xx_dbgmcu.o" lastModified="14bd1fe3dd9">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_dbgmcu.c" lastModified="14239bc9545"/>
+      </target>
+      <target file="stm32f4xx_rng.o" lastModified="14bd1fe3561">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_rng.c" lastModified="14239bc9758"/>
+      </target>
+      <target file="stm32f4xx_flash.o" lastModified="14bd1fe2d1e">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_flash.c" lastModified="14239bc95d1"/>
+      </target>
+      <target file="api_lib.o" lastModified="14bd1fe3852">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\lwip\src\api\api_lib.c" lastModified="14033ea907b"/>
+      </target>
+      <target file="slipif.o" lastModified="14bd1fe0f46">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\lwip\src\netif\slipif.c" lastModified="14033ea8776"/>
+      </target>
+      <target file="tcp.o" lastModified="14bd1fe098c">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\lwip\src\core\tcp.c" lastModified="14b94dd9241"/>
+      </target>
+      <target file="netconf.o" lastModified="14bd1fe1e48">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\lwip\netconf.c" lastModified="14bd040f2e0"/>
+      </target>
+      <target file="netifapi.o" lastModified="14bd1fe3777">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\lwip\src\api\netifapi.c" lastModified="14033ea90d9"/>
+      </target>
+      <target file="stm32f4xx_crc.o" lastModified="14bd1fe1832">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_crc.c" lastModified="14239bc94b8"/>
+      </target>
+      <target file="ip_frag.o" lastModified="14bd1fe11fe">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\lwip\src\core\ipv4\ip_frag.c" lastModified="14033ea88ae"/>
+      </target>
+      <target file="ip.o" lastModified="14bd1fe334b">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\lwip\src\core\ipv4\ip.c" lastModified="14033ea88fc"/>
+      </target>
+      <target file="stm32f4xx_adc.o" lastModified="14bd1fe21a8">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_adc.c" lastModified="14239bc946a"/>
+      </target>
+      <target file="stm32f4x7_eth.o" lastModified="14bd1fe17b7">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\lwip\stm32f4x7_eth.c" lastModified="14b8dfd4f66"/>
+      </target>
+      <target file="stm32f4xx_cryp_tdes.o" lastModified="14bd1fe3b32">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_cryp_tdes.c" lastModified="14239bc9516"/>
+      </target>
+      <target file="stm32f4xx_iwdg.o" lastModified="14bd1fe18b4">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_iwdg.c" lastModified="14239bc96cb"/>
+      </target>
+      <target file="stm32f4xx_sdio.o" lastModified="14bd1fe08bc">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_sdio.c" lastModified="14239bc97e4"/>
+      </target>
+      <target file="igmp.o" lastModified="14bd1fe31e3">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\lwip\src\core\ipv4\igmp.c" lastModified="14033ea8bab"/>
+      </target>
+      <target file="memp.o" lastModified="14bd1fe0fcd">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\lwip\src\core\memp.c" lastModified="14033ea87f3"/>
+      </target>
+      <target file="stm32f4xx_syscfg.o" lastModified="14bd1fe0798">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_syscfg.c" lastModified="14239bc9813"/>
+      </target>
+      <target file="raw.o" lastModified="14bd1fe3e5b">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\lwip\src\core\raw.c" lastModified="14033ea8eb7"/>
+      </target>
+      <target file="tm_stm32f4_ethernet.o" lastModified="14bd1fe1a6e">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\tm_stm32f4_ethernet.c" lastModified="14bd1f379dd"/>
+      </target>
+      <target file="tcp_in.o" lastModified="14bd1fe0d48">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\lwip\src\core\tcp_in.c" lastModified="14033ea8d60"/>
+      </target>
+      <target file="ethernetif.o" lastModified="14bd1fe22cc">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\lwip\port\ethernetif.c" lastModified="14b923fad4d"/>
+      </target>
+      <target file="stm32f4xx_cryp_des.o" lastModified="14bd1fe2808">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_cryp_des.c" lastModified="14239bc9506"/>
+      </target>
+      <target file="err.o" lastModified="14bd1fe0c10">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\lwip\src\api\err.c" lastModified="14033ea9194"/>
+      </target>
+      <target file="stm32f4xx_i2c.o" lastModified="14bd1fe34c7">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_i2c.c" lastModified="14239bc96bc"/>
+      </target>
+      <target file="fsdata.o" lastModified="14bd1fe1467">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\lwip\fsdata.c" lastModified="14bd01401e6"/>
+      </target>
+      <target file="dns.o" lastModified="14bd1fe3713">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\lwip\src\core\dns.c" lastModified="14033ea8e1b"/>
+      </target>
+      <target file="stm32f4xx_dcmi.o" lastModified="14bd1fe2350">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_dcmi.c" lastModified="14239bc9554"/>
+      </target>
+      <target file="stm32f4xx_pwr.o" lastModified="14bd1fe0e64">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_pwr.c" lastModified="1426b6cf42d"/>
+      </target>
+      <target file="stm32f4xx_can.o" lastModified="14bd1fe107d">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_can.c" lastModified="14239bc94b8"/>
+      </target>
+      <target file="stm32f4xx_ltdc.o" lastModified="14bd1fe1631">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_ltdc.c" lastModified="14239bc96ea"/>
+      </target>
+      <target file="stm32f4xx_rtc.o" lastModified="14bd1fe3ab0">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_rtc.c" lastModified="14239bc97a6"/>
+      </target>
+      <target file="stm32f4xx_tim.o" lastModified="14bd1fe3c1c">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_tim.c" lastModified="14239bc9871"/>
+      </target>
+      <target file="httpd.o" lastModified="14bd1fe2784">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\lwip\httpd.c" lastModified="14bc334628e"/>
+      </target>
+      <target file="stm32f4xx_wwdg.o" lastModified="14bd1fe1163">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_wwdg.c" lastModified="14239bc98a0"/>
+      </target>
+      <target file="tcp_echoclient.o" lastModified="14bd1fe3056">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\lwip\tcp_echoclient.c" lastModified="14bd1e8df78"/>
+      </target>
+      <target file="syscalls.o" lastModified="14bd1fe2eca">
+         <source file="..\..\..\cmsis_lib\source\syscalls.c" lastModified="14b93fc8f22"/>
+      </target>
+      <target file="stm32f4xx_cryp.o" lastModified="14bd1fe294c">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_cryp.c" lastModified="14239bc94d7"/>
+      </target>
+      <target file="stm32f4xx_sai.o" lastModified="14bd1fe2dbd">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_sai.c" lastModified="14239bc97c5"/>
+      </target>
+      <target file="stm32f4xx_dac.o" lastModified="14bd1fe13cb">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_dac.c" lastModified="14239bc9535"/>
+      </target>
+      <target file="def.o" lastModified="14bd1fe220e">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\lwip\src\core\def.c" lastModified="14033ea87d4"/>
+      </target>
+      <target file="stm32f4xx_hash.o" lastModified="14bd1fe0b9a">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_hash.c" lastModified="14239bc967d"/>
+      </target>
+      <target file="httpd_cgi_ssi.o" lastModified="14bd1fe28b9">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\lwip\httpd_cgi_ssi.c" lastModified="14b68fb6677"/>
+      </target>
+      <target file="startup_stm32f4xx.o" lastModified="14bd1fe167b">
+         <source file="..\..\..\cmsis_boot\startup\startup_stm32f4xx.c" lastModified="1457784479b"/>
+      </target>
+      <target file="inet.o" lastModified="14bd1fe2adc">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\lwip\src\core\ipv4\inet.c" lastModified="14033ea8841"/>
+      </target>
+      <target file="stats.o" lastModified="14bd1fe2a5f">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\lwip\src\core\stats.c" lastModified="14033ea8822"/>
+      </target>
+      <target file="mem.o" lastModified="14bd1fe081f">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\lwip\src\core\mem.c" lastModified="14033ea8dec"/>
+      </target>
+      <target file="timers.o" lastModified="14bd1fe1f18">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\lwip\src\core\timers.c" lastModified="14033ea8c08"/>
+      </target>
+      <target file="stm32f4xx_hash_sha1.o" lastModified="14bd1fe0c8f">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_hash_sha1.c" lastModified="14239bc969c"/>
+      </target>
+      <target file="init.o" lastModified="14bd1fe203c">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\lwip\src\core\init.c" lastModified="14033ea8c18"/>
+      </target>
+      <target file="tm_stm32f4_disco.o" lastModified="14bd1fe14dc">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.c" lastModified="14b5f02ac8b"/>
+      </target>
+      <target file="stm32f4xx_exti.o" lastModified="14bd1fe35f5">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_exti.c" lastModified="14239bc95a2"/>
+      </target>
+      <target file="netbuf.o" lastModified="14bd1fe125a">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\lwip\src\api\netbuf.c" lastModified="14033ea9156"/>
+      </target>
+      <target file="autoip.o" lastModified="14bd1fe10df">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\lwip\src\core\ipv4\autoip.c" lastModified="14033ea8851"/>
+      </target>
+      <target file="ip_addr.o" lastModified="14bd1fe1999">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\lwip\src\core\ipv4\ip_addr.c" lastModified="14033ea888f"/>
+      </target>
+      <target file="etharp.o" lastModified="14bd1fe2400">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\lwip\src\netif\etharp.c" lastModified="14033ea8748"/>
+      </target>
+      <target file="stm32f4xx_hash_md5.o" lastModified="14bd1fe12d6">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_hash_md5.c" lastModified="14239bc968d"/>
+      </target>
+      <target file="tcpip.o" lastModified="14bd1fe1338">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\lwip\src\api\tcpip.c" lastModified="14033ea9117"/>
+      </target>
+      <target file="inet_chksum.o" lastModified="14bd1fe1ae9">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\lwip\src\core\ipv4\inet_chksum.c" lastModified="14033ea8b2e"/>
+      </target>
+      <target file="netdb.o" lastModified="14bd1fe1eb0">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\lwip\src\api\netdb.c" lastModified="14033ea91f2"/>
+      </target>
+      <target file="netif.o" lastModified="14bd1fe2b70">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\lwip\src\core\netif.c" lastModified="14033ea8d21"/>
+      </target>
+      <target file="pbuf.o" lastModified="14bd1fe29e7">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\lwip\src\core\pbuf.c" lastModified="14033ea903d"/>
+      </target>
+      <target file="sys.o" lastModified="14bd1fe191a">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\lwip\src\core\sys.c" lastModified="14033ea8dfc"/>
+      </target>
+      <target file="tcp_out.o" lastModified="14bd1fe3d50">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\lwip\src\core\tcp_out.c" lastModified="14033ea8d7f"/>
+      </target>
+      <target file="tm_stm32f4_rtc.o" lastModified="14bd1fe311f">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\tm_stm32f4_rtc.c" lastModified="14b986fc69c"/>
+      </target>
+      <target file="stm32f4x7_eth_bsp.o" lastModified="14bd1fe2102">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\lwip\stm32f4x7_eth_bsp.c" lastModified="14bd09c7fe0"/>
+      </target>
+      <target file="tm_stm32f4_watchdog.o" lastModified="14bd1fe0ed9">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\tm_stm32f4_watchdog.c" lastModified="14bd1fb963f"/>
+      </target>
+      <target file="stm32f4xx_cryp_aes.o" lastModified="14bd1fe0a69">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_cryp_aes.c" lastModified="14239bc9506"/>
+      </target>
+      <target file="tm_stm32f4_usart.o" lastModified="14bd1fe1fbe">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c" lastModified="14a9cb284d5"/>
+      </target>
+      <target file="system_stm32f4xx.o" lastModified="14bd1fe2e43">
+         <source file="..\..\..\cmsis_boot\system_stm32f4xx.c" lastModified="1457789103e"/>
+      </target>
+      <target file="stm32f4xx_spi.o" lastModified="14bd1fe33f1">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_spi.c" lastModified="14239bc9804"/>
+      </target>
+      <target file="stm32f4xx_dma.o" lastModified="14bd1fe2f70">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_dma.c" lastModified="14239bc9573"/>
+      </target>
+      <target file="stm32f4xx_rcc.o" lastModified="14bd1fe1d8b">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_rcc.c" lastModified="14239bc9748"/>
+      </target>
+      <target file="stm32f4xx_dma2d.o" lastModified="14bd1fe0b0a">
+         <source file="..\..\..\cmsis_lib\source\stm32f4xx_dma2d.c" lastModified="14239bc9593"/>
+      </target>
+      <target file="main.o" lastModified="14bd1fe1cca">
+         <source file="..\..\..\main.c" lastModified="14bd1eec20b"/>
+      </target>
+      <target file="udp.o" lastModified="14bd1fe327e">
+         <source file="..\..\..\..\00-STM32F429_LIBRARIES\lwip\src\core\udp.c" lastModified="14033ea8e88"/>
+      </target>
+   </processor>
+</history>

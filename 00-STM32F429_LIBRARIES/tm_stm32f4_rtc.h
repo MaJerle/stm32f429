@@ -453,7 +453,7 @@ extern void TM_RTC_DisableAlarm(TM_RTC_Alarm_t Alarm);
  *
  * With __weak parameter to prevent link errors if not defined by user
  */
-extern __weak void TM_RTC_RequestHandler(void);
+extern void TM_RTC_RequestHandler(void);
 
 /**
  * Custom Alarm A interrupt handler
@@ -462,7 +462,7 @@ extern __weak void TM_RTC_RequestHandler(void);
  *
  * With __weak parameter to prevent link errors if not defined by user
  */
-extern __weak void TM_RTC_AlarmAHandler(void);
+extern void TM_RTC_AlarmAHandler(void);
 
 /**
  * Custom Alarm B interrupt handler
@@ -471,7 +471,7 @@ extern __weak void TM_RTC_AlarmAHandler(void);
  *
  * With __weak parameter to prevent link errors if not defined by user
  */
-extern __weak void TM_RTC_AlarmBHandler(void);
+extern void TM_RTC_AlarmBHandler(void);
 
 #endif
 

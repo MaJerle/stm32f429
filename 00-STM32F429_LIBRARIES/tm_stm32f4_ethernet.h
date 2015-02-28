@@ -675,7 +675,7 @@ extern TM_ETHERNET_Result_t TM_ETHERNETDNS_GetHostByName(char* host_name);
  *
  * No return
  */
-extern __weak void TM_ETHERNET_IPIsSetCallback(uint8_t ip_addr1, uint8_t ip_addr2, uint8_t ip_addr3, uint8_t ip_addr4, uint8_t dhcp);
+extern void TM_ETHERNET_IPIsSetCallback(uint8_t ip_addr1, uint8_t ip_addr2, uint8_t ip_addr3, uint8_t ip_addr4, uint8_t dhcp);
 
 /**
  * DHCP start callback
@@ -686,7 +686,7 @@ extern __weak void TM_ETHERNET_IPIsSetCallback(uint8_t ip_addr1, uint8_t ip_addr
  *
  * No return
  */
-extern __weak void TM_ETHERNET_DHCPStartCallback(void);
+extern void TM_ETHERNET_DHCPStartCallback(void);
 
 /**
  * Link is down callback
@@ -698,7 +698,7 @@ extern __weak void TM_ETHERNET_DHCPStartCallback(void);
  *
  * No return
  */
-extern __weak void TM_ETHERNET_LinkIsDownCallback(void);
+extern void TM_ETHERNET_LinkIsDownCallback(void);
 
 /**
  * Link is up callback
@@ -710,7 +710,7 @@ extern __weak void TM_ETHERNET_LinkIsDownCallback(void);
  *
  * No return
  */
-extern __weak void TM_ETHERNET_LinkIsUpCallback(void);
+extern void TM_ETHERNET_LinkIsUpCallback(void);
 
 /* System reset callback */
 /**
@@ -727,7 +727,7 @@ extern __weak void TM_ETHERNET_LinkIsUpCallback(void);
  *
  * No return
  */
-extern __weak void TM_ETHERNET_SystemResetCallback(void);
+extern void TM_ETHERNET_SystemResetCallback(void);
 
 /* Ethernet client based callbacks */
 /* Callbacks for ethernet client */
@@ -757,7 +757,7 @@ extern __weak void TM_ETHERNET_SystemResetCallback(void);
  * If you return 0 (zero) then connection will be closed.
  * Buffer length can't be larger than ETHERNET_MAX_HEADER_SIZE define
  */
-extern __weak uint16_t TM_ETHERNETCLIENT_CreateHeadersCallback(TM_TCPCLIENT_t* connection, char* buffer, uint16_t buffer_length);
+extern uint16_t TM_ETHERNETCLIENT_CreateHeadersCallback(TM_TCPCLIENT_t* connection, char* buffer, uint16_t buffer_length);
 
 /**
  * Receive data callback
@@ -779,7 +779,7 @@ extern __weak uint16_t TM_ETHERNETCLIENT_CreateHeadersCallback(TM_TCPCLIENT_t* c
  *
  * No return
  */
-extern __weak void TM_ETHERNETCLIENT_ReceiveDataCallback(TM_TCPCLIENT_t* connection, uint8_t* buffer, uint16_t buffer_length, uint16_t total_length);
+extern void TM_ETHERNETCLIENT_ReceiveDataCallback(TM_TCPCLIENT_t* connection, uint8_t* buffer, uint16_t buffer_length, uint16_t total_length);
 
 /**
  * Connected callback
@@ -794,7 +794,7 @@ extern __weak void TM_ETHERNETCLIENT_ReceiveDataCallback(TM_TCPCLIENT_t* connect
  *
  * No return
  */
-extern __weak void TM_ETHERNETCLIENT_ConnectedCallback(TM_TCPCLIENT_t* connection);
+extern void TM_ETHERNETCLIENT_ConnectedCallback(TM_TCPCLIENT_t* connection);
 
 /**
  * Connection closed callback
@@ -813,7 +813,7 @@ extern __weak void TM_ETHERNETCLIENT_ConnectedCallback(TM_TCPCLIENT_t* connectio
  *
  * No return
  */
-extern __weak void TM_ETHERNETCLIENT_ConnectionClosedCallback(TM_TCPCLIENT_t* connection, uint8_t success);
+extern void TM_ETHERNETCLIENT_ConnectionClosedCallback(TM_TCPCLIENT_t* connection, uint8_t success);
 
 /**
  * Error callback
@@ -829,7 +829,7 @@ extern __weak void TM_ETHERNETCLIENT_ConnectionClosedCallback(TM_TCPCLIENT_t* co
  *
  * No return
  */
-extern __weak void TM_ETHERNETCLIENT_ErrorCallback(TM_TCPCLIENT_t* connection);
+extern void TM_ETHERNETCLIENT_ErrorCallback(TM_TCPCLIENT_t* connection);
 
 /**
  * Connection started callback
@@ -844,7 +844,7 @@ extern __weak void TM_ETHERNETCLIENT_ErrorCallback(TM_TCPCLIENT_t* connection);
  *
  * No return
  */
-extern __weak void TM_ETHERNETCLIENT_ConnectionStartedCallback(TM_TCPCLIENT_t* connection);
+extern void TM_ETHERNETCLIENT_ConnectionStartedCallback(TM_TCPCLIENT_t* connection);
 
 /* DNS based callbacks */
 /**
@@ -869,7 +869,7 @@ extern __weak void TM_ETHERNETCLIENT_ConnectionStartedCallback(TM_TCPCLIENT_t* c
  *
  * No return
  */
-extern __weak void TM_ETHERNETDNS_FoundCallback(char* host_name, uint8_t ip_addr1, uint8_t ip_addr2, uint8_t ip_addr3, uint8_t ip_addr4);
+extern void TM_ETHERNETDNS_FoundCallback(char* host_name, uint8_t ip_addr1, uint8_t ip_addr2, uint8_t ip_addr3, uint8_t ip_addr4);
 
 /**
  * DNS error callback
@@ -885,7 +885,7 @@ extern __weak void TM_ETHERNETDNS_FoundCallback(char* host_name, uint8_t ip_addr
  *
  * No return
  */
-extern __weak void TM_ETHERNETDNS_ErrorCallback(char* host_name);
+extern void TM_ETHERNETDNS_ErrorCallback(char* host_name);
 
 /* Server based callbacks */
 /**
@@ -905,7 +905,7 @@ extern __weak void TM_ETHERNETDNS_ErrorCallback(char* host_name);
  *
  * Must return number of characters in your pcInsert pointer.
  */
-extern __weak uint16_t TM_ETHERNETSERVER_SSICallback(int iIndex, char *pcInsert, int iInsertLen);
+extern uint16_t TM_ETHERNETSERVER_SSICallback(int iIndex, char *pcInsert, int iInsertLen);
 
 /**
  * Called when new client is connected to server
@@ -925,7 +925,7 @@ extern __weak uint16_t TM_ETHERNETSERVER_SSICallback(int iIndex, char *pcInsert,
  * This function must return 1 if you want to allow connection,
  * or 0 if you want to deny access to your web.
  */
-extern __weak uint8_t TM_ETHERNETSERVER_ClientConnectedCallback(struct tcp_pcb *pcb);
+extern uint8_t TM_ETHERNETSERVER_ClientConnectedCallback(struct tcp_pcb *pcb);
 
 /**
  * Called when new client is diconnected from server (Or connection closed)
@@ -934,7 +934,7 @@ extern __weak uint8_t TM_ETHERNETSERVER_ClientConnectedCallback(struct tcp_pcb *
  *
  * No return
  */
-extern __weak void TM_ETHERNETSERVER_ClientDisconnectedCallback(void);
+extern void TM_ETHERNETSERVER_ClientDisconnectedCallback(void);
 
 /**
  * Called when user based file should be open when new client is connected
@@ -959,7 +959,7 @@ extern __weak void TM_ETHERNETSERVER_ClientDisconnectedCallback(void);
  *
  * Return 0 in case you can't/don't want to open file, or 1 if file is successfully opened
  */
-extern __weak int TM_ETHERNETSERVER_OpenFileCallback(struct fs_file* file, const char *name);
+extern int TM_ETHERNETSERVER_OpenFileCallback(struct fs_file* file, const char *name);
 
 /**
  * Called when reading file is finished and file can be closed.
@@ -974,7 +974,7 @@ extern __weak int TM_ETHERNETSERVER_OpenFileCallback(struct fs_file* file, const
  *
  * No return
  */
-extern __weak void TM_ETHERNETSERVER_CloseFileCallback(struct fs_file* file);
+extern void TM_ETHERNETSERVER_CloseFileCallback(struct fs_file* file);
 
 /**
  * Called when file should be read.
@@ -993,7 +993,7 @@ extern __weak void TM_ETHERNETSERVER_CloseFileCallback(struct fs_file* file);
  *
  * Returns number of read data, or -1 (EOF) if file has end.
  */
-extern __weak int TM_ETHERNETSERVER_ReadFileCallback(struct fs_file* file, char* buffer, int count);
+extern int TM_ETHERNETSERVER_ReadFileCallback(struct fs_file* file, char* buffer, int count);
 
 /**
  * Post request begin callback
@@ -1021,7 +1021,7 @@ extern __weak int TM_ETHERNETSERVER_ReadFileCallback(struct fs_file* file, char*
  * This function must return 1 in case you want to accept POST request, or return 0 in case you want to deny it.
  * In params structure you have also HTTP headers, so you can look at them and deny access in some cases.
  */
-extern __weak uint8_t TM_ETHERNETSERVER_PostRequestBeginCallback(TM_ETHERNETPOST_t* params);
+extern uint8_t TM_ETHERNETSERVER_PostRequestBeginCallback(TM_ETHERNETPOST_t* params);
 
 /**
  * Post request receive data available callback
@@ -1044,7 +1044,7 @@ extern __weak uint8_t TM_ETHERNETSERVER_PostRequestBeginCallback(TM_ETHERNETPOST
  *
  * This function must return 1 if you want to receive more data, or return 0 in case you want to stop POST request at some time.
  */
-extern __weak uint8_t TM_ETHERNETSERVER_PostRequestReceiveDataCallback(TM_ETHERNETPOST_t* params, struct pbuf* p);
+extern uint8_t TM_ETHERNETSERVER_PostRequestReceiveDataCallback(TM_ETHERNETPOST_t* params, struct pbuf* p);
 
 /**
  * Post request end callback
@@ -1066,7 +1066,7 @@ extern __weak uint8_t TM_ETHERNETSERVER_PostRequestReceiveDataCallback(TM_ETHERN
  *
  * No return
  */
-extern __weak void TM_ETHERNETSERVER_PostRequestEndCallback(void* connection, char* response_uri, u16_t response_uri_len);
+extern void TM_ETHERNETSERVER_PostRequestEndCallback(void* connection, char* response_uri, u16_t response_uri_len);
 
 /**
  * Called when ethernet peripheral is ready.
@@ -1083,7 +1083,7 @@ extern __weak void TM_ETHERNETSERVER_PostRequestEndCallback(void* connection, ch
  *
  * No return
  */
-extern __weak void TM_ETHERNETPHY_CustomOptions(uint32_t PHYAddress);
+extern void TM_ETHERNETPHY_CustomOptions(uint32_t PHYAddress);
 
 /**
  * Called on ethernet GPIO initialization
@@ -1094,7 +1094,7 @@ extern __weak void TM_ETHERNETPHY_CustomOptions(uint32_t PHYAddress);
  *
  * Must return 1 in case user has made own pins, or 0 in case we want default pins
  */
-extern __weak uint8_t TM_ETHERNET_InitPinsCallback(void);
+extern uint8_t TM_ETHERNET_InitPinsCallback(void);
 
 /* Private functions which should not be called from user */
 extern void TM_ETHERNET_INT_CustomOptions(uint32_t PHYAddress);

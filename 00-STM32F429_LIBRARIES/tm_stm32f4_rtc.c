@@ -617,6 +617,19 @@ void TM_RTC_DisableAlarm(TM_RTC_Alarm_t Alarm) {
 	NVIC_Init(&NVIC_InitStruct);
 }
 
+/* Callbacks */
+__weak void TM_RTC_RequestHandler(void) {
+
+}
+
+__weak void TM_RTC_AlarmAHandler(void) {
+
+}
+
+__weak void TM_RTC_AlarmBHandler(void) {
+
+}
+
 void RTC_WKUP_IRQHandler(void) {
 	if (RTC_GetITStatus(RTC_IT_WUT) != RESET) {
 		/* Clear interrupt flags */

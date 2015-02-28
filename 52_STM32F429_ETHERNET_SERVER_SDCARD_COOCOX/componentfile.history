@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<History> 
+  <File usedCount="2" path="cmsis_lib/include/stm32f4xx_usart.h"/>  
+  <File usedCount="2" path="cmsis_lib/source/stm32f4xx_usart.c"/> 
+</History>

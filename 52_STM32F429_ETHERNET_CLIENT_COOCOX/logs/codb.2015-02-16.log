@@ -1,0 +1,81 @@
+12:58:36.964 [Worker-24] INFO  org.coocox.codb.common.log.ProcessTimeLog - 32`958`getCompAssociatedFromServer`1119
+12:58:39.057 [Worker-24] INFO  org.coocox.codb.common.log.ErrorLog - [C:/CooCox/CoIDE/bin/fossil.exe,clone,-A,admin,http://admin:4a6e38@data.coocox.org:9090/cgi-bin/repo/fe73bbe5-1e4c-47ce-8305-3cde8df40325,C:/CooCox/CoIDE/repo\.rn\fossils\fe73bbe5-1e4c-47ce-8305-3cde8df40325.fossil] executed OK 
+Bytes      Cards  Artifacts     Deltas
+Sent:              53          1          0          0
+waiting for server...
+processed: 0%         
+processed: 3%         
+processed: 4%         
+processed: 11%         
+processed: 13%         
+processed: 14%         
+processed: 15%         
+processed: 16%         
+processed: 17%         
+processed: 33%         
+processed: 34%         
+processed: 45%         
+processed: 46%         
+processed: 49%         
+processed: 50%         
+processed: 56%         
+processed: 57%         
+processed: 61%         
+processed: 62%         
+processed: 65%         
+processed: 66%         
+processed: 79%         
+processed: 80%         
+processed: 89%         
+processed: 90%         
+processed: 97%         
+processed: 98%         
+processed: 99%         
+Received:        6082         29         10          3
+Sent:              58          2          0          0
+waiting for server...
+processed: 3%         
+Received:         634          2          0          0
+Total network traffic: 644 bytes sent, 6921 bytes received
+Rebuilding repository meta-data...
+  0.0% complete...
+  7.6% complete...
+  15.3% complete...
+  23.0% complete...
+  30.7% complete...
+  38.4% complete...
+  46.1% complete...
+  53.8% complete...
+  61.5% complete...
+  69.2% complete...
+  76.9% complete...
+  84.6% complete...
+  92.3% complete...
+  100.0% complete...
+project-id: 1bbd45457cf8132b5dc2be95ddc11b7acd4d6f56
+server-id:  d5bb5490f7cfc9b70cc9dd0e93fea03422b3ac58
+admin-user: admin (password is "92445d")
+
+12:58:39.270 [Worker-24] INFO  org.coocox.codb.common.log.ErrorLog - [C:/CooCox/CoIDE/bin/fossil.exe,open,C:/CooCox/CoIDE/repo\.rn\fossils\fe73bbe5-1e4c-47ce-8305-3cde8df40325.fossil,-latest] executed OK 
+doc/cox_series_component.css
+doc/description.html
+doc/docInfo.dat
+doc/main.html
+src/cmsis_lib/include/syscalls.h
+src/cmsis_lib/source/syscalls.c
+src/serial.c
+src/serial.h
+project-name: <unnamed>
+repository:   C:/CooCox/CoIDE/repo\.rn\fossils\fe73bbe5-1e4c-47ce-8305-3cde8df40325.fossil
+local-root:   C:/CooCox/CoIDE/repo/Components/958_Retarget printf, syscalls/
+user-home:    C:/Users/tilz0R/AppData/Local
+project-code: 1bbd45457cf8132b5dc2be95ddc11b7acd4d6f56
+checkout:     de5c5cca70e1e46dd15ed6cb76dc39e3aa8d993f 2014-04-01 08:53:25 UTC
+parent:       5e6f738606976b02800baafb4a58a83f94cb3e4b 2013-07-24 07:38:45 UTC
+tags:         trunk
+comment:      commit the driver sourceCode (user: admin)
+
+12:58:39.298 [Worker-24] INFO  org.coocox.codb.common.log.ErrorLog - [C:/CooCox/CoIDE/bin/fossil.exe,close,-force] executed OK 
+
+
+12:58:39.369 [Worker-24] INFO  org.coocox.codb.common.log.ProcessTimeLog - 27`2`958`downloadComponent`3632

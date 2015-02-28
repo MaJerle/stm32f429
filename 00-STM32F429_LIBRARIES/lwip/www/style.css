@@ -1,0 +1,131 @@
+html,
+body {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	font-family: Arial, Calibri;
+	font-size: 11px;
+}
+
+/*---------------------------------------------*/
+/* Container                                   */
+/*---------------------------------------------*/
+#header {
+	background: #DDDDDD;
+	text-align: center;
+	font-size: 36px;
+	padding: 20px;
+	white-space: nowrap;
+	border-bottom: 1px solid #999999;
+}
+
+#main {
+	margin: 0 auto;
+	width: 450px;
+}
+
+/*---------------------------------------------*/
+/* Table settings                              */
+/*---------------------------------------------*/
+table {
+	border-collapse: collapse;
+	border: 1px solid #DDDDDD;
+	width: 450px !important;
+	margin: 0 auto;
+	width: 100%;
+}
+
+th,
+td {
+	text-align: left;
+	border-collapse: collapse;
+	border: 1px solid #CCCCCC;
+	padding: 5px;
+	font-size: 11px;
+}
+
+td.td_header {
+	text-align: center;
+	padding: 4px;
+	background: #CCCCCC;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+/*---------------------------------------------*/
+/* Colors                                      */
+/*---------------------------------------------*/
+.blue {
+	color: blue;
+}
+
+.red {
+	color: red;
+}
+
+.orange {
+	color: orange;
+}
+
+.green {
+	color: green;
+}
+
+/*---------------------------------------------*/
+/* Hyperlinks                                  */
+/*---------------------------------------------*/
+a:link,
+a:visited {
+	border: 1px solid #CCCCCC;
+	background: #EEEEEE;
+	display: inline-block;
+	padding: 3px 6px;
+	color: #333333;
+	margin: 0 2px;
+}
+
+a:hover {
+	border-color: #BBBBBB;
+	background: #DDDDDD;
+}
+
+/*---------------------------------------------*/
+/* Miscellaneous                               */
+/*---------------------------------------------*/
+/* Bold text */
+.bold {
+	font-weight: bold;
+}
+/* Center aligned */
+.align_center {
+	text-align: center;
+}
+/* Float right */
+.float_right {
+	float: right;
+}
+/* Clear */
+.clear {
+	clear: both;
+}
+
+/* Img */
+img {
+	max-width: 450px;
+}
+
+/*---------------------------------------------*/
+/* Inputs                                      */
+/*---------------------------------------------*/
+.div_input {
+    
+}
+
+.div_input_left {
+    float: left;
+    width: 60px;
+}
+
+.div_input_right {
+    margin-left: 60px;
+}

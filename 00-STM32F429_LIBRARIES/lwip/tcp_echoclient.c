@@ -427,6 +427,9 @@ static void tcp_echoclient_error(void *arg, err_t err) {
 
 	/* Client is passed as arguments */
 	client = (TM_TCPCLIENT_t *)client;
+	
+	/* Call user function */
+	TM_ETHERNETCLIENT_ErrorCallback(client);
 
 	/* Close connection */
 	tcp_echoclient_connection_close(client, 0);

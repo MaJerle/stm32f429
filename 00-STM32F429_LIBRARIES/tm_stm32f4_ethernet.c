@@ -334,7 +334,27 @@ TM_ETHERNET_Result_t TM_ETHERNETDNS_GetHostByName(char* host_name) {
 /* CALLBACKS */
 /* If functions needs to be changed, then user should make them in custom file */
 
-/* Create custom headers in case user didn't make own function */
+/* Common callbacks */
+__weak void TM_ETHERNET_LinkIsDownCallback(void) {
+
+}
+
+__weak void TM_ETHERNET_LinkIsUpCallback(void) {
+
+}
+
+__weak void TM_ETHERNET_IPIsSetCallback(uint8_t ip_addr1, uint8_t ip_addr2, uint8_t ip_addr3, uint8_t ip_addr4, uint8_t dhcp) {
+
+}
+
+__weak void TM_ETHERNET_DHCPStartCallback(void) {
+
+}
+
+__weak void TM_ETHERNET_SystemResetCallback(void) {
+
+}
+/* Client based callbacks */
 __weak uint16_t TM_ETHERNETCLIENT_CreateHeadersCallback(TM_TCPCLIENT_t* connection, char* buffer, uint16_t buffer_length) {
 	strcpy((char *)buffer, "GET / HTTP/1.1\r\n");
 	sprintf((char *)buffer, "%sHost: %s\r\n", buffer, connection->name);
@@ -360,19 +380,25 @@ __weak void TM_ETHERNETCLIENT_ConnectionClosedCallback(TM_TCPCLIENT_t* connectio
 	/* For example, here you can make a new connection */
 }
 
+__weak void TM_ETHERNETCLIENT_ErrorCallback(TM_TCPCLIENT_t* connection) {
+
+}
+
+__weak void TM_ETHERNETCLIENT_ReceiveDataCallback(TM_TCPCLIENT_t* connection, uint8_t* buffer, uint16_t buffer_length, uint16_t total_length) {
+
+}
+
 /* Server based callbacks */
 __weak uint16_t TM_ETHERNETSERVER_SSICallback(int iIndex, char* pcInsert, int iInsertLen) {
 	/* Return 0 */
 	return 0;
 }
 
-/* Called when new connection arrived to server */
 __weak uint8_t TM_ETHERNETSERVER_ClientConnectedCallback(struct tcp_pcb* pcb) {
 	/* Return 1, allow connection */
 	return 1;
 }
 
-/* Called when connection has been closed on server */
 __weak void TM_ETHERNETSERVER_ClientDisconnectedCallback(void) {
 	/* Do nothing */
 }
@@ -389,6 +415,28 @@ __weak int TM_ETHERNETSERVER_ReadFileCallback(struct fs_file* file, char *buffer
 
 __weak void TM_ETHERNETSERVER_CloseFileCallback(struct fs_file* file) {
 	/* Do nothing */
+}
+
+/* Server POST based callbacks */
+__weak uint8_t TM_ETHERNETSERVER_PostRequestBeginCallback(TM_ETHERNETPOST_t* params) {
+	return 0;
+}
+
+__weak uint8_t TM_ETHERNETSERVER_PostRequestReceiveDataCallback(TM_ETHERNETPOST_t* params, struct pbuf* p) {
+	return 0;
+}
+
+__weak void TM_ETHERNETSERVER_PostRequestEndCallback(void* connection, char* response_uri, u16_t response_uri_len) {
+
+}
+
+/* DNS based callbacks */
+__weak void TM_ETHERNETDNS_FoundCallback(char* host_name, uint8_t ip_addr1, uint8_t ip_addr2, uint8_t ip_addr3, uint8_t ip_addr4) {
+
+}
+
+__weak void TM_ETHERNETDNS_ErrorCallback(char* host_name) {
+
 }
 
 /* PHY based callbacks */
@@ -415,6 +463,7 @@ __weak uint8_t TM_ETHERNET_InitPinsCallback(void) {
 	/* Return 0, use default pins */
 	return 0;
 }
+
 
 /* Internal functions */
 void TM_ETHERNET_INT_CustomOptions(uint32_t PHYAddress) {	
