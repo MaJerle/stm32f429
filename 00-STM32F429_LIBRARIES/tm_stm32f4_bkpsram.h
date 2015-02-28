@@ -59,6 +59,11 @@ extern C {
 #include "stm32f4xx_pwr.h"
 #include "defines.h"
 
+/* Check compatibility */
+#if defined(STM32F401xx) || defined(STM32F411xE)
+	#error "Not available on F401/F411 devices"
+#endif	
+	
 /**
  * Get memory size for internal backup SRAM
  *

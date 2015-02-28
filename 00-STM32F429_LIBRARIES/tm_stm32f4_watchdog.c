@@ -24,7 +24,7 @@ uint8_t TM_WATCHDOG_Init(TM_WATCHDOG_Timeout_t timeout) {
 
 	/* Check if the system has resumed from IWDG reset */
 	if (RCC_GetFlagStatus(RCC_FLAG_IWDGRST) != RESET) {
-		// Reset by IWDG
+		/* Reset by IWDG */
 		result = 1;
 		
 		/* Clear reset flags */
