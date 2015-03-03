@@ -30,7 +30,7 @@
 
 /* Put your global defines for all libraries here used in your project */
 
-/* Enable DHCP Ip asignment */
+/* Enable DHCP IP assignment */
 #define ETHERNET_USE_DHCP
 
 #endif
