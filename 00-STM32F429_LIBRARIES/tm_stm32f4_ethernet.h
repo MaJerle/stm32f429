@@ -5,7 +5,7 @@
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
- *	@link		
+ *	@link		http://stm32f4-discovery.com/2015/02/library-52-ethernet-peripheral-on-stm32f4xx/
  *	@version 	v1.0
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
