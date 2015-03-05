@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/04/library-05-spi-for-stm32f4xx/
- *	@version 	v1.5
+ *	@version 	v1.6
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -25,6 +25,10 @@
  * | You should have received a copy of the GNU General Public License
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
+ *
+ * Version 1.6
+ *	- March 05, 2015
+ *	- Added 2 new functions, TM_SPI_InitFull and TM_SPI_GetPrescalerFromMaxFrequency()
  *
  * Version 1.5	
  *	- January 13, 2015
@@ -76,7 +80,7 @@
  *	#define TM_SPIx_MODE		TM_SPI_Mode_0
  */
 #ifndef TM_SPI_H
-#define TM_SPI_H 150
+#define TM_SPI_H 160
 
 /* C++ detection */
 #ifdef __cplusplus
@@ -281,12 +285,55 @@ extern void TM_SPI_Init(SPI_TypeDef* SPIx, TM_SPI_PinsPack_t pinspack);
  * 		- TM_SPI_PinsPack_2
  *		- TM_SPI_PinsPack_3
  *	- TM_SPI_Mode_t SPI_Mode:
- *		SPI mode to be initialize
+ *		SPI mode to be initialized
  *
  * No return
  */
 extern void TM_SPI_InitWithMode(SPI_TypeDef* SPIx, TM_SPI_PinsPack_t pinspack, TM_SPI_Mode_t SPI_Mode);
 
+/**
+ * Initialize SPIx with most used SPI features
+ *
+ * Parameters:
+ * 	- SPI_TypeDef* SPIx:
+ * 		SPI, x valid 1 - 6
+ * 	- TM_SPI_PinsPack_t pinspack: select pins pack to use
+ * 		- TM_SPI_PinsPack_1
+ * 		- TM_SPI_PinsPack_2
+ *		- TM_SPI_PinsPack_3
+ *	- TM_SPI_Mode_t SPI_Mode:
+ *		SPI mode to be initialized, CPOL and CPHA settings, Mode 0 to 3
+ *	- uint16_t SPI_BaudRatePrescaler:
+ *		SPI baudrate prescaler values. SPI_BaudRatePrescaler_x is valid, valid x is: 2, 4, 8, 16, 32, 64, 128, 256
+ *	- uint16_t SPI_Mode:
+ *		Master or slave mode: SPI_Mode_Master or SPI_Mode_Slave valid.
+ *	- uint16_t SPI_FirstBit:
+ *		Select first bit in your transmission, SPI_FirstBit_MSB or SPI_FirstBit_LSB are valid
+ *
+ * No return
+ */
+extern void TM_SPI_InitFull(SPI_TypeDef* SPIx, TM_SPI_PinsPack_t pinspack, uint16_t SPI_BaudRatePrescaler, TM_SPI_Mode_t SPI_Mode_t, uint16_t SPI_Mode, uint16_t SPI_FirstBit);
+
+/**
+ * This function can be used to calculate smaller prescaler for your clock frequency
+ * SPI has 8 prescalers available, 2,4,6,...,128,256
+ *
+ * This function will return you a bits you must set in your CR1 register.
+ *
+ * Imagine, you can use 20MHz max clock in your system, your system is running on 168MHz, and you use SPI on APB2 bus.
+ * On 168 and 180MHz devices, APB2 works on Fclk/2, so 84 and 90MHz.
+ * So, if you calculate this, prescaler will need to be 84MHz / 20MHz = 4.xx, but if you use 4 prescaler, then you will be over 20MHz.
+ * You need 8 prescaler then. This function will calculate this.
+ *
+ * Parameters:
+ * 	- SPI_TypeDef* SPIx:
+ * 		SPI, x valid 1 - 6
+ *	- uint32_t MAX_SPI_Frequency:
+ *		Maximal frequency you can use on your device on SPI port
+ *
+ * Returns bits you must set in SPI CR1 register.
+ */
+extern uint16_t TM_SPI_GetPrescalerFromMaxFrequency(SPI_TypeDef* SPIx, uint32_t MAX_SPI_Frequency);
 
 /**
  * Send and receive data over SPI
