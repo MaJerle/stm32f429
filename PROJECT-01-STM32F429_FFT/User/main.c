@@ -90,8 +90,10 @@ int main(void) {
 		/* Actually, best solution is double buffered DMA with timer for ADC treshold */
 		/* But this is only for show principle on how FFT works */
 		for (i = 0; i < SAMPLES; i += 2) {
-			/* Each ~22us ~ 45kHz sample rate */
+			/* Each 22us ~ 45kHz sample rate */
 			Delay(21);
+			
+			/* We assume that sampling and other stuff will take about 1us */
 			
 			/* Real part, must be between -1 and 1 */
 			Input[(uint16_t)i] = (float32_t)((float32_t)TM_ADC_Read(ADC1, ADC_Channel_0) - (float32_t)2048.0) / (float32_t)2048.0;
@@ -128,6 +130,7 @@ int main(void) {
 		/* Output[0] = Signals DC value */
 		if ((Output[1] + Output[2] + Output[3] + Output[4] + Output[5] + Output[6] + Output[7]) > 120) {
 			TM_DISCO_LedOn(LED_GREEN);
+			TM_DISCO_LedOn(LED_RED);
 		} else {
 			TM_DISCO_LedOff(LED_GREEN);
 		}

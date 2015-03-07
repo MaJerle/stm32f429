@@ -73,8 +73,10 @@ TM_USB_HIDHOST_Result_t TM_USB_HIDHOST_ReadKeyboard(TM_USB_HIDHOST_Keyboard_t* K
 	Keyboard->ButtonStatus = TM_USB_HIDHOST_INT_Keyboard.ButtonStatus;
 	
 	/* Reset internal data */
+#if USB_HIDHOST_REINITIALIZE_KEYBOARD_AFTER_READ > 0
 	TM_USB_HIDHOST_INT_Keyboard.ButtonStatus = TM_USB_HIDHOST_Button_Released;
 	TM_USB_HIDHOST_INT_Keyboard.Button = 0;
+#endif
 	
 	/* Return keyboard connected */
 	return TM_USB_HIDHOST_Result_KeyboardConnected;
@@ -100,9 +102,11 @@ TM_USB_HIDHOST_Result_t TM_USB_HIDHOST_ReadMouse(TM_USB_HIDHOST_Mouse_t* Mouse) 
 	TM_USB_HIDHOST_INT_Mouse.DiffX = 0;
 	TM_USB_HIDHOST_INT_Mouse.DiffY = 0;
 	/* Buttons are not pressed anymore */
+#if USB_HIDHOST_REINITIALIZE_MOUSE_AFTER_READ > 0
 	TM_USB_HIDHOST_INT_Mouse.LeftButton = TM_USB_HIDHOST_Button_Released;
 	TM_USB_HIDHOST_INT_Mouse.MiddleButton = TM_USB_HIDHOST_Button_Released;
 	TM_USB_HIDHOST_INT_Mouse.RightButton = TM_USB_HIDHOST_Button_Released;
+#endif
 	
 	/* Return mouse connected */
 	return TM_USB_HIDHOST_Result_MouseConnected;

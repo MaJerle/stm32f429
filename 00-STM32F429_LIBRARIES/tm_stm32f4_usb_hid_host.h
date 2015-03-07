@@ -99,6 +99,16 @@
 #include "usbh_usr.h"
 #include "usbh_hid_core.h"
 
+/* Reinitialize mouse values after read */
+#ifndef USB_HIDHOST_REINITIALIZE_MOUSE_AFTER_READ
+#define USB_HIDHOST_REINITIALIZE_MOUSE_AFTER_READ		0
+#endif
+
+/* Reiintialize keyboard values after read */
+#ifndef USB_HIDHOST_REINITIALIZE_KEYBOARD_AFTER_READ
+#define USB_HIDHOST_REINITIALIZE_KEYBOARD_AFTER_READ	0
+#endif
+
 /**
  * HID Host result enumeration
  *
