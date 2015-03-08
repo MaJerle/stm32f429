@@ -218,6 +218,8 @@ void EXTI0_IRQHandler(void) {
 		EXTI_ClearITPendingBit(EXTI_Line0);
 		/* Call user function */
 		TM_EXTI_Handler_0();
+		/* Call global function */
+		TM_EXTI_Handler(GPIO_Pin_0);
 	}
 }
 #endif
@@ -230,6 +232,8 @@ void EXTI1_IRQHandler(void) {
 		EXTI_ClearITPendingBit(EXTI_Line1);
 		/* Call user function */
 		TM_EXTI_Handler_1();
+		/* Call global function */
+		TM_EXTI_Handler(GPIO_Pin_1);
 	}
 }
 #endif
@@ -242,6 +246,8 @@ void EXTI2_IRQHandler(void) {
 		EXTI_ClearITPendingBit(EXTI_Line2);
 		/* Call user function */
 		TM_EXTI_Handler_2();
+		/* Call global function */
+		TM_EXTI_Handler(GPIO_Pin_2);
 	}
 }
 #endif
@@ -254,6 +260,8 @@ void EXTI3_IRQHandler(void) {
 		EXTI_ClearITPendingBit(EXTI_Line3);
 		/* Call user function */
 		TM_EXTI_Handler_3();
+		/* Call global function */
+		TM_EXTI_Handler(GPIO_Pin_3);
 	}
 }
 #endif
@@ -266,6 +274,8 @@ void EXTI4_IRQHandler(void) {
 		EXTI_ClearITPendingBit(EXTI_Line4);
 		/* Call user function */
 		TM_EXTI_Handler_4();
+		/* Call global function */
+		TM_EXTI_Handler(GPIO_Pin_4);
 	}
 }
 #endif
@@ -278,6 +288,8 @@ void EXTI9_5_IRQHandler(void) {
 		EXTI_ClearITPendingBit(EXTI_Line5);
 		/* Call user function */
 		TM_EXTI_Handler_5();
+		/* Call global function */
+		TM_EXTI_Handler(GPIO_Pin_5);
 	}
 	/* Check status */
 	if (EXTI_GetITStatus(EXTI_Line6) != RESET) {
@@ -285,6 +297,8 @@ void EXTI9_5_IRQHandler(void) {
 		EXTI_ClearITPendingBit(EXTI_Line6);
 		/* Call user function */
 		TM_EXTI_Handler_6();
+		/* Call global function */
+		TM_EXTI_Handler(GPIO_Pin_6);
 	}
 	/* Check status */
 	if (EXTI_GetITStatus(EXTI_Line7) != RESET) {
@@ -292,6 +306,8 @@ void EXTI9_5_IRQHandler(void) {
 		EXTI_ClearITPendingBit(EXTI_Line7);
 		/* Call user function */
 		TM_EXTI_Handler_7();
+		/* Call global function */
+		TM_EXTI_Handler(GPIO_Pin_7);
 	}
 	/* Check status */
 	if (EXTI_GetITStatus(EXTI_Line8) != RESET) {
@@ -299,6 +315,8 @@ void EXTI9_5_IRQHandler(void) {
 		EXTI_ClearITPendingBit(EXTI_Line8);
 		/* Call user function */
 		TM_EXTI_Handler_8();
+		/* Call global function */
+		TM_EXTI_Handler(GPIO_Pin_8);
 	}
 	/* Check status */
 	if (EXTI_GetITStatus(EXTI_Line9) != RESET) {
@@ -306,6 +324,8 @@ void EXTI9_5_IRQHandler(void) {
 		EXTI_ClearITPendingBit(EXTI_Line9);
 		/* Call user function */
 		TM_EXTI_Handler_9();
+		/* Call global function */
+		TM_EXTI_Handler(GPIO_Pin_9);
 	}
 }
 #endif
@@ -318,6 +338,8 @@ void EXTI15_10_IRQHandler(void) {
 		EXTI_ClearITPendingBit(EXTI_Line10);
 		/* Call user function */
 		TM_EXTI_Handler_10();
+		/* Call global function */
+		TM_EXTI_Handler(GPIO_Pin_10);
 	}
 	/* Check status */
 	if (EXTI_GetITStatus(EXTI_Line11) != RESET) {
@@ -325,6 +347,8 @@ void EXTI15_10_IRQHandler(void) {
 		EXTI_ClearITPendingBit(EXTI_Line11);
 		/* Call user function */
 		TM_EXTI_Handler_11();
+		/* Call global function */
+		TM_EXTI_Handler(GPIO_Pin_11);
 	}
 	/* Check status */
 	if (EXTI_GetITStatus(EXTI_Line12) != RESET) {
@@ -332,6 +356,8 @@ void EXTI15_10_IRQHandler(void) {
 		EXTI_ClearITPendingBit(EXTI_Line12);
 		/* Call user function */
 		TM_EXTI_Handler_12();
+		/* Call global function */
+		TM_EXTI_Handler(GPIO_Pin_12);
 	}
 	/* Check status */
 	if (EXTI_GetITStatus(EXTI_Line13) != RESET) {
@@ -339,6 +365,8 @@ void EXTI15_10_IRQHandler(void) {
 		EXTI_ClearITPendingBit(EXTI_Line13);
 		/* Call user function */
 		TM_EXTI_Handler_13();
+		/* Call global function */
+		TM_EXTI_Handler(GPIO_Pin_13);
 	}
 	/* Check status */
 	if (EXTI_GetITStatus(EXTI_Line14) != RESET) {
@@ -346,6 +374,8 @@ void EXTI15_10_IRQHandler(void) {
 		EXTI_ClearITPendingBit(EXTI_Line14);
 		/* Call user function */
 		TM_EXTI_Handler_14();
+		/* Call global function */
+		TM_EXTI_Handler(GPIO_Pin_14);
 	}
 	/* Check status */
 	if (EXTI_GetITStatus(EXTI_Line15) != RESET) {
@@ -353,6 +383,8 @@ void EXTI15_10_IRQHandler(void) {
 		EXTI_ClearITPendingBit(EXTI_Line15);
 		/* Call user function */
 		TM_EXTI_Handler_15();
+		/* Call global function */
+		TM_EXTI_Handler(GPIO_Pin_15);
 	}
 }
 #endif

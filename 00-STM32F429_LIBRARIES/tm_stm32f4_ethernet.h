@@ -90,6 +90,7 @@ extern C {
  * - attributes.h
  * - LwIP stack
  * - TM DELAY
+ * - TM GPIO
  */
 /**
  * Includes
@@ -100,6 +101,7 @@ extern C {
 #include "defines.h"
 #include "attributes.h"
 #include "tm_stm32f4_delay.h"
+#include "tm_stm32f4_gpio.h"
 
 /* Ethernet based includes */
 #include "stm32f4x7_eth.h"

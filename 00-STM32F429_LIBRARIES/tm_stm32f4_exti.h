@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/10/library-38-external-interrupts-for-stm32f4
- *	@version 	v1.0
+ *	@version 	v1.1
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -26,6 +26,11 @@
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
  * 
+ * Version 1.1
+ * 	- March 08, 2015
+ *	- Added function TM_EXTI_Handler, which is called anytime EXTI interrupt occur,
+ *	  no matter on which GPIO_Pin. GPIO_Pin_x is passed as argument where x is 0 to 15
+ *
  * This library allows you to easy enable external interrupt on specific pin.
  * 
  * You only need to specify GPIOx, pin and interrupt trigger you want to use and you are ready to use.
@@ -73,7 +78,7 @@
  * 	#define TM_EXTI_PRIORITY	0x0A
  */
 #ifndef TM_EXTI_H
-#define TM_EXTI_H 100
+#define TM_EXTI_H 110
 
 /* C++ detection */
 #ifdef __cplusplus
@@ -192,6 +197,8 @@ __weak void TM_EXTI_Handler_12(void);	/* Handle lines 12 */
 __weak void TM_EXTI_Handler_13(void);	/* Handle lines 13 */
 __weak void TM_EXTI_Handler_14(void);	/* Handle lines 14 */
 __weak void TM_EXTI_Handler_15(void);	/* Handle lines 15 */
+/* Handler for all lines. This function is called anytime interrupt occured on any pin */
+__weak void TM_EXTI_Handler(uint16_t GPIO_Pin);
 
 /* C++ detection */
 #ifdef __cplusplus

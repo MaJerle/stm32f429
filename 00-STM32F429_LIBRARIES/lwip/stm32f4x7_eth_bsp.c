@@ -152,20 +152,14 @@ static void ETH_MACDMA_Config(void) {
   * @retval None
   */
 void ETH_GPIO_Config(void) {
-	GPIO_InitTypeDef GPIO_InitStructure;
-
 	/* Enable SYSCFG clock */
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG, ENABLE);
 
 	/* Configure MCO1 (PA8) */
 	/* This pin must be initialized as MCO, but not needed to be used */
 	/* It looks like a bug in STM32F4 */
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8;
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
-	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
-	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL ;  
-	GPIO_Init(GPIOA, &GPIO_InitStructure);
+	/* Init alternate function for PA8 = MCO */
+	TM_GPIO_Init(GPIOA, GPIO_Pin_8, TM_GPIO_Mode_AF, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High);
 	
 	/* Set PA8 output */
 	RCC_MCO1Config(RCC_MCO1Source_HSE, RCC_MCO1Div_1);
@@ -175,44 +169,20 @@ void ETH_GPIO_Config(void) {
 
 	/* Check if user has defined it's own pins */
 	if (!TM_ETHERNET_InitPinsCallback()) {
-		/* Init default pins */
-		
-		/* Enable GPIO clocks */
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA | RCC_AHB1Periph_GPIOC, ENABLE);
-		
+		/* Init default pins */		
 		/* Ethernet pins configuration */
-		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_7;
-		GPIO_Init(GPIOA, &GPIO_InitStructure);
-		GPIO_PinAFConfig(GPIOA, GPIO_PinSource1, GPIO_AF_ETH);
-		GPIO_PinAFConfig(GPIOA, GPIO_PinSource2, GPIO_AF_ETH);
-		GPIO_PinAFConfig(GPIOA, GPIO_PinSource7, GPIO_AF_ETH);
+		TM_GPIO_InitAlternate(GPIOA, GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_7, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_ETH);
 
 		/* RX pins and MDC */
-		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1 | GPIO_Pin_4 | GPIO_Pin_5;
-		GPIO_Init(GPIOC, &GPIO_InitStructure);
-		GPIO_PinAFConfig(GPIOC, GPIO_PinSource1, GPIO_AF_ETH);
-		GPIO_PinAFConfig(GPIOC, GPIO_PinSource4, GPIO_AF_ETH);
-		GPIO_PinAFConfig(GPIOC, GPIO_PinSource5, GPIO_AF_ETH);
+		TM_GPIO_InitAlternate(GPIOC, GPIO_Pin_1 | GPIO_Pin_4 | GPIO_Pin_5, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_ETH);
 
 		/* Check TX pins */
 #ifdef ETHERNET_RMII_PINSPACK_2
 		/* Pinspack 2, TXD0, TXD1 and TX_EN pins are connected to GPIOG pins */
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOG, ENABLE);
-
-		GPIO_InitStructure.GPIO_Pin =  GPIO_Pin_11 | GPIO_Pin_13 | GPIO_Pin_14;
-		GPIO_Init(GPIOG, &GPIO_InitStructure);
-		GPIO_PinAFConfig(GPIOG, GPIO_PinSource11, GPIO_AF_ETH);
-		GPIO_PinAFConfig(GPIOG, GPIO_PinSource13, GPIO_AF_ETH);
-		GPIO_PinAFConfig(GPIOG, GPIO_PinSource14, GPIO_AF_ETH);
+		TM_GPIO_InitAlternate(GPIOG, GPIO_Pin_11 | GPIO_Pin_13 | GPIO_Pin_14, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_ETH);
 #else
 		/* Pinspack 1, TXD0, TXD1 and TX_EN pins are connected to GPIOB pins */
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
-
-		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_11 | GPIO_Pin_12 | GPIO_Pin_13;
-		GPIO_Init(GPIOB, &GPIO_InitStructure);
-		GPIO_PinAFConfig(GPIOB, GPIO_PinSource11, GPIO_AF_ETH);
-		GPIO_PinAFConfig(GPIOB, GPIO_PinSource12, GPIO_AF_ETH);
-		GPIO_PinAFConfig(GPIOB, GPIO_PinSource13, GPIO_AF_ETH);
+		TM_GPIO_InitAlternate(GPIOB, GPIO_Pin_11 | GPIO_Pin_12 | GPIO_Pin_13, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_ETH);
 #endif
 	}
 }
