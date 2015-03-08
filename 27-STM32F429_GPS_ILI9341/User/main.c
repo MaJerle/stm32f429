@@ -19,6 +19,7 @@
 
 #include <stdio.h>
 
+/* LCD Start Y address */
 #define START_Y 		5
 
 int main(void) {
@@ -113,8 +114,7 @@ int main(void) {
 				TM_DISCO_LedToggle(LED_GREEN);
 				
 				/* We have valid GPS signal */
-#ifndef GPS_DISABLE_GPGGA
-		
+#ifndef GPS_DISABLE_GPGGA		
 				/* Latitude */
 				/* Convert float to integer and decimal part, with 6 decimal places */
 				TM_GPS_ConvertFloat(GPS_Data.Latitude, &GPS_Float, 6);
@@ -145,8 +145,8 @@ int main(void) {
 				sprintf(buffer, " - Altitude: %3d.%06d", GPS_Float.Integer, GPS_Float.Decimal);
 				TM_ILI9341_Puts(10, START_Y + 11 * iOff++, buffer, &TM_Font_7x10, 0x0000, 0xFFFF);				
 #endif
+
 #ifndef GPS_DISABLE_GPRMC
-				
 				/* Current date */
 				sprintf(buffer, " - Date: %02d.%02d.%04d", GPS_Data.Date.Date, GPS_Data.Date.Month, GPS_Data.Date.Year + 2000);
 				TM_ILI9341_Puts(10, START_Y + 11 * iOff++, buffer, &TM_Font_7x10, 0x0000, 0xFFFF);
@@ -166,8 +166,8 @@ int main(void) {
 				sprintf(buffer, " - Direction: %3d.%03d", GPS_Float.Integer, GPS_Float.Decimal);
 				TM_ILI9341_Puts(10, START_Y + 11 * iOff++, buffer, &TM_Font_7x10, 0x0000, 0xFFFF);
 #endif
-#ifndef GPS_DISABLE_GPGSA
-				
+
+#ifndef GPS_DISABLE_GPGSA				
 				/* Horizontal dilution of precision */ 
 				TM_GPS_ConvertFloat(GPS_Data.HDOP, &GPS_Float, 2);
 				sprintf(buffer, " - HDOP: %2d.%02d", GPS_Float.Integer, GPS_Float.Decimal);
@@ -196,9 +196,9 @@ int main(void) {
 						sprintf(buffer, "%s%d", buffer, GPS_Data.SatelliteIDs[i]);
 					}	
 				}
-				TM_ILI9341_Puts(10, START_Y + 11 * iOff++, buffer, &TM_Font_7x10, 0x0000, 0xFFFF);
-				
+				TM_ILI9341_Puts(10, START_Y + 11 * iOff++, buffer, &TM_Font_7x10, 0x0000, 0xFFFF);		
 #endif
+				
 #ifndef GPS_DISABLE_GPGSV
 				/* Satellites in view */
 				sprintf(buffer, " - Satellites in view: %02d", GPS_Data.SatellitesInView);
@@ -206,7 +206,10 @@ int main(void) {
 #endif
 			} else {
 				/* Clear screen */
-				TM_ILI9341_Fill(0xFFFF);
+				if (iOff > 0) {
+					iOff = 0;
+					TM_ILI9341_Fill(0xFFFF);
+				}
 				
 				/* Go to the beginning of LCD */
 				iOff = 0;
@@ -215,7 +218,7 @@ int main(void) {
 				TM_DISCO_LedToggle(LED_RED);
 				
 				/* GPS signal is not valid */
-				TM_ILI9341_Puts(10, START_Y + 11 * iOff++, "New received data haven't valid GPS signal!", &TM_Font_7x10, 0x0000, 0xFFFF);
+				TM_ILI9341_Puts(10, START_Y + 11 * iOff, "New received data haven't valid GPS signal!", &TM_Font_7x10, 0x0000, 0xFFFF);
 			}
 		} else if (result == TM_GPS_Result_FirstDataWaiting && current != TM_GPS_Result_FirstDataWaiting) {
 			current = TM_GPS_Result_FirstDataWaiting;

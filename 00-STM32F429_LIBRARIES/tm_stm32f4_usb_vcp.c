@@ -22,6 +22,7 @@
 uint8_t TM_INT_USB_VCP_ReceiveBuffer[USB_VCP_RECEIVE_BUFFER_LENGTH];
 uint32_t tm_int_usb_vcp_buf_in, tm_int_usb_vcp_buf_out, tm_int_usb_vcp_buf_num;
 extern TM_USB_VCP_Result TM_USB_VCP_INT_Status;
+extern LINE_CODING linecoding;
 uint8_t TM_USB_VCP_INT_Init = 0;
 
 USB_OTG_CORE_HANDLE	USB_OTG_dev;
@@ -185,3 +186,17 @@ TM_USB_VCP_Result TM_USB_VCP_GetStatus(void) {
 	return TM_USB_VCP_ERROR;
 }
 
+TM_USB_VCP_Result TM_USB_VCP_GetSettings(TM_USB_VCP_Settings_t* Settings) {
+	/* Fill data */
+	Settings->Baudrate = linecoding.bitrate;
+	Settings->DataBits = linecoding.datatype;
+	Settings->Parity = linecoding.paritytype;
+	Settings->Stopbits = linecoding.format;
+	Settings->Changed = linecoding.changed;
+	
+	/* Clear changed flag */
+	linecoding.changed = 0;
+	
+	/* Return OK */
+	return TM_USB_VCP_OK;
+}

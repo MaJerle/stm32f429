@@ -43,20 +43,17 @@
 /* Private function prototypes -----------------------------------------------*/
 extern USB_OTG_CORE_HANDLE           USB_OTG_dev;
 
-
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-LINE_CODING linecoding =
-  {
-    115200, /* baud rate*/
-    0x00,   /* stop bits-1*/
-    0x00,   /* parity - none*/
-    0x08    /* nb. of bits 8*/
-  };
-
-
+LINE_CODING linecoding = {
+	115200, /* baud rate */
+	0x00,   /* stop bits-1 */
+	0x00,   /* parity - none */
+	0x08,   /* nb. of bits 8 */
+	1		/* Changed flag */
+};
 
 /* These are external variables imported from CDC core to be used for IN 
    transfer management. */
@@ -113,7 +110,14 @@ static uint16_t VCP_DeInit(void) {
   * @retval Result of the opeartion (USBD_OK in all cases)
   */
 static uint16_t VCP_Ctrl (uint32_t Cmd, uint8_t* Buf, uint32_t Len)
-{ 
+{ /*
+	int i;
+	printf("Command: 0x%02X: ", Cmd);
+	for (i = 0; i < Len; i++) {
+		printf("0x%02X ", Buf[i]);
+	}
+	printf("\n");
+	*/
   switch (Cmd)
   {
   case SEND_ENCAPSULATED_COMMAND:
@@ -141,7 +145,8 @@ static uint16_t VCP_Ctrl (uint32_t Cmd, uint8_t* Buf, uint32_t Len)
     linecoding.format = Buf[4];
     linecoding.paritytype = Buf[5];
     linecoding.datatype = Buf[6];
-    /* Set the new configuration */
+	linecoding.changed = 1;
+  
     //VCP_COMConfig(OTHER_CONFIG);
     break;
 
@@ -156,6 +161,7 @@ static uint16_t VCP_Ctrl (uint32_t Cmd, uint8_t* Buf, uint32_t Len)
     break;
 
   case SET_CONTROL_LINE_STATE:
+	//printf("Set control line state\n");
     /* Not  needed for this driver */
     break;
 
@@ -178,11 +184,10 @@ static uint16_t VCP_Ctrl (uint32_t Cmd, uint8_t* Buf, uint32_t Len)
   * @param  Len: Number of data to be sent (in bytes)
   * @retval Result of the opeartion: USBD_OK if all operations are OK else VCP_FAIL
   */
-uint16_t VCP_DataTx (uint8_t* Buf, uint32_t Len)
-{
+uint16_t VCP_DataTx (uint8_t* Buf, uint32_t Len) {
 	uint32_t tx_counter = 0;
 	
-	while (tx_counter < Len){
+	while (tx_counter < Len) {
 		APP_Rx_Buffer[APP_Rx_ptr_in] = *(Buf+tx_counter);
 		
 		APP_Rx_ptr_in++;
@@ -194,6 +199,7 @@ uint16_t VCP_DataTx (uint8_t* Buf, uint32_t Len)
 		
 		tx_counter++;
 	}
+	
 	return USBD_OK;
 }
 
@@ -221,7 +227,3 @@ uint16_t VCP_DataRx (uint8_t* Buf, uint32_t Len) {
 	
 	return USBD_OK;
 }
-
-
-
-

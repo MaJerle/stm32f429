@@ -47,6 +47,7 @@ typedef struct
   uint8_t  format;
   uint8_t  paritytype;
   uint8_t  datatype;
+	uint8_t changed;
 }LINE_CODING;
 
 

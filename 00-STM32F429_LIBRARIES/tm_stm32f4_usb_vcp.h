@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/08/library-24-virtual-com-port-vcp-stm32f4xx/
- *	@version 	v1.1
+ *	@version 	v1.2
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -25,6 +25,12 @@
  * | You should have received a copy of the GNU General Public License
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
+ *
+ * Version 1.2
+ *	- March 08, 2015
+ *	- Added options to get user settings from terminal
+ *	- Baudrate, stop bits, parity, data bits.
+ *	- useful if you make USB->UART converter like FTDI
  *
  * Version 1.1
  *	- December 27, 2014
@@ -74,7 +80,7 @@
  *
  */
 #ifndef TM_USB_VCP_H
-#define TM_USB_VCP_H 	110
+#define TM_USB_VCP_H 	120
 /**
  * Dependencies:
  * 	- STM32F4xx
@@ -121,11 +127,63 @@ typedef enum {
 } TM_USB_VCP_Result;
 
 /**
+ * Structure for USART if you are working USB/UART converter with STM32F4xx
+ *
+ * Parameters:
+ *	- uint32_t Baudrate:
+ *		Baudrate, which is set by user on terminal. Value is number of bits per second, for example: 115200
+ *	- uint8_t Stopbits:
+ *		Stop bits, which is set by user on terminal. 
+ *		Values:
+ *			- 0: 1 stop bit
+ *			- 1: 1.5 stop bits
+ *			- 2: 2 stop bits
+ *	- uint8_t DataBits:
+ *		Data bits, which is set by user on terminal.
+ *		Values:
+ *			- 5: 5 data bits
+ *			- 6: 6 data bits
+ *			- 7: 7 data bits
+ *			- 8: 8 data bits
+ *			- 9: 9 data bits
+ *	- uint8_t Parity:
+ *		Parity, which is set by user on terminal.
+ *		Values:
+ *			- 0: No parity
+ *			- 1: Odd parity
+ *			- 2: Even parity
+ *			- 3: Mark parity
+ *			- 4: Space parity
+ *	- uint8_t Changed:
+ *		When you check for settings in my function, this will be set to 1 if user has changed parameters,
+ *		so you can reinitialize USART peripheral if you need to.
+ */
+typedef struct {
+	uint32_t Baudrate;
+	uint8_t Stopbits;
+	uint8_t DataBits;
+	uint8_t Parity;
+	uint8_t Changed;
+} TM_USB_VCP_Settings_t;
+
+/**
  * Initialize USB VCP
  *
  * TM_USB_VCP_OK is returned
  */
 extern TM_USB_VCP_Result TM_USB_VCP_Init(void);
+
+/**
+ * Read settings from user.
+ * These settings are set in terminal.
+ * 
+ * Parameters:
+ * 	- TM_USB_VCP_Settings_t* Settings:
+ * 		Pointer to TM_USB_VCP_Settings_t structure where to save data
+ * 
+ * TM_USB_VCP_DATA_OK is returned
+ */
+extern TM_USB_VCP_Result TM_USB_VCP_GetSettings(TM_USB_VCP_Settings_t* Settings);
 
 /**
  * Get received character from internal buffer

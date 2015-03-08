@@ -31,6 +31,8 @@
 
 #include "tm_stm32f4_usb_vcp.h"
 
+#include <stdio.h>
+
 TM_USB_VCP_Result TM_USB_VCP_INT_Status = TM_USB_VCP_NOT_CONNECTED;
 
 USBD_Usr_cb_TypeDef USR_cb =
