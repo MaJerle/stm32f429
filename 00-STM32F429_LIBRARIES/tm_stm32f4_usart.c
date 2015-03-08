@@ -462,240 +462,111 @@ uint8_t TM_USART_INT_GetSubPriority(USART_TypeDef* USARTx) {
 
 #ifdef TM_USE_USART1
 void TM_USART1_InitPins(TM_USART_PinsPack_t pinspack) {	
-	//Enable clock for USART1
+	/* Enable clock for USART1 */
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, ENABLE);
 
+	/* Init pins */
 	if (pinspack == TM_USART_PinsPack_1) {
-		// Enable clock for GPIOA
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
-
-		GPIO_PinAFConfig(GPIOA, GPIO_PinSource9, GPIO_AF_USART1);
-		GPIO_PinAFConfig(GPIOA, GPIO_PinSource10, GPIO_AF_USART1);
-		//                         TX           RX
-		GPIO_InitStruct.GPIO_Pin = GPIO_Pin_9 | GPIO_Pin_10;
-
-		//Alternating function
-		GPIO_Init(GPIOA, &GPIO_InitStruct);
+		TM_GPIO_InitAlternate(GPIOA, GPIO_Pin_9 | GPIO_Pin_10, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_USART1);
 	} else if (pinspack == TM_USART_PinsPack_2) {
-		// Enable clock for GPIOB
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
-
-		GPIO_PinAFConfig(GPIOB, GPIO_PinSource6, GPIO_AF_USART1);
-		GPIO_PinAFConfig(GPIOB, GPIO_PinSource7, GPIO_AF_USART1);
-		//                         TX           RX
-		GPIO_InitStruct.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7;
-
-		//Alternating function
-		GPIO_Init(GPIOB, &GPIO_InitStruct);
+		TM_GPIO_InitAlternate(GPIOB, GPIO_Pin_6 | GPIO_Pin_7, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_USART1);
 	}
 }
 #endif
 
 #ifdef TM_USE_USART2
 void TM_USART2_InitPins(TM_USART_PinsPack_t pinspack) {
-	//Enable clock for USART2
+	/* Enable clock for USART2 */
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART2, ENABLE);
 
+	/* Init pins */
 	if (pinspack == TM_USART_PinsPack_1) {
-		// Enable clock for GPIOA
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
-
-		GPIO_PinAFConfig(GPIOA, GPIO_PinSource2, GPIO_AF_USART2);
-		GPIO_PinAFConfig(GPIOA, GPIO_PinSource3, GPIO_AF_USART2);
-		//                         TX           RX
-		GPIO_InitStruct.GPIO_Pin = GPIO_Pin_2 | GPIO_Pin_3;
-
-		//Alternating function
-		GPIO_Init(GPIOA, &GPIO_InitStruct);
+		TM_GPIO_InitAlternate(GPIOA, GPIO_Pin_2 | GPIO_Pin_3, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_USART2);
 	} else if (pinspack == TM_USART_PinsPack_2) {
-		// Enable clock for GPIOD
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
-
-		GPIO_PinAFConfig(GPIOD, GPIO_PinSource5, GPIO_AF_USART2);
-		GPIO_PinAFConfig(GPIOD, GPIO_PinSource6, GPIO_AF_USART2);
-		//                         TX           RX
-		GPIO_InitStruct.GPIO_Pin = GPIO_Pin_5 | GPIO_Pin_6;
-
-		//Alternating function
-		GPIO_Init(GPIOD, &GPIO_InitStruct);
+		TM_GPIO_InitAlternate(GPIOD, GPIO_Pin_5 | GPIO_Pin_6, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_USART2);
 	}
 }
 #endif
 
 #ifdef TM_USE_USART3
 void TM_USART3_InitPins(TM_USART_PinsPack_t pinspack) {
-	//Enable clock for USART3
+	/* Enable clock for USART3 */
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART3, ENABLE);
 
+	/* Init pins */
 	if (pinspack == TM_USART_PinsPack_1) {
-		// Enable clock for GPIOB
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
-
-		GPIO_PinAFConfig(GPIOB, GPIO_PinSource10, GPIO_AF_USART3);
-		GPIO_PinAFConfig(GPIOB, GPIO_PinSource11, GPIO_AF_USART3);
-		//                         TX           RX
-		GPIO_InitStruct.GPIO_Pin = GPIO_Pin_10 | GPIO_Pin_11;
-
-		//Alternating function
-		GPIO_Init(GPIOB, &GPIO_InitStruct);
+		TM_GPIO_InitAlternate(GPIOB, GPIO_Pin_10 | GPIO_Pin_11, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_USART3);
 	} else if (pinspack == TM_USART_PinsPack_2) {
-		// Enable clock for GPIOC
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);
-
-		GPIO_PinAFConfig(GPIOC, GPIO_PinSource10, GPIO_AF_USART3);
-		GPIO_PinAFConfig(GPIOC, GPIO_PinSource11, GPIO_AF_USART3);
-		//                         TX            RX
-		GPIO_InitStruct.GPIO_Pin = GPIO_Pin_10 | GPIO_Pin_11;
-
-		//Alternating function
-		GPIO_Init(GPIOC, &GPIO_InitStruct);
+		TM_GPIO_InitAlternate(GPIOC, GPIO_Pin_10 | GPIO_Pin_11, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_USART3);
 	} else if (pinspack == TM_USART_PinsPack_3) {
-		// Enable clock for GPIOD
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
-
-		GPIO_PinAFConfig(GPIOD, GPIO_PinSource8, GPIO_AF_USART3);
-		GPIO_PinAFConfig(GPIOD, GPIO_PinSource9, GPIO_AF_USART3);
-		//                         TX           RX
-		GPIO_InitStruct.GPIO_Pin = GPIO_Pin_8 | GPIO_Pin_9;
-
-		//Alternating function
-		GPIO_Init(GPIOD, &GPIO_InitStruct);
+		TM_GPIO_InitAlternate(GPIOD, GPIO_Pin_8 | GPIO_Pin_9, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_USART3);
 	}
 }
 #endif
 
 #ifdef TM_USE_UART4
 void TM_UART4_InitPins(TM_USART_PinsPack_t pinspack) {
-	//Enable clock for UART4
+	/* Enable clock for UART4 */
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_UART4, ENABLE);
 
+	/* Init pins */
 	if (pinspack == TM_USART_PinsPack_1) {
-		// Enable clock for GPIOA
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
-
-		GPIO_PinAFConfig(GPIOA, GPIO_PinSource0, GPIO_AF_UART4);
-		GPIO_PinAFConfig(GPIOA, GPIO_PinSource1, GPIO_AF_UART4);
-		//                         TX           RX
-		GPIO_InitStruct.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_1;
-
-		//Alternating function
-		GPIO_Init(GPIOA, &GPIO_InitStruct);
+		TM_GPIO_InitAlternate(GPIOA, GPIO_Pin_0 | GPIO_Pin_1, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_UART4);
 	} else if (pinspack == TM_USART_PinsPack_2) {
-		// Enable clock for GPIOC
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);
-
-		GPIO_PinAFConfig(GPIOC, GPIO_PinSource10, GPIO_AF_UART4);
-		GPIO_PinAFConfig(GPIOC, GPIO_PinSource11, GPIO_AF_UART4);
-		//                         TX            RX
-		GPIO_InitStruct.GPIO_Pin = GPIO_Pin_10 | GPIO_Pin_11;
-
-		//Alternating function
-		GPIO_Init(GPIOC, &GPIO_InitStruct);
+		TM_GPIO_InitAlternate(GPIOC, GPIO_Pin_10 | GPIO_Pin_11, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_UART4);
 	}
 }
 #endif
 
 #ifdef TM_USE_UART5
 void TM_UART5_InitPins(TM_USART_PinsPack_t pinspack) {
-	//Enable clock for UART5
+	/* Enable clock for UART5 */
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_UART5, ENABLE);
 
+	/* Init pins */
 	if (pinspack == TM_USART_PinsPack_1) {
-		// Enable clock for GPIOC and GPIOD
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
-
-		//Alternating function
-		GPIO_PinAFConfig(GPIOC, GPIO_PinSource12, GPIO_AF_UART5);
-		GPIO_PinAFConfig(GPIOD, GPIO_PinSource2, GPIO_AF_UART5);
-		//                         TX
-		GPIO_InitStruct.GPIO_Pin = GPIO_Pin_12;
-		GPIO_Init(GPIOC, &GPIO_InitStruct);
-		//                         RX
-		GPIO_InitStruct.GPIO_Pin = GPIO_Pin_2;
-		GPIO_Init(GPIOD, &GPIO_InitStruct);
+		TM_GPIO_InitAlternate(GPIOC, GPIO_Pin_12, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_UART5);
+		TM_GPIO_InitAlternate(GPIOD, GPIO_Pin_2, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_UART5);
 	}
 }
 #endif
 
 #ifdef TM_USE_USART6
 void TM_USART6_InitPins(TM_USART_PinsPack_t pinspack) {
-	//Enable clock for USART6
+	/* Enable clock for USART6 */
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART6, ENABLE);
 
+	/* Init pins */
 	if (pinspack == TM_USART_PinsPack_1) {
-		// Enable clock for GPIOC
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);
-
-		GPIO_PinAFConfig(GPIOC, GPIO_PinSource6, GPIO_AF_USART6);
-		GPIO_PinAFConfig(GPIOC, GPIO_PinSource7, GPIO_AF_USART6);
-		//                         TX           RX
-		GPIO_InitStruct.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7;
-
-		//Alternating function
-		GPIO_Init(GPIOC, &GPIO_InitStruct);
+		TM_GPIO_InitAlternate(GPIOC, GPIO_Pin_6 | GPIO_Pin_7, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_USART6);
 	} else if (pinspack == TM_USART_PinsPack_2) {
-		// Enable clock for GPIOG
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOG, ENABLE);
-
-		GPIO_PinAFConfig(GPIOG, GPIO_PinSource14, GPIO_AF_USART6);
-		GPIO_PinAFConfig(GPIOG, GPIO_PinSource9, GPIO_AF_USART6);
-		//                         TX            RX
-		GPIO_InitStruct.GPIO_Pin = GPIO_Pin_14 | GPIO_Pin_9;
-
-		//Alternating function
-		GPIO_Init(GPIOG, &GPIO_InitStruct);
+		TM_GPIO_InitAlternate(GPIOG, GPIO_Pin_14 | GPIO_Pin_9, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_USART6);
 	}
 }
 #endif
 
 #ifdef TM_USE_UART7
 void TM_UART7_InitPins(TM_USART_PinsPack_t pinspack) {
-	//Enable clock for UART7
+	/* Enable clock for UART7 */
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_UART7, ENABLE);
 
+	/* Init pins */
 	if (pinspack == TM_USART_PinsPack_1) {
-		// Enable clock for GPIOE
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOE, ENABLE);
-
-		GPIO_PinAFConfig(GPIOE, GPIO_PinSource8, GPIO_AF_UART7);
-		GPIO_PinAFConfig(GPIOE, GPIO_PinSource7, GPIO_AF_UART7);
-		//                         TX           RX
-		GPIO_InitStruct.GPIO_Pin = GPIO_Pin_8 | GPIO_Pin_7;
-
-		//Alternating function
-		GPIO_Init(GPIOE, &GPIO_InitStruct);
+		TM_GPIO_InitAlternate(GPIOE, GPIO_Pin_8 | GPIO_Pin_7, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_UART7);
 	} else if (pinspack == TM_USART_PinsPack_2) {
-		// Enable clock for GPIOF
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOF, ENABLE);
-
-		GPIO_PinAFConfig(GPIOF, GPIO_PinSource7, GPIO_AF_UART7);
-		GPIO_PinAFConfig(GPIOF, GPIO_PinSource6, GPIO_AF_UART7);
-		//                         TX           RX
-		GPIO_InitStruct.GPIO_Pin = GPIO_Pin_7 | GPIO_Pin_6;
-
-		//Alternating function
-		GPIO_Init(GPIOF, &GPIO_InitStruct);
+		TM_GPIO_InitAlternate(GPIOF, GPIO_Pin_7 | GPIO_Pin_6, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_UART7);
 	}
 }
 #endif
 
 #ifdef TM_USE_UART8
 void TM_UART8_InitPins(TM_USART_PinsPack_t pinspack) {
-	//Enable clock for UART8
+	/* Enable clock */
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_UART8, ENABLE);
 
+	/* Init pins */
 	if (pinspack == TM_USART_PinsPack_1) {
-		// Enable clock for GPIOE
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOE, ENABLE);
-
-		GPIO_PinAFConfig(GPIOE, GPIO_PinSource1, GPIO_AF_UART8);
-		GPIO_PinAFConfig(GPIOE, GPIO_PinSource0, GPIO_AF_UART8);
-		//                         TX           RX
-		GPIO_InitStruct.GPIO_Pin = GPIO_Pin_1 | GPIO_Pin_0;
-
-		//Alternating function
-		GPIO_Init(GPIOE, &GPIO_InitStruct);
+		TM_GPIO_InitAlternate(GPIOE, GPIO_Pin_1 | GPIO_Pin_0, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_UART8);
 	}
 }
 #endif

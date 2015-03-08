@@ -130,6 +130,8 @@ http://bit.ly/1z1znP1
 http://bit.ly/1H7V83S
 52. ETHERNET - Connect ethernet to STM32F4xx
 http://bit.ly/1EzX4z7
+53. GPIO - GPIO pins on STM32F4
+http://bit.ly/1wgnhkD
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB

@@ -85,15 +85,15 @@
     <File name="cmsis_lib/source/stm32f4xx_usart.c" path="cmsis_lib/source/stm32f4xx_usart.c" type="1"/>
     <File name="tm/Ethernet/lwipopts.h" path="../00-STM32F429_LIBRARIES/lwip/lwipopts.h" type="1"/>
     <File name="tm/Ethernet/ip.h" path="../00-STM32F429_LIBRARIES/lwip/src/include/ipv4/lwip/ip.h" type="1"/>
-    <File name="tm/Ethernet/mem.c" path="../00-STM32F429_LIBRARIES/lwip/src/core/mem.c" type="1"/>
     <File name="cmsis_lib/include/stm32f4xx_dac.h" path="cmsis_lib/include/stm32f4xx_dac.h" type="1"/>
+    <File name="tm/Ethernet/mem.c" path="../00-STM32F429_LIBRARIES/lwip/src/core/mem.c" type="1"/>
     <File name="cmsis_lib/include/stm32f4xx_usart.h" path="cmsis_lib/include/stm32f4xx_usart.h" type="1"/>
-    <File name="tm/Ethernet/ip_addr.h" path="../00-STM32F429_LIBRARIES/lwip/src/include/ipv4/lwip/ip_addr.h" type="1"/>
     <File name="tm/Ethernet/mem.h" path="../00-STM32F429_LIBRARIES/lwip/src/include/lwip/mem.h" type="1"/>
+    <File name="tm/Ethernet/ip_addr.h" path="../00-STM32F429_LIBRARIES/lwip/src/include/ipv4/lwip/ip_addr.h" type="1"/>
     <File name="cmsis_lib/include/syscalls.h" path="cmsis_lib/include/syscalls.h" type="1"/>
     <File name="cmsis/core_cm4_simd.h" path="cmsis/core_cm4_simd.h" type="1"/>
-    <File name="cmsis/core_cmFunc.h" path="cmsis/core_cmFunc.h" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_hash.c" path="cmsis_lib/source/stm32f4xx_hash.c" type="1"/>
+    <File name="cmsis/core_cmFunc.h" path="cmsis/core_cmFunc.h" type="1"/>
     <File name="tm/tm_stm32f4_usart.h" path="../00-STM32F429_LIBRARIES/tm_stm32f4_usart.h" type="1"/>
     <File name="tm/Ethernet/memp.h" path="../00-STM32F429_LIBRARIES/lwip/src/include/lwip/memp.h" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_iwdg.c" path="cmsis_lib/source/stm32f4xx_iwdg.c" type="1"/>
@@ -106,8 +106,8 @@
     <File name="cmsis_lib/source/stm32f4xx_syscfg.c" path="cmsis_lib/source/stm32f4xx_syscfg.c" type="1"/>
     <File name="tm/Ethernet/autoip.c" path="../00-STM32F429_LIBRARIES/lwip/src/core/ipv4/autoip.c" type="1"/>
     <File name="tm/Ethernet/arch.h" path="../00-STM32F429_LIBRARIES/lwip/src/include/lwip/arch.h" type="1"/>
-    <File name="tm/Ethernet Client/tcp_echoclient.h" path="../00-STM32F429_LIBRARIES/lwip/tcp_echoclient.h" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_rcc.c" path="cmsis_lib/source/stm32f4xx_rcc.c" type="1"/>
+    <File name="tm/Ethernet Client/tcp_echoclient.h" path="../00-STM32F429_LIBRARIES/lwip/tcp_echoclient.h" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_pwr.c" path="cmsis_lib/source/stm32f4xx_pwr.c" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_cryp.c" path="cmsis_lib/source/stm32f4xx_cryp.c" type="1"/>
     <File name="tm/Ethernet/etharp.c" path="../00-STM32F429_LIBRARIES/lwip/src/netif/etharp.c" type="1"/>
@@ -125,6 +125,7 @@
     <File name="tm/Ethernet/api_lib.c" path="../00-STM32F429_LIBRARIES/lwip/src/api/api_lib.c" type="1"/>
     <File name="main.c" path="main.c" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_gpio.c" path="cmsis_lib/source/stm32f4xx_gpio.c" type="1"/>
+    <File name="tm/tm_stm32f4_gpio.c" path="../00-STM32F429_LIBRARIES/tm_stm32f4_gpio.c" type="1"/>
     <File name="cmsis_lib/include/stm32f4xx_i2c.h" path="cmsis_lib/include/stm32f4xx_i2c.h" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_dma.c" path="cmsis_lib/source/stm32f4xx_dma.c" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_can.c" path="cmsis_lib/source/stm32f4xx_can.c" type="1"/>
@@ -142,9 +143,9 @@
     <File name="tm/Ethernet/sockets.c" path="../00-STM32F429_LIBRARIES/lwip/src/api/sockets.c" type="1"/>
     <File name="tm/Ethernet/serial_debug.c" path="../00-STM32F429_LIBRARIES/lwip/serial_debug.c" type="1"/>
     <File name="tm/Ethernet/pbuf.h" path="../00-STM32F429_LIBRARIES/lwip/src/include/lwip/pbuf.h" type="1"/>
-    <File name="cmsis_lib/include/stm32f4xx_tim.h" path="cmsis_lib/include/stm32f4xx_tim.h" type="1"/>
     <File name="tm/Ethernet/timers.h" path="../00-STM32F429_LIBRARIES/lwip/src/include/lwip/timers.h" type="1"/>
     <File name="tm/Ethernet/netbuf.c" path="../00-STM32F429_LIBRARIES/lwip/src/api/netbuf.c" type="1"/>
+    <File name="cmsis_lib/include/stm32f4xx_tim.h" path="cmsis_lib/include/stm32f4xx_tim.h" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_adc.c" path="cmsis_lib/source/stm32f4xx_adc.c" type="1"/>
     <File name="tm/Ethernet/pbuf.c" path="../00-STM32F429_LIBRARIES/lwip/src/core/pbuf.c" type="1"/>
     <File name="tm/Ethernet/slipif.c" path="../00-STM32F429_LIBRARIES/lwip/src/netif/slipif.c" type="1"/>
@@ -154,8 +155,8 @@
     <File name="tm/Ethernet/inet_chksum.h" path="../00-STM32F429_LIBRARIES/lwip/src/include/ipv4/lwip/inet_chksum.h" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_dcmi.c" path="cmsis_lib/source/stm32f4xx_dcmi.c" type="1"/>
     <File name="tm/tm_stm32f4_disco.c" path="../00-STM32F429_LIBRARIES/tm_stm32f4_disco.c" type="1"/>
-    <File name="tm/Ethernet" path="" type="2"/>
     <File name="tm/Ethernet/etharp.h" path="../00-STM32F429_LIBRARIES/lwip/src/include/netif/etharp.h" type="1"/>
+    <File name="tm/Ethernet" path="" type="2"/>
     <File name="tm/Ethernet/ip_addr.c" path="../00-STM32F429_LIBRARIES/lwip/src/core/ipv4/ip_addr.c" type="1"/>
     <File name="cmsis_lib/include/stm32f4xx_iwdg.h" path="cmsis_lib/include/stm32f4xx_iwdg.h" type="1"/>
     <File name="tm/Ethernet/stm32f4x7_eth.h" path="../00-STM32F429_LIBRARIES/lwip/stm32f4x7_eth.h" type="1"/>
@@ -173,6 +174,7 @@
     <File name="tm/Ethernet/stm32f4x7_eth.c" path="../00-STM32F429_LIBRARIES/lwip/stm32f4x7_eth.c" type="1"/>
     <File name="cmsis_lib/include/stm32f4xx_gpio.h" path="cmsis_lib/include/stm32f4xx_gpio.h" type="1"/>
     <File name="tm/Ethernet/slipif.h" path="../00-STM32F429_LIBRARIES/lwip/src/include/netif/slipif.h" type="1"/>
+    <File name="tm/tm_stm32f4_gpio.h" path="../00-STM32F429_LIBRARIES/tm_stm32f4_gpio.h" type="1"/>
     <File name="tm/Ethernet/stats.h" path="../00-STM32F429_LIBRARIES/lwip/src/include/lwip/stats.h" type="1"/>
     <File name="tm/Ethernet/api_msg.h" path="../00-STM32F429_LIBRARIES/lwip/src/include/lwip/api_msg.h" type="1"/>
     <File name="tm/Ethernet/ip.c" path="../00-STM32F429_LIBRARIES/lwip/src/core/ipv4/ip.c" type="1"/>
@@ -213,15 +215,15 @@
     <File name="tm/Ethernet/netconf.c" path="../00-STM32F429_LIBRARIES/lwip/netconf.c" type="1"/>
     <File name="tm/Ethernet/netifapi.c" path="../00-STM32F429_LIBRARIES/lwip/src/api/netifapi.c" type="1"/>
     <File name="cmsis_lib/include/stm32f4xx_adc.h" path="cmsis_lib/include/stm32f4xx_adc.h" type="1"/>
-    <File name="tm/Ethernet/netbuf.h" path="../00-STM32F429_LIBRARIES/lwip/src/include/lwip/netbuf.h" type="1"/>
     <File name="tm/Ethernet/dhcp.c" path="../00-STM32F429_LIBRARIES/lwip/src/core/dhcp.c" type="1"/>
     <File name="cmsis_boot/system_stm32f4xx.c" path="cmsis_boot/system_stm32f4xx.c" type="1"/>
+    <File name="tm/Ethernet/netbuf.h" path="../00-STM32F429_LIBRARIES/lwip/src/include/lwip/netbuf.h" type="1"/>
     <File name="cmsis_lib/source/stm32f4xx_rng.c" path="cmsis_lib/source/stm32f4xx_rng.c" type="1"/>
     <File name="tm/Ethernet/netdb.h" path="../00-STM32F429_LIBRARIES/lwip/src/include/lwip/netdb.h" type="1"/>
     <File name="cmsis_lib/include/stm32f4xx_dcmi.h" path="cmsis_lib/include/stm32f4xx_dcmi.h" type="1"/>
     <File name="cmsis_lib/include/stm32f4xx_dma2d.h" path="cmsis_lib/include/stm32f4xx_dma2d.h" type="1"/>
-    <File name="tm/Ethernet/netdb.c" path="../00-STM32F429_LIBRARIES/lwip/src/api/netdb.c" type="1"/>
     <File name="cmsis" path="" type="2"/>
+    <File name="tm/Ethernet/netdb.c" path="../00-STM32F429_LIBRARIES/lwip/src/api/netdb.c" type="1"/>
     <File name="tm/tm_stm32f4_rtc.h" path="../00-STM32F429_LIBRARIES/tm_stm32f4_rtc.h" type="1"/>
     <File name="cmsis_lib/include/stm32f4xx_wwdg.h" path="cmsis_lib/include/stm32f4xx_wwdg.h" type="1"/>
     <File name="tm/Ethernet/sio.h" path="../00-STM32F429_LIBRARIES/lwip/src/include/lwip/sio.h" type="1"/>
@@ -238,8 +240,8 @@
     <File name="tm/Ethernet/tcp.c" path="../00-STM32F429_LIBRARIES/lwip/src/core/tcp.c" type="1"/>
     <File name="tm/Ethernet/inet.h" path="../00-STM32F429_LIBRARIES/lwip/src/include/ipv4/lwip/inet.h" type="1"/>
     <File name="tm/Ethernet/icmp.h" path="../00-STM32F429_LIBRARIES/lwip/src/include/ipv4/lwip/icmp.h" type="1"/>
-    <File name="cmsis_boot/startup" path="" type="2"/>
     <File name="cmsis_lib/source/stm32f4xx_flash.c" path="cmsis_lib/source/stm32f4xx_flash.c" type="1"/>
+    <File name="cmsis_boot/startup" path="" type="2"/>
     <File name="cmsis/core_cm4.h" path="cmsis/core_cm4.h" type="1"/>
     <File name="tm/Ethernet/api.h" path="../00-STM32F429_LIBRARIES/lwip/src/include/lwip/api.h" type="1"/>
     <File name="tm/tm_stm32f4_delay.h" path="../00-STM32F429_LIBRARIES/tm_stm32f4_delay.h" type="1"/>
@@ -275,7 +277,7 @@
     <File name="tm/Ethernet/netif.h" path="../00-STM32F429_LIBRARIES/lwip/src/include/lwip/netif.h" type="1"/>
     <File name="tm/Ethernet/err.h" path="../00-STM32F429_LIBRARIES/lwip/src/include/lwip/err.h" type="1"/>
     <File name="cmsis_lib/include/stm32f4xx_fmc.h" path="cmsis_lib/include/stm32f4xx_fmc.h" type="1"/>
-    <File name="tm/Ethernet Client" path="" type="2"/>
     <File name="tm/Ethernet/raw.h" path="../00-STM32F429_LIBRARIES/lwip/src/include/lwip/raw.h" type="1"/>
+    <File name="tm/Ethernet Client" path="" type="2"/>
   </Files>
 </Project>

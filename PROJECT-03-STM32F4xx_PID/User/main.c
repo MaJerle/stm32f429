@@ -55,6 +55,8 @@ int main(void) {
 	float duty = 0;
 	/* ARM PID Instance, float_32 format */
 	arm_pid_instance_f32 PID;
+	/* One wire instance */
+	TM_OneWire_t OneWire;
 	
 	/* Set PID parameters */
 	/* Set this for your needs */
@@ -81,24 +83,24 @@ int main(void) {
 	TM_PWM_InitTimer(TIM2, &TIM_Data, 1000);
 	
 	/* Initialize TIM2, Channel 1, PinsPack 2 = PA5 */
-	TM_PWM_InitChannel(TIM2, TM_PWM_Channel_1, TM_PWM_PinsPack_2);
+	TM_PWM_InitChannel(&TIM_Data, TM_PWM_Channel_1, TM_PWM_PinsPack_2);
 	
 	/* Set default duty cycle */
-	TM_PWM_SetChannelPercent(TIM2, &TIM_Data, TM_PWM_Channel_1, duty);
+	TM_PWM_SetChannelPercent(&TIM_Data, TM_PWM_Channel_1, duty);
 	
-	/* Initialize OneWire, pin PA6, look defines.h file */
-	TM_OneWire_Init();
+	/* Initialize OneWire, pin PA6 */
+	TM_OneWire_Init(&OneWire, GPIOA, GPIO_Pin_6, RCC_AHB1Periph_GPIOA);
 	
 	/* Checks for any device on 1-wire */
 	count = 0;
-	devices = TM_OneWire_First();
+	devices = TM_OneWire_First(&OneWire);
 	while (devices) {
 		/* Get full ROM value, 8 bytes, give location of first byte where to save */
-		TM_OneWire_GetFullROM(device[count]);
+		TM_OneWire_GetFullROM(&OneWire, device[count]);
 		/* Increase count for devices */
 		count++;
 		/* Get next device */
-		devices = TM_OneWire_Next();
+		devices = TM_OneWire_Next(&OneWire);
 	}
 	
 	/* We need 2 devices */
@@ -111,24 +113,24 @@ int main(void) {
 	
 	/* Go through all connected devices and set resolution to 12bits */
 	for (i = 0; i < count; i++) {
-		TM_DS18B20_SetResolution(&device[i][0], TM_DS18B20_Resolution_12bits);
+		TM_DS18B20_SetResolution(&OneWire, &device[i][0], TM_DS18B20_Resolution_12bits);
 	}
 	
 	/* Start temperature conversion on all devices */
-	TM_DS18B20_StartAll();
+	TM_DS18B20_StartAll(&OneWire);
 	
 	while (1) {
 		/* If all sensors are done with conversion */
 		/* This will happen about every 750ms, because DS18B20 needs ~750ms for conversion in 12bit resolution mode */
-		if (TM_DS18B20_AllDone()) {			
+		if (TM_DS18B20_AllDone(&OneWire)) {			
 			/* Read temperature 1, reference temperature */
-			TM_DS18B20_Read(device[0], &TEMP_WANT);
+			TM_DS18B20_Read(&OneWire, device[0], &TEMP_WANT);
 			
 			/* Read temperature 2, actual temperature */
-			TM_DS18B20_Read(device[1], &TEMP_CURRENT);
+			TM_DS18B20_Read(&OneWire, device[1], &TEMP_CURRENT);
 			
 			/* Start new temperature conversion on all devices */
-			TM_DS18B20_StartAll();
+			TM_DS18B20_StartAll(&OneWire);
 			
 			/* Set LEDs according to the which temperature is higher */
 			if (TEMP_CURRENT > TEMP_WANT) {
@@ -156,7 +158,7 @@ int main(void) {
 			}
 			
 			/* Set PWM duty cycle for DC FAN to cool down sensor for "TEMP_CURRENT" */
-			TM_PWM_SetChannelPercent(TIM2, &TIM_Data, TM_PWM_Channel_1, duty);
+			TM_PWM_SetChannelPercent(&TIM_Data, TM_PWM_Channel_1, duty);
 			
 			/* Format string */
 			sprintf(buf, "Expected:   %2.3f C\nActual:     %2.3f C\nError:      %2.3f C\nDuty cycle: %3.2f %%\n----\n", TEMP_WANT, TEMP_CURRENT, pid_error, duty);

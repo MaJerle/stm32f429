@@ -17,7 +17,6 @@
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
 <part id="1"/>
-<part id="2"/>
 </presentation>
 </folder>
 </info>
@@ -26,9 +25,9 @@
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/stm32f429_project/tm/tm_stm32f4_ethernet.h"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="8869" selectionTopPixel="4110"/>
 </editor>
-<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="C:/Users/tilz0R/Google Drive/JAVNO/ELEKTRONIKA/ARM/STM32F429/majerle.eu/52_STM32F429_ETHERNET_DHCP_COOCOX/main.c" title="main.c" tooltip="C:/Users/tilz0R/Google Drive/JAVNO/ELEKTRONIKA/ARM/STM32F429/majerle.eu/52_STM32F429_ETHERNET_DHCP_COOCOX/main.c" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="C:/Users/tilz0R/Google Drive/JAVNO/ELEKTRONIKA/ARM/STM32F429/majerle.eu/52-STM32F429_ETHERNET_DHCP_COOCOX/main.c" title="main.c" tooltip="C:/Users/tilz0R/Google Drive/JAVNO/ELEKTRONIKA/ARM/STM32F429/majerle.eu/52-STM32F429_ETHERNET_DHCP_COOCOX/main.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/stm32f4_project/main.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="512" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="660" selectionTopPixel="0"/>
 </editor>
 </editors>
 <views>
@@ -36,9 +35,10 @@
 <viewState CommonNavigator.LINKING_ENABLED="0" horizontalPosition="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0" verticalPosition="0">
 <expanded>
 <element path="/stm32f4_project"/>
+<element path="/stm32f4_project/tm"/>
 </expanded>
 <selection>
-<element path="/stm32f4_project/main.c"/>
+<element path="/stm32f4_project/tm"/>
 </selection>
 </viewState>
 </view>
@@ -418,44 +418,44 @@
 <actionBarAdvisor/>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="tcp_out.c" tooltip="stm32f4_project/tm/Ethernet/tcp_out.c">
-<persistable path="/stm32f4_project/tm/Ethernet/tcp_out.c"/>
+<file factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.welcome.ui.WelcomePage" name="" tooltip="">
+<persistable>
+<org.coocox.welcome.ui.WelcomePage/>
+</persistable>
+</file>
+<file factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.welcome.ui.WelcomePage" name="" tooltip="">
+<persistable>
+<org.coocox.welcome.ui.WelcomePage/>
+</persistable>
+</file>
+<file factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.welcome.ui.WelcomePage" name="" tooltip="">
+<persistable>
+<org.coocox.welcome.ui.WelcomePage/>
+</persistable>
+</file>
+<file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="tm_stm32f4_usb_vcp.h" tooltip="C:\Users\tilz0R\Google Drive\JAVNO\ELEKTRONIKA\ARM\STM32F429\majerle.eu\00-STM32F429_LIBRARIES\tm_stm32f4_usb_vcp.h">
+<persistable uri="file:/C:/Users/tilz0R/Google%20Drive/JAVNO/ELEKTRONIKA/ARM/STM32F429/majerle.eu/00-STM32F429_LIBRARIES/tm_stm32f4_usb_vcp.h"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="stm32f4_project/main.c">
 <persistable path="/stm32f4_project/main.c"/>
 </file>
-<file factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.welcome.ui.WelcomePage" name="" tooltip="">
-<persistable>
-<org.coocox.welcome.ui.WelcomePage/>
-</persistable>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="defines.h" tooltip="stm32f4_project/defines.h">
+<persistable path="/stm32f4_project/defines.h"/>
 </file>
-<file factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.welcome.ui.WelcomePage" name="" tooltip="">
-<persistable>
-<org.coocox.welcome.ui.WelcomePage/>
-</persistable>
-</file>
-<file factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.builder.ui.editors.ConfigEditor" name="" tooltip="">
-<persistable>
-<org.coocox.builder.ui.editors.ConfigEditor/>
-</persistable>
-</file>
-<file factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.welcome.ui.WelcomePage" name="" tooltip="">
-<persistable>
-<org.coocox.welcome.ui.WelcomePage/>
-</persistable>
-</file>
-<file factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.welcome.ui.WelcomePage" name="" tooltip="">
-<persistable>
-<org.coocox.welcome.ui.WelcomePage/>
-</persistable>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="tcp_out.c" tooltip="stm32f4_project/tm/Ethernet/tcp_out.c">
+<persistable path="/stm32f4_project/tm/Ethernet/tcp_out.c"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="tm_stm32f4_watchdog.c" tooltip="stm32f429_project/tm/tm_stm32f4_watchdog.c">
 <persistable path="/stm32f429_project/tm/tm_stm32f4_watchdog.c"/>
 </file>
-<file factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.welcome.ui.WelcomePage" name="" tooltip="">
-<persistable>
-<org.coocox.welcome.ui.WelcomePage/>
-</persistable>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="stm32f4_project/main.c">
+<persistable path="/stm32f4_project/main.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="tcp_out.c" tooltip="stm32f4_project/tm/Ethernet/tcp_out.c">
+<persistable path="/stm32f4_project/tm/Ethernet/tcp_out.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="tm_stm32f4_watchdog.c" tooltip="stm32f429_project/tm/tm_stm32f4_watchdog.c">
+<persistable path="/stm32f429_project/tm/tm_stm32f4_watchdog.c"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="tm_stm32f4_ethernet.c" tooltip="stm32f429_project/tm/tm_stm32f4_ethernet.c">
 <persistable path="/stm32f429_project/tm/tm_stm32f4_ethernet.c"/>
@@ -466,16 +466,8 @@
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="defines.h" tooltip="stm32f429_project/defines.h">
 <persistable path="/stm32f429_project/defines.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="attributes.h" tooltip="stm32f429_project/tm/attributes.h">
-<persistable path="/stm32f429_project/tm/attributes.h"/>
-</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="netconf.c" tooltip="stm32f429_project/tm/Ethernet/netconf.c">
 <persistable path="/stm32f429_project/tm/Ethernet/netconf.c"/>
-</file>
-<file factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.welcome.ui.WelcomePage" name="" tooltip="">
-<persistable>
-<org.coocox.welcome.ui.WelcomePage/>
-</persistable>
 </file>
 </mruList>
 </workbench>

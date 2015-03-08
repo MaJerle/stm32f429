@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/04/library-04-connect-stm32f429-discovery-to-computer-with-usart/
- *	@version 	v2.0
+ *	@version 	v2.1
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -26,6 +26,11 @@
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
  *	
+ * Version 2.1
+ * 	- March 08, 2015
+ *	- Output pins are more clear initialized. 
+ *	- TM GPIO library is now required to get USART to work properly
+ *
  * Version 2.0
  *	- December 21, 2014
  *	- New cyclic buffer system,
@@ -107,7 +112,7 @@
  *	#define TM_X_WORD_LENGTH				USART_WordLength_8b
  */
 #ifndef TM_USART_H
-#define TM_USART_H 200
+#define TM_USART_H 210
 /**
  * Library dependencies
  * - STM32F4xx
@@ -127,6 +132,7 @@
 #include "stm32f4xx_usart.h"
 #include "defines.h"
 #include "attributes.h"
+#include "tm_stm32f4_gpio.h"
 
 #if defined (STM32F40_41xxx)
 #define TM_USE_USART1
