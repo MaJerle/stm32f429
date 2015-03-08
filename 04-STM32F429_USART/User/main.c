@@ -26,7 +26,7 @@ int main(void) {
 	TM_USART_Init(USART1, TM_USART_PinsPack_2, 9600);
 	
 	/* Put string to USART */
-	TM_USART_Puts(USART1, "Hello world\n\r");
+	TM_USART_Puts(USART1, "Hello world\n");
 
 	while (1) {
 		/* Get character from internal buffer */

@@ -27,6 +27,7 @@ typedef struct {
 	uint16_t Num;
 	uint16_t In;
 	uint16_t Out;
+	uint8_t Initialized;
 } TM_USART_t;
 
 /* Set variables for buffers */
@@ -56,31 +57,29 @@ uint8_t TM_UART8_Buffer[TM_UART8_BUFFER_SIZE];
 #endif
 
 #ifdef TM_USE_USART1
-TM_USART_t TM_USART1 = {TM_USART1_Buffer, TM_USART1_BUFFER_SIZE, 0, 0, 0};
+TM_USART_t TM_USART1 = {TM_USART1_Buffer, TM_USART1_BUFFER_SIZE, 0, 0, 0, 0};
 #endif
 #ifdef TM_USE_USART2
-TM_USART_t TM_USART2 = {TM_USART2_Buffer, TM_USART2_BUFFER_SIZE, 0, 0, 0};
+TM_USART_t TM_USART2 = {TM_USART2_Buffer, TM_USART2_BUFFER_SIZE, 0, 0, 0, 0};
 #endif
 #ifdef TM_USE_USART3
-TM_USART_t TM_USART3 = {TM_USART3_Buffer, TM_USART3_BUFFER_SIZE, 0, 0, 0};
+TM_USART_t TM_USART3 = {TM_USART3_Buffer, TM_USART3_BUFFER_SIZE, 0, 0, 0, 0};
 #endif
 #ifdef TM_USE_UART4
-TM_USART_t TM_UART4 = {TM_UART4_Buffer, TM_UART4_BUFFER_SIZE, 0, 0, 0};
+TM_USART_t TM_UART4 = {TM_UART4_Buffer, TM_UART4_BUFFER_SIZE, 0, 0, 0, 0};
 #endif
 #ifdef TM_USE_UART5
-TM_USART_t TM_UART5 = {TM_UART5_Buffer, TM_UART5_BUFFER_SIZE, 0, 0, 0};
+TM_USART_t TM_UART5 = {TM_UART5_Buffer, TM_UART5_BUFFER_SIZE, 0, 0, 0, 0};
 #endif
 #ifdef TM_USE_USART6
-TM_USART_t TM_USART6 = {TM_USART6_Buffer, TM_USART6_BUFFER_SIZE, 0, 0, 0};
+TM_USART_t TM_USART6 = {TM_USART6_Buffer, TM_USART6_BUFFER_SIZE, 0, 0, 0, 0};
 #endif
 #ifdef TM_USE_UART7
-TM_USART_t TM_UART7 = {TM_UART7_Buffer, TM_UART7_BUFFER_SIZE, 0, 0, 0};
+TM_USART_t TM_UART7 = {TM_UART7_Buffer, TM_UART7_BUFFER_SIZE, 0, 0, 0, 0};
 #endif
 #ifdef TM_USE_UART8
-TM_USART_t TM_UART8 = {TM_UART8_Buffer, TM_UART8_BUFFER_SIZE, 0, 0, 0};
+TM_USART_t TM_UART8 = {TM_UART8_Buffer, TM_UART8_BUFFER_SIZE, 0, 0, 0, 0};
 #endif
-
-GPIO_InitTypeDef GPIO_InitStruct;
 
 void TM_USART1_InitPins(TM_USART_PinsPack_t pinspack);
 void TM_USART2_InitPins(TM_USART_PinsPack_t pinspack);
@@ -96,6 +95,8 @@ uint8_t TM_USART_INT_GetSubPriority(USART_TypeDef* USARTx);
 uint8_t TM_USART_BufferFull(USART_TypeDef* USARTx);
 
 void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t baudrate) {
+	TM_USART_t* u = TM_USART_INT_GetUsart(USARTx);
+	
 	/**
 	 * Initialization structures declared
 	 *
@@ -104,12 +105,6 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 	 */
 	USART_InitTypeDef 	USART_InitStruct;
 	NVIC_InitTypeDef	NVIC_InitStruct;
-
-	/* Set default GPIO settings */
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
-	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
-	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
 	
 	/**
 	 * Default settings:
@@ -223,6 +218,9 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 		USART_InitStruct.USART_WordLength = TM_UART8_WORD_LENGTH;
 	}
 #endif
+	
+	/* We are initialized */
+	u->Initialized = 1;
 	
 	/* Disable */
 	USART_Cmd(USARTx, DISABLE);
@@ -338,6 +336,12 @@ uint8_t TM_USART_FindCharacter(USART_TypeDef* USARTx, uint8_t c) {
 }
 
 void TM_USART_Puts(USART_TypeDef* USARTx, char* str) {
+	TM_USART_t* u = TM_USART_INT_GetUsart(USARTx);
+	/* If we are not initialized */
+	if (u->Initialized == 0) {
+		return;
+	}
+	
 	while (*str) {
 		/* Send char by char */
 		TM_USART_Putc(USARTx, *str++);
@@ -345,8 +349,14 @@ void TM_USART_Puts(USART_TypeDef* USARTx, char* str) {
 }
 
 void TM_USART_Putc(USART_TypeDef* USARTx, volatile char c) {
-	/* Wait to be ready */
-	while (!USART_GetFlagStatus(USARTx, USART_FLAG_TXE));
+	TM_USART_t* u = TM_USART_INT_GetUsart(USARTx);
+	/* If we are not initialized */
+	if (u->Initialized == 0) {
+		return;
+	}
+	
+	/* Wait to be ready, buffer empty */
+	while (!(USARTx->SR & USART_FLAG_TXE));
 	/* Send data */
 	USARTx->DR = (uint16_t)(c & 0x01FF);
 }
