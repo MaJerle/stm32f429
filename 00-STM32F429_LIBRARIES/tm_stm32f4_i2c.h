@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/05/library-09-i2c-for-stm32f4xx/
- *	@version 	v1.3
+ *	@version 	v1.4
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -25,6 +25,10 @@
  * | You should have received a copy of the GNU General Public License
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
+ *
+ * Version 1.4
+ *	- March 08, 2015
+ *	- Added support for new GPIO settings
  *
  * Version 1.3
  *	- December 22, 2014
@@ -65,7 +69,7 @@
  *
  */
 #ifndef TM_I2C_H
-#define TM_I2C_H 130
+#define TM_I2C_H 140
 /**
  * Library dependencies
  * - STM32F4xx
@@ -73,6 +77,7 @@
  * - STM32F4xx GPIO
  * - STM32F4xx I2C
  * - defines.h
+ * - TM GPIO
  */
 /**
  * Includes
@@ -82,13 +87,14 @@
 #include "stm32f4xx_gpio.h"
 #include "stm32f4xx_i2c.h"
 #include "defines.h"
+#include "tm_stm32f4_gpio.h"
 
-// Timeout
+/* Timeout */
 #ifndef TM_I2C_TIMEOUT
 #define TM_I2C_TIMEOUT					20000
 #endif
 
-//I2C1 settings, change them in defines.h project file
+/* I2C1 settings, change them in defines.h project file */
 #ifndef TM_I2C1_ACKNOWLEDGED_ADDRESS
 #define TM_I2C1_ACKNOWLEDGED_ADDRESS	I2C_AcknowledgedAddress_7bit
 #endif
@@ -105,7 +111,7 @@
 #define TM_I2C1_DUTY_CYCLE				I2C_DutyCycle_2
 #endif
 
-//I2C2 settings, change them in defines.h project file
+/* I2C2 settings, change them in defines.h project file */
 #ifndef TM_I2C2_ACKNOWLEDGED_ADDRESS
 #define TM_I2C2_ACKNOWLEDGED_ADDRESS	I2C_AcknowledgedAddress_7bit
 #endif
@@ -122,7 +128,7 @@
 #define TM_I2C2_DUTY_CYCLE				I2C_DutyCycle_2
 #endif
 
-//I2C3 settings, change them in defines.h project file
+/* I2C3 settings, change them in defines.h project file */
 #ifndef TM_I2C3_ACKNOWLEDGED_ADDRESS
 #define TM_I2C3_ACKNOWLEDGED_ADDRESS	I2C_AcknowledgedAddress_7bit
 #endif
@@ -139,7 +145,7 @@
 #define TM_I2C3_DUTY_CYCLE				I2C_DutyCycle_2
 #endif
 
-//I2C speed modes
+/* I2C speed modes */
 #define TM_I2C_CLOCK_STANDARD			100000
 #define TM_I2C_CLOCK_FAST_MODE			400000
 #define TM_I2C_CLOCK_FAST_MODE_PLUS		1000000

@@ -27,6 +27,7 @@ static void TM_SPI5_Init(TM_SPI_PinsPack_t pinspack, TM_SPI_Mode_t SPI_Mode, uin
 static void TM_SPI6_Init(TM_SPI_PinsPack_t pinspack, TM_SPI_Mode_t SPI_Mode, uint16_t SPI_BaudRatePrescaler, uint16_t SPI_MasterSlave, uint16_t SPI_FirstBit);
 
 void TM_SPI_Init(SPI_TypeDef* SPIx, TM_SPI_PinsPack_t pinspack) {
+	/* Init with default settings */
 	if (SPIx == SPI1) {
 		TM_SPI1_Init(pinspack, TM_SPI1_MODE, TM_SPI1_PRESCALER, TM_SPI1_MASTERSLAVE, TM_SPI1_FIRSTBIT);
 	} else if (SPIx == SPI2) {
@@ -43,6 +44,7 @@ void TM_SPI_Init(SPI_TypeDef* SPIx, TM_SPI_PinsPack_t pinspack) {
 }
 
 void TM_SPI_InitWithMode(SPI_TypeDef* SPIx, TM_SPI_PinsPack_t pinspack, TM_SPI_Mode_t SPI_Mode) {
+	/* Init with custom mode, 0, 1, 2, 3 */
 	if (SPIx == SPI1) {
 		TM_SPI1_Init(pinspack, SPI_Mode, TM_SPI1_PRESCALER, TM_SPI1_MASTERSLAVE, TM_SPI1_FIRSTBIT);
 	} else if (SPIx == SPI2) {
@@ -187,39 +189,19 @@ void TM_SPI_ReadMulti16(SPI_TypeDef* SPIx, uint16_t* dataIn, uint16_t dummy, uin
 
 /* Private functions */
 static void TM_SPI1_Init(TM_SPI_PinsPack_t pinspack, TM_SPI_Mode_t SPI_Mode, uint16_t SPI_BaudRatePrescaler, uint16_t SPI_MasterSlave, uint16_t SPI_FirstBit) {
-	GPIO_InitTypeDef GPIO_InitStruct;
 	SPI_InitTypeDef SPI_InitStruct;
 
-	//Common settings for all pins
-	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
-	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
-
+	/* Init SPI pins */
 	if (pinspack == TM_SPI_PinsPack_1) {
-		//Enable clock for GPIOA
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
-		//Pinspack nr. 1        SCK          MISO         MOSI
-		GPIO_InitStruct.GPIO_Pin = GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7;
-		GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-		GPIO_PinAFConfig(GPIOA, GPIO_PinSource5, GPIO_AF_SPI1);
-		GPIO_PinAFConfig(GPIOA, GPIO_PinSource6, GPIO_AF_SPI1);
-		GPIO_PinAFConfig(GPIOA, GPIO_PinSource7, GPIO_AF_SPI1);
+		TM_GPIO_InitAlternate(GPIOA, GPIO_Pin_5 | GPIO_Pin_6 | GPIO_Pin_7, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_SPI1);
 	} else if (pinspack == TM_SPI_PinsPack_2) {
-		//Enable clock for GPIOB
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
-		//Pinspack nr. 2        SCK          MISO         MOSI
-		GPIO_InitStruct.GPIO_Pin = GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5;
-		GPIO_Init(GPIOB, &GPIO_InitStruct);
-
-		GPIO_PinAFConfig(GPIOB, GPIO_PinSource3, GPIO_AF_SPI1);
-		GPIO_PinAFConfig(GPIOB, GPIO_PinSource4, GPIO_AF_SPI1);
-		GPIO_PinAFConfig(GPIOB, GPIO_PinSource5, GPIO_AF_SPI1);
+		TM_GPIO_InitAlternate(GPIOB, GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_SPI1);
 	}
 
+	/* Enable SPI clock */
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_SPI1, ENABLE);
 
+	/* Fill SPI settings */
 	SPI_StructInit(&SPI_InitStruct);
 	SPI_InitStruct.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler;
 	SPI_InitStruct.SPI_DataSize = TM_SPI1_DATASIZE;
@@ -241,61 +223,32 @@ static void TM_SPI1_Init(TM_SPI_PinsPack_t pinspack, TM_SPI_Mode_t SPI_Mode, uin
 	}
 	SPI_InitStruct.SPI_NSS = SPI_NSS_Soft;
 	
+	/* Deinit first */
 	SPI_Cmd(SPI1, DISABLE);
 	SPI_DeInit(SPI1);
 	
+	/* Init SPI */
 	SPI_Init(SPI1, &SPI_InitStruct);
 	SPI_Cmd(SPI1, ENABLE);
 }
 
 static void TM_SPI2_Init(TM_SPI_PinsPack_t pinspack, TM_SPI_Mode_t SPI_Mode, uint16_t SPI_BaudRatePrescaler, uint16_t SPI_MasterSlave, uint16_t SPI_FirstBit) {
-	GPIO_InitTypeDef GPIO_InitStruct;
 	SPI_InitTypeDef SPI_InitStruct;
 
-	//Common settings for all pins
-	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
-	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
-
+	/* Init SPI pins */
 	if (pinspack == TM_SPI_PinsPack_1) {
-		//Enable clock
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);
-		//Pinspack nr. 1        	MISO         MOSI
-		GPIO_InitStruct.GPIO_Pin = GPIO_Pin_2 | GPIO_Pin_3;
-		GPIO_Init(GPIOC, &GPIO_InitStruct);
-		//                      	SCK
-		GPIO_InitStruct.GPIO_Pin = GPIO_Pin_10;
-		GPIO_Init(GPIOB, &GPIO_InitStruct);
-
-		GPIO_PinAFConfig(GPIOC, GPIO_PinSource2, GPIO_AF_SPI2);
-		GPIO_PinAFConfig(GPIOC, GPIO_PinSource3, GPIO_AF_SPI2);
-		GPIO_PinAFConfig(GPIOB, GPIO_PinSource10, GPIO_AF_SPI2);
+		TM_GPIO_InitAlternate(GPIOB, GPIO_Pin_10, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_SPI2);
+		TM_GPIO_InitAlternate(GPIOC, GPIO_Pin_2 | GPIO_Pin_3, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_SPI2);
 	} else if (pinspack == TM_SPI_PinsPack_2) {
-		//Enable clock
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
-		//Pinspack nr. 2        	SCK           MISO          MOSI
-		GPIO_InitStruct.GPIO_Pin = GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15;
-		GPIO_Init(GPIOB, &GPIO_InitStruct);
-
-		GPIO_PinAFConfig(GPIOB, GPIO_PinSource13, GPIO_AF_SPI2);
-		GPIO_PinAFConfig(GPIOB, GPIO_PinSource14, GPIO_AF_SPI2);
-		GPIO_PinAFConfig(GPIOB, GPIO_PinSource15, GPIO_AF_SPI2);
+		TM_GPIO_InitAlternate(GPIOB, GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_SPI2);
 	} else if (pinspack == TM_SPI_PinsPack_3) {
-		//Enable clock
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOI, ENABLE);
-		//Pinspack nr. 2        	SCK         MISO         MOSI
-		GPIO_InitStruct.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_2 | GPIO_Pin_3;
-		GPIO_Init(GPIOB, &GPIO_InitStruct);
-
-		GPIO_PinAFConfig(GPIOI, GPIO_PinSource0, GPIO_AF_SPI2);
-		GPIO_PinAFConfig(GPIOI, GPIO_PinSource2, GPIO_AF_SPI2);
-		GPIO_PinAFConfig(GPIOI, GPIO_PinSource3, GPIO_AF_SPI2);
+		TM_GPIO_InitAlternate(GPIOI, GPIO_Pin_0 | GPIO_Pin_2 | GPIO_Pin_3, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_SPI2);
 	}
 
+	/* Enable SPI clock */
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_SPI2, ENABLE);
 
+	/* Fill SPI settings */
 	SPI_StructInit(&SPI_InitStruct);
 	SPI_InitStruct.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler;
 	SPI_InitStruct.SPI_DataSize = TM_SPI2_DATASIZE;
@@ -317,47 +270,29 @@ static void TM_SPI2_Init(TM_SPI_PinsPack_t pinspack, TM_SPI_Mode_t SPI_Mode, uin
 	}
 	SPI_InitStruct.SPI_NSS = SPI_NSS_Soft;
 	
+	/* Deinit first */
 	SPI_Cmd(SPI2, DISABLE);
 	SPI_DeInit(SPI2);
 	
+	/* Init SPI */
 	SPI_Init(SPI2, &SPI_InitStruct);
 	SPI_Cmd(SPI2, ENABLE);
 }
 
 static void TM_SPI3_Init(TM_SPI_PinsPack_t pinspack, TM_SPI_Mode_t SPI_Mode, uint16_t SPI_BaudRatePrescaler, uint16_t SPI_MasterSlave, uint16_t SPI_FirstBit) {
-	GPIO_InitTypeDef GPIO_InitStruct;
 	SPI_InitTypeDef SPI_InitStruct;
 
-	//Common settings for all pins
-	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
-	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
-
+	/* Enable SPI pins */
 	if (pinspack == TM_SPI_PinsPack_1) {
-		//Enable clock
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
-		//Pinspack nr. 1        SCK          MISO         MOSI
-		GPIO_InitStruct.GPIO_Pin = GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5;
-		GPIO_Init(GPIOB, &GPIO_InitStruct);
-
-		GPIO_PinAFConfig(GPIOB, GPIO_PinSource3, GPIO_AF_SPI3);
-		GPIO_PinAFConfig(GPIOB, GPIO_PinSource4, GPIO_AF_SPI3);
-		GPIO_PinAFConfig(GPIOB, GPIO_PinSource5, GPIO_AF_SPI3);
+		TM_GPIO_InitAlternate(GPIOI, GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_SPI3);
 	} else if (pinspack == TM_SPI_PinsPack_2) {
-		//Enable clock
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);
-		//Pinspack nr. 2        SCK           MISO          MOSI
-		GPIO_InitStruct.GPIO_Pin = GPIO_Pin_10 | GPIO_Pin_11 | GPIO_Pin_12;
-		GPIO_Init(GPIOC, &GPIO_InitStruct);
-
-		GPIO_PinAFConfig(GPIOC, GPIO_PinSource10, GPIO_AF_SPI3);
-		GPIO_PinAFConfig(GPIOC, GPIO_PinSource11, GPIO_AF_SPI3);
-		GPIO_PinAFConfig(GPIOC, GPIO_PinSource12, GPIO_AF_SPI3);
+		TM_GPIO_InitAlternate(GPIOC, GPIO_Pin_10 | GPIO_Pin_11 | GPIO_Pin_12, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_SPI3);
 	}
 
+	/* Enable SPI clock */
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_SPI3, ENABLE);
 
+	/* Fill SPI settings */
 	SPI_StructInit(&SPI_InitStruct);
 	SPI_InitStruct.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler;
 	SPI_InitStruct.SPI_DataSize = TM_SPI3_DATASIZE;
@@ -379,47 +314,29 @@ static void TM_SPI3_Init(TM_SPI_PinsPack_t pinspack, TM_SPI_Mode_t SPI_Mode, uin
 	}
 	SPI_InitStruct.SPI_NSS = SPI_NSS_Soft;
 	
+	/* Deinit first */
 	SPI_Cmd(SPI3, DISABLE);
 	SPI_DeInit(SPI3);
 	
+	/* Init SPI */
 	SPI_Init(SPI3, &SPI_InitStruct);
 	SPI_Cmd(SPI3, ENABLE);
 }
 
 static void TM_SPI4_Init(TM_SPI_PinsPack_t pinspack, TM_SPI_Mode_t SPI_Mode, uint16_t SPI_BaudRatePrescaler, uint16_t SPI_MasterSlave, uint16_t SPI_FirstBit) {
-	GPIO_InitTypeDef GPIO_InitStruct;
 	SPI_InitTypeDef SPI_InitStruct;
 
-	//Common settings for all pins
-	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
-	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
-
+	/* Init SPI pins */
 	if (pinspack == TM_SPI_PinsPack_1) {
-		//Enable clock
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOE, ENABLE);
-		//Pinspack nr. 1        SCK          MISO         MOSI
-		GPIO_InitStruct.GPIO_Pin = GPIO_Pin_2 | GPIO_Pin_5 | GPIO_Pin_6;
-		GPIO_Init(GPIOE, &GPIO_InitStruct);
-
-		GPIO_PinAFConfig(GPIOE, GPIO_PinSource2, GPIO_AF_SPI4);
-		GPIO_PinAFConfig(GPIOE, GPIO_PinSource5, GPIO_AF_SPI4);
-		GPIO_PinAFConfig(GPIOE, GPIO_PinSource6, GPIO_AF_SPI4);
+		TM_GPIO_InitAlternate(GPIOE, GPIO_Pin_2 | GPIO_Pin_5 | GPIO_Pin_6, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_SPI4);
 	} else if (pinspack == TM_SPI_PinsPack_2) {
-		//Enable clock
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOE, ENABLE);
-		//Pinspack nr. 2        SCK           MISO          MOSI
-		GPIO_InitStruct.GPIO_Pin = GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14;
-		GPIO_Init(GPIOE, &GPIO_InitStruct);
-
-		GPIO_PinAFConfig(GPIOE, GPIO_PinSource12, GPIO_AF_SPI4);
-		GPIO_PinAFConfig(GPIOE, GPIO_PinSource13, GPIO_AF_SPI4);
-		GPIO_PinAFConfig(GPIOE, GPIO_PinSource14, GPIO_AF_SPI4);
+		TM_GPIO_InitAlternate(GPIOE, GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_SPI4);
 	}
 
+	/* Enable SPI clock */
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_SPI4, ENABLE);
 
+	/* Fill SPI settings */
 	SPI_StructInit(&SPI_InitStruct);
 	SPI_InitStruct.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler;
 	SPI_InitStruct.SPI_DataSize = TM_SPI4_DATASIZE;
@@ -441,51 +358,30 @@ static void TM_SPI4_Init(TM_SPI_PinsPack_t pinspack, TM_SPI_Mode_t SPI_Mode, uin
 	}
 	SPI_InitStruct.SPI_NSS = SPI_NSS_Soft;
 	
+	/* Deinit first */
 	SPI_Cmd(SPI4, DISABLE);
 	SPI_DeInit(SPI4);
 	
+	/* Init SPI */
 	SPI_Init(SPI4, &SPI_InitStruct);
 	SPI_Cmd(SPI4, ENABLE);
 }
 
 static void TM_SPI5_Init(TM_SPI_PinsPack_t pinspack, TM_SPI_Mode_t SPI_Mode, uint16_t SPI_BaudRatePrescaler, uint16_t SPI_MasterSlave, uint16_t SPI_FirstBit) {
-	GPIO_InitTypeDef GPIO_InitStruct;
 	SPI_InitTypeDef SPI_InitStruct;
 
-	//Common settings for all pins
-	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
-	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
-
+	/* Init SPI pins */
 	if (pinspack == TM_SPI_PinsPack_1) {
-		//Enable clock
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOF, ENABLE);
-		//Pinspack nr. 1        SCK          MISO         MOSI
-		GPIO_InitStruct.GPIO_Pin = GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9;
-		GPIO_Init(GPIOF, &GPIO_InitStruct);
-
-		GPIO_PinAFConfig(GPIOF, GPIO_PinSource7, GPIO_AF_SPI5);
-		GPIO_PinAFConfig(GPIOF, GPIO_PinSource8, GPIO_AF_SPI5);
-		GPIO_PinAFConfig(GPIOF, GPIO_PinSource9, GPIO_AF_SPI5);
+		TM_GPIO_InitAlternate(GPIOF, GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_SPI5);
 	} else if (pinspack == TM_SPI_PinsPack_2) {
-		//Enable clock
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOF, ENABLE);
-		RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOH, ENABLE);
-		//Pinspack nr. 1        SCK          MISO
-		GPIO_InitStruct.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7;
-		GPIO_Init(GPIOF, &GPIO_InitStruct);
-		//                      MOSI
-		GPIO_InitStruct.GPIO_Pin = GPIO_Pin_11;
-		GPIO_Init(GPIOF, &GPIO_InitStruct);
-
-		GPIO_PinAFConfig(GPIOF, GPIO_PinSource11, GPIO_AF_SPI5);
-		GPIO_PinAFConfig(GPIOH, GPIO_PinSource6, GPIO_AF_SPI5);
-		GPIO_PinAFConfig(GPIOH, GPIO_PinSource7, GPIO_AF_SPI5);
+		TM_GPIO_InitAlternate(GPIOF, GPIO_Pin_11, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_SPI5);
+		TM_GPIO_InitAlternate(GPIOH, GPIO_Pin_6 | GPIO_Pin_7, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_SPI5);
 	}
 
+	/* Enable SPI clock */
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_SPI5, ENABLE);
 
+	/* Fill SPI settings */
 	SPI_StructInit(&SPI_InitStruct);
 	SPI_InitStruct.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler;
 	SPI_InitStruct.SPI_DataSize = TM_SPI5_DATASIZE;
@@ -507,38 +403,25 @@ static void TM_SPI5_Init(TM_SPI_PinsPack_t pinspack, TM_SPI_Mode_t SPI_Mode, uin
 	}
 	SPI_InitStruct.SPI_NSS = SPI_NSS_Soft;
 	
+	/* Deinit first */
 	SPI_Cmd(SPI5, DISABLE);
 	SPI_DeInit(SPI5);
 	
+	/* Init SPI */
 	SPI_Init(SPI5, &SPI_InitStruct);
 	SPI_Cmd(SPI5, ENABLE);
 }
 
 static void TM_SPI6_Init(TM_SPI_PinsPack_t pinspack, TM_SPI_Mode_t SPI_Mode, uint16_t SPI_BaudRatePrescaler, uint16_t SPI_MasterSlave, uint16_t SPI_FirstBit) {
-	GPIO_InitTypeDef GPIO_InitStruct;
 	SPI_InitTypeDef SPI_InitStruct;
 
-	/* Enable clock */
-	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOG, ENABLE);
-
-	/* Common settings for all pins */
-	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
-	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
-	/* Pinspack nr. 1        SCK           MISO          MOSI */
-	GPIO_InitStruct.GPIO_Pin = GPIO_Pin_13 | GPIO_Pin_12 | GPIO_Pin_14;
-	GPIO_Init(GPIOG, &GPIO_InitStruct);
-
-	/* Set pins as alternate function */
-	GPIO_PinAFConfig(GPIOG, GPIO_PinSource13, GPIO_AF_SPI6);
-	GPIO_PinAFConfig(GPIOG, GPIO_PinSource12, GPIO_AF_SPI6);
-	GPIO_PinAFConfig(GPIOG, GPIO_PinSource14, GPIO_AF_SPI6);
-
+	/* Init SPI pins */
+	TM_GPIO_InitAlternate(GPIOG, GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_SPI6);
+	
 	/* Enable SPI clock */
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_SPI6, ENABLE);
 
-	/* Set SPI options */
+	/* Fill SPI settings */
 	SPI_StructInit(&SPI_InitStruct);
 	SPI_InitStruct.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler;
 	SPI_InitStruct.SPI_DataSize = TM_SPI6_DATASIZE;
@@ -560,11 +443,11 @@ static void TM_SPI6_Init(TM_SPI_PinsPack_t pinspack, TM_SPI_Mode_t SPI_Mode, uin
 	}
 	SPI_InitStruct.SPI_NSS = SPI_NSS_Soft;
 	
-	/* Disable & deinit SPI */
+	/* Deinit first */
 	SPI_Cmd(SPI6, DISABLE);
 	SPI_DeInit(SPI6);
 	
-	/* Init SPI and enable it */
+	/* Init SPI */
 	SPI_Init(SPI6, &SPI_InitStruct);
 	SPI_Cmd(SPI6, ENABLE);
 }

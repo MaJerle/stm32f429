@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/04/library-05-spi-for-stm32f4xx/
- *	@version 	v1.6
+ *	@version 	v1.7
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -25,6 +25,10 @@
  * | You should have received a copy of the GNU General Public License
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
+ *
+ * Version 1.7
+ *	- March 08, 2015
+ *	- Added support for my new GPIO settings
  *
  * Version 1.6
  *	- March 05, 2015
@@ -80,7 +84,7 @@
  *	#define TM_SPIx_MODE		TM_SPI_Mode_0
  */
 #ifndef TM_SPI_H
-#define TM_SPI_H 160
+#define TM_SPI_H 170
 
 /* C++ detection */
 #ifdef __cplusplus
@@ -103,6 +107,7 @@ extern C {
 #include "stm32f4xx_gpio.h"
 #include "stm32f4xx_spi.h"
 #include "defines.h"
+#include "tm_stm32f4_gpio.h"
 
 /**
  * Every SPIx can work in 4 different modes
