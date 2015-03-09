@@ -98,6 +98,7 @@ extern C {
  * - STM32F4xx GPIO
  * - STM32F4xx SPI
  * - defines.h
+ * - TM GPIO
  */
 /**
  * Includes

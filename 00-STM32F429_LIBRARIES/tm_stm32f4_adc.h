@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/04/library-06-ad-converter-on-stm32f4xx/
- *	@version 	v1.1
+ *	@version 	v1.2
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -26,7 +26,12 @@
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
  *	
- * November 02, 2014
+ * Version 1.2
+ *	- March 08, 2015
+ *	- Support for new GPIO system
+ *
+ * Version 1.1
+ * 	- November 02, 2014
  *	- Added support for measure Vbat pin with ADC
  *	
  * Pinout
@@ -49,7 +54,7 @@
  *	15				PC5		PC5		PF5
  */
 #ifndef TM_ADC_H
-#define TM_ADC_H 110
+#define TM_ADC_H 120
 /**
  * Library dependencies
  * - STM32F4xx
@@ -57,6 +62,7 @@
  * - STM32F4xx GPIO
  * - STM32F4xx ADC
  * - defines.h
+ * - TM GPIO
  */
 /**
  * Includes
@@ -66,6 +72,7 @@
 #include "stm32f4xx_gpio.h"
 #include "stm32f4xx_adc.h"
 #include "defines.h"
+#include "tm_stm32f4_gpio.h"
 
 /**
  * This values can be overwritten in defines.h file
