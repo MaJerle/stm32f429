@@ -31,7 +31,7 @@
  *	- Added function to deinit pin. Pin is set to analog input which allows lowest current consumption
  */
 #ifndef TM_GPIO_H
-#define TM_GPIO_H 100
+#define TM_GPIO_H 110
 
 /* C++ detection */
 #ifdef __cplusplus
