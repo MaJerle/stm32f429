@@ -22,7 +22,7 @@
 static GPIO_InitTypeDef GPIO_InitStruct;
 
 /* Private functions */
-void TM_GPIO_INT_EnableClock(GPIO_TypeDef* GPIOx);
+static void TM_GPIO_INT_EnableClock(GPIO_TypeDef* GPIOx);
 void TM_GPIO_INT_DisableClock(GPIO_TypeDef* GPIOx);
 
 void TM_GPIO_Init(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_GPIO_Mode_t GPIO_Mode, TM_GPIO_OType_t GPIO_OType, TM_GPIO_PuPd_t GPIO_PuPd, TM_GPIO_Speed_t GPIO_Speed) {	
@@ -74,8 +74,20 @@ void TM_GPIO_InitAlternate(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_GPIO_OType
 	}
 }
 
+void TM_GPIO_DeInit(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin) {
+	/* Fill settings */
+	GPIO_InitStruct.GPIO_Mode = (GPIOMode_TypeDef) GPIO_Mode_AN;
+	GPIO_InitStruct.GPIO_OType = (GPIOOType_TypeDef) GPIO_OType_PP;
+	GPIO_InitStruct.GPIO_Pin = GPIO_Pin;
+	GPIO_InitStruct.GPIO_PuPd = (GPIOPuPd_TypeDef) GPIO_PuPd_NOPULL;
+	GPIO_InitStruct.GPIO_Speed = (GPIOSpeed_TypeDef) GPIO_Speed_2MHz;
+	
+	/* Init */
+	GPIO_Init(GPIOx, &GPIO_InitStruct);
+}
+
 /* Private functions */
-void TM_GPIO_INT_EnableClock(GPIO_TypeDef* GPIOx) {
+static void TM_GPIO_INT_EnableClock(GPIO_TypeDef* GPIOx) {
 	if (GPIOx == GPIOA) {
 		RCC->AHB1ENR |= RCC_AHB1Periph_GPIOA;
 	} else if (GPIOx == GPIOB) {
@@ -126,3 +138,4 @@ void TM_GPIO_INT_DisableClock(GPIO_TypeDef* GPIOx) {
 		RCC->AHB1ENR &= ~RCC_AHB1Periph_GPIOK;
 	}
 }
+

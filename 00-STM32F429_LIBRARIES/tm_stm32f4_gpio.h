@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2015/03/library-53-gpio-for-stm32f4
- *	@version 	v1.0
+ *	@version 	v1.1
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -25,6 +25,10 @@
  * | You should have received a copy of the GNU General Public License
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
+ *
+ * Version 1.1
+ *	- March 09, 2015
+ *	- Added function to deinit pin. Pin is set to analog input which allows lowest current consumption
  */
 #ifndef TM_GPIO_H
 #define TM_GPIO_H 100
@@ -126,7 +130,7 @@ typedef enum {
  * 	- GPIO_TypeDef* GPIOx:
  * 		GPIO port you want to initialize
  * 	- uint16_t GPIO_Pin:
- * 		Select GPIO pin
+ * 		Select GPIO pin. You can select more pins with | (OR) operator to set same settings to more pins
  * 	- TM_GPIO_Mode_t GPIO_Mode:
  * 		Select GPIO mode
  * 	- TM_GPIO_OType_t GPIO_OType:
@@ -149,7 +153,7 @@ void TM_GPIO_Init(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_GPIO_Mode_t GPIO_Mo
  * 	- GPIO_TypeDef* GPIOx:
  * 		GPIO port you want to initialize
  * 	- uint16_t GPIO_Pin:
- * 		Select GPIO pin
+ * 		Select GPIO pin. You can select more pins with | (OR) operator to set same settings to more pins
  * 	- TM_GPIO_Mode_t GPIO_OType:
  * 		Select GPIO output mode
  * 	- TM_GPIO_PuPd_t GPIO_PuPd:
@@ -162,13 +166,28 @@ void TM_GPIO_Init(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_GPIO_Mode_t GPIO_Mo
 void TM_GPIO_InitAlternate(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_GPIO_OType_t GPIO_OType, TM_GPIO_PuPd_t GPIO_PuPd, TM_GPIO_Speed_t GPIO_Speed, uint8_t Alternate);
 
 /**
+ * Deinitialize GPIO pin(s)
+ * 
+ * This function will set pin(s) to analog input for smallest current consumption
+ * 
+ * Parameters:
+ * 	- GPIO_TypeDef* GPIOx:
+ * 		GPIO port you want to initialize
+ * 	- uint16_t GPIO_Pin:
+ * 		Select GPIO pin. You can select more pins with | (OR) operator to set same settings to more pins
+ * 
+ * No return
+ */
+void TM_GPIO_DeInit(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
+
+/**
  * Set pin low
  * 
  * Parameters:
  * 	- GPIO_TypeDef* GPIOx:
  * 		GPIO port you want to initialize
  * 	- uint16_t GPIO_Pin:
- * 		Select GPIO pin
+ * 		Select GPIO pin. You can select more pins with | (OR) operator to set same settings to more pins
  * 
  * Defined as macro for faster execution
  */
@@ -181,7 +200,7 @@ void TM_GPIO_InitAlternate(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_GPIO_OType
  * 	- GPIO_TypeDef* GPIOx:
  * 		GPIO port you want to initialize
  * 	- uint16_t GPIO_Pin:
- * 		Select GPIO pin
+ * 		Select GPIO pin. You can select more pins with | (OR) operator to set same settings to more pins
  * 
  * Defined as macro for faster execution
  */
@@ -194,7 +213,7 @@ void TM_GPIO_InitAlternate(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_GPIO_OType
  * 	- GPIO_TypeDef* GPIOx:
  * 		GPIO port you want to initialize
  * 	- uint16_t GPIO_Pin:
- * 		Select GPIO pin
+ * 		Select GPIO pin. You can select more pins with | (OR) operator to set same settings to more pins
  *  - uint8_t value:
  *  	If value is 0, pin is low, if > 0 pin is high
  *  	
@@ -209,7 +228,7 @@ void TM_GPIO_InitAlternate(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_GPIO_OType
  * 	- GPIO_TypeDef* GPIOx:
  * 		GPIO port you want to initialize
  * 	- uint16_t GPIO_Pin:
- * 		Select GPIO pin
+ * 		Select GPIO pin. You can select more pins with | (OR) operator to set same settings to more pins
  *  - uint8_t value:
  *  	If value is 0, pin is low, if > 0 pin is high
  *  	
@@ -237,7 +256,7 @@ void TM_GPIO_InitAlternate(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_GPIO_OType
  * 	- GPIO_TypeDef* GPIOx:
  * 		GPIO port you want to initialize
  * 	- uint16_t GPIO_Pin:
- * 		Select GPIO pin
+ * 		Select GPIO pin. You can select more pins with | (OR) operator to set same settings to more pins
  * 
  * Returns:
  * 	- 0: Pin is low
@@ -254,7 +273,7 @@ void TM_GPIO_InitAlternate(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_GPIO_OType
  * 	- GPIO_TypeDef* GPIOx:
  * 		GPIO port you want to initialize
  * 	- uint16_t GPIO_Pin:
- * 		Select GPIO pin
+ * 		Select GPIO pin. You can select more pins with | (OR) operator to set same settings to more pins
  * 
  * Returns:
  * 	- 0: Pin is low
