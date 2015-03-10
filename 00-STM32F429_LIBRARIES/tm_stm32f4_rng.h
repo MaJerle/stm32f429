@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/07/library-22-true-random-number-generator-stm32f4xx/
- *	@version 	v1.0
+ *	@version 	v1.1
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -26,23 +26,23 @@
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
  *	
+ * Version 1.1
+ *	- March 10, 2015
+ *	- Added support for STD/HAL drivers
+ *
  *	This peripheral provides you a true random 32bit number
  */
 #ifndef TM_RNG_H
-#define TM_RNG_H 100
+#define TM_RNG_H 110
 /**
  * Dependencies
  * - STM32F4xx
- * - STM32F4xx RCC
- * - STM32F4xx RNG
  * - defines.h
  */
 /**
  * Includes
  */
 #include "stm32f4xx.h"
-#include "stm32f4xx_rcc.h"
-#include "stm32f4xx_rng.h"
 #include "defines.h"
 
 /**

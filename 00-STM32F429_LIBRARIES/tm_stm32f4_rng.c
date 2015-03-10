@@ -20,16 +20,16 @@
 
 void TM_RNG_Init(void) {
 	/* Enable RNG clock source */
-	RCC_AHB2PeriphClockCmd(RCC_AHB2Periph_RNG, ENABLE);
-
+	RCC->AHB2ENR |= RCC_AHB2ENR_RNGEN;
+	
 	/* RNG Peripheral enable */
-	RNG_Cmd(ENABLE);
+	RNG->CR |= RNG_CR_RNGEN;
 }
 
 uint32_t TM_RNG_Get(void) {
 	/* Wait until one RNG number is ready */
-	while (RNG_GetFlagStatus(RNG_FLAG_DRDY) == RESET);
+	while (!(RNG->SR & (RNG_SR_DRDY)));
 
 	/* Get a 32bit Random number */
-	return RNG_GetRandomNumber();
+	return RNG->DR;
 }
