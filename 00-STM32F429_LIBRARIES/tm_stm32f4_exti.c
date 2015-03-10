@@ -18,13 +18,13 @@
  */
 #include "tm_stm32f4_exti.h"
 
-uint32_t pinsused = 0;
+/* Used pins variable */
+static volatile uint32_t pinsused = 0;
 
 TM_EXTI_Result_t TM_EXTI_Attach(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_EXTI_Trigger_t trigger) {
-	GPIO_InitTypeDef GPIO_InitStruct;
 	EXTI_InitTypeDef EXTI_InitStruct;
 	NVIC_InitTypeDef NVIC_InitStruct;
-	uint32_t gpio_clock;
+	TM_GPIO_PuPd_t PuPd;
 	uint8_t pinsource, portsource, irqchannel;
 	
 	/* Check if line is already in use */
@@ -34,135 +34,91 @@ TM_EXTI_Result_t TM_EXTI_Attach(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_EXTI_
 	}
 	
 	/* Enable SYSCFG clock */
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG, ENABLE);
+	RCC->APB2ENR |= RCC_APB2ENR_SYSCFGEN;
 	
 	/* Get proper settings */
 	if (GPIOx == GPIOA) {
-		gpio_clock = RCC_AHB1Periph_GPIOA;
-		portsource = EXTI_PortSourceGPIOA;
+		portsource = 0x00;
 	} else if (GPIOx == GPIOB) {
-		gpio_clock = RCC_AHB1Periph_GPIOB;
-		portsource = EXTI_PortSourceGPIOB;
+		portsource = 0x01;
 	} else if (GPIOx == GPIOC) {
-		gpio_clock = RCC_AHB1Periph_GPIOC;
-		portsource = EXTI_PortSourceGPIOC;
+		portsource = 0x02;
 	} else if (GPIOx == GPIOD) {
-		gpio_clock = RCC_AHB1Periph_GPIOD;
-		portsource = EXTI_PortSourceGPIOD;
+		portsource = 0x03;
 	} else if (GPIOx == GPIOE) {
-		gpio_clock = RCC_AHB1Periph_GPIOE;
-		portsource = EXTI_PortSourceGPIOE;
+		portsource = 0x04;
 	} else if (GPIOx == GPIOF) {
-		gpio_clock = RCC_AHB1Periph_GPIOF;
-		portsource = EXTI_PortSourceGPIOF;
+		portsource = 0x05;
 	} else if (GPIOx == GPIOG) {
-		gpio_clock = RCC_AHB1Periph_GPIOG;
-		portsource = EXTI_PortSourceGPIOG;
+		portsource = 0x06;
 	} else if (GPIOx == GPIOH) {
-		gpio_clock = RCC_AHB1Periph_GPIOH;
-		portsource = EXTI_PortSourceGPIOH;
+		portsource = 0x07;
 	} else if (GPIOx == GPIOI) {
-		gpio_clock = RCC_AHB1Periph_GPIOI;
-		portsource = EXTI_PortSourceGPIOI;
+		portsource = 0x08;
 	} else if (GPIOx == GPIOJ) {
-		gpio_clock = RCC_AHB1Periph_GPIOJ;
-		portsource = EXTI_PortSourceGPIOJ;
+		portsource = 0x09;
 	} else if (GPIOx == GPIOK) {
-		gpio_clock = RCC_AHB1Periph_GPIOK;
-		portsource = EXTI_PortSourceGPIOK;
+		portsource = 0x0A;
 	} else {
 		/* Return error */
 		return TM_EXTI_Result_Error;
 	}
 	
+	/* Get IRQ channel */
 	switch (GPIO_Pin) {
 		case GPIO_Pin_0:
-			pinsource = EXTI_PinSource0;
 			irqchannel = EXTI0_IRQn;
 			break;
 		case GPIO_Pin_1:
-			pinsource = EXTI_PinSource1;
 			irqchannel = EXTI1_IRQn;
 			break;
 		case GPIO_Pin_2:
-			pinsource = EXTI_PinSource2;
 			irqchannel = EXTI2_IRQn;
 			break;
 		case GPIO_Pin_3:
-			pinsource = EXTI_PinSource3;
 			irqchannel = EXTI3_IRQn;
 			break;
 		case GPIO_Pin_4:
-			pinsource = EXTI_PinSource4;
 			irqchannel = EXTI4_IRQn;
 			break;
 		case GPIO_Pin_5:
-			pinsource = EXTI_PinSource5;
-			irqchannel = EXTI9_5_IRQn;
-			break;
 		case GPIO_Pin_6:
-			pinsource = EXTI_PinSource6;
-			irqchannel = EXTI9_5_IRQn;
-			break;
 		case GPIO_Pin_7:
-			pinsource = EXTI_PinSource7;
-			irqchannel = EXTI9_5_IRQn;
-			break;
 		case GPIO_Pin_8:
-			pinsource = EXTI_PinSource8;
-			irqchannel = EXTI9_5_IRQn;
-			break;
 		case GPIO_Pin_9:
-			pinsource = EXTI_PinSource9;
 			irqchannel = EXTI9_5_IRQn;
 			break;
 		case GPIO_Pin_10:
-			pinsource = EXTI_PinSource10;
-			irqchannel = EXTI15_10_IRQn;
-			break;
 		case GPIO_Pin_11:
-			pinsource = EXTI_PinSource11;
-			irqchannel = EXTI15_10_IRQn;
-			break;
 		case GPIO_Pin_12:
-			pinsource = EXTI_PinSource12;
-			irqchannel = EXTI15_10_IRQn;
-			break;
 		case GPIO_Pin_13:
-			pinsource = EXTI_PinSource13;
-			irqchannel = EXTI15_10_IRQn;
-			break;
 		case GPIO_Pin_14:
-			pinsource = EXTI_PinSource14;
-			irqchannel = EXTI15_10_IRQn;
-			break;
 		case GPIO_Pin_15:
-			pinsource = EXTI_PinSource15;
 			irqchannel = EXTI15_10_IRQn;
 			break;
 		default:
 			return TM_EXTI_Result_Error;
 	}
-	
-	/* Enable clock for GPIO */
-	RCC_AHB1PeriphClockCmd(gpio_clock, ENABLE);
-	
-	/* Set pin as input */
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_IN;
-	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStruct.GPIO_Pin = GPIO_Pin;
-	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
-	
+
+	/* Check pull settings */
 	if (trigger == TM_EXTI_Trigger_Falling) {
-		GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
+		PuPd = TM_GPIO_PuPd_UP;
 	} else if (trigger == TM_EXTI_Trigger_Rising) {
-		GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_DOWN;
+		PuPd = TM_GPIO_PuPd_DOWN;
 	} else {
-		GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
+		PuPd = TM_GPIO_PuPd_NOPULL;
 	}
 	
-	/* Initialize pin */
-	GPIO_Init(GPIOx, &GPIO_InitStruct);
+	/* Init GPIO pin */
+	TM_GPIO_Init(GPIOx, GPIO_Pin, TM_GPIO_Mode_IN, TM_GPIO_OType_PP, PuPd, TM_GPIO_Speed_Low);
+	
+	/* Calculate pinsource */
+	for (pinsource = 0x00; pinsource < 0x10; pinsource++) {
+		if (GPIO_Pin & (1 << pinsource)) {
+			pinsource = 1 << pinsource;
+			break;
+		}
+	}
 	
 	/* Connect proper GPIO */
 	SYSCFG_EXTILineConfig(portsource, pinsource);
@@ -171,7 +127,7 @@ TM_EXTI_Result_t TM_EXTI_Attach(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_EXTI_
 	EXTI_InitStruct.EXTI_Line = GPIO_Pin;
 	EXTI_InitStruct.EXTI_LineCmd = ENABLE;
 	EXTI_InitStruct.EXTI_Mode = EXTI_Mode_Interrupt;
-	EXTI_InitStruct.EXTI_Trigger = (EXTITrigger_TypeDef)trigger;
+	EXTI_InitStruct.EXTI_Trigger = (EXTITrigger_TypeDef) trigger;
 	EXTI_Init(&EXTI_InitStruct);
 
 	/* Add to NVIC */
@@ -213,9 +169,9 @@ TM_EXTI_Result_t TM_EXTI_Detach(uint16_t GPIO_Pin) {
 #ifndef TM_EXTI_DISABLE_DEFAULT_HANDLER_0
 void EXTI0_IRQHandler(void) {
 	/* Check status */
-	if (EXTI_GetITStatus(EXTI_Line0) != RESET) {
+	if (EXTI->PR & (1)) {
 		/* Clear bit */
-		EXTI_ClearITPendingBit(EXTI_Line0);
+		EXTI->PR = 1;
 		/* Call user function */
 		TM_EXTI_Handler_0();
 		/* Call global function */
@@ -227,9 +183,9 @@ void EXTI0_IRQHandler(void) {
 #ifndef TM_EXTI_DISABLE_DEFAULT_HANDLER_1
 void EXTI1_IRQHandler(void) {
 	/* Check status */
-	if (EXTI_GetITStatus(EXTI_Line1) != RESET) {
+	if (EXTI->PR & (EXTI_PR_PR1)) {
 		/* Clear bit */
-		EXTI_ClearITPendingBit(EXTI_Line1);
+		EXTI->PR = EXTI_PR_PR1;
 		/* Call user function */
 		TM_EXTI_Handler_1();
 		/* Call global function */
@@ -241,9 +197,9 @@ void EXTI1_IRQHandler(void) {
 #ifndef TM_EXTI_DISABLE_DEFAULT_HANDLER_2
 void EXTI2_IRQHandler(void) {
 	/* Check status */
-	if (EXTI_GetITStatus(EXTI_Line2) != RESET) {
+	if (EXTI->PR & (EXTI_PR_PR2)) {
 		/* Clear bit */
-		EXTI_ClearITPendingBit(EXTI_Line2);
+		EXTI->PR = EXTI_PR_PR2;
 		/* Call user function */
 		TM_EXTI_Handler_2();
 		/* Call global function */
@@ -255,9 +211,9 @@ void EXTI2_IRQHandler(void) {
 #ifndef TM_EXTI_DISABLE_DEFAULT_HANDLER_3
 void EXTI3_IRQHandler(void) {
 	/* Check status */
-	if (EXTI_GetITStatus(EXTI_Line3) != RESET) {
+	if (EXTI->PR & (EXTI_PR_PR3)) {
 		/* Clear bit */
-		EXTI_ClearITPendingBit(EXTI_Line3);
+		EXTI->PR = EXTI_PR_PR3;
 		/* Call user function */
 		TM_EXTI_Handler_3();
 		/* Call global function */
@@ -269,9 +225,9 @@ void EXTI3_IRQHandler(void) {
 #ifndef TM_EXTI_DISABLE_DEFAULT_HANDLER_4
 void EXTI4_IRQHandler(void) {
 	/* Check status */
-	if (EXTI_GetITStatus(EXTI_Line4) != RESET) {
+	if (EXTI->PR & (EXTI_PR_PR4)) {
 		/* Clear bit */
-		EXTI_ClearITPendingBit(EXTI_Line4);
+		EXTI->PR = EXTI_PR_PR4;
 		/* Call user function */
 		TM_EXTI_Handler_4();
 		/* Call global function */
@@ -283,45 +239,45 @@ void EXTI4_IRQHandler(void) {
 #ifndef TM_EXTI_DISABLE_DEFAULT_HANDLER_9_5
 void EXTI9_5_IRQHandler(void) {
 	/* Check status */
-	if (EXTI_GetITStatus(EXTI_Line5) != RESET) {
+	if (EXTI->PR & (EXTI_PR_PR5)) {
 		/* Clear bit */
-		EXTI_ClearITPendingBit(EXTI_Line5);
+		EXTI->PR = EXTI_PR_PR5;
 		/* Call user function */
 		TM_EXTI_Handler_5();
 		/* Call global function */
 		TM_EXTI_Handler(GPIO_Pin_5);
 	}
 	/* Check status */
-	if (EXTI_GetITStatus(EXTI_Line6) != RESET) {
+	if (EXTI->PR & (EXTI_PR_PR6)) {
 		/* Clear bit */
-		EXTI_ClearITPendingBit(EXTI_Line6);
+		EXTI->PR = EXTI_PR_PR6;
 		/* Call user function */
 		TM_EXTI_Handler_6();
 		/* Call global function */
 		TM_EXTI_Handler(GPIO_Pin_6);
 	}
 	/* Check status */
-	if (EXTI_GetITStatus(EXTI_Line7) != RESET) {
+	if (EXTI->PR & (EXTI_PR_PR7)) {
 		/* Clear bit */
-		EXTI_ClearITPendingBit(EXTI_Line7);
+		EXTI->PR = EXTI_PR_PR7;
 		/* Call user function */
 		TM_EXTI_Handler_7();
 		/* Call global function */
 		TM_EXTI_Handler(GPIO_Pin_7);
 	}
 	/* Check status */
-	if (EXTI_GetITStatus(EXTI_Line8) != RESET) {
+	if (EXTI->PR & (EXTI_PR_PR8)) {
 		/* Clear bit */
-		EXTI_ClearITPendingBit(EXTI_Line8);
+		EXTI->PR = EXTI_PR_PR8;
 		/* Call user function */
 		TM_EXTI_Handler_8();
 		/* Call global function */
 		TM_EXTI_Handler(GPIO_Pin_8);
 	}
 	/* Check status */
-	if (EXTI_GetITStatus(EXTI_Line9) != RESET) {
+	if (EXTI->PR & (EXTI_PR_PR9)) {
 		/* Clear bit */
-		EXTI_ClearITPendingBit(EXTI_Line9);
+		EXTI->PR = EXTI_PR_PR9;
 		/* Call user function */
 		TM_EXTI_Handler_9();
 		/* Call global function */
@@ -333,54 +289,54 @@ void EXTI9_5_IRQHandler(void) {
 #ifndef TM_EXTI_DISABLE_DEFAULT_HANDLER_15_10
 void EXTI15_10_IRQHandler(void) {
 	/* Check status */
-	if (EXTI_GetITStatus(EXTI_Line10) != RESET) {
+	if (EXTI->PR & (EXTI_PR_PR10)) {
 		/* Clear bit */
-		EXTI_ClearITPendingBit(EXTI_Line10);
+		EXTI->PR = EXTI_PR_PR10;
 		/* Call user function */
 		TM_EXTI_Handler_10();
 		/* Call global function */
 		TM_EXTI_Handler(GPIO_Pin_10);
 	}
 	/* Check status */
-	if (EXTI_GetITStatus(EXTI_Line11) != RESET) {
+	if (EXTI->PR & (EXTI_PR_PR11)) {
 		/* Clear bit */
-		EXTI_ClearITPendingBit(EXTI_Line11);
+		EXTI->PR = EXTI_PR_PR11;
 		/* Call user function */
 		TM_EXTI_Handler_11();
 		/* Call global function */
 		TM_EXTI_Handler(GPIO_Pin_11);
 	}
 	/* Check status */
-	if (EXTI_GetITStatus(EXTI_Line12) != RESET) {
+	if (EXTI->PR & (EXTI_PR_PR12)) {
 		/* Clear bit */
-		EXTI_ClearITPendingBit(EXTI_Line12);
+		EXTI->PR = EXTI_PR_PR12;
 		/* Call user function */
 		TM_EXTI_Handler_12();
 		/* Call global function */
 		TM_EXTI_Handler(GPIO_Pin_12);
 	}
 	/* Check status */
-	if (EXTI_GetITStatus(EXTI_Line13) != RESET) {
+	if (EXTI->PR & (EXTI_PR_PR13)) {
 		/* Clear bit */
-		EXTI_ClearITPendingBit(EXTI_Line13);
+		EXTI->PR = EXTI_PR_PR13;
 		/* Call user function */
 		TM_EXTI_Handler_13();
 		/* Call global function */
 		TM_EXTI_Handler(GPIO_Pin_13);
 	}
 	/* Check status */
-	if (EXTI_GetITStatus(EXTI_Line14) != RESET) {
+	if (EXTI->PR & (EXTI_PR_PR14)) {
 		/* Clear bit */
-		EXTI_ClearITPendingBit(EXTI_Line14);
+		EXTI->PR = EXTI_PR_PR14;
 		/* Call user function */
 		TM_EXTI_Handler_14();
 		/* Call global function */
 		TM_EXTI_Handler(GPIO_Pin_14);
 	}
 	/* Check status */
-	if (EXTI_GetITStatus(EXTI_Line15) != RESET) {
+	if (EXTI->PR & (EXTI_PR_PR15)) {
 		/* Clear bit */
-		EXTI_ClearITPendingBit(EXTI_Line15);
+		EXTI->PR = EXTI_PR_PR15;
 		/* Call user function */
 		TM_EXTI_Handler_15();
 		/* Call global function */

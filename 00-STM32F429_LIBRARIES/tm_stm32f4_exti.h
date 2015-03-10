@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/10/library-38-external-interrupts-for-stm32f4
- *	@version 	v1.1
+ *	@version 	v1.2
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -26,6 +26,10 @@
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
  * 
+ * Version 1.2
+ *	- March 10, 2015
+ *	- TM GPIO Library supported
+ *
  * Version 1.1
  * 	- March 08, 2015
  *	- Added function TM_EXTI_Handler, which is called anytime EXTI interrupt occur,
@@ -78,7 +82,7 @@
  * 	#define TM_EXTI_PRIORITY	0x0A
  */
 #ifndef TM_EXTI_H
-#define TM_EXTI_H 110
+#define TM_EXTI_H 120
 
 /* C++ detection */
 #ifdef __cplusplus
@@ -95,6 +99,7 @@ extern C {
  * - misc.h
  * - defines.h
  * - attributes.h
+ * - TM GPIO
  */
 /**
  * Includes
@@ -107,6 +112,7 @@ extern C {
 #include "misc.h"
 #include "defines.h"
 #include "attributes.h"
+#include "tm_stm32f4_gpio.h"
 
 /* Default priority for NVIC */
 #ifndef TM_EXTI_PRIORITY
