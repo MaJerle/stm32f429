@@ -29,6 +29,7 @@
  * Version 1.2
  *	- March 10, 2015
  *	- Added functions TM_GPIO_SetPinAsInput and TM_GPIO_SetPinAsOutput
+ *	- Added functions TM_GPIO_GetPortSource and TM_GPIO_GetPinSource
  * 
  * Version 1.1
  *	- March 09, 2015
@@ -57,6 +58,19 @@ extern C {
 #include "stm32f4xx_gpio.h"
 #include "defines.h"
 
+/* Use all GPIOs, for future use and HAl drivers */
+#define USE_GPIOA
+#define USE_GPIOB
+#define USE_GPIOC
+#define USE_GPIOD
+#define USE_GPIOE
+#define USE_GPIOF
+#define USE_GPIOG
+#define USE_GPIOH
+#define USE_GPIOI
+#define USE_GPIOJ
+#define USE_GPIOK
+	
 /**
  * GPIO Mode enumeration
  * 
@@ -342,6 +356,32 @@ extern void TM_GPIO_SetPinAsOutput(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
  * Defined as macro for faster execution
  */
 #define TM_GPIO_GetPortOutputValue(GPIOx)			((GPIOx)->ODR)
+
+/**
+ * Get port source from GPIO
+ *
+ * Meant for private use, unless you know what you are doing
+ *
+ * Parameters:
+ *	- GPIO_TypeDef* GPIOx:
+ *		GPIOx for which you want port source to be calculated
+ * 
+ * Returns calculated port source for GPIOx
+ */
+extern uint16_t TM_GPIO_GetPortSource(GPIO_TypeDef* GPIOx);
+
+/**
+ * Get pin source from GPIO_Pin bit
+ *
+ * Meant for private use, unless you know what you are doing
+ *
+ * Parameters:
+ *	- uint16_t GPIO_Pin:
+ *		GPIO pin for which you want pin source to be calculated
+ * 
+ * Returns calculated pin source for GPIOx
+ */
+extern uint16_t TM_GPIO_GetPinSource(uint16_t GPIO_Pin);
 
 /* C++ detection */
 #ifdef __cplusplus

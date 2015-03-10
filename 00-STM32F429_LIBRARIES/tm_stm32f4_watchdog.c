@@ -23,19 +23,19 @@ uint8_t TM_WATCHDOG_Init(TM_WATCHDOG_Timeout_t timeout) {
 	uint16_t reload = 0;
 
 	/* Check if the system has resumed from IWDG reset */
-	if (RCC_GetFlagStatus(RCC_FLAG_IWDGRST) != RESET) {
+	if (RCC->CSR & (0x20000000)) {
 		/* Reset by IWDG */
 		result = 1;
 		
 		/* Clear reset flags */
-		RCC_ClearFlag();
+		RCC->CSR |= RCC_CSR_RMVF;
 	}
 
 	/* Enable write access to IWDG_PR and IWDG_RLR registers */
-	IWDG_WriteAccessCmd(IWDG_WriteAccess_Enable);
+	IWDG->KR = 0x5555;
 
 	/* IWDG counter clock: LSI/32 = 1024Hz */
-	IWDG_SetPrescaler(IWDG_Prescaler_32);
+	IWDG->PR = 0x03;
 	
 	/* Set counter reload value */
 	if (timeout == TM_WATCHDOG_Timeout_5ms) {
@@ -63,13 +63,13 @@ uint8_t TM_WATCHDOG_Init(TM_WATCHDOG_Timeout_t timeout) {
 	}
 	
 	/* Set reload */
-	IWDG_SetReload(reload);
+	IWDG->RLR = reload;
 
 	/* Reload IWDG counter */
-	IWDG_ReloadCounter();
+	IWDG->KR = 0xAAAA;
 
 	/* Enable IWDG (the LSI oscillator will be enabled by hardware) */
-	IWDG_Enable();
+	IWDG->KR = 0xCCCC;
 	
 	/* Return status */
 	return result;
@@ -77,6 +77,6 @@ uint8_t TM_WATCHDOG_Init(TM_WATCHDOG_Timeout_t timeout) {
 
 void TM_WATCHDOG_Reset(void) {
 	/* Reload IWDG counter */
-    IWDG_ReloadCounter(); 
+	IWDG->KR = 0xAAAA;
 }
 

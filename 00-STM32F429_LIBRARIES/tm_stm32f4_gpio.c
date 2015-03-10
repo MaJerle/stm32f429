@@ -111,56 +111,196 @@ void TM_GPIO_SetPinAsOutput(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin) {
 	}
 }
 
+uint16_t TM_GPIO_GetPortSource(GPIO_TypeDef* GPIOx) {
+	uint8_t portsource = 0;
+#ifdef USE_GPIOA
+	if (GPIOx == GPIOA) {
+		portsource = 0x00;
+	}
+#endif
+#ifdef USE_GPIOB
+	if (GPIOx == GPIOB) {
+		portsource = 0x01;
+	}
+#endif
+#ifdef USE_GPIOC
+	if (GPIOx == GPIOC) {
+		portsource = 0x02;
+	}
+#endif
+#ifdef USE_GPIOD
+	if (GPIOx == GPIOD) {
+		portsource = 0x03;
+	}
+#endif
+#ifdef USE_GPIOE
+	if (GPIOx == GPIOE) {
+		portsource = 0x04;
+	}
+#endif
+#ifdef USE_GPIOF
+	if (GPIOx == GPIOF) {
+		portsource = 0x05;
+	}
+#endif
+#ifdef USE_GPIOG
+	if (GPIOx == GPIOG) {
+		portsource = 0x06;
+	}
+#endif
+#ifdef USE_GPIOH
+	if (GPIOx == GPIOH) {
+		portsource = 0x07;
+	}
+#endif
+#ifdef USE_GPIOI
+	if (GPIOx == GPIOI) {
+		portsource = 0x08;
+	}
+#endif
+#ifdef USE_GPIOJ
+	if (GPIOx == GPIOJ) {
+		portsource = 0x09;
+	}
+#endif
+#ifdef USE_GPIOK
+	if (GPIOx == GPIOK) {
+		portsource = 0x0A;
+	}
+#endif
+	
+	/* Return portsource */
+	return portsource;
+}
+
+uint16_t TM_GPIO_GetPinSource(uint16_t GPIO_Pin) {
+	uint16_t pinsource = 0;
+	
+	/* Get pinsource */
+	pinsource = 0;
+	while (GPIO_Pin > 1) {
+		pinsource++;
+		GPIO_Pin >>= 1;
+	}
+	
+	/* Return source */
+	return pinsource;
+}
+
 /* Private functions */
 static void TM_GPIO_INT_EnableClock(GPIO_TypeDef* GPIOx) {
+#ifdef USE_GPIOA
 	if (GPIOx == GPIOA) {
 		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
-	} else if (GPIOx == GPIOB) {
+	}
+#endif
+#ifdef USE_GPIOB
+	if (GPIOx == GPIOB) {
 		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOBEN;
-	} else if (GPIOx == GPIOC) {
+	}
+#endif
+#ifdef USE_GPIOC
+	if (GPIOx == GPIOC) {
 		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOCEN;
-	} else if (GPIOx == GPIOD) {
+	}
+#endif
+#ifdef USE_GPIOD
+	if (GPIOx == GPIOD) {
 		RCC->AHB1ENR |= RCC_AHB1ENR_GPIODEN;
-	} else if (GPIOx == GPIOE) {
+	}
+#endif
+#ifdef USE_GPIOE
+	if (GPIOx == GPIOE) {
 		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOEEN;
-	} else if (GPIOx == GPIOF) {
+	}
+#endif
+#ifdef USE_GPIOF
+	if (GPIOx == GPIOF) {
 		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOFEN;
-	} else if (GPIOx == GPIOG) {
+	}
+#endif
+#ifdef USE_GPIOG
+	if (GPIOx == GPIOG) {
 		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOGEN;
-	} else if (GPIOx == GPIOH) {
+	}
+#endif
+#ifdef USE_GPIOH
+	if (GPIOx == GPIOH) {
 		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOHEN;
-	} else if (GPIOx == GPIOI) {
+	}
+#endif
+#ifdef USE_GPIOI
+	if (GPIOx == GPIOI) {
 		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOIEN;
-	} else if (GPIOx == GPIOJ) {
+	}
+#endif
+#ifdef USE_GPIOJ
+	if (GPIOx == GPIOJ) {
 		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOJEN;
-	} else if (GPIOx == GPIOK) {
+	}
+#endif
+#ifdef USE_GPIOK
+	if (GPIOx == GPIOK) {
 		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOKEN;
 	}
+#endif
 }
 
 void TM_GPIO_INT_DisableClock(GPIO_TypeDef* GPIOx) {
+#ifdef USE_GPIOA
 	if (GPIOx == GPIOA) {
 		RCC->AHB1ENR &= ~RCC_AHB1ENR_GPIOAEN;
-	} else if (GPIOx == GPIOB) {
+	}
+#endif
+#ifdef USE_GPIOB
+	if (GPIOx == GPIOB) {
 		RCC->AHB1ENR &= ~RCC_AHB1ENR_GPIOBEN;
-	} else if (GPIOx == GPIOC) {
+	}
+#endif
+#ifdef USE_GPIOC
+	if (GPIOx == GPIOC) {
 		RCC->AHB1ENR &= ~RCC_AHB1ENR_GPIOCEN;
-	} else if (GPIOx == GPIOD) {
+	}
+#endif
+#ifdef USE_GPIOD
+	if (GPIOx == GPIOD) {
 		RCC->AHB1ENR &= ~RCC_AHB1ENR_GPIODEN;
-	} else if (GPIOx == GPIOE) {
+	}
+#endif
+#ifdef USE_GPIOE
+	if (GPIOx == GPIOE) {
 		RCC->AHB1ENR &= ~RCC_AHB1ENR_GPIOEEN;
-	} else if (GPIOx == GPIOF) {
+	}
+#endif
+#ifdef USE_GPIOF
+	if (GPIOx == GPIOF) {
 		RCC->AHB1ENR &= ~RCC_AHB1ENR_GPIOFEN;
-	} else if (GPIOx == GPIOG) {
+	}
+#endif
+#ifdef USE_GPIOG
+	if (GPIOx == GPIOG) {
 		RCC->AHB1ENR &= ~RCC_AHB1ENR_GPIOGEN;
-	} else if (GPIOx == GPIOH) {
+	}
+#endif
+#ifdef USE_GPIOH
+	if (GPIOx == GPIOH) {
 		RCC->AHB1ENR &= ~RCC_AHB1ENR_GPIOHEN;
-	} else if (GPIOx == GPIOI) {
+	}
+#endif
+#ifdef USE_GPIOI
+	if (GPIOx == GPIOI) {
 		RCC->AHB1ENR &= ~RCC_AHB1ENR_GPIOIEN;
-	} else if (GPIOx == GPIOJ) {
+	}
+#endif
+#ifdef USE_GPIOJ
+	if (GPIOx == GPIOJ) {
 		RCC->AHB1ENR &= ~RCC_AHB1ENR_GPIOJEN;
-	} else if (GPIOx == GPIOK) {
+	}
+#endif
+#ifdef USE_GPIOK
+	if (GPIOx == GPIOK) {
 		RCC->AHB1ENR &= ~RCC_AHB1ENR_GPIOKEN;
 	}
+#endif
 }
 

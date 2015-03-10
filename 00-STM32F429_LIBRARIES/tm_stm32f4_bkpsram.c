@@ -20,10 +20,10 @@
 
 void TM_BKPSRAM_Init(void) {
 	/* Enable PWR clock */
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_PWR, ENABLE);
+	RCC->APB1ENR |= RCC_APB1ENR_PWREN;
 	
 	/* Enable backup SRAM Clock */
-	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_BKPSRAM, ENABLE);
+	RCC->AHB1ENR = RCC_AHB1ENR_BKPSRAMEN;
 	
 	/* Allow access to backup domain */
 	PWR_BackupAccessCmd(ENABLE);
@@ -33,6 +33,6 @@ void TM_BKPSRAM_Init(void) {
 	PWR_BackupRegulatorCmd(ENABLE);
 	
 	/* Wait for backup regulator to be ready  */
-	while (PWR_GetFlagStatus(PWR_FLAG_BRR) == RESET);
+	while (!(PWR->CSR & (PWR_FLAG_BRR)));
 }
 

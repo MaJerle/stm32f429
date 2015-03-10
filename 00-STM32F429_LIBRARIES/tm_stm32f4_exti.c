@@ -33,37 +33,6 @@ TM_EXTI_Result_t TM_EXTI_Attach(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_EXTI_
 		return TM_EXTI_Result_Error;
 	}
 	
-	/* Enable SYSCFG clock */
-	RCC->APB2ENR |= RCC_APB2ENR_SYSCFGEN;
-	
-	/* Get proper settings */
-	if (GPIOx == GPIOA) {
-		portsource = 0x00;
-	} else if (GPIOx == GPIOB) {
-		portsource = 0x01;
-	} else if (GPIOx == GPIOC) {
-		portsource = 0x02;
-	} else if (GPIOx == GPIOD) {
-		portsource = 0x03;
-	} else if (GPIOx == GPIOE) {
-		portsource = 0x04;
-	} else if (GPIOx == GPIOF) {
-		portsource = 0x05;
-	} else if (GPIOx == GPIOG) {
-		portsource = 0x06;
-	} else if (GPIOx == GPIOH) {
-		portsource = 0x07;
-	} else if (GPIOx == GPIOI) {
-		portsource = 0x08;
-	} else if (GPIOx == GPIOJ) {
-		portsource = 0x09;
-	} else if (GPIOx == GPIOK) {
-		portsource = 0x0A;
-	} else {
-		/* Return error */
-		return TM_EXTI_Result_Error;
-	}
-	
 	/* Get IRQ channel */
 	switch (GPIO_Pin) {
 		case GPIO_Pin_0:
@@ -113,12 +82,13 @@ TM_EXTI_Result_t TM_EXTI_Attach(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_EXTI_
 	TM_GPIO_Init(GPIOx, GPIO_Pin, TM_GPIO_Mode_IN, TM_GPIO_OType_PP, PuPd, TM_GPIO_Speed_Low);
 	
 	/* Calculate pinsource */
-	for (pinsource = 0x00; pinsource < 0x10; pinsource++) {
-		if (GPIO_Pin & (1 << pinsource)) {
-			pinsource = 1 << pinsource;
-			break;
-		}
-	}
+	pinsource = TM_GPIO_GetPinSource(GPIO_Pin);
+	
+	/* Calculate portsource */
+	portsource = TM_GPIO_GetPortSource(GPIOx);
+	
+	/* Enable SYSCFG clock */
+	RCC->APB2ENR |= RCC_APB2ENR_SYSCFGEN;
 	
 	/* Connect proper GPIO */
 	SYSCFG_EXTILineConfig(portsource, pinsource);
@@ -169,13 +139,13 @@ TM_EXTI_Result_t TM_EXTI_Detach(uint16_t GPIO_Pin) {
 #ifndef TM_EXTI_DISABLE_DEFAULT_HANDLER_0
 void EXTI0_IRQHandler(void) {
 	/* Check status */
-	if (EXTI->PR & (1)) {
+	if (EXTI->PR & (EXTI_PR_PR0)) {
 		/* Clear bit */
-		EXTI->PR = 1;
+		EXTI->PR = EXTI_PR_PR0;
 		/* Call user function */
 		TM_EXTI_Handler_0();
 		/* Call global function */
-		TM_EXTI_Handler(GPIO_Pin_0);
+		TM_EXTI_Handler(0x0001);
 	}
 }
 #endif
@@ -189,7 +159,7 @@ void EXTI1_IRQHandler(void) {
 		/* Call user function */
 		TM_EXTI_Handler_1();
 		/* Call global function */
-		TM_EXTI_Handler(GPIO_Pin_1);
+		TM_EXTI_Handler(0x0002);
 	}
 }
 #endif
@@ -203,7 +173,7 @@ void EXTI2_IRQHandler(void) {
 		/* Call user function */
 		TM_EXTI_Handler_2();
 		/* Call global function */
-		TM_EXTI_Handler(GPIO_Pin_2);
+		TM_EXTI_Handler(0x0004);
 	}
 }
 #endif
@@ -217,7 +187,7 @@ void EXTI3_IRQHandler(void) {
 		/* Call user function */
 		TM_EXTI_Handler_3();
 		/* Call global function */
-		TM_EXTI_Handler(GPIO_Pin_3);
+		TM_EXTI_Handler(0x0008);
 	}
 }
 #endif
@@ -231,7 +201,7 @@ void EXTI4_IRQHandler(void) {
 		/* Call user function */
 		TM_EXTI_Handler_4();
 		/* Call global function */
-		TM_EXTI_Handler(GPIO_Pin_4);
+		TM_EXTI_Handler(0x0010);
 	}
 }
 #endif
@@ -245,7 +215,7 @@ void EXTI9_5_IRQHandler(void) {
 		/* Call user function */
 		TM_EXTI_Handler_5();
 		/* Call global function */
-		TM_EXTI_Handler(GPIO_Pin_5);
+		TM_EXTI_Handler(0x0020);
 	}
 	/* Check status */
 	if (EXTI->PR & (EXTI_PR_PR6)) {
@@ -254,7 +224,7 @@ void EXTI9_5_IRQHandler(void) {
 		/* Call user function */
 		TM_EXTI_Handler_6();
 		/* Call global function */
-		TM_EXTI_Handler(GPIO_Pin_6);
+		TM_EXTI_Handler(0x0040);
 	}
 	/* Check status */
 	if (EXTI->PR & (EXTI_PR_PR7)) {
@@ -263,7 +233,7 @@ void EXTI9_5_IRQHandler(void) {
 		/* Call user function */
 		TM_EXTI_Handler_7();
 		/* Call global function */
-		TM_EXTI_Handler(GPIO_Pin_7);
+		TM_EXTI_Handler(0x0080);
 	}
 	/* Check status */
 	if (EXTI->PR & (EXTI_PR_PR8)) {
@@ -272,7 +242,7 @@ void EXTI9_5_IRQHandler(void) {
 		/* Call user function */
 		TM_EXTI_Handler_8();
 		/* Call global function */
-		TM_EXTI_Handler(GPIO_Pin_8);
+		TM_EXTI_Handler(0x0100);
 	}
 	/* Check status */
 	if (EXTI->PR & (EXTI_PR_PR9)) {
@@ -281,7 +251,7 @@ void EXTI9_5_IRQHandler(void) {
 		/* Call user function */
 		TM_EXTI_Handler_9();
 		/* Call global function */
-		TM_EXTI_Handler(GPIO_Pin_9);
+		TM_EXTI_Handler(0x0200);
 	}
 }
 #endif
@@ -295,7 +265,7 @@ void EXTI15_10_IRQHandler(void) {
 		/* Call user function */
 		TM_EXTI_Handler_10();
 		/* Call global function */
-		TM_EXTI_Handler(GPIO_Pin_10);
+		TM_EXTI_Handler(0x0400);
 	}
 	/* Check status */
 	if (EXTI->PR & (EXTI_PR_PR11)) {
@@ -304,7 +274,7 @@ void EXTI15_10_IRQHandler(void) {
 		/* Call user function */
 		TM_EXTI_Handler_11();
 		/* Call global function */
-		TM_EXTI_Handler(GPIO_Pin_11);
+		TM_EXTI_Handler(0x0800);
 	}
 	/* Check status */
 	if (EXTI->PR & (EXTI_PR_PR12)) {
@@ -313,7 +283,7 @@ void EXTI15_10_IRQHandler(void) {
 		/* Call user function */
 		TM_EXTI_Handler_12();
 		/* Call global function */
-		TM_EXTI_Handler(GPIO_Pin_12);
+		TM_EXTI_Handler(0x1000);
 	}
 	/* Check status */
 	if (EXTI->PR & (EXTI_PR_PR13)) {
@@ -322,7 +292,7 @@ void EXTI15_10_IRQHandler(void) {
 		/* Call user function */
 		TM_EXTI_Handler_13();
 		/* Call global function */
-		TM_EXTI_Handler(GPIO_Pin_13);
+		TM_EXTI_Handler(0x2000);
 	}
 	/* Check status */
 	if (EXTI->PR & (EXTI_PR_PR14)) {
@@ -331,7 +301,7 @@ void EXTI15_10_IRQHandler(void) {
 		/* Call user function */
 		TM_EXTI_Handler_14();
 		/* Call global function */
-		TM_EXTI_Handler(GPIO_Pin_14);
+		TM_EXTI_Handler(0x4000);
 	}
 	/* Check status */
 	if (EXTI->PR & (EXTI_PR_PR15)) {
@@ -340,7 +310,7 @@ void EXTI15_10_IRQHandler(void) {
 		/* Call user function */
 		TM_EXTI_Handler_15();
 		/* Call global function */
-		TM_EXTI_Handler(GPIO_Pin_15);
+		TM_EXTI_Handler(0x8000);
 	}
 }
 #endif
