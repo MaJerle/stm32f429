@@ -18,24 +18,12 @@
  */
 #include "tm_stm32f4_onewire.h"
 
-volatile GPIO_InitTypeDef OGIS;
-
-void TM_OneWire_Init(TM_OneWire_t* OneWireStruct, GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, uint32_t gpio_clock) {
+void TM_OneWire_Init(TM_OneWire_t* OneWireStruct, GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin) {
 	/* Initialize delay if it was not already */
 	TM_DELAY_Init();
-	
-	/* Enable clock for user selectable pin */
-	RCC_AHB1PeriphClockCmd(gpio_clock, ENABLE);
-	
-	/* Set pin settings */
-	OGIS.GPIO_Pin = GPIO_Pin;
-	OGIS.GPIO_Mode = GPIO_Mode_OUT;
-	OGIS.GPIO_OType = GPIO_OType_PP;
-	OGIS.GPIO_PuPd = GPIO_PuPd_UP;
-	OGIS.GPIO_Speed = GPIO_Speed_100MHz;
-	
-	/* Initialize PORT */
-	GPIO_Init(GPIOx, (GPIO_InitTypeDef *)&OGIS);
+
+	/* Init GPIO pin */
+	TM_GPIO_Init(GPIOx, GPIO_Pin, TM_GPIO_Mode_OUT, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium);
 	
 	/* Save settings */
 	OneWireStruct->GPIOx = GPIOx;
@@ -55,7 +43,7 @@ uint8_t TM_OneWire_Reset(TM_OneWire_t* OneWireStruct) {
 	ONEWIRE_DELAY(60);
 	
 	/* Check bit value */
-	i = GPIO_ReadInputDataBit(OneWireStruct->GPIOx, OneWireStruct->GPIO_Pin);
+	i = TM_GPIO_GetInputPinValue(OneWireStruct->GPIOx, OneWireStruct->GPIO_Pin);
 	
 	/* Delay for 420 us */
 	ONEWIRE_DELAY(420);
@@ -77,7 +65,7 @@ uint8_t TM_OneWire_ReadBit(TM_OneWire_t* OneWireStruct) {
 	ONEWIRE_DELAY(14);
 	
 	/* Read line value */
-	if (GPIO_ReadInputDataBit(OneWireStruct->GPIOx, OneWireStruct->GPIO_Pin)) {
+	if (TM_GPIO_GetInputPinValue(OneWireStruct->GPIOx, OneWireStruct->GPIO_Pin)) {
 		/* Bit is HIGH */
 		bit = 1;
 	}

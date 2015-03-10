@@ -22,19 +22,19 @@ static uint32_t TM_I2C_Timeout;
 static uint32_t TM_I2C_INT_Clocks[3] = {0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF};
 
 /* Private functions */
-void TM_I2C1_InitPins(TM_I2C_PinsPack_t pinspack);
-void TM_I2C2_InitPins(TM_I2C_PinsPack_t pinspack);
-void TM_I2C3_InitPins(TM_I2C_PinsPack_t pinspack);
+void TM_I2C1_INT_InitPins(TM_I2C_PinsPack_t pinspack);
+void TM_I2C2_INT_InitPins(TM_I2C_PinsPack_t pinspack);
+void TM_I2C3_INT_InitPins(TM_I2C_PinsPack_t pinspack);
 
 void TM_I2C_Init(I2C_TypeDef* I2Cx, TM_I2C_PinsPack_t pinspack, uint32_t clockSpeed) {
 	I2C_InitTypeDef I2C_InitStruct;
 	
 	if (I2Cx == I2C1) {
 		/* Enable clock */
-		RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C1, ENABLE);
+		RCC->APB1ENR |= RCC_APB1ENR_I2C1EN;
 		
 		/* Enable pins */
-		TM_I2C1_InitPins(pinspack);
+		TM_I2C1_INT_InitPins(pinspack);
 		
 		/* Check clock */
 		if (clockSpeed < TM_I2C_INT_Clocks[0]) {
@@ -50,10 +50,10 @@ void TM_I2C_Init(I2C_TypeDef* I2Cx, TM_I2C_PinsPack_t pinspack, uint32_t clockSp
 		I2C_InitStruct.I2C_DutyCycle = TM_I2C1_DUTY_CYCLE;
 	} else if (I2Cx == I2C2) {
 		/* Enable clock */
-		RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C2, ENABLE);
+		RCC->APB1ENR |= RCC_APB1ENR_I2C2EN;
 		
 		/* Enable pins */
-		TM_I2C2_InitPins(pinspack);
+		TM_I2C2_INT_InitPins(pinspack);
 		
 		/* Check clock */
 		if (clockSpeed < TM_I2C_INT_Clocks[1]) {
@@ -69,10 +69,10 @@ void TM_I2C_Init(I2C_TypeDef* I2Cx, TM_I2C_PinsPack_t pinspack, uint32_t clockSp
 		I2C_InitStruct.I2C_DutyCycle = TM_I2C2_DUTY_CYCLE;
 	} else if (I2Cx == I2C3) {
 		/* Enable clock */
-		RCC_APB1PeriphClockCmd(RCC_APB1Periph_I2C3, ENABLE);
+		RCC->APB1ENR |= RCC_APB1ENR_I2C3EN;
 		
 		/* Enable pins */
-		TM_I2C3_InitPins(pinspack);
+		TM_I2C3_INT_InitPins(pinspack);
 		
 		/* Check clock */
 		if (clockSpeed < TM_I2C_INT_Clocks[2]) {
@@ -196,7 +196,6 @@ int16_t TM_I2C_Start(I2C_TypeDef* I2Cx, uint8_t address, uint8_t direction, uint
 	return 0;
 }
 
-
 void TM_I2C_WriteData(I2C_TypeDef* I2Cx, uint8_t data) {
 	/* Wait till I2C is not busy anymore */
 	TM_I2C_Timeout = TM_I2C_TIMEOUT;
@@ -207,7 +206,6 @@ void TM_I2C_WriteData(I2C_TypeDef* I2Cx, uint8_t data) {
 	/* Send I2C data */
 	I2Cx->DR = data;
 }
-
 
 uint8_t TM_I2C_ReadAck(I2C_TypeDef* I2Cx) {
 	uint8_t data;
@@ -227,7 +225,6 @@ uint8_t TM_I2C_ReadAck(I2C_TypeDef* I2Cx) {
 	/* Return data */
 	return data;
 }
-
 
 uint8_t TM_I2C_ReadNack(I2C_TypeDef* I2Cx) {
 	uint8_t data;
@@ -282,7 +279,7 @@ uint8_t TM_I2C_IsDeviceConnected(I2C_TypeDef* I2Cx, uint8_t address) {
 }
 
 /* Private functions */
-void TM_I2C1_InitPins(TM_I2C_PinsPack_t pinspack) {
+void TM_I2C1_INT_InitPins(TM_I2C_PinsPack_t pinspack) {
 	/* Init pins */
 	if (pinspack == TM_I2C_PinsPack_1) {
 		TM_GPIO_InitAlternate(GPIOB, GPIO_Pin_6 | GPIO_Pin_7, TM_GPIO_OType_OD, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium, GPIO_AF_I2C1);
@@ -290,10 +287,13 @@ void TM_I2C1_InitPins(TM_I2C_PinsPack_t pinspack) {
 		TM_GPIO_InitAlternate(GPIOB, GPIO_Pin_8 | GPIO_Pin_9, TM_GPIO_OType_OD, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium, GPIO_AF_I2C1);
 	} else if (pinspack == TM_I2C_PinsPack_3) {
 		TM_GPIO_InitAlternate(GPIOB, GPIO_Pin_6 | GPIO_Pin_9, TM_GPIO_OType_OD, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium, GPIO_AF_I2C1);
+	} else if (pinspack == TM_I2C_PinsPack_Custom) {
+		/* Init custom pins, callback function */
+		TM_I2C_InitCustomPins(I2C1);
 	}
 }
 
-void TM_I2C2_InitPins(TM_I2C_PinsPack_t pinspack) {
+void TM_I2C2_INT_InitPins(TM_I2C_PinsPack_t pinspack) {
 	/* Init pins */
 	if (pinspack == TM_I2C_PinsPack_1) {
 		TM_GPIO_InitAlternate(GPIOB, GPIO_Pin_10 | GPIO_Pin_11, TM_GPIO_OType_OD, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium, GPIO_AF_I2C2);
@@ -301,15 +301,21 @@ void TM_I2C2_InitPins(TM_I2C_PinsPack_t pinspack) {
 		TM_GPIO_InitAlternate(GPIOF, GPIO_Pin_0 | GPIO_Pin_1, TM_GPIO_OType_OD, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium, GPIO_AF_I2C2);
 	} else if (pinspack == TM_I2C_PinsPack_3) {
 		TM_GPIO_InitAlternate(GPIOH, GPIO_Pin_4 | GPIO_Pin_5, TM_GPIO_OType_OD, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium, GPIO_AF_I2C2);
+	} else if (pinspack == TM_I2C_PinsPack_Custom) {
+		/* Init custom pins, callback function */
+		TM_I2C_InitCustomPins(I2C2);
 	}
 }
 
-void TM_I2C3_InitPins(TM_I2C_PinsPack_t pinspack) {
+void TM_I2C3_INT_InitPins(TM_I2C_PinsPack_t pinspack) {
 	/* Init pins */
 	if (pinspack == TM_I2C_PinsPack_1) {
 		TM_GPIO_InitAlternate(GPIOA, GPIO_Pin_8, TM_GPIO_OType_OD, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium, GPIO_AF_I2C3);
 		TM_GPIO_InitAlternate(GPIOC, GPIO_Pin_9, TM_GPIO_OType_OD, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium, GPIO_AF_I2C3);
 	} else if (pinspack == TM_I2C_PinsPack_2) {
 		TM_GPIO_InitAlternate(GPIOH, GPIO_Pin_7 | GPIO_Pin_8, TM_GPIO_OType_OD, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium, GPIO_AF_I2C3);
+	} else if (pinspack == TM_I2C_PinsPack_Custom) {
+		/* Init custom pins, callback function */
+		TM_I2C_InitCustomPins(I2C3);
 	}
 }

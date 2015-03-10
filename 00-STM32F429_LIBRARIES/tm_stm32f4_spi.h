@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/04/library-05-spi-for-stm32f4xx/
- *	@version 	v1.7
+ *	@version 	v1.8
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -26,6 +26,10 @@
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
  *
+ * Version 1.8
+ *	- March 10, 2015
+ *	- Updated to be mode independent of STD/HAL drivers
+ * 
  * Version 1.7
  *	- March 08, 2015
  *	- Added support for my new GPIO settings
@@ -67,6 +71,10 @@
  *		SPI4	|PE6	PE5		PE2		|PE14	PE13	PE12	|
  *		SPI5	|PF9	PF8		PF7		|PF11	PH7		PH6		|
  *		SPI6	|PG14	PG12	PG13	|
+ *
+ *	In case these pins are not good for you, you can use
+ *	TM_SPI_PinsPack_Custom in function and callback function will be called,
+ *	where you can initialize your custom pinout for your SPI peripheral
  *	
  *	Possible changes to each SPI. Set this defines in your defines.h file.
  *	
@@ -84,7 +92,7 @@
  *	#define TM_SPIx_MODE		TM_SPI_Mode_0
  */
 #ifndef TM_SPI_H
-#define TM_SPI_H 170
+#define TM_SPI_H 180
 
 /* C++ detection */
 #ifdef __cplusplus
@@ -264,7 +272,8 @@ typedef enum {
 typedef enum {
 	TM_SPI_PinsPack_1,
 	TM_SPI_PinsPack_2,
-	TM_SPI_PinsPack_3
+	TM_SPI_PinsPack_3,
+	TM_SPI_PinsPack_Custom
 } TM_SPI_PinsPack_t;
 
 /**
@@ -361,7 +370,7 @@ extern uint8_t TM_SPI_Send(SPI_TypeDef* SPIx, uint8_t data);
  *	- uint8_t dataIn: pointer to received data
  *	- uint16_t count: number of bytes to send
  *
- * No returns
+ * No return
  */
 extern void TM_SPI_SendMulti(SPI_TypeDef* SPIx, uint8_t* dataOut, uint8_t* dataIn, uint16_t count);
 
@@ -373,7 +382,7 @@ extern void TM_SPI_SendMulti(SPI_TypeDef* SPIx, uint8_t* dataOut, uint8_t* dataI
  * 	- uint8_t dataOut: pointer to data to be sent out
  *	- uint16_t count: number of bytes to send
  *
- * No returns
+ * No return
  */
 extern void TM_SPI_WriteMulti(SPI_TypeDef* SPIx, uint8_t* dataOut, uint16_t count);
 
@@ -386,7 +395,7 @@ extern void TM_SPI_WriteMulti(SPI_TypeDef* SPIx, uint8_t* dataOut, uint16_t coun
  *	- uint8_t dummy: dummy byte to be sent to SPI
  *	- uint16_t count: number of bytes to receive
  *
- * No returns
+ * No return
  */
 extern void TM_SPI_ReadMulti(SPI_TypeDef* SPIx, uint8_t *dataIn, uint8_t dummy, uint16_t count);
 
@@ -412,7 +421,7 @@ extern uint16_t TM_SPI_Send16(SPI_TypeDef* SPIx, uint16_t data);
  *	- uint16_t dataIn: pointer to received data
  *	- uint16_t count: number of bytes to send
  *
- * No returns
+ * No return
  */
 extern void TM_SPI_SendMulti16(SPI_TypeDef* SPIx, uint16_t* dataOut, uint16_t* dataIn, uint16_t count);
 
@@ -425,7 +434,7 @@ extern void TM_SPI_SendMulti16(SPI_TypeDef* SPIx, uint16_t* dataOut, uint16_t* d
  * 	- uint16_t dataOut: pointer to data to be sent out
  *	- uint16_t count: number of bytes to send
  *
- * No returns
+ * No return
  */
 extern void TM_SPI_WriteMulti16(SPI_TypeDef* SPIx, uint16_t* dataOut, uint16_t count);
 
@@ -439,9 +448,25 @@ extern void TM_SPI_WriteMulti16(SPI_TypeDef* SPIx, uint16_t* dataOut, uint16_t c
  *	- uint16_t dummy: dummy 16bit to be sent to SPI
  *	- uint16_t count: number of bytes to receive
  *
- * No returns
+ * No return
  */
 extern void TM_SPI_ReadMulti16(SPI_TypeDef* SPIx, uint16_t* dataIn, uint16_t dummy, uint16_t count);
+
+/**
+ * Callback for custom pins initialization.
+ * 
+ * When you call TM_SPI_Init() function, and if you pass TM_SPI_PinsPack_Custom to function,
+ * then this function will be called where you can initialize custom pins for SPI peripheral.
+ *
+ * Parameters:
+ *	- SPI_TypeDef* SPIx:
+ *		SPI for which initialization will be set
+ * 
+ * With __weak parameter to prevent link errors if not defined by user
+ *
+ * No return
+ */
+extern __weak void TM_SPI_InitCustomPins(SPI_TypeDef* SPIx);
 
 /* C++ detection */
 #ifdef __cplusplus

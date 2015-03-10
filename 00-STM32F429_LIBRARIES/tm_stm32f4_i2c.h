@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/05/library-09-i2c-for-stm32f4xx/
- *	@version 	v1.4
+ *	@version 	v1.5
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -25,6 +25,10 @@
  * | You should have received a copy of the GNU General Public License
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
+ *
+ * Version 1.5
+ *	- March 10, 2015
+ *	- Updated to be more independent of HAL/STD drivers. 
  *
  * Version 1.4
  *	- March 08, 2015
@@ -53,6 +57,10 @@
  *	I2C2	|PB10	PB11	|PF1	PF0		|PH4	PH5
  *	I2C3	|PA8	PC9		|PH7	PH8		|-		-
  *	
+ * 	In case these pins are not good for you, you can use
+ *	TM_I2C_PinsPack_Custom in function and callback function will be called,
+ *	where you can initialize your custom pinout for your I2C peripheral
+ *
  *	Possible changes in your defines.h file:
  *	Change x to your I2C used, 1-3
  *	
@@ -69,7 +77,7 @@
  *
  */
 #ifndef TM_I2C_H
-#define TM_I2C_H 140
+#define TM_I2C_H 150
 /**
  * Library dependencies
  * - STM32F4xx
@@ -77,15 +85,15 @@
  * - STM32F4xx GPIO
  * - STM32F4xx I2C
  * - defines.h
+ * - attributes.h
  * - TM GPIO
  */
 /**
  * Includes
  */
 #include "stm32f4xx.h"
-#include "stm32f4xx_rcc.h"
-#include "stm32f4xx_gpio.h"
 #include "stm32f4xx_i2c.h"
+#include "attributes.h"
 #include "defines.h"
 #include "tm_stm32f4_gpio.h"
 
@@ -157,7 +165,8 @@
 typedef enum {
 	TM_I2C_PinsPack_1,
 	TM_I2C_PinsPack_2,
-	TM_I2C_PinsPack_3
+	TM_I2C_PinsPack_3,
+	TM_I2C_PinsPack_Custom
 } TM_I2C_PinsPack_t;
 
 /**
@@ -304,6 +313,22 @@ extern uint8_t TM_I2C_ReadAck(I2C_TypeDef* I2Cx);
  * Private use
  */
 extern void TM_I2C_WriteData(I2C_TypeDef* I2Cx, uint8_t data);
+
+/**
+ * Callback for custom pins initialization.
+ * 
+ * When you call TM_I2C_Init() function, and if you pass TM_I2C_PinsPack_Custom to function,
+ * then this function will be called where you can initialize custom pins for I2C peripheral.
+ *
+ * Parameters:
+ *	- I2C_TypeDef* I2Cx:
+ *		I2C for which initialization will be set
+ * 
+ * With __weak parameter to prevent link errors if not defined by user
+ *
+ * No return
+ */
+extern __weak void TM_I2C_InitCustomPins(I2C_TypeDef* I2Cx);
 
 #endif
 

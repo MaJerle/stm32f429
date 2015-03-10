@@ -19,7 +19,7 @@
 #include "tm_stm32f4_sdram.h"
 
 /* Internal functions */
-void TM_SDRAM_InitPins(void);
+static void TM_SDRAM_InitPins(void);
 
 uint8_t TM_SDRAM_Init(void) {
 	FMC_SDRAMInitTypeDef FMC_SDRAMInitDef;
@@ -79,7 +79,10 @@ uint8_t TM_SDRAM_Init(void) {
 	
 	/* Wait until the SDRAM controller is ready */ 
 	timeout = SDRAM_TIMEOUT;
-	while (FMC_GetFlagStatus(FMC_Bank2_SDRAM, FMC_FLAG_Busy) != RESET && timeout--);
+	while (FMC_GetFlagStatus(FMC_Bank2_SDRAM, FMC_FLAG_Busy) != RESET && timeout--) {
+	
+	}
+	
 	/* Send the command */
 	FMC_SDRAMCmdConfig(&FMC_SDRAMCommandStructure);
 	
@@ -91,7 +94,10 @@ uint8_t TM_SDRAM_Init(void) {
 	
 	/* Wait until the SDRAM controller is ready */  
 	timeout = SDRAM_TIMEOUT;
-	while (FMC_GetFlagStatus(FMC_Bank2_SDRAM, FMC_FLAG_Busy) && timeout--);
+	while (FMC_GetFlagStatus(FMC_Bank2_SDRAM, FMC_FLAG_Busy) && timeout--) {
+	
+	}
+	
 	/* Send the command */
 	FMC_SDRAMCmdConfig(&FMC_SDRAMCommandStructure);
 
@@ -103,7 +109,10 @@ uint8_t TM_SDRAM_Init(void) {
 	
 	/* Wait until the SDRAM controller is ready */
 	timeout = SDRAM_TIMEOUT;
-	while (FMC_GetFlagStatus(FMC_Bank2_SDRAM, FMC_FLAG_Busy) && timeout--);
+	while (FMC_GetFlagStatus(FMC_Bank2_SDRAM, FMC_FLAG_Busy) && timeout--) {
+	
+	}
+	
 	/* Send the command */
 	FMC_SDRAMCmdConfig(&FMC_SDRAMCommandStructure);
 	
@@ -115,7 +124,10 @@ uint8_t TM_SDRAM_Init(void) {
 	
 	/* Wait until the SDRAM controller is ready */
 	timeout = SDRAM_TIMEOUT;
-	while (FMC_GetFlagStatus(FMC_Bank2_SDRAM, FMC_FLAG_Busy) && timeout--);
+	while (FMC_GetFlagStatus(FMC_Bank2_SDRAM, FMC_FLAG_Busy) && timeout--) {
+	
+	}
+	
 	/* Send the command */
 	FMC_SDRAMCmdConfig(&FMC_SDRAMCommandStructure);
 
@@ -126,111 +138,33 @@ uint8_t TM_SDRAM_Init(void) {
 	
 	/* Wait until the SDRAM controller is ready */ 
 	timeout = SDRAM_TIMEOUT;
-	while(FMC_GetFlagStatus(FMC_Bank2_SDRAM, FMC_FLAG_Busy) != RESET && timeout--);
+	while (FMC_GetFlagStatus(FMC_Bank2_SDRAM, FMC_FLAG_Busy) != RESET && timeout--) {
+	
+	}
 	
 	/* Check if everything goes right */
 	/* Write 0x10 at location 0x50 and check if result is the same on read operation */
 	TM_SDRAM_Write8(0x50, 0x10);
 	if (TM_SDRAM_Read8(0x50) == 0x10) {
-		//Initialized OK
+		/* Initialized OK */
 		return 1;
 	}
-	//Not OK
+	
+	/* Not ok */
 	return 0;
 }
 
-void TM_SDRAM_InitPins(void) {
-	GPIO_InitTypeDef GPIO_InitDef;
-	
-	//Common settings
-	GPIO_InitDef.GPIO_Mode = GPIO_Mode_AF;
-	GPIO_InitDef.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitDef.GPIO_PuPd = GPIO_PuPd_NOPULL;
-	GPIO_InitDef.GPIO_Speed = GPIO_Speed_100MHz;
-	
-	
-	//GPIOB pins for FMC
-	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);
-	
-	GPIO_PinAFConfig(GPIOB, GPIO_PinSource5, GPIO_AF_FMC);
-	GPIO_PinAFConfig(GPIOB, GPIO_PinSource6, GPIO_AF_FMC);
-	//                      SDCKE1       SDNE1
-	GPIO_InitDef.GPIO_Pin = GPIO_Pin_5 | GPIO_Pin_6;
-	GPIO_Init(GPIOB, &GPIO_InitDef);
-	
-	
-	//GPIOC pins for FMC
-	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);
-	
-	GPIO_PinAFConfig(GPIOC, GPIO_PinSource0, GPIO_AF_FMC);
-	//                      SDNWE
-	GPIO_InitDef.GPIO_Pin = GPIO_Pin_0;
-	GPIO_Init(GPIOC, &GPIO_InitDef);
-	
-	
-	//GPIOD pins for FMC
-	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
-	
-	GPIO_PinAFConfig(GPIOD, GPIO_PinSource0, GPIO_AF_FMC);
-	GPIO_PinAFConfig(GPIOD, GPIO_PinSource1, GPIO_AF_FMC);
-	GPIO_PinAFConfig(GPIOD, GPIO_PinSource8, GPIO_AF_FMC);
-	GPIO_PinAFConfig(GPIOD, GPIO_PinSource9, GPIO_AF_FMC);
-	GPIO_PinAFConfig(GPIOD, GPIO_PinSource10, GPIO_AF_FMC);
-	GPIO_PinAFConfig(GPIOD, GPIO_PinSource14, GPIO_AF_FMC);
-	GPIO_PinAFConfig(GPIOD, GPIO_PinSource15, GPIO_AF_FMC);	
-	//                      D2           D3           D13          D14          D15           D0            D13  
-	GPIO_InitDef.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_1 | GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_10 | GPIO_Pin_14 | GPIO_Pin_15;
-	GPIO_Init(GPIOD, &GPIO_InitDef);
-	
-	
-	//GPIOD pins for FMC
-	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOE, ENABLE);
-	
-	GPIO_PinAFConfig(GPIOE, GPIO_PinSource0, GPIO_AF_FMC);
-	GPIO_PinAFConfig(GPIOE, GPIO_PinSource1, GPIO_AF_FMC);
-	GPIO_PinAFConfig(GPIOE, GPIO_PinSource7, GPIO_AF_FMC);
-	GPIO_PinAFConfig(GPIOE, GPIO_PinSource8, GPIO_AF_FMC);
-	GPIO_PinAFConfig(GPIOE, GPIO_PinSource9, GPIO_AF_FMC);
-	GPIO_PinAFConfig(GPIOE, GPIO_PinSource10, GPIO_AF_FMC);
-	GPIO_PinAFConfig(GPIOE, GPIO_PinSource11, GPIO_AF_FMC);	
-	GPIO_PinAFConfig(GPIOE, GPIO_PinSource12, GPIO_AF_FMC);	
-	GPIO_PinAFConfig(GPIOE, GPIO_PinSource13, GPIO_AF_FMC);	
-	GPIO_PinAFConfig(GPIOE, GPIO_PinSource14, GPIO_AF_FMC);	
-	GPIO_PinAFConfig(GPIOE, GPIO_PinSource15, GPIO_AF_FMC);					
-	//                      NBL0         NBL1         D4           D5           D6           D7            D8            D9            D10           D11           D12            
-	GPIO_InitDef.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_1 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_10 | GPIO_Pin_11 | GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15;
-	GPIO_Init(GPIOE, &GPIO_InitDef);	
-	
-	
-	//GPIOF pins for FMC
-	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOF, ENABLE);
-	
-	GPIO_PinAFConfig(GPIOF, GPIO_PinSource0, GPIO_AF_FMC);
-	GPIO_PinAFConfig(GPIOF, GPIO_PinSource1, GPIO_AF_FMC);
-	GPIO_PinAFConfig(GPIOF, GPIO_PinSource2, GPIO_AF_FMC);
-	GPIO_PinAFConfig(GPIOF, GPIO_PinSource3, GPIO_AF_FMC);
-	GPIO_PinAFConfig(GPIOF, GPIO_PinSource4, GPIO_AF_FMC);
-	GPIO_PinAFConfig(GPIOF, GPIO_PinSource5, GPIO_AF_FMC);
-	GPIO_PinAFConfig(GPIOF, GPIO_PinSource11, GPIO_AF_FMC);	
-	GPIO_PinAFConfig(GPIOF, GPIO_PinSource12, GPIO_AF_FMC);	
-	GPIO_PinAFConfig(GPIOF, GPIO_PinSource13, GPIO_AF_FMC);	
-	GPIO_PinAFConfig(GPIOF, GPIO_PinSource14, GPIO_AF_FMC);	
-	GPIO_PinAFConfig(GPIOF, GPIO_PinSource15, GPIO_AF_FMC);					
-	//                      A0           A1           A2           A3           A4           A5           SDNRAS        A6            A7            A8            A9
-	GPIO_InitDef.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_11 | GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15;
-	GPIO_Init(GPIOF, &GPIO_InitDef);
-	
-	
-	//GPIOG pins for FMC
-	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOG, ENABLE);
-	
-	GPIO_PinAFConfig(GPIOG, GPIO_PinSource0, GPIO_AF_FMC);
-	GPIO_PinAFConfig(GPIOG, GPIO_PinSource1, GPIO_AF_FMC);
-	GPIO_PinAFConfig(GPIOG, GPIO_PinSource4, GPIO_AF_FMC);
-	GPIO_PinAFConfig(GPIOG, GPIO_PinSource5, GPIO_AF_FMC);
-	GPIO_PinAFConfig(GPIOG, GPIO_PinSource8, GPIO_AF_FMC);
-	GPIO_PinAFConfig(GPIOG, GPIO_PinSource15, GPIO_AF_FMC);					
-	//                      A10          A11          BA0          BA1          SDCLK        SDNCAS
-	GPIO_InitDef.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_1 | GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_8 | GPIO_Pin_15;
-	GPIO_Init(GPIOG, &GPIO_InitDef);
+static void TM_SDRAM_InitPins(void) {	
+	/* GPIOB pins */
+	TM_GPIO_InitAlternate(GPIOB, GPIO_Pin_5 | GPIO_Pin_6, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_FMC);
+	/* GPIOC pins */
+	TM_GPIO_InitAlternate(GPIOC, GPIO_Pin_0, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_FMC);
+	/* GPIOD pins */
+	TM_GPIO_InitAlternate(GPIOD, GPIO_Pin_0 | GPIO_Pin_1 | GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_10 | GPIO_Pin_14 | GPIO_Pin_15, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_FMC);
+	/* GPIOE pins */
+	TM_GPIO_InitAlternate(GPIOE, GPIO_Pin_0 | GPIO_Pin_1 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_10 | GPIO_Pin_11 | GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_FMC);
+	/* GPIOF pins */
+	TM_GPIO_InitAlternate(GPIOF, GPIO_Pin_0 | GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_11 | GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_FMC);
+	/* GPIOG pins */
+	TM_GPIO_InitAlternate(GPIOG, GPIO_Pin_0 | GPIO_Pin_1 | GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_8 | GPIO_Pin_15, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_FMC);
 }

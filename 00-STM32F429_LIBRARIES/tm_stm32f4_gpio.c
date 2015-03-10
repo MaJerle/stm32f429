@@ -86,56 +86,81 @@ void TM_GPIO_DeInit(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin) {
 	GPIO_Init(GPIOx, &GPIO_InitStruct);
 }
 
+void TM_GPIO_SetPinAsInput(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin) {
+	uint8_t i, pos;
+	/* Go through all pins */
+	for (i = 0x00; i < 0x10; i++) {
+		pos = 1 << i;
+		/* Pin is set */
+		if (GPIO_Pin & pos) {		
+			/* Clear both bits */
+			GPIOx->MODER &= ~(0x03 << (2 * pos));
+		}
+	}
+}
+
+void TM_GPIO_SetPinAsOutput(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin) {
+	uint8_t i;
+	/* Go through all pins */
+	for (i = 0x00; i < 0x10; i++) {
+		/* Pin is set */
+		if (GPIO_Pin & (1 << i)) {
+			/* Set 00 bits combination for output */
+			GPIOx->MODER = (GPIOx->MODER & ~(0x03 << (2 * i))) | (0x01 << (2 * i));
+		}
+	}
+}
+
 /* Private functions */
 static void TM_GPIO_INT_EnableClock(GPIO_TypeDef* GPIOx) {
 	if (GPIOx == GPIOA) {
-		RCC->AHB1ENR |= RCC_AHB1Periph_GPIOA;
+		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
 	} else if (GPIOx == GPIOB) {
-		RCC->AHB1ENR |= RCC_AHB1Periph_GPIOB;
+		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOBEN;
 	} else if (GPIOx == GPIOC) {
-		RCC->AHB1ENR |= RCC_AHB1Periph_GPIOC;
+		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOCEN;
 	} else if (GPIOx == GPIOD) {
-		RCC->AHB1ENR |= RCC_AHB1Periph_GPIOD;
+		RCC->AHB1ENR |= RCC_AHB1ENR_GPIODEN;
 	} else if (GPIOx == GPIOE) {
-		RCC->AHB1ENR |= RCC_AHB1Periph_GPIOE;
+		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOEEN;
 	} else if (GPIOx == GPIOF) {
-		RCC->AHB1ENR |= RCC_AHB1Periph_GPIOF;
+		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOFEN;
 	} else if (GPIOx == GPIOG) {
-		RCC->AHB1ENR |= RCC_AHB1Periph_GPIOG;
+		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOGEN;
 	} else if (GPIOx == GPIOH) {
-		RCC->AHB1ENR |= RCC_AHB1Periph_GPIOH;
+		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOHEN;
 	} else if (GPIOx == GPIOI) {
-		RCC->AHB1ENR |= RCC_AHB1Periph_GPIOI;
+		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOIEN;
 	} else if (GPIOx == GPIOJ) {
-		RCC->AHB1ENR |= RCC_AHB1Periph_GPIOJ;
+		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOJEN;
 	} else if (GPIOx == GPIOK) {
-		RCC->AHB1ENR |= RCC_AHB1Periph_GPIOK;
+		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOKEN;
 	}
 }
 
 void TM_GPIO_INT_DisableClock(GPIO_TypeDef* GPIOx) {
 	if (GPIOx == GPIOA) {
-		RCC->AHB1ENR &= ~RCC_AHB1Periph_GPIOA;
+		RCC->AHB1ENR &= ~RCC_AHB1ENR_GPIOAEN;
 	} else if (GPIOx == GPIOB) {
-		RCC->AHB1ENR &= ~RCC_AHB1Periph_GPIOB;
+		RCC->AHB1ENR &= ~RCC_AHB1ENR_GPIOBEN;
 	} else if (GPIOx == GPIOC) {
-		RCC->AHB1ENR &= ~RCC_AHB1Periph_GPIOC;
+		RCC->AHB1ENR &= ~RCC_AHB1ENR_GPIOCEN;
 	} else if (GPIOx == GPIOD) {
-		RCC->AHB1ENR &= ~RCC_AHB1Periph_GPIOD;
+		RCC->AHB1ENR &= ~RCC_AHB1ENR_GPIODEN;
 	} else if (GPIOx == GPIOE) {
-		RCC->AHB1ENR &= ~RCC_AHB1Periph_GPIOE;
+		RCC->AHB1ENR &= ~RCC_AHB1ENR_GPIOEEN;
 	} else if (GPIOx == GPIOF) {
-		RCC->AHB1ENR &= ~RCC_AHB1Periph_GPIOF;
+		RCC->AHB1ENR &= ~RCC_AHB1ENR_GPIOFEN;
 	} else if (GPIOx == GPIOG) {
-		RCC->AHB1ENR &= ~RCC_AHB1Periph_GPIOG;
+		RCC->AHB1ENR &= ~RCC_AHB1ENR_GPIOGEN;
 	} else if (GPIOx == GPIOH) {
-		RCC->AHB1ENR &= ~RCC_AHB1Periph_GPIOH;
+		RCC->AHB1ENR &= ~RCC_AHB1ENR_GPIOHEN;
 	} else if (GPIOx == GPIOI) {
-		RCC->AHB1ENR &= ~RCC_AHB1Periph_GPIOI;
+		RCC->AHB1ENR &= ~RCC_AHB1ENR_GPIOIEN;
 	} else if (GPIOx == GPIOJ) {
-		RCC->AHB1ENR &= ~RCC_AHB1Periph_GPIOJ;
+		RCC->AHB1ENR &= ~RCC_AHB1ENR_GPIOJEN;
 	} else if (GPIOx == GPIOK) {
-		RCC->AHB1ENR &= ~RCC_AHB1Periph_GPIOK;
+		RCC->AHB1ENR &= ~RCC_AHB1ENR_GPIOKEN;
 	}
 }
 

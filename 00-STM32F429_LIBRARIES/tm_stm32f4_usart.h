@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/04/library-04-connect-stm32f429-discovery-to-computer-with-usart/
- *	@version 	v2.1
+ *	@version 	v2.2
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -26,6 +26,10 @@
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
  *	
+ * Version 2.2
+ *	- March 10, 2015
+ *	- Updated to be more independent of STD/HAL drivers but still not totally
+ *
  * Version 2.1
  * 	- March 08, 2015
  *	- Output pins are more clear initialized. 
@@ -97,6 +101,10 @@
  *	UART7		|PE8	PE7		|PF7	PF6		|-		-
  *	UART8		|PE1	PE0		|-		-		|-		-
  *
+ *	In case these pins are not good for you, you can use
+ *	TM_USART_PinsPack_Custom in function and callback function will be called,
+ *	where you can initialize your custom pinout for your USART peripheral
+ *
  * Possible changes in USART operation
  * 
  * 	//Change X with possible U(S)ARTs: USART1, USART2, USART3, UART4, UART5, USART6, UART7, UART8
@@ -112,7 +120,7 @@
  *	#define TM_X_WORD_LENGTH				USART_WordLength_8b
  */
 #ifndef TM_USART_H
-#define TM_USART_H 210
+#define TM_USART_H 220
 /**
  * Library dependencies
  * - STM32F4xx
@@ -130,10 +138,11 @@
 #include "stm32f4xx_rcc.h"
 #include "stm32f4xx_gpio.h"
 #include "stm32f4xx_usart.h"
-#include "defines.h"
 #include "attributes.h"
+#include "defines.h"
 #include "tm_stm32f4_gpio.h"
 
+/* Check possible USARTs settings */
 #if defined (STM32F40_41xxx)
 #define TM_USE_USART1
 #define TM_USE_USART2
@@ -194,8 +203,8 @@
 #define TM_USART_NVIC_PRIORITY				0x06
 #endif
 
-//U(S)ART settings, can be changed in your defines.h project file
-//USART1 default settings
+/* U(S)ART settings, can be changed in your defines.h project file */
+/* USART1 default settings */
 #ifndef TM_USART1_HARDWARE_FLOW_CONTROL
 #define TM_USART1_HARDWARE_FLOW_CONTROL		USART_HardwareFlowControl_None
 #endif
@@ -212,7 +221,7 @@
 #define TM_USART1_WORD_LENGTH				USART_WordLength_8b
 #endif
 
-//USART2 default settings
+/* USART2 default settings */
 #ifndef TM_USART2_HARDWARE_FLOW_CONTROL
 #define TM_USART2_HARDWARE_FLOW_CONTROL		USART_HardwareFlowControl_None
 #endif
@@ -229,7 +238,7 @@
 #define TM_USART2_WORD_LENGTH				USART_WordLength_8b
 #endif
 
-//USART3 default settings
+/* USART3 default settings */
 #ifndef TM_USART3_HARDWARE_FLOW_CONTROL
 #define TM_USART3_HARDWARE_FLOW_CONTROL		USART_HardwareFlowControl_None
 #endif
@@ -246,7 +255,7 @@
 #define TM_USART3_WORD_LENGTH				USART_WordLength_8b
 #endif
 
-//UART4 default settings
+/* UART4 default settings */
 #ifndef TM_UART4_HARDWARE_FLOW_CONTROL
 #define TM_UART4_HARDWARE_FLOW_CONTROL		USART_HardwareFlowControl_None
 #endif
@@ -263,7 +272,7 @@
 #define TM_UART4_WORD_LENGTH				USART_WordLength_8b
 #endif
 
-//UART5 default settings
+/* UART5 default settings */
 #ifndef TM_UART5_HARDWARE_FLOW_CONTROL
 #define TM_UART5_HARDWARE_FLOW_CONTROL		USART_HardwareFlowControl_None
 #endif
@@ -280,7 +289,7 @@
 #define TM_UART5_WORD_LENGTH				USART_WordLength_8b
 #endif
 
-//USART6 default settings
+/* USART6 default settings */
 #ifndef TM_USART6_HARDWARE_FLOW_CONTROL
 #define TM_USART6_HARDWARE_FLOW_CONTROL		USART_HardwareFlowControl_None
 #endif
@@ -297,7 +306,7 @@
 #define TM_USART6_WORD_LENGTH				USART_WordLength_8b
 #endif
 
-//UART7 default settings
+/* UART7 default settings */
 #ifndef TM_UART7_HARDWARE_FLOW_CONTROL
 #define TM_UART7_HARDWARE_FLOW_CONTROL		USART_HardwareFlowControl_None
 #endif
@@ -314,7 +323,7 @@
 #define TM_UART7_WORD_LENGTH				USART_WordLength_8b
 #endif
 
-//UART8 default settings
+/* UART8 default settings */
 #ifndef TM_UART8_HARDWARE_FLOW_CONTROL
 #define TM_UART8_HARDWARE_FLOW_CONTROL		USART_HardwareFlowControl_None
 #endif
@@ -339,7 +348,8 @@
 typedef enum {
 	TM_USART_PinsPack_1,
 	TM_USART_PinsPack_2,
-	TM_USART_PinsPack_3
+	TM_USART_PinsPack_3,
+	TM_USART_PinsPack_Custom
 } TM_USART_PinsPack_t;
 
 /**
@@ -451,6 +461,22 @@ extern uint8_t TM_USART_BufferFull(USART_TypeDef* USARTx);
 extern void TM_USART_ClearBuffer(USART_TypeDef* USARTx);
 
 /**
+ * Callback for custom pins initialization.
+ * 
+ * When you call TM_USART_Init() function, and if you pass TM_USART_PinsPack_Custom to function,
+ * then this function will be called where you can initialize custom pins for USART peripheral.
+ *
+ * Parameters:
+ *	- USART_TypeDef* USARTx:
+ *		USART for which initialization will be set
+ * 
+ * With __weak parameter to prevent link errors if not defined by user
+ *
+ * No return
+ */
+extern __weak void TM_USART_InitCustomPins(USART_TypeDef* USARTx);
+
+/**
  * These functions are used, if you want to make yourself interrupt handler.
  *
  * To enable them, you have to add corresponsing define in you defines.h file.
@@ -463,7 +489,7 @@ extern void TM_USART_ClearBuffer(USART_TypeDef* USARTx);
  *	- uint8_t c: Character, received from USART
  *
  * Returns void
- * With '__weak' parameter for prevent link errors if function is not declared
+ * With __weak parameter for prevent link errors if function is not declared
  */
 __weak void TM_USART1_ReceiveHandler(uint8_t c);
 __weak void TM_USART2_ReceiveHandler(uint8_t c);

@@ -18,52 +18,17 @@
  */
 #include "tm_stm32f4_disco.h"
 
+/* Button pressed status for onpressed/onreleased events */
 volatile uint8_t TM_INT_DISCO_ButtonPressed = 0;
 
 void TM_DISCO_LedInit(void) {
-	GPIO_InitTypeDef GPIO_InitStruct;
-	
-	/* Enable GPIO peripheral clock for leds */
-	RCC_AHB1PeriphClockCmd(TM_DISCO_LED_RCC, ENABLE);
-
-	/**
-	 * Pins set to PG13 and PG14
-	 * Output type is push-pull
-	 * Mode is output
-	 * No pull resistor
-	 * Speed 100MHz
-	 */
-	GPIO_InitStruct.GPIO_Pin = TM_DISCO_LED_PINS;
-	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_OUT;
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
-	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
-	
-	/* Initialize pins */
-	GPIO_Init(TM_DISCO_LED_PORT, &GPIO_InitStruct);
+	/* Set pins as output */
+	TM_GPIO_Init(TM_DISCO_LED_PORT, LED_ALL, TM_GPIO_Mode_OUT, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High);
 }
 
 void TM_DISCO_ButtonInit(void) {
-	GPIO_InitTypeDef GPIO_InitStruct;
-	
-	/* Enable GPIO peripheral clock for button */
-	RCC_AHB1PeriphClockCmd(TM_DISCO_BUTTON_RCC, ENABLE);
-
-	/**
-	 * Pin set to PA0
-	 * Output type is push-pull
-	 * Mode is Input
-	 * No pull resistor
-	 * Speed 100MHz
-	 */
-	GPIO_InitStruct.GPIO_Pin = TM_DISCO_BUTTON_PIN;
-	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_IN;
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
-	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
-	
-	/* Initialize pin */
-	GPIO_Init(TM_DISCO_BUTTON_PORT, &GPIO_InitStruct);
+	/* Set pin as input */
+	TM_GPIO_Init(TM_DISCO_BUTTON_PORT, TM_DISCO_BUTTON_PIN, TM_GPIO_Mode_IN, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Low);
 }
 
 uint8_t TM_DISCO_ButtonOnPressed(void) {

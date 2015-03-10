@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/05/library-12-onewire-library-for-stm43f4xx/
- *	@version 	v2.0
+ *	@version 	v2.1
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *
@@ -25,7 +25,11 @@
  * | You should have received a copy of the GNU General Public License
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
- *	
+ * 
+ * Version 2.1
+ *	- March 10, 2015
+ *	- Added support for my GPIO library 
+ *
  * Version 2.0
  * 	- January 04, 2015
  *	- New OneWire system
@@ -41,14 +45,15 @@
  * You can prevent this by use more than just one port.
  */
 #ifndef TM_ONEWIRE_H
-#define TM_ONEWIRE_H 200
+#define TM_ONEWIRE_H 210
 /**
  * Library dependencies
  * - STM32F4xx
  * - STM32F4xx RCC
  * - STM32F4xx GPIO
  * - defines.h
- * - TM_DELAY
+ * - TM DELAY
+ * - TM GPIO
  */
 /**
  * Includes
@@ -58,15 +63,16 @@
 #include "stm32f4xx_gpio.h"
 #include "defines.h"
 #include "tm_stm32f4_delay.h"
+#include "tm_stm32f4_gpio.h"
 
 /* OneWire delay */
 #define ONEWIRE_DELAY(x)				Delay(x)
 
 /* Pin settings */
-#define ONEWIRE_LOW(structure)			(structure)->GPIOx->BSRRH = (structure)->GPIO_Pin
-#define ONEWIRE_HIGH(structure)			(structure)->GPIOx->BSRRL = (structure)->GPIO_Pin;
-#define ONEWIRE_INPUT(structure)		OGIS.GPIO_Mode = GPIO_Mode_IN; OGIS.GPIO_Pin = (structure)->GPIO_Pin; GPIO_Init(structure->GPIOx, (GPIO_InitTypeDef *)&OGIS);
-#define ONEWIRE_OUTPUT(structure)		OGIS.GPIO_Mode = GPIO_Mode_OUT; OGIS.GPIO_Pin = (structure)->GPIO_Pin; GPIO_Init(structure->GPIOx, (GPIO_InitTypeDef *)&OGIS);
+#define ONEWIRE_LOW(structure)			TM_GPIO_SetPinLow((structure)->GPIOx, (structure)->GPIO_Pin)
+#define ONEWIRE_HIGH(structure)			TM_GPIO_SetPinHigh((structure)->GPIOx, (structure)->GPIO_Pin)
+#define ONEWIRE_INPUT(structure)		TM_GPIO_SetPinAsInput(structure->GPIOx, (structure)->GPIO_Pin)
+#define ONEWIRE_OUTPUT(structure)		TM_GPIO_SetPinAsOutput(structure->GPIOx, (structure)->GPIO_Pin)
 
 /* OneWire commands */
 #define ONEWIRE_CMD_RSCRATCHPAD			0xBE
@@ -115,13 +121,10 @@ typedef struct {
  *		Pointer to GPIO used for onewire
  * 	- uint16_t GPIO_Pin:
  *		GPIO Pin on specific GPIOx to be used for onewire
- * 	- uint32_t gpio_clock:
- *		Bits for enabling GPIO clock.
- *		Example: RCC_AHB1Periph_GPIOx where X is between A and K
  * 
  * No return
  */
-extern void TM_OneWire_Init(TM_OneWire_t* OneWireStruct, GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, uint32_t gpio_clock);
+extern void TM_OneWire_Init(TM_OneWire_t* OneWireStruct, GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
 
 /**
  * Reset OneWire bus

@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2015/03/library-53-gpio-for-stm32f4
- *	@version 	v1.1
+ *	@version 	v1.2
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -25,13 +25,17 @@
  * | You should have received a copy of the GNU General Public License
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
- *
+ * 
+ * Version 1.2
+ *	- March 10, 2015
+ *	- Added functions TM_GPIO_SetPinAsInput and TM_GPIO_SetPinAsOutput
+ * 
  * Version 1.1
  *	- March 09, 2015
  *	- Added function to deinit pin. Pin is set to analog input which allows lowest current consumption
  */
 #ifndef TM_GPIO_H
-#define TM_GPIO_H 110
+#define TM_GPIO_H 120
 
 /* C++ detection */
 #ifdef __cplusplus
@@ -142,7 +146,7 @@ typedef enum {
  * 
  * No return
  */
-void TM_GPIO_Init(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_GPIO_Mode_t GPIO_Mode, TM_GPIO_OType_t GPIO_OType, TM_GPIO_PuPd_t GPIO_PuPd, TM_GPIO_Speed_t GPIO_Speed);
+extern void TM_GPIO_Init(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_GPIO_Mode_t GPIO_Mode, TM_GPIO_OType_t GPIO_OType, TM_GPIO_PuPd_t GPIO_PuPd, TM_GPIO_Speed_t GPIO_Speed);
 
 /**
  * Initialize GPIO pin(s) as alternate function to use with peripherals
@@ -163,7 +167,7 @@ void TM_GPIO_Init(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_GPIO_Mode_t GPIO_Mo
  * 	- uint8_t Alternate:
  * 		Alternate function you will use
  */
-void TM_GPIO_InitAlternate(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_GPIO_OType_t GPIO_OType, TM_GPIO_PuPd_t GPIO_PuPd, TM_GPIO_Speed_t GPIO_Speed, uint8_t Alternate);
+extern void TM_GPIO_InitAlternate(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_GPIO_OType_t GPIO_OType, TM_GPIO_PuPd_t GPIO_PuPd, TM_GPIO_Speed_t GPIO_Speed, uint8_t Alternate);
 
 /**
  * Deinitialize GPIO pin(s)
@@ -178,7 +182,37 @@ void TM_GPIO_InitAlternate(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_GPIO_OType
  * 
  * No return
  */
-void TM_GPIO_DeInit(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
+extern void TM_GPIO_DeInit(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
+
+/**
+ * Set pin(s) as input
+ * 
+ * This function will set pin(s) to input. Pins HAVE to be initialized first with TM_GPIO_Init() or TM_GPIO_InitAlternate()
+ * 
+ * Parameters:
+ * 	- GPIO_TypeDef* GPIOx:
+ * 		GPIO port you want operate with
+ * 	- uint16_t GPIO_Pin:
+ * 		Select GPIO pin. You can select more pins with | (OR) operator to set them as input
+ * 
+ * No return
+ */
+extern void TM_GPIO_SetPinAsInput(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
+
+/**
+ * Set pin(s) as output
+ * 
+ * This function will set pin(s) to output. Pins HAVE to be initialized first with TM_GPIO_Init() or TM_GPIO_InitAlternate()
+ * 
+ * Parameters:
+ * 	- GPIO_TypeDef* GPIOx:
+ * 		GPIO port you want operate with
+ * 	- uint16_t GPIO_Pin:
+ * 		Select GPIO pin. You can select more pins with | (OR) operator to set them as output
+ * 
+ * No return
+ */
+extern void TM_GPIO_SetPinAsOutput(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
 
 /**
  * Set pin low
@@ -264,7 +298,7 @@ void TM_GPIO_DeInit(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
  *  	
  * Defined as macro for faster execution
  */
-#define TM_GPIO_GetInputPinValue(GPIOx, GPIO_Pin)	(((GPIOx)->IDR & (GPIO_Pin)) == 0 ? Bit_RESET : Bit_SET)
+#define TM_GPIO_GetInputPinValue(GPIOx, GPIO_Pin)	(((GPIOx)->IDR & (GPIO_Pin)) == 0 ? 0 : 1)
 
 /**
  * Get output data bit
@@ -281,7 +315,7 @@ void TM_GPIO_DeInit(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
  *  	
  * Defined as macro for faster execution
  */
-#define TM_GPIO_GetOutputPinValue(GPIOx, GPIO_Pin)	(((GPIOx)->ODR & (GPIO_Pin)) == 0 ? Bit_RESET : Bit_SET)
+#define TM_GPIO_GetOutputPinValue(GPIOx, GPIO_Pin)	(((GPIOx)->ODR & (GPIO_Pin)) == 0 ? 0 : 1)
 
 /**
  * Get input data

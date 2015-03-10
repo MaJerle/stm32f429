@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/05/library-14-working-with-sdram-on-stm32f429-discovery/
- *	@version 	v1.1
+ *	@version 	v1.2
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -26,30 +26,33 @@
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
  *
+ * Version 1.2
+ *	- March 10 2015
+ *	- Added support for my new GPIO library
+ *
  * Version 1.1
  *	- November 23, 2014
  *	- Instead of calling functions to read/write data to RAM, functions are now defined as macros
  *	- Much faster execution because we don't need to call functions and put data on stack.
  */
 #ifndef TM_SDRAM_H
-#define TM_SDRAM_H 110
+#define TM_SDRAM_H 120
 /**
  * Library dependencies
  * - STM32F4xx
  * - STM32F4xx RCC
- * - STM32F4xx GPIO
  * - STM32F4xx FMC
  * - defines.h
+ * - TM GPIO
  */
 /**
  * Includes
  */
 #include "stm32f4xx.h"
 #include "stm32f4xx_rcc.h"
-#include "stm32f4xx_gpio.h"
 #include "stm32f4xx_fmc.h"
 #include "defines.h"
-
+#include "tm_stm32f4_gpio.h"
 
 /* SDRAM start address = FMC peripheral start address */
 #define SDRAM_START_ADR			(uint32_t)0xD0000000

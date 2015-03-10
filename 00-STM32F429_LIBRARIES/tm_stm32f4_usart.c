@@ -18,9 +18,7 @@
  */
 #include "tm_stm32f4_usart.h"
 
-/**
- * Internal USART struct
- */
+/* Internal USART struct */
 typedef struct {
 	uint8_t *Buffer;
 	uint16_t Size;
@@ -81,6 +79,7 @@ TM_USART_t TM_UART7 = {TM_UART7_Buffer, TM_UART7_BUFFER_SIZE, 0, 0, 0, 0};
 TM_USART_t TM_UART8 = {TM_UART8_Buffer, TM_UART8_BUFFER_SIZE, 0, 0, 0, 0};
 #endif
 
+/* Private functions */
 void TM_USART1_InitPins(TM_USART_PinsPack_t pinspack);
 void TM_USART2_InitPins(TM_USART_PinsPack_t pinspack);
 void TM_USART3_InitPins(TM_USART_PinsPack_t pinspack);
@@ -124,6 +123,9 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 	 */
 #ifdef TM_USE_USART1
 	if (USARTx == USART1) {
+		/* Enable USART clock */
+		RCC->APB2ENR |= RCC_APB2ENR_USART1EN;
+
 		TM_USART1_InitPins(pinspack);
 		NVIC_InitStruct.NVIC_IRQChannel = USART1_IRQn;
 		
@@ -136,6 +138,9 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 #endif
 #ifdef TM_USE_USART2
 	if (USARTx == USART2) {
+		/* Enable USART clock */
+		RCC->APB1ENR |= RCC_APB1ENR_USART2EN;
+
 		TM_USART2_InitPins(pinspack);
 		NVIC_InitStruct.NVIC_IRQChannel = USART2_IRQn;
 		
@@ -148,6 +153,10 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 #endif
 #ifdef TM_USE_USART3
 	if (USARTx == USART3) {
+		/* Enable USART clock */
+		RCC->APB1ENR |= RCC_APB1ENR_USART3EN;
+		
+		/* Init pins */
 		TM_USART3_InitPins(pinspack);
 		NVIC_InitStruct.NVIC_IRQChannel = USART3_IRQn;
 		
@@ -160,6 +169,10 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 #endif
 #ifdef TM_USE_UART4
 	if (USARTx == UART4) {
+		/* Enable UART clock */
+		RCC->APB1ENR |= RCC_APB1ENR_UART4EN;
+		
+		/* Init pins */
 		TM_UART4_InitPins(pinspack);
 		NVIC_InitStruct.NVIC_IRQChannel = UART4_IRQn;
 		
@@ -172,6 +185,10 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 #endif
 #ifdef TM_USE_UART5
 	if (USARTx == UART5) {
+		/* Enable UART clock */
+		RCC->APB1ENR |= RCC_APB1ENR_UART5EN;
+
+		/* Init pins */
 		TM_UART5_InitPins(pinspack);
 		NVIC_InitStruct.NVIC_IRQChannel = UART5_IRQn;
 		
@@ -184,6 +201,10 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 #endif
 #ifdef TM_USE_USART6
 	if (USARTx == USART6) {
+		/* Enable UART clock */
+		RCC->APB2ENR |= RCC_APB2ENR_USART6EN;
+		
+		/* Init pins */
 		TM_USART6_InitPins(pinspack);
 		NVIC_InitStruct.NVIC_IRQChannel = USART6_IRQn;
 		
@@ -196,6 +217,10 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 #endif
 #ifdef TM_USE_UART7
 	if (USARTx == UART7) {
+		/* Enable UART clock */
+		RCC->APB1ENR |= RCC_APB1ENR_UART7EN;
+		
+		/* Init pins */
 		TM_UART7_InitPins(pinspack);
 		NVIC_InitStruct.NVIC_IRQChannel = UART7_IRQn;
 		
@@ -208,6 +233,10 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 #endif
 #ifdef TM_USE_UART8
 	if (USARTx == UART8) {
+		/* Enable UART clock */
+		RCC->APB1ENR |= RCC_APB1ENR_UART8EN;
+
+		/* Init pins */
 		TM_UART8_InitPins(pinspack);
 		NVIC_InitStruct.NVIC_IRQChannel = UART8_IRQn;
 		
@@ -224,7 +253,7 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 	
 	/* Disable */
 	USART_Cmd(USARTx, DISABLE);
-	/* Deinit first */
+	/* Deinit */
 	USART_DeInit(USARTx);
 	
 	/* Init */
@@ -472,37 +501,34 @@ uint8_t TM_USART_INT_GetSubPriority(USART_TypeDef* USARTx) {
 
 #ifdef TM_USE_USART1
 void TM_USART1_InitPins(TM_USART_PinsPack_t pinspack) {	
-	/* Enable clock for USART1 */
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, ENABLE);
-
 	/* Init pins */
 	if (pinspack == TM_USART_PinsPack_1) {
 		TM_GPIO_InitAlternate(GPIOA, GPIO_Pin_9 | GPIO_Pin_10, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_USART1);
 	} else if (pinspack == TM_USART_PinsPack_2) {
 		TM_GPIO_InitAlternate(GPIOB, GPIO_Pin_6 | GPIO_Pin_7, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_USART1);
+	} else if (pinspack == TM_USART_PinsPack_Custom) {
+		/* Init custom pins, callback used */
+		TM_USART_InitCustomPins(USART1);
 	}
 }
 #endif
 
 #ifdef TM_USE_USART2
 void TM_USART2_InitPins(TM_USART_PinsPack_t pinspack) {
-	/* Enable clock for USART2 */
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART2, ENABLE);
-
 	/* Init pins */
 	if (pinspack == TM_USART_PinsPack_1) {
 		TM_GPIO_InitAlternate(GPIOA, GPIO_Pin_2 | GPIO_Pin_3, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_USART2);
 	} else if (pinspack == TM_USART_PinsPack_2) {
 		TM_GPIO_InitAlternate(GPIOD, GPIO_Pin_5 | GPIO_Pin_6, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_USART2);
+	} else if (pinspack == TM_USART_PinsPack_Custom) {
+		/* Init custom pins, callback used */
+		TM_USART_InitCustomPins(USART2);
 	}
 }
 #endif
 
 #ifdef TM_USE_USART3
 void TM_USART3_InitPins(TM_USART_PinsPack_t pinspack) {
-	/* Enable clock for USART3 */
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART3, ENABLE);
-
 	/* Init pins */
 	if (pinspack == TM_USART_PinsPack_1) {
 		TM_GPIO_InitAlternate(GPIOB, GPIO_Pin_10 | GPIO_Pin_11, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_USART3);
@@ -510,86 +536,89 @@ void TM_USART3_InitPins(TM_USART_PinsPack_t pinspack) {
 		TM_GPIO_InitAlternate(GPIOC, GPIO_Pin_10 | GPIO_Pin_11, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_USART3);
 	} else if (pinspack == TM_USART_PinsPack_3) {
 		TM_GPIO_InitAlternate(GPIOD, GPIO_Pin_8 | GPIO_Pin_9, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_USART3);
+	} else if (pinspack == TM_USART_PinsPack_Custom) {
+		/* Init custom pins, callback used */
+		TM_USART_InitCustomPins(USART3);
 	}
 }
 #endif
 
 #ifdef TM_USE_UART4
 void TM_UART4_InitPins(TM_USART_PinsPack_t pinspack) {
-	/* Enable clock for UART4 */
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_UART4, ENABLE);
-
 	/* Init pins */
 	if (pinspack == TM_USART_PinsPack_1) {
 		TM_GPIO_InitAlternate(GPIOA, GPIO_Pin_0 | GPIO_Pin_1, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_UART4);
 	} else if (pinspack == TM_USART_PinsPack_2) {
 		TM_GPIO_InitAlternate(GPIOC, GPIO_Pin_10 | GPIO_Pin_11, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_UART4);
+	} else if (pinspack == TM_USART_PinsPack_Custom) {
+		/* Init custom pins, callback used */
+		TM_USART_InitCustomPins(UART4);
 	}
 }
 #endif
 
 #ifdef TM_USE_UART5
 void TM_UART5_InitPins(TM_USART_PinsPack_t pinspack) {
-	/* Enable clock for UART5 */
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_UART5, ENABLE);
-
 	/* Init pins */
 	if (pinspack == TM_USART_PinsPack_1) {
 		TM_GPIO_InitAlternate(GPIOC, GPIO_Pin_12, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_UART5);
 		TM_GPIO_InitAlternate(GPIOD, GPIO_Pin_2, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_UART5);
+	} else if (pinspack == TM_USART_PinsPack_Custom) {
+		/* Init custom pins, callback used */
+		TM_USART_InitCustomPins(UART5);
 	}
 }
 #endif
 
 #ifdef TM_USE_USART6
 void TM_USART6_InitPins(TM_USART_PinsPack_t pinspack) {
-	/* Enable clock for USART6 */
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART6, ENABLE);
-
 	/* Init pins */
 	if (pinspack == TM_USART_PinsPack_1) {
 		TM_GPIO_InitAlternate(GPIOC, GPIO_Pin_6 | GPIO_Pin_7, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_USART6);
 	} else if (pinspack == TM_USART_PinsPack_2) {
 		TM_GPIO_InitAlternate(GPIOG, GPIO_Pin_14 | GPIO_Pin_9, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_USART6);
+	} else if (pinspack == TM_USART_PinsPack_Custom) {
+		/* Init custom pins, callback used */
+		TM_USART_InitCustomPins(USART6);
 	}
 }
 #endif
 
 #ifdef TM_USE_UART7
 void TM_UART7_InitPins(TM_USART_PinsPack_t pinspack) {
-	/* Enable clock for UART7 */
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_UART7, ENABLE);
-
 	/* Init pins */
 	if (pinspack == TM_USART_PinsPack_1) {
 		TM_GPIO_InitAlternate(GPIOE, GPIO_Pin_8 | GPIO_Pin_7, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_UART7);
 	} else if (pinspack == TM_USART_PinsPack_2) {
 		TM_GPIO_InitAlternate(GPIOF, GPIO_Pin_7 | GPIO_Pin_6, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_UART7);
+	} else if (pinspack == TM_USART_PinsPack_Custom) {
+		/* Init custom pins, callback used */
+		TM_USART_InitCustomPins(UART8);
 	}
 }
 #endif
 
 #ifdef TM_USE_UART8
 void TM_UART8_InitPins(TM_USART_PinsPack_t pinspack) {
-	/* Enable clock */
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_UART8, ENABLE);
-
 	/* Init pins */
 	if (pinspack == TM_USART_PinsPack_1) {
 		TM_GPIO_InitAlternate(GPIOE, GPIO_Pin_1 | GPIO_Pin_0, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_UART8);
+	} else if (pinspack == TM_USART_PinsPack_Custom) {
+		/* Init custom pins, callback used */
+		TM_USART_InitCustomPins(UART8);
 	}
 }
 #endif
 
 #ifdef TM_USE_USART1
 void USART1_IRQHandler(void) {
-	//Check if interrupt was because data is received
-	if (USART_GetITStatus(USART1, USART_IT_RXNE)) {
+	/* Check if interrupt was because data is received */
+	if (USART1->SR & USART_SR_RXNE) {
 		#ifdef TM_USART1_USE_CUSTOM_IRQ
-			//Call user function
+			/* Call user function */
 			TM_USART1_ReceiveHandler(USART1->DR);
 		#else
-			//Put received data into internal buffer
+			/* Put received data into internal buffer */
 			TM_USART_INT_InsertToBuffer(&TM_USART1, USART1->DR);
 		#endif
 	}
@@ -598,13 +627,13 @@ void USART1_IRQHandler(void) {
 
 #ifdef TM_USE_USART2
 void USART2_IRQHandler(void) {
-	//Check if interrupt was because data is received
-	if (USART_GetITStatus(USART2, USART_IT_RXNE)) {
+	/* Check if interrupt was because data is received */
+	if (USART2->SR & USART_SR_RXNE) {
 		#ifdef TM_USART2_USE_CUSTOM_IRQ
-			//Call user function
+			/* Call user function */
 			TM_USART2_ReceiveHandler(USART2->DR);
 		#else 
-			//Put received data into internal buffer
+			/* Put received data into internal buffer */
 			TM_USART_INT_InsertToBuffer(&TM_USART2, USART2->DR);
 		#endif
 	}
@@ -613,13 +642,13 @@ void USART2_IRQHandler(void) {
 
 #ifdef TM_USE_USART3
 void USART3_IRQHandler(void) {
-	//Check if interrupt was because data is received
-	if (USART_GetITStatus(USART3, USART_IT_RXNE)) {
+	/* Check if interrupt was because data is received */
+	if (USART3->SR & USART_SR_RXNE) {
 		#ifdef TM_USART3_USE_CUSTOM_IRQ
-			//Call user function
+			/* Call user function */
 			TM_USART3_ReceiveHandler(USART3->DR);
 		#else
-			//Put received data into internal buffer
+			/* Put received data into internal buffer */
 			TM_USART_INT_InsertToBuffer(&TM_USART3, USART3->DR);
 		#endif
 	}
@@ -628,13 +657,13 @@ void USART3_IRQHandler(void) {
 
 #ifdef TM_USE_UART4
 void UART4_IRQHandler(void) {
-	//Check if interrupt was because data is received
-	if (USART_GetITStatus(UART4, USART_IT_RXNE)) {
+	/* Check if interrupt was because data is received */
+	if (UART4->SR & USART_SR_RXNE) {
 		#ifdef TM_UART4_USE_CUSTOM_IRQ
-			//Call user function
+			/* Call user function */
 			TM_UART4_ReceiveHandler(UART4->DR);
 		#else
-			//Put received data into internal buffer
+			/* Put received data into internal buffer */
 			TM_USART_INT_InsertToBuffer(&TM_UART4, UART4->DR);
 		#endif
 	}
@@ -643,13 +672,13 @@ void UART4_IRQHandler(void) {
 
 #ifdef TM_USE_UART5
 void UART5_IRQHandler(void) {
-	//Check if interrupt was because data is received
-	if (USART_GetITStatus(UART5, USART_IT_RXNE)) {
+	/* Check if interrupt was because data is received */
+	if (UART5->SR & USART_SR_RXNE) {
 		#ifdef TM_UART5_USE_CUSTOM_IRQ
-			//Call user function
+			/* Call user function */
 			TM_UART5_ReceiveHandler(UART5->DR);
 		#else
-			//Put received data into internal buffer
+			/* Put received data into internal buffer */
 			TM_USART_INT_InsertToBuffer(&TM_UART5, UART5->DR);
 		#endif
 	}
@@ -658,13 +687,13 @@ void UART5_IRQHandler(void) {
 
 #ifdef TM_USE_USART6
 void USART6_IRQHandler(void) {
-	//Check if interrupt was because data is received
-	if (USART_GetITStatus(USART6, USART_IT_RXNE)) {
+	/* Check if interrupt was because data is received */
+	if (USART6->SR & USART_SR_RXNE) {
 		#ifdef TM_USART6_USE_CUSTOM_IRQ
-			//Call user function
+			/* Call user function */
 			TM_USART6_ReceiveHandler(USART6->DR);
 		#else
-			//Put received data into internal buffer
+			/* Put received data into internal buffer */
 			TM_USART_INT_InsertToBuffer(&TM_USART6, USART6->DR);
 		#endif
 	}
@@ -673,13 +702,13 @@ void USART6_IRQHandler(void) {
 
 #ifdef TM_USE_UART7
 void UART7_IRQHandler(void) {
-	//Check if interrupt was because data is received
-	if (USART_GetITStatus(UART7, USART_IT_RXNE)) {
+	/* Check if interrupt was because data is received */
+	if (UART7->SR & USART_SR_RXNE) {
 		#ifdef TM_UART7_USE_CUSTOM_IRQ
-			//Call user function
+			/* Call user function */
 			TM_UART7_ReceiveHandler(UART7->DR);
 		#else
-			//Put received data into internal buffer
+			/* Put received data into internal buffer */
 			TM_USART_INT_InsertToBuffer(&TM_UART7, UART7->DR);
 		#endif
 	}
@@ -688,13 +717,13 @@ void UART7_IRQHandler(void) {
 
 #ifdef TM_USE_UART8
 void UART8_IRQHandler(void) {
-	//Check if interrupt was because data is received
-	if (USART_GetITStatus(UART8, USART_IT_RXNE)) {
+	/* Check if interrupt was because data is received */
+	if (UART8->SR & USART_SR_RXNE) {
 		#ifdef TM_UART8_USE_CUSTOM_IRQ
-			//Call user function
+			/* Call user function */
 			TM_UART8_ReceiveHandler(UART8->DR);
 		#else
-			//Put received data into internal buffer
+			/* Put received data into internal buffer */
 			TM_USART_INT_InsertToBuffer(&TM_UART8, UART8->DR);
 		#endif
 	}

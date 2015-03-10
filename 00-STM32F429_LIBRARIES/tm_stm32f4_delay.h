@@ -127,7 +127,7 @@ extern __IO uint32_t mult;
  * 	- uint32_t micros:
  *		Time in microseconds for delay
  */
-__STATIC_INLINE void Delay(uint32_t micros) {
+static __INLINE void Delay(uint32_t micros) {
 #if defined(TM_DELAY_TIM)
 	volatile uint32_t timer = TM_DELAY_TIM->CNT;
 
@@ -170,7 +170,7 @@ __STATIC_INLINE void Delay(uint32_t micros) {
  * 	- uint32_t millis:
  *		Time in milliseconds for delay
  */
-__STATIC_INLINE void Delayms(uint32_t millis) {
+static __INLINE void Delayms(uint32_t millis) {
 	volatile uint32_t timer = TM_Time;
 
 	/* Wait for timer to count milliseconds */
