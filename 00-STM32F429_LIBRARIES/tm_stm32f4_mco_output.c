@@ -19,37 +19,13 @@
 #include "tm_stm32f4_mco_output.h"
 
 void TM_MCOOUTPUT_InitMCO1(void) {
-	GPIO_InitTypeDef GPIO_InitStruct;
-	
-	/* Enable clock for GPIOA */
-	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
-	
-	/* PA8 */
-	GPIO_InitStruct.GPIO_Pin = GPIO_Pin_8;
-	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
-	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
-
-	/* Initialize GPIOA */
-	GPIO_Init(GPIOA, &GPIO_InitStruct);
+	/* Enable PA8 */
+	TM_GPIO_Init(GPIOA, GPIO_PIN_8, TM_GPIO_Mode_AF, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High);
 }
 
 void TM_MCOOUTPUT_InitMCO2(void) {
-	GPIO_InitTypeDef GPIO_InitStruct;
-	
-	/* Enable clock for GPIOC */
-	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);
-	
-	/* PC9 */
-	GPIO_InitStruct.GPIO_Pin = GPIO_Pin_9;
-	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
-	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
-
-	/* Initialize GPIOC */
-	GPIO_Init(GPIOC, &GPIO_InitStruct);
+	/* Enable PC9 */
+	TM_GPIO_Init(GPIOC, GPIO_PIN_9, TM_GPIO_Mode_AF, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High);
 }
 
 void TM_MCOOUTPUT_SetOutput1(TM_MCOOUTPUT1_Source_t Source, TM_MCOOUTPUT_Prescaler_t Prescaler) {

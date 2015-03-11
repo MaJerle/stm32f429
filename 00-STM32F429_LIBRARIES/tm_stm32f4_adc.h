@@ -102,6 +102,29 @@
 #define ADC_VBAT_MULTI			4
 #endif
 
+/* Channel you want to use */
+typedef enum {
+	TM_ADC_Channel_0,
+	TM_ADC_Channel_1,
+	TM_ADC_Channel_2,
+	TM_ADC_Channel_3,
+	TM_ADC_Channel_4,
+	TM_ADC_Channel_5,
+	TM_ADC_Channel_6,
+	TM_ADC_Channel_7,
+	TM_ADC_Channel_8,
+	TM_ADC_Channel_9,
+	TM_ADC_Channel_10,
+	TM_ADC_Channel_11,
+	TM_ADC_Channel_12,
+	TM_ADC_Channel_13,
+	TM_ADC_Channel_14,
+	TM_ADC_Channel_15,
+	TM_ADC_Channel_16,
+	TM_ADC_Channel_18,
+	TM_ADC_Channel_19
+} TM_ADC_Channel_t;
+
 /**
  * Initialize ADCx peripheral
  *

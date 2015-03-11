@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/09/library-32-matrix-keypad-on-stm32f4xx
- *	@version 	v1.0
+ *	@version 	v1.1
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -25,6 +25,10 @@
  * | You should have received a copy of the GNU General Public License
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
+ *
+ * Version 1.1
+ *	- March 11, 2015
+ *	- Added support for my new GPIO library
  *
  * Library supports 2 versions of keyboards:
  * 	- Large
@@ -48,14 +52,12 @@
  * You can change pinout. Open defines.h file and change lines below:
  *
  * 	//Change rows pinout. Change X from 1 to 4, according to ROW you want to change
- *	#define KEYPAD_ROW_X_RCC			RCC_AHB1Periph_GPIOC
  *	#define KEYPAD_ROW_X_PORT			GPIOC
- *	#define KEYPAD_ROW_X_PIN			GPIO_Pin_0
+ *	#define KEYPAD_ROW_X_PIN			GPIO_PIN_0
  *
  *	//Change columns pinout. Change X from 1 to 4, according to COLUMN you want to change
- *	#define KEYPAD_COLUMN_X_RCC			RCC_AHB1Periph_GPIOD
  *	#define KEYPAD_COLUMN_X_PORT		GPIOD
- *	#define KEYPAD_COLUMN_X_PIN			GPIO_Pin_0
+ *	#define KEYPAD_COLUMN_X_PIN			GPIO_PIN_0
  *
  * You can set this for all 4 columns and all 4 rows
  *
@@ -86,21 +88,19 @@
  *	#define KEYPAD_FIRST_HOLD_MULTIPLIER 6
  */
 #ifndef TM_KEYPAD_H
-#define TM_KEYPAD_H 100
+#define TM_KEYPAD_H 110
 /**
  * Library dependencies
  * - STM32F4xx
- * - STM32F4xx RCC
- * - STM32F4xx GPIO
  * - defines.h
+ * - TM GPIO
  */
 /**
  * Includes
  */
 #include "stm32f4xx.h"
-#include "stm32f4xx_rcc.h"
-#include "stm32f4xx_gpio.h"
 #include "defines.h"
+#include "tm_stm32f4_gpio.h"
 
 /* Debounce counter */
 #ifndef KEYPAD_DEBOUNCE
@@ -145,70 +145,62 @@
 /* Rows */
 /* Row 1 default */
 #ifndef KEYPAD_ROW_1_PIN
-#define KEYPAD_ROW_1_RCC			RCC_AHB1Periph_GPIOC
 #define KEYPAD_ROW_1_PORT			GPIOC
-#define KEYPAD_ROW_1_PIN			GPIO_Pin_1
+#define KEYPAD_ROW_1_PIN			GPIO_PIN_1
 #endif
 /* Row 2 default */
 #ifndef KEYPAD_ROW_2_PIN
-#define KEYPAD_ROW_2_RCC			RCC_AHB1Periph_GPIOC
 #define KEYPAD_ROW_2_PORT			GPIOC
-#define KEYPAD_ROW_2_PIN			GPIO_Pin_2
+#define KEYPAD_ROW_2_PIN			GPIO_PIN_2
 #endif
 /* Row 3 default */
 #ifndef KEYPAD_ROW_3_PIN
-#define KEYPAD_ROW_3_RCC			RCC_AHB1Periph_GPIOC
 #define KEYPAD_ROW_3_PORT			GPIOC
-#define KEYPAD_ROW_3_PIN			GPIO_Pin_3
+#define KEYPAD_ROW_3_PIN			GPIO_PIN_3
 #endif
 /* Row 4 default */
 #ifndef KEYPAD_ROW_4_PIN
-#define KEYPAD_ROW_4_RCC			RCC_AHB1Periph_GPIOC
 #define KEYPAD_ROW_4_PORT			GPIOC
-#define KEYPAD_ROW_4_PIN			GPIO_Pin_5
+#define KEYPAD_ROW_4_PIN			GPIO_PIN_5
 #endif
 
 /* Columns */
 /* Column 1 default */
 #ifndef KEYPAD_COLUMN_1_PIN
-#define KEYPAD_COLUMN_1_RCC			RCC_AHB1Periph_GPIOD
 #define KEYPAD_COLUMN_1_PORT		GPIOD
-#define KEYPAD_COLUMN_1_PIN			GPIO_Pin_0
+#define KEYPAD_COLUMN_1_PIN			GPIO_PIN_0
 #endif
 /* Column 2 default */
 #ifndef KEYPAD_COLUMN_2_PIN
-#define KEYPAD_COLUMN_2_RCC			RCC_AHB1Periph_GPIOD
 #define KEYPAD_COLUMN_2_PORT		GPIOD
-#define KEYPAD_COLUMN_2_PIN			GPIO_Pin_1
+#define KEYPAD_COLUMN_2_PIN			GPIO_PIN_1
 #endif
 /* Column 3 default */
 #ifndef KEYPAD_COLUMN_3_PIN
-#define KEYPAD_COLUMN_3_RCC			RCC_AHB1Periph_GPIOD
 #define KEYPAD_COLUMN_3_PORT		GPIOD
-#define KEYPAD_COLUMN_3_PIN			GPIO_Pin_2
+#define KEYPAD_COLUMN_3_PIN			GPIO_PIN_2
 #endif
 /* Column 4 default */
 #ifndef KEYPAD_COLUMN_4_PIN
-#define KEYPAD_COLUMN_4_RCC			RCC_AHB1Periph_GPIOD
 #define KEYPAD_COLUMN_4_PORT		GPIOD
-#define KEYPAD_COLUMN_4_PIN			GPIO_Pin_3
+#define KEYPAD_COLUMN_4_PIN			GPIO_PIN_3
 #endif
 
 /* Pins configuration, columns are outputs */
-#define KEYPAD_COLUMN_1_HIGH		KEYPAD_COLUMN_1_PORT->BSRRL = KEYPAD_COLUMN_1_PIN
-#define KEYPAD_COLUMN_1_LOW			KEYPAD_COLUMN_1_PORT->BSRRH = KEYPAD_COLUMN_1_PIN
-#define KEYPAD_COLUMN_2_HIGH		KEYPAD_COLUMN_2_PORT->BSRRL = KEYPAD_COLUMN_2_PIN
-#define KEYPAD_COLUMN_2_LOW			KEYPAD_COLUMN_2_PORT->BSRRH = KEYPAD_COLUMN_2_PIN
-#define KEYPAD_COLUMN_3_HIGH		KEYPAD_COLUMN_3_PORT->BSRRL = KEYPAD_COLUMN_3_PIN
-#define KEYPAD_COLUMN_3_LOW			KEYPAD_COLUMN_3_PORT->BSRRH = KEYPAD_COLUMN_3_PIN
-#define KEYPAD_COLUMN_4_HIGH		KEYPAD_COLUMN_4_PORT->BSRRL = KEYPAD_COLUMN_4_PIN
-#define KEYPAD_COLUMN_4_LOW			KEYPAD_COLUMN_4_PORT->BSRRH = KEYPAD_COLUMN_4_PIN
+#define KEYPAD_COLUMN_1_HIGH		TM_GPIO_SetPinHigh(KEYPAD_COLUMN_1_PORT, KEYPAD_COLUMN_1_PIN)
+#define KEYPAD_COLUMN_1_LOW			TM_GPIO_SetPinLow(KEYPAD_COLUMN_1_PORT, KEYPAD_COLUMN_1_PIN)
+#define KEYPAD_COLUMN_2_HIGH		TM_GPIO_SetPinHigh(KEYPAD_COLUMN_2_PORT, KEYPAD_COLUMN_2_PIN)
+#define KEYPAD_COLUMN_2_LOW			TM_GPIO_SetPinLow(KEYPAD_COLUMN_2_PORT, KEYPAD_COLUMN_2_PIN)
+#define KEYPAD_COLUMN_3_HIGH		TM_GPIO_SetPinHigh(KEYPAD_COLUMN_3_PORT, KEYPAD_COLUMN_3_PIN)
+#define KEYPAD_COLUMN_3_LOW			TM_GPIO_SetPinLow(KEYPAD_COLUMN_3_PORT, KEYPAD_COLUMN_3_PIN)
+#define KEYPAD_COLUMN_4_HIGH		TM_GPIO_SetPinHigh(KEYPAD_COLUMN_4_PORT, KEYPAD_COLUMN_4_PIN)
+#define KEYPAD_COLUMN_4_LOW			TM_GPIO_SetPinLow(KEYPAD_COLUMN_4_PORT, KEYPAD_COLUMN_4_PIN)
 
 /* Read input pins */
-#define KEYPAD_ROW_1_CHECK			(GPIO_ReadInputDataBit(KEYPAD_ROW_1_PORT, KEYPAD_ROW_1_PIN) == Bit_RESET)
-#define KEYPAD_ROW_2_CHECK			(GPIO_ReadInputDataBit(KEYPAD_ROW_2_PORT, KEYPAD_ROW_2_PIN) == Bit_RESET)
-#define KEYPAD_ROW_3_CHECK			(GPIO_ReadInputDataBit(KEYPAD_ROW_3_PORT, KEYPAD_ROW_3_PIN) == Bit_RESET)
-#define KEYPAD_ROW_4_CHECK			(GPIO_ReadInputDataBit(KEYPAD_ROW_4_PORT, KEYPAD_ROW_4_PIN) == Bit_RESET)
+#define KEYPAD_ROW_1_CHECK			(!TM_GPIO_GetInputPinValue(KEYPAD_ROW_1_PORT, KEYPAD_ROW_1_PIN))
+#define KEYPAD_ROW_2_CHECK			(!TM_GPIO_GetInputPinValue(KEYPAD_ROW_2_PORT, KEYPAD_ROW_2_PIN))
+#define KEYPAD_ROW_3_CHECK			(!TM_GPIO_GetInputPinValue(KEYPAD_ROW_3_PORT, KEYPAD_ROW_3_PIN))
+#define KEYPAD_ROW_4_CHECK			(!TM_GPIO_GetInputPinValue(KEYPAD_ROW_4_PORT, KEYPAD_ROW_4_PIN))
 
 /* Keypad no pressed */
 #define KEYPAD_NO_PRESSED			(uint8_t)0xFF

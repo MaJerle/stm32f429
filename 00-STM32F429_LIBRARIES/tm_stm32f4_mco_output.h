@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/10/library-40-output-clocks-stm32f4/
- *	@version 	v1.0
+ *	@version 	v1.1
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -26,6 +26,10 @@
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
  *
+ * Version 1.1
+ *	- March 11, 2015
+ *	- Support for my new GPIO library
+ *
  * This library allows you to output different frequencies.
  * They are split into 2 different output sections
  *
@@ -44,7 +48,7 @@
  * 	- PLLCLK: Output from PLL
  */
 #ifndef TM_MCOOUTPUT_H
-#define TM_MCOOUTPUT_H 100
+#define TM_MCOOUTPUT_H 110
 
 /* C++ detection */
 #ifdef __cplusplus
@@ -55,16 +59,16 @@ extern C {
  * Library dependencies
  * - STM32F4xx
  * - STM32F4xx RCC
- * - STM32F4xx GPIO
  * - defines.h
+ * - TM GPIO
  */
 /**
  * Includes
  */
 #include "stm32f4xx.h"
 #include "stm32f4xx_rcc.h"
-#include "stm32f4xx_gpio.h"	
 #include "defines.h"
+#include "tm_stm32f4_gpio.h"
 
 /**
  * Prescaler value for output clock

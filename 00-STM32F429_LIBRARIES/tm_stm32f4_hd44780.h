@@ -6,7 +6,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/06/library-16-interfacing-hd44780-lcd-controller-with-stm32f4/
- *	@version 	v1.1
+ *	@version 	v1.2
  *	@license	GNU GPL v3
  *	
  * |----------------------------------------------------------------------
@@ -26,6 +26,10 @@
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
  *	
+ * Version 1.2
+ *	- March 11, 2015
+ *	- Added support for my new GPIO library
+ *
  * Version 1.1
  *	- November 08, 2014
  *	- D6 and D7 default pins changed from PC14,15 to PB12,13, because RTC crystal is on PC14,15
@@ -55,32 +59,26 @@
  *	If you want to change pinout, do this in your defines.h file with lines below and set your own settings:
  *	
  *	//RS - Register select pin
- *	#define TM_HD44780_RS_RCC		RCC_AHB1Periph_GPIOB
  *	#define TM_HD44780_RS_PORT		GPIOB
- *	#define TM_HD44780_RS_PIN		GPIO_Pin_2
+ *	#define TM_HD44780_RS_PIN		GPIO_PIN_2
  *	//E - Enable pin
- *	#define TM_HD44780_E_RCC		RCC_AHB1Periph_GPIOB
  *	#define TM_HD44780_E_PORT		GPIOB
- *	#define TM_HD44780_E_PIN		GPIO_Pin_7
+ *	#define TM_HD44780_E_PIN		GPIO_PIN_7
  *	//D4 - Data 4 pin
- *	#define TM_HD44780_D4_RCC		RCC_AHB1Periph_GPIOC
  *	#define TM_HD44780_D4_PORT		GPIOC
- *	#define TM_HD44780_D4_PIN		GPIO_Pin_12
+ *	#define TM_HD44780_D4_PIN		GPIO_PIN_12
  *	//D5 - Data 5 pin
- *	#define TM_HD44780_D5_RCC		RCC_AHB1Periph_GPIOC
  *	#define TM_HD44780_D5_PORT		GPIOC
- *	#define TM_HD44780_D5_PIN		GPIO_Pin_13
+ *	#define TM_HD44780_D5_PIN		GPIO_PIN_13
  *	//D6 - Data 6 pin
- *	#define TM_HD44780_D6_RCC		RCC_AHB1Periph_GPIOB
  *	#define TM_HD44780_D6_PORT		GPIOB
- *	#define TM_HD44780_D6_PIN		GPIO_Pin_12
+ *	#define TM_HD44780_D6_PIN		GPIO_PIN_12
  *	//D7 - Data 7 pin
- *	#define TM_HD44780_D7_RCC		RCC_AHB1Periph_GPIOB
  *	#define TM_HD44780_D7_PORT		GPIOB
- *	#define TM_HD44780_D7_PIN		GPIO_Pin_13
+ *	#define TM_HD44780_D7_PIN		GPIO_PIN_13
  */
 #ifndef TM_HD44780_H
-#define TM_HD44780_H 110
+#define TM_HD44780_H 120
 /**
  * Dependencies
  * 	- STM32F4xx
@@ -97,56 +95,51 @@
 #include "stm32f4xx_gpio.h"
 #include "defines.h"
 #include "tm_stm32f4_delay.h"
+#include "tm_stm32f4_gpio.h"
 
 /* 4 bit mode */
 /* Control pins, can be overwritten */
 /* RS - Register select pin */
 #ifndef TM_HD44780_RS_PIN
-#define TM_HD44780_RS_RCC				RCC_AHB1Periph_GPIOB
 #define TM_HD44780_RS_PORT				GPIOB
-#define TM_HD44780_RS_PIN				GPIO_Pin_2
+#define TM_HD44780_RS_PIN				GPIO_PIN_2
 #endif
 /* E - Enable pin */
 #ifndef TM_HD44780_E_PIN
-#define TM_HD44780_E_RCC				RCC_AHB1Periph_GPIOB
 #define TM_HD44780_E_PORT				GPIOB
-#define TM_HD44780_E_PIN				GPIO_Pin_7
+#define TM_HD44780_E_PIN				GPIO_PIN_7
 #endif
 /* Data pins */
 /* D4 - Data 4 pin */
 #ifndef TM_HD44780_D4_PIN
-#define TM_HD44780_D4_RCC				RCC_AHB1Periph_GPIOC
 #define TM_HD44780_D4_PORT				GPIOC
-#define TM_HD44780_D4_PIN				GPIO_Pin_12
+#define TM_HD44780_D4_PIN				GPIO_PIN_12
 #endif
 /* D5 - Data 5 pin */
 #ifndef TM_HD44780_D5_PIN
-#define TM_HD44780_D5_RCC				RCC_AHB1Periph_GPIOC
 #define TM_HD44780_D5_PORT				GPIOC
-#define TM_HD44780_D5_PIN				GPIO_Pin_13
+#define TM_HD44780_D5_PIN				GPIO_PIN_13
 #endif
 /* D6 - Data 6 pin */
 #ifndef TM_HD44780_D6_PIN
-#define TM_HD44780_D6_RCC				RCC_AHB1Periph_GPIOB
 #define TM_HD44780_D6_PORT				GPIOB
-#define TM_HD44780_D6_PIN				GPIO_Pin_12
+#define TM_HD44780_D6_PIN				GPIO_PIN_12
 #endif
 /* D7 - Data 7 pin */
 #ifndef TM_HD44780_D7_PIN
-#define TM_HD44780_D7_RCC				RCC_AHB1Periph_GPIOB
 #define TM_HD44780_D7_PORT				GPIOB
-#define TM_HD44780_D7_PIN				GPIO_Pin_13
+#define TM_HD44780_D7_PIN				GPIO_PIN_13
 #endif
 
-#define TM_HD44780_RS_LOW				GPIO_WriteBit(TM_HD44780_RS_PORT, TM_HD44780_RS_PIN, Bit_RESET)
-#define TM_HD44780_RS_HIGH				GPIO_WriteBit(TM_HD44780_RS_PORT, TM_HD44780_RS_PIN, Bit_SET)
-#define TM_HD44780_E_LOW				GPIO_WriteBit(TM_HD44780_E_PORT, TM_HD44780_E_PIN, Bit_RESET)
-#define TM_HD44780_E_HIGH				GPIO_WriteBit(TM_HD44780_E_PORT, TM_HD44780_E_PIN, Bit_SET)
+#define TM_HD44780_RS_LOW				TM_GPIO_SetPinLow(TM_HD44780_RS_PORT, TM_HD44780_RS_PIN)
+#define TM_HD44780_RS_HIGH				TM_GPIO_SetPinHigh(TM_HD44780_RS_PORT, TM_HD44780_RS_PIN)
+#define TM_HD44780_E_LOW				TM_GPIO_SetPinLow(TM_HD44780_E_PORT, TM_HD44780_E_PIN)
+#define TM_HD44780_E_HIGH				TM_GPIO_SetPinHigh(TM_HD44780_E_PORT, TM_HD44780_E_PIN)
 
 #define TM_HD44780_E_BLINK				TM_HD44780_E_HIGH; TM_HD44780_Delay(20); TM_HD44780_E_LOW; TM_HD44780_Delay(20)
 #define TM_HD44780_Delay(x)				Delay(x)
 
-//Commands
+/* Commands*/
 #define TM_HD44780_CLEARDISPLAY			0x01
 #define TM_HD44780_RETURNHOME			0x02
 #define TM_HD44780_ENTRYMODESET			0x04
@@ -156,24 +149,24 @@
 #define TM_HD44780_SETCGRAMADDR			0x40
 #define TM_HD44780_SETDDRAMADDR			0x80
 
-//Flags for display entry mode
+/* Flags for display entry mode */
 #define TM_HD44780_ENTRYRIGHT			0x00
 #define TM_HD44780_ENTRYLEFT			0x02
 #define TM_HD44780_ENTRYSHIFTINCREMENT 	0x01
 #define TM_HD44780_ENTRYSHIFTDECREMENT 	0x00
 
-//Flags for display on/off control
+/* Flags for display on/off control */
 #define TM_HD44780_DISPLAYON			0x04
 #define TM_HD44780_CURSORON				0x02
 #define TM_HD44780_BLINKON				0x01
 
-//Flags for display/cursor shift
+/* Flags for display/cursor shift */
 #define TM_HD44780_DISPLAYMOVE			0x08
 #define TM_HD44780_CURSORMOVE			0x00
 #define TM_HD44780_MOVERIGHT			0x04
 #define TM_HD44780_MOVELEFT				0x00
 
-//Flags for function set
+/* Flags for function set */
 #define TM_HD44780_8BITMODE				0x10
 #define TM_HD44780_4BITMODE				0x00
 #define TM_HD44780_2LINE				0x08

@@ -18,30 +18,16 @@
  */
 #include "tm_stm32f4_hcsr04.h"
 
-uint8_t TM_HCSR04_Init(void) {
-	GPIO_InitTypeDef GPIO_InitStruct;
-	
+uint8_t TM_HCSR04_Init(void) {	
 	/* Init Delay functions */
 	TM_DELAY_Init();
 	
-	/* Initialize pins */
-	/* Enable clock */
-	RCC_AHB1PeriphClockCmd(HCSR04_TRIGGER_RCC | HCSR04_ECHO_RCC, ENABLE);
-	
-	/* Set common settings */
-	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_DOWN;
-	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
-	
+	/* Initialize pins */	
 	/* Trigger pin */
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_OUT;
-	GPIO_InitStruct.GPIO_Pin = HCSR04_TRIGGER_PIN;
-	GPIO_Init(HCSR04_TRIGGER_PORT, &GPIO_InitStruct);
+	TM_GPIO_Init(HCSR04_TRIGGER_PORT, HCSR04_TRIGGER_PIN, TM_GPIO_Mode_OUT, TM_GPIO_OType_PP, TM_GPIO_PuPd_DOWN, TM_GPIO_Speed_Medium);
 	
 	/* Echo pin */
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_IN;
-	GPIO_InitStruct.GPIO_Pin = HCSR04_ECHO_PIN;
-	GPIO_Init(HCSR04_ECHO_PORT, &GPIO_InitStruct);
+	TM_GPIO_Init(HCSR04_TRIGGER_PORT, HCSR04_TRIGGER_PIN, TM_GPIO_Mode_IN, TM_GPIO_OType_PP, TM_GPIO_PuPd_DOWN, TM_GPIO_Speed_Medium);
 	
 	/* Trigger set to low */
 	HCSR04_TRIGGER_LOW;
@@ -51,7 +37,8 @@ uint8_t TM_HCSR04_Init(void) {
 		/* Sensor OK */
 		return 1;
 	}
-	/* Sensor not ok */
+	
+	/* Sensor error */
 	return 0;
 }
 
@@ -71,7 +58,7 @@ float TM_HCSR04_Read(void) {
 	
 	/* Give some time for response */
 	timeout = HCSR04_TIMEOUT;
-	while (HCSR04_ECHO_CHECK == Bit_RESET) {
+	while (!HCSR04_ECHO_CHECK) {
 		if (timeout-- == 0x00) {
 			return -1;
 		}
@@ -80,7 +67,7 @@ float TM_HCSR04_Read(void) {
 	/* Start time */
 	time = 0;
 	/* Wait till signal is low */
-	while (HCSR04_ECHO_CHECK == Bit_SET) {
+	while (HCSR04_ECHO_CHECK) {
 		/* Increase time */
 		time++;
 		/* Delay 1us */

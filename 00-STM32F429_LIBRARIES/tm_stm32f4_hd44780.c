@@ -38,11 +38,13 @@ typedef struct {
 TM_HD44780_Options_t TM_HD44780_Opts;
 
 void TM_HD44780_Init(uint8_t cols, uint8_t rows) {
+	/* Initialize delay */
 	TM_DELAY_Init();
 	
+	/* Init pinout */
 	TM_HD44780_InitPins();
 	
-	//At least 40ms
+	/* At least 40ms */
 	TM_HD44780_Delay(45000);
 	
 	TM_HD44780_Opts.Rows = rows;
@@ -56,78 +58,56 @@ void TM_HD44780_Init(uint8_t cols, uint8_t rows) {
 		TM_HD44780_Opts.DisplayFunction |= TM_HD44780_2LINE;
 	}
 	
-	//Try to set 4bit mode
+	/* Try to set 4bit mode */
 	TM_HD44780_Cmd4bit(0x03);
 	TM_HD44780_Delay(4500);
 	
-	//Second try
+	/* Second try */
 	TM_HD44780_Cmd4bit(0x03);
 	TM_HD44780_Delay(4500);
 	
-	//Third goo!
+	/* Third goo! */
 	TM_HD44780_Cmd4bit(0x03);
 	TM_HD44780_Delay(4500);	
 	
-	//Set 4-bit interface
+	/* Set 4-bit interface */
 	TM_HD44780_Cmd4bit(0x02);
 	TM_HD44780_Delay(100);
 	
-	//set # lines, font size, etc.
+	/* Set # lines, font size, etc. */
 	TM_HD44780_Cmd(TM_HD44780_FUNCTIONSET | TM_HD44780_Opts.DisplayFunction);
 
-	//turn the display on with no cursor or blinking default
+	/* Turn the display on with no cursor or blinking default */
 	TM_HD44780_Opts.DisplayControl = TM_HD44780_DISPLAYON;
 	TM_HD44780_DisplayOn();
 
-	//Clear lcd
+	/* Clear lcd */
 	TM_HD44780_Clear();
 
-	//Default font directions
+	/* Default font directions */
 	TM_HD44780_Opts.DisplayMode = TM_HD44780_ENTRYLEFT | TM_HD44780_ENTRYSHIFTDECREMENT;
 	TM_HD44780_Cmd(TM_HD44780_ENTRYMODESET | TM_HD44780_Opts.DisplayMode);
 
+	/* Delay */
 	TM_HD44780_Delay(4500);
 }
 
 void TM_HD44780_InitPins(void) {
-	GPIO_InitTypeDef GPIO_InitStruct;
-	RCC_AHB1PeriphClockCmd(TM_HD44780_RS_RCC | TM_HD44780_E_RCC | TM_HD44780_D4_RCC | TM_HD44780_D5_RCC | TM_HD44780_D6_RCC | TM_HD44780_D7_RCC, ENABLE);
+	/* Init all pins */
+	TM_GPIO_Init(TM_HD44780_RS_PORT, TM_HD44780_RS_PIN, TM_GPIO_Mode_OUT, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_Low);
+	TM_GPIO_Init(TM_HD44780_E_PORT, TM_HD44780_E_PIN, TM_GPIO_Mode_OUT, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_Low);
+	TM_GPIO_Init(TM_HD44780_D4_PORT, TM_HD44780_D4_PIN, TM_GPIO_Mode_OUT, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_Low);
+	TM_GPIO_Init(TM_HD44780_D5_PORT, TM_HD44780_D5_PIN, TM_GPIO_Mode_OUT, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_Low);
+	TM_GPIO_Init(TM_HD44780_D6_PORT, TM_HD44780_D6_PIN, TM_GPIO_Mode_OUT, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_Low);
+	TM_GPIO_Init(TM_HD44780_D7_PORT, TM_HD44780_D7_PIN, TM_GPIO_Mode_OUT, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_Low);
 	
-	//Common settings
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_OUT;
-	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
-	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
-	
-	//RS
-	GPIO_InitStruct.GPIO_Pin = TM_HD44780_RS_PIN;
-	GPIO_Init(TM_HD44780_RS_PORT, &GPIO_InitStruct);
-	GPIO_WriteBit(TM_HD44780_RS_PORT, TM_HD44780_RS_PIN, Bit_RESET);
-	
-	//E
-	GPIO_InitStruct.GPIO_Pin = TM_HD44780_E_PIN;
-	GPIO_Init(TM_HD44780_E_PORT, &GPIO_InitStruct);
-	GPIO_WriteBit(TM_HD44780_E_PORT, TM_HD44780_E_PIN, Bit_RESET);
-	
-	//D4
-	GPIO_InitStruct.GPIO_Pin = TM_HD44780_D4_PIN;
-	GPIO_Init(TM_HD44780_D4_PORT, &GPIO_InitStruct);
-	GPIO_WriteBit(TM_HD44780_D4_PORT, TM_HD44780_D4_PIN, Bit_RESET);
-	
-	//D5
-	GPIO_InitStruct.GPIO_Pin = TM_HD44780_D5_PIN;
-	GPIO_Init(TM_HD44780_D5_PORT, &GPIO_InitStruct);
-	GPIO_WriteBit(TM_HD44780_D5_PORT, TM_HD44780_D5_PIN, Bit_RESET);
-	
-	//D6
-	GPIO_InitStruct.GPIO_Pin = TM_HD44780_D6_PIN;
-	GPIO_Init(TM_HD44780_D6_PORT, &GPIO_InitStruct);
-	GPIO_WriteBit(TM_HD44780_D6_PORT, TM_HD44780_D6_PIN, Bit_RESET);
-	
-	//D7
-	GPIO_InitStruct.GPIO_Pin = TM_HD44780_D7_PIN;
-	GPIO_Init(TM_HD44780_D7_PORT, &GPIO_InitStruct);
-	GPIO_WriteBit(TM_HD44780_D7_PORT, TM_HD44780_D7_PIN, Bit_RESET);
+	/* Set pins low */
+	TM_GPIO_SetPinLow(TM_HD44780_RS_PORT, TM_HD44780_RS_PIN);
+	TM_GPIO_SetPinLow(TM_HD44780_E_PORT, TM_HD44780_E_PIN);
+	TM_GPIO_SetPinLow(TM_HD44780_D4_PORT, TM_HD44780_D4_PIN);
+	TM_GPIO_SetPinLow(TM_HD44780_D5_PORT, TM_HD44780_D5_PIN);
+	TM_GPIO_SetPinLow(TM_HD44780_D6_PORT, TM_HD44780_D6_PIN);
+	TM_GPIO_SetPinLow(TM_HD44780_D7_PORT, TM_HD44780_D7_PIN);
 }
 
 void TM_HD44780_Clear(void) {
@@ -136,38 +116,47 @@ void TM_HD44780_Clear(void) {
 }
 
 void TM_HD44780_Cmd(uint8_t cmd) {
+	/* Command mode */
 	TM_HD44780_RS_LOW;
 	
-	TM_HD44780_Cmd4bit(cmd >> 4);			//High nibble
-	TM_HD44780_Cmd4bit(cmd & 0x0F);			//Low nibble
+	/* High nibble */
+	TM_HD44780_Cmd4bit(cmd >> 4);
+	/* Low nibble */
+	TM_HD44780_Cmd4bit(cmd & 0x0F);
 }
 
 void TM_HD44780_Data(uint8_t data) {
+	/* Data mode */
 	TM_HD44780_RS_HIGH;
 	
-	TM_HD44780_Cmd4bit(data >> 4);			//High nibble
-	TM_HD44780_Cmd4bit(data & 0x0F);		//Low nibble
+	/* High nibble */
+	TM_HD44780_Cmd4bit(data >> 4);
+	/* Low nibble */
+	TM_HD44780_Cmd4bit(data & 0x0F);
 }
 
 void TM_HD44780_Cmd4bit(uint8_t cmd) {
-	GPIO_WriteBit(TM_HD44780_D7_PORT, TM_HD44780_D7_PIN, (cmd & 0x08) != 0 ? Bit_SET : Bit_RESET);
-	GPIO_WriteBit(TM_HD44780_D6_PORT, TM_HD44780_D6_PIN, (cmd & 0x04) != 0 ? Bit_SET : Bit_RESET);
-	GPIO_WriteBit(TM_HD44780_D5_PORT, TM_HD44780_D5_PIN, (cmd & 0x02) != 0 ? Bit_SET : Bit_RESET);
-	GPIO_WriteBit(TM_HD44780_D4_PORT, TM_HD44780_D4_PIN, (cmd & 0x01) != 0 ? Bit_SET : Bit_RESET);
+	/* Set output port */
+	TM_GPIO_SetPinValue(TM_HD44780_D7_PORT, TM_HD44780_D7_PIN, (cmd & 0x08));
+	TM_GPIO_SetPinValue(TM_HD44780_D6_PORT, TM_HD44780_D6_PIN, (cmd & 0x04));
+	TM_GPIO_SetPinValue(TM_HD44780_D5_PORT, TM_HD44780_D5_PIN, (cmd & 0x02));
+	TM_GPIO_SetPinValue(TM_HD44780_D4_PORT, TM_HD44780_D4_PIN, (cmd & 0x01));
 	TM_HD44780_E_BLINK;
 }
 
 void TM_HD44780_CursorSet(uint8_t col, uint8_t row) {
 	uint8_t row_offsets[] = {0x00, 0x40, 0x14, 0x54};
 	
-	//Go to the beginning
+	/* Go to the beginning */
 	if (row >= TM_HD44780_Opts.Rows) {
 		row = 0;
 	}
 	
+	/* Save colums and row */
 	TM_HD44780_Opts.currentX = col;
 	TM_HD44780_Opts.currentY = row;
 	
+	/* Set location address */
 	TM_HD44780_Cmd(TM_HD44780_SETDDRAMADDR | (col + row_offsets[row]));
 }
 
@@ -232,7 +221,8 @@ void TM_HD44780_ScrollRight(void) {
 
 void TM_HD44780_CreateChar(uint8_t location, uint8_t *data) {
 	uint8_t i;
-	location &= 0x07;	//8 Free locations for custom chars
+	/* We have 8 locations available for custom characters */
+	location &= 0x07;
 	TM_HD44780_Cmd(TM_HD44780_SETCGRAMADDR | (location << 3));
 	
 	for (i = 0; i < 8; i++) {

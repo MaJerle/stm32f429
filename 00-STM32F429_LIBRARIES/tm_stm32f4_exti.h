@@ -164,26 +164,37 @@ typedef enum {
  * Parameters:
  * 	- GPIO_TypeDef* GPIOx:
  * 		GPIOx to be used. Valid x is between A and K
- * 	- uint16_t GPIO_Pin:
- * 		GPIO pin in use. Valid GPIO is GPIO_Pin_0 to GPIO_Pin_15
+ * 	- uint16_t GPIO_Line:
+ * 		GPIO line in use. Valid GPIO is GPIO_PIN_0 to GPIO_PIN_15
  * 	- TM_EXTI_Trigger_t trigger:
  * 		Trigger for interrupt
  * 		TM_EXTI_Trigger_t member
  * 
  * Returns OK if attached OK or error if previous gio with same number was attached
  */
-extern TM_EXTI_Result_t TM_EXTI_Attach(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_EXTI_Trigger_t trigger);
+extern TM_EXTI_Result_t TM_EXTI_Attach(GPIO_TypeDef* GPIOx, uint16_t GPIO_Line, TM_EXTI_Trigger_t trigger);
 
 /**
  * Detach gpio pin from interrupt lines
  * 
  * Parameters:
- * 	- uint16_t GPIO_Pin:
- * 		GPIO pin in use. Valid GPIO is GPIO_Pin_0 to GPIO_Pin_15
+ * 	- uint16_t GPIO_Line:
+ * 		GPIO line in use. Valid GPIO is GPIO_PIN_0 to GPIO_PIN_15
  * 
  * Returns OK if detached or error if already detached
  */
-extern TM_EXTI_Result_t TM_EXTI_Detach(uint16_t GPIO_Pin);
+extern TM_EXTI_Result_t TM_EXTI_Detach(uint16_t GPIO_Line);
+
+/**
+ * Create software interrupt on specific GPIO_Line
+ *
+ * Parameters:
+ * 	- uint16_t GPIO_Line:
+ * 		GPIO line in use. Valid GPIO is GPIO_PIN_0 to GPIO_PIN_15
+ *
+ * Defined as macro for faster execution
+ */
+#define TM_EXTI_SoftwareInterrupt(GPIO_Line)	(EXTI->SWIER |= (GPIO_Line))
 
 /* Handler functions */
 /* __weak parameter is added to prevent link errors if function is not implemented */

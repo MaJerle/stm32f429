@@ -72,61 +72,30 @@ uint8_t TM_KEYPAD_INT_Read(void);
 TM_KEYPAD_Type_t TM_KEYPAD_INT_KeypadType;
 
 extern void TM_KEYPAD_Init(TM_KEYPAD_Type_t type) {
-	GPIO_InitTypeDef GPIO_InitStruct;
-	
 	/* Set keyboard type */
 	TM_KEYPAD_INT_KeypadType = type;
 	
-	/* Set common settings */
-	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
-	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
-	
-	/* Set common settings for columns */
-	/* Columns are outputs */
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_OUT;
-	
+	/* Columns are output */
 	/* Column 1 */
-	RCC_AHB1PeriphClockCmd(KEYPAD_COLUMN_1_RCC, ENABLE);
-	GPIO_InitStruct.GPIO_Pin = KEYPAD_COLUMN_1_PIN;
-	GPIO_Init(KEYPAD_COLUMN_1_PORT, &GPIO_InitStruct);
+	TM_GPIO_Init(KEYPAD_COLUMN_1_PORT, KEYPAD_COLUMN_1_PIN, TM_GPIO_Mode_OUT, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium);
 	/* Column 2 */
-	RCC_AHB1PeriphClockCmd(KEYPAD_COLUMN_2_RCC, ENABLE);
-	GPIO_InitStruct.GPIO_Pin = KEYPAD_COLUMN_2_PIN;
-	GPIO_Init(KEYPAD_COLUMN_2_PORT, &GPIO_InitStruct);
+	TM_GPIO_Init(KEYPAD_COLUMN_2_PORT, KEYPAD_COLUMN_2_PIN, TM_GPIO_Mode_OUT, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium);
 	/* Column 3 */
-	RCC_AHB1PeriphClockCmd(KEYPAD_COLUMN_3_RCC, ENABLE);
-	GPIO_InitStruct.GPIO_Pin = KEYPAD_COLUMN_3_PIN;
-	GPIO_Init(KEYPAD_COLUMN_3_PORT, &GPIO_InitStruct);
-	
+	TM_GPIO_Init(KEYPAD_COLUMN_3_PORT, KEYPAD_COLUMN_3_PIN, TM_GPIO_Mode_OUT, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium);
+	/* Column 3 */
 	if (TM_KEYPAD_INT_KeypadType == TM_KEYPAD_Type_Large) {
-		/* Column 4 */
-		RCC_AHB1PeriphClockCmd(KEYPAD_COLUMN_4_RCC, ENABLE);
-		GPIO_InitStruct.GPIO_Pin = KEYPAD_COLUMN_4_PIN;
-		GPIO_Init(KEYPAD_COLUMN_4_PORT, &GPIO_InitStruct);
+		TM_GPIO_Init(KEYPAD_COLUMN_4_PORT, KEYPAD_COLUMN_4_PIN, TM_GPIO_Mode_OUT, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium);
 	}
 	
-	
-	/* Common settings for rows */
 	/* Rows are inputs */
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_IN;
-	
 	/* Row 1 */
-	RCC_AHB1PeriphClockCmd(KEYPAD_ROW_1_RCC, ENABLE);
-	GPIO_InitStruct.GPIO_Pin = KEYPAD_ROW_1_PIN;
-	GPIO_Init(KEYPAD_ROW_1_PORT, &GPIO_InitStruct);
+	TM_GPIO_Init(KEYPAD_ROW_1_PORT, KEYPAD_ROW_1_PIN, TM_GPIO_Mode_IN, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium);
 	/* Row 2 */
-	RCC_AHB1PeriphClockCmd(KEYPAD_ROW_2_RCC, ENABLE);
-	GPIO_InitStruct.GPIO_Pin = KEYPAD_ROW_2_PIN;
-	GPIO_Init(KEYPAD_ROW_2_PORT, &GPIO_InitStruct);
+	TM_GPIO_Init(KEYPAD_ROW_2_PORT, KEYPAD_ROW_2_PIN, TM_GPIO_Mode_IN, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium);
 	/* Row 3 */
-	RCC_AHB1PeriphClockCmd(KEYPAD_ROW_3_RCC, ENABLE);
-	GPIO_InitStruct.GPIO_Pin = KEYPAD_ROW_3_PIN;
-	GPIO_Init(KEYPAD_ROW_3_PORT, &GPIO_InitStruct);
+	TM_GPIO_Init(KEYPAD_ROW_3_PORT, KEYPAD_ROW_3_PIN, TM_GPIO_Mode_IN, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium);
 	/* Row 4 */
-	RCC_AHB1PeriphClockCmd(KEYPAD_ROW_4_RCC, ENABLE);
-	GPIO_InitStruct.GPIO_Pin = KEYPAD_ROW_4_PIN;
-	GPIO_Init(KEYPAD_ROW_4_PORT, &GPIO_InitStruct);
+	TM_GPIO_Init(KEYPAD_ROW_4_PORT, KEYPAD_ROW_4_PIN, TM_GPIO_Mode_IN, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium);
 	
 	/* All columns high */
 	TM_KEYPAD_INT_SetColumn(0);
@@ -141,18 +110,18 @@ extern TM_KEYPAD_Button_t TM_KEYPAD_Read(void) {
 	check = TM_KEYPAD_INT_Read();
 	
 	/* Check pressed */
-	if (check == KEYPAD_NO_PRESSED) {				/* If no button pressed */
-		debounce = 0;								/* Reset debounce check */
-		hold_debounce = 0;							/* Reset debounce on hold */
-		lastPressed = KEYPAD_NO_PRESSED;			/* Last button is not pressed */
-		firstHold = 1;								/* Set flag for first hold time */
+	if (check == KEYPAD_NO_PRESSED) {					/* If no button pressed */
+		debounce = 0;									/* Reset debounce check */
+		hold_debounce = 0;								/* Reset debounce on hold */
+		lastPressed = KEYPAD_NO_PRESSED;				/* Last button is not pressed */
+		firstHold = 1;									/* Set flag for first hold time */
 		
-		return TM_KEYPAD_Button_NOPRESSED;		/* Keypad is not pressed */
+		return TM_KEYPAD_Button_NOPRESSED;				/* Keypad is not pressed */
 	} else {
 		/* Check previous state */
-		if (lastPressed == check) {					/* If button now is same than last */			
+		if (lastPressed == check) {						/* If button now is same than last */			
 			/* Button hold event */
-			if (firstHold == 1) {					/* First hold waiting */				
+			if (firstHold == 1) {						/* First hold waiting */				
 				if (hold_debounce++ >= KEYPAD_INT_FirstDebounce[check]) {
 					hold_debounce = 0;					/* Reset hold debounce */
 					firstHold = 0;
@@ -180,6 +149,7 @@ extern TM_KEYPAD_Button_t TM_KEYPAD_Read(void) {
 		}
 	}
 	
+	/* No pressed */
 	return TM_KEYPAD_Button_NOPRESSED;
 }
 

@@ -18,51 +18,57 @@
  */
 #include "tm_stm32f4_nrf24l01.h"
 
+/* Private functions */
+void TM_NRF24L01_InitPins(void);
+void TM_NRF24L01_WriteBit(uint8_t reg, uint8_t bit, uint8_t value);
+uint8_t TM_NRF24L01_ReadBit(uint8_t reg, uint8_t bit);
+uint8_t TM_NRF24L01_ReadRegister(uint8_t reg);
+void TM_NRF24L01_ReadRegisterMulti(uint8_t reg, uint8_t* data, uint8_t count);
+void TM_NRF24L01_WriteRegister(uint8_t reg, uint8_t value);
+void TM_NRF24L01_WriteRegisterMulti(uint8_t reg, uint8_t *data, uint8_t count);
+void TM_NRF24L01_SoftwareReset(void);
+uint8_t TM_NRF24L01_RxFifoEmpty(void);
+
+/* NRF structure */
 TM_NRF24L01_t TM_NRF24L01_Struct;
 
 void TM_NRF24L01_InitPins(void) {
-	GPIO_InitTypeDef GPIO_InitStruct;
+	/* Init pins */
+	/* CNS pin */
+	TM_GPIO_Init(NRF24L01_CSN_PORT, NRF24L01_CSN_PIN, TM_GPIO_Mode_OUT, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Low);
 	
-	RCC_AHB1PeriphClockCmd(NRF24L01_CSN_RCC | NRF24L01_CE_RCC, ENABLE);
+	/* CE pin */
+	TM_GPIO_Init(NRF24L01_CE_PORT, NRF24L01_CE_PIN, TM_GPIO_Mode_OUT, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Low);
 	
-	//Common settings
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_OUT;
-	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
-	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
-	
-	//CSN pins
-	GPIO_InitStruct.GPIO_Pin = NRF24L01_CSN_PIN;
-	GPIO_Init(NRF24L01_CSN_PORT, &GPIO_InitStruct);
-	//CE pins
-	GPIO_InitStruct.GPIO_Pin = NRF24L01_CE_PIN;
-	GPIO_Init(NRF24L01_CE_PORT, &GPIO_InitStruct);
-	
-	
-	NRF24L01_CE_LOW;
+	/* CSN high = disable SPI */
 	NRF24L01_CSN_HIGH;
+	
+	/* CE low = disable TX/RX */
+	NRF24L01_CE_LOW;
 }
 
 uint8_t TM_NRF24L01_Init(uint8_t channel, uint8_t payload_size) {
-	//Initialize CE and CSN pins
+	/* Initialize CE and CSN pins */
 	TM_NRF24L01_InitPins();
-	//Initialize SPI
+	
+	/* Initialize SPI */
 	TM_SPI_Init(NRF24L01_SPI, NRF24L01_SPI_PINS);
 	
-	//Max payload is 32bytes
+	/* Max payload is 32bytes */
 	if (payload_size > 32) {
 		payload_size = 32;
 	}
 	
+	/* Fill structure */
 	TM_NRF24L01_Struct.Channel = channel;
 	TM_NRF24L01_Struct.PayloadSize = payload_size;
 	TM_NRF24L01_Struct.OutPwr = TM_NRF24L01_OutputPower_0dBm;
 	TM_NRF24L01_Struct.DataRate = TM_NRF24L01_DataRate_2M;
 	
-	//Reset nRF24L01+ to power on registers values
+	/* Reset nRF24L01+ to power on registers values */
 	TM_NRF24L01_SoftwareReset();
 	
-	//Channel select
+	/* Channel select */
 	TM_NRF24L01_SetChannel(TM_NRF24L01_Struct.Channel);
 	
 	//Set pipeline to max possible 32 bytes
@@ -73,34 +79,35 @@ uint8_t TM_NRF24L01_Init(uint8_t channel, uint8_t payload_size) {
 	TM_NRF24L01_WriteRegister(NRF24L01_REG_RX_PW_P4, TM_NRF24L01_Struct.PayloadSize);
 	TM_NRF24L01_WriteRegister(NRF24L01_REG_RX_PW_P5, TM_NRF24L01_Struct.PayloadSize);
 	
-	//Set RF settings (2mbps, output power)
+	/* Set RF settings (2mbps, output power) */
 	TM_NRF24L01_SetRF(TM_NRF24L01_Struct.DataRate, TM_NRF24L01_Struct.OutPwr);
 	
-	//Config register
+	/* Config register */
 	TM_NRF24L01_WriteRegister(NRF24L01_REG_CONFIG, NRF24L01_CONFIG);
 	
-	//Enable auto-acknowledgment for all pipes
+	/* Enable auto-acknowledgment for all pipes */
 	TM_NRF24L01_WriteRegister(NRF24L01_REG_EN_AA, 0x3F);
 	
-	//Enable RX addresses
+	/* Enable RX addresses */
 	TM_NRF24L01_WriteRegister(NRF24L01_REG_EN_RXADDR, 0x3F);
 
-	//Auto retransmit delay: 1000 (4x250) us and Up to 15 retransmit trials
+	/* Auto retransmit delay: 1000 (4x250) us and Up to 15 retransmit trials */
 	TM_NRF24L01_WriteRegister(NRF24L01_REG_SETUP_RETR, 0x4F);
 	
-	//Dynamic length configurations: No dynamic length
+	/* Dynamic length configurations: No dynamic length */
 	TM_NRF24L01_WriteRegister(NRF24L01_REG_DYNPD, (0 << NRF24L01_DPL_P0) | (0 << NRF24L01_DPL_P1) | (0 << NRF24L01_DPL_P2) | (0 << NRF24L01_DPL_P3) | (0 << NRF24L01_DPL_P4) | (0 << NRF24L01_DPL_P5));
 	
-	//Clear FIFOs
+	/* Clear FIFOs */
 	NRF24L01_FLUSH_TX;
 	NRF24L01_FLUSH_RX;
 	
-	//Clear interrupts
+	/* Clear interrupts */
 	NRF24L01_CLEAR_INTERRUPTS;
 	
-	//Go to RX mode
+	/* Go to RX mode */
 	TM_NRF24L01_PowerUpRx();
 	
+	/* Return OK */
 	return 1;
 }
 
@@ -131,14 +138,17 @@ void TM_NRF24L01_SetPipe5Address(uint8_t adr) {
 	TM_NRF24L01_WriteRegister(NRF24L01_REG_RX_ADDR_P5, adr);
 }
 
-void TM_NRF24L01_WriteBit(uint8_t reg, uint8_t bit, BitAction value) {
+void TM_NRF24L01_WriteBit(uint8_t reg, uint8_t bit, uint8_t value) {
 	uint8_t tmp;
+	/* Read register */
 	tmp = TM_NRF24L01_ReadRegister(reg);
-	if (value != Bit_RESET) {
+	/* Make operation */
+	if (value) {
 		tmp |= 1 << bit;
 	} else {
 		tmp &= ~(1 << bit);
 	}
+	/* Write back */
 	TM_NRF24L01_WriteRegister(reg, tmp);
 }
 
@@ -188,14 +198,15 @@ void TM_NRF24L01_PowerUpTx(void) {
 }
 
 void TM_NRF24L01_PowerUpRx(void) {
+	/* Clear RX buffer */
 	NRF24L01_FLUSH_RX;
-	
+	/* Clear interrupts */
 	NRF24L01_CLEAR_INTERRUPTS;
-	
+	/* Disable RX/TX mode */
 	NRF24L01_CE_LOW;
-
+	/* Setup RX mode */
 	TM_NRF24L01_WriteRegister(NRF24L01_REG_CONFIG, NRF24L01_CONFIG | 1 << NRF24L01_PWR_UP | 1 << NRF24L01_PRIM_RX);
-	
+	/* Start listening */
 	NRF24L01_CE_HIGH;
 }
 
@@ -207,39 +218,39 @@ void TM_NRF24L01_PowerDown(void) {
 void TM_NRF24L01_Transmit(uint8_t *data) {
 	uint8_t count = TM_NRF24L01_Struct.PayloadSize;
 
-	//Chip enable put to low, disable it
+	/* Chip enable put to low, disable it */
 	NRF24L01_CE_LOW;
 	
-	//Go to power up tx mode
+	/* Go to power up tx mode */
 	TM_NRF24L01_PowerUpTx();
 	
-	//Clear TX FIFO from NRF24L01+
+	/* Clear TX FIFO from NRF24L01+ */
 	NRF24L01_FLUSH_TX;
 	
-	//Send payload to nRF24L01+
+	/* Send payload to nRF24L01+ */
 	NRF24L01_CSN_LOW;
-	//Send write payload command
+	/* Send write payload command */
 	TM_SPI_Send(NRF24L01_SPI, NRF24L01_W_TX_PAYLOAD_MASK);
-	//Fill payload with data
+	/* Fill payload with data*/
 	TM_SPI_WriteMulti(NRF24L01_SPI, data, count);
+	/* Disable SPI */
 	NRF24L01_CSN_HIGH;
 	
-	//Delay(1000);
-	//Send data!
+	/* Send data! */
 	NRF24L01_CE_HIGH;
 }
 
 void TM_NRF24L01_GetData(uint8_t* data) {
-	//Pull down chip select
+	/* Pull down chip select */
 	NRF24L01_CSN_LOW;
-	//Send read payload command
+	/* Send read payload command*/
 	TM_SPI_Send(NRF24L01_SPI, NRF24L01_R_RX_PAYLOAD_MASK);
-	//Read payload
+	/* Read payload */
 	TM_SPI_SendMulti(NRF24L01_SPI, data, data, TM_NRF24L01_Struct.PayloadSize);
-	//Pull up chip select
+	/* Pull up chip select */
 	NRF24L01_CSN_HIGH;
 	
-	//Reset status register, clear RX_DR interrupt flag
+	/* Reset status register, clear RX_DR interrupt flag */
 	TM_NRF24L01_WriteRegister(NRF24L01_REG_STATUS, (1 << NRF24L01_RX_DR));
 }
 
@@ -261,9 +272,9 @@ uint8_t TM_NRF24L01_GetStatus(void) {
 	uint8_t status;
 	
 	NRF24L01_CSN_LOW;
-	//First received byte is always status register
+	/* First received byte is always status register */
 	status = TM_SPI_Send(NRF24L01_SPI, NRF24L01_NOP_MASK);
-	//Pull up chip select
+	/* Pull up chip select */
 	NRF24L01_CSN_HIGH;
 	
 	return status;
@@ -272,14 +283,14 @@ uint8_t TM_NRF24L01_GetStatus(void) {
 TM_NRF24L01_Transmit_Status_t TM_NRF24L01_GetTransmissionStatus(void) {
 	uint8_t status = TM_NRF24L01_GetStatus();
 	if (NRF24L01_CHECK_BIT(status, NRF24L01_TX_DS)) {
-		//Successfully sent
+		/* Successfully sent */
 		return TM_NRF24L01_Transmit_Status_Ok;
 	} else if (NRF24L01_CHECK_BIT(status, NRF24L01_MAX_RT)) {
-		//Message lost
+		/* Message lost */
 		return TM_NRF24L01_Transmit_Status_Lost;
 	}
 	
-	//Still sending
+	/* Still sending */
 	return TM_NRF24L01_Transmit_Status_Sending;
 }
 
@@ -338,13 +349,15 @@ void TM_NRF24L01_SoftwareReset(void) {
 }
 
 uint8_t TM_NRF24L01_GetRetransmissionsCount(void) {
-	//Low 4 bits
+	/* Low 4 bits */
 	return TM_NRF24L01_ReadRegister(NRF24L01_REG_OBSERVE_TX) & 0x0F;
 }
 
 void TM_NRF24L01_SetChannel(uint8_t channel) {
 	if (channel <= 125 && channel != TM_NRF24L01_Struct.Channel) {
+		/* Store new channel setting */
 		TM_NRF24L01_Struct.Channel = channel;
+		/* Write channel */
 		TM_NRF24L01_WriteRegister(NRF24L01_REG_RF_CH, channel);
 	}
 }
@@ -359,7 +372,7 @@ void TM_NRF24L01_SetRF(TM_NRF24L01_DataRate_t DataRate, TM_NRF24L01_OutputPower_
 	} else if (DataRate == TM_NRF24L01_DataRate_250k) {
 		tmp |= 1 << NRF24L01_RF_DR_LOW;
 	}
-	//If 1Mbps, all bits set to 0
+	/* If 1Mbps, all bits set to 0 */
 	
 	if (OutPwr == TM_NRF24L01_OutputPower_0dBm) {
 		tmp |= 3 << NRF24L01_RF_PWR;

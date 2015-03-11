@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/08/library-30-measure-distance-with-hc-sr04-and-stm32f4xx
- *	@version 	v1.1
+ *	@version 	v1.2
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -25,8 +25,10 @@
  * | You should have received a copy of the GNU General Public License
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
- * 
- * CHANGELOG
+ *
+ * Version 1.2
+ *	- March 11, 2015
+ *	- Added support for my new GPIO library
  *
  * Version 1.1
  *	- November 29, 2014
@@ -44,47 +46,41 @@
  * If you want to change TRIGGER and ECHO pin, add lines below in defines.h file and edit them
  * 
  *	//Trigger PIN
- *	#define HCSR04_TRIGGER_RCC		RCC_AHB1Periph_GPIOB
  *	#define HCSR04_TRIGGER_PORT		GPIOB
- *	#define HCSR04_TRIGGER_PIN		GPIO_Pin_2
+ *	#define HCSR04_TRIGGER_PIN		GPIO_PIN_2
  *	
  *	//Echo PIN
- *	#define HCSR04_ECHO_RCC			RCC_AHB1Periph_GPIOB
  *	#define HCSR04_ECHO_PORT		GPIOB
- *	#define HCSR04_ECHO_PIN			GPIO_Pin_3
+ *	#define HCSR04_ECHO_PIN			GPIO_PIN_3
  * 
  */
 #ifndef TM_HCSR04_H
-#define TM_HCSR04_H 110
+#define TM_HCSR04_H 120
 /**
  * Library dependencies
  * - STM32F4xx
- * - STM32F4xx RCC
- * - STM32F4xx GPIO
  * - defines.h
  * - TM DELAY
+ * - TM GPIO
  */
 /**
  * Includes
  */
 #include "stm32f4xx.h"
-#include "stm32f4xx_rcc.h"
-#include "stm32f4xx_gpio.h"
 #include "defines.h"
 #include "tm_stm32f4_delay.h"
+#include "tm_stm32f4_gpio.h"
 
 /* Trigger PIN */
 #ifndef HCSR04_TRIGGER_PIN
-#define HCSR04_TRIGGER_RCC		RCC_AHB1Periph_GPIOB
 #define HCSR04_TRIGGER_PORT		GPIOB
-#define HCSR04_TRIGGER_PIN		GPIO_Pin_2
+#define HCSR04_TRIGGER_PIN		GPIO_PIN_2
 #endif
 
 /* Echo PIN */
 #ifndef HCSR04_ECHO_PIN
-#define HCSR04_ECHO_RCC			RCC_AHB1Periph_GPIOB
 #define HCSR04_ECHO_PORT		GPIOB
-#define HCSR04_ECHO_PIN			GPIO_Pin_3
+#define HCSR04_ECHO_PIN			GPIO_PIN_3
 #endif
 
 /* Default timeout pulses */
@@ -93,9 +89,9 @@
 #endif
 
 /* Pin operations */
-#define HCSR04_TRIGGER_LOW		HCSR04_TRIGGER_PORT->BSRRH = HCSR04_TRIGGER_PIN
-#define HCSR04_TRIGGER_HIGH		HCSR04_TRIGGER_PORT->BSRRL = HCSR04_TRIGGER_PIN
-#define HCSR04_ECHO_CHECK		GPIO_ReadInputDataBit(HCSR04_ECHO_PORT, HCSR04_ECHO_PIN)
+#define HCSR04_TRIGGER_LOW		TM_GPIO_SetPinLow(HCSR04_TRIGGER_PORT, HCSR04_TRIGGER_PIN)
+#define HCSR04_TRIGGER_HIGH		TM_GPIO_SetPinHigh(HCSR04_TRIGGER_PORT, HCSR04_TRIGGER_PIN)
+#define HCSR04_ECHO_CHECK		TM_GPIO_GetInputPinValue(HCSR04_ECHO_PORT, HCSR04_ECHO_PIN)
 
 /* Time to cm */
 #define HCSR04_NUMBER			((float)0.0171821)

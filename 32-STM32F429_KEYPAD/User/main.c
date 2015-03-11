@@ -22,6 +22,7 @@
 #include <stdio.h>
 
 int main(void) {
+	/* Create keypad instance */
 	TM_KEYPAD_Button_t Keypad_Button;
 	char buff[20];
 	
