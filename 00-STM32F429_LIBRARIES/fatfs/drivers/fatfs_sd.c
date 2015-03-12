@@ -33,11 +33,16 @@ static BYTE TM_FATFS_SD_CardType;			/* Card type flags */
 
 /* Initialize MMC interface */
 static void init_spi (void) {
+	/* Init delay functions */
 	TM_DELAY_Init();
 	
+	/* Init SPI */
 	TM_SPI_Init(FATFS_SPI, FATFS_SPI_PINSPACK);
+	
+	/* Set CS high */
 	FATFS_CS_HIGH;
 	
+	/* Wait for stable */
 	Delayms(10);
 }
 
@@ -256,47 +261,24 @@ static BYTE send_cmd (		/* Return value: R1 resp (bit7==1:Failed to send) */
 }
 
 void TM_FATFS_InitPins(void) {
-	GPIO_InitTypeDef GPIO_InitStruct;
+	/* CS pin */
+	TM_GPIO_Init(FATFS_CS_PORT, FATFS_CS_PIN, TM_GPIO_Mode_OUT, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Low);
 	
-	RCC_AHB1PeriphClockCmd(FATFS_CS_RCC, ENABLE);	
-	
-	GPIO_InitStruct.GPIO_Pin = FATFS_CS_PIN;
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_OUT;
-	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_DOWN;
-	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
-	
-	GPIO_Init(FATFS_CS_PORT, &GPIO_InitStruct);
-	
+	/* Detect pin */
 #if FATFS_USE_DETECT_PIN > 0
-	RCC_AHB1PeriphClockCmd(FATFS_USE_DETECT_PIN_RCC, ENABLE);
-	
-	GPIO_InitStruct.GPIO_Pin = FATFS_USE_DETECT_PIN_PIN;
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_IN;
-	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
-	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
-	
-	GPIO_Init(FATFS_USE_DETECT_PIN_PORT, &GPIO_InitStruct);
+	TM_GPIO_Init(FATFS_USE_DETECT_PIN_PORT, FATFS_USE_DETECT_PIN_PIN, TM_GPIO_Mode_IN, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Low);
 #endif
 
+	/* Write protect pin */
 #if FATFS_USE_WRITEPROTECT_PIN > 0
-	RCC_AHB1PeriphClockCmd(FATFS_USE_WRITEPROTECT_PIN_RCC, ENABLE);
-	
-	GPIO_InitStruct.GPIO_Pin = FATFS_USE_WRITEPROTECT_PIN_PIN;
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_IN;
-	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
-	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
-	
-	GPIO_Init(FATFS_USE_WRITEPROTECT_PIN_PORT, &GPIO_InitStruct);
+	TM_GPIO_Init(FATFS_USE_WRITEPROTECT_PIN_PORT, FATFS_USE_WRITEPROTECT_PIN_PIN, TM_GPIO_Mode_IN, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Low);
 #endif
 }
 
 
 uint8_t TM_FATFS_Detect(void) {
 #if FATFS_USE_DETECT_PIN > 0
-	return GPIO_ReadInputDataBit(FATFS_USE_DETECT_PIN_PORT, FATFS_USE_DETECT_PIN_PIN) == Bit_RESET;
+	return !TM_GPIO_GetInputPinValue(FATFS_USE_DETECT_PIN_PORT, FATFS_USE_DETECT_PIN_PIN);
 #else
 	return 1;
 #endif
@@ -304,7 +286,7 @@ uint8_t TM_FATFS_Detect(void) {
 
 uint8_t TM_FATFS_WriteEnabled(void) {
 #if FATFS_USE_WRITEPROTECT_PIN > 0
-	return GPIO_ReadInputDataBit(FATFS_USE_WRITEPROTECT_PIN_PORT, FATFS_USE_WRITEPROTECT_PIN_PIN) == Bit_RESET;
+	return !TM_GPIO_GetInputPinValue(FATFS_USE_WRITEPROTECT_PIN_PORT, FATFS_USE_WRITEPROTECT_PIN_PIN);
 #else
 	return 1;
 #endif	

@@ -57,17 +57,17 @@ FRESULT TM_FATFS_USBDriveSize(uint32_t* total, uint32_t* free) {
 }
 
 FRESULT TM_FATFS_TruncateBeginning(FIL* fil, uint32_t index) {
-	uint8_t Buffer[FATFS_TRUNCATE_BUFFER_SIZE];			/* Buffer for temporary data */
+	uint8_t Buffer[FATFS_TRUNCATE_BUFFER_SIZE];				/* Buffer for temporary data */
 
-	uint32_t FileSize = f_size(fil);					/* Size of file */
-	uint32_t ReadIndex = index;							/* Starting read index */
-	uint32_t WriteIndex = 0;							/* We have to write at beginning */
-	uint32_t TotalSize = FileSize - ReadIndex;			/* New file size after truncate */
-	uint32_t NewSize = TotalSize;						/* Save new file size */
-	uint32_t BlockSize;									/* Block size for read operation */
-	uint32_t Read;										/* Read bytes */
-	uint32_t Written;									/* Written bytes */
-	FRESULT fr;											/* Result typedef */
+	uint32_t FileSize = f_size(fil);						/* Size of file */
+	uint32_t ReadIndex = index;								/* Starting read index */
+	uint32_t WriteIndex = 0;								/* We have to write at beginning */
+	uint32_t TotalSize = FileSize - ReadIndex;				/* New file size after truncate */
+	uint32_t NewSize = TotalSize;							/* Save new file size */
+	uint32_t BlockSize;										/* Block size for read operation */
+	uint32_t Read;											/* Read bytes */
+	uint32_t Written;										/* Written bytes */
+	FRESULT fr;												/* Result typedef */
 	
 	/* Index is 0 or file is empty, nothing to do */
 	if (index == 0 || FileSize == 0) {

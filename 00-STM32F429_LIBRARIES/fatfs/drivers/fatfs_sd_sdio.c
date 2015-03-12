@@ -269,41 +269,23 @@ static volatile DSTATUS TM_FATFS_SD_SDIO_Stat = STA_NOINIT;	/* Physical drive st
 
 uint8_t TM_FATFS_SDIO_WriteEnabled(void) {
 #if FATFS_USE_WRITEPROTECT_PIN > 0
-	return GPIO_ReadInputDataBit(FATFS_USE_WRITEPROTECT_PIN_PORT, FATFS_USE_WRITEPROTECT_PIN_PIN) == Bit_RESET;
+	return !TM_GPIO_GetInputPinValue(FATFS_USE_WRITEPROTECT_PIN_PORT, FATFS_USE_WRITEPROTECT_PIN_PIN);
 #else
 	return 1;
-#endif	
+#endif
 }
 
 DSTATUS TM_FATFS_SD_SDIO_disk_initialize(void) {
-#if FATFS_USE_DETECT_PIN > 0 || FATFS_USE_WRITEPROTECT_PIN > 0
-	GPIO_InitTypeDef GPIO_InitStruct;
-#endif
 	NVIC_InitTypeDef NVIC_InitStructure;
 	
+	/* Detect pin */
 #if FATFS_USE_DETECT_PIN > 0
-	RCC_AHB1PeriphClockCmd(FATFS_USE_DETECT_PIN_RCC, ENABLE);
-	
-	GPIO_InitStruct.GPIO_Pin = FATFS_USE_DETECT_PIN_PIN;
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_IN;
-	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
-	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
-	
-	GPIO_Init(FATFS_USE_DETECT_PIN_PORT, &GPIO_InitStruct);
+	TM_GPIO_Init(FATFS_USE_DETECT_PIN_PORT, FATFS_USE_DETECT_PIN_PIN, TM_GPIO_Mode_IN, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Low);
 #endif
 
+	/* Write protect pin */
 #if FATFS_USE_WRITEPROTECT_PIN > 0
-	
-	RCC_AHB1PeriphClockCmd(FATFS_USE_WRITEPROTECT_PIN_RCC, ENABLE);
-	
-	GPIO_InitStruct.GPIO_Pin = FATFS_USE_WRITEPROTECT_PIN_PIN;
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_IN;
-	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
-	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
-	
-	GPIO_Init(FATFS_USE_WRITEPROTECT_PIN_PORT, &GPIO_InitStruct);
+	TM_GPIO_Init(FATFS_USE_WRITEPROTECT_PIN_PORT, FATFS_USE_WRITEPROTECT_PIN_PIN, TM_GPIO_Mode_IN, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Low);
 #endif
 	
 	// Configure the NVIC Preemption Priority Bits 
@@ -639,20 +621,18 @@ SDTransferState SD_GetStatus (void)
  * @param  None
  * @retval SDCardState: SD Card Error or SD Card Current State.
  */
-SDCardState SD_GetState (void)
-{
-        uint32_t resp1 = 0;
+SDCardState SD_GetState(void) {
+	uint32_t resp1 = 0;
 
-        if (SD_Detect () == SD_PRESENT ) {
-                if (SD_SendStatus (&resp1) != SD_OK) {
-					return SD_CARD_ERROR;
-                } else {
-					return (SDCardState) ((resp1 >> 9) & 0x0F);
-                }
-        }
-        else {
-                return SD_CARD_ERROR;
-        }
+	if (SD_Detect () == SD_PRESENT ) {
+		if (SD_SendStatus (&resp1) != SD_OK) {
+			return SD_CARD_ERROR;
+		} else {
+			return (SDCardState) ((resp1 >> 9) & 0x0F);
+		}
+	}
+	
+	return SD_CARD_ERROR;
 }
 
 /**
@@ -662,15 +642,15 @@ SDCardState SD_GetState (void)
  */
 uint8_t SD_Detect (void)
 {
-        __IO uint8_t status = SD_PRESENT;
+	__IO uint8_t status = SD_PRESENT;
 
-		#if FATFS_USE_DETECT_PIN > 0
-			if (GPIO_ReadInputDataBit(FATFS_USE_DETECT_PIN_PORT, FATFS_USE_DETECT_PIN_PIN) != Bit_RESET) {
-				status = SD_NOT_PRESENT;
-			}
-		#endif
+#if FATFS_USE_DETECT_PIN > 0
+	if (TM_GPIO_GetInputPinValue(FATFS_USE_DETECT_PIN_PORT, FATFS_USE_DETECT_PIN_PIN) != 0) {
+		status = SD_NOT_PRESENT;
+	}
+#endif
 
-        return status;
+	return status;
 }
 
 /**

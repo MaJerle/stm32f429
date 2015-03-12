@@ -47,7 +47,7 @@ int main(void) {
 	TM_DELAY_Init();
 	
 	/* Initialize OneWire on pin PD0 */
-	TM_OneWire_Init(&OneWire1, GPIOD, GPIO_Pin_0, RCC_AHB1Periph_GPIOD);
+	TM_OneWire_Init(&OneWire1, GPIOD, GPIO_Pin_0);
 	
 	/* Initialize USART, TX: PB6, RX: PB7 */
 	TM_USART_Init(USART1, TM_USART_PinsPack_2, 115200);

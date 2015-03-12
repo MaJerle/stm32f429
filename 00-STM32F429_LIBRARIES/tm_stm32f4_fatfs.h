@@ -36,6 +36,10 @@
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
  *	
+ * Version 1.6
+ *	- March 11, 2015
+ *	- Added support for my new GPIO library
+ *
  * Version 1.5
  *	- February 17, 2015
  *	- FatFs R0.11 supported
@@ -144,10 +148,9 @@
  *	#define FATFS_SPI							SPI1
  *	#define FATFS_SPI_PINSPACK					TM_SPI_PinsPack_1
  *	
- *	//Set your CS pin for SPI
- *	#define FATFS_CS_RCC						RCC_AHB1Periph_GPIOB			
+ *	//Set your CS pin for SPI			
  *	#define FATFS_CS_PORT						GPIOB
- *	#define FATFS_CS_PIN						GPIO_Pin_5
+ *	#define FATFS_CS_PIN						GPIO_PIN_5
  *
  * Also, library has support for Write protect and Card detect pins.
  * This two pins are by default on pins below.
@@ -168,14 +171,12 @@
  *	#define FATFS_USE_WRITEPROTECT_PIN			1
  *	
  *	Add lines below to your defines.h file only if you want to overwrite default pin settings
- *	//Default CD pin
- *	#define FATFS_USE_DETECT_PIN_RCC			RCC_AHB1Periph_GPIOB			
+ *	//Default CD pin			
  *	#define FATFS_USE_DETECT_PIN_PORT			GPIOB
- *	#define FATFS_USE_DETECT_PIN_PIN			GPIO_Pin_6
- *	//Default WP pin
- *	#define FATFS_USE_WRITEPROTECT_PIN_RCC		RCC_AHB1Periph_GPIOB			
+ *	#define FATFS_USE_DETECT_PIN_PIN			GPIO_PIN_6
+ *	//Default WP pin			
  *	#define FATFS_USE_WRITEPROTECT_PIN_PORT		GPIOB
- *	#define FATFS_USE_WRITEPROTECT_PIN_PIN		GPIO_Pin_7
+ *	#define FATFS_USE_WRITEPROTECT_PIN_PIN		GPIO_PIN_7
  *
  * 
  * get_fattime() time function for FatFs
@@ -255,7 +256,7 @@
  * This allows you to copy data from one SD card to USB and back too.
  */
 #ifndef TM_FATFS_H
-#define TM_FATFS_H	150
+#define TM_FATFS_H	160
 /**
  * Dependencies
  *	- STM32F4xx
@@ -266,8 +267,9 @@
  *	- STM32Fx44 SDIO	(only when SDIO)
  *	- MISC				(only when SDIO)
  *	- defines.h
- *	- tm_stm32f4_spi	(only when SPI)
- *	- tm_stm32f4_delay	(only when SPI)
+ *	- TM SPI			(only when SPI)
+ *	- TM DELAY			(only when SPI)
+ *	- TM GPIO
  *	- FatFS by chan
  */
 /**
@@ -277,6 +279,7 @@
 #include "stm32f4xx_rcc.h"
 #include "stm32f4xx_gpio.h"
 #include "defines.h"
+#include "tm_stm32f4_gpio.h"
 #include "ff.h"
 
 /* Default truncate buffer size in bytes */

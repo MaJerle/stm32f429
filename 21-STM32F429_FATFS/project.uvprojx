@@ -739,6 +739,16 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_sd_sdio.c</FilePath>
             </File>
+            <File>
+              <FileName>fatfs_sd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_sd.c</FilePath>
+            </File>
+            <File>
+              <FileName>fatfs_sd.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_sd.h</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
@@ -788,8 +798,8 @@
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
-          <DebugInformation>0</DebugInformation>
-          <BrowseInformation>0</BrowseInformation>
+          <DebugInformation>1</DebugInformation>
+          <BrowseInformation>1</BrowseInformation>
           <ListingPath>.\</ListingPath>
           <HexFormatSelection>1</HexFormatSelection>
           <Merge32K>0</Merge32K>
@@ -1512,6 +1522,16 @@
               <FileName>fatfs_sd_sdio.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_sd_sdio.c</FilePath>
+            </File>
+            <File>
+              <FileName>fatfs_sd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_sd.c</FilePath>
+            </File>
+            <File>
+              <FileName>fatfs_sd.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_sd.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -2287,6 +2307,16 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_sd_sdio.c</FilePath>
             </File>
+            <File>
+              <FileName>fatfs_sd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_sd.c</FilePath>
+            </File>
+            <File>
+              <FileName>fatfs_sd.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_sd.h</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
@@ -3060,6 +3090,16 @@
               <FileName>fatfs_sd_sdio.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_sd_sdio.c</FilePath>
+            </File>
+            <File>
+              <FileName>fatfs_sd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_sd.c</FilePath>
+            </File>
+            <File>
+              <FileName>fatfs_sd.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_sd.h</FilePath>
             </File>
           </Files>
         </Group>

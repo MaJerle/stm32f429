@@ -19,16 +19,17 @@
 
 #include "tm_stm32f4_spi.h"
 #include "tm_stm32f4_delay.h"
+#include "tm_stm32f4_gpio.h"
+#include "tm_stm32f4_fatfs.h"
 
 #ifndef FATFS_SPI
 #define FATFS_SPI							SPI1
 #define FATFS_SPI_PINSPACK					TM_SPI_PinsPack_1
 #endif
 
-#ifndef FATFS_CS_PIN
-#define FATFS_CS_RCC						RCC_AHB1Periph_GPIOB			
+#ifndef FATFS_CS_PIN		
 #define FATFS_CS_PORT						GPIOB
-#define FATFS_CS_PIN						GPIO_Pin_5
+#define FATFS_CS_PIN						GPIO_PIN_6
 #endif
 
 #ifndef FATFS_USE_DETECT_PIN
@@ -40,10 +41,9 @@
 #endif
 
 #if FATFS_USE_DETECT_PIN > 0
-#ifndef FATFS_USE_DETECT_PIN_PIN
-#define FATFS_USE_DETECT_PIN_RCC			RCC_AHB1Periph_GPIOB			
+#ifndef FATFS_USE_DETECT_PIN_PIN			
 #define FATFS_USE_DETECT_PIN_PORT			GPIOB
-#define FATFS_USE_DETECT_PIN_PIN			GPIO_Pin_6
+#define FATFS_USE_DETECT_PIN_PIN			GPIO_PIN_6
 #endif
 #endif
 
