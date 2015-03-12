@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/09/library-36-dac-signal-generator-stm32f4
- *	@version 	v1.0
+ *	@version 	v1.1
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -26,6 +26,10 @@
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
  * 
+ * Version 1.1
+ *	- March 12, 2015
+ *	- Added support for my new GPIO library
+ *
  * Library supports 4 output signals:
  * 	- Square
  * 	- Sinus
@@ -46,7 +50,7 @@
  * Pins for DAC are fixed, analog and can not be changed
  */
 #ifndef TM_DAC_SIGNAL_H
-#define TM_DAC_SIGNAL_H 100
+#define TM_DAC_SIGNAL_H 110
 
 /* C++ detection */
 #ifdef __cplusplus
@@ -56,25 +60,23 @@ extern C {
 /**
  * Library dependencies
  * - STM32F4xx
- * - STM32F4xx RCC
- * - STM32F4xx GPIO
  * - STM32F4xx DAC
  * - STM32F4xx TIM
  * - STM32F4xx DMA
  * - defines.h
  * - TM TIMER PROPERTIES
+ * - TM GPIO
  */
 /**
  * Includes
  */
 #include "stm32f4xx.h"
-#include "stm32f4xx_rcc.h"
-#include "stm32f4xx_gpio.h"
 #include "stm32f4xx_dac.h"
 #include "stm32f4xx_tim.h"
 #include "stm32f4xx_dma.h"
 #include "defines.h"
 #include "tm_stm32f4_timer_properties.h"
+#include "tm_stm32f4_gpio.h"
 
 /* Signals used */
 #define DAC_SIGNAL_SINUS_LENGTH			32

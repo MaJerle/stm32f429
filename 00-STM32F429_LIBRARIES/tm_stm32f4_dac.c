@@ -19,46 +19,49 @@
 #include "tm_stm32f4_dac.h"
 
 void TM_DAC_Init(TM_DAC_Channel_t DACx) {
-	GPIO_InitTypeDef GPIO_InitDef;
-	DAC_InitTypeDef DAC_InitDef;
+	DAC_InitTypeDef DAC_InitStruct;
+	uint16_t GPIO_Pin;
 	
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_DAC, ENABLE);
-	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
-	
+	/* Select proper GPIO pin */
 	if (DACx == TM_DAC1) {
-		GPIO_InitDef.GPIO_Pin = GPIO_Pin_4;
+		GPIO_Pin = GPIO_PIN_4;
 	} else {
-		GPIO_InitDef.GPIO_Pin = GPIO_Pin_5;
+		GPIO_Pin = GPIO_PIN_5;
 	}
-	GPIO_InitDef.GPIO_Mode = GPIO_Mode_AN;
-	GPIO_InitDef.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitDef.GPIO_PuPd = GPIO_PuPd_NOPULL;
-	GPIO_InitDef.GPIO_Speed = GPIO_Speed_100MHz;
 	
-	GPIO_Init(GPIOA, &GPIO_InitDef);
+	/* Initialize proper GPIO pin */
+	TM_GPIO_Init(GPIOA, GPIO_Pin, TM_GPIO_Mode_AN, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_Fast);
+
+	/* Enable DAC clock */
+	RCC->APB1ENR |= RCC_APB1ENR_DACEN;
 	
+	/* Set DAC options */
+	DAC_InitStruct.DAC_Trigger = DAC_Trigger_None;
+	DAC_InitStruct.DAC_WaveGeneration = DAC_WaveGeneration_None;
+	DAC_InitStruct.DAC_OutputBuffer = DAC_OutputBuffer_Enable;
 	
-	DAC_InitDef.DAC_Trigger = DAC_Trigger_None;
-	DAC_InitDef.DAC_WaveGeneration = DAC_WaveGeneration_None;
-	DAC_InitDef.DAC_OutputBuffer = DAC_OutputBuffer_Enable;
+	/* Init and enable proper DAC */
 	if (DACx == TM_DAC1) {
-		DAC_Init(DAC_Channel_1, &DAC_InitDef);
-		DAC_Cmd(DAC_Channel_1, ENABLE);
+		DAC_Init(DAC_Channel_1, &DAC_InitStruct);
+		/* Enable DAC channel 1 */
+		DAC->CR |= DAC_CR_EN1;
 	} else {
-		DAC_Init(DAC_Channel_2, &DAC_InitDef);
-		DAC_Cmd(DAC_Channel_2, ENABLE);
+		DAC_Init(DAC_Channel_2, &DAC_InitStruct);
+		/* Enable DAC channel 2 */
+		DAC->CR |= DAC_CR_EN2;
 	}
 }
 
 void TM_DAC_SetValue(TM_DAC_Channel_t DACx, uint16_t value) {
+	/* Check value */
 	if (value > 4095) {
 		value = 4095;
 	}
+	
+	/* Set 12bit value, right aligned */
 	if (DACx == TM_DAC1) {
-		DAC_SetChannel1Data(DAC_Align_12b_R, value);
+		DAC->DHR12R1 = value;
 	} else {
-		DAC_SetChannel2Data(DAC_Align_12b_R, value);
+		DAC->DHR12R2 = value;
 	}
-		
 }
-

@@ -58,18 +58,40 @@ extern C {
 #include "stm32f4xx_gpio.h"
 #include "defines.h"
 
-/* Use all GPIOs, for future use and HAl drivers */
+/* Use all GPIOs, for future use and HAL drivers */
+#ifdef GPIOA
 #define USE_GPIOA
+#endif
+#ifdef GPIOB
 #define USE_GPIOB
+#endif
+#ifdef GPIOC
 #define USE_GPIOC
+#endif
+#ifdef GPIOD
 #define USE_GPIOD
+#endif
+#ifdef GPIOE
 #define USE_GPIOE
+#endif
+#ifdef GPIOF
 #define USE_GPIOF
+#endif
+#ifdef GPIOG
 #define USE_GPIOG
+#endif
+#ifdef GPIOH
 #define USE_GPIOH
+#endif
+#ifdef GPIOI
 #define USE_GPIOI
+#endif
+#ifdef GPIOJ
 #define USE_GPIOJ
+#endif
+#ifdef GPIOK
 #define USE_GPIOK
+#endif
 
 /* Defines for GPIOs */
 /* For HAL periph drivers */

@@ -281,13 +281,22 @@ uint8_t TM_I2C_IsDeviceConnected(I2C_TypeDef* I2Cx, uint8_t address) {
 /* Private functions */
 void TM_I2C1_INT_InitPins(TM_I2C_PinsPack_t pinspack) {
 	/* Init pins */
+#if defined(GPIOB)
 	if (pinspack == TM_I2C_PinsPack_1) {
-		TM_GPIO_InitAlternate(GPIOB, GPIO_Pin_6 | GPIO_Pin_7, TM_GPIO_OType_OD, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium, GPIO_AF_I2C1);
-	} else if (pinspack == TM_I2C_PinsPack_2) {
-		TM_GPIO_InitAlternate(GPIOB, GPIO_Pin_8 | GPIO_Pin_9, TM_GPIO_OType_OD, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium, GPIO_AF_I2C1);
-	} else if (pinspack == TM_I2C_PinsPack_3) {
-		TM_GPIO_InitAlternate(GPIOB, GPIO_Pin_6 | GPIO_Pin_9, TM_GPIO_OType_OD, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium, GPIO_AF_I2C1);
-	} else if (pinspack == TM_I2C_PinsPack_Custom) {
+		TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_6 | GPIO_PIN_7, TM_GPIO_OType_OD, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium, GPIO_AF_I2C1);
+	}
+#endif
+#if defined(GPIOB)
+	if (pinspack == TM_I2C_PinsPack_2) {
+		TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_8 | GPIO_PIN_9, TM_GPIO_OType_OD, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium, GPIO_AF_I2C1);
+	}
+#endif
+#if defined(GPIOB)
+	if (pinspack == TM_I2C_PinsPack_3) {
+		TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_6 | GPIO_PIN_9, TM_GPIO_OType_OD, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium, GPIO_AF_I2C1);
+	}
+#endif
+	if (pinspack == TM_I2C_PinsPack_Custom) {
 		/* Init custom pins, callback function */
 		TM_I2C_InitCustomPins(I2C1);
 	}
@@ -295,13 +304,22 @@ void TM_I2C1_INT_InitPins(TM_I2C_PinsPack_t pinspack) {
 
 void TM_I2C2_INT_InitPins(TM_I2C_PinsPack_t pinspack) {
 	/* Init pins */
+#if defined(GPIOB)
 	if (pinspack == TM_I2C_PinsPack_1) {
-		TM_GPIO_InitAlternate(GPIOB, GPIO_Pin_10 | GPIO_Pin_11, TM_GPIO_OType_OD, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium, GPIO_AF_I2C2);
-	} else if (pinspack == TM_I2C_PinsPack_2) {
-		TM_GPIO_InitAlternate(GPIOF, GPIO_Pin_0 | GPIO_Pin_1, TM_GPIO_OType_OD, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium, GPIO_AF_I2C2);
-	} else if (pinspack == TM_I2C_PinsPack_3) {
-		TM_GPIO_InitAlternate(GPIOH, GPIO_Pin_4 | GPIO_Pin_5, TM_GPIO_OType_OD, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium, GPIO_AF_I2C2);
-	} else if (pinspack == TM_I2C_PinsPack_Custom) {
+		TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_10 | GPIO_PIN_11, TM_GPIO_OType_OD, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium, GPIO_AF_I2C2);
+	}
+#endif
+#if defined(GPIOF)
+	if (pinspack == TM_I2C_PinsPack_2) {
+		TM_GPIO_InitAlternate(GPIOF, GPIO_PIN_0 | GPIO_PIN_1, TM_GPIO_OType_OD, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium, GPIO_AF_I2C2);
+	}
+#endif
+#if defined(GPIOH)
+	if (pinspack == TM_I2C_PinsPack_3) {
+		TM_GPIO_InitAlternate(GPIOH, GPIO_PIN_4 | GPIO_PIN_5, TM_GPIO_OType_OD, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium, GPIO_AF_I2C2);
+	}
+#endif
+	if (pinspack == TM_I2C_PinsPack_Custom) {
 		/* Init custom pins, callback function */
 		TM_I2C_InitCustomPins(I2C2);
 	}
@@ -309,12 +327,18 @@ void TM_I2C2_INT_InitPins(TM_I2C_PinsPack_t pinspack) {
 
 void TM_I2C3_INT_InitPins(TM_I2C_PinsPack_t pinspack) {
 	/* Init pins */
+#if defined(GPIOA) && defined(GPIOC)
 	if (pinspack == TM_I2C_PinsPack_1) {
-		TM_GPIO_InitAlternate(GPIOA, GPIO_Pin_8, TM_GPIO_OType_OD, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium, GPIO_AF_I2C3);
-		TM_GPIO_InitAlternate(GPIOC, GPIO_Pin_9, TM_GPIO_OType_OD, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium, GPIO_AF_I2C3);
-	} else if (pinspack == TM_I2C_PinsPack_2) {
-		TM_GPIO_InitAlternate(GPIOH, GPIO_Pin_7 | GPIO_Pin_8, TM_GPIO_OType_OD, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium, GPIO_AF_I2C3);
-	} else if (pinspack == TM_I2C_PinsPack_Custom) {
+		TM_GPIO_InitAlternate(GPIOA, GPIO_PIN_8, TM_GPIO_OType_OD, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium, GPIO_AF_I2C3);
+		TM_GPIO_InitAlternate(GPIOC, GPIO_PIN_9, TM_GPIO_OType_OD, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium, GPIO_AF_I2C3);
+	}
+#endif
+#if defined(GPIOH)
+	if (pinspack == TM_I2C_PinsPack_2) {
+		TM_GPIO_InitAlternate(GPIOH, GPIO_PIN_7 | GPIO_PIN_8, TM_GPIO_OType_OD, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Medium, GPIO_AF_I2C3);
+	}
+#endif
+	if (pinspack == TM_I2C_PinsPack_Custom) {
 		/* Init custom pins, callback function */
 		TM_I2C_InitCustomPins(I2C3);
 	}

@@ -49,7 +49,7 @@ TIM_TypeDef *DAC_TIM[2];
 uint8_t dac_timer_set[2] = {0, 0};
 
 TM_DAC_SIGNAL_Result_t TM_DAC_SIGNAL_Init(TM_DAC_SIGNAL_Channel_t DACx, TIM_TypeDef* TIMx) {
-	GPIO_InitTypeDef GPIO_InitStruct;
+	uint16_t GPIO_Pin;
 	
 	/* Check used timer */
 	/* Set proper trigger */
@@ -69,23 +69,17 @@ TM_DAC_SIGNAL_Result_t TM_DAC_SIGNAL_Init(TM_DAC_SIGNAL_Channel_t DACx, TIM_Type
 		/* Timer is not valid */
 		return TM_DAC_SIGNAL_Result_TimerNotValid;
 	}
+
 	
-	/* Enable clock */
-	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
-	
-	/* Set settings for DAC pin */
+	/* Select proper GPIO pin */
 	if (DACx == TM_DAC1) {
-		GPIO_InitStruct.GPIO_Pin = GPIO_Pin_4;
-	} else if (DACx == TM_DAC2) {
-		GPIO_InitStruct.GPIO_Pin = GPIO_Pin_5;
+		GPIO_Pin = GPIO_PIN_4;
+	} else {
+		GPIO_Pin = GPIO_PIN_5;
 	}
 	
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AN;
-	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
-	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
-	/* Initialize DAC pin */
-	GPIO_Init(GPIOA, &GPIO_InitStruct);
+	/* Initialize proper GPIO pin */
+	TM_GPIO_Init(GPIOA, GPIO_Pin, TM_GPIO_Mode_AN, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_Fast);
 	
 	/* Return OK */
 	return TM_DAC_SIGNAL_Result_Ok;
@@ -109,6 +103,7 @@ TM_DAC_SIGNAL_Result_t TM_DAC_SIGNAL_SetSignal(TM_DAC_SIGNAL_Channel_t DACx, TM_
 		default:
 			result = TM_DAC_SIGNAL_Result_Error;
 	}
+	
 	/* Return result */
 	return result;
 }
@@ -155,9 +150,9 @@ TM_DAC_SIGNAL_Result_t TM_DAC_SIGNAL_SetCustomSignal(TM_DAC_SIGNAL_Channel_t DAC
 	}
 	
 	/* Enable DAC clock */
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_DAC, ENABLE);
+	RCC->APB1ENR |= RCC_APB1ENR_DACEN;
 	/* Enable DMA1 clock */
-	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA1, ENABLE);
+	RCC->AHB1ENR |= RCC_AHB1ENR_DMA1EN;
 	
 	/* Initialize DAC */
 	DAC_InitStruct.DAC_WaveGeneration = DAC_WaveGeneration_None;
@@ -253,7 +248,7 @@ TM_DAC_SIGNAL_Result_t TM_DAC_SIGNAL_SetCustomSignal(TM_DAC_SIGNAL_Channel_t DAC
 	}
 	
 	/* Enable timer */
-	TIM_Cmd(DAC_TIM[DACx], ENABLE);
+	DAC_TIM[DACx]->CR1 |= TIM_CR1_CEN;
 	
 	/* Return OK */
 	return TM_DAC_SIGNAL_Result_Ok;

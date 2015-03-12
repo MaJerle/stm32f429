@@ -81,8 +81,6 @@
 /**
  * Library dependencies
  * - STM32F4xx
- * - STM32F4xx RCC
- * - STM32F4xx GPIO
  * - STM32F4xx I2C
  * - defines.h
  * - attributes.h

@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/08/library-25-am2301-dht21-sensor-stm32f4xx/
- *	@version 	v1.2
+ *	@version 	v1.3
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -26,8 +26,10 @@
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
  *
- * CHANGELOG
- *	
+ * Version 1.3
+ *	- March 12, 2015
+ *	- Added support for my new GPIO library
+ *
  * Version 1.2
  *	- December 01, 2014
  *	- Added comments
@@ -49,48 +51,42 @@
  * By default, PD1 pin is used for data. If you want to change it, use lines below in defines.h to and edit them:
  *
  *	//Select custom pin for AM2301 sensor
- *	#define AM2301_RCC				RCC_AHB1Periph_GPIOD
  *	#define AM2301_PORT				GPIOD
- *	#define AM2301_PIN				GPIO_Pin_1
+ *	#define AM2301_PIN				GPIO_PIN_1
  *
  * Temperature and humidity are returned from sensor in x10 multiplyer, so like 55.5% humidity,
  * sensor will return 555 and 27.3°C, sensor will return 273.
  * This values are also returned from my library, you have to manually convert them (divide by 10)
  */
 #ifndef TM_AM2301_H
-#define TM_AM2301_H 120
+#define TM_AM2301_H 130
 /**
  * Dependencies
  * - STM32F4xx
- * - STM32F4xx RCC
- * - STM32F4xx GPIO
  * - defines.h
  * - TM DELAY
+ * - TM GPIO
  */
 /**
  * Includes
  */
 #include "stm32f4xx.h"
-#include "stm32f4xx_rcc.h"
-#include "stm32f4xx_gpio.h"
 #include "defines.h"
 #include "tm_stm32f4_delay.h"
+#include "tm_stm32f4_gpio.h"
 
 /* Default data pin, overwrite it in defines.h file */
 #ifndef AM2301_PIN
-#define AM2301_RCC				RCC_AHB1Periph_GPIOD
 #define AM2301_PORT				GPIOD
-#define AM2301_PIN				GPIO_Pin_1
+#define AM2301_PIN				GPIO_PIN_1
 #endif
 
 /* Pin settings */
-#define AM2301_PIN_LOW			AM2301_PORT->BSRRH = AM2301_PIN
-#define AM2301_PIN_HIGH			AM2301_PORT->BSRRL = AM2301_PIN
-#define AM2301_PIN_IN			AM2301_GPIO_InitStruct.GPIO_Mode = GPIO_Mode_IN; GPIO_Init(AM2301_PORT, &AM2301_GPIO_InitStruct)
-#define AM2301_PIN_OUT			AM2301_GPIO_InitStruct.GPIO_Mode = GPIO_Mode_OUT; GPIO_Init(AM2301_PORT, &AM2301_GPIO_InitStruct)
-#define AM2301_PIN_READ			GPIO_ReadInputDataBit(AM2301_PORT, AM2301_PIN)
-
-extern GPIO_InitTypeDef AM2301_GPIO_InitStruct;
+#define AM2301_PIN_LOW			TM_GPIO_SetPinLow(AM2301_PORT, AM2301_PIN)
+#define AM2301_PIN_HIGH			TM_GPIO_SetPinHigh(AM2301_PORT, AM2301_PIN)
+#define AM2301_PIN_IN			TM_GPIO_SetPinAsInput(AM2301_PORT, AM2301_PIN)
+#define AM2301_PIN_OUT			TM_GPIO_SetPinAsOutput(AM2301_PORT, AM2301_PIN)
+#define AM2301_PIN_READ			TM_GPIO_GetInputPinValue(AM2301_PORT, AM2301_PIN)
 
 /**
  * Enumerations

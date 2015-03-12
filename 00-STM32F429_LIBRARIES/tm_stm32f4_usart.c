@@ -29,53 +29,53 @@ typedef struct {
 } TM_USART_t;
 
 /* Set variables for buffers */
-#ifdef TM_USE_USART1
+#ifdef USE_USART1
 uint8_t TM_USART1_Buffer[TM_USART1_BUFFER_SIZE];
 #endif
-#ifdef TM_USE_USART2
+#ifdef USE_USART2
 uint8_t TM_USART2_Buffer[TM_USART2_BUFFER_SIZE];
 #endif
-#ifdef TM_USE_USART3
+#ifdef USE_USART3
 uint8_t TM_USART3_Buffer[TM_USART3_BUFFER_SIZE];
 #endif
-#ifdef TM_USE_UART4
+#ifdef USE_UART4
 uint8_t TM_UART4_Buffer[TM_UART4_BUFFER_SIZE];
 #endif
-#ifdef TM_USE_UART5
+#ifdef USE_UART5
 uint8_t TM_UART5_Buffer[TM_UART5_BUFFER_SIZE];
 #endif
-#ifdef TM_USE_USART6
+#ifdef USE_USART6
 uint8_t TM_USART6_Buffer[TM_USART6_BUFFER_SIZE];
 #endif
-#ifdef TM_USE_UART7
+#ifdef USE_UART7
 uint8_t TM_UART7_Buffer[TM_UART7_BUFFER_SIZE];
 #endif
-#ifdef TM_USE_UART8
+#ifdef USE_UART8
 uint8_t TM_UART8_Buffer[TM_UART8_BUFFER_SIZE];
 #endif
 
-#ifdef TM_USE_USART1
+#ifdef USE_USART1
 TM_USART_t TM_USART1 = {TM_USART1_Buffer, TM_USART1_BUFFER_SIZE, 0, 0, 0, 0};
 #endif
-#ifdef TM_USE_USART2
+#ifdef USE_USART2
 TM_USART_t TM_USART2 = {TM_USART2_Buffer, TM_USART2_BUFFER_SIZE, 0, 0, 0, 0};
 #endif
-#ifdef TM_USE_USART3
+#ifdef USE_USART3
 TM_USART_t TM_USART3 = {TM_USART3_Buffer, TM_USART3_BUFFER_SIZE, 0, 0, 0, 0};
 #endif
-#ifdef TM_USE_UART4
+#ifdef USE_UART4
 TM_USART_t TM_UART4 = {TM_UART4_Buffer, TM_UART4_BUFFER_SIZE, 0, 0, 0, 0};
 #endif
-#ifdef TM_USE_UART5
+#ifdef USE_UART5
 TM_USART_t TM_UART5 = {TM_UART5_Buffer, TM_UART5_BUFFER_SIZE, 0, 0, 0, 0};
 #endif
-#ifdef TM_USE_USART6
+#ifdef USE_USART6
 TM_USART_t TM_USART6 = {TM_USART6_Buffer, TM_USART6_BUFFER_SIZE, 0, 0, 0, 0};
 #endif
-#ifdef TM_USE_UART7
+#ifdef USE_UART7
 TM_USART_t TM_UART7 = {TM_UART7_Buffer, TM_UART7_BUFFER_SIZE, 0, 0, 0, 0};
 #endif
-#ifdef TM_USE_UART8
+#ifdef USE_UART8
 TM_USART_t TM_UART8 = {TM_UART8_Buffer, TM_UART8_BUFFER_SIZE, 0, 0, 0, 0};
 #endif
 
@@ -121,7 +121,7 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 	 * Initialize USARTx pins
 	 * Set channel for USARTx NVIC
 	 */
-#ifdef TM_USE_USART1
+#ifdef USE_USART1
 	if (USARTx == USART1) {
 		/* Enable USART clock */
 		RCC->APB2ENR |= RCC_APB2ENR_USART1EN;
@@ -136,7 +136,7 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 		USART_InitStruct.USART_WordLength = TM_USART1_WORD_LENGTH;
 	}
 #endif
-#ifdef TM_USE_USART2
+#ifdef USE_USART2
 	if (USARTx == USART2) {
 		/* Enable USART clock */
 		RCC->APB1ENR |= RCC_APB1ENR_USART2EN;
@@ -151,7 +151,7 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 		USART_InitStruct.USART_WordLength = TM_USART2_WORD_LENGTH;
 	}
 #endif
-#ifdef TM_USE_USART3
+#ifdef USE_USART3
 	if (USARTx == USART3) {
 		/* Enable USART clock */
 		RCC->APB1ENR |= RCC_APB1ENR_USART3EN;
@@ -167,7 +167,7 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 		USART_InitStruct.USART_WordLength = TM_USART3_WORD_LENGTH;
 	}
 #endif
-#ifdef TM_USE_UART4
+#ifdef USE_UART4
 	if (USARTx == UART4) {
 		/* Enable UART clock */
 		RCC->APB1ENR |= RCC_APB1ENR_UART4EN;
@@ -183,7 +183,7 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 		USART_InitStruct.USART_WordLength = TM_UART4_WORD_LENGTH;
 	}
 #endif
-#ifdef TM_USE_UART5
+#ifdef USE_UART5
 	if (USARTx == UART5) {
 		/* Enable UART clock */
 		RCC->APB1ENR |= RCC_APB1ENR_UART5EN;
@@ -199,7 +199,7 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 		USART_InitStruct.USART_WordLength = TM_UART5_WORD_LENGTH;
 	}
 #endif
-#ifdef TM_USE_USART6
+#ifdef USE_USART6
 	if (USARTx == USART6) {
 		/* Enable UART clock */
 		RCC->APB2ENR |= RCC_APB2ENR_USART6EN;
@@ -215,7 +215,7 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 		USART_InitStruct.USART_WordLength = TM_USART6_WORD_LENGTH;
 	}
 #endif
-#ifdef TM_USE_UART7
+#ifdef USE_UART7
 	if (USARTx == UART7) {
 		/* Enable UART clock */
 		RCC->APB1ENR |= RCC_APB1ENR_UART7EN;
@@ -231,7 +231,7 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 		USART_InitStruct.USART_WordLength = TM_UART7_WORD_LENGTH;
 	}
 #endif
-#ifdef TM_USE_UART8
+#ifdef USE_UART8
 	if (USARTx == UART8) {
 		/* Enable UART clock */
 		RCC->APB1ENR |= RCC_APB1ENR_UART8EN;
@@ -408,42 +408,42 @@ void TM_USART_INT_InsertToBuffer(TM_USART_t* u, uint8_t c) {
 TM_USART_t* TM_USART_INT_GetUsart(USART_TypeDef* USARTx) {
 	TM_USART_t* u;
 	
-#ifdef TM_USE_USART1
+#ifdef USE_USART1
 	if (USARTx == USART1) {
 		u = &TM_USART1;
 	}
 #endif
-#ifdef TM_USE_USART2
+#ifdef USE_USART2
 	if (USARTx == USART2) {
 		u = &TM_USART2;
 	}
 #endif
-#ifdef TM_USE_USART3
+#ifdef USE_USART3
 	if (USARTx == USART3) {
 		u = &TM_USART3;
 	}
 #endif
-#ifdef TM_USE_UART4
+#ifdef USE_UART4
 	if (USARTx == UART4) {
 		u = &TM_UART4;
 	}
 #endif
-#ifdef TM_USE_UART5
+#ifdef USE_UART5
 	if (USARTx == UART5) {
 		u = &TM_UART5;
 	}
 #endif
-#ifdef TM_USE_USART6
+#ifdef USE_USART6
 	if (USARTx == USART6) {
 		u = &TM_USART6;
 	}
 #endif
-#ifdef TM_USE_UART7
+#ifdef USE_UART7
 	if (USARTx == UART7) {
 		u = &TM_UART7;
 	}
 #endif
-#ifdef TM_USE_UART8
+#ifdef USE_UART8
 	if (USARTx == UART8) {
 		u = &TM_UART8;
 	}
@@ -455,42 +455,42 @@ TM_USART_t* TM_USART_INT_GetUsart(USART_TypeDef* USARTx) {
 uint8_t TM_USART_INT_GetSubPriority(USART_TypeDef* USARTx) {
 	uint8_t u;
 	
-#ifdef TM_USE_USART1
+#ifdef USE_USART1
 	if (USARTx == USART1) {
 		u = 0;
 	}
 #endif
-#ifdef TM_USE_USART2
+#ifdef USE_USART2
 	if (USARTx == USART2) {
 		u = 1;
 	}
 #endif
-#ifdef TM_USE_USART3
+#ifdef USE_USART3
 	if (USARTx == USART3) {
 		u = 2;
 	}
 #endif
-#ifdef TM_USE_UART4
+#ifdef USE_UART4
 	if (USARTx == UART4) {
 		u = 4;
 	}
 #endif
-#ifdef TM_USE_UART5
+#ifdef USE_UART5
 	if (USARTx == UART5) {
 		u = 5;
 	}
 #endif
-#ifdef TM_USE_USART6
+#ifdef USE_USART6
 	if (USARTx == USART6) {
 		u = 6;
 	}
 #endif
-#ifdef TM_USE_UART7
+#ifdef USE_UART7
 	if (USARTx == UART7) {
 		u = 7;
 	}
 #endif
-#ifdef TM_USE_UART8
+#ifdef USE_UART8
 	if (USARTx == UART8) {
 		u = 8;
 	}
@@ -499,118 +499,163 @@ uint8_t TM_USART_INT_GetSubPriority(USART_TypeDef* USARTx) {
 	return u;
 }
 
-#ifdef TM_USE_USART1
+#ifdef USE_USART1
 void TM_USART1_InitPins(TM_USART_PinsPack_t pinspack) {	
 	/* Init pins */
+#if defined(GPIOA)
 	if (pinspack == TM_USART_PinsPack_1) {
 		TM_GPIO_InitAlternate(GPIOA, GPIO_Pin_9 | GPIO_Pin_10, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_USART1);
-	} else if (pinspack == TM_USART_PinsPack_2) {
+	}
+#endif
+#if defined(GPIOB)
+	if (pinspack == TM_USART_PinsPack_2) {
 		TM_GPIO_InitAlternate(GPIOB, GPIO_Pin_6 | GPIO_Pin_7, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_USART1);
-	} else if (pinspack == TM_USART_PinsPack_Custom) {
+	}
+#endif
+	if (pinspack == TM_USART_PinsPack_Custom) {
 		/* Init custom pins, callback used */
 		TM_USART_InitCustomPins(USART1);
 	}
 }
 #endif
 
-#ifdef TM_USE_USART2
+#ifdef USE_USART2
 void TM_USART2_InitPins(TM_USART_PinsPack_t pinspack) {
 	/* Init pins */
+#if defined(GPIOA)
 	if (pinspack == TM_USART_PinsPack_1) {
 		TM_GPIO_InitAlternate(GPIOA, GPIO_Pin_2 | GPIO_Pin_3, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_USART2);
-	} else if (pinspack == TM_USART_PinsPack_2) {
+	}
+#endif
+#if defined(GPIOD)
+	if (pinspack == TM_USART_PinsPack_2) {
 		TM_GPIO_InitAlternate(GPIOD, GPIO_Pin_5 | GPIO_Pin_6, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_USART2);
-	} else if (pinspack == TM_USART_PinsPack_Custom) {
+	}
+#endif
+	if (pinspack == TM_USART_PinsPack_Custom) {
 		/* Init custom pins, callback used */
 		TM_USART_InitCustomPins(USART2);
 	}
 }
 #endif
 
-#ifdef TM_USE_USART3
+#ifdef USE_USART3
 void TM_USART3_InitPins(TM_USART_PinsPack_t pinspack) {
 	/* Init pins */
+#if defined(GPIOB)
 	if (pinspack == TM_USART_PinsPack_1) {
 		TM_GPIO_InitAlternate(GPIOB, GPIO_Pin_10 | GPIO_Pin_11, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_USART3);
-	} else if (pinspack == TM_USART_PinsPack_2) {
+	}
+#endif
+#if defined(GPIOC)
+	if (pinspack == TM_USART_PinsPack_2) {
 		TM_GPIO_InitAlternate(GPIOC, GPIO_Pin_10 | GPIO_Pin_11, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_USART3);
-	} else if (pinspack == TM_USART_PinsPack_3) {
+	}
+#endif
+#if defined(GPIOD)
+	if (pinspack == TM_USART_PinsPack_3) {
 		TM_GPIO_InitAlternate(GPIOD, GPIO_Pin_8 | GPIO_Pin_9, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_USART3);
-	} else if (pinspack == TM_USART_PinsPack_Custom) {
+	}
+#endif
+	if (pinspack == TM_USART_PinsPack_Custom) {
 		/* Init custom pins, callback used */
 		TM_USART_InitCustomPins(USART3);
 	}
 }
 #endif
 
-#ifdef TM_USE_UART4
+#ifdef USE_UART4
 void TM_UART4_InitPins(TM_USART_PinsPack_t pinspack) {
 	/* Init pins */
+#if defined(GPIOA)
 	if (pinspack == TM_USART_PinsPack_1) {
 		TM_GPIO_InitAlternate(GPIOA, GPIO_Pin_0 | GPIO_Pin_1, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_UART4);
-	} else if (pinspack == TM_USART_PinsPack_2) {
+	}
+#endif
+#if defined(GPIOC)
+	if (pinspack == TM_USART_PinsPack_2) {
 		TM_GPIO_InitAlternate(GPIOC, GPIO_Pin_10 | GPIO_Pin_11, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_UART4);
-	} else if (pinspack == TM_USART_PinsPack_Custom) {
+	}
+#endif
+	if (pinspack == TM_USART_PinsPack_Custom) {
 		/* Init custom pins, callback used */
 		TM_USART_InitCustomPins(UART4);
 	}
 }
 #endif
 
-#ifdef TM_USE_UART5
+#ifdef USE_UART5
 void TM_UART5_InitPins(TM_USART_PinsPack_t pinspack) {
 	/* Init pins */
+#if defined(GPIOC) && defined(GPIOD)
 	if (pinspack == TM_USART_PinsPack_1) {
 		TM_GPIO_InitAlternate(GPIOC, GPIO_Pin_12, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_UART5);
 		TM_GPIO_InitAlternate(GPIOD, GPIO_Pin_2, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_UART5);
-	} else if (pinspack == TM_USART_PinsPack_Custom) {
+	}
+#endif
+	if (pinspack == TM_USART_PinsPack_Custom) {
 		/* Init custom pins, callback used */
 		TM_USART_InitCustomPins(UART5);
 	}
 }
 #endif
 
-#ifdef TM_USE_USART6
+#ifdef USE_USART6
 void TM_USART6_InitPins(TM_USART_PinsPack_t pinspack) {
 	/* Init pins */
+#if defined(GPIOC)
 	if (pinspack == TM_USART_PinsPack_1) {
 		TM_GPIO_InitAlternate(GPIOC, GPIO_Pin_6 | GPIO_Pin_7, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_USART6);
-	} else if (pinspack == TM_USART_PinsPack_2) {
+	}
+#endif
+#if defined(GPIOG)
+	if (pinspack == TM_USART_PinsPack_2) {
 		TM_GPIO_InitAlternate(GPIOG, GPIO_Pin_14 | GPIO_Pin_9, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_USART6);
-	} else if (pinspack == TM_USART_PinsPack_Custom) {
+	}
+#endif
+	if (pinspack == TM_USART_PinsPack_Custom) {
 		/* Init custom pins, callback used */
 		TM_USART_InitCustomPins(USART6);
 	}
 }
 #endif
 
-#ifdef TM_USE_UART7
+#ifdef USE_UART7
 void TM_UART7_InitPins(TM_USART_PinsPack_t pinspack) {
 	/* Init pins */
+#if defined(GPIOE)
 	if (pinspack == TM_USART_PinsPack_1) {
 		TM_GPIO_InitAlternate(GPIOE, GPIO_Pin_8 | GPIO_Pin_7, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_UART7);
-	} else if (pinspack == TM_USART_PinsPack_2) {
+	}
+#endif
+#if defined(GPIOF)
+	if (pinspack == TM_USART_PinsPack_2) {
 		TM_GPIO_InitAlternate(GPIOF, GPIO_Pin_7 | GPIO_Pin_6, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_UART7);
-	} else if (pinspack == TM_USART_PinsPack_Custom) {
+	}
+#endif
+	if (pinspack == TM_USART_PinsPack_Custom) {
 		/* Init custom pins, callback used */
-		TM_USART_InitCustomPins(UART8);
+		TM_USART_InitCustomPins(UART7);
 	}
 }
 #endif
 
-#ifdef TM_USE_UART8
+#ifdef USE_UART8
 void TM_UART8_InitPins(TM_USART_PinsPack_t pinspack) {
 	/* Init pins */
+#if defined(GPIOE)
 	if (pinspack == TM_USART_PinsPack_1) {
 		TM_GPIO_InitAlternate(GPIOE, GPIO_Pin_1 | GPIO_Pin_0, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_High, GPIO_AF_UART8);
-	} else if (pinspack == TM_USART_PinsPack_Custom) {
+	}
+#endif
+	if (pinspack == TM_USART_PinsPack_Custom) {
 		/* Init custom pins, callback used */
 		TM_USART_InitCustomPins(UART8);
 	}
 }
 #endif
 
-#ifdef TM_USE_USART1
+#ifdef USE_USART1
 void USART1_IRQHandler(void) {
 	/* Check if interrupt was because data is received */
 	if (USART1->SR & USART_SR_RXNE) {
@@ -625,7 +670,7 @@ void USART1_IRQHandler(void) {
 }
 #endif
 
-#ifdef TM_USE_USART2
+#ifdef USE_USART2
 void USART2_IRQHandler(void) {
 	/* Check if interrupt was because data is received */
 	if (USART2->SR & USART_SR_RXNE) {
@@ -640,7 +685,7 @@ void USART2_IRQHandler(void) {
 }
 #endif
 
-#ifdef TM_USE_USART3
+#ifdef USE_USART3
 void USART3_IRQHandler(void) {
 	/* Check if interrupt was because data is received */
 	if (USART3->SR & USART_SR_RXNE) {
@@ -655,7 +700,7 @@ void USART3_IRQHandler(void) {
 }
 #endif
 
-#ifdef TM_USE_UART4
+#ifdef USE_UART4
 void UART4_IRQHandler(void) {
 	/* Check if interrupt was because data is received */
 	if (UART4->SR & USART_SR_RXNE) {
@@ -670,7 +715,7 @@ void UART4_IRQHandler(void) {
 }
 #endif
 
-#ifdef TM_USE_UART5
+#ifdef USE_UART5
 void UART5_IRQHandler(void) {
 	/* Check if interrupt was because data is received */
 	if (UART5->SR & USART_SR_RXNE) {
@@ -685,7 +730,7 @@ void UART5_IRQHandler(void) {
 }
 #endif
 
-#ifdef TM_USE_USART6
+#ifdef USE_USART6
 void USART6_IRQHandler(void) {
 	/* Check if interrupt was because data is received */
 	if (USART6->SR & USART_SR_RXNE) {
@@ -700,7 +745,7 @@ void USART6_IRQHandler(void) {
 }
 #endif
 
-#ifdef TM_USE_UART7
+#ifdef USE_UART7
 void UART7_IRQHandler(void) {
 	/* Check if interrupt was because data is received */
 	if (UART7->SR & USART_SR_RXNE) {
@@ -715,7 +760,7 @@ void UART7_IRQHandler(void) {
 }
 #endif
 
-#ifdef TM_USE_UART8
+#ifdef USE_UART8
 void UART8_IRQHandler(void) {
 	/* Check if interrupt was because data is received */
 	if (UART8->SR & USART_SR_RXNE) {

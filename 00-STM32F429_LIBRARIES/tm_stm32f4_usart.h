@@ -142,30 +142,32 @@
 #include "defines.h"
 #include "tm_stm32f4_gpio.h"
 
-/* Check possible USARTs settings */
+/* F405/407/415/417 */
 #if defined (STM32F40_41xxx)
-#define TM_USE_USART1
-#define TM_USE_USART2
-#define TM_USE_USART3
-#define TM_USE_UART4
-#define TM_USE_UART5
-#define TM_USE_USART6
-#endif /* STM32F40_41xxx */
+#define USE_USART1
+#define USE_USART2
+#define USE_USART3
+#define USE_UART4
+#define USE_UART5
+#define USE_USART6
+#endif
+/* F427/429/437/439 */
 #if defined (STM32F427_437xx) || defined (STM32F429_439xx)
-#define TM_USE_USART1
-#define TM_USE_USART2
-#define TM_USE_USART3
-#define TM_USE_UART4
-#define TM_USE_UART5
-#define TM_USE_USART6
-#define TM_USE_UART7
-#define TM_USE_UART8
-#endif /* STM32F427_437x || STM32F429_439xx */
+#define USE_USART1
+#define USE_USART2
+#define USE_USART3
+#define USE_UART4
+#define USE_UART5
+#define USE_USART6
+#define USE_UART7
+#define USE_UART8
+#endif
+/* F401/411 */
 #if defined (STM32F401xx) || defined(STM32F411xE)
-#define TM_USE_USART1
-#define TM_USE_USART2
-#define TM_USE_USART6
-#endif /* STM32F401xx || STM32F411xx */
+#define USE_USART1
+#define USE_USART2
+#define USE_USART6
+#endif
 
 /* Default buffer size for each USART */
 #ifndef TM_USART_BUFFER_SIZE
