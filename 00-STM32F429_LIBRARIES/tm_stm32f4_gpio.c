@@ -53,8 +53,8 @@ void TM_GPIO_InitAlternate(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_GPIO_OType
 		return;
 	}
 	
-	/* Init pin as alternate function */
-	TM_GPIO_Init(GPIOx, GPIO_Pin, TM_GPIO_Mode_AF, GPIO_OType, GPIO_PuPd, GPIO_Speed);
+	/* Enable GPIOx clock */
+	TM_GPIO_INT_EnableClock(GPIOx);
 	
 	/* Set alternate functions for all pins */
 	for (pinpos = 0; pinpos < 0x10; pinpos++) {
@@ -72,6 +72,16 @@ void TM_GPIO_InitAlternate(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_GPIO_OType
 		/* Set alternate function */
 		GPIO_PinAFConfig(GPIOx, pinsource, Alternate);
 	}
+	
+	/* Fill settings */
+	GPIO_InitStruct.GPIO_Mode = (GPIOMode_TypeDef) TM_GPIO_Mode_AF;
+	GPIO_InitStruct.GPIO_OType = (GPIOOType_TypeDef) GPIO_OType;
+	GPIO_InitStruct.GPIO_Pin = GPIO_Pin;
+	GPIO_InitStruct.GPIO_PuPd = (GPIOPuPd_TypeDef) GPIO_PuPd;
+	GPIO_InitStruct.GPIO_Speed = (GPIOSpeed_TypeDef) GPIO_Speed;
+	
+	/* Init pins */
+	GPIO_Init(GPIOx, &GPIO_InitStruct);
 }
 
 void TM_GPIO_DeInit(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin) {
