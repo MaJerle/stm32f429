@@ -18,6 +18,7 @@
  */
 #include "tm_stm32f4_i2c.h"
 
+/* Private variables */
 static uint32_t TM_I2C_Timeout;
 static uint32_t TM_I2C_INT_Clocks[3] = {0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF};
 
@@ -36,7 +37,7 @@ void TM_I2C_Init(I2C_TypeDef* I2Cx, TM_I2C_PinsPack_t pinspack, uint32_t clockSp
 		/* Enable pins */
 		TM_I2C1_INT_InitPins(pinspack);
 		
-		/* Check clock */
+		/* Check clock, set the lowest clock your devices support on the same I2C but */
 		if (clockSpeed < TM_I2C_INT_Clocks[0]) {
 			TM_I2C_INT_Clocks[0] = clockSpeed;
 		}
@@ -55,7 +56,7 @@ void TM_I2C_Init(I2C_TypeDef* I2Cx, TM_I2C_PinsPack_t pinspack, uint32_t clockSp
 		/* Enable pins */
 		TM_I2C2_INT_InitPins(pinspack);
 		
-		/* Check clock */
+		/* Check clock, set the lowest clock your devices support on the same I2C but */
 		if (clockSpeed < TM_I2C_INT_Clocks[1]) {
 			TM_I2C_INT_Clocks[1] = clockSpeed;
 		}
@@ -74,7 +75,7 @@ void TM_I2C_Init(I2C_TypeDef* I2Cx, TM_I2C_PinsPack_t pinspack, uint32_t clockSp
 		/* Enable pins */
 		TM_I2C3_INT_InitPins(pinspack);
 		
-		/* Check clock */
+		/* Check clock, set the lowest clock your devices support on the same I2C but */
 		if (clockSpeed < TM_I2C_INT_Clocks[2]) {
 			TM_I2C_INT_Clocks[2] = clockSpeed;
 		}
@@ -108,12 +109,6 @@ uint8_t TM_I2C_Read(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg) {
 	return received_data;
 }
 
-void TM_I2C_Write(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t data) {
-	TM_I2C_Start(I2Cx, address, 0, 0);
-	TM_I2C_WriteData(I2Cx, reg);
-	TM_I2C_WriteData(I2Cx, data);
-	TM_I2C_Stop(I2Cx);
-}
 
 void TM_I2C_ReadMulti(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t* data, uint16_t count) {
 	uint8_t i;
@@ -131,6 +126,14 @@ void TM_I2C_ReadMulti(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t* 
 	}
 }
 
+uint8_t TM_I2C_ReadNoRegister(I2C_TypeDef* I2Cx, uint8_t address) {
+	uint8_t data;
+	TM_I2C_Start(I2Cx, address, 1, 1);
+	/* Also stop condition happens */
+	data = TM_I2C_ReadNack(I2Cx);
+	return data;
+}
+
 void TM_I2C_ReadMultiNoRegister(I2C_TypeDef* I2Cx, uint8_t address, uint8_t* data, uint16_t count) {
 	uint8_t i;
 	TM_I2C_Start(I2Cx, address, 1, 1);
@@ -144,6 +147,13 @@ void TM_I2C_ReadMultiNoRegister(I2C_TypeDef* I2Cx, uint8_t address, uint8_t* dat
 	}
 }
 
+void TM_I2C_Write(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t data) {
+	TM_I2C_Start(I2Cx, address, 0, 0);
+	TM_I2C_WriteData(I2Cx, reg);
+	TM_I2C_WriteData(I2Cx, data);
+	TM_I2C_Stop(I2Cx);
+}
+
 void TM_I2C_WriteMulti(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t* data, uint16_t count) {
 	uint8_t i;
 	TM_I2C_Start(I2Cx, address, 0, 0);
@@ -154,6 +164,22 @@ void TM_I2C_WriteMulti(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t*
 	TM_I2C_Stop(I2Cx);
 }
 
+void TM_I2C_WriteNoRegister(I2C_TypeDef* I2Cx, uint8_t address, uint8_t data) {
+	TM_I2C_Start(I2Cx, address, 0, 0);
+	TM_I2C_WriteData(I2Cx, data);
+	TM_I2C_Stop(I2Cx);
+}
+
+void TM_I2C_WriteMultiNoRegister(I2C_TypeDef* I2Cx, uint8_t address, uint8_t* data, uint16_t count) {
+	uint8_t i;
+	TM_I2C_Start(I2Cx, address, 0, 0);
+	for (i = 0; i < count; i++) {
+		TM_I2C_WriteData(I2Cx, data[i]);
+	}
+	TM_I2C_Stop(I2Cx);
+}
+
+/* Private functions */
 int16_t TM_I2C_Start(I2C_TypeDef* I2Cx, uint8_t address, uint8_t direction, uint8_t ack) {
 	/* Generate I2C start pulse */
 	I2Cx->CR1 |= I2C_CR1_START;

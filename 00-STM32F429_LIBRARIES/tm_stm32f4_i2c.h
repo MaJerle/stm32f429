@@ -26,6 +26,10 @@
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
  *
+ * Version 1.6
+ *	- March 13, 2015
+ *	- Added new function to write multi bytes to device without specify register address
+ *
  * Version 1.5
  *	- March 10, 2015
  *	- Updated to be more independent of HAL/STD drivers. 
@@ -174,14 +178,6 @@ typedef enum {
  * 	- I2C_TypeDef* I2Cx: I2C used
  * 		I2C1, I2C2, I2C3
  * 	- TM_I2C_PinsPack_t pinspack: Pins used
- * 		- TM_I2C_Pinspack_1:
- * 			- I2C1: SCL: PB6, SDA: PB7
- * 			- I2C2: SCL: PB10, SDA: PB11
- * 			- I2C3: SCL: PA8, SDA: PC9
- * 		- TM_I2C_Pinspack_2:
- * 			- I2C1: SCL: PB8, SDA: PB9
- * 			- I2C2: SCL: PF1, SDA: PF0
- * 			- I2C3: SCL: PH7, SDA: PH8
  */
 extern void TM_I2C_Init(I2C_TypeDef* I2Cx, TM_I2C_PinsPack_t pinspack, uint32_t clockSpeed);
 
@@ -198,17 +194,6 @@ extern void TM_I2C_Init(I2C_TypeDef* I2Cx, TM_I2C_PinsPack_t pinspack, uint32_t 
 extern uint8_t TM_I2C_Read(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg);
 
 /**
- * Write single byte to slave
- *
- * Parameters:
- * 	- I2C_TypeDef* I2Cx: I2C used
- * 	- uint8_t address: 7 bit slave address, left aligned, bits 7:1 are used, LSB bit is not used
- *	- uint8_t reg: register to write to
- *	- uint8_t data: data to be written
- */
-extern void TM_I2C_Write(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t data);
-
-/**
  * Read multi bytes from slave
  *
  * Parameters:
@@ -219,6 +204,15 @@ extern void TM_I2C_Write(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_
  *	- uint8_t count: how many bytes will be read
  */
 extern void TM_I2C_ReadMulti(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t *data, uint16_t count);
+
+/**
+ * Read byte from slave without specify register address
+ *
+ * Parameters:
+ * 	- I2C_TypeDef* I2Cx: I2C used
+ * 	- uint8_t address: 7 bit slave address, left aligned, bits 7:1 are used, LSB bit is not used
+ */
+extern uint8_t TM_I2C_ReadNoRegister(I2C_TypeDef* I2Cx, uint8_t address);
 
 /**
  * Read multi bytes from slave without setting register from where to start read
@@ -232,6 +226,17 @@ extern void TM_I2C_ReadMulti(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, ui
 extern void TM_I2C_ReadMultiNoRegister(I2C_TypeDef* I2Cx, uint8_t address, uint8_t* data, uint16_t count);
 
 /**
+ * Write single byte to slave
+ *
+ * Parameters:
+ * 	- I2C_TypeDef* I2Cx: I2C used
+ * 	- uint8_t address: 7 bit slave address, left aligned, bits 7:1 are used, LSB bit is not used
+ *	- uint8_t reg: register to write to
+ *	- uint8_t data: data to be written
+ */
+extern void TM_I2C_Write(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t data);
+
+/**
  * Write multi bytes from slave
  *
  * Parameters:
@@ -242,6 +247,33 @@ extern void TM_I2C_ReadMultiNoRegister(I2C_TypeDef* I2Cx, uint8_t address, uint8
  *	- uint8_t count: how many bytes will be written
  */
 extern void TM_I2C_WriteMulti(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t *data, uint16_t count);
+
+/**
+ * Write byte to slave without specify register address
+ *
+ * Useful if you have I2C device to read like that:
+ *	- I2C START
+ *	- SEND DEVICE ADDRESS
+ *	- SEND DATA BYTE
+ *	- I2C STOP
+ *
+ * Parameters:
+ * 	- I2C_TypeDef* I2Cx: I2C used
+ * 	- uint8_t address: 7 bit slave address, left aligned, bits 7:1 are used, LSB bit is not used
+ *	- uint8_t data: data byte which will be send to device
+ */
+extern void TM_I2C_WriteNoRegister(I2C_TypeDef* I2Cx, uint8_t address, uint8_t data);
+
+/**
+ * Write multi bytes to slave without setting register from where to start write
+ *
+ * Parameters:
+ * 	- I2C_TypeDef* I2Cx: I2C used
+ * 	- uint8_t address: 7 bit slave address, left aligned, bits 7:1 are used, LSB bit is not used
+ *	- uint8_t *data: pointer to data array to write data to slave
+ *	- uint8_t count: how many bytes you want to write
+ */
+extern void TM_I2C_WriteMultiNoRegister(I2C_TypeDef* I2Cx, uint8_t address, uint8_t* data, uint16_t count);
 
 /**
  * Checks if device is connected to I2C bus
