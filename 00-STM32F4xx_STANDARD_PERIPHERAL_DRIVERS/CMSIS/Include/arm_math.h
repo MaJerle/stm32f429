@@ -1,15 +1,15 @@
 /* ----------------------------------------------------------------------
-* Copyright (C) 2010-2013 ARM Limited. All rights reserved.
+* Copyright (C) 2010-2014 ARM Limited. All rights reserved.
 *
-* $Date:        17. January 2013
-* $Revision:    V1.4.1
+* $Date:        12. March 2014
+* $Revision: 	V1.4.4
 *
-* Project:      CMSIS DSP Library
-* Title:        arm_math.h
+* Project: 	    CMSIS DSP Library
+* Title:	    arm_math.h
 *
-* Description:  Public header file for CMSIS DSP Library
+* Description:	Public header file for CMSIS DSP Library
 *
-* Target Processor: Cortex-M4/Cortex-M3/Cortex-M0
+* Target Processor: Cortex-M7/Cortex-M4/Cortex-M3/Cortex-M0
 *
 * Redistribution and use in source and binary forms, with or without
 * modification, are permitted provided that the following conditions
@@ -41,7 +41,8 @@
 /**
    \mainpage CMSIS DSP Software Library
    *
-   * <b>Introduction</b>
+   * Introduction
+   * ------------
    *
    * This user manual describes the CMSIS DSP software library,
    * a suite of common signal processing functions for use on Cortex-M processor based devices.
@@ -61,7 +62,8 @@
    * The library has separate functions for operating on 8-bit integers, 16-bit integers,
    * 32-bit integer and 32-bit floating-point values.
    *
-   * <b>Using the Library</b>
+   * Using the Library
+   * ------------
    *
    * The library installer contains prebuilt versions of the libraries in the <code>Lib</code> folder.
    * - arm_cortexM4lf_math.lib (Little endian and Floating Point Unit on Cortex-M4)
@@ -79,31 +81,28 @@
    * Define the appropriate pre processor MACRO ARM_MATH_CM4 or  ARM_MATH_CM3 or
    * ARM_MATH_CM0 or ARM_MATH_CM0PLUS depending on the target processor in the application.
    *
-   * <b>Examples</b>
+   * Examples
+   * --------
    *
    * The library ships with a number of examples which demonstrate how to use the library functions.
    *
-   * <b>Toolchain Support</b>
+   * Toolchain Support
+   * ------------
    *
    * The library has been developed and tested with MDK-ARM version 4.60.
    * The library is being tested in GCC and IAR toolchains and updates on this activity will be made available shortly.
    *
-   * <b>Building the Library</b>
+   * Building the Library
+   * ------------
    *
-   * The library installer contains project files to re build libraries on MDK Tool chain in the <code>CMSIS\\DSP_Lib\\Source\\ARM</code> folder.
-   * - arm_cortexM0b_math.uvproj
-   * - arm_cortexM0l_math.uvproj
-   * - arm_cortexM3b_math.uvproj
-   * - arm_cortexM3l_math.uvproj
-   * - arm_cortexM4b_math.uvproj
-   * - arm_cortexM4l_math.uvproj
-   * - arm_cortexM4bf_math.uvproj
-   * - arm_cortexM4lf_math.uvproj
+   * The library installer contains a project file to re build libraries on MDK-ARM Tool chain in the <code>CMSIS\\DSP_Lib\\Source\\ARM</code> folder.
+   * - arm_cortexM_math.uvproj
    *
    *
-   * The project can be built by opening the appropriate project in MDK-ARM 4.60 chain and defining the optional pre processor MACROs detailed above.
+   * The libraries can be built by opening the arm_cortexM_math.uvproj project in MDK-ARM, selecting a specific target, and defining the optional pre processor MACROs detailed above.
    *
-   * <b>Pre-processor Macros</b>
+   * Pre-processor Macros
+   * ------------
    *
    * Each library project have differant pre-processor macros.
    *
@@ -132,9 +131,27 @@
    *
    * Initialize macro __FPU_PRESENT = 1 when building on FPU supported Targets. Enable this macro for M4bf and M4lf libraries
    *
-   * <b>Copyright Notice</b>
+   * <hr>
+   * CMSIS-DSP in ARM::CMSIS Pack
+   * -----------------------------
+   * 
+   * The following files relevant to CMSIS-DSP are present in the <b>ARM::CMSIS</b> Pack directories:
+   * |File/Folder                   |Content                                                                 |
+   * |------------------------------|------------------------------------------------------------------------|
+   * |\b CMSIS\\Documentation\\DSP  | This documentation                                                     |
+   * |\b CMSIS\\DSP_Lib             | Software license agreement (license.txt)                               |
+   * |\b CMSIS\\DSP_Lib\\Examples   | Example projects demonstrating the usage of the library functions      |
+   * |\b CMSIS\\DSP_Lib\\Source     | Source files for rebuilding the library                                |
+   * 
+   * <hr>
+   * Revision History of CMSIS-DSP
+   * ------------
+   * Please refer to \ref ChangeLog_pg.
    *
-   * Copyright (C) 2010-2013 ARM Limited. All rights reserved.
+   * Copyright Notice
+   * ------------
+   *
+   * Copyright (C) 2010-2014 ARM Limited. All rights reserved.
    */
 
 
@@ -266,19 +283,20 @@
 
 #define __CMSIS_GENERIC         /* disable NVIC and Systick functions */
 
-#if defined (ARM_MATH_CM4)
-#include "core_cm4.h"
+#if defined(ARM_MATH_CM7)
+  #include "core_cm7.h"
+#elif defined (ARM_MATH_CM4)
+  #include "core_cm4.h"
 #elif defined (ARM_MATH_CM3)
-#include "core_cm3.h"
+  #include "core_cm3.h"
 #elif defined (ARM_MATH_CM0)
-#include "core_cm0.h"
+  #include "core_cm0.h"
 #define ARM_MATH_CM0_FAMILY
-#elif defined (ARM_MATH_CM0PLUS)
+  #elif defined (ARM_MATH_CM0PLUS)
 #include "core_cm0plus.h"
-#define ARM_MATH_CM0_FAMILY
+  #define ARM_MATH_CM0_FAMILY
 #else
-#include "ARMCM4.h"
-#warning "Define either ARM_MATH_CM4 OR ARM_MATH_CM3...By Default building on ARM_MATH_CM4....."
+  #error "Define according the used Cortex core ARM_MATH_CM7, ARM_MATH_CM4, ARM_MATH_CM3, ARM_MATH_CM0PLUS or ARM_MATH_CM0"
 #endif
 
 #undef  __CMSIS_GENERIC         /* enable NVIC and Systick functions */
@@ -305,9 +323,13 @@ extern "C"
    * @brief Macros required for SINE and COSINE Fast math approximations
    */
 
-#define TABLE_SIZE			256
-#define TABLE_SPACING_Q31	0x800000
-#define TABLE_SPACING_Q15	0x80
+#define FAST_MATH_TABLE_SIZE  512
+#define FAST_MATH_Q31_SHIFT   (32 - 10)
+#define FAST_MATH_Q15_SHIFT   (16 - 10)
+#define CONTROLLER_Q31_SHIFT  (32 - 9)
+#define TABLE_SIZE  256
+#define TABLE_SPACING_Q31	   0x400000
+#define TABLE_SPACING_Q15	   0x80
 
   /**
    * @brief Macros required for SINE and COSINE Controller functions
@@ -386,6 +408,9 @@ extern "C"
 #elif defined __GNUC__
 #define __SIMD32_TYPE int32_t
 #define CMSIS_UNUSED __attribute__((unused))
+#elif defined __CSMC__			/* Cosmic */
+#define CMSIS_UNUSED
+#define __SIMD32_TYPE int32_t
 #else
 #error Unknown compiler
 #endif
@@ -730,8 +755,8 @@ extern "C"
     q31_t sum;
     q31_t r, s;
 
-    r = (short) x;
-    s = (short) y;
+    r = (q15_t) x;
+    s = (q15_t) y;
 
     r = __SSAT(r + s, 16);
     s = __SSAT(((q31_t) ((x >> 16) + (y >> 16))), 16) << 16;
@@ -753,8 +778,8 @@ extern "C"
     q31_t sum;
     q31_t r, s;
 
-    r = (short) x;
-    s = (short) y;
+    r = (q15_t) x;
+    s = (q15_t) y;
 
     r = ((r >> 1) + (s >> 1));
     s = ((q31_t) ((x >> 17) + (y >> 17))) << 16;
@@ -776,8 +801,8 @@ extern "C"
     q31_t sum;
     q31_t r, s;
 
-    r = (short) x;
-    s = (short) y;
+    r = (q15_t) x;
+    s = (q15_t) y;
 
     r = __SSAT(r - s, 16);
     s = __SSAT(((q31_t) ((x >> 16) - (y >> 16))), 16) << 16;
@@ -798,8 +823,8 @@ extern "C"
     q31_t diff;
     q31_t r, s;
 
-    r = (short) x;
-    s = (short) y;
+    r = (q15_t) x;
+    s = (q15_t) y;
 
     r = ((r >> 1) - (s >> 1));
     s = (((x >> 17) - (y >> 17)) << 16);
@@ -821,8 +846,8 @@ extern "C"
 
     sum =
       ((sum +
-        clip_q31_to_q15((q31_t) ((short) (x >> 16) + (short) y))) << 16) +
-      clip_q31_to_q15((q31_t) ((short) x - (short) (y >> 16)));
+        clip_q31_to_q15((q31_t) ((q15_t) (x >> 16) + (q15_t) y))) << 16) +
+      clip_q31_to_q15((q31_t) ((q15_t) x - (q15_t) (y >> 16)));
 
     return sum;
   }
@@ -838,8 +863,8 @@ extern "C"
     q31_t sum;
     q31_t r, s;
 
-    r = (short) x;
-    s = (short) y;
+    r = (q15_t) x;
+    s = (q15_t) y;
 
     r = ((r >> 1) - (y >> 17));
     s = (((x >> 17) + (s >> 1)) << 16);
@@ -862,8 +887,8 @@ extern "C"
 
     sum =
       ((sum +
-        clip_q31_to_q15((q31_t) ((short) (x >> 16) - (short) y))) << 16) +
-      clip_q31_to_q15((q31_t) ((short) x + (short) (y >> 16)));
+        clip_q31_to_q15((q31_t) ((q15_t) (x >> 16) - (q15_t) y))) << 16) +
+      clip_q31_to_q15((q31_t) ((q15_t) x + (q15_t) (y >> 16)));
 
     return sum;
   }
@@ -879,8 +904,8 @@ extern "C"
     q31_t sum;
     q31_t r, s;
 
-    r = (short) x;
-    s = (short) y;
+    r = (q15_t) x;
+    s = (q15_t) y;
 
     r = ((r >> 1) + (y >> 17));
     s = (((x >> 17) - (s >> 1)) << 16);
@@ -898,8 +923,8 @@ extern "C"
   q31_t y)
   {
 
-    return ((q31_t) (((short) x * (short) (y >> 16)) -
-                     ((short) (x >> 16) * (short) y)));
+    return ((q31_t) (((q15_t) x * (q15_t) (y >> 16)) -
+                     ((q15_t) (x >> 16) * (q15_t) y)));
   }
 
   /*
@@ -910,8 +935,8 @@ extern "C"
   q31_t y)
   {
 
-    return ((q31_t) (((short) x * (short) (y >> 16)) +
-                     ((short) (x >> 16) * (short) y)));
+    return ((q31_t) (((q15_t) x * (q15_t) (y >> 16)) +
+                     ((q15_t) (x >> 16) * (q15_t) y)));
   }
 
   /*
@@ -943,8 +968,8 @@ extern "C"
   q31_t sum)
   {
 
-    return (sum + ((short) (x >> 16) * (short) (y >> 16)) +
-            ((short) x * (short) y));
+    return (sum + ((q15_t) (x >> 16) * (q15_t) (y >> 16)) +
+            ((q15_t) x * (q15_t) y));
   }
 
   /*
@@ -956,8 +981,8 @@ extern "C"
   q31_t sum)
   {
 
-    return (sum + ((short) (x >> 16) * (short) (y)) +
-            ((short) x * (short) (y >> 16)));
+    return (sum + ((q15_t) (x >> 16) * (q15_t) (y)) +
+            ((q15_t) x * (q15_t) (y >> 16)));
   }
 
   /*
@@ -969,8 +994,8 @@ extern "C"
   q31_t sum)
   {
 
-    return (sum - ((short) (x >> 16) * (short) (y)) +
-            ((short) x * (short) (y >> 16)));
+    return (sum - ((q15_t) (x >> 16) * (q15_t) (y)) +
+            ((q15_t) x * (q15_t) (y >> 16)));
   }
 
   /*
@@ -982,8 +1007,8 @@ extern "C"
   q63_t sum)
   {
 
-    return (sum + ((short) (x >> 16) * (short) (y >> 16)) +
-            ((short) x * (short) y));
+    return (sum + ((q15_t) (x >> 16) * (q15_t) (y >> 16)) +
+            ((q15_t) x * (q15_t) y));
   }
 
   /*
@@ -995,8 +1020,8 @@ extern "C"
   q63_t sum)
   {
 
-    return (sum + ((short) (x >> 16) * (short) y)) +
-      ((short) x * (short) (y >> 16));
+    return (sum + ((q15_t) (x >> 16) * (q15_t) y)) +
+      ((q15_t) x * (q15_t) (y >> 16));
   }
 
   /*
@@ -1410,6 +1435,18 @@ extern "C"
     float32_t *pData;     /**< points to the data of the matrix. */
   } arm_matrix_instance_f32;
 
+
+  /**
+   * @brief Instance structure for the floating-point matrix structure.
+   */
+
+  typedef struct
+  {
+    uint16_t numRows;     /**< number of rows of the matrix.     */
+    uint16_t numCols;     /**< number of columns of the matrix.  */
+    float64_t *pData;     /**< points to the data of the matrix. */
+  } arm_matrix_instance_f64;
+
   /**
    * @brief Instance structure for the Q15 matrix structure.
    */
@@ -1478,6 +1515,49 @@ extern "C"
   const arm_matrix_instance_q31 * pSrcB,
   arm_matrix_instance_q31 * pDst);
 
+  /**
+   * @brief Floating-point, complex, matrix multiplication.
+   * @param[in]       *pSrcA points to the first input matrix structure
+   * @param[in]       *pSrcB points to the second input matrix structure
+   * @param[out]      *pDst points to output matrix structure
+   * @return     The function returns either
+   * <code>ARM_MATH_SIZE_MISMATCH</code> or <code>ARM_MATH_SUCCESS</code> based on the outcome of size checking.
+   */
+
+  arm_status arm_mat_cmplx_mult_f32(
+  const arm_matrix_instance_f32 * pSrcA,
+  const arm_matrix_instance_f32 * pSrcB,
+  arm_matrix_instance_f32 * pDst);
+
+  /**
+   * @brief Q15, complex,  matrix multiplication.
+   * @param[in]       *pSrcA points to the first input matrix structure
+   * @param[in]       *pSrcB points to the second input matrix structure
+   * @param[out]      *pDst points to output matrix structure
+   * @return     The function returns either
+   * <code>ARM_MATH_SIZE_MISMATCH</code> or <code>ARM_MATH_SUCCESS</code> based on the outcome of size checking.
+   */
+
+  arm_status arm_mat_cmplx_mult_q15(
+  const arm_matrix_instance_q15 * pSrcA,
+  const arm_matrix_instance_q15 * pSrcB,
+  arm_matrix_instance_q15 * pDst,
+  q15_t * pScratch);
+
+  /**
+   * @brief Q31, complex, matrix multiplication.
+   * @param[in]       *pSrcA points to the first input matrix structure
+   * @param[in]       *pSrcB points to the second input matrix structure
+   * @param[out]      *pDst points to output matrix structure
+   * @return     The function returns either
+   * <code>ARM_MATH_SIZE_MISMATCH</code> or <code>ARM_MATH_SUCCESS</code> based on the outcome of size checking.
+   */
+
+  arm_status arm_mat_cmplx_mult_q31(
+  const arm_matrix_instance_q31 * pSrcA,
+  const arm_matrix_instance_q31 * pSrcB,
+  arm_matrix_instance_q31 * pDst);
+
 
   /**
    * @brief Floating-point matrix transpose.
@@ -1536,7 +1616,7 @@ extern "C"
    * @param[in]       *pSrcA points to the first input matrix structure
    * @param[in]       *pSrcB points to the second input matrix structure
    * @param[out]      *pDst points to output matrix structure
-   * @param[in]		  *pState points to the array for storing intermediate results
+   * @param[in]		 *pState points to the array for storing intermediate results
    * @return     The function returns either
    * <code>ARM_MATH_SIZE_MISMATCH</code> or <code>ARM_MATH_SUCCESS</code> based on the outcome of size checking.
    */
@@ -1971,12 +2051,14 @@ extern "C"
     uint16_t bitRevFactor;           /**< bit reversal modifier that supports different size FFTs with the same bit reversal table. */
   } arm_cfft_radix2_instance_q15;
 
+/* Deprecated */
   arm_status arm_cfft_radix2_init_q15(
   arm_cfft_radix2_instance_q15 * S,
   uint16_t fftLen,
   uint8_t ifftFlag,
   uint8_t bitReverseFlag);
 
+/* Deprecated */
   void arm_cfft_radix2_q15(
   const arm_cfft_radix2_instance_q15 * S,
   q15_t * pSrc);
@@ -1998,12 +2080,14 @@ extern "C"
     uint16_t bitRevFactor;           /**< bit reversal modifier that supports different size FFTs with the same bit reversal table. */
   } arm_cfft_radix4_instance_q15;
 
+/* Deprecated */
   arm_status arm_cfft_radix4_init_q15(
   arm_cfft_radix4_instance_q15 * S,
   uint16_t fftLen,
   uint8_t ifftFlag,
   uint8_t bitReverseFlag);
 
+/* Deprecated */
   void arm_cfft_radix4_q15(
   const arm_cfft_radix4_instance_q15 * S,
   q15_t * pSrc);
@@ -2023,12 +2107,14 @@ extern "C"
     uint16_t bitRevFactor;           /**< bit reversal modifier that supports different size FFTs with the same bit reversal table. */
   } arm_cfft_radix2_instance_q31;
 
+/* Deprecated */
   arm_status arm_cfft_radix2_init_q31(
   arm_cfft_radix2_instance_q31 * S,
   uint16_t fftLen,
   uint8_t ifftFlag,
   uint8_t bitReverseFlag);
 
+/* Deprecated */
   void arm_cfft_radix2_q31(
   const arm_cfft_radix2_instance_q31 * S,
   q31_t * pSrc);
@@ -2048,11 +2134,12 @@ extern "C"
     uint16_t bitRevFactor;           /**< bit reversal modifier that supports different size FFTs with the same bit reversal table. */
   } arm_cfft_radix4_instance_q31;
 
-
+/* Deprecated */
   void arm_cfft_radix4_q31(
   const arm_cfft_radix4_instance_q31 * S,
   q31_t * pSrc);
 
+/* Deprecated */
   arm_status arm_cfft_radix4_init_q31(
   arm_cfft_radix4_instance_q31 * S,
   uint16_t fftLen,
@@ -2116,6 +2203,42 @@ extern "C"
   float32_t * pSrc);
 
   /**
+   * @brief Instance structure for the fixed-point CFFT/CIFFT function.
+   */
+
+  typedef struct
+  {
+    uint16_t fftLen;                   /**< length of the FFT. */
+    const q15_t *pTwiddle;             /**< points to the Twiddle factor table. */
+    const uint16_t *pBitRevTable;      /**< points to the bit reversal table. */
+    uint16_t bitRevLength;             /**< bit reversal table length. */
+  } arm_cfft_instance_q15;
+
+void arm_cfft_q15( 
+    const arm_cfft_instance_q15 * S, 
+    q15_t * p1,
+    uint8_t ifftFlag,
+    uint8_t bitReverseFlag);  
+
+  /**
+   * @brief Instance structure for the fixed-point CFFT/CIFFT function.
+   */
+
+  typedef struct
+  {
+    uint16_t fftLen;                   /**< length of the FFT. */
+    const q31_t *pTwiddle;             /**< points to the Twiddle factor table. */
+    const uint16_t *pBitRevTable;      /**< points to the bit reversal table. */
+    uint16_t bitRevLength;             /**< bit reversal table length. */
+  } arm_cfft_instance_q31;
+
+void arm_cfft_q31( 
+    const arm_cfft_instance_q31 * S, 
+    q31_t * p1,
+    uint8_t ifftFlag,
+    uint8_t bitReverseFlag);  
+  
+  /**
    * @brief Instance structure for the floating-point CFFT/CIFFT function.
    */
 
@@ -2140,18 +2263,16 @@ extern "C"
   typedef struct
   {
     uint32_t fftLenReal;                      /**< length of the real FFT. */
-    uint32_t fftLenBy2;                       /**< length of the complex FFT. */
     uint8_t ifftFlagR;                        /**< flag that selects forward (ifftFlagR=0) or inverse (ifftFlagR=1) transform. */
-    uint8_t bitReverseFlagR;                      /**< flag that enables (bitReverseFlagR=1) or disables (bitReverseFlagR=0) bit reversal of output. */
+    uint8_t bitReverseFlagR;                  /**< flag that enables (bitReverseFlagR=1) or disables (bitReverseFlagR=0) bit reversal of output. */
     uint32_t twidCoefRModifier;               /**< twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table. */
     q15_t *pTwiddleAReal;                     /**< points to the real twiddle factor table. */
     q15_t *pTwiddleBReal;                     /**< points to the imag twiddle factor table. */
-    arm_cfft_radix4_instance_q15 *pCfft;          /**< points to the complex FFT instance. */
+    const arm_cfft_instance_q15 *pCfft;       /**< points to the complex FFT instance. */
   } arm_rfft_instance_q15;
 
   arm_status arm_rfft_init_q15(
   arm_rfft_instance_q15 * S,
-  arm_cfft_radix4_instance_q15 * S_CFFT,
   uint32_t fftLenReal,
   uint32_t ifftFlagR,
   uint32_t bitReverseFlag);
@@ -2168,18 +2289,16 @@ extern "C"
   typedef struct
   {
     uint32_t fftLenReal;                        /**< length of the real FFT. */
-    uint32_t fftLenBy2;                         /**< length of the complex FFT. */
     uint8_t ifftFlagR;                          /**< flag that selects forward (ifftFlagR=0) or inverse (ifftFlagR=1) transform. */
-    uint8_t bitReverseFlagR;                        /**< flag that enables (bitReverseFlagR=1) or disables (bitReverseFlagR=0) bit reversal of output. */
+    uint8_t bitReverseFlagR;                    /**< flag that enables (bitReverseFlagR=1) or disables (bitReverseFlagR=0) bit reversal of output. */
     uint32_t twidCoefRModifier;                 /**< twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table. */
     q31_t *pTwiddleAReal;                       /**< points to the real twiddle factor table. */
     q31_t *pTwiddleBReal;                       /**< points to the imag twiddle factor table. */
-    arm_cfft_radix4_instance_q31 *pCfft;        /**< points to the complex FFT instance. */
+    const arm_cfft_instance_q31 *pCfft;         /**< points to the complex FFT instance. */
   } arm_rfft_instance_q31;
 
   arm_status arm_rfft_init_q31(
   arm_rfft_instance_q31 * S,
-  arm_cfft_radix4_instance_q31 * S_CFFT,
   uint32_t fftLenReal,
   uint32_t ifftFlagR,
   uint32_t bitReverseFlag);
@@ -3694,6 +3813,32 @@ void arm_rfft_fast_f32(
   } arm_biquad_cascade_df2T_instance_f32;
 
 
+
+  /**
+   * @brief Instance structure for the floating-point transposed direct form II Biquad cascade filter.
+   */
+
+  typedef struct
+  {
+    uint8_t numStages;         /**< number of 2nd order stages in the filter.  Overall order is 2*numStages. */
+    float32_t *pState;         /**< points to the array of state coefficients.  The array is of length 4*numStages. */
+    float32_t *pCoeffs;        /**< points to the array of coefficients.  The array is of length 5*numStages. */
+  } arm_biquad_cascade_stereo_df2T_instance_f32;
+
+
+
+  /**
+   * @brief Instance structure for the floating-point transposed direct form II Biquad cascade filter.
+   */
+
+  typedef struct
+  {
+    uint8_t numStages;         /**< number of 2nd order stages in the filter.  Overall order is 2*numStages. */
+    float64_t *pState;         /**< points to the array of state coefficients.  The array is of length 2*numStages. */
+    float64_t *pCoeffs;        /**< points to the array of coefficients.  The array is of length 5*numStages. */
+  } arm_biquad_cascade_df2T_instance_f64;
+
+
   /**
    * @brief Processing function for the floating-point transposed direct form II Biquad cascade filter.
    * @param[in]  *S        points to an instance of the filter data structure.
@@ -3711,6 +3856,37 @@ void arm_rfft_fast_f32(
 
 
   /**
+   * @brief Processing function for the floating-point transposed direct form II Biquad cascade filter. 2 channels
+   * @param[in]  *S        points to an instance of the filter data structure.
+   * @param[in]  *pSrc     points to the block of input data.
+   * @param[out] *pDst     points to the block of output data
+   * @param[in]  blockSize number of samples to process.
+   * @return none.
+   */
+
+  void arm_biquad_cascade_stereo_df2T_f32(
+  const arm_biquad_cascade_stereo_df2T_instance_f32 * S,
+  float32_t * pSrc,
+  float32_t * pDst,
+  uint32_t blockSize);
+
+  /**
+   * @brief Processing function for the floating-point transposed direct form II Biquad cascade filter.
+   * @param[in]  *S        points to an instance of the filter data structure.
+   * @param[in]  *pSrc     points to the block of input data.
+   * @param[out] *pDst     points to the block of output data
+   * @param[in]  blockSize number of samples to process.
+   * @return none.
+   */
+
+  void arm_biquad_cascade_df2T_f64(
+  const arm_biquad_cascade_df2T_instance_f64 * S,
+  float64_t * pSrc,
+  float64_t * pDst,
+  uint32_t blockSize);
+
+
+  /**
    * @brief  Initialization function for the floating-point transposed direct form II Biquad cascade filter.
    * @param[in,out] *S           points to an instance of the filter data structure.
    * @param[in]     numStages    number of 2nd order stages in the filter.
@@ -3724,6 +3900,38 @@ void arm_rfft_fast_f32(
   uint8_t numStages,
   float32_t * pCoeffs,
   float32_t * pState);
+
+
+  /**
+   * @brief  Initialization function for the floating-point transposed direct form II Biquad cascade filter.
+   * @param[in,out] *S           points to an instance of the filter data structure.
+   * @param[in]     numStages    number of 2nd order stages in the filter.
+   * @param[in]     *pCoeffs     points to the filter coefficients.
+   * @param[in]     *pState      points to the state buffer.
+   * @return        none
+   */
+
+  void arm_biquad_cascade_stereo_df2T_init_f32(
+  arm_biquad_cascade_stereo_df2T_instance_f32 * S,
+  uint8_t numStages,
+  float32_t * pCoeffs,
+  float32_t * pState);
+
+
+  /**
+   * @brief  Initialization function for the floating-point transposed direct form II Biquad cascade filter.
+   * @param[in,out] *S           points to an instance of the filter data structure.
+   * @param[in]     numStages    number of 2nd order stages in the filter.
+   * @param[in]     *pCoeffs     points to the filter coefficients.
+   * @param[in]     *pState      points to the state buffer.
+   * @return        none
+   */
+
+  void arm_biquad_cascade_df2T_init_f64(
+  arm_biquad_cascade_df2T_instance_f64 * S,
+  uint8_t numStages,
+  float64_t * pCoeffs,
+  float64_t * pState);
 
 
 
@@ -5021,6 +5229,19 @@ void arm_rfft_fast_f32(
   arm_status arm_mat_inverse_f32(
   const arm_matrix_instance_f32 * src,
   arm_matrix_instance_f32 * dst);
+
+
+  /**
+   * @brief Floating-point matrix inverse.
+   * @param[in]  *src points to the instance of the input floating-point matrix structure.
+   * @param[out] *dst points to the instance of the output floating-point matrix structure.
+   * @return The function returns ARM_MATH_SIZE_MISMATCH, if the dimensions do not match.
+   * If the input matrix is singular (does not have an inverse), then the algorithm terminates and returns error status ARM_MATH_SINGULAR.
+   */
+
+  arm_status arm_mat_inverse_f64(
+  const arm_matrix_instance_f64 * src,
+  arm_matrix_instance_f64 * dst);
 
 
 
@@ -6350,7 +6571,7 @@ void arm_rfft_fast_f32(
   void arm_var_q31(
   q31_t * pSrc,
   uint32_t blockSize,
-  q63_t * pResult);
+  q31_t * pResult);
 
   /**
    * @brief  Variance of the elements of a Q15 vector.
@@ -6363,7 +6584,7 @@ void arm_rfft_fast_f32(
   void arm_var_q15(
   q15_t * pSrc,
   uint32_t blockSize,
-  q31_t * pResult);
+  q15_t * pResult);
 
   /**
    * @brief  Root Mean Square of the elements of a floating-point vector.
@@ -7208,29 +7429,51 @@ void arm_rfft_fast_f32(
   /**
    * @} end of BilinearInterpolate group
    */
+   
 
-
-#if   defined ( __CC_ARM ) //Keil
 //SMMLAR
-  #define multAcc_32x32_keep32_R(a, x, y) \
-  a = (q31_t) (((((q63_t) a) << 32) + ((q63_t) x * y) + 0x80000000LL ) >> 32)
+#define multAcc_32x32_keep32_R(a, x, y) \
+    a = (q31_t) (((((q63_t) a) << 32) + ((q63_t) x * y) + 0x80000000LL ) >> 32)
 
 //SMMLSR
-  #define multSub_32x32_keep32_R(a, x, y) \
-  a = (q31_t) (((((q63_t) a) << 32) - ((q63_t) x * y) + 0x80000000LL ) >> 32)
+#define multSub_32x32_keep32_R(a, x, y) \
+    a = (q31_t) (((((q63_t) a) << 32) - ((q63_t) x * y) + 0x80000000LL ) >> 32)
 
 //SMMULR
-  #define mult_32x32_keep32_R(a, x, y) \
-  a = (q31_t) (((q63_t) x * y + 0x80000000LL ) >> 32)
+#define mult_32x32_keep32_R(a, x, y) \
+    a = (q31_t) (((q63_t) x * y + 0x80000000LL ) >> 32)
+
+//SMMLA
+#define multAcc_32x32_keep32(a, x, y) \
+    a += (q31_t) (((q63_t) x * y) >> 32)
+
+//SMMLS
+#define multSub_32x32_keep32(a, x, y) \
+    a -= (q31_t) (((q63_t) x * y) >> 32)
+
+//SMMUL
+#define mult_32x32_keep32(a, x, y) \
+    a = (q31_t) (((q63_t) x * y ) >> 32)
+
+
+#if defined ( __CC_ARM ) //Keil
 
 //Enter low optimization region - place directly above function definition
-  #define LOW_OPTIMIZATION_ENTER \
-     _Pragma ("push")         \
-     _Pragma ("O1")
+    #ifdef ARM_MATH_CM4
+      #define LOW_OPTIMIZATION_ENTER \
+         _Pragma ("push")         \
+         _Pragma ("O1")
+    #else
+      #define LOW_OPTIMIZATION_ENTER 
+    #endif
 
 //Exit low optimization region - place directly after end of function definition
-  #define LOW_OPTIMIZATION_EXIT \
-     _Pragma ("pop")
+    #ifdef ARM_MATH_CM4
+      #define LOW_OPTIMIZATION_EXIT \
+         _Pragma ("pop")
+    #else
+      #define LOW_OPTIMIZATION_EXIT  
+    #endif
 
 //Enter low optimization region - place directly above function definition
   #define IAR_ONLY_LOW_OPTIMIZATION_ENTER
@@ -7239,44 +7482,30 @@ void arm_rfft_fast_f32(
   #define IAR_ONLY_LOW_OPTIMIZATION_EXIT
 
 #elif defined(__ICCARM__) //IAR
- //SMMLA
-  #define multAcc_32x32_keep32_R(a, x, y) \
-  a += (q31_t) (((q63_t) x * y) >> 32)
-
- //SMMLS
-  #define multSub_32x32_keep32_R(a, x, y) \
-  a -= (q31_t) (((q63_t) x * y) >> 32)
-
-//SMMUL
-  #define mult_32x32_keep32_R(a, x, y) \
-  a = (q31_t) (((q63_t) x * y ) >> 32)
 
 //Enter low optimization region - place directly above function definition
-  #define LOW_OPTIMIZATION_ENTER \
-     _Pragma ("optimize=low")
+    #ifdef ARM_MATH_CM4
+      #define LOW_OPTIMIZATION_ENTER \
+         _Pragma ("optimize=low")
+    #else
+      #define LOW_OPTIMIZATION_ENTER   
+    #endif
 
 //Exit low optimization region - place directly after end of function definition
   #define LOW_OPTIMIZATION_EXIT
 
 //Enter low optimization region - place directly above function definition
-  #define IAR_ONLY_LOW_OPTIMIZATION_ENTER \
-     _Pragma ("optimize=low")
+    #ifdef ARM_MATH_CM4
+      #define IAR_ONLY_LOW_OPTIMIZATION_ENTER \
+         _Pragma ("optimize=low")
+    #else
+      #define IAR_ONLY_LOW_OPTIMIZATION_ENTER   
+    #endif
 
 //Exit low optimization region - place directly after end of function definition
   #define IAR_ONLY_LOW_OPTIMIZATION_EXIT
 
 #elif defined(__GNUC__)
- //SMMLA
-  #define multAcc_32x32_keep32_R(a, x, y) \
-  a += (q31_t) (((q63_t) x * y) >> 32)
-
- //SMMLS
-  #define multSub_32x32_keep32_R(a, x, y) \
-  a -= (q31_t) (((q63_t) x * y) >> 32)
-
-//SMMUL
-  #define mult_32x32_keep32_R(a, x, y) \
-  a = (q31_t) (((q63_t) x * y ) >> 32)
 
   #define LOW_OPTIMIZATION_ENTER __attribute__(( optimize("-O1") ))
 
@@ -7286,10 +7515,14 @@ void arm_rfft_fast_f32(
 
   #define IAR_ONLY_LOW_OPTIMIZATION_EXIT
 
+#elif defined(__CSMC__)		// Cosmic
+
+#define LOW_OPTIMIZATION_ENTER
+#define LOW_OPTIMIZATION_EXIT
+#define IAR_ONLY_LOW_OPTIMIZATION_ENTER
+#define IAR_ONLY_LOW_OPTIMIZATION_EXIT
+
 #endif
-
-
-
 
 
 #ifdef	__cplusplus
@@ -7298,7 +7531,6 @@ void arm_rfft_fast_f32(
 
 
 #endif /* _ARM_MATH_H */
-
 
 /**
  *

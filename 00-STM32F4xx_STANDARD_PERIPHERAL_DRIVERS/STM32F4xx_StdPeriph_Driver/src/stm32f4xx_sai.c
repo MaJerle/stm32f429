@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_sai.c
   * @author  MCD Application Team
-  * @version V1.4.0
-  * @date    04-August-2014  
+  * @version V1.5.0
+  * @date    06-March-2015  
   * @brief   This file provides firmware functions to manage the following 
   *          functionalities of the Serial Audio Interface (SAI):
   *           + Initialization and Configuration
@@ -52,7 +52,7 @@
           completely independent. The Clock generator is configured using RCC_SAIBlockACLKConfig() and 
           RCC_SAIBlockBCLKConfig() functions.
                   
-      (#) Each SAI Block A or B can be configured separetely : 
+      (#) Each SAI Block A or B can be configured separately : 
           (++) Program the Master clock divider, Audio mode, Protocol, Data Length, Clock Strobing Edge, 
                Synchronous mode, Output drive and FIFO Thresold using SAI_Init() function.   
                In case of master mode, program the Master clock divider (MCKDIV) using 
@@ -105,7 +105,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2014 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -183,11 +183,26 @@ void SAI_DeInit(SAI_TypeDef* SAIx)
 {
   /* Check the parameters */
   assert_param(IS_SAI_PERIPH(SAIx));
-
-  /* Enable SAI1 reset state */
-  RCC_APB2PeriphResetCmd(RCC_APB2Periph_SAI1, ENABLE);
-  /* Release SAI1 from reset state */
-  RCC_APB2PeriphResetCmd(RCC_APB2Periph_SAI1, DISABLE);  
+  
+  if(SAIx == SAI1)
+  {
+    /* Enable SAI1 reset state */
+    RCC_APB2PeriphResetCmd(RCC_APB2Periph_SAI1, ENABLE);
+    /* Release SAI1 from reset state */
+    RCC_APB2PeriphResetCmd(RCC_APB2Periph_SAI1, DISABLE); 
+  }
+  else
+  {
+#if defined(STM32F446xx)
+  if(SAIx == SAI2)
+    {
+      /* Enable SAI2 reset state */
+      RCC_APB2PeriphResetCmd(RCC_APB2Periph_SAI2, ENABLE);
+      /* Release SAI2 from reset state */
+      RCC_APB2PeriphResetCmd(RCC_APB2Periph_SAI2, DISABLE);   
+    }
+#endif /* STM32F446xx */
+  }
 }
 
 /**
@@ -470,14 +485,14 @@ void SAI_MonoModeConfig(SAI_Block_TypeDef* SAI_Block_x, uint32_t SAI_Mono_StreoM
 }
 
 /**
-  * @brief  Configures the TRIState managment on data line for the selected SAI block.
+  * @brief  Configures the TRIState management on data line for the selected SAI block.
   * 
   * @note  This function has a meaning only when the SAI block is configured in transmitter 
   *      
   * @param  SAI_Block_x: where x can be A or B to select the SAI Block peripheral.
   * @param  SAI_TRIState: specifies the SAI block TRIState management.
   *          This parameter can be one of the following values:
-  *            @arg SAI_Output_NotReleased : SD output line is still drived by the SAI.
+  *            @arg SAI_Output_NotReleased : SD output line is still driven by the SAI.
   *            @arg SAI_Output_Released : SD output line is released (HI-Z)                       
   * @retval None
   */
@@ -504,9 +519,9 @@ void SAI_TRIStateConfig(SAI_Block_TypeDef* SAI_Block_x, uint32_t SAI_TRIState)
   *          This parameter can be one of the following values:
   *            @arg SAI_NoCompanding : no companding algorithm set
   *            @arg SAI_ULaw_1CPL_Companding : Set U law (algorithm 1's complement representation)
-  *            @arg SAI_ALaw_1CPL_Companding : Set A law (algorithm 1's complement repesentation)  
+  *            @arg SAI_ALaw_1CPL_Companding : Set A law (algorithm 1's complement representation)  
   *            @arg SAI_ULaw_2CPL_Companding : Set U law (algorithm 2's complement representation)
-  *            @arg SAI_ALaw_2CPL_Companding : Set A law (algorithm 2's complement repesentation)  
+  *            @arg SAI_ALaw_2CPL_Companding : Set A law (algorithm 2's complement representation)  
   * @retval None
   */
 void SAI_CompandingModeConfig(SAI_Block_TypeDef* SAI_Block_x, uint32_t SAI_CompandingMode)

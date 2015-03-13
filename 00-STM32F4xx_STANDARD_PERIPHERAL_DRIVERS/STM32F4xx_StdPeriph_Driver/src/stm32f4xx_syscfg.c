@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_syscfg.c
   * @author  MCD Application Team
-  * @version V1.4.0
-  * @date    04-August-2014
+  * @version V1.5.0
+  * @date    06-March-2015
   * @brief   This file provides firmware functions to manage the SYSCFG peripheral.
   *
  @verbatim
@@ -29,7 +29,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2014 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -110,7 +110,8 @@ void SYSCFG_DeInit(void)
   *            @arg SYSCFG_MemoryRemap_Flash:       Main Flash memory mapped at 0x00000000  
   *            @arg SYSCFG_MemoryRemap_SystemFlash: System Flash memory mapped at 0x00000000
   *            @arg SYSCFG_MemoryRemap_FSMC:        FSMC (Bank1 (NOR/PSRAM 1 and 2) mapped at 0x00000000 for STM32F405xx/407xx and STM32F415xx/417xx devices. 
-  *            @arg SYSCFG_MemoryRemap_FMC:         FMC (Bank1 (NOR/PSRAM 1 and 2) mapped at 0x00000000 for STM32F42xxx/43xxx devices.  
+  *            @arg SYSCFG_MemoryRemap_FMC:         FMC (Bank1 (NOR/PSRAM 1 and 2) mapped at 0x00000000 for STM32F42xxx/43xxx devices. 
+  *            @arg SYSCFG_MemoryRemap_ExtMEM:      External Memory mapped at 0x00000000 for STM32F446xx devices. 
   *            @arg SYSCFG_MemoryRemap_SRAM:        Embedded SRAM (112kB) mapped at 0x00000000
   *            @arg SYSCFG_MemoryRemap_SDRAM:       FMC (External SDRAM)  mapped at 0x00000000 for STM32F42xxx/43xxx devices.            
   * @retval None
@@ -124,11 +125,11 @@ void SYSCFG_MemoryRemapConfig(uint8_t SYSCFG_MemoryRemap)
 }
 
 /**
-  * @brief  Enables or disables the Interal FLASH Bank Swapping.
+  * @brief  Enables or disables the Internal FLASH Bank Swapping.
   *   
   * @note   This function can be used only for STM32F42xxx/43xxx devices. 
   *
-  * @param  NewState: new state of Interal FLASH Bank swapping.
+  * @param  NewState: new state of Internal FLASH Bank swapping.
   *          This parameter can be one of the following values:
   *            @arg ENABLE: Flash Bank2 mapped at 0x08000000 (and aliased @0x00000000) 
   *                         and Flash Bank1 mapped at 0x08100000 (and aliased at 0x00100000)   

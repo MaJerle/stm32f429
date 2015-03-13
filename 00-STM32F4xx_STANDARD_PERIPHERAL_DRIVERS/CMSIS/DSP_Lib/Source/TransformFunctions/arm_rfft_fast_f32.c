@@ -1,8 +1,8 @@
 /* ----------------------------------------------------------------------
-* Copyright (C) 2010-2013 ARM Limited. All rights reserved.
+* Copyright (C) 2010-2014 ARM Limited. All rights reserved.
 *
-* $Date:        17. January 2013
-* $Revision: 	V1.4.1
+* $Date:        12. March 2014
+* $Revision: 	V1.4.4
 *
 * Project: 	    CMSIS DSP Library
 * Title:	    arm_rfft_f32.c
@@ -320,7 +320,7 @@ float32_t * p, float32_t * pOut)
 * @brief Processing function for the floating-point real FFT.
 * @param[in]  *S              points to an arm_rfft_fast_instance_f32 structure.
 * @param[in]  *p              points to the input buffer.
-* @param[in]  *pOut           points to an arm_rfft_fast_instance_f32 structure.
+* @param[in]  *pOut           points to the output buffer.
 * @param[in]  ifftFlag        RFFT if flag is 0, RIFFT if flag is 1
 * @return none.
 */
@@ -336,7 +336,7 @@ uint8_t ifftFlag)
    /* Calculation of Real FFT */
    if(ifftFlag)
    {
-      /*  Real FFT comression */
+      /*  Real FFT compression */
       merge_rfft_f32(S, p, pOut);
 
       /* Complex radix-4 IFFT process */
@@ -352,3 +352,6 @@ uint8_t ifftFlag)
    }
 }
 
+/**    
+* @} end of RealFFT group    
+*/

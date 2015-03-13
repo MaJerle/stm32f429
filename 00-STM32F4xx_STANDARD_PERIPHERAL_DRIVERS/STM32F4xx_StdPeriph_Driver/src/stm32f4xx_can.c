@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_can.c
   * @author  MCD Application Team
-  * @version V1.4.0
-  * @date    04-August-2014
+  * @version V1.5.0
+  * @date    06-March-2015
   * @brief   This file provides firmware functions to manage the following 
   *          functionalities of the Controller area network (CAN) peripheral:
   *           + Initialization and Configuration 
@@ -31,7 +31,7 @@
         (++) Configure these CAN pins in alternate function mode by calling
              the function  GPIO_Init();
       
-      (#) Initialise and configure the CAN using CAN_Init() and 
+      (#) Initialize and configure the CAN using CAN_Init() and 
           CAN_FilterInit() functions.   
                  
       (#) Transmit the desired CAN frame using CAN_Transmit() function.
@@ -42,7 +42,7 @@
       (#) Cancel the transmission of a CAN frame using CAN_CancelTransmit()
           function.  
               
-      (#) Receive a CAN frame using CAN_Recieve() function.
+      (#) Receive a CAN frame using CAN_Receive() function.
            
       (#) Release the receive FIFOs using CAN_FIFORelease() function.
                  
@@ -63,7 +63,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2014 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -482,7 +482,7 @@ void CAN_SlaveStartBank(uint8_t CAN_BankNumber)
 
 /**
   * @brief  Enables or disables the DBG Freeze for CAN.
-  * @param  CANx: where x can be 1 or 2 to to select the CAN peripheral.
+  * @param  CANx: where x can be 1 or 2 to select the CAN peripheral.
   * @param  NewState: new state of the CAN peripheral. 
   *          This parameter can be: ENABLE (CAN reception/transmission is frozen
   *          during debug. Reception FIFOs can still be accessed/controlled normally) 
@@ -512,7 +512,7 @@ void CAN_DBGFreeze(CAN_TypeDef* CANx, FunctionalState NewState)
   * @brief  Enables or disables the CAN Time TriggerOperation communication mode.
   * @note   DLC must be programmed as 8 in order Time Stamp (2 bytes) to be 
   *         sent over the CAN bus.  
-  * @param  CANx: where x can be 1 or 2 to to select the CAN peripheral.
+  * @param  CANx: where x can be 1 or 2 to select the CAN peripheral.
   * @param  NewState: Mode new state. This parameter can be: ENABLE or DISABLE.
   *         When enabled, Time stamp (TIME[15:0]) value is  sent in the last two
   *         data bytes of the 8-byte message: TIME[7:0] in data byte 6 and TIME[15:8] 
@@ -568,7 +568,7 @@ void CAN_TTComModeCmd(CAN_TypeDef* CANx, FunctionalState NewState)
 
 /**
   * @brief  Initiates and transmits a CAN frame message.
-  * @param  CANx: where x can be 1 or 2 to to select the CAN peripheral.
+  * @param  CANx: where x can be 1 or 2 to select the CAN peripheral.
   * @param  TxMessage: pointer to a structure which contains CAN Id, CAN DLC and CAN data.
   * @retval The number of the mailbox that is used for transmission or
   *         CAN_TxStatus_NoMailBox if there is no empty mailbox.
@@ -1058,7 +1058,7 @@ uint8_t CAN_GetLastErrorCode(CAN_TypeDef* CANx)
   *         decremented by 1 or reset to 120 if its value was higher than 128. 
   *         When the counter value exceeds 127, the CAN controller enters the 
   *         error passive state.  
-  * @param  CANx: where x can be 1 or 2 to to select the CAN peripheral.  
+  * @param  CANx: where x can be 1 or 2 to select the CAN peripheral.  
   * @retval CAN Receive Error Counter. 
   */
 uint8_t CAN_GetReceiveErrorCounter(CAN_TypeDef* CANx)
@@ -1078,7 +1078,7 @@ uint8_t CAN_GetReceiveErrorCounter(CAN_TypeDef* CANx)
 
 /**
   * @brief  Returns the LSB of the 9-bit CANx Transmit Error Counter(TEC).
-  * @param  CANx: where x can be 1 or 2 to to select the CAN peripheral.
+  * @param  CANx: where x can be 1 or 2 to select the CAN peripheral.
   * @retval LSB of the 9-bit CAN Transmit Error Counter. 
   */
 uint8_t CAN_GetLSBTransmitErrorCounter(CAN_TypeDef* CANx)
@@ -1120,7 +1120,7 @@ uint8_t CAN_GetLSBTransmitErrorCounter(CAN_TypeDef* CANx)
         (++) CAN_FLAG_RQCP0, 
         (++) CAN_FLAG_RQCP1, 
         (++) CAN_FLAG_RQCP2  : Request completed MailBoxes 0, 1 and 2  Flags
-                               Set when when the last request (transmit or abort)
+                               Set when the last request (transmit or abort)
                                has been performed. 
 
       (+) Receive Flags
@@ -1265,7 +1265,7 @@ uint8_t CAN_GetLSBTransmitErrorCounter(CAN_TypeDef* CANx)
   */ 
 /**
   * @brief  Enables or disables the specified CANx interrupts.
-  * @param  CANx: where x can be 1 or 2 to to select the CAN peripheral.
+  * @param  CANx: where x can be 1 or 2 to select the CAN peripheral.
   * @param  CAN_IT: specifies the CAN interrupt sources to be enabled or disabled.
   *          This parameter can be: 
   *            @arg CAN_IT_TME: Transmit mailbox empty Interrupt 
@@ -1306,7 +1306,7 @@ void CAN_ITConfig(CAN_TypeDef* CANx, uint32_t CAN_IT, FunctionalState NewState)
 }
 /**
   * @brief  Checks whether the specified CAN flag is set or not.
-  * @param  CANx: where x can be 1 or 2 to to select the CAN peripheral.
+  * @param  CANx: where x can be 1 or 2 to select the CAN peripheral.
   * @param  CAN_FLAG: specifies the flag to check.
   *          This parameter can be one of the following values:
   *            @arg CAN_FLAG_RQCP0: Request MailBox0 Flag
@@ -1411,7 +1411,7 @@ FlagStatus CAN_GetFlagStatus(CAN_TypeDef* CANx, uint32_t CAN_FLAG)
 
 /**
   * @brief  Clears the CAN's pending flags.
-  * @param  CANx: where x can be 1 or 2 to to select the CAN peripheral.
+  * @param  CANx: where x can be 1 or 2 to select the CAN peripheral.
   * @param  CAN_FLAG: specifies the flag to clear.
   *          This parameter can be one of the following values:
   *            @arg CAN_FLAG_RQCP0: Request MailBox0 Flag
@@ -1467,7 +1467,7 @@ void CAN_ClearFlag(CAN_TypeDef* CANx, uint32_t CAN_FLAG)
 
 /**
   * @brief  Checks whether the specified CANx interrupt has occurred or not.
-  * @param  CANx: where x can be 1 or 2 to to select the CAN peripheral.
+  * @param  CANx: where x can be 1 or 2 to select the CAN peripheral.
   * @param  CAN_IT: specifies the CAN interrupt source to check.
   *          This parameter can be one of the following values:
   *            @arg CAN_IT_TME: Transmit mailbox empty Interrupt 
@@ -1573,7 +1573,7 @@ ITStatus CAN_GetITStatus(CAN_TypeDef* CANx, uint32_t CAN_IT)
 
 /**
   * @brief  Clears the CANx's interrupt pending bits.
-  * @param  CANx: where x can be 1 or 2 to to select the CAN peripheral.
+  * @param  CANx: where x can be 1 or 2 to select the CAN peripheral.
   * @param  CAN_IT: specifies the interrupt pending bit to clear.
   *          This parameter can be one of the following values:
   *            @arg CAN_IT_TME: Transmit mailbox empty Interrupt

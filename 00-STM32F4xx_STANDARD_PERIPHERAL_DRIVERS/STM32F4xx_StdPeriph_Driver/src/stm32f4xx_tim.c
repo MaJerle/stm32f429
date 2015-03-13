@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_tim.c
   * @author  MCD Application Team
-  * @version V1.4.0
-  * @date    04-August-2014
+  * @version V1.5.0
+  * @date    06-March-2015
   * @brief   This file provides firmware functions to manage the following 
   *          functionalities of the TIM peripheral:
   *            + TimeBase management
@@ -98,7 +98,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2014 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -327,7 +327,7 @@ void TIM_TimeBaseInit(TIM_TypeDef* TIMx, TIM_TimeBaseInitTypeDef* TIM_TimeBaseIn
   }
 
   /* Generate an update event to reload the Prescaler 
-     and the repetition counter(only for TIM1 and TIM8) value immediatly */
+     and the repetition counter(only for TIM1 and TIM8) value immediately */
   TIMx->EGR = TIM_PSCReloadMode_Immediate;          
 }
 
@@ -354,7 +354,7 @@ void TIM_TimeBaseStructInit(TIM_TimeBaseInitTypeDef* TIM_TimeBaseInitStruct)
   * @param  TIM_PSCReloadMode: specifies the TIM Prescaler Reload mode
   *          This parameter can be one of the following values:
   *            @arg TIM_PSCReloadMode_Update: The Prescaler is loaded at the update event.
-  *            @arg TIM_PSCReloadMode_Immediate: The Prescaler is loaded immediatly.
+  *            @arg TIM_PSCReloadMode_Immediate: The Prescaler is loaded immediately.
   * @retval None
   */
 void TIM_PrescalerConfig(TIM_TypeDef* TIMx, uint16_t Prescaler, uint16_t TIM_PSCReloadMode)
@@ -1864,7 +1864,7 @@ void TIM_CCxNCmd(TIM_TypeDef* TIMx, uint16_t TIM_Channel, uint16_t TIM_CCxN)
         (++) TIM Input Capture polarity: TIM_ICPolarity
         (++) TIM Input Capture selection: TIM_ICSelection
         (++) TIM Input Capture Prescaler: TIM_ICPrescaler
-        (++) TIM Input CApture filter value: TIM_ICFilter
+        (++) TIM Input Capture filter value: TIM_ICFilter
        
       (#) Call TIM_ICInit(TIMx, &TIM_ICInitStruct) to configure the desired channel 
           with the corresponding configuration and to measure only frequency 
@@ -3158,7 +3158,7 @@ void TIM_SelectHallSensor(TIM_TypeDef* TIMx, FunctionalState NewState)
   * @param  TIM_Remap: specifies the TIM input remapping source.
   *          This parameter can be one of the following values:
   *            @arg TIM2_TIM8_TRGO: TIM2 ITR1 input is connected to TIM8 Trigger output(default)
-  *            @arg TIM2_ETH_PTP:   TIM2 ITR1 input is connected to ETH PTP trogger output.
+  *            @arg TIM2_ETH_PTP:   TIM2 ITR1 input is connected to ETH PTP trigger output.
   *            @arg TIM2_USBFS_SOF: TIM2 ITR1 input is connected to USB FS SOF. 
   *            @arg TIM2_USBHS_SOF: TIM2 ITR1 input is connected to USB HS SOF. 
   *            @arg TIM5_GPIO:      TIM5 CH4 input is connected to dedicated Timer pin(default)

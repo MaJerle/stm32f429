@@ -2,14 +2,14 @@
   ******************************************************************************
   * @file    stm32f4xx_syscfg.h
   * @author  MCD Application Team
-  * @version V1.4.0
-  * @date    04-August-2014
+  * @version V1.5.0
+  * @date    06-March-2015
   * @brief   This file contains all the functions prototypes for the SYSCFG firmware
   *          library. 
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2014 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -140,6 +140,10 @@
 #define SYSCFG_MemoryRemap_FMC         ((uint8_t)0x02) 
 #endif /* STM32F427_437xx ||  STM32F429_439xx */  
 
+#if defined (STM32F446xx)
+#define SYSCFG_MemoryRemap_ExtMEM      ((uint8_t)0x02) 
+#endif /*  STM32F446xx */ 
+
 #if defined (STM32F40_41xxx) 
 #define IS_SYSCFG_MEMORY_REMAP_CONFING(REMAP) (((REMAP) == SYSCFG_MemoryRemap_Flash)       || \
                                                ((REMAP) == SYSCFG_MemoryRemap_SystemFlash) || \
@@ -160,7 +164,15 @@
                                                ((REMAP) == SYSCFG_MemoryRemap_SDRAM)       || \
                                                ((REMAP) == SYSCFG_MemoryRemap_FMC))
 #endif /* STM32F427_437xx ||  STM32F429_439xx */
-                                                                                              
+
+#if defined (STM32F446xx)
+#define IS_SYSCFG_MEMORY_REMAP_CONFING(REMAP) (((REMAP) == SYSCFG_MemoryRemap_Flash)       || \
+                                               ((REMAP) == SYSCFG_MemoryRemap_ExtMEM)      || \
+                                               ((REMAP) == SYSCFG_MemoryRemap_SystemFlash) || \
+                                               ((REMAP) == SYSCFG_MemoryRemap_SRAM)        || \
+                                               ((REMAP) == SYSCFG_MemoryRemap_SDRAM))
+#endif /* STM32F446xx */
+
 /**
   * @}
   */ 
@@ -185,7 +197,7 @@
 /* Exported macro ------------------------------------------------------------*/
 /* Exported functions --------------------------------------------------------*/ 
  
-void SYSCFG_DeInit(void);
+void       SYSCFG_DeInit(void);
 void       SYSCFG_MemoryRemapConfig(uint8_t SYSCFG_MemoryRemap);
 void       SYSCFG_MemorySwappingBank(FunctionalState NewState);
 void       SYSCFG_EXTILineConfig(uint8_t EXTI_PortSourceGPIOx, uint8_t EXTI_PinSourcex);

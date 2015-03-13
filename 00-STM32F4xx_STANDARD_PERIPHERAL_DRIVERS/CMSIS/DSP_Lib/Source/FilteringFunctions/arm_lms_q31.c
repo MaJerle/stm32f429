@@ -1,8 +1,8 @@
 /* ----------------------------------------------------------------------    
-* Copyright (C) 2010-2013 ARM Limited. All rights reserved.    
+* Copyright (C) 2010-2014 ARM Limited. All rights reserved.    
 *    
-* $Date:        17. January 2013
-* $Revision: 	V1.4.1
+* $Date:        12. March 2014
+* $Revision: 	V1.4.4
 *    
 * Project: 	    CMSIS DSP Library    
 * Title:	    arm_lms_q31.c    
@@ -330,7 +330,7 @@ void arm_lms_q31(
     {
       /* Perform the multiply-accumulate */
       coef = (q31_t) (((q63_t) alpha * (*px++)) >> (32));
-      *pb += (coef << 1u);
+      *pb = clip_q63_to_q31((q63_t) * pb + (coef << 1u));
       pb++;
 
       /* Decrement the loop counter */

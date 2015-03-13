@@ -2,14 +2,14 @@
   ******************************************************************************
   * @file    stm32f4xx_pwr.h
   * @author  MCD Application Team
-  * @version V1.4.0
-  * @date    04-August-2014
+  * @version V1.5.0
+  * @date    06-March-2015
   * @brief   This file contains all the functions prototypes for the PWR firmware 
   *          library.
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2014 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -102,6 +102,20 @@
 /**
   * @}
   */
+#if defined(STM32F446xx)
+/** @defgroup PWR_Wake_Up_Pin
+  * @{
+  */
+#define PWR_WakeUp_Pin1           ((uint32_t)0x00)
+#define PWR_WakeUp_Pin2           ((uint32_t)0x01)
+
+#define IS_PWR_WAKEUP_PIN(PIN) (((PIN) == PWR_WakeUp_Pin1) || \
+                                ((PIN) == PWR_WakeUp_Pin2))
+
+/**
+  * @}
+  */    
+#endif /* STM32F446xx */
 
 /** @defgroup PWR_STOP_mode_entry 
   * @{
@@ -171,17 +185,29 @@ void PWR_BackupAccessCmd(FunctionalState NewState);
 void PWR_PVDLevelConfig(uint32_t PWR_PVDLevel);
 void PWR_PVDCmd(FunctionalState NewState);
 
-/* WakeUp pins configuration functions ****************************************/ 
+/* WakeUp pins configuration functions ****************************************/
+#if defined(STM32F40_41xxx) || defined(STM32F427_437xx) || defined(STM32F429_439xx) || defined(STM32F401xx) || defined(STM32F411xE)
 void PWR_WakeUpPinCmd(FunctionalState NewState);
-
+#endif /* STM32F40_41xxx || STM32F427_437xx || STM32F429_439xx || STM32F401xx || STM32F411xE */
+#if defined(STM32F446xx)
+void PWR_WakeUpPinCmd(uint32_t PWR_WakeUpPinx, FunctionalState NewState);
+#endif /* STM32F446xx */
 /* Main and Backup Regulators configuration functions *************************/ 
 void PWR_BackupRegulatorCmd(FunctionalState NewState);
 void PWR_MainRegulatorModeConfig(uint32_t PWR_Regulator_Voltage);
 void PWR_OverDriveCmd(FunctionalState NewState);
 void PWR_OverDriveSWCmd(FunctionalState NewState);
 void PWR_UnderDriveCmd(FunctionalState NewState);
+
+#if defined(STM32F427_437xx) || defined(STM32F429_439xx) || defined(STM32F446xx)
+void PWR_MainRegulatorUnderDriveCmd(FunctionalState NewState);
+void PWR_LowRegulatorUnderDriveCmd(FunctionalState NewState);
+#endif /* STM32F427_437xx || STM32F429_439xx || STM32F446xx */
+
+#if defined(STM32F401xx) || defined(STM32F411xE)
 void PWR_MainRegulatorLowVoltageCmd(FunctionalState NewState);
 void PWR_LowRegulatorLowVoltageCmd(FunctionalState NewState);
+#endif /* STM32F401xx || STM32F411xE */
 
 /* FLASH Power Down configuration functions ***********************************/ 
 void PWR_FlashPowerDownCmd(FunctionalState NewState);

@@ -2,14 +2,14 @@
   ******************************************************************************
   * @file    stm32f4xx_rtc.h
   * @author  MCD Application Team
-  * @version V1.4.0
-  * @date    04-August-2014
+  * @version V1.5.0
+  * @date    06-March-2015
   * @brief   This file contains all the functions prototypes for the RTC firmware
   *          library.
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2014 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -449,7 +449,7 @@ typedef struct
   */ 
 #define RTC_SmoothCalibPeriod_32sec   ((uint32_t)0x00000000) /*!<  if RTCCLK = 32768 Hz, Smooth calibation
                                                              period is 32s,  else 2exp20 RTCCLK seconds */
-#define RTC_SmoothCalibPeriod_16sec   ((uint32_t)0x00002000) /*!<  if RTCCLK = 32768 Hz, Smooth calibation 
+#define RTC_SmoothCalibPeriod_16sec   ((uint32_t)0x00002000) /*!<  if RTCCLK = 32768 Hz, Smooth calibration 
                                                              period is 16s, else 2exp19 RTCCLK seconds */
 #define RTC_SmoothCalibPeriod_8sec    ((uint32_t)0x00004000) /*!<  if RTCCLK = 32768 Hz, Smooth calibation 
                                                              period is 8s, else 2exp18 RTCCLK seconds */
@@ -527,7 +527,7 @@ typedef struct
 #define RTC_TamperFilter_4Sample   ((uint32_t)0x00001000) /*!< Tamper is activated after 4 
                                                           consecutive samples at the active level */
 #define RTC_TamperFilter_8Sample   ((uint32_t)0x00001800) /*!< Tamper is activated after 8 
-                                                          consecutive samples at the active leve. */
+                                                          consecutive samples at the active level. */
 #define IS_RTC_TAMPER_FILTER(FILTER) (((FILTER) == RTC_TamperFilter_Disable) || \
                                       ((FILTER) == RTC_TamperFilter_2Sample) || \
                                       ((FILTER) == RTC_TamperFilter_4Sample) || \

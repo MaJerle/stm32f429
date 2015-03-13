@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_dma2d.c
   * @author  MCD Application Team
-  * @version V1.4.0
-  * @date    04-August-2014
+  * @version V1.5.0
+  * @date    06-March-2015
   * @brief   This file provides firmware functions to manage the following 
   *          functionalities of the DMA2D controller (DMA2D) peripheral:
   *           + Initialization and configuration
@@ -37,7 +37,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2014 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -252,7 +252,7 @@ void DMA2D_StartTransfer(void)
 }
 
 /**
-  * @brief  Aboart the DMA2D transfer.
+  * @brief  Abort the DMA2D transfer.
   * @param
   * @retval None
   */

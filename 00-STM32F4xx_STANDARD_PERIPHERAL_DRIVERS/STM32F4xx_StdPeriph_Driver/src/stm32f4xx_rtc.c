@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_rtc.c
   * @author  MCD Application Team
-  * @version V1.4.0
-  * @date    04-August-2014
+  * @version V1.5.0
+  * @date    06-March-2015
   * @brief   This file provides firmware functions to manage the following 
   *          functionalities of the Real-Time Clock (RTC) peripheral:
   *           + Initialization
@@ -264,7 +264,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2014 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -1892,10 +1892,10 @@ void RTC_CalibOutputConfig(uint32_t RTC_CalibOutput)
   *   This parameter can be can be one of the following values:
   *     @arg RTC_SmoothCalibPeriod_32sec : The smooth calibration period is 32s.
   *     @arg RTC_SmoothCalibPeriod_16sec : The smooth calibration period is 16s.
-  *     @arg RTC_SmoothCalibPeriod_8sec  : The smooth calibartion period is 8s.
+  *     @arg RTC_SmoothCalibPeriod_8sec  : The smooth calibration period is 8s.
   * @param  RTC_SmoothCalibPlusPulses : Select to Set or reset the CALP bit.
   *   This parameter can be one of the following values:
-  *     @arg RTC_SmoothCalibPlusPulses_Set  : Add one RTCCLK puls every 2**11 pulses.
+  *     @arg RTC_SmoothCalibPlusPulses_Set  : Add one RTCCLK pulse every 2**11 pulses.
   *     @arg RTC_SmoothCalibPlusPulses_Reset: No RTCCLK pulses are added.
   * @param  RTC_SmouthCalibMinusPulsesValue: Select the value of CALM[8:0] bits.
   *   This parameter can be one any value from 0 to 0x000001FF.

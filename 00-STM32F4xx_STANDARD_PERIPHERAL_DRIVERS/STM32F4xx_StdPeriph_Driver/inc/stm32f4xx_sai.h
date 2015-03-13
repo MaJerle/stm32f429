@@ -2,14 +2,14 @@
   ******************************************************************************
   * @file    stm32f4xx_sai.h
   * @author  MCD Application Team
-  * @version V1.4.0
-  * @date    04-August-2014
+  * @version V1.5.0
+  * @date    06-March-2015
   * @brief   This file contains all the functions prototypes for the SAI 
   *          firmware library.  
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2014 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -153,11 +153,22 @@ typedef struct
   * @{
   */
 
+#if defined(STM32F446xx)
+#define IS_SAI_PERIPH(PERIPH) (((PERIPH) == SAI1) || (PERIPH) == SAI2)
+
+#define IS_SAI_BLOCK_PERIPH(PERIPH) (((PERIPH) == SAI1_Block_A) || \
+                                     ((PERIPH) == SAI1_Block_B) || \
+                                     ((PERIPH) == SAI2_Block_A) || \
+                                     ((PERIPH) == SAI2_Block_B))
+#endif /* STM32F446xx */
+
+#if defined (STM32F40_41xxx) || defined (STM32F427_437xx) || defined (STM32F429_439xx) || defined (STM32F401xx) || defined (STM32F411xE)
+
 #define IS_SAI_PERIPH(PERIPH) ((PERIPH) == SAI1)
 
 #define IS_SAI_BLOCK_PERIPH(PERIPH) (((PERIPH) == SAI1_Block_A) || \
                                      ((PERIPH) == SAI1_Block_B))
-
+#endif /* STM32F40_41xxx || STM32F427_437xx || STM32F429_439xx || STM32F401xx || STM32F411xE */ 
 
 /** @defgroup SAI_Block_Mode 
   * @{

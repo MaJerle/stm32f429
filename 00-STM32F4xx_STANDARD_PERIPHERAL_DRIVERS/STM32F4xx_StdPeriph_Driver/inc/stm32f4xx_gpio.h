@@ -2,14 +2,14 @@
   ******************************************************************************
   * @file    stm32f4xx_gpio.h
   * @author  MCD Application Team
-  * @version V1.4.0
-  * @date    04-August-2014
+  * @version V1.5.0
+  * @date    06-March-2015
   * @brief   This file contains all the functions prototypes for the GPIO firmware
   *          library.  
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2014 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -248,6 +248,9 @@ typedef struct
 #define GPIO_AF_TAMPER        ((uint8_t)0x00)  /* TAMPER (TAMPER_1 and TAMPER_2) Alternate Function mapping */
 #define GPIO_AF_SWJ           ((uint8_t)0x00)  /* SWJ (SWD and JTAG) Alternate Function mapping */
 #define GPIO_AF_TRACE         ((uint8_t)0x00)  /* TRACE Alternate Function mapping */
+#if defined (STM32F446xx)
+#define GPIO_AF0_TIM2         ((uint8_t)0x00)  /* TIM2 Alternate Function mapping */
+#endif /* STM32F446xx */
 
 /** 
   * @brief   AF 1 selection  
@@ -269,13 +272,19 @@ typedef struct
 #define GPIO_AF_TIM9          ((uint8_t)0x03)  /* TIM9 Alternate Function mapping */
 #define GPIO_AF_TIM10         ((uint8_t)0x03)  /* TIM10 Alternate Function mapping */
 #define GPIO_AF_TIM11         ((uint8_t)0x03)  /* TIM11 Alternate Function mapping */
-
+#if defined (STM32F446xx)
+#define GPIO_AF3_CEC          ((uint8_t)0x03)  /* CEC Alternate Function mapping */
+#endif /* STM32F446xx */
 /** 
   * @brief   AF 4 selection  
   */ 
 #define GPIO_AF_I2C1          ((uint8_t)0x04)  /* I2C1 Alternate Function mapping */
 #define GPIO_AF_I2C2          ((uint8_t)0x04)  /* I2C2 Alternate Function mapping */
 #define GPIO_AF_I2C3          ((uint8_t)0x04)  /* I2C3 Alternate Function mapping */
+#if defined (STM32F446xx)
+#define GPIO_AF4_CEC          ((uint8_t)0x04)  /* CEC Alternate Function mapping */
+#define GPIO_AF_FMPI2C        ((uint8_t)0x04)  /* FMPI2C Alternate Function mapping */
+#endif /* STM32F446xx */
 
 /** 
   * @brief   AF 5 selection  
@@ -317,6 +326,10 @@ typedef struct
 #define GPIO_AF_USART6        ((uint8_t)0x08)  /* USART6 Alternate Function mapping */
 #define GPIO_AF_UART7         ((uint8_t)0x08)  /* UART7 Alternate Function mapping  */
 #define GPIO_AF_UART8         ((uint8_t)0x08)  /* UART8 Alternate Function mapping  */
+#if defined (STM32F446xx)
+#define GPIO_AF8_SAI2          ((uint8_t)0x08)  /* SAI2 Alternate Function mapping */
+#define GPIO_AF_SPDIF         ((uint8_t)0x08)   /* SPDIF Alternate Function mapping */
+#endif /* STM32F446xx */
 
 /** 
   * @brief   AF 9 selection 
@@ -329,13 +342,24 @@ typedef struct
 
 #define GPIO_AF9_I2C2         ((uint8_t)0x09)  /* I2C2 Alternate Function mapping (Only for STM32F401xx/STM32F411xE Devices) */
 #define GPIO_AF9_I2C3         ((uint8_t)0x09)  /* I2C3 Alternate Function mapping (Only for STM32F401xx/STM32F411xE Devices) */
-
+#if defined (STM32F446xx)
+#define GPIO_AF9_SAI2         ((uint8_t)0x09)  /* SAI2 Alternate Function mapping */
+#endif /* STM32F446xx */
+#define GPIO_AF9_LTDC         ((uint8_t)0x09)  /* LTDC Alternate Function mapping */
+#if defined (STM32F446xx)
+#define GPIO_AF9_QUADSPI      ((uint8_t)0x09)  /* QuadSPI Alternate Function mapping */
+#endif /* STM32F446xx */
 /** 
   * @brief   AF 10 selection  
   */ 
 #define GPIO_AF_OTG_FS         ((uint8_t)0xA)  /* OTG_FS Alternate Function mapping */
 #define GPIO_AF_OTG_HS         ((uint8_t)0xA)  /* OTG_HS Alternate Function mapping */
-
+#if defined (STM32F446xx)
+#define GPIO_AF10_SAI2         ((uint8_t)0x0A)  /* SAI2 Alternate Function mapping */
+#endif /* STM32F446xx */
+#if defined (STM32F446xx)
+#define GPIO_AF10_QUADSPI      ((uint8_t)0x0A)  /* QuadSPI Alternate Function mapping */
+#endif /* STM32F446xx */
 /** 
   * @brief   AF 11 selection  
   */ 
@@ -348,9 +372,9 @@ typedef struct
 #define GPIO_AF_FSMC             ((uint8_t)0xC)  /* FSMC Alternate Function mapping                     */
 #endif /* STM32F40_41xxx */
 
-#if defined (STM32F427_437xx) || defined (STM32F429_439xx)
+#if defined (STM32F427_437xx) || defined (STM32F429_439xx) || defined (STM32F446xx)
 #define GPIO_AF_FMC              ((uint8_t)0xC)  /* FMC Alternate Function mapping                      */
-#endif /* STM32F427_437xx ||  STM32F429_439xx */
+#endif /* STM32F427_437xx || STM32F429_439xx || STM32F446xx */
 
 #define GPIO_AF_OTG_HS_FS        ((uint8_t)0xC)  /* OTG HS configured in FS, Alternate Function mapping */
 #define GPIO_AF_SDIO             ((uint8_t)0xC)  /* SDIO Alternate Function mapping                     */
@@ -363,7 +387,6 @@ typedef struct
 /** 
   * @brief   AF 14 selection  
   */
-
 #define GPIO_AF_LTDC          ((uint8_t)0x0E)  /* LCD-TFT Alternate Function mapping */
 
 /** 
@@ -437,7 +460,11 @@ typedef struct
                           ((AF) == GPIO_AF_FMC)       ||  ((AF) == GPIO_AF_SAI1)     || \
                           ((AF) == GPIO_AF_LTDC))
 #endif /* STM32F427_437xx ||  STM32F429_439xx */
-                          
+
+#if defined (STM32F446xx)
+#define IS_GPIO_AF(AF)   (((AF) < 16) && ((AF) != 11) && ((AF) != 14))
+#endif /* STM32F446xx */
+
 /**
   * @}
   */ 

@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_fsmc.c
   * @author  MCD Application Team
-  * @version V1.4.0
-  * @date    04-August-2014
+  * @version V1.5.0
+  * @date    06-March-2015
  * @brief    This file provides firmware functions to manage the following 
   *          functionalities of the FSMC peripheral:           
   *           + Interface with SRAM, PSRAM, NOR and OneNAND memories
@@ -14,7 +14,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2014 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -155,6 +155,8 @@ void FSMC_NORSRAMDeInit(uint32_t FSMC_Bank)
   */
 void FSMC_NORSRAMInit(FSMC_NORSRAMInitTypeDef* FSMC_NORSRAMInitStruct)
 { 
+  uint32_t tmpbcr = 0, tmpbtr = 0, tmpbwr = 0;
+
   /* Check the parameters */
   assert_param(IS_FSMC_NORSRAM_BANK(FSMC_NORSRAMInitStruct->FSMC_Bank));
   assert_param(IS_FSMC_MUX(FSMC_NORSRAMInitStruct->FSMC_DataAddressMux));
@@ -176,10 +178,20 @@ void FSMC_NORSRAMInit(FSMC_NORSRAMInitTypeDef* FSMC_NORSRAMInitStruct)
   assert_param(IS_FSMC_CLK_DIV(FSMC_NORSRAMInitStruct->FSMC_ReadWriteTimingStruct->FSMC_CLKDivision));
   assert_param(IS_FSMC_DATA_LATENCY(FSMC_NORSRAMInitStruct->FSMC_ReadWriteTimingStruct->FSMC_DataLatency));
   assert_param(IS_FSMC_ACCESS_MODE(FSMC_NORSRAMInitStruct->FSMC_ReadWriteTimingStruct->FSMC_AccessMode)); 
-  
+
+  /* Get the BTCR register value */
+  tmpbcr = FSMC_Bank1->BTCR[FSMC_NORSRAMInitStruct->FSMC_Bank];
+
+  /* Clear MBKEN, MUXEN, MTYP, MWID, FACCEN, BURSTEN, WAITPOL, WRAPMOD, WAITCFG, WREN,
+           WAITEN, EXTMOD, ASYNCWAIT, CBURSTRW and CCLKEN bits */
+  tmpbcr &= ((uint32_t)~(FSMC_BCR1_MBKEN    | FSMC_BCR1_MUXEN    | FSMC_BCR1_MTYP     | \
+                         FSMC_BCR1_MWID      | FSMC_BCR1_FACCEN   | FSMC_BCR1_BURSTEN  | \
+                         FSMC_BCR1_WAITPOL   | FSMC_BCR1_WRAPMOD  | FSMC_BCR1_WAITCFG  | \
+                         FSMC_BCR1_WREN      | FSMC_BCR1_WAITEN   | FSMC_BCR1_EXTMOD   | \
+                         FSMC_BCR1_ASYNCWAIT | FSMC_BCR1_CBURSTRW));
+
   /* Bank1 NOR/SRAM control register configuration */ 
-  FSMC_Bank1->BTCR[FSMC_NORSRAMInitStruct->FSMC_Bank] = 
-            (uint32_t)FSMC_NORSRAMInitStruct->FSMC_DataAddressMux |
+  tmpbcr |= (uint32_t)FSMC_NORSRAMInitStruct->FSMC_DataAddressMux |
             FSMC_NORSRAMInitStruct->FSMC_MemoryType |
             FSMC_NORSRAMInitStruct->FSMC_MemoryDataWidth |
             FSMC_NORSRAMInitStruct->FSMC_BurstAccessMode |
@@ -191,13 +203,24 @@ void FSMC_NORSRAMInit(FSMC_NORSRAMInitTypeDef* FSMC_NORSRAMInitStruct)
             FSMC_NORSRAMInitStruct->FSMC_WaitSignal |
             FSMC_NORSRAMInitStruct->FSMC_ExtendedMode |
             FSMC_NORSRAMInitStruct->FSMC_WriteBurst;
+			
+  FSMC_Bank1->BTCR[FSMC_NORSRAMInitStruct->FSMC_Bank] = tmpbcr;
+  
   if(FSMC_NORSRAMInitStruct->FSMC_MemoryType == FSMC_MemoryType_NOR)
   {
     FSMC_Bank1->BTCR[FSMC_NORSRAMInitStruct->FSMC_Bank] |= (uint32_t)BCR_FACCEN_SET;
   }
+  
+  /* Get the BTCR register value */
+  tmpbtr = FSMC_Bank1->BTCR[FSMC_NORSRAMInitStruct->FSMC_Bank+1];
+
+  /* Clear ADDSET, ADDHLD, DATAST, BUSTURN, CLKDIV, DATLAT and ACCMOD bits */
+  tmpbtr &= ((uint32_t)~(FSMC_BTR1_ADDSET | FSMC_BTR1_ADDHLD | FSMC_BTR1_DATAST | \
+                       FSMC_BTR1_BUSTURN | FSMC_BTR1_CLKDIV | FSMC_BTR1_DATLAT | \
+                       FSMC_BTR1_ACCMOD));
+					   
   /* Bank1 NOR/SRAM timing register configuration */
-  FSMC_Bank1->BTCR[FSMC_NORSRAMInitStruct->FSMC_Bank+1] = 
-            (uint32_t)FSMC_NORSRAMInitStruct->FSMC_ReadWriteTimingStruct->FSMC_AddressSetupTime |
+  tmpbtr |= (uint32_t)FSMC_NORSRAMInitStruct->FSMC_ReadWriteTimingStruct->FSMC_AddressSetupTime |
             (FSMC_NORSRAMInitStruct->FSMC_ReadWriteTimingStruct->FSMC_AddressHoldTime << 4) |
             (FSMC_NORSRAMInitStruct->FSMC_ReadWriteTimingStruct->FSMC_DataSetupTime << 8) |
             (FSMC_NORSRAMInitStruct->FSMC_ReadWriteTimingStruct->FSMC_BusTurnAroundDuration << 16) |
@@ -205,7 +228,8 @@ void FSMC_NORSRAMInit(FSMC_NORSRAMInitTypeDef* FSMC_NORSRAMInitStruct)
             (FSMC_NORSRAMInitStruct->FSMC_ReadWriteTimingStruct->FSMC_DataLatency << 24) |
              FSMC_NORSRAMInitStruct->FSMC_ReadWriteTimingStruct->FSMC_AccessMode;
             
-    
+  FSMC_Bank1->BTCR[FSMC_NORSRAMInitStruct->FSMC_Bank+1] = tmpbtr;
+	
   /* Bank1 NOR/SRAM timing register for write configuration, if extended mode is used */
   if(FSMC_NORSRAMInitStruct->FSMC_ExtendedMode == FSMC_ExtendedMode_Enable)
   {
@@ -215,13 +239,23 @@ void FSMC_NORSRAMInit(FSMC_NORSRAMInitTypeDef* FSMC_NORSRAMInitStruct)
     assert_param(IS_FSMC_CLK_DIV(FSMC_NORSRAMInitStruct->FSMC_WriteTimingStruct->FSMC_CLKDivision));
     assert_param(IS_FSMC_DATA_LATENCY(FSMC_NORSRAMInitStruct->FSMC_WriteTimingStruct->FSMC_DataLatency));
     assert_param(IS_FSMC_ACCESS_MODE(FSMC_NORSRAMInitStruct->FSMC_WriteTimingStruct->FSMC_AccessMode));
-    FSMC_Bank1E->BWTR[FSMC_NORSRAMInitStruct->FSMC_Bank] = 
-              (uint32_t)FSMC_NORSRAMInitStruct->FSMC_WriteTimingStruct->FSMC_AddressSetupTime |
-              (FSMC_NORSRAMInitStruct->FSMC_WriteTimingStruct->FSMC_AddressHoldTime << 4 )|
-              (FSMC_NORSRAMInitStruct->FSMC_WriteTimingStruct->FSMC_DataSetupTime << 8) |
-              (FSMC_NORSRAMInitStruct->FSMC_WriteTimingStruct->FSMC_CLKDivision << 20) |
-              (FSMC_NORSRAMInitStruct->FSMC_WriteTimingStruct->FSMC_DataLatency << 24) |
-               FSMC_NORSRAMInitStruct->FSMC_WriteTimingStruct->FSMC_AccessMode;
+    
+    /* Get the BWTR register value */
+    tmpbwr = FSMC_Bank1E->BWTR[FSMC_NORSRAMInitStruct->FSMC_Bank];
+    
+    /* Clear ADDSET, ADDHLD, DATAST, BUSTURN, CLKDIV, DATLAT and ACCMOD bits */
+    tmpbwr &= ((uint32_t)~(FSMC_BWTR1_ADDSET | FSMC_BWTR1_ADDHLD | FSMC_BWTR1_DATAST | \
+                           FSMC_BWTR1_BUSTURN | FSMC_BWTR1_CLKDIV | FSMC_BWTR1_DATLAT | \
+                           FSMC_BWTR1_ACCMOD));
+    
+    tmpbwr |= (uint32_t)FSMC_NORSRAMInitStruct->FSMC_WriteTimingStruct->FSMC_AddressSetupTime |
+                       (FSMC_NORSRAMInitStruct->FSMC_WriteTimingStruct->FSMC_AddressHoldTime << 4 )|
+                       (FSMC_NORSRAMInitStruct->FSMC_WriteTimingStruct->FSMC_DataSetupTime << 8) |
+                       (FSMC_NORSRAMInitStruct->FSMC_WriteTimingStruct->FSMC_CLKDivision << 20) |
+                       (FSMC_NORSRAMInitStruct->FSMC_WriteTimingStruct->FSMC_DataLatency << 24) |
+                        FSMC_NORSRAMInitStruct->FSMC_WriteTimingStruct->FSMC_AccessMode;
+    
+    FSMC_Bank1E->BWTR[FSMC_NORSRAMInitStruct->FSMC_Bank] = tmpbwr;
   }
   else
   {
@@ -391,26 +425,72 @@ void FSMC_NANDInit(FSMC_NANDInitTypeDef* FSMC_NANDInitStruct)
   assert_param(IS_FSMC_HOLD_TIME(FSMC_NANDInitStruct->FSMC_AttributeSpaceTimingStruct->FSMC_HoldSetupTime));
   assert_param(IS_FSMC_HIZ_TIME(FSMC_NANDInitStruct->FSMC_AttributeSpaceTimingStruct->FSMC_HiZSetupTime));
   
+  if(FSMC_NANDInitStruct->FSMC_Bank == FSMC_Bank2_NAND)
+  {
+  /* Get the NAND bank 2 register value */
+    tmppcr = FSMC_Bank2->PCR2;
+  }
+  else
+  {
+  /* Get the NAND bank 3 register value */
+    tmppcr = FSMC_Bank3->PCR3;
+  }
+
+  /* Clear PWAITEN, PBKEN, PTYP, PWID, ECCEN, TCLR, TAR and ECCPS bits */
+  tmppcr &= ((uint32_t)~(FSMC_PCR2_PWAITEN  | FSMC_PCR2_PBKEN | FSMC_PCR2_PTYP | \
+                         FSMC_PCR2_PWID | FSMC_PCR2_ECCEN | FSMC_PCR2_TCLR | \
+                         FSMC_PCR2_TAR | FSMC_PCR2_ECCPS));  
+					   
   /* Set the tmppcr value according to FSMC_NANDInitStruct parameters */
-  tmppcr = (uint32_t)FSMC_NANDInitStruct->FSMC_Waitfeature |
-            PCR_MEMORYTYPE_NAND |
-            FSMC_NANDInitStruct->FSMC_MemoryDataWidth |
-            FSMC_NANDInitStruct->FSMC_ECC |
-            FSMC_NANDInitStruct->FSMC_ECCPageSize |
-            (FSMC_NANDInitStruct->FSMC_TCLRSetupTime << 9 )|
-            (FSMC_NANDInitStruct->FSMC_TARSetupTime << 13);
-            
+  tmppcr |= (uint32_t)FSMC_NANDInitStruct->FSMC_Waitfeature |
+                      PCR_MEMORYTYPE_NAND |
+                      FSMC_NANDInitStruct->FSMC_MemoryDataWidth |
+                      FSMC_NANDInitStruct->FSMC_ECC |
+                      FSMC_NANDInitStruct->FSMC_ECCPageSize |
+                      (FSMC_NANDInitStruct->FSMC_TCLRSetupTime << 9 )|
+                      (FSMC_NANDInitStruct->FSMC_TARSetupTime << 13);
+    
+  if(FSMC_NANDInitStruct->FSMC_Bank == FSMC_Bank2_NAND)
+  {
+    /* Get the NAND bank 2 register value */
+    tmppmem = FSMC_Bank2->PMEM2;
+  }
+  else
+  {
+    /* Get the NAND bank 3 register value */
+    tmppmem = FSMC_Bank3->PMEM3;
+  } 
+  
+  /* Clear MEMSETx, MEMWAITx, MEMHOLDx and MEMHIZx bits */
+  tmppmem &= ((uint32_t)~(FSMC_PMEM2_MEMSET2  | FSMC_PMEM2_MEMWAIT2 | FSMC_PMEM2_MEMHOLD2 | \
+                          FSMC_PMEM2_MEMHIZ2));
+					   
   /* Set tmppmem value according to FSMC_CommonSpaceTimingStructure parameters */
-  tmppmem = (uint32_t)FSMC_NANDInitStruct->FSMC_CommonSpaceTimingStruct->FSMC_SetupTime |
-            (FSMC_NANDInitStruct->FSMC_CommonSpaceTimingStruct->FSMC_WaitSetupTime << 8) |
-            (FSMC_NANDInitStruct->FSMC_CommonSpaceTimingStruct->FSMC_HoldSetupTime << 16)|
-            (FSMC_NANDInitStruct->FSMC_CommonSpaceTimingStruct->FSMC_HiZSetupTime << 24); 
-            
+  tmppmem |= (uint32_t)FSMC_NANDInitStruct->FSMC_CommonSpaceTimingStruct->FSMC_SetupTime |
+                       (FSMC_NANDInitStruct->FSMC_CommonSpaceTimingStruct->FSMC_WaitSetupTime << 8) |
+                       (FSMC_NANDInitStruct->FSMC_CommonSpaceTimingStruct->FSMC_HoldSetupTime << 16)|
+                       (FSMC_NANDInitStruct->FSMC_CommonSpaceTimingStruct->FSMC_HiZSetupTime << 24); 
+
+  if(FSMC_NANDInitStruct->FSMC_Bank == FSMC_Bank2_NAND)
+  {
+    /* Get the NAND bank 2 register value */
+    tmppatt = FSMC_Bank2->PATT2;
+  }
+  else
+  {
+    /* Get the NAND bank 3 register value */
+    tmppatt = FSMC_Bank2->PATT2;
+  } 
+  
+  /* Clear ATTSETx, ATTWAITx, ATTHOLDx and ATTHIZx bits */
+  tmppatt &= ((uint32_t)~(FSMC_PATT2_ATTSET2  | FSMC_PATT2_ATTWAIT2 | FSMC_PATT2_ATTHOLD2 | \
+                          FSMC_PATT2_ATTHIZ2));
+  
   /* Set tmppatt value according to FSMC_AttributeSpaceTimingStructure parameters */
-  tmppatt = (uint32_t)FSMC_NANDInitStruct->FSMC_AttributeSpaceTimingStruct->FSMC_SetupTime |
-            (FSMC_NANDInitStruct->FSMC_AttributeSpaceTimingStruct->FSMC_WaitSetupTime << 8) |
-            (FSMC_NANDInitStruct->FSMC_AttributeSpaceTimingStruct->FSMC_HoldSetupTime << 16)|
-            (FSMC_NANDInitStruct->FSMC_AttributeSpaceTimingStruct->FSMC_HiZSetupTime << 24);
+  tmppatt |= (uint32_t)FSMC_NANDInitStruct->FSMC_AttributeSpaceTimingStruct->FSMC_SetupTime |
+                       (FSMC_NANDInitStruct->FSMC_AttributeSpaceTimingStruct->FSMC_WaitSetupTime << 8) |
+                       (FSMC_NANDInitStruct->FSMC_AttributeSpaceTimingStruct->FSMC_HoldSetupTime << 16)|
+                       (FSMC_NANDInitStruct->FSMC_AttributeSpaceTimingStruct->FSMC_HiZSetupTime << 24);
   
   if(FSMC_NANDInitStruct->FSMC_Bank == FSMC_Bank2_NAND)
   {
@@ -626,6 +706,8 @@ void FSMC_PCCARDDeInit(void)
   */
 void FSMC_PCCARDInit(FSMC_PCCARDInitTypeDef* FSMC_PCCARDInitStruct)
 {
+   uint32_t tmppcr4 = 0, tmppmem4 = 0, tmppatt4 = 0, tmppio4 = 0;
+
   /* Check the parameters */
   assert_param(IS_FSMC_WAIT_FEATURE(FSMC_PCCARDInitStruct->FSMC_Waitfeature));
   assert_param(IS_FSMC_TCLR_TIME(FSMC_PCCARDInitStruct->FSMC_TCLRSetupTime));
@@ -645,29 +727,65 @@ void FSMC_PCCARDInit(FSMC_PCCARDInitTypeDef* FSMC_PCCARDInitStruct)
   assert_param(IS_FSMC_HOLD_TIME(FSMC_PCCARDInitStruct->FSMC_IOSpaceTimingStruct->FSMC_HoldSetupTime));
   assert_param(IS_FSMC_HIZ_TIME(FSMC_PCCARDInitStruct->FSMC_IOSpaceTimingStruct->FSMC_HiZSetupTime));
   
+  /* Get PCCARD control register value */
+  tmppcr4 = FSMC_Bank4->PCR4;
+  
+  /* Clear TAR, TCLR, PWAITEN and PWID bits */
+  tmppcr4 &= ((uint32_t)~(FSMC_PCR4_TAR  | FSMC_PCR4_TCLR | FSMC_PCR4_PWAITEN | \
+                          FSMC_PCR4_PWID));
+					   
   /* Set the PCR4 register value according to FSMC_PCCARDInitStruct parameters */
-  FSMC_Bank4->PCR4 = (uint32_t)FSMC_PCCARDInitStruct->FSMC_Waitfeature |
-                     FSMC_MemoryDataWidth_16b |  
-                     (FSMC_PCCARDInitStruct->FSMC_TCLRSetupTime << 9) |
-                     (FSMC_PCCARDInitStruct->FSMC_TARSetupTime << 13);
-            
+  tmppcr4 |= (uint32_t)FSMC_PCCARDInitStruct->FSMC_Waitfeature |
+                       FSMC_MemoryDataWidth_16b |  
+                       (FSMC_PCCARDInitStruct->FSMC_TCLRSetupTime << 9) |
+                       (FSMC_PCCARDInitStruct->FSMC_TARSetupTime << 13);
+  
+  FSMC_Bank4->PCR4 = tmppcr4;
+  
+  /* Get PCCARD common space timing register value */
+  tmppmem4 = FSMC_Bank4->PMEM4;
+  
+  /* Clear MEMSETx, MEMWAITx, MEMHOLDx and MEMHIZx bits */
+  tmppmem4 &= ((uint32_t)~(FSMC_PMEM4_MEMSET4  | FSMC_PMEM4_MEMWAIT4 | FSMC_PMEM4_MEMHOLD4 | \
+                           FSMC_PMEM4_MEMHIZ4));
+					   
   /* Set PMEM4 register value according to FSMC_CommonSpaceTimingStructure parameters */
-  FSMC_Bank4->PMEM4 = (uint32_t)FSMC_PCCARDInitStruct->FSMC_CommonSpaceTimingStruct->FSMC_SetupTime |
-                      (FSMC_PCCARDInitStruct->FSMC_CommonSpaceTimingStruct->FSMC_WaitSetupTime << 8) |
-                      (FSMC_PCCARDInitStruct->FSMC_CommonSpaceTimingStruct->FSMC_HoldSetupTime << 16)|
-                      (FSMC_PCCARDInitStruct->FSMC_CommonSpaceTimingStruct->FSMC_HiZSetupTime << 24); 
-            
+  tmppmem4 |= (uint32_t)FSMC_PCCARDInitStruct->FSMC_CommonSpaceTimingStruct->FSMC_SetupTime |
+                        (FSMC_PCCARDInitStruct->FSMC_CommonSpaceTimingStruct->FSMC_WaitSetupTime << 8) |
+                        (FSMC_PCCARDInitStruct->FSMC_CommonSpaceTimingStruct->FSMC_HoldSetupTime << 16)|
+                        (FSMC_PCCARDInitStruct->FSMC_CommonSpaceTimingStruct->FSMC_HiZSetupTime << 24); 
+   
+  FSMC_Bank4->PMEM4 = tmppmem4;
+  
+  /* Get PCCARD timing parameters */
+  tmppatt4 = FSMC_Bank4->PATT4;
+
+  /* Clear ATTSETx, ATTWAITx, ATTHOLDx and ATTHIZx bits */
+  tmppatt4 &= ((uint32_t)~(FSMC_PATT4_ATTSET4  | FSMC_PATT4_ATTWAIT4 | FSMC_PATT4_ATTHOLD4 | \
+                           FSMC_PATT4_ATTHIZ4));
+					   
   /* Set PATT4 register value according to FSMC_AttributeSpaceTimingStructure parameters */
-  FSMC_Bank4->PATT4 = (uint32_t)FSMC_PCCARDInitStruct->FSMC_AttributeSpaceTimingStruct->FSMC_SetupTime |
-                      (FSMC_PCCARDInitStruct->FSMC_AttributeSpaceTimingStruct->FSMC_WaitSetupTime << 8) |
-                      (FSMC_PCCARDInitStruct->FSMC_AttributeSpaceTimingStruct->FSMC_HoldSetupTime << 16)|
-                      (FSMC_PCCARDInitStruct->FSMC_AttributeSpaceTimingStruct->FSMC_HiZSetupTime << 24);	
-            
+  tmppatt4 |= (uint32_t)FSMC_PCCARDInitStruct->FSMC_AttributeSpaceTimingStruct->FSMC_SetupTime |
+                        (FSMC_PCCARDInitStruct->FSMC_AttributeSpaceTimingStruct->FSMC_WaitSetupTime << 8) |
+                        (FSMC_PCCARDInitStruct->FSMC_AttributeSpaceTimingStruct->FSMC_HoldSetupTime << 16)|
+                        (FSMC_PCCARDInitStruct->FSMC_AttributeSpaceTimingStruct->FSMC_HiZSetupTime << 24);	
+   
+  FSMC_Bank4->PATT4 = tmppatt4;
+
+  /* Get FSMC_PCCARD device timing parameters */
+  tmppio4 = FSMC_Bank4->PIO4;
+
+  /* Clear IOSET4, IOWAIT4, IOHOLD4 and IOHIZ4 bits */
+  tmppio4 &= ((uint32_t)~(FSMC_PIO4_IOSET4  | FSMC_PIO4_IOWAIT4 | FSMC_PIO4_IOHOLD4 | \
+                          FSMC_PIO4_IOHIZ4));
+					   
   /* Set PIO4 register value according to FSMC_IOSpaceTimingStructure parameters */
-  FSMC_Bank4->PIO4 = (uint32_t)FSMC_PCCARDInitStruct->FSMC_IOSpaceTimingStruct->FSMC_SetupTime |
-                     (FSMC_PCCARDInitStruct->FSMC_IOSpaceTimingStruct->FSMC_WaitSetupTime << 8) |
-                     (FSMC_PCCARDInitStruct->FSMC_IOSpaceTimingStruct->FSMC_HoldSetupTime << 16)|
-                     (FSMC_PCCARDInitStruct->FSMC_IOSpaceTimingStruct->FSMC_HiZSetupTime << 24);             
+  tmppio4 |= (uint32_t)FSMC_PCCARDInitStruct->FSMC_IOSpaceTimingStruct->FSMC_SetupTime |
+                       (FSMC_PCCARDInitStruct->FSMC_IOSpaceTimingStruct->FSMC_WaitSetupTime << 8) |
+                       (FSMC_PCCARDInitStruct->FSMC_IOSpaceTimingStruct->FSMC_HoldSetupTime << 16)|
+                       (FSMC_PCCARDInitStruct->FSMC_IOSpaceTimingStruct->FSMC_HiZSetupTime << 24); 
+  
+  FSMC_Bank4->PIO4 = tmppio4;					 
 }
 
 /**

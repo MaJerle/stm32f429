@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_flash.c
   * @author  MCD Application Team
-  * @version V1.4.0
-  * @date    04-August-2014
+  * @version V1.5.0
+  * @date    06-March-2015
   * @brief   This file provides firmware functions to manage the following 
   *          functionalities of the FLASH peripheral:
   *            + FLASH Interface configuration
@@ -51,7 +51,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2014 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -435,7 +435,7 @@ void FLASH_Lock(void)
 /**
   * @brief  Erases a specified FLASH Sector.
   *
-  * @note   If an erase and a program operations are requested simustaneously,    
+  * @note   If an erase and a program operations are requested simultaneously,    
   *         the erase operation is performed before the program one.
   *
   * @param  FLASH_Sector: The Sector number to be erased.
@@ -517,7 +517,7 @@ FLASH_Status FLASH_EraseSector(uint32_t FLASH_Sector, uint8_t VoltageRange)
 /**
   * @brief  Erases all FLASH Sectors.
   *
-  * @note   If an erase and a program operations are requested simustaneously,    
+  * @note   If an erase and a program operations are requested simultaneously,    
   *         the erase operation is performed before the program one.
   *  
   * @param  VoltageRange: The device voltage range which defines the erase parallelism.  
@@ -562,7 +562,7 @@ FLASH_Status FLASH_EraseAllSectors(uint8_t VoltageRange)
   if(status == FLASH_COMPLETE)
   {
     /* if the previous operation is completed, proceed to erase all sectors */
-#if defined (STM32F427_437xx) || defined (STM32F429_439xx)    
+#if defined(STM32F427_437xx) || defined(STM32F429_439xx)   
     FLASH->CR &= CR_PSIZE_MASK;
     FLASH->CR |= tmp_psize;
     FLASH->CR |= (FLASH_CR_MER1 | FLASH_CR_MER2);
@@ -575,7 +575,7 @@ FLASH_Status FLASH_EraseAllSectors(uint8_t VoltageRange)
     FLASH->CR &= ~(FLASH_CR_MER1 | FLASH_CR_MER2);
 #endif /* STM32F427_437xx ||  STM32F429_439xx */
 
-#if defined (STM32F40_41xxx) || defined (STM32F401xx) || defined (STM32F411xE) 
+#if defined(STM32F40_41xxx) || defined(STM32F401xx) || defined(STM32F411xE) || defined(STM32F446xx)
     FLASH->CR &= CR_PSIZE_MASK;
     FLASH->CR |= tmp_psize;
     FLASH->CR |= FLASH_CR_MER;
@@ -586,7 +586,7 @@ FLASH_Status FLASH_EraseAllSectors(uint8_t VoltageRange)
 
     /* if the erase operation is completed, disable the MER Bit */
     FLASH->CR &= (~FLASH_CR_MER);
-#endif /* STM32F40_41xxx || STM32F401xx || STM32F411xE */
+#endif /* STM32F40_41xxx || STM32F401xx || STM32F411xE || STM32F446xx */
 
   }   
   /* Return the Erase Status */
@@ -731,7 +731,7 @@ FLASH_Status FLASH_EraseAllBank2Sectors(uint8_t VoltageRange)
   * @note   This function must be used when the device voltage range is from
   *         2.7V to 3.6V and an External Vpp is present.
   *
-  * @note   If an erase and a program operations are requested simustaneously,    
+  * @note   If an erase and a program operations are requested simultaneously,    
   *         the erase operation is performed before the program one.
   *  
   * @param  Address: specifies the address to be programmed.
@@ -773,7 +773,7 @@ FLASH_Status FLASH_ProgramDoubleWord(uint32_t Address, uint64_t Data)
   *
   * @note   This function must be used when the device voltage range is from 2.7V to 3.6V. 
   *
-  * @note   If an erase and a program operations are requested simustaneously,    
+  * @note   If an erase and a program operations are requested simultaneously,    
   *         the erase operation is performed before the program one.
   *  
   * @param  Address: specifies the address to be programmed.
@@ -815,7 +815,7 @@ FLASH_Status FLASH_ProgramWord(uint32_t Address, uint32_t Data)
   * @brief  Programs a half word (16-bit) at a specified address. 
   * @note   This function must be used when the device voltage range is from 2.1V to 3.6V. 
   *
-  * @note   If an erase and a program operations are requested simustaneously,    
+  * @note   If an erase and a program operations are requested simultaneously,    
   *         the erase operation is performed before the program one.
   * 
   * @param  Address: specifies the address to be programmed.
@@ -857,7 +857,7 @@ FLASH_Status FLASH_ProgramHalfWord(uint32_t Address, uint16_t Data)
   * @brief  Programs a byte (8-bit) at a specified address.
   * @note   This function can be used within all the device supply voltage ranges.  
   *
-  * @note   If an erase and a program operations are requested simustaneously,    
+  * @note   If an erase and a program operations are requested simultaneously,    
   *         the erase operation is performed before the program one.
   * 
   * @param  Address: specifies the address to be programmed.
@@ -1245,15 +1245,15 @@ void FLASH_OB_UserConfig(uint8_t OB_IWDG, uint8_t OB_STOP, uint8_t OB_STDBY)
   
   if(status == FLASH_COMPLETE)
   { 
-#if defined (STM32F427_437xx) || defined (STM32F429_439xx)
+#if defined(STM32F427_437xx) || defined(STM32F429_439xx)
     /* Mask OPTLOCK, OPTSTRT, BOR_LEV and BFB2 bits */
     optiontmp =  (uint8_t)((*(__IO uint8_t *)OPTCR_BYTE0_ADDRESS) & (uint8_t)0x1F);
 #endif /* STM32F427_437xx ||  STM32F429_439xx */
 
-#if defined (STM32F40_41xxx) || defined (STM32F401xx) || defined (STM32F411xE)
+#if defined(STM32F40_41xxx) || defined(STM32F401xx) || defined(STM32F411xE) || defined(STM32F446xx)
     /* Mask OPTLOCK, OPTSTRT and BOR_LEV bits */
     optiontmp =  (uint8_t)((*(__IO uint8_t *)OPTCR_BYTE0_ADDRESS) & (uint8_t)0x0F); 
-#endif /* STM32F40_41xxx || STM32F401xx || STM32F411xE */ 
+#endif /* STM32F40_41xxx || STM32F401xx || STM32F411xE || STM32F446xx */ 
 
     /* Update User Option Byte */
     *(__IO uint8_t *)OPTCR_BYTE0_ADDRESS = OB_IWDG | (uint8_t)(OB_STDBY | (uint8_t)(OB_STOP | ((uint8_t)optiontmp))); 
@@ -1547,7 +1547,7 @@ FLASH_Status FLASH_GetStatus(void)
       } 
       else 
       {
-        if((FLASH->SR & (uint32_t)0xEF) != (uint32_t)0x00)
+        if((FLASH->SR & (uint32_t)0xE0) != (uint32_t)0x00)
         {
           flashstatus = FLASH_ERROR_PROGRAM; 
         }

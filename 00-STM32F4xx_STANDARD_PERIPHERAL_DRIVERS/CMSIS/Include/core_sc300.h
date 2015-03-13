@@ -1,13 +1,13 @@
 /**************************************************************************//**
  * @file     core_sc300.h
  * @brief    CMSIS SC300 Core Peripheral Access Layer Header File
- * @version  V3.20
- * @date     25. February 2013
+ * @version  V4.00
+ * @date     22. August 2014
  *
  * @note
  *
  ******************************************************************************/
-/* Copyright (c) 2009 - 2013 ARM LIMITED
+/* Copyright (c) 2009 - 2014 ARM LIMITED
 
    All rights reserved.
    Redistribution and use in source and binary forms, with or without
@@ -39,12 +39,12 @@
  #pragma system_include  /* treat file as system include file for MISRA check */
 #endif
 
+#ifndef __CORE_SC300_H_GENERIC
+#define __CORE_SC300_H_GENERIC
+
 #ifdef __cplusplus
  extern "C" {
 #endif
-
-#ifndef __CORE_SC300_H_GENERIC
-#define __CORE_SC300_H_GENERIC
 
 /** \page CMSIS_MISRA_Exceptions  MISRA-C:2004 Compliance Exceptions
   CMSIS violates the following MISRA-C:2004 rules:
@@ -68,12 +68,12 @@
  */
 
 /*  CMSIS SC300 definitions */
-#define __SC300_CMSIS_VERSION_MAIN  (0x03)                                   /*!< [31:16] CMSIS HAL main version */
-#define __SC300_CMSIS_VERSION_SUB   (0x20)                                   /*!< [15:0]  CMSIS HAL sub version  */
+#define __SC300_CMSIS_VERSION_MAIN  (0x04)                                   /*!< [31:16] CMSIS HAL main version */
+#define __SC300_CMSIS_VERSION_SUB   (0x00)                                   /*!< [15:0]  CMSIS HAL sub version  */
 #define __SC300_CMSIS_VERSION       ((__SC300_CMSIS_VERSION_MAIN << 16) | \
                                       __SC300_CMSIS_VERSION_SUB          )   /*!< CMSIS HAL version number       */
 
-#define __CORTEX_SC                (300)                                     /*!< Cortex secure core             */
+#define __CORTEX_SC                 (300)                                     /*!< Cortex secure core             */
 
 
 #if   defined ( __CC_ARM )
@@ -81,14 +81,18 @@
   #define __INLINE         __inline                                   /*!< inline keyword for ARM Compiler       */
   #define __STATIC_INLINE  static __inline
 
-#elif defined ( __ICCARM__ )
-  #define __ASM           __asm                                       /*!< asm keyword for IAR Compiler          */
-  #define __INLINE        inline                                      /*!< inline keyword for IAR Compiler. Only available in High optimization mode! */
-  #define __STATIC_INLINE  static inline
-
 #elif defined ( __GNUC__ )
   #define __ASM            __asm                                      /*!< asm keyword for GNU Compiler          */
   #define __INLINE         inline                                     /*!< inline keyword for GNU Compiler       */
+  #define __STATIC_INLINE  static inline
+
+#elif defined ( __ICCARM__ )
+  #define __ASM            __asm                                      /*!< asm keyword for IAR Compiler          */
+  #define __INLINE         inline                                     /*!< inline keyword for IAR Compiler. Only available in High optimization mode! */
+  #define __STATIC_INLINE  static inline
+
+#elif defined ( __TMS470__ )
+  #define __ASM            __asm                                      /*!< asm keyword for TI CCS Compiler       */
   #define __STATIC_INLINE  static inline
 
 #elif defined ( __TASKING__ )
@@ -96,9 +100,16 @@
   #define __INLINE         inline                                     /*!< inline keyword for TASKING Compiler   */
   #define __STATIC_INLINE  static inline
 
+#elif defined ( __CSMC__ )
+  #define __packed
+  #define __ASM            _asm                                      /*!< asm keyword for COSMIC Compiler      */
+  #define __INLINE         inline                                    /*use -pc99 on compile line !< inline keyword for COSMIC Compiler   */
+  #define __STATIC_INLINE  static inline
+
 #endif
 
-/** __FPU_USED indicates whether an FPU is used or not. This core does not support an FPU at all
+/** __FPU_USED indicates whether an FPU is used or not.
+    This core does not support an FPU at all
 */
 #define __FPU_USED       0
 
@@ -107,18 +118,28 @@
     #warning "Compiler generates FPU instructions for a device without an FPU (check __FPU_PRESENT)"
   #endif
 
-#elif defined ( __ICCARM__ )
-  #if defined __ARMVFP__
-    #warning "Compiler generates FPU instructions for a device without an FPU (check __FPU_PRESENT)"
-  #endif
-
 #elif defined ( __GNUC__ )
   #if defined (__VFP_FP__) && !defined(__SOFTFP__)
     #warning "Compiler generates FPU instructions for a device without an FPU (check __FPU_PRESENT)"
   #endif
 
+#elif defined ( __ICCARM__ )
+  #if defined __ARMVFP__
+    #warning "Compiler generates FPU instructions for a device without an FPU (check __FPU_PRESENT)"
+  #endif
+
+#elif defined ( __TMS470__ )
+  #if defined __TI__VFP_SUPPORT____
+    #warning "Compiler generates FPU instructions for a device without an FPU (check __FPU_PRESENT)"
+  #endif
+
 #elif defined ( __TASKING__ )
   #if defined __FPU_VFP__
+    #error "Compiler generates FPU instructions for a device without an FPU (check __FPU_PRESENT)"
+  #endif
+
+#elif defined ( __CSMC__ )		/* Cosmic */
+  #if ( __CSMC__ & 0x400)		// FPU present for parser
     #error "Compiler generates FPU instructions for a device without an FPU (check __FPU_PRESENT)"
   #endif
 #endif
@@ -127,12 +148,20 @@
 #include <core_cmInstr.h>                /* Core Instruction Access                         */
 #include <core_cmFunc.h>                 /* Core Function Access                            */
 
+#ifdef __cplusplus
+}
+#endif
+
 #endif /* __CORE_SC300_H_GENERIC */
 
 #ifndef __CMSIS_GENERIC
 
 #ifndef __CORE_SC300_H_DEPENDANT
 #define __CORE_SC300_H_DEPENDANT
+
+#ifdef __cplusplus
+ extern "C" {
+#endif
 
 /* check device defines and use defaults */
 #if defined __CHECK_DEVICE_DEFINES
@@ -595,7 +624,7 @@ typedef struct
 #define SysTick_CALIB_SKEW_Msk             (1UL << SysTick_CALIB_SKEW_Pos)                /*!< SysTick CALIB: SKEW Mask */
 
 #define SysTick_CALIB_TENMS_Pos             0                                             /*!< SysTick CALIB: TENMS Position */
-#define SysTick_CALIB_TENMS_Msk            (0xFFFFFFUL << SysTick_VAL_CURRENT_Pos)        /*!< SysTick CALIB: TENMS Mask */
+#define SysTick_CALIB_TENMS_Msk            (0xFFFFFFUL << SysTick_CALIB_TENMS_Pos)        /*!< SysTick CALIB: TENMS Mask */
 
 /*@} end of group CMSIS_SysTick */
 
@@ -1408,7 +1437,7 @@ __STATIC_INLINE uint32_t NVIC_GetPriority(IRQn_Type IRQn)
     The function encodes the priority for an interrupt with the given priority group,
     preemptive priority value, and subpriority value.
     In case of a conflict between priority grouping and available
-    priority bits (__NVIC_PRIO_BITS), the samllest possible priority group is set.
+    priority bits (__NVIC_PRIO_BITS), the smallest possible priority group is set.
 
     \param [in]     PriorityGroup  Used priority group.
     \param [in]   PreemptPriority  Preemptive priority value (starting from 0).
@@ -1436,7 +1465,7 @@ __STATIC_INLINE uint32_t NVIC_EncodePriority (uint32_t PriorityGroup, uint32_t P
     The function decodes an interrupt priority value with a given priority group to
     preemptive priority value and subpriority value.
     In case of a conflict between priority grouping and available
-    priority bits (__NVIC_PRIO_BITS) the samllest possible priority group is set.
+    priority bits (__NVIC_PRIO_BITS) the smallest possible priority group is set.
 
     \param [in]         Priority   Priority value, which can be retrieved with the function \ref NVIC_GetPriority().
     \param [in]     PriorityGroup  Used priority group.
@@ -1589,10 +1618,13 @@ __STATIC_INLINE int32_t ITM_CheckChar (void) {
 
 /*@} end of CMSIS_core_DebugFunctions */
 
-#endif /* __CORE_SC300_H_DEPENDANT */
 
-#endif /* __CMSIS_GENERIC */
+
 
 #ifdef __cplusplus
 }
 #endif
+
+#endif /* __CORE_SC300_H_DEPENDANT */
+
+#endif /* __CMSIS_GENERIC */

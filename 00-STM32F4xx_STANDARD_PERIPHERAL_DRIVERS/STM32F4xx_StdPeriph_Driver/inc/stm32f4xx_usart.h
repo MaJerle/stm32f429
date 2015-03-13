@@ -2,14 +2,14 @@
   ******************************************************************************
   * @file    stm32f4xx_usart.h
   * @author  MCD Application Team
-  * @version V1.4.0
-  * @date    04-August-2014
+  * @version V1.5.0
+  * @date    06-March-2015
   * @brief   This file contains all the functions prototypes for the USART 
   *          firmware library.    
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2014 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -72,7 +72,7 @@ typedef struct
                                                  the word length is set to 9 data bits; 8th bit when the
                                                  word length is set to 8 data bits). */
  
-  uint16_t USART_Mode;                /*!< Specifies wether the Receive or Transmit mode is enabled or disabled.
+  uint16_t USART_Mode;                /*!< Specifies whether the Receive or Transmit mode is enabled or disabled.
                                            This parameter can be a value of @ref USART_Mode */
 
   uint16_t USART_HardwareFlowControl; /*!< Specifies wether the hardware flow control mode is enabled

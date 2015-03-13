@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_spi.c
   * @author  MCD Application Team
-  * @version V1.4.0
-  * @date    04-August-2014
+  * @version V1.5.0
+  * @date    06-March-2015
   * @brief   This file provides firmware functions to manage the following 
   *          functionalities of the Serial peripheral interface (SPI):
   *           + Initialization and Configuration
@@ -93,7 +93,7 @@
               
       (#) Configure SPIx in I2S mode (I2S_Init() function) as described above. 
              
-      (#) Call the I2S_FullDuplexConfig() function using the same strucutre passed to  
+      (#) Call the I2S_FullDuplexConfig() function using the same structure passed to  
           I2S_Init() function.
               
       (#) Call I2S_Cmd() for SPIx then for its extended block.
@@ -138,7 +138,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2014 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -341,7 +341,7 @@ void SPI_Init(SPI_TypeDef* SPIx, SPI_InitTypeDef* SPI_InitStruct)
   * 
   * @note   if an external clock is used as source clock for the I2S, then the define
   *         I2S_EXTERNAL_CLOCK_VAL in file stm32f4xx_conf.h should be enabled and set
-  *         to the value of the the source clock frequency (in Hz).
+  *         to the value of the source clock frequency (in Hz).
   *  
   * @retval None
   */
@@ -725,7 +725,7 @@ void SPI_TIModeCmd(SPI_TypeDef* SPIx, FunctionalState NewState)
   *         used for the master I2S peripheral. In this case, if the master is 
   *         configured as transmitter, the slave will be receiver and vice versa.
   *         Or you can force a different mode by modifying the field I2S_Mode to the
-  *         value I2S_SlaveRx or I2S_SlaveTx indepedently of the master configuration.    
+  *         value I2S_SlaveRx or I2S_SlaveTx independently of the master configuration.    
   *         
   * @note   The I2S full duplex extension can be configured in slave mode only.    
   *  

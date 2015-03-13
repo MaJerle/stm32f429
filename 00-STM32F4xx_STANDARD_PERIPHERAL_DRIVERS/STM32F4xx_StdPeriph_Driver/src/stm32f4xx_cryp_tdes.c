@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_cryp_tdes.c
   * @author  MCD Application Team
-  * @version V1.4.0
-  * @date    04-August-2014
+  * @version V1.5.0
+  * @date    06-March-2015
   * @brief   This file provides high level functions to encrypt and decrypt an 
   *          input message using TDES in ECB/CBC modes .
   *          It uses the stm32f4xx_cryp.c/.h drivers to access the STM32F4xx CRYP
@@ -27,7 +27,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2014 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -149,7 +149,7 @@ ErrorStatus CRYP_TDES_ECB(uint8_t Mode, uint8_t Key[24], uint8_t *Input,
 
   if(CRYP_GetCmdStatus() == DISABLE)
   {
-    /* The CRYP peripheral clock is not enabled or the device doesn't embedd 
+    /* The CRYP peripheral clock is not enabled or the device doesn't embed 
        the CRYP peripheral (please check the device sales type. */
     return(ERROR);
   }
@@ -265,7 +265,7 @@ ErrorStatus CRYP_TDES_CBC(uint8_t Mode, uint8_t Key[24], uint8_t InitVectors[8],
 
   if(CRYP_GetCmdStatus() == DISABLE)
   {
-    /* The CRYP peripheral clock is not enabled or the device doesn't embedd 
+    /* The CRYP peripheral clock is not enabled or the device doesn't embed 
        the CRYP peripheral (please check the device sales type. */
     return(ERROR);
   }

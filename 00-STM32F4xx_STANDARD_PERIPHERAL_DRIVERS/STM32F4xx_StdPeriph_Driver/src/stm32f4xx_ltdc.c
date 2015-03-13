@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_ltdc.c
   * @author  MCD Application Team
-  * @version V1.4.0
-  * @date    04-August-2014
+  * @version V1.5.0
+  * @date    06-March-2015
   * @brief   This file provides firmware functions to manage the following 
   *          functionalities of the LTDC controller (LTDC) peripheral:
   *           + Initialization and configuration
@@ -38,14 +38,14 @@
           (++) If needed, configure the default color and the blending factors 
                respectively in the LTDC_LxDCCR and LTDC_LxBFCR registers 
 
-          (++) If needed, Dithering and color keying can be be enabled respectively 
+          (++) If needed, Dithering and color keying can be enabled respectively 
                in the LTDC_GCR and LTDC_LxCKCR registers. It can be also enabled 
                on the fly.    
         (#) Enable Layer1/2 and if needed the CLUT in the LTDC_LxCR register 
   
         (#) Reload the shadow registers to active register through 
             the LTDC_SRCR register.
-          -@- All layer parameters can be be modified on the fly except the CLUT. 
+          -@- All layer parameters can be modified on the fly except the CLUT. 
               The new configuration has to be either reloaded immediately 
               or during vertical blanking period by configuring the LTDC_SRCR register.
         (#) Call the LTDC_Cmd() to enable the LTDC controller.
@@ -55,7 +55,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2014 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -686,7 +686,7 @@ void LTDC_CLUTInit(LTDC_Layer_TypeDef* LTDC_Layerx, LTDC_CLUT_InitTypeDef* LTDC_
 
 void LTDC_CLUTStructInit(LTDC_CLUT_InitTypeDef* LTDC_CLUT_InitStruct)
 {
-  /*!< Initialize the CLUT adress and RGB values */
+  /*!< Initialize the CLUT address and RGB values */
   LTDC_CLUT_InitStruct->LTDC_CLUTAdress = 0x00;
   LTDC_CLUT_InitStruct->LTDC_BlueValue = 0x00;
   LTDC_CLUT_InitStruct->LTDC_GreenValue = 0x00;

@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file      startup_stm32f427x.s
   * @author    MCD Application Team
-  * @version   V1.4.0
-  * @date      04-August-2014
+  * @version   V1.5.0
+  * @date      06-March-2015
   * @brief     STM32F42xxx/43xxx Devices vector table for Atollic TrueSTUDIO toolchain.   
   *            Same as startup_stm32f42_43xxx.s and maintained for legacy purpose
   *            This module performs:
@@ -20,7 +20,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2014 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.

@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_fmc.c
   * @author  MCD Application Team
-  * @version V1.4.0
-  * @date    04-August-2014
+  * @version V1.5.0
+  * @date    06-March-2015
   * @brief   This file provides firmware functions to manage the following 
   *          functionalities of the FMC peripheral:           
   *           + Interface with SRAM, PSRAM, NOR and OneNAND memories
@@ -15,7 +15,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2014 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -162,7 +162,7 @@ void FMC_NORSRAMDeInit(uint32_t FMC_Bank)
   */
 void FMC_NORSRAMInit(FMC_NORSRAMInitTypeDef* FMC_NORSRAMInitStruct)
 {
-  uint32_t tmpr = 0;
+  uint32_t tmpr = 0, tmpbcr = 0;
   
   /* Check the parameters */
   assert_param(IS_FMC_NORSRAM_BANK(FMC_NORSRAMInitStruct->FMC_Bank));
@@ -187,23 +187,34 @@ void FMC_NORSRAMInit(FMC_NORSRAMInitTypeDef* FMC_NORSRAMInitStruct)
   assert_param(IS_FMC_DATA_LATENCY(FMC_NORSRAMInitStruct->FMC_ReadWriteTimingStruct->FMC_DataLatency));
   assert_param(IS_FMC_ACCESS_MODE(FMC_NORSRAMInitStruct->FMC_ReadWriteTimingStruct->FMC_AccessMode)); 
   
-  /* NOR/SRAM Bank control register configuration */ 
-  FMC_Bank1->BTCR[FMC_NORSRAMInitStruct->FMC_Bank] =   
-            (uint32_t)FMC_NORSRAMInitStruct->FMC_DataAddressMux |
-            FMC_NORSRAMInitStruct->FMC_MemoryType |
-            FMC_NORSRAMInitStruct->FMC_MemoryDataWidth |
-            FMC_NORSRAMInitStruct->FMC_BurstAccessMode |
-            FMC_NORSRAMInitStruct->FMC_WaitSignalPolarity |
-            FMC_NORSRAMInitStruct->FMC_WrapMode |
-            FMC_NORSRAMInitStruct->FMC_WaitSignalActive |
-            FMC_NORSRAMInitStruct->FMC_WriteOperation |
-            FMC_NORSRAMInitStruct->FMC_WaitSignal |
-            FMC_NORSRAMInitStruct->FMC_ExtendedMode |
-            FMC_NORSRAMInitStruct->FMC_AsynchronousWait |
-            FMC_NORSRAMInitStruct->FMC_WriteBurst |
-            FMC_NORSRAMInitStruct->FMC_ContinousClock;
+  /* Get the BTCR register value */
+  tmpbcr = FMC_Bank1->BTCR[FMC_NORSRAMInitStruct->FMC_Bank];
+ 
+  /* Clear MBKEN, MUXEN, MTYP, MWID, FACCEN, BURSTEN, WAITPOL, WRAPMOD, WAITCFG, WREN,
+           WAITEN, EXTMOD, ASYNCWAIT, CBURSTRW and CCLKEN bits */
+  tmpbcr &= ((uint32_t)~(FMC_BCR1_MBKEN   | FMC_BCR1_MUXEN    | FMC_BCR1_MTYP     | \
+                         FMC_BCR1_MWID     | FMC_BCR1_FACCEN   | FMC_BCR1_BURSTEN  | \
+                         FMC_BCR1_WAITPOL  | FMC_BCR1_WRAPMOD  | FMC_BCR1_WAITCFG  | \
+                         FMC_BCR1_WREN     | FMC_BCR1_WAITEN   | FMC_BCR1_EXTMOD   | \
+                         FMC_BCR1_ASYNCWAIT| FMC_BCR1_CBURSTRW | FMC_BCR1_CCLKEN));
 
-            
+  /* NOR/SRAM Bank control register configuration */ 
+  tmpbcr |=  (uint32_t)FMC_NORSRAMInitStruct->FMC_DataAddressMux |
+                       FMC_NORSRAMInitStruct->FMC_MemoryType |
+                       FMC_NORSRAMInitStruct->FMC_MemoryDataWidth |
+                       FMC_NORSRAMInitStruct->FMC_BurstAccessMode |
+                       FMC_NORSRAMInitStruct->FMC_WaitSignalPolarity |
+                       FMC_NORSRAMInitStruct->FMC_WrapMode |
+                       FMC_NORSRAMInitStruct->FMC_WaitSignalActive |
+                       FMC_NORSRAMInitStruct->FMC_WriteOperation |
+                       FMC_NORSRAMInitStruct->FMC_WaitSignal |
+                       FMC_NORSRAMInitStruct->FMC_ExtendedMode |
+                       FMC_NORSRAMInitStruct->FMC_AsynchronousWait |
+                       FMC_NORSRAMInitStruct->FMC_WriteBurst |
+                       FMC_NORSRAMInitStruct->FMC_ContinousClock;
+
+  FMC_Bank1->BTCR[FMC_NORSRAMInitStruct->FMC_Bank] = tmpbcr;
+
   if(FMC_NORSRAMInitStruct->FMC_MemoryType == FMC_MemoryType_NOR)
   {
     FMC_Bank1->BTCR[FMC_NORSRAMInitStruct->FMC_Bank] |= (uint32_t)BCR_FACCEN_SET;
@@ -222,12 +233,12 @@ void FMC_NORSRAMInit(FMC_NORSRAMInitTypeDef* FMC_NORSRAMInitStruct)
   /* NOR/SRAM Bank timing register configuration */
   FMC_Bank1->BTCR[FMC_NORSRAMInitStruct->FMC_Bank+1] =   
             (uint32_t)FMC_NORSRAMInitStruct->FMC_ReadWriteTimingStruct->FMC_AddressSetupTime |
-            (FMC_NORSRAMInitStruct->FMC_ReadWriteTimingStruct->FMC_AddressHoldTime << 4) |
-            (FMC_NORSRAMInitStruct->FMC_ReadWriteTimingStruct->FMC_DataSetupTime << 8) |
-            (FMC_NORSRAMInitStruct->FMC_ReadWriteTimingStruct->FMC_BusTurnAroundDuration << 16) |
-            ((FMC_NORSRAMInitStruct->FMC_ReadWriteTimingStruct->FMC_CLKDivision) << 20) |
-            ((FMC_NORSRAMInitStruct->FMC_ReadWriteTimingStruct->FMC_DataLatency) << 24) |
-             FMC_NORSRAMInitStruct->FMC_ReadWriteTimingStruct->FMC_AccessMode;
+                      (FMC_NORSRAMInitStruct->FMC_ReadWriteTimingStruct->FMC_AddressHoldTime << 4) |
+                      (FMC_NORSRAMInitStruct->FMC_ReadWriteTimingStruct->FMC_DataSetupTime << 8) |
+                      (FMC_NORSRAMInitStruct->FMC_ReadWriteTimingStruct->FMC_BusTurnAroundDuration << 16) |
+                      ((FMC_NORSRAMInitStruct->FMC_ReadWriteTimingStruct->FMC_CLKDivision) << 20) |
+                      ((FMC_NORSRAMInitStruct->FMC_ReadWriteTimingStruct->FMC_DataLatency) << 24) |
+                      FMC_NORSRAMInitStruct->FMC_ReadWriteTimingStruct->FMC_AccessMode;
      
   /* NOR/SRAM Bank timing register for write configuration, if extended mode is used */
   if(FMC_NORSRAMInitStruct->FMC_ExtendedMode == FMC_ExtendedMode_Enable)
@@ -241,11 +252,11 @@ void FMC_NORSRAMInit(FMC_NORSRAMInitTypeDef* FMC_NORSRAMInitStruct)
     
     FMC_Bank1E->BWTR[FMC_NORSRAMInitStruct->FMC_Bank] =   
                (uint32_t)FMC_NORSRAMInitStruct->FMC_WriteTimingStruct->FMC_AddressSetupTime |
-               (FMC_NORSRAMInitStruct->FMC_WriteTimingStruct->FMC_AddressHoldTime << 4 )|
-               (FMC_NORSRAMInitStruct->FMC_WriteTimingStruct->FMC_DataSetupTime << 8) |
-               ((FMC_NORSRAMInitStruct->FMC_WriteTimingStruct->FMC_CLKDivision) << 20) |
-               ((FMC_NORSRAMInitStruct->FMC_WriteTimingStruct->FMC_DataLatency) << 24) |
-               FMC_NORSRAMInitStruct->FMC_WriteTimingStruct->FMC_AccessMode;
+                         (FMC_NORSRAMInitStruct->FMC_WriteTimingStruct->FMC_AddressHoldTime << 4 )|
+                         (FMC_NORSRAMInitStruct->FMC_WriteTimingStruct->FMC_DataSetupTime << 8) |
+                         ((FMC_NORSRAMInitStruct->FMC_WriteTimingStruct->FMC_CLKDivision) << 20) |
+                         ((FMC_NORSRAMInitStruct->FMC_WriteTimingStruct->FMC_DataLatency) << 24) |
+                         FMC_NORSRAMInitStruct->FMC_WriteTimingStruct->FMC_AccessMode;
   }
   else
   {
@@ -417,28 +428,74 @@ void FMC_NANDInit(FMC_NANDInitTypeDef* FMC_NANDInitStruct)
   assert_param(IS_FMC_WAIT_TIME(FMC_NANDInitStruct->FMC_AttributeSpaceTimingStruct->FMC_WaitSetupTime));
   assert_param(IS_FMC_HOLD_TIME(FMC_NANDInitStruct->FMC_AttributeSpaceTimingStruct->FMC_HoldSetupTime));
   assert_param(IS_FMC_HIZ_TIME(FMC_NANDInitStruct->FMC_AttributeSpaceTimingStruct->FMC_HiZSetupTime));
+
+  if(FMC_NANDInitStruct->FMC_Bank == FMC_Bank2_NAND)
+  {
+    /* Get the NAND bank 2 register value */
+    tmppcr = FMC_Bank2->PCR2;
+  }
+  else
+  {
+    /* Get the NAND bank 3 register value */
+    tmppcr = FMC_Bank3->PCR3;
+  }
   
+  /* Clear PWAITEN, PBKEN, PTYP, PWID, ECCEN, TCLR, TAR and ECCPS bits */
+  tmppcr &= ((uint32_t)~(FMC_PCR2_PWAITEN  | FMC_PCR2_PBKEN | FMC_PCR2_PTYP | \
+                       FMC_PCR2_PWID | FMC_PCR2_ECCEN | FMC_PCR2_TCLR | \
+                       FMC_PCR2_TAR | FMC_PCR2_ECCPS)); 
+
   /* Set the tmppcr value according to FMC_NANDInitStruct parameters */
-  tmppcr = (uint32_t)FMC_NANDInitStruct->FMC_Waitfeature |
-            PCR_MEMORYTYPE_NAND |
-            FMC_NANDInitStruct->FMC_MemoryDataWidth |
-            FMC_NANDInitStruct->FMC_ECC |
-            FMC_NANDInitStruct->FMC_ECCPageSize |
-            (FMC_NANDInitStruct->FMC_TCLRSetupTime << 9 )|
-            (FMC_NANDInitStruct->FMC_TARSetupTime << 13);
-            
-  /* Set tmppmem value according to FMC_CommonSpaceTimingStructure parameters */
-  tmppmem = (uint32_t)FMC_NANDInitStruct->FMC_CommonSpaceTimingStruct->FMC_SetupTime |
-            (FMC_NANDInitStruct->FMC_CommonSpaceTimingStruct->FMC_WaitSetupTime << 8) |
-            (FMC_NANDInitStruct->FMC_CommonSpaceTimingStruct->FMC_HoldSetupTime << 16)|
-            (FMC_NANDInitStruct->FMC_CommonSpaceTimingStruct->FMC_HiZSetupTime << 24); 
-            
-  /* Set tmppatt value according to FMC_AttributeSpaceTimingStructure parameters */
-  tmppatt = (uint32_t)FMC_NANDInitStruct->FMC_AttributeSpaceTimingStruct->FMC_SetupTime |
-            (FMC_NANDInitStruct->FMC_AttributeSpaceTimingStruct->FMC_WaitSetupTime << 8) |
-            (FMC_NANDInitStruct->FMC_AttributeSpaceTimingStruct->FMC_HoldSetupTime << 16)|
-            (FMC_NANDInitStruct->FMC_AttributeSpaceTimingStruct->FMC_HiZSetupTime << 24);
+  tmppcr |= (uint32_t)FMC_NANDInitStruct->FMC_Waitfeature |
+                      PCR_MEMORYTYPE_NAND |
+                      FMC_NANDInitStruct->FMC_MemoryDataWidth |
+                      FMC_NANDInitStruct->FMC_ECC |
+                      FMC_NANDInitStruct->FMC_ECCPageSize |
+                      (FMC_NANDInitStruct->FMC_TCLRSetupTime << 9 )|
+                      (FMC_NANDInitStruct->FMC_TARSetupTime << 13);
+    
+  if(FMC_NANDInitStruct->FMC_Bank == FMC_Bank2_NAND)
+  {
+    /* Get the NAND bank 2 register value */
+    tmppmem = FMC_Bank2->PMEM2;
+  }
+  else
+  {
+    /* Get the NAND bank 3 register value */
+    tmppmem = FMC_Bank3->PMEM3;
+  } 
   
+  /* Clear MEMSETx, MEMWAITx, MEMHOLDx and MEMHIZx bits */
+  tmppmem &= ((uint32_t)~(FMC_PMEM2_MEMSET2  | FMC_PMEM2_MEMWAIT2 | FMC_PMEM2_MEMHOLD2 | \
+                          FMC_PMEM2_MEMHIZ2)); 
+
+  /* Set tmppmem value according to FMC_CommonSpaceTimingStructure parameters */
+  tmppmem |= (uint32_t)FMC_NANDInitStruct->FMC_CommonSpaceTimingStruct->FMC_SetupTime |
+                       (FMC_NANDInitStruct->FMC_CommonSpaceTimingStruct->FMC_WaitSetupTime << 8) |
+                       (FMC_NANDInitStruct->FMC_CommonSpaceTimingStruct->FMC_HoldSetupTime << 16)|
+                       (FMC_NANDInitStruct->FMC_CommonSpaceTimingStruct->FMC_HiZSetupTime << 24); 
+
+  if(FMC_NANDInitStruct->FMC_Bank == FMC_Bank2_NAND)
+  {
+    /* Get the NAND bank 2 register value */
+    tmppatt = FMC_Bank2->PATT2;
+  }
+  else
+  {
+    /* Get the NAND bank 3 register value */
+    tmppatt = FMC_Bank3->PATT3;
+  } 
+  
+  /* Clear ATTSETx, ATTWAITx, ATTHOLDx and ATTHIZx bits */
+  tmppatt &= ((uint32_t)~(FMC_PATT2_ATTSET2  | FMC_PATT2_ATTWAIT2 | FMC_PATT2_ATTHOLD2 | \
+                       FMC_PATT2_ATTHIZ2)); 
+
+  /* Set tmppatt value according to FMC_AttributeSpaceTimingStructure parameters */
+  tmppatt |= (uint32_t)FMC_NANDInitStruct->FMC_AttributeSpaceTimingStruct->FMC_SetupTime |
+                      (FMC_NANDInitStruct->FMC_AttributeSpaceTimingStruct->FMC_WaitSetupTime << 8) |
+                      (FMC_NANDInitStruct->FMC_AttributeSpaceTimingStruct->FMC_HoldSetupTime << 16)|
+                      (FMC_NANDInitStruct->FMC_AttributeSpaceTimingStruct->FMC_HiZSetupTime << 24);
+
   if(FMC_NANDInitStruct->FMC_Bank == FMC_Bank2_NAND)
   {
     /* FMC_Bank2_NAND registers configuration */
@@ -653,6 +710,9 @@ void FMC_PCCARDDeInit(void)
   */
 void FMC_PCCARDInit(FMC_PCCARDInitTypeDef* FMC_PCCARDInitStruct)
 {
+  /* temporary registers */
+  uint32_t tmppcr = 0, tmpmem = 0, tmppatt = 0, tmppio = 0;
+  
   /* Check the parameters */
   assert_param(IS_FMC_WAIT_FEATURE(FMC_PCCARDInitStruct->FMC_Waitfeature));
   assert_param(IS_FMC_TCLR_TIME(FMC_PCCARDInitStruct->FMC_TCLRSetupTime));
@@ -672,29 +732,65 @@ void FMC_PCCARDInit(FMC_PCCARDInitTypeDef* FMC_PCCARDInitStruct)
   assert_param(IS_FMC_HOLD_TIME(FMC_PCCARDInitStruct->FMC_IOSpaceTimingStruct->FMC_HoldSetupTime));
   assert_param(IS_FMC_HIZ_TIME(FMC_PCCARDInitStruct->FMC_IOSpaceTimingStruct->FMC_HiZSetupTime));
   
+  /* Get PCCARD control register value */
+  tmppcr = FMC_Bank4->PCR4;
+  
+  /* Clear TAR, TCLR, PWAITEN and PWID bits */
+  tmppcr &= ((uint32_t)~(FMC_PCR4_TAR  | FMC_PCR4_TCLR | FMC_PCR4_PWAITEN | \
+                         FMC_PCR4_PWID));
+
   /* Set the PCR4 register value according to FMC_PCCARDInitStruct parameters */
-  FMC_Bank4->PCR4 = (uint32_t)FMC_PCCARDInitStruct->FMC_Waitfeature |
-                     FMC_NAND_MemoryDataWidth_16b |  
-                     (FMC_PCCARDInitStruct->FMC_TCLRSetupTime << 9) |
-                     (FMC_PCCARDInitStruct->FMC_TARSetupTime << 13);
-            
+  tmppcr |= (uint32_t)FMC_PCCARDInitStruct->FMC_Waitfeature |
+                      FMC_NAND_MemoryDataWidth_16b |  
+                      (FMC_PCCARDInitStruct->FMC_TCLRSetupTime << 9) |
+                      (FMC_PCCARDInitStruct->FMC_TARSetupTime << 13);
+
+  FMC_Bank4->PCR4 = tmppcr;
+
+  /* Get PCCARD common space timing register value */
+  tmpmem = FMC_Bank4->PMEM4;
+  
+  /* Clear MEMSETx, MEMWAITx, MEMHOLDx and MEMHIZx bits */
+  tmpmem &= ((uint32_t)~(FMC_PMEM4_MEMSET4  | FMC_PMEM4_MEMWAIT4 | FMC_PMEM4_MEMHOLD4 | \
+                         FMC_PMEM4_MEMHIZ4));
+
   /* Set PMEM4 register value according to FMC_CommonSpaceTimingStructure parameters */
-  FMC_Bank4->PMEM4 = (uint32_t)FMC_PCCARDInitStruct->FMC_CommonSpaceTimingStruct->FMC_SetupTime |
+  tmpmem |= (uint32_t)FMC_PCCARDInitStruct->FMC_CommonSpaceTimingStruct->FMC_SetupTime |
                       (FMC_PCCARDInitStruct->FMC_CommonSpaceTimingStruct->FMC_WaitSetupTime << 8) |
                       (FMC_PCCARDInitStruct->FMC_CommonSpaceTimingStruct->FMC_HoldSetupTime << 16)|
                       (FMC_PCCARDInitStruct->FMC_CommonSpaceTimingStruct->FMC_HiZSetupTime << 24); 
-            
+
+  FMC_Bank4->PMEM4 = tmpmem; 
+
+  /* Get PCCARD timing parameters */
+  tmppatt = FMC_Bank4->PATT4;
+  
+  /* Clear ATTSETx, ATTWAITx, ATTHOLDx and ATTHIZx bits */
+  tmppatt &= ((uint32_t)~(FMC_PATT4_ATTSET4  | FMC_PATT4_ATTWAIT4 | FMC_PATT4_ATTHOLD4 | \
+                          FMC_PATT4_ATTHIZ4));
+
   /* Set PATT4 register value according to FMC_AttributeSpaceTimingStructure parameters */
-  FMC_Bank4->PATT4 = (uint32_t)FMC_PCCARDInitStruct->FMC_AttributeSpaceTimingStruct->FMC_SetupTime |
-                      (FMC_PCCARDInitStruct->FMC_AttributeSpaceTimingStruct->FMC_WaitSetupTime << 8) |
-                      (FMC_PCCARDInitStruct->FMC_AttributeSpaceTimingStruct->FMC_HoldSetupTime << 16)|
-                      (FMC_PCCARDInitStruct->FMC_AttributeSpaceTimingStruct->FMC_HiZSetupTime << 24);	
-            
+  tmppatt |= (uint32_t)FMC_PCCARDInitStruct->FMC_AttributeSpaceTimingStruct->FMC_SetupTime |
+                       (FMC_PCCARDInitStruct->FMC_AttributeSpaceTimingStruct->FMC_WaitSetupTime << 8) |
+                       (FMC_PCCARDInitStruct->FMC_AttributeSpaceTimingStruct->FMC_HoldSetupTime << 16)|
+                       (FMC_PCCARDInitStruct->FMC_AttributeSpaceTimingStruct->FMC_HiZSetupTime << 24);	
+
+  FMC_Bank4->PATT4 = tmppatt;
+
+  /* Get FMC_PCCARD device timing parameters */
+  tmppio = FMC_Bank4->PIO4;
+
+  /* Clear IOSET4, IOWAIT4, IOHOLD4 and IOHIZ4 bits */
+  tmppio &= ((uint32_t)~(FMC_PIO4_IOSET4  | FMC_PIO4_IOWAIT4 | FMC_PIO4_IOHOLD4 | \
+                         FMC_PIO4_IOHIZ4));
+
   /* Set PIO4 register value according to FMC_IOSpaceTimingStructure parameters */
-  FMC_Bank4->PIO4 = (uint32_t)FMC_PCCARDInitStruct->FMC_IOSpaceTimingStruct->FMC_SetupTime |
-                     (FMC_PCCARDInitStruct->FMC_IOSpaceTimingStruct->FMC_WaitSetupTime << 8) |
-                     (FMC_PCCARDInitStruct->FMC_IOSpaceTimingStruct->FMC_HoldSetupTime << 16)|
-                     (FMC_PCCARDInitStruct->FMC_IOSpaceTimingStruct->FMC_HiZSetupTime << 24);             
+  tmppio |= (uint32_t)FMC_PCCARDInitStruct->FMC_IOSpaceTimingStruct->FMC_SetupTime |
+                      (FMC_PCCARDInitStruct->FMC_IOSpaceTimingStruct->FMC_WaitSetupTime << 8) |
+                      (FMC_PCCARDInitStruct->FMC_IOSpaceTimingStruct->FMC_HoldSetupTime << 16)|
+                      (FMC_PCCARDInitStruct->FMC_IOSpaceTimingStruct->FMC_HiZSetupTime << 24);             
+  
+  FMC_Bank4->PIO4 = tmppio;
 }
 
 /**
@@ -824,10 +920,7 @@ void FMC_SDRAMDeInit(uint32_t FMC_Bank)
 void FMC_SDRAMInit(FMC_SDRAMInitTypeDef* FMC_SDRAMInitStruct)
 { 
   /* temporary registers */
-  uint32_t tmpr1 = 0;
-  uint32_t tmpr2 = 0;
-  uint32_t tmpr3 = 0;
-  uint32_t tmpr4 = 0;
+  uint32_t tmpr1 = 0, tmpr2 = 0, tmpr3 = 0, tmpr4 = 0;
   
   /* Check the parameters */
   
@@ -852,16 +945,24 @@ void FMC_SDRAMInit(FMC_SDRAMInitTypeDef* FMC_SDRAMInitStruct)
   assert_param(IS_FMC_RP_DELAY(FMC_SDRAMInitStruct->FMC_SDRAMTimingStruct->FMC_RPDelay)); 
   assert_param(IS_FMC_RCD_DELAY(FMC_SDRAMInitStruct->FMC_SDRAMTimingStruct->FMC_RCDDelay));    
   
+  /* Get SDRAM register value */
+  tmpr1 = FMC_Bank5_6->SDCR[FMC_SDRAMInitStruct->FMC_Bank];
+
+  /* Clear NC, NR, MWID, NB, CAS, WP, SDCLK, RBURST, and RPIPE bits */
+  tmpr1 &= ((uint32_t)~(FMC_SDCR1_NC | FMC_SDCR1_NR | FMC_SDCR1_MWID | \
+                        FMC_SDCR1_NB | FMC_SDCR1_CAS | FMC_SDCR1_WP | \
+                        FMC_SDCR1_SDCLK | FMC_SDCR1_RBURST | FMC_SDCR1_RPIPE));
+
   /* SDRAM bank control register configuration */ 
-  tmpr1 =   (uint32_t)FMC_SDRAMInitStruct->FMC_ColumnBitsNumber |
-             FMC_SDRAMInitStruct->FMC_RowBitsNumber |
-             FMC_SDRAMInitStruct->FMC_SDMemoryDataWidth |
-             FMC_SDRAMInitStruct->FMC_InternalBankNumber |           
-             FMC_SDRAMInitStruct->FMC_CASLatency |
-             FMC_SDRAMInitStruct->FMC_WriteProtection |
-             FMC_SDRAMInitStruct->FMC_SDClockPeriod |
-             FMC_SDRAMInitStruct->FMC_ReadBurst | 
-             FMC_SDRAMInitStruct->FMC_ReadPipeDelay;
+  tmpr1 |=   (uint32_t)FMC_SDRAMInitStruct->FMC_ColumnBitsNumber |
+                       FMC_SDRAMInitStruct->FMC_RowBitsNumber |
+                       FMC_SDRAMInitStruct->FMC_SDMemoryDataWidth |
+                       FMC_SDRAMInitStruct->FMC_InternalBankNumber |           
+                       FMC_SDRAMInitStruct->FMC_CASLatency |
+                       FMC_SDRAMInitStruct->FMC_WriteProtection |
+                       FMC_SDRAMInitStruct->FMC_SDClockPeriod |
+                       FMC_SDRAMInitStruct->FMC_ReadBurst | 
+                       FMC_SDRAMInitStruct->FMC_ReadPipeDelay;
             
   if(FMC_SDRAMInitStruct->FMC_Bank == FMC_Bank1_SDRAM )
   {
@@ -869,9 +970,17 @@ void FMC_SDRAMInit(FMC_SDRAMInitTypeDef* FMC_SDRAMInitStruct)
   }
   else   /* SDCR2 "don't care" bits configuration */
   {
-    tmpr3 = (uint32_t)FMC_SDRAMInitStruct->FMC_SDClockPeriod |
-             FMC_SDRAMInitStruct->FMC_ReadBurst | 
-             FMC_SDRAMInitStruct->FMC_ReadPipeDelay;
+    /* Get SDCR register value */
+    tmpr3 = FMC_Bank5_6->SDCR[FMC_Bank1_SDRAM];
+
+    /* Clear NC, NR, MWID, NB, CAS, WP, SDCLK, RBURST, and RPIPE bits */
+    tmpr3 &= ((uint32_t)~(FMC_SDCR1_NC  | FMC_SDCR1_NR | FMC_SDCR1_MWID | \
+                          FMC_SDCR1_NB  | FMC_SDCR1_CAS | FMC_SDCR1_WP | \
+                          FMC_SDCR1_SDCLK | FMC_SDCR1_RBURST | FMC_SDCR1_RPIPE));
+
+    tmpr3 |= (uint32_t)FMC_SDRAMInitStruct->FMC_SDClockPeriod |
+                       FMC_SDRAMInitStruct->FMC_ReadBurst | 
+                       FMC_SDRAMInitStruct->FMC_ReadPipeDelay;
     
     FMC_Bank5_6->SDCR[FMC_Bank1_SDRAM] = tmpr3;
     FMC_Bank5_6->SDCR[FMC_SDRAMInitStruct->FMC_Bank] = tmpr1;
@@ -879,25 +988,49 @@ void FMC_SDRAMInit(FMC_SDRAMInitTypeDef* FMC_SDRAMInitStruct)
   /* SDRAM bank timing register configuration */
   if(FMC_SDRAMInitStruct->FMC_Bank == FMC_Bank1_SDRAM )
   {
-    tmpr2 =   (uint32_t)((FMC_SDRAMInitStruct->FMC_SDRAMTimingStruct->FMC_LoadToActiveDelay)-1) |
-            (((FMC_SDRAMInitStruct->FMC_SDRAMTimingStruct->FMC_ExitSelfRefreshDelay)-1) << 4) |
-            (((FMC_SDRAMInitStruct->FMC_SDRAMTimingStruct->FMC_SelfRefreshTime)-1) << 8) |
-            (((FMC_SDRAMInitStruct->FMC_SDRAMTimingStruct->FMC_RowCycleDelay)-1) << 12) |
-            (((FMC_SDRAMInitStruct->FMC_SDRAMTimingStruct->FMC_WriteRecoveryTime)-1) << 16) |
-            (((FMC_SDRAMInitStruct->FMC_SDRAMTimingStruct->FMC_RPDelay)-1) << 20) |
-            (((FMC_SDRAMInitStruct->FMC_SDRAMTimingStruct->FMC_RCDDelay)-1) << 24);
+    /* Get SDTR register value */
+    tmpr2 = FMC_Bank5_6->SDTR[FMC_SDRAMInitStruct->FMC_Bank];
+
+    /* Clear TMRD, TXSR, TRAS, TRC, TWR, TRP and TRCD bits */
+    tmpr2 &= ((uint32_t)~(FMC_SDTR1_TMRD  | FMC_SDTR1_TXSR | FMC_SDTR1_TRAS | \
+                          FMC_SDTR1_TRC  | FMC_SDTR1_TWR | FMC_SDTR1_TRP | \
+                          FMC_SDTR1_TRCD));
+
+    tmpr2 |=   (uint32_t)((FMC_SDRAMInitStruct->FMC_SDRAMTimingStruct->FMC_LoadToActiveDelay)-1) |
+                          (((FMC_SDRAMInitStruct->FMC_SDRAMTimingStruct->FMC_ExitSelfRefreshDelay)-1) << 4) |
+                          (((FMC_SDRAMInitStruct->FMC_SDRAMTimingStruct->FMC_SelfRefreshTime)-1) << 8) |
+                          (((FMC_SDRAMInitStruct->FMC_SDRAMTimingStruct->FMC_RowCycleDelay)-1) << 12) |
+                          (((FMC_SDRAMInitStruct->FMC_SDRAMTimingStruct->FMC_WriteRecoveryTime)-1) << 16) |
+                          (((FMC_SDRAMInitStruct->FMC_SDRAMTimingStruct->FMC_RPDelay)-1) << 20) |
+                          (((FMC_SDRAMInitStruct->FMC_SDRAMTimingStruct->FMC_RCDDelay)-1) << 24);
             
             FMC_Bank5_6->SDTR[FMC_SDRAMInitStruct->FMC_Bank] = tmpr2;
   }
   else   /* SDTR "don't care bits configuration */
   {
-    tmpr2 =   (uint32_t)((FMC_SDRAMInitStruct->FMC_SDRAMTimingStruct->FMC_LoadToActiveDelay)-1) |
-            (((FMC_SDRAMInitStruct->FMC_SDRAMTimingStruct->FMC_ExitSelfRefreshDelay)-1) << 4) |
-            (((FMC_SDRAMInitStruct->FMC_SDRAMTimingStruct->FMC_SelfRefreshTime)-1) << 8) |
-            (((FMC_SDRAMInitStruct->FMC_SDRAMTimingStruct->FMC_WriteRecoveryTime)-1) << 16);
-            
-    tmpr4 =   (uint32_t)(((FMC_SDRAMInitStruct->FMC_SDRAMTimingStruct->FMC_RowCycleDelay)-1) << 12) |
-            (((FMC_SDRAMInitStruct->FMC_SDRAMTimingStruct->FMC_RPDelay)-1) << 20);
+    /* Get SDTR register value */
+    tmpr2 = FMC_Bank5_6->SDTR[FMC_SDRAMInitStruct->FMC_Bank];
+
+    /* Clear TMRD, TXSR, TRAS, TRC, TWR, TRP and TRCD bits */
+    tmpr2 &= ((uint32_t)~(FMC_SDTR1_TMRD  | FMC_SDTR1_TXSR | FMC_SDTR1_TRAS | \
+                          FMC_SDTR1_TRC  | FMC_SDTR1_TWR | FMC_SDTR1_TRP | \
+                          FMC_SDTR1_TRCD));
+
+    tmpr2 |=   (uint32_t)((FMC_SDRAMInitStruct->FMC_SDRAMTimingStruct->FMC_LoadToActiveDelay)-1) |
+                          (((FMC_SDRAMInitStruct->FMC_SDRAMTimingStruct->FMC_ExitSelfRefreshDelay)-1) << 4) |
+                          (((FMC_SDRAMInitStruct->FMC_SDRAMTimingStruct->FMC_SelfRefreshTime)-1) << 8) |
+                          (((FMC_SDRAMInitStruct->FMC_SDRAMTimingStruct->FMC_WriteRecoveryTime)-1) << 16);
+    
+    /* Get SDTR register value */
+    tmpr4 = FMC_Bank5_6->SDTR[FMC_Bank1_SDRAM];
+
+    /* Clear TMRD, TXSR, TRAS, TRC, TWR, TRP and TRCD bits */
+    tmpr4 &= ((uint32_t)~(FMC_SDTR1_TMRD  | FMC_SDTR1_TXSR | FMC_SDTR1_TRAS | \
+                          FMC_SDTR1_TRC  | FMC_SDTR1_TWR | FMC_SDTR1_TRP | \
+                          FMC_SDTR1_TRCD));
+
+    tmpr4 |=   (uint32_t)(((FMC_SDRAMInitStruct->FMC_SDRAMTimingStruct->FMC_RowCycleDelay)-1) << 12) |
+                          (((FMC_SDRAMInitStruct->FMC_SDRAMTimingStruct->FMC_RPDelay)-1) << 20);
             
             FMC_Bank5_6->SDTR[FMC_Bank1_SDRAM] = tmpr4;
             FMC_Bank5_6->SDTR[FMC_SDRAMInitStruct->FMC_Bank] = tmpr2;

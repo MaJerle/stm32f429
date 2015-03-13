@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_hash_md5.c
   * @author  MCD Application Team
-  * @version V1.4.0
-  * @date    04-August-2014
+  * @version V1.5.0
+  * @date    06-March-2015
   * @brief   This file provides high level functions to compute the HASH MD5 and
   *          HMAC MD5 Digest of an input message.
   *          It uses the stm32f4xx_hash.c/.h drivers to access the STM32F4xx HASH
@@ -26,7 +26,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2014 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.

@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_i2c.c
   * @author  MCD Application Team
-  * @version V1.4.0
-  * @date    04-August-2014
+  * @version V1.5.0
+  * @date    06-March-2015
   * @brief   This file provides firmware functions to manage the following 
   *          functionalities of the Inter-integrated circuit (I2C)
   *           + Initialization and Configuration
@@ -71,7 +71,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2014 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -556,12 +556,12 @@ void I2C_GeneralCallCmd(I2C_TypeDef* I2Cx, FunctionalState NewState)
   assert_param(IS_FUNCTIONAL_STATE(NewState));
   if (NewState != DISABLE)
   {
-    /* Enable generall call */
+    /* Enable general call */
     I2Cx->CR1 |= I2C_CR1_ENGC;
   }
   else
   {
-    /* Disable generall call */
+    /* Disable general call */
     I2Cx->CR1 &= (uint16_t)~((uint16_t)I2C_CR1_ENGC);
   }
 }
