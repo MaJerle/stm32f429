@@ -6171,7 +6171,7 @@
             <useXO>0</useXO>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>STM32F429_439xx,USE_STDPERIPH_DRIVER,STM32F4XX,KEIL_IDE,HSE_VALUE=8000000,PLL_M=8,PLL_N=336,PLL_P=2,PLL_Q=7</Define>
+              <Define>STM32F446xx,USE_STDPERIPH_DRIVER,STM32F4XX,KEIL_IDE,HSE_VALUE=8000000,PLL_M=8,PLL_N=336,PLL_P=2,PLL_Q=7</Define>
               <Undefine></Undefine>
               <IncludePath>.\User;.\TM;..\00-STM32F429_LIBRARIES;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\inc;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Include;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Include</IncludePath>
             </VariousControls>
