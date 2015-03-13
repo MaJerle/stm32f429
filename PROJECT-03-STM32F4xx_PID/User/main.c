@@ -89,7 +89,7 @@ int main(void) {
 	TM_PWM_SetChannelPercent(&TIM_Data, TM_PWM_Channel_1, duty);
 	
 	/* Initialize OneWire, pin PA6 */
-	TM_OneWire_Init(&OneWire, GPIOA, GPIO_Pin_6, RCC_AHB1Periph_GPIOA);
+	TM_OneWire_Init(&OneWire, GPIOA, GPIO_PIN_6);
 	
 	/* Checks for any device on 1-wire */
 	count = 0;
