@@ -12,6 +12,7 @@ Each project includes 4 targets:
 4. STM32F411C-Discovery (STM32F411, 100MHz)
 5. Nucleo F411-RE (STM32F411RE, 100MHz)
 6. Nucleo F401-RE (STM32F401RE, 84MHz)
+7. STM32F446xx (180MHz)
 
 When you download repository and open project, you have to set correct your target, for device you use.
 If you use other device in your project, then set your project and copy settings there from target options.
@@ -28,8 +29,8 @@ Current librarires:
 - All libraries listed at one place for easy editing them from one place and use them for all projects
 
 1. Two default projects are included
-	1. Default Keil project, with CMSIS files v.1.4.0 included
-	2. Default Keil project, with CMSIS files v.1.4.0 included and clock for STM32F429-Discovery slowed down to 168MHz and for Nucleo F411 down to 96MHz for USB communication
+	1. Default Keil project, with CMSIS files v.1.5.0 included
+	2. Default Keil project, with CMSIS files v.1.5.0 included and clock for STM32F429-Discovery/STM32F446 slowed down to 168MHz and for Nucleo F411 down to 96MHz for USB communication
 2. LED_BUTTON - Project example for STM32F4/29 Discovery
 http://bit.ly/1nbAHbs
 3. DELAY - Delay library for STM32F4/29
