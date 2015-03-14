@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/08/library-28-l3gd20-3-axis-gyroscope
- *	@version 	v1.0
+ *	@version 	v1.1
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -26,40 +26,44 @@
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
  *
- *	L3GD20 3-axis Gyroscope is connected on STM32F429 Discovery board.
- *	It works with SPI, has 3 selectable resolutions.
+ * Version 1.1
+ *	- March 14, 2015
+ *	- Support for new GPIO system
  *
- *  By default, on board is connected to pins:
+ * L3GD20 3-axis Gyroscope is connected on STM32F429 Discovery board.
+ * It works with SPI, has 3 selectable resolutions.
  *
- *  	L3GD20			STM32F4			Description
+ * By default, on board is connected to pins:
  *
- *  	MOSI			PF9				SPI5 is used by default
- *  	MISO			PF8				SPI5 is used by default
- *  	SCK				PF7				SPI5 is used by default
- *  	CS				PC1				Chip select for SPI
+ *  L3GD20			STM32F4			Description
  *
- *  If you want to change SPI, use these two lines below in your defines.h file and edit them:
+ *  MOSI			PF9				SPI5 is used by default
+ *  MISO			PF8				SPI5 is used by default
+ *  SCK				PF7				SPI5 is used by default
+ *  CS				PC1				Chip select for SPI
  *
- *  	//Select custom SPI for sensor
- *  	#define L3GD20_SPI					SPI5
- *  	#define L3GD20_SPI_PINSPACK			TM_SPI_PinsPack_1
+ * If you want to change SPI, use these two lines below in your defines.h file and edit them:
  *
- *  If you want to change CS pin, add these lines below in defines.h file and edit them:
+ *  //Select custom SPI for sensor
+ *  #define L3GD20_SPI					SPI5
+ *  #define L3GD20_SPI_PINSPACK			TM_SPI_PinsPack_1
  *
- *  	//Select CS pin
- *  	#define L3GD20_CS_RCC				RCC_AHB1Periph_GPIOC
- *  	#define L3GD20_CS_PORT				GPIOC
- *  	#define L3GD20_CS_PIN				GPIO_Pin_1
+ * If you want to change CS pin, add these lines below in defines.h file and edit them:
+ *
+ *  //Select CS pin
+ * 	#define L3GD20_CS_PORT				GPIOC
+ *  #define L3GD20_CS_PIN				GPIO_Pin_1
  */
 #ifndef TM_L3GD20_H
-#define TM_L3GD20_H	100
+#define TM_L3GD20_H	110
 /**
  * Dependencies:
  * 	- STM32F4xx
  * 	- STM32F4xx RCC
  * 	- STM32F4xx GPIO
- * 	- TM SPI
  * 	- defines.h
+ * 	- TM SPI
+ *	- TM GPIO
  */
 /**
  * Includes
@@ -67,8 +71,9 @@
 #include "stm32f4xx.h"
 #include "stm32f4xx_rcc.h"
 #include "stm32f4xx_gpio.h"
-#include "tm_stm32f4_spi.h"
 #include "defines.h"
+#include "tm_stm32f4_spi.h"
+#include "tm_stm32f4_gpio.h"
 
 /* Default SPI, used on STM32F429 Discovery board */
 #ifndef L3GD20_SPI
@@ -78,14 +83,13 @@
 
 /* Default CS pin on STM32F429 Discovery board */
 #ifndef L3GD20_CS_PIN
-#define L3GD20_CS_RCC				RCC_AHB1Periph_GPIOC
 #define L3GD20_CS_PORT				GPIOC
-#define L3GD20_CS_PIN				GPIO_Pin_1
+#define L3GD20_CS_PIN				GPIO_PIN_1
 #endif
 
 /* Pin macros */
-#define L3GD20_CS_LOW				L3GD20_CS_PORT->BSRRH = L3GD20_CS_PIN
-#define L3GD20_CS_HIGH				L3GD20_CS_PORT->BSRRL = L3GD20_CS_PIN
+#define L3GD20_CS_LOW				TM_GPIO_SetPinLow(L3GD20_CS_PORT, L3GD20_CS_PIN)
+#define L3GD20_CS_HIGH				TM_GPIO_SetPinHigh(L3GD20_CS_PORT, L3GD20_CS_PIN)
 
 /* Identification number */
 #define L3GD20_WHO_AM_I				0xD4
@@ -171,7 +175,6 @@ typedef enum {
 	TM_L3GD20_Scale_2000
 } TM_L3GD20_Scale_t;
 
-/* Public */
 /**
  * Initialize L3GD20 sensor
  *
@@ -193,11 +196,6 @@ extern TM_L3GD20_Result_t TM_L3GD20_Init(TM_L3GD20_Scale_t scale);
  * Returns TM_L3GD20_Result_Ok
  */
 extern TM_L3GD20_Result_t TM_L3GD20_Read(TM_L3GD20_t* L3DG20_Data);
-
-/* Private */
-extern void TM_L3GD20_INT_InitPins(void);
-extern uint8_t TM_L3GD20_INT_ReadSPI(uint8_t address);
-extern void TM_L3GD20_INT_WriteSPI(uint8_t address, uint8_t data);
 
 #endif
 

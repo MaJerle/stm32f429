@@ -18,7 +18,13 @@
  */
 #include "tm_stm32f4_l3gd20.h"
 
+/* Private variables */
 TM_L3GD20_Scale_t TM_L3GD20_INT_Scale;
+
+/* Private functions */
+extern void TM_L3GD20_INT_InitPins(void);
+extern uint8_t TM_L3GD20_INT_ReadSPI(uint8_t address);
+extern void TM_L3GD20_INT_WriteSPI(uint8_t address, uint8_t data);
 
 /* Public */
 TM_L3GD20_Result_t TM_L3GD20_Init(TM_L3GD20_Scale_t scale) {
@@ -95,19 +101,10 @@ TM_L3GD20_Result_t TM_L3GD20_Read(TM_L3GD20_t* L3DG20_Data) {
 	return TM_L3GD20_Result_Ok;
 }
 
+/* Private functions */
 void TM_L3GD20_INT_InitPins(void) {
-	GPIO_InitTypeDef GPIO_InitStruct;
-	/* Enable clock for CS port */
-	RCC_AHB1PeriphClockCmd(L3GD20_CS_RCC, ENABLE);
-	
-	/* Set settings */
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_OUT;
-	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStruct.GPIO_Pin = L3GD20_CS_PIN;
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
-	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;
-	/* Init GPIO */
-	GPIO_Init(L3GD20_CS_PORT, &GPIO_InitStruct);
+	/* Init CS pin for SPI */
+	TM_GPIO_Init(L3GD20_CS_PORT, L3GD20_CS_PIN, TM_GPIO_Mode_OUT, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Low);
 	/* Set CS high */
 	L3GD20_CS_HIGH;
 }

@@ -30,7 +30,7 @@
  * 
  * MPU6050		STM32F4xx	Descrption
  * 
- *  SCL			PA9			Clock line for I2C
+ *  SCL			PA8			Clock line for I2C
  *  SDA			PC9			Data line for I2C
  *	VCC			3.3V
  *	GND			GND
@@ -207,7 +207,7 @@ typedef enum {
  * 		I2C address of device
  * 		Only for private use
  * 	- float Gyro_Mult:
- * 		Gyroscope corrector from raw data to "�/s"
+ * 		Gyroscope corrector from raw data to "degrees/s"
  *		Only for private use
  * 	- float Acce_Mult:
  * 		Accelerometer corrector from raw data to "g"

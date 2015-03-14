@@ -1,6 +1,4 @@
 /**
- *	
- *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
