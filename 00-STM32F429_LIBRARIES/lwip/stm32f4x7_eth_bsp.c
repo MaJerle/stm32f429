@@ -94,8 +94,9 @@ uint8_t ETH_BSP_Config(void) {
   */
 static void ETH_MACDMA_Config(void) {
 	/* Enable ETHERNET clock  */
-	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_ETH_MAC | RCC_AHB1Periph_ETH_MAC_Tx |
-							RCC_AHB1Periph_ETH_MAC_Rx, ENABLE);
+	RCC->AHB1ENR |= RCC_AHB1ENR_ETHMACEN;
+	RCC->AHB1ENR |= RCC_AHB1ENR_ETHMACRXEN;
+	RCC->AHB1ENR |= RCC_AHB1ENR_ETHMACTXEN;
 
 	/* Reset ETHERNET on AHB Bus */
 	ETH_DeInit();
@@ -153,7 +154,7 @@ static void ETH_MACDMA_Config(void) {
   */
 void ETH_GPIO_Config(void) {
 	/* Enable SYSCFG clock */
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG, ENABLE);
+	RCC->APB2ENR |= RCC_APB2ENR_SYSCFGEN;
 
 	/* Configure MCO1 (PA8) */
 	/* This pin must be initialized as MCO, but not needed to be used */
@@ -334,24 +335,24 @@ void ETH_EXTERN_GetSpeedAndDuplex(uint32_t PHYAddress, ETH_InitTypeDef* ETH_Init
 
 	/* Switch statement */
 	switch (RegValue) {
-	case 1: /* Base 10, half-duplex */
-		ETH_InitStruct->ETH_Speed = ETH_Speed_10M;
-		ETH_InitStruct->ETH_Mode = ETH_Mode_HalfDuplex;
-		break;
-	case 2: /* Base 100, half-duplex */
-		ETH_InitStruct->ETH_Speed = ETH_Speed_100M;
-		ETH_InitStruct->ETH_Mode = ETH_Mode_HalfDuplex;
-		break;
-	case 5: /* Base 10, full-duplex */
-		ETH_InitStruct->ETH_Speed = ETH_Speed_10M;
-		ETH_InitStruct->ETH_Mode = ETH_Mode_FullDuplex;
-		break;
-	case 6: /* Base 100, full-duplex */
-		ETH_InitStruct->ETH_Speed = ETH_Speed_100M;
-		ETH_InitStruct->ETH_Mode = ETH_Mode_FullDuplex;
-		break;
-	default:
-		break;
+		case 1: /* Base 10, half-duplex */
+			ETH_InitStruct->ETH_Speed = ETH_Speed_10M;
+			ETH_InitStruct->ETH_Mode = ETH_Mode_HalfDuplex;
+			break;
+		case 2: /* Base 100, half-duplex */
+			ETH_InitStruct->ETH_Speed = ETH_Speed_100M;
+			ETH_InitStruct->ETH_Mode = ETH_Mode_HalfDuplex;
+			break;
+		case 5: /* Base 10, full-duplex */
+			ETH_InitStruct->ETH_Speed = ETH_Speed_10M;
+			ETH_InitStruct->ETH_Mode = ETH_Mode_FullDuplex;
+			break;
+		case 6: /* Base 100, full-duplex */
+			ETH_InitStruct->ETH_Speed = ETH_Speed_100M;
+			ETH_InitStruct->ETH_Mode = ETH_Mode_FullDuplex;
+			break;
+		default:
+			break;
 	}
 /* LAN8720A */
 #elif ETHERNET_PHY == 2

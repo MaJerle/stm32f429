@@ -28,7 +28,7 @@ void TM_DISCO_LedInit(void) {
 
 void TM_DISCO_ButtonInit(void) {
 	/* Set pin as input */
-	TM_GPIO_Init(TM_DISCO_BUTTON_PORT, TM_DISCO_BUTTON_PIN, TM_GPIO_Mode_IN, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Low);
+	TM_GPIO_Init(TM_DISCO_BUTTON_PORT, TM_DISCO_BUTTON_PIN, TM_GPIO_Mode_IN, TM_GPIO_OType_PP, TM_DISCO_BUTTON_PULL, TM_GPIO_Speed_Low);
 }
 
 uint8_t TM_DISCO_ButtonOnPressed(void) {

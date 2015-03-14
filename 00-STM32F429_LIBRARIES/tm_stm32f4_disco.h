@@ -6,7 +6,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/04/stm32f429-discovery-gpio-tutorial-with-onboard-leds-and-button/
- *	@version 	v1.9
+ *	@version 	v1.10
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -26,6 +26,10 @@
  * | You should have received a copy of the GNU General Public License
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
+ *
+ * Version 1.10
+ *	- March 14, 2015
+ *	- Fixed issue with pull resistors on boards
  *
  * Version 1.9
  *	- March 10, 2015
@@ -112,7 +116,7 @@
  *			- Blue button	on PA0
  */
 #ifndef TM_DISCO_H
-#define TM_DISCO_H 190
+#define TM_DISCO_H 1100
 /**
  * Library dependencies
  * - STM32F4xx
@@ -155,8 +159,8 @@
  */
 /* STM32F429 Discovery */
 #if defined(TM_DISCO_STM32F429_DISCOVERY)
-	#define LED_GREEN					GPIO_Pin_13
-	#define LED_RED						GPIO_Pin_14
+	#define LED_GREEN					GPIO_PIN_13
+	#define LED_RED						GPIO_PIN_14
 	#define LED_ORANGE					0
 	#define LED_BLUE					0
 	#define LED_ALL						LED_GREEN | LED_RED
@@ -164,24 +168,25 @@
 	#define TM_DISCO_LED_PORT			GPIOG
 	#define TM_DISCO_LED_PINS			LED_GREEN | LED_RED
 
-	#define TM_DISCO_BUTTON_RCC			RCC_AHB1Periph_GPIOA
 	#define TM_DISCO_BUTTON_PORT		GPIOA
-	#define TM_DISCO_BUTTON_PIN			GPIO_Pin_0
-	#define TM_DISCO_BUTTON_PRESSED		Bit_SET
+	#define TM_DISCO_BUTTON_PIN			GPIO_PIN_0
+	#define TM_DISCO_BUTTON_PRESSED		1
+	#define TM_DISCO_BUTTON_PULL		TM_GPIO_PuPd_DOWN
 /* STM32F4 & STM32F401 Discovery */
 #elif defined(TM_DISCO_STM32F4_DISCOVERY) || defined(TM_DISCO_STM32F401_DISCOVERY) || defined(TM_DISCO_STM32F411_DISCOVERY)
-	#define LED_GREEN					GPIO_Pin_12
-	#define LED_ORANGE					GPIO_Pin_13
-	#define LED_RED						GPIO_Pin_14
-	#define LED_BLUE					GPIO_Pin_15
+	#define LED_GREEN					GPIO_PIN_12
+	#define LED_ORANGE					GPIO_PIN_13
+	#define LED_RED						GPIO_PIN_14
+	#define LED_BLUE					GPIO_PIN_15
 	#define LED_ALL						LED_GREEN | LED_RED | LED_ORANGE | LED_BLUE
 	
 	#define TM_DISCO_LED_PORT			GPIOD
 	#define TM_DISCO_LED_PINS			LED_GREEN | LED_RED | LED_ORANGE | LED_BLUE
 
 	#define TM_DISCO_BUTTON_PORT		GPIOA
-	#define TM_DISCO_BUTTON_PIN			GPIO_Pin_0
-	#define TM_DISCO_BUTTON_PRESSED		Bit_SET
+	#define TM_DISCO_BUTTON_PIN			GPIO_PIN_0
+	#define TM_DISCO_BUTTON_PRESSED		1
+	#define TM_DISCO_BUTTON_PULL		TM_GPIO_PuPd_DOWN
 /* Nucleo F401-RE & F411-RE */
 #elif defined(TM_DISCO_NUCLEO_F401) || defined(TM_DISCO_NUCLEO_F411)
 	#define LED_GREEN					GPIO_Pin_5
@@ -194,8 +199,9 @@
 	#define TM_DISCO_LED_PINS			LED_GREEN
 
 	#define TM_DISCO_BUTTON_PORT		GPIOC
-	#define TM_DISCO_BUTTON_PIN			GPIO_Pin_13
-	#define TM_DISCO_BUTTON_PRESSED		Bit_RESET
+	#define TM_DISCO_BUTTON_PIN			GPIO_PIN_13
+	#define TM_DISCO_BUTTON_PRESSED		0
+	#define TM_DISCO_BUTTON_PULL		TM_GPIO_PuPd_UP
 #else
 	#error "tm_stm32f4_disco.h: Please select your board. Open tm_stm32f4_disco.h and follow instructions!!"
 #endif
@@ -287,7 +293,7 @@ extern void TM_DISCO_ButtonInit(void);
  *
  * Returns 1 if is pressed, otherwise 0
  */
-#define TM_DISCO_ButtonPressed()	(((TM_DISCO_BUTTON_PORT->IDR & TM_DISCO_BUTTON_PIN) == 0) != TM_DISCO_BUTTON_PRESSED)
+#define TM_DISCO_ButtonPressed()	((TM_GPIO_GetInputPinValue(TM_DISCO_BUTTON_PORT, TM_DISCO_BUTTON_PIN) == 0) != TM_DISCO_BUTTON_PRESSED)
 
 /**
  * Check if button was pressed now, but was not already pressed
