@@ -8,8 +8,10 @@ Each project includes 4 targets:
 
 1. STM32F429-Discovery board (STM32F429ZI, 180MHz)
 2. STM32F4-Discovery board (STM32F407VG, 168MHz)
-3. Nucleo F411-RE (STM32F411RE, 100MHz)
-4. Nucleo F401-RE (STM32F401RE, 84MHz)
+3. STM32F401-Discovery (STM32F401, 84MHz)
+4. STM32F411C-Discovery (STM32F411, 100MHz)
+5. Nucleo F411-RE (STM32F411RE, 100MHz)
+6. Nucleo F401-RE (STM32F401RE, 84MHz)
 
 When you download repository and open project, you have to set correct your target, for device you use.
 If you use other device in your project, then set your project and copy settings there from target options.
