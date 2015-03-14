@@ -24,6 +24,7 @@ uint16_t ILI9341_y;
 TM_ILI931_Options_t ILI9341_Opts;
 uint8_t ILI9341_INT_CalledFromPuts = 0;
 
+/* Private functions */
 void TM_ILI9341_InitLCD(void);
 void TM_ILI9341_SendData(uint8_t data);
 void TM_ILI9341_SendCommand(uint8_t data);
@@ -31,40 +32,31 @@ void TM_ILI9341_Delay(volatile unsigned int delay);
 void TM_ILI9341_SetCursorPosition(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2);
 
 void TM_ILI9341_Init() {
-	GPIO_InitTypeDef GPIO_InitDef;
-
-	RCC_AHB1PeriphClockCmd(ILI9341_WRX_CLK, ENABLE);
-	  
-	GPIO_InitDef.GPIO_Pin = ILI9341_WRX_PIN;
-	GPIO_InitDef.GPIO_Speed = GPIO_Speed_50MHz;
-	GPIO_InitDef.GPIO_Mode = GPIO_Mode_OUT;
-	GPIO_InitDef.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitDef.GPIO_PuPd = GPIO_PuPd_NOPULL;
-	GPIO_Init(ILI9341_WRX_PORT, &GPIO_InitDef);
-
-
-	RCC_AHB1PeriphClockCmd(ILI9341_CS_CLK, ENABLE);
-	GPIO_InitDef.GPIO_Pin = ILI9341_CS_PIN;
-	GPIO_Init(ILI9341_CS_PORT, &GPIO_InitDef);	
+	/* Init WRX pin */
+	TM_GPIO_Init(ILI9341_WRX_PORT, ILI9341_WRX_PIN, TM_GPIO_Mode_OUT, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_Medium);
 	
+	/* Init CS pin */
+	TM_GPIO_Init(ILI9341_CS_PORT, ILI9341_CS_PIN, TM_GPIO_Mode_OUT, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_Medium);
 	
-	RCC_AHB1PeriphClockCmd(ILI9341_RST_CLK, ENABLE);
-	GPIO_InitDef.GPIO_PuPd = GPIO_PuPd_UP;
-	GPIO_InitDef.GPIO_Pin = ILI9341_RST_PIN;
-	GPIO_Init(ILI9341_RST_PORT, &GPIO_InitDef);	
+	/* Init RST pin */
+	TM_GPIO_Init(ILI9341_RST_PORT, ILI9341_RST_PIN, TM_GPIO_Mode_OUT, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Low);
 
+	/* CS high */
 	ILI9341_CS_SET;
 	
+	/* Init SPI */
 	TM_SPI_Init(ILI9341_SPI, ILI9341_SPI_PINS);
 	
+	/* Init LCD */
 	TM_ILI9341_InitLCD();	
 	
+	/* Set default settings */
 	ILI9341_x = ILI9341_y = 0;
-	
 	ILI9341_Opts.width = ILI9341_WIDTH;
 	ILI9341_Opts.height = ILI9341_HEIGHT;
 	ILI9341_Opts.orientation = TM_ILI9341_Portrait;
 	
+	/* Fill with white color */
 	TM_ILI9341_Fill(ILI9341_COLOR_WHITE);
 }
 
@@ -173,6 +165,13 @@ void TM_ILI9341_InitLCD(void) {
 	TM_ILI9341_SendCommand(ILI9341_GRAM);
 }
 
+void TM_ILI9341_DisplayOn(void) {
+	TM_ILI9341_SendCommand(ILI9341_DISPLAY_ON);
+}
+
+void TM_ILI9341_DisplayOff(void) {
+	TM_ILI9341_SendCommand(ILI9341_DISPLAY_OFF);
+}
 
 void TM_ILI9341_SendCommand(uint8_t data) {
 	ILI9341_WRX_RESET;

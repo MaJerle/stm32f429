@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/04/library-08-ili9341-lcd-on-stm32f429-discovery-board/
- *	@version 	v1.1
+ *	@version 	v1.2
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -26,6 +26,11 @@
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
  *	
+ * Version 1.2
+ *	- March 14, 2015
+ *	- Added support for new GPIO system
+ *	- Added functions TM_ILI9341_DisplayOff() and TM_ILI9341_DisplayOn()
+ *
  *	This driver works for all STM32F4xx series with SPI built in.
  *	
  *	Default pinout
@@ -41,46 +46,45 @@
  *		GND				GND				Ground
  *		VCC				3.3V			Positive power supply
  *		
- *	All pins can be changed in your defines.h file
+ * All pins can be changed in your defines.h file
  *		
  *	//Default SPI used is SPI5. Check my SPI library for other pinouts
  *	#define ILI9341_SPI 				SPI5
  *	#define ILI9341_SPI_PINS			TM_SPI_PinsPack_1
  *		
  *	//Default CS pin. Edit this in your defines.h file
- *	#define ILI9341_CS_CLK				RCC_AHB1Periph_GPIOC
  *	#define ILI9341_CS_PORT				GPIOC
- *	#define ILI9341_CS_PIN				GPIO_Pin_2
+ *	#define ILI9341_CS_PIN				GPIO_PIN_2
  *		
  *	//Default D/C (or WRX) pin. Edit this in your defines.h file
- *	#define ILI9341_WRX_CLK				RCC_AHB1Periph_GPIOD
  *	#define ILI9341_WRX_PORT			GPIOD
- *	#define ILI9341_WRX_PIN				GPIO_Pin_13
+ *	#define ILI9341_WRX_PIN				GPIO_PIN_13
  *		
- *	Reset pin can be disabled, if you need GPIOs for other purpose.
- *	To disable RESET pin, add line below to defines.h file
- *	If you disable pin, then set LCD's RESET pin to VCC
+ * Reset pin can be disabled, if you need GPIOs for other purpose.
+ * To disable RESET pin, add line below to defines.h file
+ * If you disable pin, then set LCD's RESET pin to VCC
  *	
  *	//Disable RESET pin
  *	#define ILI9341_USE_RST_PIN			0
  *		
- *	But if you want to use RESET pin, you can change its settings in defines.h file
+ * But if you want to use RESET pin, you can change its settings in defines.h file
  *	
  *	//Default RESET pin. Edit this in your defines.h file
- *	#define ILI9341_RST_CLK				RCC_AHB1Periph_GPIOD
  *	#define ILI9341_RST_PORT			GPIOD
- *	#define ILI9341_RST_PIN				GPIO_Pin_12
+ *	#define ILI9341_RST_PIN				GPIO_PIN_12
  */
 #ifndef TM_ILI9341_H
-#define TM_ILI9341_H 110
+#define TM_ILI9341_H 120
 /**
  * Library dependencies
  * - STM32F4xx
  * - STM32F4xx RCC
  * - STM32F4xx GPIO
+ * - STM32F4xx SPI
  * - defines.h
  * - TM SPI
  * - TM FONTS
+ * - TM GPIO
  */
 
 /**
@@ -92,6 +96,7 @@
 #include "defines.h"
 #include "tm_stm32f4_spi.h"
 #include "tm_stm32f4_fonts.h"
+#include "tm_stm32f4_gpio.h"
 
 //SPI used
 //This SPI pins are used on STM32F429 Discovery board
@@ -100,28 +105,25 @@
 #define ILI9341_SPI_PINS			TM_SPI_PinsPack_1
 #endif
 
+/* This pin is used on STM32F429 discovery board */
 #ifndef ILI9341_CS_PIN
-//This pin is used on STM32F429 discovery board
-#define ILI9341_CS_CLK				RCC_AHB1Periph_GPIOC
 #define ILI9341_CS_PORT				GPIOC
-#define ILI9341_CS_PIN				GPIO_Pin_2
+#define ILI9341_CS_PIN				GPIO_PIN_2
 #endif
 
+/* This pin is used on STM32F429 discovery board */
 #ifndef ILI9341_WRX_PIN
-//This pin is used on STM32F429 discovery board
-#define ILI9341_WRX_CLK				RCC_AHB1Periph_GPIOD
 #define ILI9341_WRX_PORT			GPIOD
-#define ILI9341_WRX_PIN				GPIO_Pin_13
+#define ILI9341_WRX_PIN				GPIO_PIN_13
 #endif
 
-//Reset pin
+/* Reset pin */
 #ifndef ILI9341_RST_PIN
-//Reset pin
-#define ILI9341_RST_CLK				RCC_AHB1Periph_GPIOD
 #define ILI9341_RST_PORT			GPIOD
-#define ILI9341_RST_PIN				GPIO_Pin_12
+#define ILI9341_RST_PIN				GPIO_PIN_12
 #endif
 
+/* Pin definitions */
 #define ILI9341_RST_SET				GPIO_SetBits(ILI9341_RST_PORT, ILI9341_RST_PIN)
 #define ILI9341_RST_RESET			GPIO_ResetBits(ILI9341_RST_PORT, ILI9341_RST_PIN)
 #define ILI9341_CS_SET				GPIO_SetBits(ILI9341_CS_PORT, ILI9341_CS_PIN)
@@ -129,12 +131,12 @@
 #define ILI9341_WRX_SET				GPIO_SetBits(ILI9341_WRX_PORT, ILI9341_WRX_PIN)
 #define ILI9341_WRX_RESET			GPIO_ResetBits(ILI9341_WRX_PORT, ILI9341_WRX_PIN)
 
-//LCD settings
+/* LCD settings */
 #define ILI9341_WIDTH 				240
 #define ILI9341_HEIGHT				320
 #define ILI9341_PIXEL				76800
 
-//Colors
+/* Colors */
 #define ILI9341_COLOR_WHITE			0xFFFF
 #define ILI9341_COLOR_BLACK			0x0000
 #define ILI9341_COLOR_RED			0xF800
@@ -149,11 +151,10 @@
 #define ILI9341_COLOR_GRAY			0x7BEF //1111 0111 1101 1110
 #define ILI9341_COLOR_BROWN			0xBBCA
 
-//Bits
-//Transparent background, only for strings and chars
+/* Transparent background, only for strings and chars */
 #define ILI9341_TRANSPARENT			0x80000000
 
-//Commands
+/* Commands */
 #define ILI9341_RESET				0x01
 #define ILI9341_SLEEP_OUT			0x11
 #define ILI9341_GAMMA				0x26
@@ -355,6 +356,19 @@ extern void TM_ILI9341_DrawCircle(int16_t x0, int16_t y0, int16_t r, uint32_t co
  * - uint32_t color: circle color
  */
 extern void TM_ILI9341_DrawFilledCircle(int16_t x0, int16_t y0, int16_t r, uint32_t color);
+
+/**
+ * @brief   Enable display
+ * @note    After initialization, LCD is enabled and you don't need to call this function
+ * @retval  None
+ */
+extern void TM_ILI9341_DisplayOn(void);
+
+/**
+ * @brief   Disable display
+ * @retval  None
+ */
+extern void TM_ILI9341_DisplayOff(void);
 
 #endif
 
