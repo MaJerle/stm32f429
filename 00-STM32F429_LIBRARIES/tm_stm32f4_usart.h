@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/04/library-04-connect-stm32f429-discovery-to-computer-with-usart/
- *	@version 	v2.2
+ *	@version 	v2.3
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -26,6 +26,11 @@
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
  *	
+ * Version 2.3
+ *	- March 14, 2015
+ *	- Added support for STM32F446xx devices
+ *	- Changed function name for custom pins initialization callback
+ *
  * Version 2.2
  *	- March 10, 2015
  *	- Updated to be more independent of STD/HAL drivers but still not totally
@@ -120,7 +125,7 @@
  *	#define TM_X_WORD_LENGTH				USART_WordLength_8b
  */
 #ifndef TM_USART_H
-#define TM_USART_H 220
+#define TM_USART_H 230
 /**
  * Library dependencies
  * - STM32F4xx
@@ -142,8 +147,8 @@
 #include "defines.h"
 #include "tm_stm32f4_gpio.h"
 
-/* F405/407/415/417 */
-#if defined (STM32F40_41xxx)
+/* F405/407/415/417/F446 */
+#if defined (STM32F40_41xxx) || defined(STM32F446xx)
 #define USE_USART1
 #define USE_USART2
 #define USE_USART3
@@ -476,7 +481,7 @@ extern void TM_USART_ClearBuffer(USART_TypeDef* USARTx);
  *
  * No return
  */
-extern __weak void TM_USART_InitCustomPins(USART_TypeDef* USARTx);
+extern __weak void TM_USART_InitCustomPinsCallback(USART_TypeDef* USARTx);
 
 /**
  * These functions are used, if you want to make yourself interrupt handler.

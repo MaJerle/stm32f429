@@ -365,7 +365,7 @@ void TM_SPI1_INT_InitPins(TM_SPI_PinsPack_t pinspack) {
 #endif
 	if (pinspack == TM_SPI_PinsPack_Custom) {
 		/* Call user function */
-		TM_SPI_InitCustomPins(SPI1);
+		TM_SPI_InitCustomPinsCallback(SPI1);
 	}
 }
 
@@ -389,7 +389,7 @@ void TM_SPI2_INT_InitPins(TM_SPI_PinsPack_t pinspack) {
 #endif
 	if (pinspack == TM_SPI_PinsPack_Custom) {
 		/* Call user function */
-		TM_SPI_InitCustomPins(SPI2);
+		TM_SPI_InitCustomPinsCallback(SPI2);
 	}
 }
 
@@ -407,7 +407,7 @@ void TM_SPI3_INT_InitPins(TM_SPI_PinsPack_t pinspack) {
 #endif
 	if (pinspack == TM_SPI_PinsPack_Custom) {
 		/* Call user function */
-		TM_SPI_InitCustomPins(SPI3);
+		TM_SPI_InitCustomPinsCallback(SPI3);
 	}
 }
 
@@ -425,7 +425,7 @@ void TM_SPI4_INT_InitPins(TM_SPI_PinsPack_t pinspack) {
 #endif
 	if (pinspack == TM_SPI_PinsPack_Custom) {
 		/* Call user function */
-		TM_SPI_InitCustomPins(SPI4);
+		TM_SPI_InitCustomPinsCallback(SPI4);
 	}
 }
 
@@ -444,7 +444,7 @@ void TM_SPI5_INT_InitPins(TM_SPI_PinsPack_t pinspack) {
 #endif
 	if (pinspack == TM_SPI_PinsPack_Custom) {
 		/* Call user function */
-		TM_SPI_InitCustomPins(SPI5);
+		TM_SPI_InitCustomPinsCallback(SPI5);
 	}
 }
 
@@ -457,7 +457,7 @@ void TM_SPI6_INT_InitPins(TM_SPI_PinsPack_t pinspack) {
 #endif
 	if (pinspack == TM_SPI_PinsPack_Custom) {
 		/* Call user function */
-		TM_SPI_InitCustomPins(SPI6);
+		TM_SPI_InitCustomPinsCallback(SPI6);
 	}
 }
 

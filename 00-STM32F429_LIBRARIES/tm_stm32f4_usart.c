@@ -514,7 +514,7 @@ void TM_USART1_InitPins(TM_USART_PinsPack_t pinspack) {
 #endif
 	if (pinspack == TM_USART_PinsPack_Custom) {
 		/* Init custom pins, callback used */
-		TM_USART_InitCustomPins(USART1);
+		TM_USART_InitCustomPinsCallback(USART1);
 	}
 }
 #endif
@@ -534,7 +534,7 @@ void TM_USART2_InitPins(TM_USART_PinsPack_t pinspack) {
 #endif
 	if (pinspack == TM_USART_PinsPack_Custom) {
 		/* Init custom pins, callback used */
-		TM_USART_InitCustomPins(USART2);
+		TM_USART_InitCustomPinsCallback(USART2);
 	}
 }
 #endif
@@ -559,7 +559,7 @@ void TM_USART3_InitPins(TM_USART_PinsPack_t pinspack) {
 #endif
 	if (pinspack == TM_USART_PinsPack_Custom) {
 		/* Init custom pins, callback used */
-		TM_USART_InitCustomPins(USART3);
+		TM_USART_InitCustomPinsCallback(USART3);
 	}
 }
 #endif
@@ -579,7 +579,7 @@ void TM_UART4_InitPins(TM_USART_PinsPack_t pinspack) {
 #endif
 	if (pinspack == TM_USART_PinsPack_Custom) {
 		/* Init custom pins, callback used */
-		TM_USART_InitCustomPins(UART4);
+		TM_USART_InitCustomPinsCallback(UART4);
 	}
 }
 #endif
@@ -595,7 +595,7 @@ void TM_UART5_InitPins(TM_USART_PinsPack_t pinspack) {
 #endif
 	if (pinspack == TM_USART_PinsPack_Custom) {
 		/* Init custom pins, callback used */
-		TM_USART_InitCustomPins(UART5);
+		TM_USART_InitCustomPinsCallback(UART5);
 	}
 }
 #endif
@@ -615,7 +615,7 @@ void TM_USART6_InitPins(TM_USART_PinsPack_t pinspack) {
 #endif
 	if (pinspack == TM_USART_PinsPack_Custom) {
 		/* Init custom pins, callback used */
-		TM_USART_InitCustomPins(USART6);
+		TM_USART_InitCustomPinsCallback(USART6);
 	}
 }
 #endif
@@ -635,7 +635,7 @@ void TM_UART7_InitPins(TM_USART_PinsPack_t pinspack) {
 #endif
 	if (pinspack == TM_USART_PinsPack_Custom) {
 		/* Init custom pins, callback used */
-		TM_USART_InitCustomPins(UART7);
+		TM_USART_InitCustomPinsCallback(UART7);
 	}
 }
 #endif
@@ -650,7 +650,7 @@ void TM_UART8_InitPins(TM_USART_PinsPack_t pinspack) {
 #endif
 	if (pinspack == TM_USART_PinsPack_Custom) {
 		/* Init custom pins, callback used */
-		TM_USART_InitCustomPins(UART8);
+		TM_USART_InitCustomPinsCallback(UART8);
 	}
 }
 #endif

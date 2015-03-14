@@ -466,7 +466,7 @@ extern void TM_SPI_ReadMulti16(SPI_TypeDef* SPIx, uint16_t* dataIn, uint16_t dum
  *
  * No return
  */
-extern __weak void TM_SPI_InitCustomPins(SPI_TypeDef* SPIx);
+extern __weak void TM_SPI_InitCustomPinsCallback(SPI_TypeDef* SPIx);
 
 /* C++ detection */
 #ifdef __cplusplus

@@ -358,7 +358,7 @@ extern void TM_I2C_WriteData(I2C_TypeDef* I2Cx, uint8_t data);
  *
  * No return
  */
-extern __weak void TM_I2C_InitCustomPins(I2C_TypeDef* I2Cx);
+extern __weak void TM_I2C_InitCustomPinsCallback(I2C_TypeDef* I2Cx);
 
 #endif
 

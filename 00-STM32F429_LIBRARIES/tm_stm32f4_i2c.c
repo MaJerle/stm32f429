@@ -332,7 +332,7 @@ void TM_I2C1_INT_InitPins(TM_I2C_PinsPack_t pinspack) {
 #endif
 	if (pinspack == TM_I2C_PinsPack_Custom) {
 		/* Init custom pins, callback function */
-		TM_I2C_InitCustomPins(I2C1);
+		TM_I2C_InitCustomPinsCallback(I2C1);
 	}
 }
 
@@ -355,7 +355,7 @@ void TM_I2C2_INT_InitPins(TM_I2C_PinsPack_t pinspack) {
 #endif
 	if (pinspack == TM_I2C_PinsPack_Custom) {
 		/* Init custom pins, callback function */
-		TM_I2C_InitCustomPins(I2C2);
+		TM_I2C_InitCustomPinsCallback(I2C2);
 	}
 }
 
@@ -374,6 +374,6 @@ void TM_I2C3_INT_InitPins(TM_I2C_PinsPack_t pinspack) {
 #endif
 	if (pinspack == TM_I2C_PinsPack_Custom) {
 		/* Init custom pins, callback function */
-		TM_I2C_InitCustomPins(I2C3);
+		TM_I2C_InitCustomPinsCallback(I2C3);
 	}
 }
