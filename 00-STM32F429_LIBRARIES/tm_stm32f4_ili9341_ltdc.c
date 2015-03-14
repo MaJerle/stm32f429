@@ -35,23 +35,24 @@ void TM_ILI9341_Delay(volatile unsigned int delay);
 void TM_ILI9341_SetCursorPosition(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2);
 
 void TM_ILI9341_Init(void) {
-	//Initialize pins used
+	/* Initialize pins used */
 	TM_ILI9341_InitPins();
-	//SPI chip select high
+	/* SPI chip select high */
 	ILI9341_CS_SET;
-	//Init SPI
+	/* Init SPI */
 	TM_SPI_Init(ILI9341_SPI, ILI9341_SPI_PINS);
-	//Init SDRAM
+	/* Init SDRAM */
 	TM_SDRAM_Init();
-	//Initialize LCD for LTDC
+	/* Initialize LCD for LTDC */
 	TM_ILI9341_InitLCD();
-	//Initialize LTDC
+	/* Initialize LTDC */
 	TM_LCD9341_InitLTDC();
-	//Initialize LTDC layers
+	/* Initialize LTDC layers */
 	TM_ILI9341_InitLayers();
-	//Set cursor X and Y
+	/* Set cursor X and Y */
 	ILI9341_x = ILI9341_y = 0;
 	
+	/* Set default settings */
 	ILI9341_Opts.Width = ILI9341_WIDTH;
 	ILI9341_Opts.Height = ILI9341_HEIGHT;
 	ILI9341_Opts.Orientation = TM_ILI9341_Portrait;
@@ -69,71 +70,38 @@ void TM_ILI9341_Init(void) {
 }
 
 void TM_ILI9341_InitPins(void) {
-	GPIO_InitTypeDef GPIO_InitStruct;
-	//Enable clock
-	RCC_AHB1PeriphClockCmd(ILI9341_WRX_CLK | ILI9341_CS_CLK | ILI9341_RST_CLK | RCC_AHB1Periph_GPIOA | RCC_AHB1Periph_GPIOB | RCC_AHB1Periph_GPIOC | RCC_AHB1Periph_GPIOD | RCC_AHB1Periph_GPIOF | RCC_AHB1Periph_GPIOG, ENABLE);
-	  
-	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_OUT;
-	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
-	//WRX pin
-	GPIO_InitStruct.GPIO_Pin = ILI9341_WRX_PIN;
-	GPIO_Init(ILI9341_WRX_PORT, &GPIO_InitStruct);
-	//SPI CS pin
-	GPIO_InitStruct.GPIO_Pin = ILI9341_CS_PIN;
-	GPIO_Init(ILI9341_CS_PORT, &GPIO_InitStruct);	
-	//Reset pin
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
-	GPIO_InitStruct.GPIO_Pin = ILI9341_RST_PIN;
-	GPIO_Init(ILI9341_RST_PORT, &GPIO_InitStruct);
+	/* Init WRX pin */
+	TM_GPIO_Init(ILI9341_WRX_PORT, ILI9341_WRX_PIN, TM_GPIO_Mode_OUT, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_Medium);
+	
+	/* Init CS pin */
+	TM_GPIO_Init(ILI9341_CS_PORT, ILI9341_CS_PIN, TM_GPIO_Mode_OUT, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_Medium);
+	
+	/* Init RST pin */
+	TM_GPIO_Init(ILI9341_RST_PORT, ILI9341_RST_PIN, TM_GPIO_Mode_OUT, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Low);
+	
+	/* GPIOA                     Blue5        VSYNC        Green2       Red4          Red5 */
+	TM_GPIO_InitAlternate(GPIOA, GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_6 | GPIO_PIN_11 | GPIO_PIN_12, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_LTDC);
+	
+	/* GPIOB                     Red3         Red6 */
+	TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_0 | GPIO_PIN_1, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, 0x09);
+	
+	/* GPIOB                     Blue6		  Blue7        Green4        Green5 */
+	TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_8 | GPIO_PIN_9 | GPIO_PIN_10 | GPIO_PIN_11, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_LTDC);
+	
+	/* GPIOC                     HSYNC		Green6		 Red2 */
+	TM_GPIO_InitAlternate(GPIOC, GPIO_PIN_6 | GPIO_PIN_7 | GPIO_PIN_10, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_LTDC);
+	
+	/* GPIOD                     Green7       Blue2 */
+	TM_GPIO_InitAlternate(GPIOD, GPIO_PIN_3 | GPIO_PIN_6 | GPIO_PIN_10, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_LTDC);
+	
+	/* GPIOF                     Enable */
+	TM_GPIO_InitAlternate(GPIOF, GPIO_PIN_10, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_LTDC);
 
-	//Alternating functions
-	GPIO_PinAFConfig(GPIOA, GPIO_PinSource3, GPIO_AF_LTDC);
-	GPIO_PinAFConfig(GPIOA, GPIO_PinSource4, GPIO_AF_LTDC);
-	GPIO_PinAFConfig(GPIOA, GPIO_PinSource6, GPIO_AF_LTDC);
-	GPIO_PinAFConfig(GPIOA, GPIO_PinSource11, GPIO_AF_LTDC);
-	GPIO_PinAFConfig(GPIOA, GPIO_PinSource12, GPIO_AF_LTDC);
-	GPIO_PinAFConfig(GPIOB, GPIO_PinSource0, 0x09);
-	GPIO_PinAFConfig(GPIOB, GPIO_PinSource1, 0x09);
-	GPIO_PinAFConfig(GPIOB, GPIO_PinSource8, GPIO_AF_LTDC);
-	GPIO_PinAFConfig(GPIOB, GPIO_PinSource9, GPIO_AF_LTDC);
-	GPIO_PinAFConfig(GPIOB, GPIO_PinSource10, GPIO_AF_LTDC);
-	GPIO_PinAFConfig(GPIOB, GPIO_PinSource11, GPIO_AF_LTDC);
-	GPIO_PinAFConfig(GPIOC, GPIO_PinSource6, GPIO_AF_LTDC);
-	GPIO_PinAFConfig(GPIOC, GPIO_PinSource7, GPIO_AF_LTDC);
-	GPIO_PinAFConfig(GPIOC, GPIO_PinSource10, GPIO_AF_LTDC);
-	GPIO_PinAFConfig(GPIOD, GPIO_PinSource3, GPIO_AF_LTDC);
-	GPIO_PinAFConfig(GPIOD, GPIO_PinSource6, GPIO_AF_LTDC);
-	GPIO_PinAFConfig(GPIOF, GPIO_PinSource10, GPIO_AF_LTDC);
-	GPIO_PinAFConfig(GPIOG, GPIO_PinSource6, GPIO_AF_LTDC);
-	GPIO_PinAFConfig(GPIOG, GPIO_PinSource7, GPIO_AF_LTDC);
-	GPIO_PinAFConfig(GPIOG, GPIO_PinSource10, 0x09);
-	GPIO_PinAFConfig(GPIOG, GPIO_PinSource11, GPIO_AF_LTDC);
-	GPIO_PinAFConfig(GPIOG, GPIO_PinSource12, 0x09);
-	
-	//Common settings
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
-	
-	//GPIOA					   Blue5		VSYNC		 Green2		  Red4			Red5
-	GPIO_InitStruct.GPIO_Pin = GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_6 | GPIO_Pin_11 | GPIO_Pin_12;
-	GPIO_Init(GPIOA, &GPIO_InitStruct);
-	//GPIOB					   Red3			Red6		 Blue6		  Blue7		   Green4		 Green5
-	GPIO_InitStruct.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_1 | GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_10 | GPIO_Pin_11;
-	GPIO_Init(GPIOB, &GPIO_InitStruct);
-	//GPIOC					   HSYNC		Green6		 Red2
-	GPIO_InitStruct.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_10;
-	GPIO_Init(GPIOC, &GPIO_InitStruct);
-	//GPIOD					   Green7		Blue2
-	GPIO_InitStruct.GPIO_Pin = GPIO_Pin_3 | GPIO_Pin_6;
-	GPIO_Init(GPIOD, &GPIO_InitStruct);
-	//GPIOF					   Enable
-	GPIO_InitStruct.GPIO_Pin = GPIO_Pin_10;
-	GPIO_Init(GPIOF, &GPIO_InitStruct);
-	//GPIOG					   Red7			DOTCLK		 Green3			Blue3		  Blue4
-	GPIO_InitStruct.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_10 |  GPIO_Pin_11 | GPIO_Pin_12;
-	GPIO_Init(GPIOG, &GPIO_InitStruct);
+	/* GPIOG                     Red7         DOTCLK       Blue3 */
+	TM_GPIO_InitAlternate(GPIOG, GPIO_PIN_6 | GPIO_PIN_7 | GPIO_PIN_11, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_LTDC);
+
+	/* GPIOG                     Green3        Blue4 */
+	TM_GPIO_InitAlternate(GPIOG, GPIO_PIN_10 | GPIO_PIN_12, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, 0x09);
 }
 
 void TM_ILI9341_InitLCD(void) {	
@@ -258,10 +226,10 @@ void TM_LCD9341_InitLTDC(void) {
 	LTDC_InitTypeDef LTDC_InitStruct;
 	
 	/* Enable the LTDC Clock */
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_LTDC, ENABLE);
+	RCC->APB2ENR |= RCC_APB2ENR_LTDCEN;
 
 	/* Enable the DMA2D Clock */
-	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA2D, ENABLE); 
+	RCC->AHB1ENR |= RCC_AHB1ENR_DMA2DEN;
 	  
 	/* Polarity configuration */
 	/* Initialize the horizontal synchronization polarity as active low */
@@ -290,7 +258,9 @@ void TM_LCD9341_InitLTDC(void) {
 	/* Enable PLLSAI Clock */
     RCC_PLLSAICmd(ENABLE);
     /* Wait for PLLSAI activation */
-	while (RCC_GetFlagStatus(RCC_FLAG_PLLSAIRDY) == RESET);
+	while (RCC_GetFlagStatus(RCC_FLAG_PLLSAIRDY) == RESET) {
+	
+	}
 	
     /* Timing configuration */  
     /* Configure horizontal synchronization width */     
@@ -311,6 +281,14 @@ void TM_LCD9341_InitLTDC(void) {
     LTDC_InitStruct.LTDC_TotalHeigh = 327;
 
 	LTDC_Init(&LTDC_InitStruct);
+}
+
+void TM_ILI9341_DisplayOn(void) {
+	TM_ILI9341_SendCommand(0x29);
+}
+
+void TM_ILI9341_DisplayOff(void) {
+	TM_ILI9341_SendCommand(0x28);
 }
 
 void TM_ILI9341_InitLayers(void) {
@@ -416,19 +394,19 @@ void TM_ILI9341_DrawPixel(uint16_t x, uint16_t y, uint32_t color) {
 		return;
 	}
 	if (ILI9341_Opts.Orient == TM_ILI9341_Orientation_Portrait_1) {
-		//Portrait1
+		/* Portrait1 */
 		*(uint16_t *) (ILI9341_FRAME_BUFFER + ILI9341_Opts.CurrentLayerOffset + 2 * (ILI9341_PIXEL - x - ILI9341_Opts.Width * y)) = color;
 	} else if (ILI9341_Opts.Orient == TM_ILI9341_Orientation_Portrait_2) {
-		//Portrait2, original
+		/* Portrait2, original */
 		*(uint16_t *) (ILI9341_FRAME_BUFFER + ILI9341_Opts.CurrentLayerOffset + 2 * (x + ILI9341_Opts.Width * y)) = color;
 	} else if (ILI9341_Opts.Orient == TM_ILI9341_Orientation_Landscape_1) {
-		//landscape1
+		/* L andscape 1 */
 		tmp = x;
 		x = y;
 		y = ILI9341_HEIGHT - 1 - tmp;
 		*(uint16_t *) (ILI9341_FRAME_BUFFER + ILI9341_Opts.CurrentLayerOffset + 2 * (x + ILI9341_WIDTH * y)) = color;
 	} else {
-		//Landscape2
+		/* Landscape2 */
 		tmp = y;
 		y = x;
 		x = ILI9341_WIDTH - 1 - tmp;
@@ -879,3 +857,4 @@ void TM_INT_ILI9341_DrawFilledCircleCorner(int16_t x0, int16_t y0, int16_t r, ui
 		}
     }
 }
+

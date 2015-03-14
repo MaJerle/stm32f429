@@ -7,7 +7,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/06/library-18-ili9341-ltdc-stm32f429-discovery/
- *	@version 	v1.3
+ *	@version 	v1.4
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -28,6 +28,11 @@
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
  *
+ * Version 1.4
+ *	- March 14, 2015
+ *	- Added support for new GPIO system
+ *	- Added functions TM_ILI9341_DisplayOff() and TM_ILI9341_DisplayOn()
+ * 
  * Version 1.3
  *	- January 21, 2015,
  *	- Added support for rounded rectangles
@@ -41,7 +46,7 @@
  *	- Added scrool down and scroll up feature
  */
 #ifndef TM_ILI9341_LTDC_H
-#define TM_ILI9341_LTDC_H 130
+#define TM_ILI9341_LTDC_H 140
 /**
  * Library dependencies
  * - STM32F4xx
@@ -52,6 +57,7 @@
  * - TM SPI
  * - TM FONTS
  * - TM SDRAM
+ * - TM GPIO
  */
 
 /**
@@ -65,55 +71,53 @@
 #include "tm_stm32f4_spi.h"
 #include "tm_stm32f4_fonts.h"
 #include "tm_stm32f4_sdram.h"
+#include "tm_stm32f4_gpio.h"
 
-//SPI used
-//This SPI pins are used on STM32F429 Discovery board
+/* This SPI pins are used on STM32F429 Discovery board */
 #ifndef ILI9341_SPI
 #define ILI9341_SPI 				SPI5
 #define ILI9341_SPI_PINS			TM_SPI_PinsPack_1
 #endif
 
+/* CS PIN for SPI */
 #ifndef ILI9341_CS_PIN
-//This pin is used on STM32F429 discovery board
 #define ILI9341_CS_CLK				RCC_AHB1Periph_GPIOC
 #define ILI9341_CS_PORT				GPIOC
-#define ILI9341_CS_PIN				GPIO_Pin_2
+#define ILI9341_CS_PIN				GPIO_PIN_2
 #endif
 
+/* This pin is used on STM32F429 discovery board */
 #ifndef ILI9341_WRX_PIN
-//This pin is used on STM32F429 discovery board
-#define ILI9341_WRX_CLK				RCC_AHB1Periph_GPIOD
 #define ILI9341_WRX_PORT			GPIOD
-#define ILI9341_WRX_PIN				GPIO_Pin_13
+#define ILI9341_WRX_PIN				GPIO_PIN_13
 #endif
 
-//Reset pin
+/* Reset pin */
 #ifndef ILI9341_RST_PIN
-//Reset pin
-#define ILI9341_RST_CLK				RCC_AHB1Periph_GPIOD
 #define ILI9341_RST_PORT			GPIOD
-#define ILI9341_RST_PIN				GPIO_Pin_12
+#define ILI9341_RST_PIN				GPIO_PIN_12
 #endif
 
-#define ILI9341_RST_SET				GPIO_SetBits(ILI9341_RST_PORT, ILI9341_RST_PIN)
-#define ILI9341_RST_RESET			GPIO_ResetBits(ILI9341_RST_PORT, ILI9341_RST_PIN)
-#define ILI9341_CS_SET				GPIO_SetBits(ILI9341_CS_PORT, ILI9341_CS_PIN)
-#define ILI9341_CS_RESET			GPIO_ResetBits(ILI9341_CS_PORT, ILI9341_CS_PIN)
-#define ILI9341_WRX_SET				GPIO_SetBits(ILI9341_WRX_PORT, ILI9341_WRX_PIN)
-#define ILI9341_WRX_RESET			GPIO_ResetBits(ILI9341_WRX_PORT, ILI9341_WRX_PIN)
+/* Pin functions */
+#define ILI9341_RST_SET				TM_GPIO_SetPinHigh(ILI9341_RST_PORT, ILI9341_RST_PIN)
+#define ILI9341_RST_RESET			TM_GPIO_SetPinLow(ILI9341_RST_PORT, ILI9341_RST_PIN)
+#define ILI9341_CS_SET				TM_GPIO_SetPinHigh(ILI9341_CS_PORT, ILI9341_CS_PIN)
+#define ILI9341_CS_RESET			TM_GPIO_SetPinLow(ILI9341_CS_PORT, ILI9341_CS_PIN)
+#define ILI9341_WRX_SET				TM_GPIO_SetPinHigh(ILI9341_WRX_PORT, ILI9341_WRX_PIN)
+#define ILI9341_WRX_RESET			TM_GPIO_SetPinLow(ILI9341_WRX_PORT, ILI9341_WRX_PIN)
 
-//LCD settings
+/* LCD settings */
 #define ILI9341_WIDTH 				240
 #define ILI9341_HEIGHT				320
 #define ILI9341_PIXEL				76800
 
-//Starting buffer address in RAM
-//Offset for Layer 1 = SDRAM START ADDRESS + FRAME_BUFFER
+/* Starting buffer address in RAM */
+/* Offset for Layer 1 = SDRAM START ADDRESS + FRAME_BUFFER */
 #define ILI9341_FRAME_BUFFER		SDRAM_START_ADR
-//Offset for Layer 2
+/* Offset for Layer 2 */
 #define ILI9341_FRAME_OFFSET		(uint32_t)ILI9341_PIXEL * 2
 
-//Colors
+/* Colors */
 #define ILI9341_COLOR_WHITE			0xFFFF
 #define ILI9341_COLOR_BLACK			0x0000
 #define ILI9341_COLOR_RED			0xF800
@@ -128,11 +132,10 @@
 #define ILI9341_COLOR_GRAY			0x7BEF //1111 0111 1101 1110
 #define ILI9341_COLOR_BROWN			0xBBCA
 
-//Bits
-//Transparent background, only for chars and strings
+/* Transparent background, only for chars and strings */
 #define ILI9341_TRANSPARENT			0x80000000
 
-//Commands
+/* Commands */
 #define ILI9341_RESET				0x01
 #define ILI9341_SLEEP_OUT			0x11
 #define ILI9341_GAMMA				0x26
@@ -417,6 +420,19 @@ extern void TM_ILI9341_Layer2To1(void);
  *
  */
 extern void TM_ILI9341_Layer1To2(void);
+
+/**
+ * @brief   Enable display
+ * @note    After initialization, LCD is enabled and you don't need to call this function
+ * @retval  None
+ */
+extern void TM_ILI9341_DisplayOn(void);
+
+/**
+ * @brief   Disable display
+ * @retval  None
+ */
+extern void TM_ILI9341_DisplayOff(void);
 
 #endif
 

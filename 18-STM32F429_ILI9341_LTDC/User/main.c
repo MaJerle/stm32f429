@@ -69,7 +69,6 @@ int main(void) {
 		TM_ILI9341_ChangeLayers();
 		/* Every 1 second */
 		Delayms(1000);
-		 
 		/*
 		//Bottom code works the same as one before inside while loop
 		
