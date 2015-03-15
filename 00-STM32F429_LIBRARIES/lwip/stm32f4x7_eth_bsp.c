@@ -160,7 +160,7 @@ void ETH_GPIO_Config(void) {
 	/* This pin must be initialized as MCO, but not needed to be used */
 	/* It looks like a bug in STM32F4 */
 	/* Init alternate function for PA8 = MCO */
-	TM_GPIO_Init(GPIOA, GPIO_Pin_8, TM_GPIO_Mode_AF, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High);
+	TM_GPIO_Init(GPIOA, GPIO_PIN_8, TM_GPIO_Mode_AF, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High);
 	
 	/* Set PA8 output */
 	RCC_MCO1Config(RCC_MCO1Source_HSE, RCC_MCO1Div_1);
@@ -172,18 +172,18 @@ void ETH_GPIO_Config(void) {
 	if (!TM_ETHERNET_InitPinsCallback()) {
 		/* Init default pins */		
 		/* Ethernet pins configuration */
-		TM_GPIO_InitAlternate(GPIOA, GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_7, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_ETH);
+		TM_GPIO_InitAlternate(GPIOA, GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_7, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_ETH);
 
 		/* RX pins and MDC */
-		TM_GPIO_InitAlternate(GPIOC, GPIO_Pin_1 | GPIO_Pin_4 | GPIO_Pin_5, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_ETH);
+		TM_GPIO_InitAlternate(GPIOC, GPIO_PIN_1 | GPIO_PIN_4 | GPIO_PIN_5, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_ETH);
 
 		/* Check TX pins */
 #ifdef ETHERNET_RMII_PINSPACK_2
 		/* Pinspack 2, TXD0, TXD1 and TX_EN pins are connected to GPIOG pins */
-		TM_GPIO_InitAlternate(GPIOG, GPIO_Pin_11 | GPIO_Pin_13 | GPIO_Pin_14, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_ETH);
+		TM_GPIO_InitAlternate(GPIOG, GPIO_PIN_11 | GPIO_PIN_13 | GPIO_PIN_14, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_ETH);
 #else
 		/* Pinspack 1, TXD0, TXD1 and TX_EN pins are connected to GPIOB pins */
-		TM_GPIO_InitAlternate(GPIOB, GPIO_Pin_11 | GPIO_Pin_12 | GPIO_Pin_13, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_ETH);
+		TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_11 | GPIO_PIN_12 | GPIO_PIN_13, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_ETH);
 #endif
 	}
 }
@@ -285,7 +285,7 @@ void ETH_link_callback(struct netif *netif) {
 
 		EthLinkStatus = 0;
 	} else {
-	ETH_Stop();
+		ETH_Stop();
 #ifdef ETHERNET_USE_DHCP
 		DHCP_state = DHCP_LINK_DOWN;
 		dhcp_stop(netif);

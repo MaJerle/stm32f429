@@ -27,10 +27,11 @@
  * |----------------------------------------------------------------------
  * 
  * Version 1.2
- *	- 21.09.2014
+ *	- September 21, 2014
  * 	- Added support for check if DS1307 module is connected to I2C on initialization
  *
  * Version 1.1
+ *	- July 30, 2014
  * 	- Added 2 new functions to work with SQW/OUT pin on DS1307
  * 		TM_DS1307_EnableOutputPin
  * 		TM_DS1307_DisableOutputPin
