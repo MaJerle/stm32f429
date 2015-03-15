@@ -27,7 +27,7 @@ TM_DS1307_Result_t TM_DS1307_Init(void) {
 	TM_I2C_Init(DS1307_I2C, DS1307_I2C_PINSPACK, DS1307_I2C_CLOCK);
 	
 	/* Check if device is connected */
-	if (!TM_I2C_IsDeviceConnected(DS1307_I2C, TM_DS1307_I2C_ADDR)) {
+	if (!TM_I2C_IsDeviceConnected(DS1307_I2C, DS1307_I2C_ADDR)) {
 		return TM_DS1307_Result_DeviceNotConnected;
 	}
 	
@@ -37,125 +37,114 @@ TM_DS1307_Result_t TM_DS1307_Init(void) {
 
 void TM_DS1307_GetDateTime(TM_DS1307_Time_t* time) {
 	uint8_t data[7];
-	TM_I2C_ReadMulti(DS1307_I2C, TM_DS1307_I2C_ADDR, TM_DS1307_SECONDS, data, 7);
 	
-	time->seconds = TM_DS1307_Bcd2Bin(data[TM_DS1307_SECONDS]);
-	time->minutes = TM_DS1307_Bcd2Bin(data[TM_DS1307_MINUTES]);
-	time->hours = TM_DS1307_Bcd2Bin(data[TM_DS1307_HOURS]);
-	time->day = TM_DS1307_Bcd2Bin(data[TM_DS1307_DAY]);
-	time->date = TM_DS1307_Bcd2Bin(data[TM_DS1307_DATE]);
-	time->month = TM_DS1307_Bcd2Bin(data[TM_DS1307_MONTH]);
-	time->year = TM_DS1307_Bcd2Bin(data[TM_DS1307_YEAR]);
+	/* Read multi bytes */
+	TM_I2C_ReadMulti(DS1307_I2C, DS1307_I2C_ADDR, DS1307_SECONDS, data, 7);
+	
+	/* Fill data */
+	time->seconds = TM_DS1307_Bcd2Bin(data[DS1307_SECONDS]);
+	time->minutes = TM_DS1307_Bcd2Bin(data[DS1307_MINUTES]);
+	time->hours = TM_DS1307_Bcd2Bin(data[DS1307_HOURS]);
+	time->day = TM_DS1307_Bcd2Bin(data[DS1307_DAY]);
+	time->date = TM_DS1307_Bcd2Bin(data[DS1307_DATE]);
+	time->month = TM_DS1307_Bcd2Bin(data[DS1307_MONTH]);
+	time->year = TM_DS1307_Bcd2Bin(data[DS1307_YEAR]);
 }
 
 void TM_DS1307_SetDateTime(TM_DS1307_Time_t* time) {
 	uint8_t data[7];
 	
-	data[TM_DS1307_SECONDS] = TM_DS1307_Bin2Bcd(TM_DS1307_CheckMinMax(time->seconds, 0, 59));
-	data[TM_DS1307_MINUTES] = TM_DS1307_Bin2Bcd(TM_DS1307_CheckMinMax(time->minutes, 0, 59));
-	data[TM_DS1307_HOURS] = TM_DS1307_Bin2Bcd(TM_DS1307_CheckMinMax(time->hours, 0, 23));
-	data[TM_DS1307_DAY] = TM_DS1307_Bin2Bcd(TM_DS1307_CheckMinMax(time->day, 1, 7));
-	data[TM_DS1307_DATE] = TM_DS1307_Bin2Bcd(TM_DS1307_CheckMinMax(time->date, 1, 31));
-	data[TM_DS1307_MONTH] = TM_DS1307_Bin2Bcd(TM_DS1307_CheckMinMax(time->month, 1, 12));
-	data[TM_DS1307_YEAR] = TM_DS1307_Bin2Bcd(TM_DS1307_CheckMinMax(time->year, 0, 99));
+	/* Format data */
+	data[DS1307_SECONDS] = TM_DS1307_Bin2Bcd(TM_DS1307_CheckMinMax(time->seconds, 0, 59));
+	data[DS1307_MINUTES] = TM_DS1307_Bin2Bcd(TM_DS1307_CheckMinMax(time->minutes, 0, 59));
+	data[DS1307_HOURS] = TM_DS1307_Bin2Bcd(TM_DS1307_CheckMinMax(time->hours, 0, 23));
+	data[DS1307_DAY] = TM_DS1307_Bin2Bcd(TM_DS1307_CheckMinMax(time->day, 1, 7));
+	data[DS1307_DATE] = TM_DS1307_Bin2Bcd(TM_DS1307_CheckMinMax(time->date, 1, 31));
+	data[DS1307_MONTH] = TM_DS1307_Bin2Bcd(TM_DS1307_CheckMinMax(time->month, 1, 12));
+	data[DS1307_YEAR] = TM_DS1307_Bin2Bcd(TM_DS1307_CheckMinMax(time->year, 0, 99));
 	
-	TM_I2C_WriteMulti(DS1307_I2C, TM_DS1307_I2C_ADDR, TM_DS1307_SECONDS, data, 7);
+	/* Write to device */
+	TM_I2C_WriteMulti(DS1307_I2C, DS1307_I2C_ADDR, DS1307_SECONDS, data, 7);
 }
 
 uint8_t TM_DS1307_GetSeconds(void) {
-	return TM_DS1307_Bcd2Bin(TM_I2C_Read(DS1307_I2C, TM_DS1307_I2C_ADDR, TM_DS1307_SECONDS));
+	return TM_DS1307_Bcd2Bin(TM_I2C_Read(DS1307_I2C, DS1307_I2C_ADDR, DS1307_SECONDS));
 }
 
 uint8_t TM_DS1307_GetMinutes(void) {
-	return TM_DS1307_Bcd2Bin(TM_I2C_Read(DS1307_I2C, TM_DS1307_I2C_ADDR, TM_DS1307_MINUTES));
+	return TM_DS1307_Bcd2Bin(TM_I2C_Read(DS1307_I2C, DS1307_I2C_ADDR, DS1307_MINUTES));
 }
 
 uint8_t TM_DS1307_GetHours(void) {
-	return TM_DS1307_Bcd2Bin(TM_I2C_Read(DS1307_I2C, TM_DS1307_I2C_ADDR, TM_DS1307_HOURS));
+	return TM_DS1307_Bcd2Bin(TM_I2C_Read(DS1307_I2C, DS1307_I2C_ADDR, DS1307_HOURS));
 }
 
 uint8_t TM_DS1307_GetDay(void) {
-	return TM_DS1307_Bcd2Bin(TM_I2C_Read(DS1307_I2C, TM_DS1307_I2C_ADDR, TM_DS1307_DAY));
+	return TM_DS1307_Bcd2Bin(TM_I2C_Read(DS1307_I2C, DS1307_I2C_ADDR, DS1307_DAY));
 }
 
 uint8_t TM_DS1307_GetDate(void) {
-	return TM_DS1307_Bcd2Bin(TM_I2C_Read(DS1307_I2C, TM_DS1307_I2C_ADDR, TM_DS1307_DATE));
+	return TM_DS1307_Bcd2Bin(TM_I2C_Read(DS1307_I2C, DS1307_I2C_ADDR, DS1307_DATE));
 }
 
 uint8_t TM_DS1307_GetMonth(void) {
-	return TM_DS1307_Bcd2Bin(TM_I2C_Read(DS1307_I2C, TM_DS1307_I2C_ADDR, TM_DS1307_MONTH));
+	return TM_DS1307_Bcd2Bin(TM_I2C_Read(DS1307_I2C, DS1307_I2C_ADDR, DS1307_MONTH));
 }
 
 uint8_t TM_DS1307_GetYear(void) {
-	return TM_DS1307_Bcd2Bin(TM_I2C_Read(DS1307_I2C, TM_DS1307_I2C_ADDR, TM_DS1307_YEAR));
+	return TM_DS1307_Bcd2Bin(TM_I2C_Read(DS1307_I2C, DS1307_I2C_ADDR, DS1307_YEAR));
 }
 
 
 void TM_DS1307_SetSeconds(uint8_t seconds) {
-	TM_I2C_Write(DS1307_I2C, TM_DS1307_I2C_ADDR, TM_DS1307_SECONDS, TM_DS1307_Bin2Bcd(TM_DS1307_CheckMinMax(seconds, 0, 59)));
+	TM_I2C_Write(DS1307_I2C, DS1307_I2C_ADDR, DS1307_SECONDS, TM_DS1307_Bin2Bcd(TM_DS1307_CheckMinMax(seconds, 0, 59)));
 }
 
 void TM_DS1307_SetMinutes(uint8_t minutes) {
-	TM_I2C_Write(DS1307_I2C, TM_DS1307_I2C_ADDR, TM_DS1307_MINUTES, TM_DS1307_Bin2Bcd(TM_DS1307_CheckMinMax(minutes, 0, 59)));
+	TM_I2C_Write(DS1307_I2C, DS1307_I2C_ADDR, DS1307_MINUTES, TM_DS1307_Bin2Bcd(TM_DS1307_CheckMinMax(minutes, 0, 59)));
 }
 void TM_DS1307_SetHours(uint8_t hours) {
-	TM_I2C_Write(DS1307_I2C, TM_DS1307_I2C_ADDR, TM_DS1307_HOURS, TM_DS1307_Bin2Bcd(TM_DS1307_CheckMinMax(hours, 0, 23)));
+	TM_I2C_Write(DS1307_I2C, DS1307_I2C_ADDR, DS1307_HOURS, TM_DS1307_Bin2Bcd(TM_DS1307_CheckMinMax(hours, 0, 23)));
 }
 
 void TM_DS1307_SetDay(uint8_t day) {
-	TM_I2C_Write(DS1307_I2C, TM_DS1307_I2C_ADDR, TM_DS1307_DAY, TM_DS1307_Bin2Bcd(TM_DS1307_CheckMinMax(day, 1, 7)));
+	TM_I2C_Write(DS1307_I2C, DS1307_I2C_ADDR, DS1307_DAY, TM_DS1307_Bin2Bcd(TM_DS1307_CheckMinMax(day, 1, 7)));
 }
 
 void TM_DS1307_SetDate(uint8_t date) {
-	TM_I2C_Write(DS1307_I2C, TM_DS1307_I2C_ADDR, TM_DS1307_DATE, TM_DS1307_Bin2Bcd(TM_DS1307_CheckMinMax(date, 1, 31)));
+	TM_I2C_Write(DS1307_I2C, DS1307_I2C_ADDR, DS1307_DATE, TM_DS1307_Bin2Bcd(TM_DS1307_CheckMinMax(date, 1, 31)));
 }
 
 void TM_DS1307_SetMonth(uint8_t month) {
-	TM_I2C_Write(DS1307_I2C, TM_DS1307_I2C_ADDR, TM_DS1307_MONTH, TM_DS1307_Bin2Bcd(TM_DS1307_CheckMinMax(month, 1, 12)));
+	TM_I2C_Write(DS1307_I2C, DS1307_I2C_ADDR, DS1307_MONTH, TM_DS1307_Bin2Bcd(TM_DS1307_CheckMinMax(month, 1, 12)));
 }
 
 void TM_DS1307_SetYear(uint8_t year) {
-	TM_I2C_Write(DS1307_I2C, TM_DS1307_I2C_ADDR, TM_DS1307_YEAR, TM_DS1307_Bin2Bcd(TM_DS1307_CheckMinMax(year, 0, 99)));
+	TM_I2C_Write(DS1307_I2C, DS1307_I2C_ADDR, DS1307_YEAR, TM_DS1307_Bin2Bcd(TM_DS1307_CheckMinMax(year, 0, 99)));
 }
 
 void TM_DS1307_EnableOutputPin(TM_DS1307_OutputFrequency_t frequency) {
 	uint8_t temp;
 	if (frequency == TM_DS1307_OutputFrequency_1Hz) {
-		temp =	1 << TM_DS1307_CONTROL_OUT 	| 
-				1 << TM_DS1307_CONTROL_SQWE |
-				0 << TM_DS1307_CONTROL_RS1 	|
-				0 << TM_DS1307_CONTROL_RS0;
+		temp = 1 << DS1307_CONTROL_OUT | 1 << DS1307_CONTROL_SQWE;
 	} else if (frequency == TM_DS1307_OutputFrequency_4096Hz) {
-		temp =	1 << TM_DS1307_CONTROL_OUT 	| 
-				1 << TM_DS1307_CONTROL_SQWE |
-				0 << TM_DS1307_CONTROL_RS1 	|
-				1 << TM_DS1307_CONTROL_RS0;	
+		temp = 1 << DS1307_CONTROL_OUT | 1 << DS1307_CONTROL_SQWE | 1 << DS1307_CONTROL_RS0;	
 	} else if (frequency == TM_DS1307_OutputFrequency_8192Hz) {
-		temp =	1 << TM_DS1307_CONTROL_OUT 	| 
-				1 << TM_DS1307_CONTROL_SQWE |
-				1 << TM_DS1307_CONTROL_RS1 	|
-				0 << TM_DS1307_CONTROL_RS0;	
+		temp =	1 << DS1307_CONTROL_OUT |  1 << DS1307_CONTROL_SQWE | 1 << DS1307_CONTROL_RS1;
 	} else if (frequency == TM_DS1307_OutputFrequency_32768Hz) {
-		temp =	1 << TM_DS1307_CONTROL_OUT 	| 
-				1 << TM_DS1307_CONTROL_SQWE |
-				1 << TM_DS1307_CONTROL_RS1 	|
-				1 << TM_DS1307_CONTROL_RS0;	
+		temp = 1 << DS1307_CONTROL_OUT |  1 << DS1307_CONTROL_SQWE | 1 << DS1307_CONTROL_RS1 | 1 << DS1307_CONTROL_RS0;	
 	} else if (frequency == TM_DS1307_OutputFrequency_High) {
-		temp =	1 << TM_DS1307_CONTROL_OUT 	| 
-				0 << TM_DS1307_CONTROL_SQWE |
-				0 << TM_DS1307_CONTROL_RS1 	|
-				0 << TM_DS1307_CONTROL_RS0;	
+		temp = 1 << DS1307_CONTROL_OUT;	
 	} else if (frequency == TM_DS1307_OutputFrequency_Low) {
-		temp =	0 << TM_DS1307_CONTROL_OUT 	| 
-				0 << TM_DS1307_CONTROL_SQWE |
-				0 << TM_DS1307_CONTROL_RS1 	|
-				0 << TM_DS1307_CONTROL_RS0;	
+		temp = 0;
 	}
-	TM_I2C_Write(DS1307_I2C, TM_DS1307_I2C_ADDR, TM_DS1307_CONTROL, temp);
+	
+	/* Write to register */
+	TM_I2C_Write(DS1307_I2C, DS1307_I2C_ADDR, DS1307_CONTROL, temp);
 }
 
 void TM_DS1307_DisableOutputPin(void) {
-	//Set output pin to high
+	/* Set output pin to high */
 	TM_DS1307_EnableOutputPin(TM_DS1307_OutputFrequency_High);
 }
 
@@ -169,11 +158,12 @@ uint8_t TM_DS1307_Bin2Bcd(uint8_t bin) {
 	uint8_t low = 0;
 	uint8_t high = 0;
 	
-	//High nibble
+	/* High nibble */
 	high = bin / 10;
-	//Low nibble
+	/* Low nibble */
 	low = bin - (high * 10);
 	
+	/* Return */
 	return high << 4 | low;
 }
 

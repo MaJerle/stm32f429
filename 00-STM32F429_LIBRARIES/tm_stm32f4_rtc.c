@@ -263,12 +263,13 @@ void TM_RTC_GetDateTime(TM_RTC_t* data, TM_RTC_Format_t format) {
 		RTC_GetTime(RTC_Format_BCD, &RTC_TimeStruct);
 	}
 	
+	/* Format hours */
 	data->hours = RTC_TimeStruct.RTC_Hours;
 	data->minutes = RTC_TimeStruct.RTC_Minutes;
 	data->seconds = RTC_TimeStruct.RTC_Seconds;
 	
 	/* Get subseconds */
-	data->subseconds = RTC_GetSubSecond();
+	data->subseconds = RTC->SSR;
 	
 	/* Get date */
 	if (format == TM_RTC_Format_BIN) {
@@ -277,7 +278,7 @@ void TM_RTC_GetDateTime(TM_RTC_t* data, TM_RTC_Format_t format) {
 		RTC_GetDate(RTC_Format_BCD, &RTC_DateStruct);
 	}
 	
-	/* Get date from RTC */
+	/* Format date */
 	data->year = RTC_DateStruct.RTC_Year;
 	data->month = RTC_DateStruct.RTC_Month;
 	data->date = RTC_DateStruct.RTC_Date;
@@ -617,28 +618,52 @@ void TM_RTC_DisableAlarm(TM_RTC_Alarm_t Alarm) {
 	NVIC_Init(&NVIC_InitStruct);
 }
 
+void TM_RTC_WriteBackupRegister(uint8_t location, uint32_t value) {
+	/* Check input, 0 to 18 registers are allowed */
+	if (location > 18) {
+		return;
+	}
+	
+	/* Write data to backup register */
+	*(uint32_t *)((&RTC->BKP0R) + 4 * location) = value;
+}
+
+uint32_t TM_RTC_ReadBackupRegister(uint8_t location){
+	/* Check input, 0 to 18 registers are allowed */
+	if (location > 18) {
+		return 0;
+	}
+	
+	/* Read data from backup register */
+	return *(uint32_t *)((&RTC->BKP0R) + 4 * location);
+}
+
 /* Callbacks */
 __weak void TM_RTC_RequestHandler(void) {
-
+	/* If user needs this function, then they should be defined separatelly in your project */
 }
 
 __weak void TM_RTC_AlarmAHandler(void) {
-
+	/* If user needs this function, then they should be defined separatelly in your project */
 }
 
 __weak void TM_RTC_AlarmBHandler(void) {
-
+	/* If user needs this function, then they should be defined separatelly in your project */
 }
 
+/* Private RTC IRQ handlers */
 void RTC_WKUP_IRQHandler(void) {
+	/* Check for RTC interrupt */
 	if (RTC_GetITStatus(RTC_IT_WUT) != RESET) {
 		/* Clear interrupt flags */
 		RTC_ClearITPendingBit(RTC_IT_WUT);
-		EXTI_ClearITPendingBit(EXTI_Line22);
 		
 		/* Call user function */
 		TM_RTC_RequestHandler();
 	}
+	
+	/* Clear EXTI line 22 bit */
+	EXTI->PR = 0x00400000;
 }
 
 void RTC_Alarm_IRQHandler(void) {
@@ -661,5 +686,5 @@ void RTC_Alarm_IRQHandler(void) {
 	}
 	
 	/* Clear EXTI line 17 bit */
-	EXTI_ClearITPendingBit(EXTI_Line17);
+	EXTI->PR = 0x00020000;
 }

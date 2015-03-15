@@ -85,26 +85,25 @@ void TM_GPIO_InitAlternate(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_GPIO_OType
 }
 
 void TM_GPIO_DeInit(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin) {
-	/* Fill settings */
-	GPIO_InitStruct.GPIO_Mode = (GPIOMode_TypeDef) GPIO_Mode_AN;
-	GPIO_InitStruct.GPIO_OType = (GPIOOType_TypeDef) GPIO_OType_PP;
-	GPIO_InitStruct.GPIO_Pin = GPIO_Pin;
-	GPIO_InitStruct.GPIO_PuPd = (GPIOPuPd_TypeDef) GPIO_PuPd_NOPULL;
-	GPIO_InitStruct.GPIO_Speed = (GPIOSpeed_TypeDef) GPIO_Speed_2MHz;
-	
-	/* Init */
-	GPIO_Init(GPIOx, &GPIO_InitStruct);
+	uint8_t i;
+	/* Go through all pins */
+	for (i = 0x00; i < 0x10; i++) {
+		/* Pin is set */
+		if (GPIO_Pin & (1 << i)) {
+			/* Set 11 bits combination for analog mode */
+			GPIOx->MODER |= (0x03 << (2 * i));
+		}
+	}
 }
 
 void TM_GPIO_SetPinAsInput(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin) {
-	uint8_t i, pos;
+	uint8_t i;
 	/* Go through all pins */
 	for (i = 0x00; i < 0x10; i++) {
-		pos = 1 << i;
 		/* Pin is set */
-		if (GPIO_Pin & pos) {		
-			/* Clear both bits */
-			GPIOx->MODER &= ~(0x03 << (2 * pos));
+		if (GPIO_Pin & (1 << i)) {		
+			/* Set 00 bits combination for input */
+			GPIOx->MODER &= ~(0x03 << (2 * i));
 		}
 	}
 }
@@ -187,9 +186,10 @@ uint16_t TM_GPIO_GetPinSource(uint16_t GPIO_Pin) {
 	uint16_t pinsource = 0;
 	
 	/* Get pinsource */
-	pinsource = 0;
 	while (GPIO_Pin > 1) {
+		/* Increase pinsource */
 		pinsource++;
+		/* Shift right */
 		GPIO_Pin >>= 1;
 	}
 	

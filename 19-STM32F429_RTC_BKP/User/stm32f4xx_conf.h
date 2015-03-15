@@ -2,13 +2,13 @@
   ******************************************************************************
   * @file    Project/STM32F4xx_StdPeriph_Templates/stm32f4xx_conf.h  
   * @author  MCD Application Team
-  * @version V1.5.0
-  * @date    06-March-2015
+  * @version V1.3.0
+  * @date    13-November-2013
   * @brief   Library configuration file.
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -51,7 +51,7 @@
 #include "stm32f4xx_wwdg.h"
 #include "misc.h" /* High level functions for NVIC and SysTick (add-on to CMSIS functions) */
 
-#if defined (STM32F429_439xx) || defined(STM32F446xx)
+#if defined (STM32F429_439xx)
 #include "stm32f4xx_cryp.h"
 #include "stm32f4xx_hash.h"
 #include "stm32f4xx_rng.h"
@@ -62,7 +62,7 @@
 #include "stm32f4xx_fmc.h"
 #include "stm32f4xx_ltdc.h"
 #include "stm32f4xx_sai.h"
-#endif /* STM32F429_439xx || STM32F446xx */
+#endif /* STM32F429_439xx */
 
 #if defined (STM32F427_437xx)
 #include "stm32f4xx_cryp.h"
@@ -85,18 +85,6 @@
 #include "stm32f4xx_dcmi.h"
 #include "stm32f4xx_fsmc.h"
 #endif /* STM32F40_41xxx */
-
-#if defined (STM32F411xE)
-#include "stm32f4xx_flash_ramfunc.h"
-#endif /* STM32F411xE */
-
-#if defined (STM32F446xx)
-#include "stm32f4xx_qspi.h"
-#include "stm32f4xx_fmpi2c.h"
-#include "stm32f4xx_spdifrx.h"
-#include "stm32f4xx_cec.h"
-#endif /* STM32F446xx */
-
 
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/

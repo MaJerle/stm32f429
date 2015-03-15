@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/07/library-19-use-internal-rtc-on-stm32f4xx-devices/
- *	@version 	v1.6
+ *	@version 	v1.7
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -25,6 +25,10 @@
  * | You should have received a copy of the GNU General Public License
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
+ *
+ * Version 1.7
+ *	- March 15, 2015
+ *	- Added support for read/write data to/from RTC backup registers
  *
  * Version 1.6
  *	- February 17, 2015
@@ -72,7 +76,7 @@
  *	PC15			OSC2			Oscillator terminal 2
  */
 #ifndef TM_RTC_H
-#define TM_RTC_H 160
+#define TM_RTC_H 170
 /**
  * Library dependencies
  * - STM32F4xx
@@ -119,9 +123,9 @@
 #endif
 
 /* Internal status registers for RTC */
-#define RTC_STATUS_REG      			RTC_BKP_DR0  // Status Register
-#define RTC_STATUS_INIT_OK  			0x1234       // RTC initialised
-#define RTC_STATUS_TIME_OK  			0x4321       // RTC time ok
+#define RTC_STATUS_REG      			RTC_BKP_DR19 /* Status Register */
+#define RTC_STATUS_INIT_OK  			0x1234       /* RTC initialised */
+#define RTC_STATUS_TIME_OK  			0x4321       /* RTC time OK */
 #define	RTC_STATUS_ZERO					0x0000
 
 /* Internal RTC defines */
@@ -321,7 +325,7 @@ typedef struct {
  *
  * Returns 0 if RTC was initialized first time (power up), so you know when to set date and time
  */
-extern uint32_t TM_RTC_Init(TM_RTC_ClockSource_t source);
+uint32_t TM_RTC_Init(TM_RTC_ClockSource_t source);
 
 /**
  * Get number of seconds from 01.01.1970 00:00:00
@@ -332,7 +336,7 @@ extern uint32_t TM_RTC_Init(TM_RTC_ClockSource_t source);
  *
  * Returns Unix seconds
  */
-extern uint32_t TM_RTC_GetUnixTimeStamp(TM_RTC_t* data);
+uint32_t TM_RTC_GetUnixTimeStamp(TM_RTC_t* data);
 
 /**
  * Get formatted time from seconds till 01.01.1970 00:00:00
@@ -344,7 +348,7 @@ extern uint32_t TM_RTC_GetUnixTimeStamp(TM_RTC_t* data);
  * 	- uint32_t unix:
  * 		Seconds from 01.01.1970 00:00:00
  */
-extern void TM_RTC_GetDateTimeFromUnix(TM_RTC_t* data, uint32_t unix);
+void TM_RTC_GetDateTimeFromUnix(TM_RTC_t* data, uint32_t unix);
 
 /**
  * Select RTC interrupt
@@ -353,7 +357,7 @@ extern void TM_RTC_GetDateTimeFromUnix(TM_RTC_t* data, uint32_t unix);
  * 	- TM_RTC_Int_t int_value:
  * 		Choose struct member from struct TM_RTC_Int_t
  */
-extern void TM_RTC_Interrupts(TM_RTC_Int_t int_value);
+void TM_RTC_Interrupts(TM_RTC_Int_t int_value);
 
 /**
  * Set date and time
@@ -364,7 +368,7 @@ extern void TM_RTC_Interrupts(TM_RTC_Int_t int_value);
  * 	- TM_RTC_Format_t format:
  * 		Member of struct TM_RTC_Format_t
  */
-extern TM_RTC_Result_t TM_RTC_SetDateTime(TM_RTC_t* data, TM_RTC_Format_t format);
+TM_RTC_Result_t TM_RTC_SetDateTime(TM_RTC_t* data, TM_RTC_Format_t format);
 
 /**
  * Set date and time using string format
@@ -391,7 +395,7 @@ extern TM_RTC_Result_t TM_RTC_SetDateTime(TM_RTC_t* data, TM_RTC_Format_t format
  *
  * If date and time are valid, function will return TM_RTC_Result_Ok
  */
-extern TM_RTC_Result_t TM_RTC_SetDateTimeString(char* str);
+TM_RTC_Result_t TM_RTC_SetDateTimeString(char* str);
 
 /**
  * Get date and time
@@ -402,7 +406,7 @@ extern TM_RTC_Result_t TM_RTC_SetDateTimeString(char* str);
  * 	- TM_RTC_Format_t format:
  * 		Member of struct TM_RTC_Format_t
  */
-extern void TM_RTC_GetDateTime(TM_RTC_t* data, TM_RTC_Format_t format);
+void TM_RTC_GetDateTime(TM_RTC_t* data, TM_RTC_Format_t format);
 
 /**
  * Get number of days in month
@@ -413,7 +417,7 @@ extern void TM_RTC_GetDateTime(TM_RTC_t* data, TM_RTC_Format_t format);
  * 	- uint8_t year:
  *		Specify year you want to know, last 2 digits only (00-99)
  */
-extern uint8_t TM_RTC_GetDaysInMonth(uint8_t month, uint8_t year);
+uint8_t TM_RTC_GetDaysInMonth(uint8_t month, uint8_t year);
 
 /**
  * Get number of days in year
@@ -422,8 +426,54 @@ extern uint8_t TM_RTC_GetDaysInMonth(uint8_t month, uint8_t year);
  * 	- uint8_t year:
  *		Specify year you want to know days in, last 2 digits only (00-99)
  */
-extern uint16_t TM_RTC_GetDaysInYear(uint8_t year);
+uint16_t TM_RTC_GetDaysInYear(uint8_t year);
 
+/**
+ * RTC has 20 backup registers where you can store data which will
+ * be available all the time RTC is running and has power.
+ *
+ * Note:
+ * 	My library uses register 19 to store info about RTC settings
+ * 	and is not available for USER to store data there.
+ * 
+ * This method allows you to write 32bit value to backup register 0 - 18
+ *
+ * Note:
+ *	RTC HAVE to be initializated first before you can use this method
+ *
+ * Parameters:
+ *	- uint8_t location:
+ *		RTC backup register location, 0 to 18 allowed
+ *	- uint32_t value:
+ *		- Value to store to backup register
+ *
+ * No return
+ */
+void TM_RTC_WriteBackupRegister(uint8_t location, uint32_t value);
+
+/**
+ * RTC has 20 backup registers where you can store data which will
+ * be available all the time RTC is running and has power.
+ *
+ * Note:
+ * 	My library uses register 19 to store info about RTC settings
+ * 	and is not available for USER to store data there.
+ *
+ * Note:
+ *	RTC HAVE to be initializated first before you can use this method
+ * 
+ * This method allows you to read 32bit value from backup register 0 - 18
+ *
+ * Parameters:
+ *	- uint8_t location:
+ *		RTC backup register location, 0 to 18 allowed
+ *	- uint32_t value:
+ *		- Value to store to backup register
+ *
+ * No return
+ */
+uint32_t TM_RTC_ReadBackupRegister(uint8_t location);
+ 
 /**
  * Enable Alarm A or Alarm B for RTC
  *
@@ -435,7 +485,7 @@ extern uint16_t TM_RTC_GetDaysInYear(uint8_t year);
  * 	TM_RTC_Format_t format:
  * 		Stored date and time format, can be binary or "binary coded decimal"
  */
-extern void TM_RTC_SetAlarm(TM_RTC_Alarm_t Alarm, TM_RTC_AlarmTime_t* AlarmTime, TM_RTC_Format_t format);
+void TM_RTC_SetAlarm(TM_RTC_Alarm_t Alarm, TM_RTC_AlarmTime_t* AlarmTime, TM_RTC_Format_t format);
 
 /**
  * Disable specific alarm
@@ -444,7 +494,7 @@ extern void TM_RTC_SetAlarm(TM_RTC_Alarm_t Alarm, TM_RTC_AlarmTime_t* AlarmTime,
  * 	- TM_RTC_Alarm_t Alarm:
  * 		Select Alarm A or Alarm B to be disabled
  */
-extern void TM_RTC_DisableAlarm(TM_RTC_Alarm_t Alarm);
+void TM_RTC_DisableAlarm(TM_RTC_Alarm_t Alarm);
 
 /**
  * Custom Request handler for RTC wakeup interrupt
@@ -453,7 +503,7 @@ extern void TM_RTC_DisableAlarm(TM_RTC_Alarm_t Alarm);
  *
  * With __weak parameter to prevent link errors if not defined by user
  */
-extern void TM_RTC_RequestHandler(void);
+void TM_RTC_RequestHandler(void);
 
 /**
  * Custom Alarm A interrupt handler
@@ -462,7 +512,7 @@ extern void TM_RTC_RequestHandler(void);
  *
  * With __weak parameter to prevent link errors if not defined by user
  */
-extern void TM_RTC_AlarmAHandler(void);
+void TM_RTC_AlarmAHandler(void);
 
 /**
  * Custom Alarm B interrupt handler
@@ -471,7 +521,7 @@ extern void TM_RTC_AlarmAHandler(void);
  *
  * With __weak parameter to prevent link errors if not defined by user
  */
-extern void TM_RTC_AlarmBHandler(void);
+void TM_RTC_AlarmBHandler(void);
 
 #endif
 

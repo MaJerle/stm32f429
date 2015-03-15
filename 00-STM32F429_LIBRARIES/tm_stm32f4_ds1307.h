@@ -1,5 +1,5 @@
 /**
- * DS1307 Library for STM32F4xx
+ *  DS1307 Library for STM32F4xx
  *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
@@ -25,16 +25,15 @@
  * | You should have received a copy of the GNU General Public License
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
+ * 
+ * Version 1.2
+ *	- 21.09.2014
+ * 	- Added support for check if DS1307 module is connected to I2C on initialization
  *
- * 	Version 1.0
- * 	- Added basic routines to set and get hours
- * 	Version 1.1
+ * Version 1.1
  * 	- Added 2 new functions to work with SQW/OUT pin on DS1307
  * 		TM_DS1307_EnableOutputPin
  * 		TM_DS1307_DisableOutputPin
- * 	Version 1.2
- *	- 21.09.2014
- * 	- Added support for check if DS1307 module is connected to I2C on initialization
  * 		
  * Default pinout
  * 
@@ -68,37 +67,38 @@
 #include "tm_stm32f4_i2c.h"
 #include "defines.h"
 
-//I2C settings for I2C library
+/* I2C settings for I2C library */
 #ifndef DS1307_I2C
 #define DS1307_I2C					I2C1
 #define DS1307_I2C_PINSPACK			TM_I2C_PinsPack_1
 #endif
 
+/* DS1307 I2C clock */
 #ifndef DS1307_I2C_CLOCK
 #define DS1307_I2C_CLOCK			100000
 #endif
 
-//I2C slave address for DS1307
-#define TM_DS1307_I2C_ADDR			0xD0
+/* I2C slave address for DS1307 */
+#define DS1307_I2C_ADDR				0xD0
 
-//Registers location
-#define TM_DS1307_SECONDS			0x00
-#define TM_DS1307_MINUTES			0x01
-#define TM_DS1307_HOURS				0x02
-#define TM_DS1307_DAY				0x03
-#define TM_DS1307_DATE				0x04
-#define TM_DS1307_MONTH				0x05
-#define TM_DS1307_YEAR				0x06
-#define TM_DS1307_CONTROL			0x07
+/* Registers location */
+#define DS1307_SECONDS				0x00
+#define DS1307_MINUTES				0x01
+#define DS1307_HOURS				0x02
+#define DS1307_DAY					0x03
+#define DS1307_DATE					0x04
+#define DS1307_MONTH				0x05
+#define DS1307_YEAR					0x06
+#define DS1307_CONTROL				0x07
 
-//Bits in control register
-#define TM_DS1307_CONTROL_OUT		7
-#define TM_DS1307_CONTROL_SQWE		4
-#define TM_DS1307_CONTROL_RS1		1
-#define TM_DS1307_CONTROL_RS0		0
+/* Bits in control register */
+#define DS1307_CONTROL_OUT			7
+#define DS1307_CONTROL_SQWE			4
+#define DS1307_CONTROL_RS1			1
+#define DS1307_CONTROL_RS0			0
 
 /**
- * Result typedef
+ * Result enumeration
  *
  * Parameters:
  * 	- TM_DS1307_Result_Ok:
