@@ -1,7 +1,0 @@
-<?xml version='1.0' encoding='UTF-8' standalone='no'?>
-<chapter xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>Libraries</title>
-
-<para>Each library listed here is described at <link xlink:href="http://stm32f4-discovery.com">http://stm32f4-discovery.com</link> </para>
-
-</chapter>
