@@ -1,0 +1,144 @@
+\hypertarget{group___t_m___u_s_a_r_t}{}\subsection{T\+M\+\_\+\+U\+S\+A\+R\+T}
+\label{group___t_m___u_s_a_r_t}\index{T\+M\+\_\+\+U\+S\+A\+R\+T@{T\+M\+\_\+\+U\+S\+A\+R\+T}}
+
+
+T\+M U\+S\+A\+R\+T Library for S\+T\+M32\+F4xx -\/ \href{http://stm32f4-discovery.com/2014/04/library-04-connect-stm32f429-discovery-to-computer-with-usart/}{\tt http\+://stm32f4-\/discovery.\+com/2014/04/library-\/04-\/connect-\/stm32f429-\/discovery-\/to-\/computer-\/with-\/usart/}.  
+
+
+\subsubsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___t_m___u_s_a_r_t___macros}{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Macros}
+\begin{DoxyCompactList}\small\item\em U\+S\+A\+R\+T default values for defines. \end{DoxyCompactList}\item 
+\hyperlink{group___t_m___u_s_a_r_t___typedefs}{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Typedefs}
+\begin{DoxyCompactList}\small\item\em U\+S\+A\+R\+T Typedefs. \end{DoxyCompactList}\item 
+\hyperlink{group___t_m___u_s_a_r_t___functions}{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions}
+\begin{DoxyCompactList}\small\item\em U\+S\+A\+R\+T Functions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+T\+M U\+S\+A\+R\+T Library for S\+T\+M32\+F4xx -\/ \href{http://stm32f4-discovery.com/2014/04/library-04-connect-stm32f429-discovery-to-computer-with-usart/}{\tt http\+://stm32f4-\/discovery.\+com/2014/04/library-\/04-\/connect-\/stm32f429-\/discovery-\/to-\/computer-\/with-\/usart/}. 
+
+{\bfseries Library works for all 8 U(\+S)A\+R\+Ts which are supported on S\+T\+M32\+F4xx devices.}
+
+\begin{DoxyParagraph}{U\+S\+A\+R\+T receive interrupt handlers}
+
+\end{DoxyParagraph}
+Every U\+S\+A\+R\+T channel has it\textquotesingle{}s own receive interrupt which stores incoming data into cyclic buffer. If you want to use your own receive handler, then you have to open defines.\+h files and set a define. \begin{DoxyVerb}//Use custom IRQ Receive handler
+//Change X with possible U(S)ARTs: USART1, USART2, USART3, UART4, UART5, USART6, UART7, UART8
+//#define TM_X_USE_CUSTOM_IRQ
+\end{DoxyVerb}
+ After you set define, you have to create a function, which will handle custom request \begin{DoxyVerb}//Change X with possible U(S)ARTs: USART1, USART2, USART3, UART4, UART5, USART6, UART7, UART8
+//Parameter c is a received character
+void TM_X_ReceiveHandler(uint8_t c) {
+   //Do your stuff here when byte is received
+}
+\end{DoxyVerb}
+ \begin{DoxyNote}{Note}
+If you use custom receive interrupt handler, then incoming data is not stored in internal buffer
+\end{DoxyNote}
+\begin{DoxyParagraph}{U\+S\+A\+R\+T Internal cyclic buffer}
+
+\end{DoxyParagraph}
+In your project you can set internal cyclic buffer length, default is 32\+Bytes, with\+: \begin{DoxyVerb}//Set buffer sie for all buffers
+#define TM_USART_BUFFER_SIZE number_of_bytes
+\end{DoxyVerb}
+ in your project\textquotesingle{}s defines.\+h file. This will set default length for each buffer. So if you are working with F429 (it has 8 U(\+S)A\+R\+Ts) then you will use 8k\+B R\+A\+M if you set define above to 1024.
+
+As of version 2.\+0, you can now set different buffer sizes for different U(\+S)A\+R\+Ts. If you don\textquotesingle{}t change anything, then all U\+S\+A\+R\+T\textquotesingle{}s have buffer length of value, stored in {\ttfamily T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+Z\+E} define. If you want let\textquotesingle{}s say just for U\+S\+A\+R\+T1 to be 1k\+B, but others default value, you can add define below in defines.\+h file\+: \begin{DoxyVerb}//Buffer length for USART1 is 1kB, for others is still TM_USART_BUFFER_SIZE
+#define TM_USART1_BUFFER_SIZE 1024
+\end{DoxyVerb}
+
+
+Other possible settings are (for other U(\+S)A\+R\+Ts)\+:
+\begin{DoxyItemize}
+\item T\+M\+\_\+\+U\+S\+A\+R\+T1\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+Z\+E
+\item T\+M\+\_\+\+U\+S\+A\+R\+T2\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+Z\+E
+\item T\+M\+\_\+\+U\+S\+A\+R\+T3\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+Z\+E
+\item T\+M\+\_\+\+U\+A\+R\+T4\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+Z\+E
+\item T\+M\+\_\+\+U\+A\+R\+T5\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+Z\+E
+\item T\+M\+\_\+\+U\+S\+A\+R\+T6\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+Z\+E
+\item T\+M\+\_\+\+U\+A\+R\+T7\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+Z\+E
+\item T\+M\+\_\+\+U\+A\+R\+T8\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+Z\+E
+\end{DoxyItemize}
+
+{\bfseries Pinout} \begin{DoxyVerb}             |PINSPACK 1     |PINSPACK 2     |PINSPACK 3    
+U(S)ARTX     |TX     RX      |TX     RX      |TX     RX
+
+USART1       |PA9    PA10    |PB6    PB7     |-      -
+USART2       |PA2    PA3     |PD5    PD6     |-      -
+USART3       |PB10   PB11    |PC10   PC11    |PD8    PD9
+UART4        |PA0    PA1     |PC10   PC11    |-      -
+UART5        |PC12   PD2     |-      -       |-      -
+USART6       |PC6    PC7     |PG14   PG9     |-      -
+UART7        |PE8    PE7     |PF7    PF6     |-      -
+UART8        |PE1    PE0     |-      -       |-      -
+\end{DoxyVerb}
+
+
+In case these pins are not good for you, you can use T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Pins\+Pack\+\_\+\+Custom in function and callback function will be called, where you can initialize your custom pinout for your U\+S\+A\+R\+T peripheral
+
+\begin{DoxyParagraph}{Change U\+S\+A\+R\+T default operation modes}
+
+\end{DoxyParagraph}
+In this section, you can change U\+S\+A\+R\+T functionality. Do this only in case you know what are you doing!
+
+Open defines.\+h file, copy define you want to change and fill settings \begin{DoxyVerb}//Change X with possible U(S)ARTs: USART1, USART2, USART3, UART4, UART5, USART6, UART7, UART8
+//Set flow control
+#define TM_X_HARDWARE_FLOW_CONTROL      USART_HardwareFlowControl_None
+//Set mode
+#define TM_X_MODE                       USART_Mode_Tx | USART_Mode_Rx
+//Set parity
+#define TM_X_PARITY                     USART_Parity_No
+//Set stopbits
+#define TM_X_STOP_BITS                  USART_StopBits_1
+//Set USART datasize
+#define TM_X_WORD_LENGTH                USART_WordLength_8b
+\end{DoxyVerb}
+
+
+\begin{DoxyParagraph}{Changelog}
+
+\end{DoxyParagraph}
+\begin{DoxyVerb} Version 2.3.1
+   - March 17, 2015
+   - Added support for Doxygen
+   
+ Version 2.3
+   - March 14, 2015
+   - Added support for STM32F446xx devices
+   - Changed function name for custom pins initialization callback
+
+ Version 2.2
+   - March 10, 2015
+   - Updated to be more independent of STD/HAL drivers but still not totally
+
+ Version 2.1
+   - March 08, 2015
+   - Output pins are more clear initialized. 
+   - TM GPIO library is now required to get USART to work properly
+
+ Version 2.0
+   - December 21, 2014
+   - New cyclic buffer system,
+      each U(S)ART can have different buffer size (less RAM can be used for USART purpose)
+   - Added function to check if buffer is full,
+   - TM_USART_Gets now returns 0 till '\n' is not available in buffer or buffer is full
+      Useful for prevent infinite loop if '\n' never happen
+      
+ Version 1.0
+   - First release
+\end{DoxyVerb}
+
+
+{\bfseries Dependencies} 
+
+\begin{DoxyVerb} - STM32F4xx
+ - STM32F4xx RCC
+ - STM32F4xx GPIO
+ - STM32F4xx USART
+ - attributes.h
+ - defines.h
+ - TM GPIO
+\end{DoxyVerb}
+ 

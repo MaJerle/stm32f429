@@ -1,0 +1,64 @@
+.TH "TM_RTC_t" 3 "Wed Mar 18 2015" "Version v1.0.0" "TM STM32F4xx Libraries" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TM_RTC_t \- RTC Struct for date/time\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <tm_stm32f4_rtc\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "uint8_t \fBseconds\fP"
+.br
+.ti -1c
+.RI "uint16_t \fBsubseconds\fP"
+.br
+.ti -1c
+.RI "uint8_t \fBminutes\fP"
+.br
+.ti -1c
+.RI "uint8_t hours uint8_t \fBday\fP"
+.br
+.ti -1c
+.RI "uint8_t \fBdate\fP"
+.br
+.ti -1c
+.RI "uint8_t \fBmonth\fP"
+.br
+.ti -1c
+.RI "uint8_t \fByear\fP"
+.br
+.ti -1c
+.RI "uint32_t \fBunix\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+RTC Struct for date/time\&. 
+.SH "Field Documentation"
+.PP 
+.SS "uint8_t date"
+Date in a month, 1 to 31 
+.SS "uint8_t hours uint8_t day"
+< Hours parameter, 24Hour mode, 00 to 23 Day in a week, from 1 to 7 
+.SS "uint8_t minutes"
+Minutes parameter, from 00 to 59 
+.SS "uint8_t month"
+Month in a year, 1 to 12 
+.SS "uint8_t seconds"
+Seconds parameter, from 00 to 59 
+.SS "uint16_t subseconds"
+Subsecond downcounter\&. When it reaches zero, it's reload value is the same as RTC_SYNC_PREDIV, so in our case 0x3FF = 1023, 1024 steps in one second 
+.SS "uint32_t unix"
+Seconds from 01\&.01\&.1970 00:00:00 
+.SS "uint8_t year"
+Year parameter, 00 to 99, 00 is 2000 and 99 is 2099 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for TM STM32F4xx Libraries from the source code\&.

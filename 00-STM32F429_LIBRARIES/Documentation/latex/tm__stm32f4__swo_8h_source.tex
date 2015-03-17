@@ -1,0 +1,50 @@
+\hypertarget{tm__stm32f4__swo_8h_source}{}\subsection{tm\+\_\+stm32f4\+\_\+swo.\+h}
+
+\begin{DoxyCode}
+00001 
+00073 \textcolor{preprocessor}{#ifndef TM\_SWO\_H}
+00074 \textcolor{preprocessor}{#define TM\_SWO\_H 100}
+00075 
+00076 \textcolor{comment}{/* C++ detection */}
+00077 \textcolor{preprocessor}{#ifdef \_\_cplusplus}
+00078 \textcolor{keyword}{extern} C \{
+00079 \textcolor{preprocessor}{#endif}
+00080 
+00091 \textcolor{preprocessor}{#include "stm32f4xx.h"}
+00092 \textcolor{preprocessor}{#include "defines.h"}
+00093 \textcolor{preprocessor}{#include "stdio.h"}
+00094 \textcolor{preprocessor}{#include "tm\_stm32f4\_stdio.h"}
+00095 
+00096 \textcolor{comment}{/* SWO debug is enabled by default */}
+00097 \textcolor{preprocessor}{#ifndef SWO\_DEBUG\_ENABLED}
+00098 \textcolor{preprocessor}{#define SWO\_DEBUG\_ENABLED       1}
+00099 \textcolor{preprocessor}{#endif}
+00100 
+00101 \textcolor{preprocessor}{#if SWO\_DEBUG\_ENABLED == 1}
+00102     \textcolor{comment}{/* FILE struct for working with stream */}
+00103     \textcolor{keyword}{extern} FILE TM\_SWO\_File;
+00104 \textcolor{preprocessor}{#endif}
+00105 
+00114 \textcolor{preprocessor}{#if SWO\_DEBUG\_ENABLED == 1}
+00115     \textcolor{comment}{/* Debugging enabled, initialize functionality */}
+00116     \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_SWO\_Init(\textcolor{keywordtype}{void});
+00117 \textcolor{preprocessor}{#else}
+00118     \textcolor{comment}{/* Do nothing here, compiler will throw out this statement because it is empty */}
+00119 \textcolor{preprocessor}{    #define TM\_SWO\_Init()}
+00120 \textcolor{preprocessor}{#endif}
+00121 
+00137 \textcolor{preprocessor}{#if SWO\_DEBUG\_ENABLED == 1}
+00138     \textcolor{comment}{/* Format and output data to the SWO output with stream */}
+00139 \textcolor{preprocessor}{    #define TM\_SWO\_Printf(args...)  \{ fprintf(&TM\_SWO\_File, ## args); \}}
+00140 \textcolor{preprocessor}{#else}
+00141     \textcolor{comment}{/* Do nothing here, compiler will throw out this statement because it is empty */}
+00142 \textcolor{preprocessor}{    #define TM\_SWO\_Printf(args...) }
+00143 \textcolor{preprocessor}{#endif}
+00144 
+00145 \textcolor{comment}{/* C++ detection */}
+00146 \textcolor{preprocessor}{#ifdef \_\_cplusplus}
+00147 \}
+00148 \textcolor{preprocessor}{#endif}
+00149 
+00150 \textcolor{preprocessor}{#endif}
+\end{DoxyCode}

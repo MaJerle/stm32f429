@@ -1,0 +1,41 @@
+\hypertarget{tm__stm32f4__low__power_8h_source}{}\subsection{tm\+\_\+stm32f4\+\_\+low\+\_\+power.\+h}
+
+\begin{DoxyCode}
+00001 
+00030 \textcolor{preprocessor}{#ifndef TM\_LOWPOWER\_H}
+00031 \textcolor{preprocessor}{#define TM\_LOWPOWER\_H 110}
+00032 
+00033 \textcolor{comment}{/* C++ detection */}
+00034 \textcolor{preprocessor}{#ifdef \_\_cplusplus}
+00035 \textcolor{keyword}{extern} C \{
+00036 \textcolor{preprocessor}{#endif}
+00037 
+00110 \textcolor{preprocessor}{#include "stm32f4xx.h"}
+00111 \textcolor{preprocessor}{#include "stm32f4xx\_rcc.h"}
+00112 \textcolor{preprocessor}{#include "stm32f4xx\_pwr.h"}
+00113 \textcolor{preprocessor}{#include "defines.h"}
+00114 \textcolor{preprocessor}{#include "tm\_stm32f4\_delay.h"}
+00115 
+00145 \textcolor{keywordtype}{void} \hyperlink{group___t_m___l_o_w_p_o_w_e_r___functions_gaabe385d1398fe280b93db08bd615c966}{TM\_LOWPOWER\_SleepUntilInterrupt}(uint8\_t delay\_timer);
+00146 
+00153 \textcolor{keywordtype}{void} \hyperlink{group___t_m___l_o_w_p_o_w_e_r___functions_gaf92d2da64f91b05c1f3638903d597e74}{TM\_LOWPOWER\_SleepUntilEvent}(\textcolor{keywordtype}{void});
+00154 
+00160 \textcolor{keywordtype}{void} \hyperlink{group___t_m___l_o_w_p_o_w_e_r___functions_gaacd221196935edc76adb733354d7b095}{TM\_LOWPOWER\_StopUntilInterrupt}(\textcolor{keywordtype}{void});
+00161 
+00167 \textcolor{keywordtype}{void} \hyperlink{group___t_m___l_o_w_p_o_w_e_r___functions_gac5f4965b4e018c7a0fba6279a639017a}{TM\_LOWPOWER\_StopUntilEvent}(\textcolor{keywordtype}{void});
+00168 
+00174 \textcolor{keywordtype}{void} \hyperlink{group___t_m___l_o_w_p_o_w_e_r___functions_ga80d88be15aa15b16681fa46cc49d25e2}{TM\_LOWPOWER\_Standby}(\textcolor{keywordtype}{void});
+00175 
+00182 uint8\_t \hyperlink{group___t_m___l_o_w_p_o_w_e_r___functions_gaef5251d969255825dfd430b7239c93d4}{TM\_LOWPOWER\_StandbyReset}(\textcolor{keywordtype}{void});
+00183 
+00191 \textcolor{keywordtype}{void} \hyperlink{group___t_m___l_o_w_p_o_w_e_r___functions_gab69784956d57ac303e60ff2766af9671}{TM\_LOWPOWER\_EnableWakeUpPin}(\textcolor{keywordtype}{void});
+00192 
+00199 \textcolor{keywordtype}{void} \hyperlink{group___t_m___l_o_w_p_o_w_e_r___functions_ga522159a613fd2a682d29b8e8938a8bf9}{TM\_LOWPOWER\_DisableWakeUpPin}(\textcolor{keywordtype}{void});
+00200 
+00213 \textcolor{comment}{/* C++ detection */}
+00214 \textcolor{preprocessor}{#ifdef \_\_cplusplus}
+00215 \}
+00216 \textcolor{preprocessor}{#endif}
+00217 
+00218 \textcolor{preprocessor}{#endif}
+\end{DoxyCode}

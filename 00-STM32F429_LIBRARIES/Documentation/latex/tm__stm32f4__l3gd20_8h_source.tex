@@ -1,0 +1,90 @@
+\hypertarget{tm__stm32f4__l3gd20_8h_source}{}\subsection{tm\+\_\+stm32f4\+\_\+l3gd20.\+h}
+
+\begin{DoxyCode}
+00001 
+00057 \textcolor{preprocessor}{#ifndef TM\_L3GD20\_H}
+00058 \textcolor{preprocessor}{#define TM\_L3GD20\_H 110}
+00059 
+00071 \textcolor{preprocessor}{#include "stm32f4xx.h"}
+00072 \textcolor{preprocessor}{#include "stm32f4xx\_rcc.h"}
+00073 \textcolor{preprocessor}{#include "stm32f4xx\_gpio.h"}
+00074 \textcolor{preprocessor}{#include "defines.h"}
+00075 \textcolor{preprocessor}{#include "tm\_stm32f4\_spi.h"}
+00076 \textcolor{preprocessor}{#include "tm\_stm32f4\_gpio.h"}
+00077 
+00078 \textcolor{comment}{/* Default SPI, used on STM32F429 Discovery board */}
+00079 \textcolor{preprocessor}{#ifndef L3GD20\_SPI}
+00080 \textcolor{preprocessor}{#define L3GD20\_SPI                  SPI5}
+00081 \textcolor{preprocessor}{#define L3GD20\_SPI\_PINSPACK         TM\_SPI\_PinsPack\_1}
+00082 \textcolor{preprocessor}{#endif}
+00083 
+00084 \textcolor{comment}{/* Default CS pin on STM32F429 Discovery board */}
+00085 \textcolor{preprocessor}{#ifndef L3GD20\_CS\_PIN}
+00086 \textcolor{preprocessor}{#define L3GD20\_CS\_PORT              GPIOC}
+00087 \textcolor{preprocessor}{#define L3GD20\_CS\_PIN               GPIO\_PIN\_1}
+00088 \textcolor{preprocessor}{#endif}
+00089 
+00090 \textcolor{comment}{/* Pin macros */}
+00091 \textcolor{preprocessor}{#define L3GD20\_CS\_LOW               TM\_GPIO\_SetPinLow(L3GD20\_CS\_PORT, L3GD20\_CS\_PIN)}
+00092 \textcolor{preprocessor}{#define L3GD20\_CS\_HIGH              TM\_GPIO\_SetPinHigh(L3GD20\_CS\_PORT, L3GD20\_CS\_PIN)}
+00093 
+00094 \textcolor{comment}{/* Identification number */}
+00095 \textcolor{preprocessor}{#define L3GD20\_WHO\_AM\_I             0xD4}
+00096 
+00097 \textcolor{comment}{/* Registers addresses */}
+00098 \textcolor{preprocessor}{#define L3GD20\_REG\_WHO\_AM\_I         0x0F}
+00099 \textcolor{preprocessor}{#define L3GD20\_REG\_CTRL\_REG1        0x20}
+00100 \textcolor{preprocessor}{#define L3GD20\_REG\_CTRL\_REG2        0x21}
+00101 \textcolor{preprocessor}{#define L3GD20\_REG\_CTRL\_REG3        0x22}
+00102 \textcolor{preprocessor}{#define L3GD20\_REG\_CTRL\_REG4        0x23}
+00103 \textcolor{preprocessor}{#define L3GD20\_REG\_CTRL\_REG5        0x24}
+00104 \textcolor{preprocessor}{#define L3GD20\_REG\_REFERENCE        0x25}
+00105 \textcolor{preprocessor}{#define L3GD20\_REG\_OUT\_TEMP         0x26}
+00106 \textcolor{preprocessor}{#define L3GD20\_REG\_STATUS\_REG       0x27}
+00107 \textcolor{preprocessor}{#define L3GD20\_REG\_OUT\_X\_L          0x28}
+00108 \textcolor{preprocessor}{#define L3GD20\_REG\_OUT\_X\_H          0x29}
+00109 \textcolor{preprocessor}{#define L3GD20\_REG\_OUT\_Y\_L          0x2A}
+00110 \textcolor{preprocessor}{#define L3GD20\_REG\_OUT\_Y\_H          0x2B}
+00111 \textcolor{preprocessor}{#define L3GD20\_REG\_OUT\_Z\_L          0x2C}
+00112 \textcolor{preprocessor}{#define L3GD20\_REG\_OUT\_Z\_H          0x2D}
+00113 \textcolor{preprocessor}{#define L3GD20\_REG\_FIFO\_CTRL\_REG    0x2E}
+00114 \textcolor{preprocessor}{#define L3GD20\_REG\_FIFO\_SRC\_REG     0x2F}
+00115 \textcolor{preprocessor}{#define L3GD20\_REG\_INT1\_CFG         0x30}
+00116 \textcolor{preprocessor}{#define L3GD20\_REG\_INT1\_SRC         0x31}
+00117 \textcolor{preprocessor}{#define L3GD20\_REG\_INT1\_TSH\_XH      0x32}
+00118 \textcolor{preprocessor}{#define L3GD20\_REG\_INT1\_TSH\_XL      0x33}
+00119 \textcolor{preprocessor}{#define L3GD20\_REG\_INT1\_TSH\_YH      0x34}
+00120 \textcolor{preprocessor}{#define L3GD20\_REG\_INT1\_TSH\_YL      0x35}
+00121 \textcolor{preprocessor}{#define L3GD20\_REG\_INT1\_TSH\_ZH      0x36}
+00122 \textcolor{preprocessor}{#define L3GD20\_REG\_INT1\_TSH\_ZL      0x37}
+00123 \textcolor{preprocessor}{#define L3GD20\_REG\_INT1\_DURATION    0x38}
+00124 
+00125 \textcolor{comment}{/* Sensitivity factors, datasheet pg. 9 */}
+00126 \textcolor{preprocessor}{#define L3GD20\_SENSITIVITY\_250      8.75    }\textcolor{comment}{/* 8.75 mdps/digit */}\textcolor{preprocessor}{}
+00127 \textcolor{preprocessor}{#define L3GD20\_SENSITIVITY\_500      17.5    }\textcolor{comment}{/* 17.5 mdps/digit */}\textcolor{preprocessor}{}
+00128 \textcolor{preprocessor}{#define L3GD20\_SENSITIVITY\_2000     70      }\textcolor{comment}{/* 70 mdps/digit */}\textcolor{preprocessor}{}
+00129 
+\hypertarget{tm__stm32f4__l3gd20_8h_source_l00141}{}\hyperlink{struct_t_m___l3_g_d20__t}{00141} \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{
+00142     int16\_t X;
+00143     int16\_t Y;
+00144     int16\_t Z;
+00145 \} \hyperlink{struct_t_m___l3_g_d20__t}{TM\_L3GD20\_t};
+00146 
+00156 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+00157     TM\_L3GD20\_Result\_Ok,
+00158     TM\_L3GD20\_Result\_Error
+00159 \} TM\_L3GD20\_Result\_t;
+00160 
+00172 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+00173     TM\_L3GD20\_Scale\_250,
+00174     TM\_L3GD20\_Scale\_500,
+00175     TM\_L3GD20\_Scale\_2000
+00176 \} TM\_L3GD20\_Scale\_t;
+00177 
+00187 \textcolor{keyword}{extern} TM\_L3GD20\_Result\_t TM\_L3GD20\_Init(TM\_L3GD20\_Scale\_t scale);
+00188 
+00198 \textcolor{keyword}{extern} TM\_L3GD20\_Result\_t TM\_L3GD20\_Read(\hyperlink{struct_t_m___l3_g_d20__t}{TM\_L3GD20\_t}* L3DG20\_Data);
+00199 
+00200 \textcolor{preprocessor}{#endif}
+00201 
+\end{DoxyCode}

@@ -1,0 +1,75 @@
+\hypertarget{tm__stm32f4__rs485_8h_source}{}\subsection{tm\+\_\+stm32f4\+\_\+rs485.\+h}
+
+\begin{DoxyCode}
+00001 
+00039 \textcolor{preprocessor}{#ifndef TM\_RS485\_H}
+00040 \textcolor{preprocessor}{#define TM\_RS485\_H 100}
+00041 
+00055 \textcolor{preprocessor}{#include "stm32f4xx.h"}
+00056 \textcolor{preprocessor}{#include "stm32f4xx\_rcc.h"}
+00057 \textcolor{preprocessor}{#include "stm32f4xx\_gpio.h"}
+00058 \textcolor{preprocessor}{#include "defines.h"}
+00059 \textcolor{preprocessor}{#include "tm\_stm32f4\_usart.h"}
+00060 \textcolor{preprocessor}{#include "tm\_stm32f4\_crc.h"}
+00061 
+00062 \textcolor{comment}{/* Default RS485 USART settings */}
+00063 \textcolor{preprocessor}{#ifndef RS485\_USART}
+00064 \textcolor{preprocessor}{#define RS485\_USART             USART1}
+00065 \textcolor{preprocessor}{#define RS485\_USART\_PINSPACK    TM\_USART\_PinsPack\_2}
+00066 \textcolor{preprocessor}{#endif}
+00067 
+00068 \textcolor{comment}{/* Pin for enable/disable RX or TX mode */}
+00069 \textcolor{comment}{/* When low, RX is enabled, when HIGH, TX is enabled */}
+00070 \textcolor{preprocessor}{#ifndef RS485\_DIR\_PIN}
+00071 \textcolor{preprocessor}{#define RS485\_DIR\_RCC           RCC\_AHB1Periph\_GPIOA}
+00072 \textcolor{preprocessor}{#define RS485\_DIR\_PORT          GPIOA}
+00073 \textcolor{preprocessor}{#define RS485\_DIR\_PIN           GPIO\_Pin\_8}
+00074 \textcolor{preprocessor}{#endif}
+00075 
+00076 \textcolor{comment}{/* Define RS485 START byte */}
+00077 \textcolor{preprocessor}{#ifndef RS485\_START\_BYTE    }
+00078 \textcolor{preprocessor}{#define RS485\_START\_BYTE        (0xAA)}
+00079 \textcolor{preprocessor}{#endif}
+00080 
+00081 \textcolor{comment}{/* Define RS485 STOP byte */}
+00082 \textcolor{preprocessor}{#ifndef RS485\_STOP\_BYTE         }
+00083 \textcolor{preprocessor}{#define RS485\_STOP\_BYTE         (0x55)}
+00084 \textcolor{preprocessor}{#endif}
+00085 
+00086 \textcolor{comment}{/* Default RS485 buffer size */}
+00087 \textcolor{comment}{/* If must be at least the same size as USART buffer length */}
+00088 \textcolor{preprocessor}{#ifndef RS485\_BUFFER\_LENGTH}
+00089 \textcolor{preprocessor}{#define RS485\_BUFFER\_LENGTH     (32)}
+00090 \textcolor{preprocessor}{#endif}
+00091 
+00092 \textcolor{comment}{/* Clock cycles before send and after send */}
+00093 \textcolor{preprocessor}{#ifndef RS485\_DELAY}
+00094 \textcolor{preprocessor}{#define RS485\_DELAY             300}
+00095 \textcolor{preprocessor}{#endif}
+00096 
+00097 \textcolor{comment}{/* Data timeout */}
+00098 \textcolor{preprocessor}{#ifndef RS485\_TIMEOUT}
+00099 \textcolor{preprocessor}{#define RS485\_TIMEOUT           10000}
+00100 \textcolor{preprocessor}{#endif}
+00101 
+00102 \textcolor{comment}{/* Pin defines */}
+00103 \textcolor{preprocessor}{#define RS485\_ENABLE\_RX         RS485\_DIR\_PORT->BSRRH = RS485\_DIR\_PIN}
+00104 \textcolor{preprocessor}{#define RS485\_ENABLE\_TX         RS485\_DIR\_PORT->BSRRL = RS485\_DIR\_PIN}
+00105 
+00106 \textcolor{comment}{/* Clear buffer command */}
+00107 \textcolor{preprocessor}{#define RS485\_CLEAR\_BUFFER      TM\_USART\_ClearBuffer(RS485\_USART);}
+00108 
+\hypertarget{tm__stm32f4__rs485_8h_source_l00120}{}\hyperlink{struct_t_m___r_s485__t}{00120} \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{
+00121     uint8\_t MyID;
+00122     uint8\_t ReceivedID;
+00123     uint8\_t ReceivedCount;
+00124 \} \hyperlink{struct_t_m___r_s485__t}{TM\_RS485\_t};
+00125 
+00137 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_RS485\_Init(\hyperlink{struct_t_m___r_s485__t}{TM\_RS485\_t}* RS485, uint8\_t \textcolor{keywordtype}{id}, uint32\_t baudrate);
+00138 
+00156 \textcolor{keyword}{extern} uint8\_t TM\_RS485\_Send(\hyperlink{struct_t_m___r_s485__t}{TM\_RS485\_t}* RS485, uint8\_t receiver, uint8\_t* data, uint8\_t count);
+00157 
+00175 \textcolor{keyword}{extern} uint8\_t TM\_RS485\_Receive(\hyperlink{struct_t_m___r_s485__t}{TM\_RS485\_t}* RS485, uint8\_t* data);
+00176 
+00177 \textcolor{preprocessor}{#endif}
+\end{DoxyCode}

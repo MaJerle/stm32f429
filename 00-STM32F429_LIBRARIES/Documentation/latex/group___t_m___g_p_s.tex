@@ -1,0 +1,122 @@
+\hypertarget{group___t_m___g_p_s}{}\subsection{T\+M\+\_\+\+G\+P\+S}
+\label{group___t_m___g_p_s}\index{T\+M\+\_\+\+G\+P\+S@{T\+M\+\_\+\+G\+P\+S}}
+
+
+G\+P\+S N\+M\+E\+A standard data parser for S\+T\+M32\+F4xx devices -\/ \href{http://stm32f4-discovery.com/2014/08/library-27-gps-stm32f4-devices/}{\tt http\+://stm32f4-\/discovery.\+com/2014/08/library-\/27-\/gps-\/stm32f4-\/devices/}.  
+
+
+\subsubsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___t_m___g_p_s___macros}{T\+M\+\_\+\+G\+P\+S\+\_\+\+Macros}
+\begin{DoxyCompactList}\small\item\em Library private defines without any sense for U\+S\+E\+R. \end{DoxyCompactList}\item 
+\hyperlink{group___t_m___g_p_s___typedefs}{T\+M\+\_\+\+G\+P\+S\+\_\+\+Typedefs}
+\begin{DoxyCompactList}\small\item\em Library Typedefs. \end{DoxyCompactList}\item 
+\hyperlink{group___t_m___g_p_s___functions}{T\+M\+\_\+\+G\+P\+S\+\_\+\+Functions}
+\begin{DoxyCompactList}\small\item\em Library Functions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group___t_m___g_p_s_ga3507266065ba87b7a44bed0ff6a38615}{}\#define {\bfseries G\+P\+S\+\_\+\+U\+S\+A\+R\+T}~U\+S\+A\+R\+T1\label{group___t_m___g_p_s_ga3507266065ba87b7a44bed0ff6a38615}
+
+\item 
+\hypertarget{group___t_m___g_p_s_ga09b04bd0d1aec2755996f5ee6b295d31}{}\#define {\bfseries G\+P\+S\+\_\+\+U\+S\+A\+R\+T\+\_\+\+P\+I\+N\+S\+P\+A\+C\+K}~\hyperlink{group___t_m___u_s_a_r_t___typedefs_ggafa8a506eb27c93db067bb06039ae210fa20e52aedd65d52a8285abf6ea5bda8b1}{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Pins\+Pack\+\_\+2}\label{group___t_m___g_p_s_ga09b04bd0d1aec2755996f5ee6b295d31}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+G\+P\+S N\+M\+E\+A standard data parser for S\+T\+M32\+F4xx devices -\/ \href{http://stm32f4-discovery.com/2014/08/library-27-gps-stm32f4-devices/}{\tt http\+://stm32f4-\/discovery.\+com/2014/08/library-\/27-\/gps-\/stm32f4-\/devices/}. 
+
+This library parses response from G\+P\+S module, in N\+M\+E\+A statements format.
+
+For more, how G\+P\+S returns data, look at link below\+:
+
+\href{http://aprs.gids.nl/nmea/}{\tt http\+://aprs.\+gids.\+nl/nmea/}
+
+There is a lot of possible sentences, which can be returned from G\+P\+S. This library uses only 4. But some G\+P\+S don\textquotesingle{}t returns all of this 4 sentences, so I made a possibility to disable them.
+
+By default, these statements are in use and supported\+:
+\begin{DoxyItemize}
+\item G\+P\+G\+G\+A\+: Global Positioning System Fix Data
+\begin{DoxyItemize}
+\item Latitude
+\item Longitude
+\item Altitude
+\item Fix
+\item Satellites in use
+\item Time
+\end{DoxyItemize}
+\item G\+P\+R\+M\+C\+: Recommended minimum specific G\+P\+S/\+Transit data
+\begin{DoxyItemize}
+\item Date
+\item Speed
+\item Validity
+\item Direction
+\end{DoxyItemize}
+\item G\+P\+G\+S\+A\+: G\+P\+S D\+O\+P and Active Satellites
+\begin{DoxyItemize}
+\item H\+D\+O\+P
+\item V\+D\+O\+P
+\item P\+D\+O\+P
+\item Fix\+Mode
+\item Id\textquotesingle{}s of satellites in use
+\end{DoxyItemize}
+\item G\+P\+G\+S\+V\+: G\+P\+S Satellites in view
+\begin{DoxyItemize}
+\item Satellites in view
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+By default, each of this data has to be detected in order to get \char`\"{}\+V\+A\+L\+I\+D\char`\"{} data. If your G\+P\+S does not return any of this statement, you can disable option. If you disable any of statements, then you will loose data, corresponding to statement.
+
+Add lines below in your defines.\+h file and uncomment your settings \begin{DoxyVerb}//Disable GPGGA statement
+#define GPS_DISABLE_GPGGA
+//Disable GPRMC statement
+#define GPS_DISABLE_GPRMC 
+//Disable GPGSA statement
+#define GPS_DISABLE_GPGSA
+//Disable GPGSV statement
+#define GPS_DISABLE_GPGSV
+\end{DoxyVerb}
+ \begin{DoxyParagraph}{Pinout}
+
+\end{DoxyParagraph}
+To communicate with G\+P\+S, U\+S\+A\+R\+T is commonly used. By default, my library uses U\+S\+A\+R\+T1, but if you want your own U\+S\+A\+R\+Tx, add lines below in your defines.\+h file\+:
+
+\begin{DoxyVerb}#define GPS_USART               USART1
+#define GPS_USART_PINSPACK      TM_USART_PinsPack_2
+\end{DoxyVerb}
+
+
+With default pinout\+:
+
+S\+T\+M32\+F4xx T\+X = P\+B6~\newline
+ S\+T\+M32\+F4xx R\+X = P\+B7
+
+\begin{DoxyNote}{Note}
+Connect G\+P\+S\textquotesingle{}s T\+X to S\+T\+M32\+F4xx\textquotesingle{}s R\+X and vice versa.
+\end{DoxyNote}
+\begin{DoxyParagraph}{Changelog}
+
+\end{DoxyParagraph}
+\begin{DoxyVerb} Version 1.1
+   - August 22, 2014
+   - Added support for calculating distance between 2 coordinates and bearing in degrees
+
+  Version 1.0
+   - First release
+\end{DoxyVerb}
+
+
+\begin{DoxyParagraph}{Dependencies}
+
+\end{DoxyParagraph}
+\begin{DoxyVerb} - STM32F4xx
+ - STM32F4xx RCC
+ - defines.h
+ - TM USART
+ - defines.h
+ - math.h
+\end{DoxyVerb}
+ 

@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="struct_t_m___n_r_f24_l01__t">
+<title>TM_NRF24L01_t struct Reference</title>
+        <section>
+            <title>Data Fields</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint8_t PayloadSize</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint8_t Channel</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>TM_NRF24L01_OutputPower_t OutPwr</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>TM_NRF24L01_DataRate_t DataRate</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Field Documentation</title>
+        </section>
+</section>

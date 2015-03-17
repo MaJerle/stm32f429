@@ -1,0 +1,49 @@
+.TH "TM_RTC_AlarmTime_t" 3 "Wed Mar 18 2015" "Version v1.0.0" "TM STM32F4xx Libraries" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TM_RTC_AlarmTime_t \- RTC structure for alarm time\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <tm_stm32f4_rtc\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "\fBTM_RTC_AlarmType_t\fP \fBalarmtype\fP"
+.br
+.ti -1c
+.RI "uint8_t \fBseconds\fP"
+.br
+.ti -1c
+.RI "uint8_t \fBminutes\fP"
+.br
+.ti -1c
+.RI "uint8_t \fBhours\fP"
+.br
+.ti -1c
+.RI "uint8_t \fBday\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+RTC structure for alarm time\&. 
+.SH "Field Documentation"
+.PP 
+.SS "\fBTM_RTC_AlarmType_t\fP alarmtype"
+Alarm type setting\&. \fBTM_RTC_AlarmType_t\fP for more info 
+.SS "uint8_t day"
+Alarm day value\&. If you select trigger for alarm every week, then this parameter has value between 1 and 7, representing days in a week, Monday to Sunday If you select trigger for alarm every month, then this parameter has value between 1 - 31, representing days in a month\&. 
+.SS "uint8_t hours"
+Alarm hours value 
+.SS "uint8_t minutes"
+Alarm minutes value 
+.SS "uint8_t seconds"
+Alarm seconds value 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for TM STM32F4xx Libraries from the source code\&.

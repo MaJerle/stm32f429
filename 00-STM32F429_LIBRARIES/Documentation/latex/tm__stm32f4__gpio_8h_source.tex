@@ -1,0 +1,127 @@
+\hypertarget{tm__stm32f4__gpio_8h_source}{}\subsection{tm\+\_\+stm32f4\+\_\+gpio.\+h}
+
+\begin{DoxyCode}
+00001 
+00030 \textcolor{preprocessor}{#ifndef TM\_GPIO\_H}
+00031 \textcolor{preprocessor}{#define TM\_GPIO\_H 120}
+00032 
+00033 \textcolor{comment}{/* C++ detection */}
+00034 \textcolor{preprocessor}{#ifdef \_\_cplusplus}
+00035 \textcolor{keyword}{extern} C \{
+00036 \textcolor{preprocessor}{#endif}
+00037 
+00073 \textcolor{preprocessor}{#include "stm32f4xx.h"}
+00074 \textcolor{preprocessor}{#include "stm32f4xx\_rcc.h"}
+00075 \textcolor{preprocessor}{#include "stm32f4xx\_gpio.h"}
+00076 \textcolor{preprocessor}{#include "defines.h"}
+00077 
+00089 \textcolor{preprocessor}{#ifndef GPIO\_PIN\_0}
+\hypertarget{tm__stm32f4__gpio_8h_source_l00090}{}\hyperlink{group___t_m___g_p_i_o___macros_ga176efbf43a259b7bb0a85a47401505be}{00090} \textcolor{preprocessor}{#define GPIO\_PIN\_0      ((uint16\_t)0x0001)}
+00091 \textcolor{preprocessor}{#define GPIO\_PIN\_1      ((uint16\_t)0x0002)}
+00092 \textcolor{preprocessor}{#define GPIO\_PIN\_2      ((uint16\_t)0x0004)}
+00093 \textcolor{preprocessor}{#define GPIO\_PIN\_3      ((uint16\_t)0x0008)}
+00094 \textcolor{preprocessor}{#define GPIO\_PIN\_4      ((uint16\_t)0x0010)}
+00095 \textcolor{preprocessor}{#define GPIO\_PIN\_5      ((uint16\_t)0x0020)}
+00096 \textcolor{preprocessor}{#define GPIO\_PIN\_6      ((uint16\_t)0x0040)}
+00097 \textcolor{preprocessor}{#define GPIO\_PIN\_7      ((uint16\_t)0x0080)}
+00098 \textcolor{preprocessor}{#define GPIO\_PIN\_8      ((uint16\_t)0x0100)}
+00099 \textcolor{preprocessor}{#define GPIO\_PIN\_9      ((uint16\_t)0x0200)}
+00100 \textcolor{preprocessor}{#define GPIO\_PIN\_10     ((uint16\_t)0x0400)}
+00101 \textcolor{preprocessor}{#define GPIO\_PIN\_11     ((uint16\_t)0x0800)}
+00102 \textcolor{preprocessor}{#define GPIO\_PIN\_12     ((uint16\_t)0x1000)}
+00103 \textcolor{preprocessor}{#define GPIO\_PIN\_13     ((uint16\_t)0x2000)}
+00104 \textcolor{preprocessor}{#define GPIO\_PIN\_14     ((uint16\_t)0x4000)}
+00105 \textcolor{preprocessor}{#define GPIO\_PIN\_15     ((uint16\_t)0x8000)}
+00106 \textcolor{preprocessor}{#define GPIO\_PIN\_ALL    ((uint16\_t)0xFFFF)}
+00107 \textcolor{preprocessor}{#endif}
+00108 
+00114 \textcolor{preprocessor}{#ifndef GPIO\_Pin\_0}
+\hypertarget{tm__stm32f4__gpio_8h_source_l00115}{}\hyperlink{group___t_m___g_p_i_o___macros_gab305b8d1be9f89bf2b4a05589b456049}{00115} \textcolor{preprocessor}{#define GPIO\_Pin\_0      ((uint16\_t)0x0001)}
+00116 \textcolor{preprocessor}{#define GPIO\_Pin\_1      ((uint16\_t)0x0002)}
+00117 \textcolor{preprocessor}{#define GPIO\_Pin\_2      ((uint16\_t)0x0004)}
+00118 \textcolor{preprocessor}{#define GPIO\_Pin\_3      ((uint16\_t)0x0008)}
+00119 \textcolor{preprocessor}{#define GPIO\_Pin\_4      ((uint16\_t)0x0010)}
+00120 \textcolor{preprocessor}{#define GPIO\_Pin\_5      ((uint16\_t)0x0020)}
+00121 \textcolor{preprocessor}{#define GPIO\_Pin\_6      ((uint16\_t)0x0040)}
+00122 \textcolor{preprocessor}{#define GPIO\_Pin\_7      ((uint16\_t)0x0080)}
+00123 \textcolor{preprocessor}{#define GPIO\_Pin\_8      ((uint16\_t)0x0100)}
+00124 \textcolor{preprocessor}{#define GPIO\_Pin\_9      ((uint16\_t)0x0200)}
+00125 \textcolor{preprocessor}{#define GPIO\_Pin\_10     ((uint16\_t)0x0400)}
+00126 \textcolor{preprocessor}{#define GPIO\_Pin\_11     ((uint16\_t)0x0800)}
+00127 \textcolor{preprocessor}{#define GPIO\_Pin\_12     ((uint16\_t)0x1000)}
+00128 \textcolor{preprocessor}{#define GPIO\_Pin\_13     ((uint16\_t)0x2000)}
+00129 \textcolor{preprocessor}{#define GPIO\_Pin\_14     ((uint16\_t)0x4000)}
+00130 \textcolor{preprocessor}{#define GPIO\_Pin\_15     ((uint16\_t)0x8000)}
+00131 \textcolor{preprocessor}{#define GPIO\_Pin\_All    ((uint16\_t)0xFFFF)}
+00132 \textcolor{preprocessor}{#endif}
+00133 
+\hypertarget{tm__stm32f4__gpio_8h_source_l00148}{}\hyperlink{group___t_m___g_p_i_o___typedefs_gacbb363a57d0e70ea563e494eff1db3ca}{00148} \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+\hypertarget{tm__stm32f4__gpio_8h_source_l00149}{}\hyperlink{group___t_m___g_p_i_o___typedefs_ggacbb363a57d0e70ea563e494eff1db3caa4a1a1cac84d610e1498af9207babf8cf}{00149}     \hyperlink{group___t_m___g_p_i_o___typedefs_ggacbb363a57d0e70ea563e494eff1db3caa4a1a1cac84d610e1498af9207babf8cf}{TM\_GPIO\_Mode\_IN} = 0x00,  
+\hypertarget{tm__stm32f4__gpio_8h_source_l00150}{}\hyperlink{group___t_m___g_p_i_o___typedefs_ggacbb363a57d0e70ea563e494eff1db3caa6e5728698978e1610a61c1c3c6fab961}{00150}     \hyperlink{group___t_m___g_p_i_o___typedefs_ggacbb363a57d0e70ea563e494eff1db3caa6e5728698978e1610a61c1c3c6fab961}{TM\_GPIO\_Mode\_OUT} = 0x01, 
+\hypertarget{tm__stm32f4__gpio_8h_source_l00151}{}\hyperlink{group___t_m___g_p_i_o___typedefs_ggacbb363a57d0e70ea563e494eff1db3caaa8f2be5601e2cb483e95b035423054c7}{00151}     \hyperlink{group___t_m___g_p_i_o___typedefs_ggacbb363a57d0e70ea563e494eff1db3caaa8f2be5601e2cb483e95b035423054c7}{TM\_GPIO\_Mode\_AF} = 0x02,  
+\hypertarget{tm__stm32f4__gpio_8h_source_l00152}{}\hyperlink{group___t_m___g_p_i_o___typedefs_ggacbb363a57d0e70ea563e494eff1db3caa1654d8b26d95020f254506ff9164c07a}{00152}     \hyperlink{group___t_m___g_p_i_o___typedefs_ggacbb363a57d0e70ea563e494eff1db3caa1654d8b26d95020f254506ff9164c07a}{TM\_GPIO\_Mode\_AN} = 0x03,  
+00153 \} \hyperlink{group___t_m___g_p_i_o___typedefs_gacbb363a57d0e70ea563e494eff1db3ca}{TM\_GPIO\_Mode\_t};
+00154 
+\hypertarget{tm__stm32f4__gpio_8h_source_l00159}{}\hyperlink{group___t_m___g_p_i_o___typedefs_ga1d443fe266a4073f40ea271ae7b8df9f}{00159} \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+\hypertarget{tm__stm32f4__gpio_8h_source_l00160}{}\hyperlink{group___t_m___g_p_i_o___typedefs_gga1d443fe266a4073f40ea271ae7b8df9fab1326cfb732c83fde91b8910de64465f}{00160}     \hyperlink{group___t_m___g_p_i_o___typedefs_gga1d443fe266a4073f40ea271ae7b8df9fab1326cfb732c83fde91b8910de64465f}{TM\_GPIO\_OType\_PP} = 0x00, 
+\hypertarget{tm__stm32f4__gpio_8h_source_l00161}{}\hyperlink{group___t_m___g_p_i_o___typedefs_gga1d443fe266a4073f40ea271ae7b8df9fa075f8c992f11c2379570a5a2deb2061c}{00161}     \hyperlink{group___t_m___g_p_i_o___typedefs_gga1d443fe266a4073f40ea271ae7b8df9fa075f8c992f11c2379570a5a2deb2061c}{TM\_GPIO\_OType\_OD} = 0x01  
+00162 \} \hyperlink{group___t_m___g_p_i_o___typedefs_ga1d443fe266a4073f40ea271ae7b8df9f}{TM\_GPIO\_OType\_t};
+00163 
+\hypertarget{tm__stm32f4__gpio_8h_source_l00168}{}\hyperlink{group___t_m___g_p_i_o___typedefs_gaa57736d106efbe14067be22025f296c4}{00168} \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+\hypertarget{tm__stm32f4__gpio_8h_source_l00169}{}\hyperlink{group___t_m___g_p_i_o___typedefs_ggaa57736d106efbe14067be22025f296c4a20d05d373e1340842eceec7760ac369d}{00169}     \hyperlink{group___t_m___g_p_i_o___typedefs_ggaa57736d106efbe14067be22025f296c4a20d05d373e1340842eceec7760ac369d}{TM\_GPIO\_Speed\_Low} = 0x00,    
+\hypertarget{tm__stm32f4__gpio_8h_source_l00170}{}\hyperlink{group___t_m___g_p_i_o___typedefs_ggaa57736d106efbe14067be22025f296c4aa566a49f42b266b30db1a52563bfbd8c}{00170}     \hyperlink{group___t_m___g_p_i_o___typedefs_ggaa57736d106efbe14067be22025f296c4aa566a49f42b266b30db1a52563bfbd8c}{TM\_GPIO\_Speed\_Medium} = 0x01, 
+\hypertarget{tm__stm32f4__gpio_8h_source_l00171}{}\hyperlink{group___t_m___g_p_i_o___typedefs_ggaa57736d106efbe14067be22025f296c4ada5e219c39bf024f3bbe49506e67f980}{00171}     \hyperlink{group___t_m___g_p_i_o___typedefs_ggaa57736d106efbe14067be22025f296c4ada5e219c39bf024f3bbe49506e67f980}{TM\_GPIO\_Speed\_Fast} = 0x02,   
+\hypertarget{tm__stm32f4__gpio_8h_source_l00172}{}\hyperlink{group___t_m___g_p_i_o___typedefs_ggaa57736d106efbe14067be22025f296c4ad6747b6108c911e7c9d7f6d0e8c963df}{00172}     \hyperlink{group___t_m___g_p_i_o___typedefs_ggaa57736d106efbe14067be22025f296c4ad6747b6108c911e7c9d7f6d0e8c963df}{TM\_GPIO\_Speed\_High} = 0x03    
+00173 \} \hyperlink{group___t_m___g_p_i_o___typedefs_gaa57736d106efbe14067be22025f296c4}{TM\_GPIO\_Speed\_t};
+00174 
+\hypertarget{tm__stm32f4__gpio_8h_source_l00179}{}\hyperlink{group___t_m___g_p_i_o___typedefs_ga50ddb0da56d8a388dee368c55e968602}{00179} \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+\hypertarget{tm__stm32f4__gpio_8h_source_l00180}{}\hyperlink{group___t_m___g_p_i_o___typedefs_gga50ddb0da56d8a388dee368c55e968602a6efe40eb21f3c2293447c9435ffee2e1}{00180}     \hyperlink{group___t_m___g_p_i_o___typedefs_gga50ddb0da56d8a388dee368c55e968602a6efe40eb21f3c2293447c9435ffee2e1}{TM\_GPIO\_PuPd\_NOPULL} = 0x00, 
+\hypertarget{tm__stm32f4__gpio_8h_source_l00181}{}\hyperlink{group___t_m___g_p_i_o___typedefs_gga50ddb0da56d8a388dee368c55e968602a5b672ef3d371a292b13edd4e357ef80f}{00181}     \hyperlink{group___t_m___g_p_i_o___typedefs_gga50ddb0da56d8a388dee368c55e968602a5b672ef3d371a292b13edd4e357ef80f}{TM\_GPIO\_PuPd\_UP} = 0x01,     
+\hypertarget{tm__stm32f4__gpio_8h_source_l00182}{}\hyperlink{group___t_m___g_p_i_o___typedefs_gga50ddb0da56d8a388dee368c55e968602a5cb8e93ea6abd639ba7efaf9b37f3bd8}{00182}     \hyperlink{group___t_m___g_p_i_o___typedefs_gga50ddb0da56d8a388dee368c55e968602a5cb8e93ea6abd639ba7efaf9b37f3bd8}{TM\_GPIO\_PuPd\_DOWN} = 0x02    
+00183 \} \hyperlink{group___t_m___g_p_i_o___typedefs_ga50ddb0da56d8a388dee368c55e968602}{TM\_GPIO\_PuPd\_t};
+00184 
+00206 \textcolor{keywordtype}{void} \hyperlink{group___t_m___g_p_i_o___functions_ga7ea61719f45c8d46e56f636d7ffdf0d0}{TM\_GPIO\_Init}(GPIO\_TypeDef* GPIOx, uint16\_t GPIO\_Pin, 
+      \hyperlink{group___t_m___g_p_i_o___typedefs_gacbb363a57d0e70ea563e494eff1db3ca}{TM\_GPIO\_Mode\_t} GPIO\_Mode, \hyperlink{group___t_m___g_p_i_o___typedefs_ga1d443fe266a4073f40ea271ae7b8df9f}{TM\_GPIO\_OType\_t} GPIO\_OType, 
+      \hyperlink{group___t_m___g_p_i_o___typedefs_ga50ddb0da56d8a388dee368c55e968602}{TM\_GPIO\_PuPd\_t} GPIO\_PuPd, \hyperlink{group___t_m___g_p_i_o___typedefs_gaa57736d106efbe14067be22025f296c4}{TM\_GPIO\_Speed\_t} GPIO\_Speed);
+00207 
+00208 
+00220 \textcolor{keywordtype}{void} \hyperlink{group___t_m___g_p_i_o___functions_gac91349d1bf42b50463ebc2716130eb89}{TM\_GPIO\_InitAlternate}(GPIO\_TypeDef* GPIOx, uint16\_t GPIO\_Pin, 
+      \hyperlink{group___t_m___g_p_i_o___typedefs_ga1d443fe266a4073f40ea271ae7b8df9f}{TM\_GPIO\_OType\_t} GPIO\_OType, \hyperlink{group___t_m___g_p_i_o___typedefs_ga50ddb0da56d8a388dee368c55e968602}{TM\_GPIO\_PuPd\_t} GPIO\_PuPd, 
+      \hyperlink{group___t_m___g_p_i_o___typedefs_gaa57736d106efbe14067be22025f296c4}{TM\_GPIO\_Speed\_t} GPIO\_Speed, uint8\_t Alternate);
+00221 
+00229 \textcolor{keywordtype}{void} \hyperlink{group___t_m___g_p_i_o___functions_gac87f1d18ac3e984bce0cbf44f7210198}{TM\_GPIO\_DeInit}(GPIO\_TypeDef* GPIOx, uint16\_t GPIO\_Pin);
+00230 
+00239 \textcolor{keywordtype}{void} \hyperlink{group___t_m___g_p_i_o___functions_ga9c5ca4f894b1f46d413d2bfc692fcf43}{TM\_GPIO\_SetPinAsInput}(GPIO\_TypeDef* GPIOx, uint16\_t GPIO\_Pin);
+00240 
+00249 \textcolor{keywordtype}{void} \hyperlink{group___t_m___g_p_i_o___functions_gabfa399cb17386714bd9c395a81b43035}{TM\_GPIO\_SetPinAsOutput}(GPIO\_TypeDef* GPIOx, uint16\_t GPIO\_Pin);
+00250 
+\hypertarget{tm__stm32f4__gpio_8h_source_l00258}{}\hyperlink{group___t_m___g_p_i_o___functions_gaccceda87ce348c73b43780fdfed048d3}{00258} \textcolor{preprocessor}{#define TM\_GPIO\_SetPinLow(GPIOx, GPIO\_Pin)          ((GPIOx)->BSRRH = (GPIO\_Pin))}
+00259 
+\hypertarget{tm__stm32f4__gpio_8h_source_l00267}{}\hyperlink{group___t_m___g_p_i_o___functions_gac5aa8fbc39ed67f47972097fb7c8d69d}{00267} \textcolor{preprocessor}{#define TM\_GPIO\_SetPinHigh(GPIOx, GPIO\_Pin)         ((GPIOx)->BSRRL = (GPIO\_Pin))}
+00268 
+\hypertarget{tm__stm32f4__gpio_8h_source_l00277}{}\hyperlink{group___t_m___g_p_i_o___functions_gaf0bc34b72794ca43246ef88cfd261e80}{00277} \textcolor{preprocessor}{#define TM\_GPIO\_SetPinValue(GPIOx, GPIO\_Pin, val)   ((val) ? TM\_GPIO\_SetPinHigh(GPIOx, GPIO\_Pin) :
+       TM\_GPIO\_SetPinLow(GPIOx, GPIO\_Pin))}
+00278 
+\hypertarget{tm__stm32f4__gpio_8h_source_l00286}{}\hyperlink{group___t_m___g_p_i_o___functions_ga92ef176c8195c54b326b3c7526b878b2}{00286} \textcolor{preprocessor}{#define TM\_GPIO\_TogglePinValue(GPIOx, GPIO\_Pin)     ((GPIOx)->ODR ^= (GPIO\_Pin))}
+00287 
+\hypertarget{tm__stm32f4__gpio_8h_source_l00295}{}\hyperlink{group___t_m___g_p_i_o___functions_ga191a4bbb4e55573d19eb5c2f18122680}{00295} \textcolor{preprocessor}{#define TM\_GPIO\_SetPortValue(GPIOx, value)          ((GPIOx)->ODR = (value))}
+00296 
+\hypertarget{tm__stm32f4__gpio_8h_source_l00304}{}\hyperlink{group___t_m___g_p_i_o___functions_gacd91a02149d1f1bc648a3fe06648460d}{00304} \textcolor{preprocessor}{#define TM\_GPIO\_GetInputPinValue(GPIOx, GPIO\_Pin)   (((GPIOx)->IDR & (GPIO\_Pin)) == 0 ? 0 : 1)}
+00305 
+\hypertarget{tm__stm32f4__gpio_8h_source_l00313}{}\hyperlink{group___t_m___g_p_i_o___functions_ga6402ec4503fa0f3380d3bdbb1d9510db}{00313} \textcolor{preprocessor}{#define TM\_GPIO\_GetOutputPinValue(GPIOx, GPIO\_Pin)  (((GPIOx)->ODR & (GPIO\_Pin)) == 0 ? 0 : 1)}
+00314 
+\hypertarget{tm__stm32f4__gpio_8h_source_l00321}{}\hyperlink{group___t_m___g_p_i_o___functions_gabab8c885687b36adc083ae906f5d432e}{00321} \textcolor{preprocessor}{#define TM\_GPIO\_GetPortInputValue(GPIOx)            ((GPIOx)->IDR)}
+00322 
+\hypertarget{tm__stm32f4__gpio_8h_source_l00329}{}\hyperlink{group___t_m___g_p_i_o___functions_gaa84d8eae98478601cb845dfc13089769}{00329} \textcolor{preprocessor}{#define TM\_GPIO\_GetPortOutputValue(GPIOx)           ((GPIOx)->ODR)}
+00330 
+00337 uint16\_t \hyperlink{group___t_m___g_p_i_o___functions_gaa5a2f30f33cc19408daeb5db3b7cb59c}{TM\_GPIO\_GetPortSource}(GPIO\_TypeDef* GPIOx);
+00338 
+00345 uint16\_t \hyperlink{group___t_m___g_p_i_o___functions_ga29aaed3ba7054d4c3a3fed55012403e5}{TM\_GPIO\_GetPinSource}(uint16\_t GPIO\_Pin);
+00346 
+00357 \textcolor{comment}{/* C++ detection */}
+00358 \textcolor{preprocessor}{#ifdef \_\_cplusplus}
+00359 \}
+00360 \textcolor{preprocessor}{#endif}
+00361 
+00362 \textcolor{preprocessor}{#endif}
+\end{DoxyCode}

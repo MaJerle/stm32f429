@@ -66,9 +66,9 @@ int main(void) {
 	TM_PWM_InitChannel(&TIM2_Data, TM_PWM_Channel_1, TM_PWM_PinsPack_2);
 	
 	/* Set channel 1 value, 500us pulse high = 500 / 1000 = 0.5 = 50% duty cycle */
-	TM_PWM_SetChannelMicros(&TIM2_Data, TM_PWM_Channel_1, 500);
+	TM_PWM_SetChannelMicros(&TIM2_Data, TM_PWM_Channel_1, 10);
 	
-/* Nucleo F401-RE LED stop */
+/* Nucleo F4(0/1)1-RE LED stop */
 
 	while (1) {
 		

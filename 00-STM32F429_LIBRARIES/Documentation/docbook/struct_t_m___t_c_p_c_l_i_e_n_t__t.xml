@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="struct_t_m___t_c_p_c_l_i_e_n_t__t">
+<title>TM_TCPCLIENT_t struct Reference</title>
+<para>
+    <programlisting>#include <link linkend="tm__stm32f4__ethernet_8h">&lt;tm_stm32f4_ethernet.h&gt;</link></programlisting>
+</para>
+        <section>
+            <title>Data Fields</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>char name[ETHERNET_MAX_CONNECTION_NAME]</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint8_t active</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint8_t ip_addr[4]</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint16_t port</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint8_t headers_done</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint8_t * active_connections_count</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void * user_parameters</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct tcp_pcb * pcb</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>client_states state</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct pbuf * p_tx</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <simplesect>
+            <title>Detailed Description</title>
+
+<para>Client structure, passed as first parameter in all client based callback functions</para>
+
+<para>Parameters:<itemizedlist>
+<listitem>
+<para>char name[ETHERNET_MAX_CONNECTION_NAME]: Connection name, we choose it when we call TM_ETHERNETCLIENT_Connect function</para>
+</listitem><listitem>
+<para>uint8_t active: Connection is active</para>
+</listitem><listitem>
+<para>uint8_t ip_addr[4]: IP address for our external connection</para>
+</listitem><listitem>
+<para>uint16_t port: Port for our external connection</para>
+</listitem><listitem>
+<para>uint8_t headers_done: This is user defined option. When you connect to some website and receive data back, you will also get HTTP headers and your data. When receive data handler will be first called, this parameter will be set to 0. If you detect when headers are done (&quot;\r\n\r\n&quot; string) then you can set this parameter to 1, and it will stay 1 until connection is closed. This can be used, if you don&apos;t want to print headers to user.</para>
+</listitem></itemizedlist>
+</para>
+
+<para>uint8_t* active_connections_count: Pointer to number of active connections this time.<itemizedlist>
+<listitem>
+<para>void* user_parameters: Pointer to user parameters for connection which are passed on &quot;Connect&quot; function This can be used to pass special data for your connection, which you can then easily be used in headers callback to format proper request string. </para>
+</listitem></itemizedlist>
+</para>
+                <para>Definition at line 271 of file tm_stm32f4_ethernet.h</para>
+                <para>The Documentation for this struct was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_ethernet.h</para></listitem></itemizedlist></para>
+        </simplesect>
+        <section>
+            <title>Field Documentation</title>
+        </section>
+</section>

@@ -17,7 +17,7 @@
  * |----------------------------------------------------------------------
  */
 #include "tm_stm32f4_timer_properties.h"
-	 
+
 TM_TIMER_PROPERTIES_Result_t TM_TIMER_PROPERTIES_GetTimerProperties(TIM_TypeDef* TIMx, TM_TIMER_PROPERTIES_t* Timer_Data) {
 	RCC_ClocksTypeDef RCC_ClocksStruct;
 
@@ -27,39 +27,71 @@ TM_TIMER_PROPERTIES_Result_t TM_TIMER_PROPERTIES_GetTimerProperties(TIM_TypeDef*
 	/* All timers have 16-bit prescaler */
 	Timer_Data->MaxPrescaler = 0xFFFF;
 	
-	if ( /* 32bit timers with PCLK2 max frequency */
-		TIMx == TIM2 ||
-		TIMx == TIM5
+	if (0 /* 32bit timers with PCLK2 max frequency */
+#ifdef TIM2
+		|| TIMx == TIM2
+#endif
+#ifdef TIM5
+		|| TIMx == TIM5
+#endif
 	) {
 		Timer_Data->TimerFrequency = RCC_ClocksStruct.PCLK2_Frequency;	/* Clock */
-		Timer_Data->MaxPeriod = 0xFFFFFFFF;							/* Max period */
+		Timer_Data->MaxPeriod = 0xFFFFFFFF;								/* Max period */
 		
+		/* Timer valid */
 		return TM_TIMER_PROPERTIES_Result_Ok;
-	} else if (	/* 16bit timers with HCLK clock frequency */
-		TIMx == TIM1 ||
-		TIMx == TIM8 ||
-		TIMx == TIM9 ||
-		TIMx == TIM10 ||
-		TIMx == TIM11
+	} else if (0	/* 16bit timers with HCLK clock frequency */
+#ifdef TIM1
+		|| TIMx == TIM1
+#endif
+#ifdef TIM8
+		|| TIMx == TIM8
+#endif
+#ifdef TIM9
+		|| TIMx == TIM9
+#endif
+#ifdef TIM10
+		|| TIMx == TIM10
+#endif
+#ifdef TIM11
+		|| TIMx == TIM11
+#endif
 	) {
 		Timer_Data->TimerFrequency = RCC_ClocksStruct.HCLK_Frequency;	/* Clock */
-		Timer_Data->MaxPeriod = 0xFFFF;								/* Max period */
+		Timer_Data->MaxPeriod = 0xFFFF;									/* Max period */
 		
+		/* Timer valid */
 		return TM_TIMER_PROPERTIES_Result_Ok;
-	} else if (	/* 16bit timers with PCLK2 clock frequency */
-		TIMx == TIM3 ||
-		TIMx == TIM4 ||
-		TIMx == TIM6 ||
-		TIMx == TIM7 ||
-		TIMx == TIM12 ||
-		TIMx == TIM13 ||
-		TIMx == TIM14
+	} else if (0	/* 16bit timers with PCLK2 clock frequency */
+#ifdef TIM3
+		|| TIMx == TIM3
+#endif
+#ifdef TIM4
+		|| TIMx == TIM4
+#endif
+#ifdef TIM6
+		|| TIMx == TIM6
+#endif
+#ifdef TIM7
+		|| TIMx == TIM7
+#endif
+#ifdef TIM12
+		|| TIMx == TIM12
+#endif
+#ifdef TIM13
+		|| TIMx == TIM13
+#endif
+#ifdef TIM14
+		|| TIMx == TIM14
+#endif
 	) {
 		Timer_Data->TimerFrequency = RCC_ClocksStruct.PCLK2_Frequency;	/* Clock */
-		Timer_Data->MaxPeriod = 0xFFFF;								/* Max period */
+		Timer_Data->MaxPeriod = 0xFFFF;									/* Max period */
 		
+		/* Timer valid */
 		return TM_TIMER_PROPERTIES_Result_Ok;
 	}
+	
 	/* Timer is not valid */
 	return TM_TIMER_PROPERTIES_Result_TimerNotValid;
 }
@@ -117,69 +149,153 @@ TM_TIMER_PROPERTIES_Result_t TM_TIMER_PROPERTIES_GenerateDataForWorkingFrequency
 }
 
 TM_TIMER_PROPERTIES_Result_t TM_TIMER_PROPERTIES_EnableClock(TIM_TypeDef* TIMx) {
+#ifdef TIM1
 	if (TIMx == TIM1) {
-		RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM1, ENABLE);
-	} else if (TIMx == TIM2) {
-		RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE);
-	} else if (TIMx == TIM3) {
-		RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE);
-	} else if (TIMx == TIM4) {
-		RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE);
-	} else if (TIMx == TIM5) {
-		RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM5, ENABLE);
-	} else if (TIMx == TIM6) {
-		RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM6, ENABLE);
-	} else if (TIMx == TIM7) {
-		RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM7, ENABLE);
-	} else if (TIMx == TIM8) {
-		RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM8, ENABLE);
-	} else if (TIMx == TIM9) {
-		RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM9, ENABLE);
-	} else if (TIMx == TIM10) {
-		RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM10, ENABLE);
-	} else if (TIMx == TIM11) {
-		RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM11, ENABLE);
-	} else if (TIMx == TIM12) {
-		RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM12, ENABLE);
-	} else if (TIMx == TIM13) {
-		RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM13, ENABLE);
-	} else if (TIMx == TIM14) {
-		RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM14, ENABLE);
+		RCC->APB2ENR |= RCC_APB2ENR_TIM1EN;
 	}
+#endif
+#ifdef TIM2
+	if (TIMx == TIM2) {
+		RCC->APB1ENR |= RCC_APB1ENR_TIM2EN;
+	}
+#endif
+#ifdef TIM3
+	if (TIMx == TIM3) {
+		RCC->APB1ENR |= RCC_APB1ENR_TIM3EN;
+	}
+#endif
+#ifdef TIM4
+	if (TIMx == TIM4) {
+		RCC->APB1ENR |= RCC_APB1ENR_TIM4EN;
+	}
+#endif
+#ifdef TIM5
+	if (TIMx == TIM5) {
+		RCC->APB1ENR |= RCC_APB1ENR_TIM5EN;
+	}
+#endif
+#ifdef TIM6
+	if (TIMx == TIM6) {
+		RCC->APB1ENR |= RCC_APB1ENR_TIM6EN;
+	}
+#endif
+#ifdef TIM7
+	if (TIMx == TIM7) {
+		RCC->APB1ENR |= RCC_APB1ENR_TIM7EN;
+	}
+#endif
+#ifdef TIM8
+	if (TIMx == TIM8) {
+		RCC->APB2ENR |= RCC_APB2ENR_TIM8EN;
+	}
+#endif
+#ifdef TIM9
+	if (TIMx == TIM9) {
+		RCC->APB2ENR |= RCC_APB2ENR_TIM9EN;
+	}
+#endif
+#ifdef TIM10
+	if (TIMx == TIM10) {
+		RCC->APB2ENR |= RCC_APB2ENR_TIM10EN;
+	}
+#endif
+#ifdef TIM11
+	if (TIMx == TIM11) {
+		RCC->APB2ENR |= RCC_APB2ENR_TIM11EN;
+	}
+#endif
+#ifdef TIM12
+	if (TIMx == TIM12) {
+		RCC->APB1ENR |= RCC_APB1ENR_TIM12EN;
+	}
+#endif
+#ifdef TIM13
+	if (TIMx == TIM13) {
+		RCC->APB1ENR |= RCC_APB1ENR_TIM13EN;
+	}
+#endif
+#ifdef TIM14
+	if (TIMx == TIM14) {
+		RCC->APB1ENR |= RCC_APB1ENR_TIM14EN;
+	}
+#endif
+	
 	/* Return OK */
 	return TM_TIMER_PROPERTIES_Result_Ok;
 }
 
 TM_TIMER_PROPERTIES_Result_t TM_TIMER_PROPERTIES_DisableClock(TIM_TypeDef* TIMx) {
+#ifdef TIM1
 	if (TIMx == TIM1) {
-		RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM1, DISABLE);
-	} else if (TIMx == TIM2) {
-		RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, DISABLE);
-	} else if (TIMx == TIM3) {
-		RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, DISABLE);
-	} else if (TIMx == TIM4) {
-		RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, DISABLE);
-	} else if (TIMx == TIM5) {
-		RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM5, DISABLE);
-	} else if (TIMx == TIM6) {
-		RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM6, DISABLE);
-	} else if (TIMx == TIM7) {
-		RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM7, DISABLE);
-	} else if (TIMx == TIM8) {
-		RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM8, DISABLE);
-	} else if (TIMx == TIM9) {
-		RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM9, DISABLE);
-	} else if (TIMx == TIM10) {
-		RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM10, DISABLE);
-	} else if (TIMx == TIM11) {
-		RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM11, DISABLE);
-	} else if (TIMx == TIM12) {
-		RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM12, DISABLE);
-	} else if (TIMx == TIM13) {
-		RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM13, DISABLE);
-	} else if (TIMx == TIM14) {
-		RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM14, DISABLE);
+		RCC->APB2ENR &= ~RCC_APB2ENR_TIM1EN;
 	}
+#endif
+#ifdef TIM2
+	if (TIMx == TIM2) {
+		RCC->APB1ENR &= ~RCC_APB1ENR_TIM2EN;
+	}
+#endif
+#ifdef TIM3
+	if (TIMx == TIM3) {
+		RCC->APB1ENR &= ~RCC_APB1ENR_TIM3EN;
+	}
+#endif
+#ifdef TIM4
+	if (TIMx == TIM4) {
+		RCC->APB1ENR &= ~RCC_APB1ENR_TIM4EN;
+	}
+#endif
+#ifdef TIM5
+	if (TIMx == TIM5) {
+		RCC->APB1ENR &= ~RCC_APB1ENR_TIM5EN;
+	}
+#endif
+#ifdef TIM6
+	if (TIMx == TIM6) {
+		RCC->APB1ENR &= ~RCC_APB1ENR_TIM6EN;
+	}
+#endif
+#ifdef TIM7
+	if (TIMx == TIM7) {
+		RCC->APB1ENR &= ~RCC_APB1ENR_TIM7EN;
+	}
+#endif
+#ifdef TIM8
+	if (TIMx == TIM8) {
+		RCC->APB2ENR &= ~RCC_APB2ENR_TIM8EN;
+	}
+#endif
+#ifdef TIM9
+	if (TIMx == TIM9) {
+		RCC->APB2ENR &= ~RCC_APB2ENR_TIM9EN;
+	}
+#endif
+#ifdef TIM10
+	if (TIMx == TIM10) {
+		RCC->APB2ENR &= ~RCC_APB2ENR_TIM10EN;
+	}
+#endif
+#ifdef TIM11
+	if (TIMx == TIM11) {
+		RCC->APB2ENR &= ~RCC_APB2ENR_TIM11EN;
+	}
+#endif
+#ifdef TIM12
+	if (TIMx == TIM12) {
+		RCC->APB1ENR &= ~RCC_APB1ENR_TIM12EN;
+	}
+#endif
+#ifdef TIM13
+	if (TIMx == TIM13) {
+		RCC->APB1ENR &= ~RCC_APB1ENR_TIM13EN;
+	}
+#endif
+#ifdef TIM14
+	if (TIMx == TIM14) {
+		RCC->APB1ENR &= ~RCC_APB1ENR_TIM14EN;
+	}
+#endif
+	
 	/* Return OK */
 	return TM_TIMER_PROPERTIES_Result_Ok;
 }

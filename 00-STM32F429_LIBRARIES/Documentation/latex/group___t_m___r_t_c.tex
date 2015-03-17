@@ -1,0 +1,94 @@
+\hypertarget{group___t_m___r_t_c}{}\subsection{T\+M\+\_\+\+R\+T\+C}
+\label{group___t_m___r_t_c}\index{T\+M\+\_\+\+R\+T\+C@{T\+M\+\_\+\+R\+T\+C}}
+
+
+R\+T\+C Library for S\+T\+M32\+F4xx devices -\/ \href{http://stm32f4-discovery.com/2014/07/library-19-use-internal-rtc-on-stm32f4xx-devices/}{\tt http\+://stm32f4-\/discovery.\+com/2014/07/library-\/19-\/use-\/internal-\/rtc-\/on-\/stm32f4xx-\/devices/}.  
+
+
+\subsubsection*{Modules}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{group___t_m___r_t_c___macros}{T\+M\+\_\+\+R\+T\+C\+\_\+\+Macros}
+\begin{DoxyCompactList}\small\item\em Library defines. \end{DoxyCompactList}\item 
+\hyperlink{group___t_m___r_t_c___typedefs}{T\+M\+\_\+\+R\+T\+C\+\_\+\+Typedefs}
+\begin{DoxyCompactList}\small\item\em Library Typedefs. \end{DoxyCompactList}\item 
+\hyperlink{group___t_m___r_t_c___functions}{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions}
+\begin{DoxyCompactList}\small\item\em Library Functions. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+R\+T\+C Library for S\+T\+M32\+F4xx devices -\/ \href{http://stm32f4-discovery.com/2014/07/library-19-use-internal-rtc-on-stm32f4xx-devices/}{\tt http\+://stm32f4-\/discovery.\+com/2014/07/library-\/19-\/use-\/internal-\/rtc-\/on-\/stm32f4xx-\/devices/}. 
+
+\begin{DoxyParagraph}{Pinout for R\+T\+C external 32768\+Hz crystal}
+
+\end{DoxyParagraph}
+\begin{DoxyVerb} STM32F4XX  Oscillator   Description
+    
+ PC14       OSC1         Oscillator terminal 1
+ PC15       OSC2         Oscillator terminal 2
+\end{DoxyVerb}
+
+
+\begin{DoxyParagraph}{Changelog}
+
+\end{DoxyParagraph}
+\begin{DoxyVerb} Version 1.7
+   - March 15, 2015
+   - Added support for read/write data to/from RTC backup registers
+
+ Version 1.6
+   - February 17, 2015
+   - Created typedef TM_RTC_t from TM_RTC_Time_t
+
+ Version 1.5
+   - December 21, 2014
+   - Added 2 new functions:
+      TM_RTC_GetDaysInMonth: returns number of days in specific month and year
+      TM_RTC_GetDaysInYear: returns number of days in specific year
+
+ Version 1.4
+   - December 21, 2014
+   - TM_RTC_SetDateTime now checks for valid input data before save
+   - Added function TM_RTC_SetDateTimeString which allows you to set your
+      date and time using string format
+
+ Version 1.3
+   - December 03, 2014
+   - Fixed bug when reading month in december was set to 0
+
+ Version 1.2
+   - October 27, 2014
+   - Added support to read subseconds from time
+   - This can be used for stopwatch
+
+ Version 1.1
+   - October 20, 2014
+   - Added support for Alarm set
+
+ Version 1.0.2
+   - September 24, 2014
+   - TM_RTC_RequestHandler function has now "__weak" attribute to prevent errors,
+      if function is not implemented by user
+
+ Version 1.0.1
+   - September 01, 2014
+   - Date to unix convert bug fix
+
+ Version 1.0
+   - First release
+\end{DoxyVerb}
+
+
+\begin{DoxyParagraph}{Dependencies}
+
+\end{DoxyParagraph}
+\begin{DoxyVerb} - STM32F4xx
+ - STM32F4xx RCC
+ - STM32F4xx RTC
+ - STM32F4xx PWR
+ - STM32F4xx EXTI
+ - MISC
+ - defines.h
+ - attributes.h
+\end{DoxyVerb}
+ 

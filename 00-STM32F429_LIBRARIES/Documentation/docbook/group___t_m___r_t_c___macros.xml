@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="group___t_m___r_t_c___macros">
+    <title>TM_RTC_Macros</title>
+
+<para>Library defines. </para>
+        <section>
+            <title>Detailed Description</title>
+        </section>
+        <section>
+            <title>Macros</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___r_t_c___macros_1gad70ee12b5ccfad457097f59f53fde8c5">RTC_SYNC_PREDIV</link> 0x3FF</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___r_t_c___macros_1ga7b5190a28d7fb1b660e11d4330bd4628">RTC_ASYNC_PREDIV</link> 0x1F</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___r_t_c___macros_1gae0125126025e8561260aa9653193e6e1">RTC_PRIORITY</link> 0x04</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___r_t_c___macros_1ga1b0f4a75390529efcb33839d52e5d381">RTC_WAKEUP_SUBPRIORITY</link> 0x00</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___r_t_c___macros_1gaa1d615a11548dafb1f4fbc47e69d3a9b">RTC_ALARM_SUBPRIORITY</link> 0x01</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Macro Definition Documentation</title>
+        </section>
+</section>

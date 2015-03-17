@@ -1,0 +1,65 @@
+.TH "TM_GPIO" 3 "Wed Mar 18 2015" "Version v1.0.0" "TM STM32F4xx Libraries" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TM_GPIO \- TM_GPIO
+.PP
+TM GPIO Library for STM32F4xx - http://stm32f4-discovery.com/2015/03/library-53-gpio-for-stm32f4\&.  
+
+.SS "Modules"
+
+.in +1c
+.ti -1c
+.RI "\fBTM_GPIO_Macros\fP"
+.br
+.RI "\fIGPIO Library macros\&. \fP"
+.ti -1c
+.RI "\fBTM_GPIO_Typedefs\fP"
+.br
+.RI "\fIGPIO Typedefs used for GPIO library for initialization purposes\&. \fP"
+.ti -1c
+.RI "\fBTM_GPIO_Functions\fP"
+.br
+.RI "\fIGPIO Functions\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+TM GPIO Library for STM32F4xx - http://stm32f4-discovery.com/2015/03/library-53-gpio-for-stm32f4\&. 
+
+GPIO library can be used for GPIO pins\&. It features fast initialization methods as well pin input/output methods\&.
+.PP
+\fBChangelog\fP
+.RS 4
+
+.RE
+.PP
+.PP
+.nf
+  Version 1.2
+    - March 10, 2015
+    - Added functions TM_GPIO_SetPinAsInput and TM_GPIO_SetPinAsOutput
+    - Added functions TM_GPIO_GetPortSource and TM_GPIO_GetPinSource
+
+  Version 1.1
+    - March 09, 2015
+    - Added function to deinit pin. Pin is set to analog input which allows lowest current consumption
+.fi
+.PP
+.PP
+\fBDependencies\fP
+.RS 4
+
+.RE
+.PP
+.PP
+.nf
+ - STM32F4xx
+ - STM32F4xx RCC
+ - STM32F4xx GPIO
+ - defines.h
+.fi
+.PP
+ 
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for TM STM32F4xx Libraries from the source code\&.

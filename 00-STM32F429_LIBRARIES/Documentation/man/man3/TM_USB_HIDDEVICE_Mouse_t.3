@@ -1,0 +1,55 @@
+.TH "TM_USB_HIDDEVICE_Mouse_t" 3 "Wed Mar 18 2015" "Version v1.0.0" "TM STM32F4xx Libraries" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TM_USB_HIDDEVICE_Mouse_t \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <tm_stm32f4_usb_hid_device\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "TM_USB_HIDDEVICE_Button_t \fBLeftButton\fP"
+.br
+.ti -1c
+.RI "TM_USB_HIDDEVICE_Button_t \fBRightButton\fP"
+.br
+.ti -1c
+.RI "TM_USB_HIDDEVICE_Button_t \fBMiddleButton\fP"
+.br
+.ti -1c
+.RI "int8_t \fBXAxis\fP"
+.br
+.ti -1c
+.RI "int8_t \fBYAxis\fP"
+.br
+.ti -1c
+.RI "int8_t \fBWheel\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Mouse struct, to work with mouse
+.PP
+Parameters:
+.IP "\(bu" 2
+TM_USB_HIDDEVICE_Button_t LeftButton: Detect if left button is pressed and set this to send command to computer
+.IP "\(bu" 2
+TM_USB_HIDDEVICE_Button_t RightButton: Detect if right button is pressed and set this to send command to computer
+.IP "\(bu" 2
+TM_USB_HIDDEVICE_Button_t MiddleButton: Detect if middle button is pressed and set this to send command to computer
+.IP "\(bu" 2
+int8_t XAxis: Cursor's X axis relative movement
+.IP "\(bu" 2
+int8_t YAxis: Cursor's Y axis relative movement
+.IP "\(bu" 2
+int8_t Wheel: Wheel movement 
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for TM STM32F4xx Libraries from the source code\&.

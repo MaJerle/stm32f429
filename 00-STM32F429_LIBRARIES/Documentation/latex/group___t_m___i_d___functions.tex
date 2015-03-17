@@ -1,0 +1,203 @@
+\hypertarget{group___t_m___i_d___functions}{}\subsection{T\+M\+\_\+\+I\+D\+\_\+\+Functions}
+\label{group___t_m___i_d___functions}\index{T\+M\+\_\+\+I\+D\+\_\+\+Functions@{T\+M\+\_\+\+I\+D\+\_\+\+Functions}}
+
+
+Library Functions.  
+
+
+\subsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group___t_m___i_d___functions_gaef7e65dccfaeaacc4f20c74da8e76d8b}{T\+M\+\_\+\+I\+D\+\_\+\+Get\+Signature}()~(($\ast$(uint16\+\_\+t $\ast$) (\hyperlink{group___t_m___i_d___macros_gad1789f86a55e8fc3c2c486dacf3df1a6}{I\+D\+\_\+\+D\+B\+G\+M\+C\+U\+\_\+\+I\+D\+C\+O\+D\+E})) \& 0x0\+F\+F\+F)
+\begin{DoxyCompactList}\small\item\em Get S\+T\+M32\+F4xx device signature. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___t_m___i_d___functions_ga9a440783a624ab0a8411dcb36e8a415d}{T\+M\+\_\+\+I\+D\+\_\+\+Get\+Revision}()~($\ast$(uint16\+\_\+t $\ast$) (\hyperlink{group___t_m___i_d___macros_gad1789f86a55e8fc3c2c486dacf3df1a6}{I\+D\+\_\+\+D\+B\+G\+M\+C\+U\+\_\+\+I\+D\+C\+O\+D\+E} + 2))
+\begin{DoxyCompactList}\small\item\em Get S\+T\+M32\+F4xx device revision. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___t_m___i_d___functions_ga6dfec7d283e405bbf6ca0593f9b6d43e}{T\+M\+\_\+\+I\+D\+\_\+\+Get\+Flash\+Size}()~($\ast$(uint16\+\_\+t $\ast$) (\hyperlink{group___t_m___i_d___macros_ga95fa471f6d9518cbf3228a2a6d69f5a7}{I\+D\+\_\+\+F\+L\+A\+S\+H\+\_\+\+A\+D\+D\+R\+E\+S\+S}))
+\begin{DoxyCompactList}\small\item\em Get S\+T\+M32\+F4xx device\textquotesingle{}s flash size in kilo bytes. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___t_m___i_d___functions_ga66bf1f5c5762fb380eef6f00875faf3d}{T\+M\+\_\+\+I\+D\+\_\+\+Get\+Unique8}(x)~((x $>$= 0 \&\& x $<$ 12) ? ($\ast$(uint8\+\_\+t $\ast$) (\hyperlink{group___t_m___i_d___macros_ga631ce0b70a16d3e71bb83d4ad88552c2}{I\+D\+\_\+\+U\+N\+I\+Q\+U\+E\+\_\+\+A\+D\+D\+R\+E\+S\+S} + (x))) \+: 0)
+\begin{DoxyCompactList}\small\item\em Get unique I\+D number in 8-\/bit format. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___t_m___i_d___functions_gaf8c268973e3725a676c8aadc54ba1404}{T\+M\+\_\+\+I\+D\+\_\+\+Get\+Unique16}(x)~((x $>$= 0 \&\& x $<$ 6) ? ($\ast$(uint16\+\_\+t $\ast$) (\hyperlink{group___t_m___i_d___macros_ga631ce0b70a16d3e71bb83d4ad88552c2}{I\+D\+\_\+\+U\+N\+I\+Q\+U\+E\+\_\+\+A\+D\+D\+R\+E\+S\+S} + 2 $\ast$ (x))) \+: 0)
+\begin{DoxyCompactList}\small\item\em Get unique I\+D number in 16-\/bit format. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___t_m___i_d___functions_gaff28a006a5aea7048bafd765c6dc9f3e}{T\+M\+\_\+\+I\+D\+\_\+\+Get\+Unique32}(x)~((x $>$= 0 \&\& x $<$ 3) ? ($\ast$(uint32\+\_\+t $\ast$) (\hyperlink{group___t_m___i_d___macros_ga631ce0b70a16d3e71bb83d4ad88552c2}{I\+D\+\_\+\+U\+N\+I\+Q\+U\+E\+\_\+\+A\+D\+D\+R\+E\+S\+S} + 4 $\ast$ (x))) \+: 0)
+\begin{DoxyCompactList}\small\item\em Get unique I\+D number in 32-\/bit format. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+Library Functions. 
+
+
+
+\subsubsection{Macro Definition Documentation}
+\hypertarget{group___t_m___i_d___functions_ga6dfec7d283e405bbf6ca0593f9b6d43e}{}\index{T\+M\+\_\+\+I\+D\+\_\+\+Functions@{T\+M\+\_\+\+I\+D\+\_\+\+Functions}!T\+M\+\_\+\+I\+D\+\_\+\+Get\+Flash\+Size@{T\+M\+\_\+\+I\+D\+\_\+\+Get\+Flash\+Size}}
+\index{T\+M\+\_\+\+I\+D\+\_\+\+Get\+Flash\+Size@{T\+M\+\_\+\+I\+D\+\_\+\+Get\+Flash\+Size}!T\+M\+\_\+\+I\+D\+\_\+\+Functions@{T\+M\+\_\+\+I\+D\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+I\+D\+\_\+\+Get\+Flash\+Size}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+M\+\_\+\+I\+D\+\_\+\+Get\+Flash\+Size(
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)~($\ast$(uint16\+\_\+t $\ast$) ({\bf I\+D\+\_\+\+F\+L\+A\+S\+H\+\_\+\+A\+D\+D\+R\+E\+S\+S}))}\label{group___t_m___i_d___functions_ga6dfec7d283e405bbf6ca0593f9b6d43e}
+
+
+Get S\+T\+M32\+F4xx device\textquotesingle{}s flash size in kilo bytes. 
+
+\begin{DoxyNote}{Note}
+Defined as macro to get maximal response time 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Flash} & size in kilo bytes \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___i_d___functions_ga9a440783a624ab0a8411dcb36e8a415d}{}\index{T\+M\+\_\+\+I\+D\+\_\+\+Functions@{T\+M\+\_\+\+I\+D\+\_\+\+Functions}!T\+M\+\_\+\+I\+D\+\_\+\+Get\+Revision@{T\+M\+\_\+\+I\+D\+\_\+\+Get\+Revision}}
+\index{T\+M\+\_\+\+I\+D\+\_\+\+Get\+Revision@{T\+M\+\_\+\+I\+D\+\_\+\+Get\+Revision}!T\+M\+\_\+\+I\+D\+\_\+\+Functions@{T\+M\+\_\+\+I\+D\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+I\+D\+\_\+\+Get\+Revision}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+M\+\_\+\+I\+D\+\_\+\+Get\+Revision(
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)~($\ast$(uint16\+\_\+t $\ast$) ({\bf I\+D\+\_\+\+D\+B\+G\+M\+C\+U\+\_\+\+I\+D\+C\+O\+D\+E} + 2))}\label{group___t_m___i_d___functions_ga9a440783a624ab0a8411dcb36e8a415d}
+
+
+Get S\+T\+M32\+F4xx device revision. 
+
+\begin{DoxyNote}{Note}
+Defined as macro to get maximal response time 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Device} & revision value
+\begin{DoxyItemize}
+\item 0x1000\+: Revision A
+\item 0x1001\+: Revision Z
+\item 0x1003\+: Revision Y
+\item 0x1007\+: Revision 1
+\item 0x2001\+: Revision 3 
+\end{DoxyItemize}\\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___i_d___functions_gaef7e65dccfaeaacc4f20c74da8e76d8b}{}\index{T\+M\+\_\+\+I\+D\+\_\+\+Functions@{T\+M\+\_\+\+I\+D\+\_\+\+Functions}!T\+M\+\_\+\+I\+D\+\_\+\+Get\+Signature@{T\+M\+\_\+\+I\+D\+\_\+\+Get\+Signature}}
+\index{T\+M\+\_\+\+I\+D\+\_\+\+Get\+Signature@{T\+M\+\_\+\+I\+D\+\_\+\+Get\+Signature}!T\+M\+\_\+\+I\+D\+\_\+\+Functions@{T\+M\+\_\+\+I\+D\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+I\+D\+\_\+\+Get\+Signature}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+M\+\_\+\+I\+D\+\_\+\+Get\+Signature(
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)~(($\ast$(uint16\+\_\+t $\ast$) ({\bf I\+D\+\_\+\+D\+B\+G\+M\+C\+U\+\_\+\+I\+D\+C\+O\+D\+E})) \& 0x0\+F\+F\+F)}\label{group___t_m___i_d___functions_gaef7e65dccfaeaacc4f20c74da8e76d8b}
+
+
+Get S\+T\+M32\+F4xx device signature. 
+
+\begin{DoxyNote}{Note}
+Defined as macro to get maximal response time 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Device} & signature, bits 11\+:0 are valid, 15\+:12 are always 0.
+\begin{DoxyItemize}
+\item 0x0413\+: S\+T\+M32\+F405xx/07xx and S\+T\+M32\+F415xx/17xx)
+\item 0x0419\+: S\+T\+M32\+F42xxx and S\+T\+M32\+F43xxx
+\item 0x0423\+: S\+T\+M32\+F401x\+B/\+C
+\item 0x0433\+: S\+T\+M32\+F401x\+D/\+E
+\item 0x0431\+: S\+T\+M32\+F411x\+C/\+E 
+\end{DoxyItemize}\\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___i_d___functions_gaf8c268973e3725a676c8aadc54ba1404}{}\index{T\+M\+\_\+\+I\+D\+\_\+\+Functions@{T\+M\+\_\+\+I\+D\+\_\+\+Functions}!T\+M\+\_\+\+I\+D\+\_\+\+Get\+Unique16@{T\+M\+\_\+\+I\+D\+\_\+\+Get\+Unique16}}
+\index{T\+M\+\_\+\+I\+D\+\_\+\+Get\+Unique16@{T\+M\+\_\+\+I\+D\+\_\+\+Get\+Unique16}!T\+M\+\_\+\+I\+D\+\_\+\+Functions@{T\+M\+\_\+\+I\+D\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+I\+D\+\_\+\+Get\+Unique16}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+M\+\_\+\+I\+D\+\_\+\+Get\+Unique16(
+\begin{DoxyParamCaption}
+\item[{}]{x}
+\end{DoxyParamCaption}
+)~((x $>$= 0 \&\& x $<$ 6) ? ($\ast$(uint16\+\_\+t $\ast$) ({\bf I\+D\+\_\+\+U\+N\+I\+Q\+U\+E\+\_\+\+A\+D\+D\+R\+E\+S\+S} + 2 $\ast$ (x))) \+: 0)}\label{group___t_m___i_d___functions_gaf8c268973e3725a676c8aadc54ba1404}
+
+
+Get unique I\+D number in 16-\/bit format. 
+
+\begin{DoxyNote}{Note}
+S\+T\+M32\+F4xx has 96bits long unique I\+D, so 6 2-\/bytes values are available for read in 16-\/bit format 
+
+Defined as macro to get maximal response time 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Byte number\+: specify which part of 16 bits you want to read
+\begin{DoxyItemize}
+\item Values between 0 and 5 are allowed 
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Unique} & I\+D address \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___i_d___functions_gaff28a006a5aea7048bafd765c6dc9f3e}{}\index{T\+M\+\_\+\+I\+D\+\_\+\+Functions@{T\+M\+\_\+\+I\+D\+\_\+\+Functions}!T\+M\+\_\+\+I\+D\+\_\+\+Get\+Unique32@{T\+M\+\_\+\+I\+D\+\_\+\+Get\+Unique32}}
+\index{T\+M\+\_\+\+I\+D\+\_\+\+Get\+Unique32@{T\+M\+\_\+\+I\+D\+\_\+\+Get\+Unique32}!T\+M\+\_\+\+I\+D\+\_\+\+Functions@{T\+M\+\_\+\+I\+D\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+I\+D\+\_\+\+Get\+Unique32}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+M\+\_\+\+I\+D\+\_\+\+Get\+Unique32(
+\begin{DoxyParamCaption}
+\item[{}]{x}
+\end{DoxyParamCaption}
+)~((x $>$= 0 \&\& x $<$ 3) ? ($\ast$(uint32\+\_\+t $\ast$) ({\bf I\+D\+\_\+\+U\+N\+I\+Q\+U\+E\+\_\+\+A\+D\+D\+R\+E\+S\+S} + 4 $\ast$ (x))) \+: 0)}\label{group___t_m___i_d___functions_gaff28a006a5aea7048bafd765c6dc9f3e}
+
+
+Get unique I\+D number in 32-\/bit format. 
+
+\begin{DoxyNote}{Note}
+S\+T\+M32\+F4xx has 96bits long unique I\+D, so 3 4-\/bytes values are available for read in 32-\/bit format 
+
+Defined as macro to get maximal response time 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Byte number\+: specify which part of 16 bits you want to read
+\begin{DoxyItemize}
+\item Values between 0 and 2 are allowed 
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Unique} & I\+D address \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___i_d___functions_ga66bf1f5c5762fb380eef6f00875faf3d}{}\index{T\+M\+\_\+\+I\+D\+\_\+\+Functions@{T\+M\+\_\+\+I\+D\+\_\+\+Functions}!T\+M\+\_\+\+I\+D\+\_\+\+Get\+Unique8@{T\+M\+\_\+\+I\+D\+\_\+\+Get\+Unique8}}
+\index{T\+M\+\_\+\+I\+D\+\_\+\+Get\+Unique8@{T\+M\+\_\+\+I\+D\+\_\+\+Get\+Unique8}!T\+M\+\_\+\+I\+D\+\_\+\+Functions@{T\+M\+\_\+\+I\+D\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+I\+D\+\_\+\+Get\+Unique8}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+M\+\_\+\+I\+D\+\_\+\+Get\+Unique8(
+\begin{DoxyParamCaption}
+\item[{}]{x}
+\end{DoxyParamCaption}
+)~((x $>$= 0 \&\& x $<$ 12) ? ($\ast$(uint8\+\_\+t $\ast$) ({\bf I\+D\+\_\+\+U\+N\+I\+Q\+U\+E\+\_\+\+A\+D\+D\+R\+E\+S\+S} + (x))) \+: 0)}\label{group___t_m___i_d___functions_ga66bf1f5c5762fb380eef6f00875faf3d}
+
+
+Get unique I\+D number in 8-\/bit format. 
+
+\begin{DoxyNote}{Note}
+S\+T\+M32\+F4xx has 96bits long unique I\+D, so 12 bytes are available for read in 8-\/bit format 
+
+Defined as macro to get maximal response time 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Byte number\+: specify which part of 8 bits you want to read
+\begin{DoxyItemize}
+\item Values between 0 and 11 are allowed 
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Unique} & I\+D address \\
+\hline
+\end{DoxyRetVals}

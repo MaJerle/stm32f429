@@ -1,0 +1,56 @@
+\hypertarget{struct_t_m___u_s_b___v_c_p___settings__t}{}\subsection{T\+M\+\_\+\+U\+S\+B\+\_\+\+V\+C\+P\+\_\+\+Settings\+\_\+t Struct Reference}
+\label{struct_t_m___u_s_b___v_c_p___settings__t}\index{T\+M\+\_\+\+U\+S\+B\+\_\+\+V\+C\+P\+\_\+\+Settings\+\_\+t@{T\+M\+\_\+\+U\+S\+B\+\_\+\+V\+C\+P\+\_\+\+Settings\+\_\+t}}
+
+
+{\ttfamily \#include $<$tm\+\_\+stm32f4\+\_\+usb\+\_\+vcp.\+h$>$}
+
+\subsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{struct_t_m___u_s_b___v_c_p___settings__t_a4b42a9c4d0df587a25246854bb990bc8}{}uint32\+\_\+t {\bfseries Baudrate}\label{struct_t_m___u_s_b___v_c_p___settings__t_a4b42a9c4d0df587a25246854bb990bc8}
+
+\item 
+\hypertarget{struct_t_m___u_s_b___v_c_p___settings__t_a5cc284a76ce5888fbd57ff1dc73f0a58}{}uint8\+\_\+t {\bfseries Stopbits}\label{struct_t_m___u_s_b___v_c_p___settings__t_a5cc284a76ce5888fbd57ff1dc73f0a58}
+
+\item 
+\hypertarget{struct_t_m___u_s_b___v_c_p___settings__t_aa6b79ada9acb03c5272a9a2cca188e94}{}uint8\+\_\+t {\bfseries Data\+Bits}\label{struct_t_m___u_s_b___v_c_p___settings__t_aa6b79ada9acb03c5272a9a2cca188e94}
+
+\item 
+\hypertarget{struct_t_m___u_s_b___v_c_p___settings__t_a9423654bdf9e9df7c82c71a571b24f13}{}uint8\+\_\+t {\bfseries Parity}\label{struct_t_m___u_s_b___v_c_p___settings__t_a9423654bdf9e9df7c82c71a571b24f13}
+
+\item 
+\hypertarget{struct_t_m___u_s_b___v_c_p___settings__t_a2eac8b0986a23ca6c08c077476ed4775}{}uint8\+\_\+t {\bfseries Changed}\label{struct_t_m___u_s_b___v_c_p___settings__t_a2eac8b0986a23ca6c08c077476ed4775}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+Structure for U\+S\+A\+R\+T if you are working U\+S\+B/\+U\+A\+R\+T converter with S\+T\+M32\+F4xx
+
+Parameters\+:
+\begin{DoxyItemize}
+\item uint32\+\_\+t Baudrate\+: Baudrate, which is set by user on terminal. Value is number of bits per second, for example\+: 115200
+\item uint8\+\_\+t Stopbits\+: Stop bits, which is set by user on terminal. Values\+:
+\begin{DoxyItemize}
+\item 0\+: 1 stop bit
+\item 1\+: 1.\+5 stop bits
+\item 2\+: 2 stop bits
+\end{DoxyItemize}
+\item uint8\+\_\+t Data\+Bits\+: Data bits, which is set by user on terminal. Values\+:
+\begin{DoxyItemize}
+\item 5\+: 5 data bits
+\item 6\+: 6 data bits
+\item 7\+: 7 data bits
+\item 8\+: 8 data bits
+\item 9\+: 9 data bits
+\end{DoxyItemize}
+\item uint8\+\_\+t Parity\+: Parity, which is set by user on terminal. Values\+:
+\begin{DoxyItemize}
+\item 0\+: No parity
+\item 1\+: Odd parity
+\item 2\+: Even parity
+\item 3\+: Mark parity
+\item 4\+: Space parity
+\end{DoxyItemize}
+\item uint8\+\_\+t Changed\+: When you check for settings in my function, this will be set to 1 if user has changed parameters, so you can reinitialize U\+S\+A\+R\+T peripheral if you need to. 
+\end{DoxyItemize}

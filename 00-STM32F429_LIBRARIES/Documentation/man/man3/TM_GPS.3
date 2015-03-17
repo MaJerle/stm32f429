@@ -1,0 +1,175 @@
+.TH "TM_GPS" 3 "Wed Mar 18 2015" "Version v1.0.0" "TM STM32F4xx Libraries" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TM_GPS \- TM_GPS
+.PP
+GPS NMEA standard data parser for STM32F4xx devices - http://stm32f4-discovery.com/2014/08/library-27-gps-stm32f4-devices/\&.  
+
+.SS "Modules"
+
+.in +1c
+.ti -1c
+.RI "\fBTM_GPS_Macros\fP"
+.br
+.RI "\fILibrary private defines without any sense for USER\&. \fP"
+.ti -1c
+.RI "\fBTM_GPS_Typedefs\fP"
+.br
+.RI "\fILibrary Typedefs\&. \fP"
+.ti -1c
+.RI "\fBTM_GPS_Functions\fP"
+.br
+.RI "\fILibrary Functions\&. \fP"
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBGPS_USART\fP   USART1"
+.br
+.ti -1c
+.RI "#define \fBGPS_USART_PINSPACK\fP   \fBTM_USART_PinsPack_2\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+GPS NMEA standard data parser for STM32F4xx devices - http://stm32f4-discovery.com/2014/08/library-27-gps-stm32f4-devices/\&. 
+
+This library parses response from GPS module, in NMEA statements format\&.
+.PP
+For more, how GPS returns data, look at link below:
+.PP
+http://aprs.gids.nl/nmea/
+.PP
+There is a lot of possible sentences, which can be returned from GPS\&. This library uses only 4\&. But some GPS don't returns all of this 4 sentences, so I made a possibility to disable them\&.
+.PP
+By default, these statements are in use and supported:
+.IP "\(bu" 2
+GPGGA: Global Positioning System Fix Data
+.IP "  \(bu" 4
+Latitude
+.IP "  \(bu" 4
+Longitude
+.IP "  \(bu" 4
+Altitude
+.IP "  \(bu" 4
+Fix
+.IP "  \(bu" 4
+Satellites in use
+.IP "  \(bu" 4
+Time
+.PP
+
+.IP "\(bu" 2
+GPRMC: Recommended minimum specific GPS/Transit data
+.IP "  \(bu" 4
+Date
+.IP "  \(bu" 4
+Speed
+.IP "  \(bu" 4
+Validity
+.IP "  \(bu" 4
+Direction
+.PP
+
+.IP "\(bu" 2
+GPGSA: GPS DOP and Active Satellites
+.IP "  \(bu" 4
+HDOP
+.IP "  \(bu" 4
+VDOP
+.IP "  \(bu" 4
+PDOP
+.IP "  \(bu" 4
+FixMode
+.IP "  \(bu" 4
+Id's of satellites in use
+.PP
+
+.IP "\(bu" 2
+GPGSV: GPS Satellites in view
+.IP "  \(bu" 4
+Satellites in view
+.PP
+
+.PP
+.PP
+By default, each of this data has to be detected in order to get 'VALID' data\&. If your GPS does not return any of this statement, you can disable option\&. If you disable any of statements, then you will loose data, corresponding to statement\&.
+.PP
+Add lines below in your defines\&.h file and uncomment your settings 
+.PP
+.nf
+//Disable GPGGA statement
+#define GPS_DISABLE_GPGGA
+//Disable GPRMC statement
+#define GPS_DISABLE_GPRMC 
+//Disable GPGSA statement
+#define GPS_DISABLE_GPGSA
+//Disable GPGSV statement
+#define GPS_DISABLE_GPGSV
+
+.fi
+.PP
+ 
+.PP
+\fBPinout\fP
+.RS 4
+
+.RE
+.PP
+To communicate with GPS, USART is commonly used\&. By default, my library uses USART1, but if you want your own USARTx, add lines below in your defines\&.h file:
+.PP
+.PP
+.nf
+#define GPS_USART               USART1
+#define GPS_USART_PINSPACK      TM_USART_PinsPack_2
+.fi
+.PP
+.PP
+With default pinout:
+.PP
+STM32F4xx TX = PB6
+.br
+ STM32F4xx RX = PB7
+.PP
+\fBNote:\fP
+.RS 4
+Connect GPS's TX to STM32F4xx's RX and vice versa\&.
+.RE
+.PP
+\fBChangelog\fP
+.RS 4
+
+.RE
+.PP
+.PP
+.nf
+ Version 1.1
+   - August 22, 2014
+   - Added support for calculating distance between 2 coordinates and bearing in degrees
+
+  Version 1.0
+   - First release
+.fi
+.PP
+.PP
+\fBDependencies\fP
+.RS 4
+
+.RE
+.PP
+.PP
+.nf
+ - STM32F4xx
+ - STM32F4xx RCC
+ - defines.h
+ - TM USART
+ - defines.h
+ - math.h
+.fi
+.PP
+ 
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for TM STM32F4xx Libraries from the source code\&.

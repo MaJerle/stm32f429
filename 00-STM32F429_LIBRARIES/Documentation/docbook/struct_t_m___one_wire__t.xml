@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="struct_t_m___one_wire__t">
+<title>TM_OneWire_t struct Reference</title>
+<para>
+    <programlisting>#include <link linkend="tm__stm32f4__onewire_8h">&lt;tm_stm32f4_onewire.h&gt;</link></programlisting>
+</para>
+        <section>
+            <title>Data Fields</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>GPIO_TypeDef * GPIOx</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint16_t GPIO_Pin</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint8_t LastDiscrepancy</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint8_t LastFamilyDiscrepancy</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint8_t LastDeviceFlag</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint8_t ROM_NO[8]</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <simplesect>
+            <title>Detailed Description</title>
+
+<para>OneWire working struct</para>
+
+<para>Parameters:<itemizedlist>
+<listitem>
+<para>GPIO_TypeDef* GPIOx: GPIOx port to be used for I/O functions</para>
+</listitem><listitem>
+<para>uint16_t GPIO_Pin: GPIO Pin to be used for I/O functions</para>
+</listitem><listitem>
+<para>uint8_t LastDiscrepancy: Search private</para>
+</listitem><listitem>
+<para>uint8_t LastFamilyDiscrepancy: Search private</para>
+</listitem><listitem>
+<para>uint8_t LastDeviceFlag: Search private</para>
+</listitem><listitem>
+<para>uint8_t ROM_NO[8]: 8-bytes address of last search device </para>
+</listitem></itemizedlist>
+</para>
+                <para>Definition at line 105 of file tm_stm32f4_onewire.h</para>
+                <para>The Documentation for this struct was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_onewire.h</para></listitem></itemizedlist></para>
+        </simplesect>
+        <section>
+            <title>Field Documentation</title>
+        </section>
+</section>

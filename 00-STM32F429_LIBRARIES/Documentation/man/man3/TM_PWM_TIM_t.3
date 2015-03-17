@@ -1,0 +1,52 @@
+.TH "TM_PWM_TIM_t" 3 "Wed Mar 18 2015" "Version v1.0.0" "TM STM32F4xx Libraries" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TM_PWM_TIM_t \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <tm_stm32f4_pwm\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "TIM_TypeDef * \fBTIM\fP"
+.br
+.ti -1c
+.RI "uint32_t \fBPeriod\fP"
+.br
+.ti -1c
+.RI "uint32_t \fBPrescaler\fP"
+.br
+.ti -1c
+.RI "uint32_t \fBFrequency\fP"
+.br
+.ti -1c
+.RI "uint32_t \fBMicros\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Timer data
+.PP
+Parameters:
+.IP "\(bu" 2
+TIM_TypeDef* TIM: Pointer to timer used
+.IP "  \(bu" 4
+uint32_t Period: Period used, set on initialization for PWM
+.IP "  \(bu" 4
+uint32_t Prescaler: Prescaler used for PWM frequency
+.IP "  \(bu" 4
+uint32_t Frequency: PWM frequency used
+.IP "  \(bu" 4
+uint32_t Micros: Microseconds used for one period\&. This is not useful in large pwm frequency, but good for controlling servos or similar, Where you need exact time of pulse high 
+.PP
+
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for TM STM32F4xx Libraries from the source code\&.

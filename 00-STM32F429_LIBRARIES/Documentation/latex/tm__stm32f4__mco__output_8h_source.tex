@@ -1,0 +1,54 @@
+\hypertarget{tm__stm32f4__mco__output_8h_source}{}\subsection{tm\+\_\+stm32f4\+\_\+mco\+\_\+output.\+h}
+
+\begin{DoxyCode}
+00001 
+00050 \textcolor{preprocessor}{#ifndef TM\_MCOOUTPUT\_H}
+00051 \textcolor{preprocessor}{#define TM\_MCOOUTPUT\_H 110}
+00052 
+00053 \textcolor{comment}{/* C++ detection */}
+00054 \textcolor{preprocessor}{#ifdef \_\_cplusplus}
+00055 \textcolor{keyword}{extern} C \{
+00056 \textcolor{preprocessor}{#endif}
+00057 
+00068 \textcolor{preprocessor}{#include "stm32f4xx.h"}
+00069 \textcolor{preprocessor}{#include "stm32f4xx\_rcc.h"}
+00070 \textcolor{preprocessor}{#include "defines.h"}
+00071 \textcolor{preprocessor}{#include "tm\_stm32f4\_gpio.h"}
+00072 
+00088 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+00089     TM\_MCOOUTPUT\_Prescaler\_1,
+00090     TM\_MCOOUTPUT\_Prescaler\_2,
+00091     TM\_MCOOUTPUT\_Prescaler\_3,
+00092     TM\_MCOOUTPUT\_Prescaler\_4,
+00093     TM\_MCOOUTPUT\_Prescaler\_5
+00094 \} TM\_MCOOUTPUT\_Prescaler\_t;
+00095 
+00109 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+00110     TM\_MCOOUTPUT1\_Source\_HSI,
+00111     TM\_MCOOUTPUT1\_Source\_HSE,
+00112     TM\_MCOOUTPUT1\_Source\_LSE,
+00113     TM\_MCOOUTPUT1\_Source\_PLLCLK
+00114 \} TM\_MCOOUTPUT1\_Source\_t;
+00115 
+00130 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+00131     TM\_MCOOUTPUT2\_Source\_SYSCLK,
+00132     TM\_MCOOUTPUT2\_Source\_PLLI2SCLK,
+00133     TM\_MCOOUTPUT2\_Source\_HSE,
+00134     TM\_MCOOUTPUT2\_Source\_PLLCLK
+00135 \} TM\_MCOOUTPUT2\_Source\_t;
+00136 
+00142 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_MCOOUTPUT\_InitMCO1(\textcolor{keywordtype}{void});
+00143 
+00155 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_MCOOUTPUT\_SetOutput1(TM\_MCOOUTPUT1\_Source\_t Source, TM\_MCOOUTPUT\_Prescaler\_t Prescaler);
+00156 
+00162 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_MCOOUTPUT\_InitMCO2(\textcolor{keywordtype}{void});
+00163  
+00175 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_MCOOUTPUT\_SetOutput2(TM\_MCOOUTPUT2\_Source\_t Source, TM\_MCOOUTPUT\_Prescaler\_t Prescaler);
+00176 
+00177 \textcolor{comment}{/* C++ detection */}
+00178 \textcolor{preprocessor}{#ifdef \_\_cplusplus}
+00179 \}
+00180 \textcolor{preprocessor}{#endif}
+00181 
+00182 \textcolor{preprocessor}{#endif}
+\end{DoxyCode}

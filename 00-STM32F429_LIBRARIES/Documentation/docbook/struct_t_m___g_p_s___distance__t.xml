@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="struct_t_m___g_p_s___distance__t">
+<title>TM_GPS_Distance_t struct Reference</title>
+<para>
+    <programlisting>#include <link linkend="tm__stm32f4__gps_8h">&lt;tm_stm32f4_gps.h&gt;</link></programlisting>
+</para>
+        <section>
+            <title>Data Fields</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>float Latitude1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>float Longitude1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>float Latitude2</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>float Longitude2</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>float Distance</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>float Bearing</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+    <simplesect>
+
+<para>GPS Distance and bearing struct. </para>
+    </simplesect>
+        <section>
+            <title>Field Documentation</title>
+            <simplesect>
+                <title>float Latitude1</title>                
+<para>Latitude of starting point. </para>
+
+                <para>Definition at line 342 of file tm_stm32f4_gps.h</para>
+                <para>The Documentation for this struct was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_gps.h</para></listitem></itemizedlist></para>
+            </simplesect>
+            <simplesect>
+                <title>float Longitude1</title>                
+<para>Longitude of starting point. </para>
+
+                <para>Definition at line 343 of file tm_stm32f4_gps.h</para>
+                <para>The Documentation for this struct was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_gps.h</para></listitem></itemizedlist></para>
+            </simplesect>
+            <simplesect>
+                <title>float Latitude2</title>                
+<para>Latitude of ending point. </para>
+
+                <para>Definition at line 344 of file tm_stm32f4_gps.h</para>
+                <para>The Documentation for this struct was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_gps.h</para></listitem></itemizedlist></para>
+            </simplesect>
+            <simplesect>
+                <title>float Longitude2</title>                
+<para>Longitude of ending point. </para>
+
+                <para>Definition at line 345 of file tm_stm32f4_gps.h</para>
+                <para>The Documentation for this struct was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_gps.h</para></listitem></itemizedlist></para>
+            </simplesect>
+            <simplesect>
+                <title>float Distance</title>                
+<para>Distance between 2 points which will be calculated. </para>
+
+                <para>Definition at line 346 of file tm_stm32f4_gps.h</para>
+                <para>The Documentation for this struct was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_gps.h</para></listitem></itemizedlist></para>
+            </simplesect>
+            <simplesect>
+                <title>float Bearing</title>                
+<para>Bearing from start to stop point according to North. </para>
+
+                <para>Definition at line 347 of file tm_stm32f4_gps.h</para>
+                <para>The Documentation for this struct was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_gps.h</para></listitem></itemizedlist></para>
+            </simplesect>
+        </section>
+</section>

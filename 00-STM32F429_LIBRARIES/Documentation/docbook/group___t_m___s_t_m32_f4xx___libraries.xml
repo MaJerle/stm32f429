@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="group___t_m___s_t_m32_f4xx___libraries">
+    <title>TM_STM32F4xx_Libraries</title>
+        <section>
+            <title>Detailed Description</title>
+        </section>
+    <simplesect>
+        <title>Modules</title>
+    </simplesect>
+    <para>
+        <itemizedlist>
+            <listitem><para><link linkend="group___t_m___d_i_s_c_o">TM_DISCO</link></para></listitem>
+            <listitem><para><link linkend="group___t_m___g_p_i_o">TM_GPIO</link></para></listitem>
+            <listitem><para><link linkend="group___t_m___g_p_s">TM_GPS</link></para></listitem>
+            <listitem><para><link linkend="group___t_m___i_d">TM_ID</link></para></listitem>
+            <listitem><para><link linkend="group___t_m___l_i_b_n_a_m_e">TM_LIBNAME</link></para></listitem>
+            <listitem><para><link linkend="group___t_m___l_o_w_p_o_w_e_r">TM_LOWPOWER</link></para></listitem>
+            <listitem><para><link linkend="group___t_m___r_t_c">TM_RTC</link></para></listitem>
+            <listitem><para><link linkend="group___t_m___u_s_a_r_t">TM_USART</link></para></listitem>
+            <listitem><para><link linkend="group___t_m___w_a_t_c_h_d_o_g">TM_WATCHDOG</link></para></listitem>
+        </itemizedlist>
+    </para>
+<xi:include href="group___t_m___d_i_s_c_o.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+<xi:include href="group___t_m___g_p_i_o.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+<xi:include href="group___t_m___g_p_s.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+<xi:include href="group___t_m___i_d.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+<xi:include href="group___t_m___l_i_b_n_a_m_e.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+<xi:include href="group___t_m___l_o_w_p_o_w_e_r.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+<xi:include href="group___t_m___r_t_c.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+<xi:include href="group___t_m___u_s_a_r_t.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+<xi:include href="group___t_m___w_a_t_c_h_d_o_g.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+</section>

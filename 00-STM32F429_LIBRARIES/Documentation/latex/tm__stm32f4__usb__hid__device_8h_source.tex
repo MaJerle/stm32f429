@@ -1,0 +1,118 @@
+\hypertarget{tm__stm32f4__usb__hid__device_8h_source}{}\subsection{tm\+\_\+stm32f4\+\_\+usb\+\_\+hid\+\_\+device.\+h}
+
+\begin{DoxyCode}
+00001 
+00073 \textcolor{preprocessor}{#ifndef TM\_USB\_HIDDEVICE\_H}
+00074 \textcolor{preprocessor}{#define TM\_USB\_HIDDEVICE\_H 100}
+00075 
+00088 \textcolor{preprocessor}{#include "stm32f4xx.h"}
+00089 \textcolor{preprocessor}{#include "stm32f4xx\_rcc.h"}
+00090 \textcolor{preprocessor}{#include "stm32f4xx\_gpio.h"}
+00091 \textcolor{preprocessor}{#include "stm32f4xx\_exti.h"}
+00092 \textcolor{preprocessor}{#include "misc.h"}
+00093 \textcolor{preprocessor}{#include "defines.h"}
+00094 
+00095 \textcolor{preprocessor}{#include  "usbd\_hid\_core.h"}
+00096 \textcolor{preprocessor}{#include  "usbd\_usr.h"}
+00097 \textcolor{preprocessor}{#include  "usbd\_desc.h"}
+00098 
+00114 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+00115     TM\_USB\_HIDDEVICE\_Status\_LibraryNotInitialized,
+00116     TM\_USB\_HIDDEVICE\_Status\_Connected,
+00117     TM\_USB\_HIDDEVICE\_Status\_Disconnected,
+00118     TM\_USB\_HIDDEVICE\_Status\_IdleMode,
+00119     TM\_USB\_HIDDEVICE\_Status\_SuspendMode
+00120 \} TM\_USB\_HIDDEVICE\_Status\_t;
+00121 
+00131 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+00132     TM\_USB\_HIDDEVICE\_Button\_Released = 0,
+00133     TM\_USB\_HIDDEVICE\_Button\_Pressed = 1
+00134 \} TM\_USB\_HIDDEVICE\_Button\_t;
+00135 
+00145 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+00146     TM\_USB\_HIDDEVICE\_Gamepad\_Number\_1 = 0x03,
+00147     TM\_USB\_HIDDEVICE\_Gamepad\_Number\_2 = 0x04
+00148 \} TM\_USB\_HIDDEVICE\_Gamepad\_Number\_t;
+00149 
+\hypertarget{tm__stm32f4__usb__hid__device_8h_source_l00167}{}\hyperlink{struct_t_m___u_s_b___h_i_d_d_e_v_i_c_e___mouse__t}{00167} \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{
+00168     TM\_USB\_HIDDEVICE\_Button\_t LeftButton;
+00169     TM\_USB\_HIDDEVICE\_Button\_t RightButton;
+00170     TM\_USB\_HIDDEVICE\_Button\_t MiddleButton;
+00171     int8\_t XAxis;
+00172     int8\_t YAxis;
+00173     int8\_t Wheel;
+00174 \} \hyperlink{struct_t_m___u_s_b___h_i_d_d_e_v_i_c_e___mouse__t}{TM\_USB\_HIDDEVICE\_Mouse\_t};
+00175 
+\hypertarget{tm__stm32f4__usb__hid__device_8h_source_l00192}{}\hyperlink{struct_t_m___u_s_b___h_i_d_d_e_v_i_c_e___gamepad__t}{00192} \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{
+00193     TM\_USB\_HIDDEVICE\_Button\_t Button1;
+00194     TM\_USB\_HIDDEVICE\_Button\_t Button2;
+00195     TM\_USB\_HIDDEVICE\_Button\_t Button3;
+00196     TM\_USB\_HIDDEVICE\_Button\_t Button4;
+00197     TM\_USB\_HIDDEVICE\_Button\_t Button5;
+00198     TM\_USB\_HIDDEVICE\_Button\_t Button6;
+00199     TM\_USB\_HIDDEVICE\_Button\_t Button7;
+00200     TM\_USB\_HIDDEVICE\_Button\_t Button8;
+00201     TM\_USB\_HIDDEVICE\_Button\_t Button9;
+00202     TM\_USB\_HIDDEVICE\_Button\_t Button10;
+00203     TM\_USB\_HIDDEVICE\_Button\_t Button11;
+00204     TM\_USB\_HIDDEVICE\_Button\_t Button12;
+00205     TM\_USB\_HIDDEVICE\_Button\_t Button13;
+00206     TM\_USB\_HIDDEVICE\_Button\_t Button14;
+00207     TM\_USB\_HIDDEVICE\_Button\_t Button15;
+00208     TM\_USB\_HIDDEVICE\_Button\_t Button16;
+00209     int8\_t LeftXAxis;
+00210     int8\_t LeftYAxis;
+00211     int8\_t RightXAxis;
+00212     int8\_t RightYAxis;
+00213 \} \hyperlink{struct_t_m___u_s_b___h_i_d_d_e_v_i_c_e___gamepad__t}{TM\_USB\_HIDDEVICE\_Gamepad\_t};
+00214 
+\hypertarget{tm__stm32f4__usb__hid__device_8h_source_l00245}{}\hyperlink{struct_t_m___u_s_b___h_i_d_d_e_v_i_c_e___keyboard__t}{00245} \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{
+00246     TM\_USB\_HIDDEVICE\_Button\_t L\_CTRL;
+00247     TM\_USB\_HIDDEVICE\_Button\_t L\_ALT;
+00248     TM\_USB\_HIDDEVICE\_Button\_t L\_SHIFT;
+00249     TM\_USB\_HIDDEVICE\_Button\_t L\_GUI;
+00250     TM\_USB\_HIDDEVICE\_Button\_t R\_CTRL;
+00251     TM\_USB\_HIDDEVICE\_Button\_t R\_ALT;
+00252     TM\_USB\_HIDDEVICE\_Button\_t R\_SHIFT;
+00253     TM\_USB\_HIDDEVICE\_Button\_t R\_GUI;
+00254     uint8\_t Key1;
+00255     uint8\_t Key2;
+00256     uint8\_t Key3;
+00257     uint8\_t Key4;
+00258     uint8\_t Key5;
+00259     uint8\_t Key6;
+00260 \} \hyperlink{struct_t_m___u_s_b___h_i_d_d_e_v_i_c_e___keyboard__t}{TM\_USB\_HIDDEVICE\_Keyboard\_t};
+00261 
+00267 \textcolor{keyword}{extern} TM\_USB\_HIDDEVICE\_Status\_t TM\_USB\_HIDDEVICE\_Init(\textcolor{keywordtype}{void});
+00268 
+00275 \textcolor{keyword}{extern} TM\_USB\_HIDDEVICE\_Status\_t TM\_USB\_HIDDEVICE\_GetStatus(\textcolor{keywordtype}{void});
+00276 
+00288 \textcolor{keyword}{extern} TM\_USB\_HIDDEVICE\_Status\_t TM\_USB\_HIDDEVICE\_MouseStructInit(
+      \hyperlink{struct_t_m___u_s_b___h_i_d_d_e_v_i_c_e___mouse__t}{TM\_USB\_HIDDEVICE\_Mouse\_t}* Mouse\_Data);
+00289 
+00298 \textcolor{keyword}{extern} TM\_USB\_HIDDEVICE\_Status\_t TM\_USB\_HIDDEVICE\_MouseSend(
+      \hyperlink{struct_t_m___u_s_b___h_i_d_d_e_v_i_c_e___mouse__t}{TM\_USB\_HIDDEVICE\_Mouse\_t}* Mouse\_Data);
+00299 
+00306 \textcolor{keyword}{extern} TM\_USB\_HIDDEVICE\_Status\_t TM\_USB\_HIDDEVICE\_MouseReleaseAll(\textcolor{keywordtype}{void});
+00307 
+00319 \textcolor{keyword}{extern} TM\_USB\_HIDDEVICE\_Status\_t TM\_USB\_HIDDEVICE\_GamepadStructInit(
+      \hyperlink{struct_t_m___u_s_b___h_i_d_d_e_v_i_c_e___gamepad__t}{TM\_USB\_HIDDEVICE\_Gamepad\_t}* Gamepad\_Data);
+00320 
+00332 \textcolor{keyword}{extern} TM\_USB\_HIDDEVICE\_Status\_t TM\_USB\_HIDDEVICE\_GamepadSend(TM\_USB\_HIDDEVICE\_Gamepad\_Number\_t gamepad\_id,
+       \hyperlink{struct_t_m___u_s_b___h_i_d_d_e_v_i_c_e___gamepad__t}{TM\_USB\_HIDDEVICE\_Gamepad\_t}* Gamepad\_Data);
+00333 
+00345 \textcolor{keyword}{extern} TM\_USB\_HIDDEVICE\_Status\_t TM\_USB\_HIDDEVICE\_GamepadReleaseAll(TM\_USB\_HIDDEVICE\_Gamepad\_Number\_t 
+      gamepad\_id);
+00346 
+00356 \textcolor{keyword}{extern} TM\_USB\_HIDDEVICE\_Status\_t TM\_USB\_HIDDEVICE\_KeyboardStructInit(
+      \hyperlink{struct_t_m___u_s_b___h_i_d_d_e_v_i_c_e___keyboard__t}{TM\_USB\_HIDDEVICE\_Keyboard\_t}* Keyboard\_Data);
+00357 
+00367 \textcolor{keyword}{extern} TM\_USB\_HIDDEVICE\_Status\_t TM\_USB\_HIDDEVICE\_KeyboardSend(
+      \hyperlink{struct_t_m___u_s_b___h_i_d_d_e_v_i_c_e___keyboard__t}{TM\_USB\_HIDDEVICE\_Keyboard\_t}* Keyboard\_Data);
+00368 
+00376 \textcolor{keyword}{extern} TM\_USB\_HIDDEVICE\_Status\_t TM\_USB\_HIDDEVICE\_KeyboardReleaseAll(\textcolor{keywordtype}{void});
+00377 
+00389 \textcolor{keyword}{extern} TM\_USB\_HIDDEVICE\_Status\_t TM\_USB\_HIDDEVICE\_SendCustom(uint8\_t* buff, uint8\_t count);
+00390 
+00391 \textcolor{preprocessor}{#endif}
+\end{DoxyCode}

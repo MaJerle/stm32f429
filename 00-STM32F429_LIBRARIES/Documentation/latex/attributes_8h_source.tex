@@ -1,0 +1,19 @@
+\hypertarget{attributes_8h_source}{}\subsection{attributes.\+h}
+
+\begin{DoxyCode}
+00001 
+00031 \textcolor{preprocessor}{#ifndef TM\_ATTRIBUTES\_H}
+00032 \textcolor{preprocessor}{#define TM\_ATTRIBUTES\_H}
+00033 
+00034 \textcolor{comment}{/* Check for GNUC */}
+00035 \textcolor{preprocessor}{#if defined (\_\_GNUC\_\_)}
+00036 \textcolor{preprocessor}{    #ifndef \_\_weak      }
+00037 \textcolor{preprocessor}{        #define \_\_weak      \_\_attribute\_\_((weak))}
+00038 \textcolor{preprocessor}{    #endif  }\textcolor{comment}{/* Weak attribute */}\textcolor{preprocessor}{}
+00039 \textcolor{preprocessor}{    #ifndef \_\_packed    }
+00040 \textcolor{preprocessor}{        #define \_\_packed    \_\_attribute\_\_((\_\_packed\_\_))}
+00041 \textcolor{preprocessor}{    #endif  }\textcolor{comment}{/* Packed attribute */}\textcolor{preprocessor}{}
+00042 \textcolor{preprocessor}{#endif}
+00043 
+00044 \textcolor{preprocessor}{#endif}
+\end{DoxyCode}

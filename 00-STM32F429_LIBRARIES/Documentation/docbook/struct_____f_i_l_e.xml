@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="struct_____f_i_l_e">
+<title>__FILE struct Reference</title>
+<para>
+    <programlisting>#include <link linkend="tm__stm32f4__stdio_8h">&lt;tm_stm32f4_stdio.h&gt;</link></programlisting>
+</para>
+        <section>
+            <title>Data Fields</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int(* outputFuncPointer)(int, FILE *)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>int(* inputFuncPointer)(FILE *)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <simplesect>
+            <title>Detailed Description</title>
+
+<para>Library dependencies<itemizedlist>
+<listitem>
+<para>STM32F4xx</para>
+</listitem><listitem>
+<para>defines.h</para>
+</listitem><listitem>
+<para><link linkend="attributes_8h_source">attributes.h</link></para>
+</listitem><listitem>
+<para>stdio.h Includes File structure for stdio stream output</para>
+</listitem></itemizedlist>
+</para>
+
+<para>Parameters:<itemizedlist>
+<listitem>
+<para>int (*outputFuncPointer)(int, FILE *): Pointer to function to call when need to output data to stream</para>
+</listitem><listitem>
+<para>int (*inputFuncPointer)(FILE *): Pointer to function to call when trying to get data from stream </para>
+</listitem></itemizedlist>
+</para>
+                <para>Definition at line 75 of file tm_stm32f4_stdio.h</para>
+                <para>The Documentation for this struct was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_stdio.h</para></listitem></itemizedlist></para>
+        </simplesect>
+        <section>
+            <title>Field Documentation</title>
+        </section>
+</section>

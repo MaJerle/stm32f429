@@ -1,0 +1,369 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="group___t_m___u_s_a_r_t___macros">
+    <title>TM_USART_Macros</title>
+
+<para>USART default values for defines. </para>
+        <section>
+            <title>Detailed Description</title>
+
+<para>All values can be overwritten in your project&apos;s defines.h file.</para>
+
+<para>Do this only in case you know what are you doing. </para>
+        </section>
+        <section>
+            <title>Macros</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1ga7e44de65b9fb753b0d64ae79f315e87f">TM_USART_BUFFER_SIZE</link> 32</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1ga0eedcc6b2579cedb6c36074374275d6a">TM_USART1_BUFFER_SIZE</link> TM_USART_BUFFER_SIZE</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1gadb171554c7cfa7cce25234be3fda93b0">TM_USART2_BUFFER_SIZE</link> TM_USART_BUFFER_SIZE</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1ga4dca6522070228679cbaed4e505866f7">TM_USART3_BUFFER_SIZE</link> TM_USART_BUFFER_SIZE</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1ga0713514f69d9cd194b820687049492cc">TM_UART4_BUFFER_SIZE</link> TM_USART_BUFFER_SIZE</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1ga0ebb096752930479ef58785fd275a6a1">TM_UART5_BUFFER_SIZE</link> TM_USART_BUFFER_SIZE</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1ga2dde554a075683be3b7f3cd8585164fd">TM_USART6_BUFFER_SIZE</link> TM_USART_BUFFER_SIZE</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1ga372f26f3ec9e129b2ea80166d18e54c7">TM_UART7_BUFFER_SIZE</link> TM_USART_BUFFER_SIZE</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1ga9759f375f97bd993f479d66074ef3898">TM_UART8_BUFFER_SIZE</link> TM_USART_BUFFER_SIZE</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1ga755945ded748d88cf4aa74065ddc4c2f">TM_USART_NVIC_PRIORITY</link> 0x06</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1ga0f1d22ebda9b2c513d16001178fb1739">TM_USART1_HARDWARE_FLOW_CONTROL</link> USART_HardwareFlowControl_None</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1ga65e2e2b15d1b130bfa01638b32d1f0cc">TM_USART1_MODE</link> USART_Mode_Tx | USART_Mode_Rx</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1gad8d45571ec9fd839050d2829347783cf">TM_USART1_PARITY</link> USART_Parity_No</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1gaccdbd50b3ea6c51269e7dbf8e56acfe1">TM_USART1_STOP_BITS</link> USART_StopBits_1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1ga999b4d7386c9062c39f60bee7497edab">TM_USART1_WORD_LENGTH</link> USART_WordLength_8b</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1ga58875f6413583dc7ed57aaa7984f04e8">TM_USART2_HARDWARE_FLOW_CONTROL</link> USART_HardwareFlowControl_None</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1ga6c98a084d419d9f616856157e8e200e2">TM_USART2_MODE</link> USART_Mode_Tx | USART_Mode_Rx</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1gae23c8e55067614c84626275f5312b80a">TM_USART2_PARITY</link> USART_Parity_No</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1gad7d002cf3519611eaf9660a88aaedb0f">TM_USART2_STOP_BITS</link> USART_StopBits_1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1gaf2a5db99771132e35cd743c6af22669a">TM_USART2_WORD_LENGTH</link> USART_WordLength_8b</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1ga15ab9b416666fa4f28c794f9c5a8f63b">TM_USART3_HARDWARE_FLOW_CONTROL</link> USART_HardwareFlowControl_None</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1ga2c0149f9130a940b8e5efb17e25b6e6b">TM_USART3_MODE</link> USART_Mode_Tx | USART_Mode_Rx</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1gae0a6bcecdf11756e240c6eaff81d15b5">TM_USART3_PARITY</link> USART_Parity_No</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1gab29e2d1df4ed6808ca494f9eafddd3fa">TM_USART3_STOP_BITS</link> USART_StopBits_1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1ga8d838e618eed91bd82f937299ce94656">TM_USART3_WORD_LENGTH</link> USART_WordLength_8b</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1gab909a2a00beb7b60bfd89b03ce29ed63">TM_UART4_HARDWARE_FLOW_CONTROL</link> USART_HardwareFlowControl_None</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1gab965f7914474975c85cd58c8ab3790a9">TM_UART4_MODE</link> USART_Mode_Tx | USART_Mode_Rx</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1ga2fe6f1c08aaeb5dfda62a1fc4d25a4b3">TM_UART4_PARITY</link> USART_Parity_No</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1gaf592ce1e1bf24325c1571dfbfc2dfe7e">TM_UART4_STOP_BITS</link> USART_StopBits_1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1ga625f045d7946725cf75b3b4df514a0bc">TM_UART4_WORD_LENGTH</link> USART_WordLength_8b</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1gade5df316e8c6437a842e208402af4ff7">TM_UART5_HARDWARE_FLOW_CONTROL</link> USART_HardwareFlowControl_None</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1ga8f9345f41413ee4fa5f8bc9ea4c555cb">TM_UART5_MODE</link> USART_Mode_Tx | USART_Mode_Rx</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1ga6e59a1cf77450a0cb357511c7cc3d5af">TM_UART5_PARITY</link> USART_Parity_No</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1gabda89721e486231e845d2063b6ea0882">TM_UART5_STOP_BITS</link> USART_StopBits_1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1gabda3e3a3c2c18fedd557f1c576678548">TM_UART5_WORD_LENGTH</link> USART_WordLength_8b</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1gad47088c6f2f8a26f019eb8ba179ed845">TM_USART6_HARDWARE_FLOW_CONTROL</link> USART_HardwareFlowControl_None</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1ga867d0beae07b705e1868f52dbb40a738">TM_USART6_MODE</link> USART_Mode_Tx | USART_Mode_Rx</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1ga773f7b1e8c0fb7974fc5ac570d1a7021">TM_USART6_PARITY</link> USART_Parity_No</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1ga19c655d963df372ed1bd87eadc7b94d7">TM_USART6_STOP_BITS</link> USART_StopBits_1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1gaa2a2f929d7011024b463aa981a2a22a2">TM_USART6_WORD_LENGTH</link> USART_WordLength_8b</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1ga9425072e41c5de1d2002e8717b5b4b0c">TM_UART7_HARDWARE_FLOW_CONTROL</link> USART_HardwareFlowControl_None</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1ga3bab444d57399bf0249b6670aa0a34a7">TM_UART7_MODE</link> USART_Mode_Tx | USART_Mode_Rx</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1ga73ab88cc88367d48622c007037ec451b">TM_UART7_PARITY</link> USART_Parity_No</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1gad63f4ff54176c6e05afd3495489889de">TM_UART7_STOP_BITS</link> USART_StopBits_1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1gaf0983cdb6ed0fa4e2e0a82691a2621dd">TM_UART7_WORD_LENGTH</link> USART_WordLength_8b</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1ga31343b3a6e841e728b0558b8fd0c9750">TM_UART8_HARDWARE_FLOW_CONTROL</link> USART_HardwareFlowControl_None</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1ga5343e5612044e58f6753e4b27069421f">TM_UART8_MODE</link> USART_Mode_Tx | USART_Mode_Rx</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1ga499b2b7c365774aa62f865b301b46398">TM_UART8_PARITY</link> USART_Parity_No</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1gabe4111019b025cd6464d258177514268">TM_UART8_STOP_BITS</link> USART_StopBits_1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___u_s_a_r_t___macros_1ga455c66c19d322cf45f58508d1686eb6c">TM_UART8_WORD_LENGTH</link> USART_WordLength_8b</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Macro Definition Documentation</title>
+        </section>
+</section>

@@ -1,0 +1,334 @@
+\hypertarget{tm__stm32f4__ethernet_8h_source}{}\subsection{tm\+\_\+stm32f4\+\_\+ethernet.\+h}
+
+\begin{DoxyCode}
+00001 
+00075 \textcolor{preprocessor}{#ifndef TM\_ETHERNET\_H}
+00076 \textcolor{preprocessor}{#define TM\_ETHERNET\_H 100}
+00077 
+00078 \textcolor{comment}{/* C++ detection */}
+00079 \textcolor{preprocessor}{#ifdef \_\_cplusplus}
+00080 \textcolor{keyword}{extern} C \{
+00081 \textcolor{preprocessor}{#endif}
+00082 
+00098 \textcolor{preprocessor}{#include "stm32f4xx.h"}
+00099 \textcolor{preprocessor}{#include "stm32f4xx\_rcc.h"}
+00100 \textcolor{preprocessor}{#include "stm32f4xx\_gpio.h"}
+00101 \textcolor{preprocessor}{#include "defines.h"}
+00102 \textcolor{preprocessor}{#include "attributes.h"}
+00103 \textcolor{preprocessor}{#include "tm\_stm32f4\_delay.h"}
+00104 \textcolor{preprocessor}{#include "tm\_stm32f4\_gpio.h"}
+00105 
+00106 \textcolor{comment}{/* Ethernet based includes */}
+00107 \textcolor{preprocessor}{#include "stm32f4x7\_eth.h"}
+00108 \textcolor{preprocessor}{#include "stm32f4x7\_eth\_bsp.h"}
+00109 \textcolor{preprocessor}{#include "netconf.h"}
+00110 \textcolor{preprocessor}{#include "tcp\_echoclient.h"}
+00111 \textcolor{preprocessor}{#include "lwip/ip\_addr.h"}
+00112 \textcolor{preprocessor}{#include "lwip/dns.h"}
+00113 \textcolor{preprocessor}{#include "lwip/tcp.h"}
+00114 
+00115 \textcolor{comment}{/* C based includes */}
+00116 \textcolor{preprocessor}{#include "string.h"}
+00117 \textcolor{preprocessor}{#include "stdio.h"}
+00118 
+00119 \textcolor{comment}{/* Ethernet PHY used in your project */}
+00120 \textcolor{comment}{/* Default value is DP83848 */}
+00121 \textcolor{preprocessor}{#ifndef ETHERNET\_PHY}
+00122 \textcolor{preprocessor}{#define ETHERNET\_PHY                        0}
+00123 \textcolor{preprocessor}{#endif}
+00124 
+00125 \textcolor{comment}{/* Check for link status every 1000ms */}
+00126 \textcolor{preprocessor}{#ifndef LINK\_TIMER\_INTERVAL}
+00127 \textcolor{preprocessor}{#define LINK\_TIMER\_INTERVAL                 1000}
+00128 \textcolor{preprocessor}{#endif}
+00129 
+00130 \textcolor{comment}{/* Default server PORT used */}
+00131 \textcolor{preprocessor}{#ifndef ETHERNET\_SERVER\_PORT}
+00132 \textcolor{preprocessor}{#define ETHERNET\_SERVER\_PORT                80}
+00133 \textcolor{preprocessor}{#endif}
+00134 
+00135 \textcolor{comment}{/* Include server based options */}
+00136 \textcolor{preprocessor}{#include "httpd.h"}
+00137 \textcolor{preprocessor}{#include "fs.h"}
+00138 
+00139 \textcolor{comment}{/* MAC ADDRESS: MAC\_ADDR0:MAC\_ADDR1:MAC\_ADDR2:MAC\_ADDR3:MAC\_ADDR4:MAC\_ADDR5 */}
+00140 \textcolor{comment}{/* In case you want to use custom MAC, use parameter in init function */}
+00141 \textcolor{preprocessor}{#ifndef MAC\_ADDR0}
+00142 \textcolor{preprocessor}{#define MAC\_ADDR0                           0x06}
+00143 \textcolor{preprocessor}{#define MAC\_ADDR1                           0x05}
+00144 \textcolor{preprocessor}{#define MAC\_ADDR2                           0x04}
+00145 \textcolor{preprocessor}{#define MAC\_ADDR3                           0x03}
+00146 \textcolor{preprocessor}{#define MAC\_ADDR4                           0x02}
+00147 \textcolor{preprocessor}{#define MAC\_ADDR5                           0x01}
+00148 \textcolor{preprocessor}{#endif}
+00149 
+00150 \textcolor{comment}{/* Static IP ADDRESS: IP\_ADDR0.IP\_ADDR1.IP\_ADDR2.IP\_ADDR3 */}
+00151 \textcolor{comment}{/* Used in case DHCP is not used or response failed */}
+00152 \textcolor{comment}{/* In case you want to use custom IP, use parameter in init function */}
+00153 \textcolor{preprocessor}{#ifndef IP\_ADDR0}
+00154 \textcolor{preprocessor}{#define IP\_ADDR0                            192}
+00155 \textcolor{preprocessor}{#define IP\_ADDR1                            168}
+00156 \textcolor{preprocessor}{#define IP\_ADDR2                            0}
+00157 \textcolor{preprocessor}{#define IP\_ADDR3                            120}
+00158 \textcolor{preprocessor}{#endif}
+00159 
+00160 \textcolor{comment}{/* NETMASK */}
+00161 \textcolor{comment}{/* In case you want to use custom netmask, use parameter in init function */}
+00162 \textcolor{preprocessor}{#ifndef NETMASK\_ADDR0}
+00163 \textcolor{preprocessor}{#define NETMASK\_ADDR0                       255}
+00164 \textcolor{preprocessor}{#define NETMASK\_ADDR1                       255}
+00165 \textcolor{preprocessor}{#define NETMASK\_ADDR2                       255}
+00166 \textcolor{preprocessor}{#define NETMASK\_ADDR3                       0}
+00167 \textcolor{preprocessor}{#endif}
+00168 
+00169 \textcolor{comment}{/* Gateway Address */}
+00170 \textcolor{comment}{/* In case you want to use custom gateway, use parameter in init function */}
+00171 \textcolor{preprocessor}{#ifndef GW\_ADDR0}
+00172 \textcolor{preprocessor}{#define GW\_ADDR0                            192}
+00173 \textcolor{preprocessor}{#define GW\_ADDR1                            168}
+00174 \textcolor{preprocessor}{#define GW\_ADDR2                            0}
+00175 \textcolor{preprocessor}{#define GW\_ADDR3                            1}
+00176 \textcolor{preprocessor}{#endif}
+00177 
+00178 \textcolor{comment}{/* Device name which will be seen in router when requesting IP via DHCP */}
+00179 \textcolor{preprocessor}{#ifndef ETHERNET\_HOSTNAME\_DHCP}
+00180 \textcolor{preprocessor}{#define ETHERNET\_HOSTNAME\_DHCP              "TM-ETH-Device"}
+00181 \textcolor{preprocessor}{#endif}
+00182 
+00183 \textcolor{comment}{/* RMII mode by default */}
+00184 \textcolor{preprocessor}{#if !defined(ETHERNET\_MII\_MODE) && !defined(ETHERNET\_RMII\_MODE)}
+00185 \textcolor{preprocessor}{    #define ETHERNET\_RMII\_MODE}
+00186 \textcolor{preprocessor}{#endif}
+00187 
+00188 \textcolor{comment}{/* Buffer size for ethernet headers when requesting as client */}
+00189 \textcolor{comment}{/* Used for headers after you are connected to server, HTTP headers */}
+00190 \textcolor{comment}{/* Ex: GET / HTTP/1.1\(\backslash\)r\(\backslash\)n...etc */}
+00191 \textcolor{preprocessor}{#ifndef ETHERNET\_MAX\_HEADER\_SIZE}
+00192 \textcolor{preprocessor}{#define ETHERNET\_MAX\_HEADER\_SIZE            1024}
+00193 \textcolor{preprocessor}{#endif}
+00194 
+00195 \textcolor{comment}{/* Max connection string name when connection as client */}
+00196 \textcolor{comment}{/* This is also max domain name when using DNS request */}
+00197 \textcolor{preprocessor}{#ifndef ETHERNET\_MAX\_CONNECTION\_NAME}
+00198 \textcolor{preprocessor}{#define ETHERNET\_MAX\_CONNECTION\_NAME        100}
+00199 \textcolor{preprocessor}{#endif}
+00200 
+00201 \textcolor{comment}{/* Maximal number of opened files at a time as server */}
+00202 \textcolor{preprocessor}{#ifndef ETHERNET\_MAX\_OPEN\_FILES}
+00203 \textcolor{preprocessor}{#define ETHERNET\_MAX\_OPEN\_FILES             10}
+00204 \textcolor{preprocessor}{#endif}
+00205 
+00206 \textcolor{comment}{/* Maximal length for SSI tag used in HTML */}
+00207 \textcolor{preprocessor}{#ifndef ETHERNET\_SSI\_MAX\_TAG\_LEN}
+00208 \textcolor{preprocessor}{#define ETHERNET\_SSI\_MAX\_TAG\_LEN            32}
+00209 \textcolor{preprocessor}{#endif}
+00210 
+00211 \textcolor{comment}{/* Maximal buffer length for SSI tag insert text */}
+00212 \textcolor{comment}{/* Content of buffer will be replaced with SSI tag */}
+00213 \textcolor{preprocessor}{#ifndef ETHERNET\_SSI\_MAX\_TAG\_INSERT\_LEN}
+00214 \textcolor{preprocessor}{#define ETHERNET\_SSI\_MAX\_TAG\_INSERT\_LEN     512}
+00215 \textcolor{preprocessor}{#endif}
+00216 
+00217 \textcolor{comment}{/* Internal struct which should not be used by user */}
+\hypertarget{tm__stm32f4__ethernet_8h_source_l00218}{}\hyperlink{struct_t_m___e_t_h_e_r_n_e_t__t}{00218} \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{
+00219     uint8\_t ip\_addr[4];
+00220     uint8\_t mac\_addr[6];
+00221     uint8\_t netmask[4];
+00222     uint8\_t gateway[4];
+00223     uint8\_t staticip;
+00224     uint8\_t ip\_is\_set;
+00225     uint8\_t link\_is\_up;
+00226     uint32\_t ClientSuccessfullConnections, ClientConnections;
+00227     uint64\_t Client\_TX\_Bytes, Client\_RX\_Bytes;
+00228     uint32\_t Server\_Connections;
+00229     uint64\_t Server\_TX\_Bytes, Server\_RX\_Bytes;
+00230     uint8\_t server\_active;
+00231     uint16\_t server\_port;
+00232     uint8\_t speed\_100m;
+00233     uint8\_t full\_duplex;
+00234 \} \hyperlink{struct_t_m___e_t_h_e_r_n_e_t__t}{TM\_ETHERNET\_t};
+00235 \textcolor{keyword}{extern} \hyperlink{struct_t_m___e_t_h_e_r_n_e_t__t}{TM\_ETHERNET\_t} TM\_ETHERNET;
+00236 
+00237 \textcolor{comment}{/* Client protocol states */}
+00238 \textcolor{comment}{/* For private use */}
+00239 \textcolor{keyword}{typedef} \textcolor{keyword}{enum}  \{
+00240     CLIENT\_NOT\_CONNECTED = 0,
+00241     CLIENT\_CONNECTED,
+00242     CLIENT\_RECEIVED,
+00243     CLIENT\_CLOSING,
+00244 \} client\_states;
+00245 
+\hypertarget{tm__stm32f4__ethernet_8h_source_l00271}{}\hyperlink{struct_t_m___t_c_p_c_l_i_e_n_t__t}{00271} \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{
+00272     \textcolor{keywordtype}{char} name[ETHERNET\_MAX\_CONNECTION\_NAME];
+00273     uint8\_t active;
+00274     uint8\_t ip\_addr[4];
+00275     uint16\_t port;
+00276     uint8\_t headers\_done;
+00277     uint8\_t* active\_connections\_count;
+00278     \textcolor{keywordtype}{void}* user\_parameters;
+00279     \textcolor{comment}{/* Private use */}
+00280     \textcolor{keyword}{struct }tcp\_pcb* pcb;
+00281     client\_states state;
+00282     \textcolor{keyword}{struct }pbuf *p\_tx;
+00283 \} \hyperlink{struct_t_m___t_c_p_c_l_i_e_n_t__t}{TM\_TCPCLIENT\_t};
+00284 
+\hypertarget{tm__stm32f4__ethernet_8h_source_l00308}{}\hyperlink{struct_t_m___e_t_h_e_r_n_e_t_p_o_s_t__t}{00308} \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{
+00309     \textcolor{keywordtype}{void}* connection;
+00310     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* uri;
+00311     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* http\_request;
+00312     uint16\_t http\_request\_len;
+00313     \textcolor{keywordtype}{int} content\_len;
+00314     \textcolor{keywordtype}{char}* response\_uri;
+00315     uint16\_t response\_uri\_len;
+00316 \} \hyperlink{struct_t_m___e_t_h_e_r_n_e_t_p_o_s_t__t}{TM\_ETHERNETPOST\_t};
+00317 
+00335 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+00336     TM\_ETHERNET\_Result\_Ok = 0,
+00337     TM\_ETHERNET\_Result\_Error,
+00338     TM\_ETHERNET\_Result\_IPIsNotSetYet,
+00339     TM\_ETHERNET\_Result\_LinkIsDown,
+00340     TM\_ETHERNET\_Result\_NeedHardReset,
+00341     TM\_ETHERNET\_Result\_LibraryNotInitialized
+00342 \} TM\_ETHERNET\_Result\_t;
+00343 
+00344 \textcolor{comment}{/* Additional typedefs */}
+00345 \textcolor{comment}{/* User friendly typedef for SSI tags */}
+00346 \textcolor{keyword}{typedef} \textcolor{keyword}{const} \textcolor{keywordtype}{char} * TM\_ETHERNET\_SSI\_t;
+00347 \textcolor{comment}{/* User friendly typedef for CGI tags */}
+00362 \textcolor{keyword}{typedef} tCGI TM\_ETHERNET\_CGI\_t;
+00363 
+00364 \textcolor{comment}{/* Ethernet */}
+00393 \textcolor{keyword}{extern} TM\_ETHERNET\_Result\_t TM\_ETHERNET\_Init(uint8\_t* mac\_addr, uint8\_t* ip\_addr, uint8\_t* gateway, uint8\_t
+      * netmask);
+00394 
+00402 \textcolor{keyword}{extern} TM\_ETHERNET\_Result\_t TM\_ETHERNET\_Update(\textcolor{keywordtype}{void});
+00403 
+00414 \textcolor{keyword}{extern} TM\_ETHERNET\_Result\_t TM\_ETHERNET\_TimeUpdate(uint16\_t millis);
+00415 
+00423 \textcolor{keyword}{extern} TM\_ETHERNET\_Result\_t TM\_ETHERNET\_TestReady(\textcolor{keywordtype}{void});
+00424 
+00430 \textcolor{preprocessor}{#define TM\_ETHERNET\_IsIPStatic()            (TM\_ETHERNET.staticip)}
+00431 
+00437 \textcolor{preprocessor}{#define TM\_ETHERNET\_Is100M()                (TM\_ETHERNET.speed\_100m)}
+00438 
+00444 \textcolor{preprocessor}{#define TM\_ETHERNET\_IsFullDuplex()          (TM\_ETHERNET.full\_duplex)}
+00445 
+00455 \textcolor{preprocessor}{#define TM\_ETHERNET\_GetLocalIP(x)           (((x) >= 0 && (x) < 4) ? TM\_ETHERNET.ip\_addr[(x)] : 0)}
+00456 
+00466 \textcolor{preprocessor}{#define TM\_ETHERNET\_GetMACAddr(x)           (((x) >= 0 && (x) < 6) ? TM\_ETHERNET.mac\_addr[(x)] : 0)}
+00467 
+00477 \textcolor{preprocessor}{#define TM\_ETHERNET\_GetGateway(x)           (((x) >= 0 && (x) < 4) ? TM\_ETHERNET.gateway[(x)] : 0)}
+00478 
+00488 \textcolor{preprocessor}{#define TM\_ETHERNET\_GetNetmask(x)           (((x) >= 0 && (x) < 4) ? TM\_ETHERNET.netmask[(x)] : 0)}
+00489 
+00490 \textcolor{comment}{/* Server based functions */}
+00504 \textcolor{keyword}{extern} TM\_ETHERNET\_Result\_t TM\_ETHERNETSERVER\_Enable(uint16\_t server\_port);
+00505 
+00511 \textcolor{keyword}{extern} TM\_ETHERNET\_Result\_t TM\_ETHERNETSERVER\_Disable(\textcolor{keywordtype}{void});
+00512 
+00518 \textcolor{preprocessor}{#define TM\_ETHERNETSERVER\_Enabled()             (TM\_ETHERNET.server\_active)}
+00519 
+00525 \textcolor{preprocessor}{#define TM\_ETHERNETSERVER\_GetPortNumber()       (TM\_ETHERNET.server\_port)}
+00526 
+00532 \textcolor{preprocessor}{#define TM\_ETHERNETSERVER\_GetTXBytes()          (TM\_ETHERNET.Server\_TX\_Bytes)}
+00533 
+00539 \textcolor{preprocessor}{#define TM\_ETHERNETSERVER\_GetRXBytes()          (TM\_ETHERNET.Server\_RX\_Bytes)}
+00540 
+00546 \textcolor{preprocessor}{#define TM\_ETHERNETSERVER\_GetConnectionsCount() (TM\_ETHERNET.Server\_Connections)}
+00547 
+00566 \textcolor{keyword}{extern} TM\_ETHERNET\_Result\_t TM\_ETHERNETSERVER\_SetSSITags(TM\_ETHERNET\_SSI\_t* tags, uint16\_t number\_of\_tags);
+00567 
+00588 \textcolor{keyword}{extern} TM\_ETHERNET\_Result\_t TM\_ETHERNETSERVER\_SetCGIHandlers(\textcolor{keyword}{const} TM\_ETHERNET\_CGI\_t* cgis, uint16\_t 
+      number\_of\_handlers);
+00589 
+00590 \textcolor{comment}{/* Client based functions */}
+00613 \textcolor{keyword}{extern} TM\_ETHERNET\_Result\_t TM\_ETHERNETCLIENT\_Connect(\textcolor{keywordtype}{char}* conn\_name, uint8\_t ip1, uint8\_t ip2, uint8\_t 
+      ip3, uint8\_t ip4, uint16\_t port, \textcolor{keywordtype}{void}* user\_parameters);
+00614 
+00620 \textcolor{preprocessor}{#define TM\_ETHERNETCLIENT\_GetTXBytes()                      (TM\_ETHERNET.Client\_TX\_Bytes)}
+00621 
+00627 \textcolor{preprocessor}{#define TM\_ETHERNETCLIENT\_GetRXBytes()                      (TM\_ETHERNET.Client\_RX\_Bytes)}
+00628 
+00634 \textcolor{preprocessor}{#define TM\_ETHERNETCLIENT\_GetConnectionsCount()             (TM\_ETHERNET.ClientConnections)}
+00635 
+00641 \textcolor{preprocessor}{#define TM\_ETHERNETCLIENT\_GetSuccessfullConnectionsCount()  (TM\_ETHERNET.ClientSuccessfullConnections)}
+00642 
+00643 \textcolor{comment}{/* DNS */}
+00657 \textcolor{keyword}{extern} TM\_ETHERNET\_Result\_t TM\_ETHERNETDNS\_GetHostByName(\textcolor{keywordtype}{char}* host\_name);
+00658 
+00659 \textcolor{comment}{/* Ethernet based callbacks */}
+00680 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ETHERNET\_IPIsSetCallback(uint8\_t ip\_addr1, uint8\_t ip\_addr2, uint8\_t ip\_addr3, uint8\_t 
+      ip\_addr4, uint8\_t dhcp);
+00681 
+00691 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ETHERNET\_DHCPStartCallback(\textcolor{keywordtype}{void});
+00692 
+00703 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ETHERNET\_LinkIsDownCallback(\textcolor{keywordtype}{void});
+00704 
+00715 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ETHERNET\_LinkIsUpCallback(\textcolor{keywordtype}{void});
+00716 
+00717 \textcolor{comment}{/* System reset callback */}
+00732 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ETHERNET\_SystemResetCallback(\textcolor{keywordtype}{void});
+00733 
+00734 \textcolor{comment}{/* Ethernet client based callbacks */}
+00735 \textcolor{comment}{/* Callbacks for ethernet client */}
+00762 \textcolor{keyword}{extern} uint16\_t TM\_ETHERNETCLIENT\_CreateHeadersCallback(\hyperlink{struct_t_m___t_c_p_c_l_i_e_n_t__t}{TM\_TCPCLIENT\_t}* connection, \textcolor{keywordtype}{char}* 
+      buffer, uint16\_t buffer\_length);
+00763 
+00784 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ETHERNETCLIENT\_ReceiveDataCallback(\hyperlink{struct_t_m___t_c_p_c_l_i_e_n_t__t}{TM\_TCPCLIENT\_t}* connection, uint8\_t* buffer
+      , uint16\_t buffer\_length, uint16\_t total\_length);
+00785 
+00799 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ETHERNETCLIENT\_ConnectedCallback(\hyperlink{struct_t_m___t_c_p_c_l_i_e_n_t__t}{TM\_TCPCLIENT\_t}* connection);
+00800 
+00818 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ETHERNETCLIENT\_ConnectionClosedCallback(\hyperlink{struct_t_m___t_c_p_c_l_i_e_n_t__t}{TM\_TCPCLIENT\_t}* connection, uint8\_t 
+      success);
+00819 
+00834 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ETHERNETCLIENT\_ErrorCallback(\hyperlink{struct_t_m___t_c_p_c_l_i_e_n_t__t}{TM\_TCPCLIENT\_t}* connection);
+00835 
+00849 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ETHERNETCLIENT\_ConnectionStartedCallback(\hyperlink{struct_t_m___t_c_p_c_l_i_e_n_t__t}{TM\_TCPCLIENT\_t}* connection);
+00850 
+00851 \textcolor{comment}{/* DNS based callbacks */}
+00874 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ETHERNETDNS\_FoundCallback(\textcolor{keywordtype}{char}* host\_name, uint8\_t ip\_addr1, uint8\_t ip\_addr2, uint8\_t 
+      ip\_addr3, uint8\_t ip\_addr4);
+00875 
+00890 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ETHERNETDNS\_ErrorCallback(\textcolor{keywordtype}{char}* host\_name);
+00891 
+00892 \textcolor{comment}{/* Server based callbacks */}
+00910 \textcolor{keyword}{extern} uint16\_t TM\_ETHERNETSERVER\_SSICallback(\textcolor{keywordtype}{int} iIndex, \textcolor{keywordtype}{char} *pcInsert, \textcolor{keywordtype}{int} iInsertLen);
+00911 
+00930 \textcolor{keyword}{extern} uint8\_t TM\_ETHERNETSERVER\_ClientConnectedCallback(\textcolor{keyword}{struct} tcp\_pcb *pcb);
+00931 
+00939 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ETHERNETSERVER\_ClientDisconnectedCallback(\textcolor{keywordtype}{void});
+00940 
+00964 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} TM\_ETHERNETSERVER\_OpenFileCallback(\textcolor{keyword}{struct} fs\_file* file, \textcolor{keyword}{const} \textcolor{keywordtype}{char} *name);
+00965 
+00979 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ETHERNETSERVER\_CloseFileCallback(\textcolor{keyword}{struct} fs\_file* file);
+00980 
+00998 \textcolor{keyword}{extern} \textcolor{keywordtype}{int} TM\_ETHERNETSERVER\_ReadFileCallback(\textcolor{keyword}{struct} fs\_file* file, \textcolor{keywordtype}{char}* buffer, \textcolor{keywordtype}{int} count);
+00999 
+01026 \textcolor{keyword}{extern} uint8\_t TM\_ETHERNETSERVER\_PostRequestBeginCallback(\hyperlink{struct_t_m___e_t_h_e_r_n_e_t_p_o_s_t__t}{TM\_ETHERNETPOST\_t}* params);
+01027 
+01049 \textcolor{keyword}{extern} uint8\_t TM\_ETHERNETSERVER\_PostRequestReceiveDataCallback(
+      \hyperlink{struct_t_m___e_t_h_e_r_n_e_t_p_o_s_t__t}{TM\_ETHERNETPOST\_t}* params, \textcolor{keyword}{struct} pbuf* p);
+01050 
+01071 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ETHERNETSERVER\_PostRequestEndCallback(\textcolor{keywordtype}{void}* connection, \textcolor{keywordtype}{char}* response\_uri, u16\_t 
+      response\_uri\_len);
+01072 
+01088 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ETHERNETPHY\_CustomOptions(uint32\_t PHYAddress);
+01089 
+01099 \textcolor{keyword}{extern} uint8\_t TM\_ETHERNET\_InitPinsCallback(\textcolor{keywordtype}{void});
+01100 
+01101 \textcolor{comment}{/* Private functions which should not be called from user */}
+01102 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ETHERNET\_INT\_CustomOptions(uint32\_t PHYAddress);
+01103 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ETHERNET\_INT\_SetIPAddress(uint8\_t ip\_addr1, uint8\_t ip\_addr2, uint8\_t ip\_addr3, uint8\_t 
+      ip\_addr4, uint8\_t dhcp);
+01104 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ETHERNET\_INT\_LinkIsDownCallback(\textcolor{keywordtype}{void});
+01105 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ETHERNET\_INT\_LinkIsUpCallback(\textcolor{keywordtype}{void});
+01106 
+01107 \textcolor{comment}{/* C++ detection */}
+01108 \textcolor{preprocessor}{#ifdef \_\_cplusplus}
+01109 \}
+01110 \textcolor{preprocessor}{#endif}
+01111 
+01112 \textcolor{preprocessor}{#endif}
+01113 
+\end{DoxyCode}

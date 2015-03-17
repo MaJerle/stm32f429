@@ -1,0 +1,317 @@
+\hypertarget{group___t_m___d_i_s_c_o___functions}{}\subsection{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Functions}
+\label{group___t_m___d_i_s_c_o___functions}\index{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Functions@{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Functions}}
+
+
+Library Functions.  
+
+
+\subsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{group___t_m___d_i_s_c_o___functions_ga72aa66c1c0647cf3bbb3c2c069f1901a}{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Led\+On}(led)~\hyperlink{group___t_m___g_p_i_o___functions_gac5aa8fbc39ed67f47972097fb7c8d69d}{T\+M\+\_\+\+G\+P\+I\+O\+\_\+\+Set\+Pin\+High}(T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+L\+E\+D\+\_\+\+P\+O\+R\+T, (led))
+\begin{DoxyCompactList}\small\item\em Turn on L\+E\+D on board. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___t_m___d_i_s_c_o___functions_gab295e2ecb3dc81210a9af3f5281cae79}{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Led\+Off}(led)~\hyperlink{group___t_m___g_p_i_o___functions_gaccceda87ce348c73b43780fdfed048d3}{T\+M\+\_\+\+G\+P\+I\+O\+\_\+\+Set\+Pin\+Low}(T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+L\+E\+D\+\_\+\+P\+O\+R\+T, (led))
+\begin{DoxyCompactList}\small\item\em Turn off L\+E\+D on board. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___t_m___d_i_s_c_o___functions_gaacaee2ef25adf5ff2cc2be660b561d94}{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Led\+Toggle}(led)~\hyperlink{group___t_m___g_p_i_o___functions_ga92ef176c8195c54b326b3c7526b878b2}{T\+M\+\_\+\+G\+P\+I\+O\+\_\+\+Toggle\+Pin\+Value}(T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+L\+E\+D\+\_\+\+P\+O\+R\+T, (led))
+\begin{DoxyCompactList}\small\item\em Toggle L\+E\+D on board. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___t_m___d_i_s_c_o___functions_ga88ebf703816bec3e79e60fef9c469950}{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Led\+Is\+On}(led)~\hyperlink{group___t_m___g_p_i_o___functions_ga6402ec4503fa0f3380d3bdbb1d9510db}{T\+M\+\_\+\+G\+P\+I\+O\+\_\+\+Get\+Output\+Pin\+Value}(T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+L\+E\+D\+\_\+\+P\+O\+R\+T, (led))
+\begin{DoxyCompactList}\small\item\em Checks if led is on. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___t_m___d_i_s_c_o___functions_ga45b9e10ff16b153c3d26db3a23481623}{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Set\+Led}(led,  state)~((state) ? \hyperlink{group___t_m___d_i_s_c_o___functions_ga72aa66c1c0647cf3bbb3c2c069f1901a}{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Led\+On}(led)\+: \hyperlink{group___t_m___d_i_s_c_o___functions_gab295e2ecb3dc81210a9af3f5281cae79}{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Led\+Off}(led))
+\begin{DoxyCompactList}\small\item\em Set led value. \end{DoxyCompactList}\item 
+\#define \hyperlink{group___t_m___d_i_s_c_o___functions_ga02c997906998f75a6cd676810022f9b3}{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Button\+Pressed}()~((\hyperlink{group___t_m___g_p_i_o___functions_gacd91a02149d1f1bc648a3fe06648460d}{T\+M\+\_\+\+G\+P\+I\+O\+\_\+\+Get\+Input\+Pin\+Value}(T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+B\+U\+T\+T\+O\+N\+\_\+\+P\+O\+R\+T, T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+B\+U\+T\+T\+O\+N\+\_\+\+P\+I\+N) == 0) != T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+B\+U\+T\+T\+O\+N\+\_\+\+P\+R\+E\+S\+S\+E\+D)
+\end{DoxyCompactItemize}
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___t_m___d_i_s_c_o___functions_ga14630e30f567396ddc945c577d762ee1}{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Led\+Init} (void)
+\begin{DoxyCompactList}\small\item\em Configures L\+E\+D pins as outputs. \end{DoxyCompactList}\item 
+void \hyperlink{group___t_m___d_i_s_c_o___functions_gabe5d286b45c36b96b3eb4df0e5b9cfde}{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Button\+Init} (void)
+\begin{DoxyCompactList}\small\item\em Configures Button pin as input. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{group___t_m___d_i_s_c_o___functions_ga24330bb47f3ed88ae841054a8023cd2a}{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Button\+On\+Pressed} (void)
+\begin{DoxyCompactList}\small\item\em Check if button was pressed now, but was not already pressed before. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{group___t_m___d_i_s_c_o___functions_ga3b6eee495f312c38eefaa90c40ccff5a}{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Button\+On\+Released} (void)
+\begin{DoxyCompactList}\small\item\em Check if button was released now, but was already pressed before. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+Library Functions. 
+
+
+
+\subsubsection{Macro Definition Documentation}
+\hypertarget{group___t_m___d_i_s_c_o___functions_ga02c997906998f75a6cd676810022f9b3}{}\index{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Functions@{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Functions}!T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Button\+Pressed@{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Button\+Pressed}}
+\index{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Button\+Pressed@{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Button\+Pressed}!T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Functions@{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Button\+Pressed}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Button\+Pressed(
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)~(({\bf T\+M\+\_\+\+G\+P\+I\+O\+\_\+\+Get\+Input\+Pin\+Value}(T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+B\+U\+T\+T\+O\+N\+\_\+\+P\+O\+R\+T, T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+B\+U\+T\+T\+O\+N\+\_\+\+P\+I\+N) == 0) != T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+B\+U\+T\+T\+O\+N\+\_\+\+P\+R\+E\+S\+S\+E\+D)}\label{group___t_m___d_i_s_c_o___functions_ga02c997906998f75a6cd676810022f9b3}
+
+\begin{DoxyParams}{Parameters}
+{\em Checks} & if user button is pressed \\
+\hline
+{\em None} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Button} & status
+\begin{DoxyItemize}
+\item 0\+: Button is not pressed
+\item $>$ 0\+: Button is pressed 
+\end{DoxyItemize}\\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___d_i_s_c_o___functions_ga88ebf703816bec3e79e60fef9c469950}{}\index{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Functions@{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Functions}!T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Led\+Is\+On@{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Led\+Is\+On}}
+\index{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Led\+Is\+On@{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Led\+Is\+On}!T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Functions@{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Led\+Is\+On}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Led\+Is\+On(
+\begin{DoxyParamCaption}
+\item[{}]{led}
+\end{DoxyParamCaption}
+)~{\bf T\+M\+\_\+\+G\+P\+I\+O\+\_\+\+Get\+Output\+Pin\+Value}(T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+L\+E\+D\+\_\+\+P\+O\+R\+T, (led))}\label{group___t_m___d_i_s_c_o___functions_ga88ebf703816bec3e79e60fef9c469950}
+
+
+Checks if led is on. 
+
+\begin{DoxyNote}{Note}
+S\+T\+M32\+F4x9-\/\+Eval board uses inverse logic for leds 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em led} & Led you want to checking \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 1} & if led is on or 0 if not \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___d_i_s_c_o___functions_gab295e2ecb3dc81210a9af3f5281cae79}{}\index{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Functions@{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Functions}!T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Led\+Off@{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Led\+Off}}
+\index{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Led\+Off@{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Led\+Off}!T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Functions@{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Led\+Off}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Led\+Off(
+\begin{DoxyParamCaption}
+\item[{}]{led}
+\end{DoxyParamCaption}
+)~{\bf T\+M\+\_\+\+G\+P\+I\+O\+\_\+\+Set\+Pin\+Low}(T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+L\+E\+D\+\_\+\+P\+O\+R\+T, (led))}\label{group___t_m___d_i_s_c_o___functions_gab295e2ecb3dc81210a9af3f5281cae79}
+
+
+Turn off L\+E\+D on board. 
+
+\begin{DoxyNote}{Note}
+S\+T\+M32\+F4x9-\/\+Eval board uses inverse logic for leds 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em led} & L\+E\+D you want to turn off
+\begin{DoxyItemize}
+\item L\+E\+D\+\_\+\+R\+E\+D\+: Red led
+\item L\+E\+D\+\_\+\+G\+R\+E\+E\+N\+: Green led
+\item L\+E\+D\+\_\+\+B\+L\+U\+E\+: Blue led
+\item L\+E\+D\+\_\+\+O\+R\+A\+N\+G\+E\+: Orange led
+\item L\+E\+D\+\_\+\+A\+L\+L\+: All leds 
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___d_i_s_c_o___functions_ga72aa66c1c0647cf3bbb3c2c069f1901a}{}\index{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Functions@{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Functions}!T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Led\+On@{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Led\+On}}
+\index{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Led\+On@{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Led\+On}!T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Functions@{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Led\+On}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Led\+On(
+\begin{DoxyParamCaption}
+\item[{}]{led}
+\end{DoxyParamCaption}
+)~{\bf T\+M\+\_\+\+G\+P\+I\+O\+\_\+\+Set\+Pin\+High}(T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+L\+E\+D\+\_\+\+P\+O\+R\+T, (led))}\label{group___t_m___d_i_s_c_o___functions_ga72aa66c1c0647cf3bbb3c2c069f1901a}
+
+
+Turn on L\+E\+D on board. 
+
+\begin{DoxyNote}{Note}
+S\+T\+M32\+F4x9-\/\+Eval board uses inverse logic for leds 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em led} & L\+E\+D you want to turn on
+\begin{DoxyItemize}
+\item L\+E\+D\+\_\+\+R\+E\+D\+: Red led
+\item L\+E\+D\+\_\+\+G\+R\+E\+E\+N\+: Green led
+\item L\+E\+D\+\_\+\+B\+L\+U\+E\+: Blue led
+\item L\+E\+D\+\_\+\+O\+R\+A\+N\+G\+E\+: Orange led
+\item L\+E\+D\+\_\+\+A\+L\+L\+: All leds 
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___d_i_s_c_o___functions_gaacaee2ef25adf5ff2cc2be660b561d94}{}\index{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Functions@{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Functions}!T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Led\+Toggle@{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Led\+Toggle}}
+\index{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Led\+Toggle@{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Led\+Toggle}!T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Functions@{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Led\+Toggle}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Led\+Toggle(
+\begin{DoxyParamCaption}
+\item[{}]{led}
+\end{DoxyParamCaption}
+)~{\bf T\+M\+\_\+\+G\+P\+I\+O\+\_\+\+Toggle\+Pin\+Value}(T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+L\+E\+D\+\_\+\+P\+O\+R\+T, (led))}\label{group___t_m___d_i_s_c_o___functions_gaacaee2ef25adf5ff2cc2be660b561d94}
+
+
+Toggle L\+E\+D on board. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em led} & L\+E\+D you want to toggle
+\begin{DoxyItemize}
+\item L\+E\+D\+\_\+\+R\+E\+D\+: Red led
+\item L\+E\+D\+\_\+\+G\+R\+E\+E\+N\+: Green led
+\item L\+E\+D\+\_\+\+B\+L\+U\+E\+: Blue led
+\item L\+E\+D\+\_\+\+O\+R\+A\+N\+G\+E\+: Orange led
+\item L\+E\+D\+\_\+\+A\+L\+L\+: All leds 
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___d_i_s_c_o___functions_ga45b9e10ff16b153c3d26db3a23481623}{}\index{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Functions@{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Functions}!T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Set\+Led@{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Set\+Led}}
+\index{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Set\+Led@{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Set\+Led}!T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Functions@{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Set\+Led}]{\setlength{\rightskip}{0pt plus 5cm}\#define T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Set\+Led(
+\begin{DoxyParamCaption}
+\item[{}]{led, }
+\item[{}]{state}
+\end{DoxyParamCaption}
+)~((state) ? {\bf T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Led\+On}(led)\+: {\bf T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Led\+Off}(led))}\label{group___t_m___d_i_s_c_o___functions_ga45b9e10ff16b153c3d26db3a23481623}
+
+
+Set led value. 
+
+Set led\textquotesingle{}s state with one function
+
+Parameters\+:
+\begin{DoxyItemize}
+\item uint16\+\_\+t led\+: L\+E\+D\+\_\+\+G\+R\+E\+E\+N L\+E\+D\+\_\+\+R\+E\+D L\+E\+D\+\_\+\+O\+R\+A\+N\+G\+E L\+E\+D\+\_\+\+B\+L\+U\+E
+\end{DoxyItemize}
+
+uint8\+\_\+t state\+: 0\+: led is off $>$ 0\+: led is on
+
+Return 1 if turned on, otherwise 0 
+\begin{DoxyParams}{Parameters}
+{\em led} & L\+E\+D you want to set value
+\begin{DoxyItemize}
+\item L\+E\+D\+\_\+\+R\+E\+D\+: Red led
+\item L\+E\+D\+\_\+\+G\+R\+E\+E\+N\+: Green led
+\item L\+E\+D\+\_\+\+B\+L\+U\+E\+: Blue led
+\item L\+E\+D\+\_\+\+O\+R\+A\+N\+G\+E\+: Orange led
+\item L\+E\+D\+\_\+\+A\+L\+L\+: All leds 
+\end{DoxyItemize}\\
+\hline
+{\em state} & Set or clear led
+\begin{DoxyItemize}
+\item 0\+: led is off
+\item $>$ 0\+: led is on 
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+
+
+\subsubsection{Function Documentation}
+\hypertarget{group___t_m___d_i_s_c_o___functions_gabe5d286b45c36b96b3eb4df0e5b9cfde}{}\index{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Functions@{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Functions}!T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Button\+Init@{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Button\+Init}}
+\index{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Button\+Init@{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Button\+Init}!T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Functions@{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Button\+Init}]{\setlength{\rightskip}{0pt plus 5cm}void T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Button\+Init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{group___t_m___d_i_s_c_o___functions_gabe5d286b45c36b96b3eb4df0e5b9cfde}
+
+
+Configures Button pin as input. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___d_i_s_c_o___functions_ga24330bb47f3ed88ae841054a8023cd2a}{}\index{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Functions@{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Functions}!T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Button\+On\+Pressed@{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Button\+On\+Pressed}}
+\index{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Button\+On\+Pressed@{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Button\+On\+Pressed}!T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Functions@{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Button\+On\+Pressed}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Button\+On\+Pressed (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{group___t_m___d_i_s_c_o___functions_ga24330bb47f3ed88ae841054a8023cd2a}
+
+
+Check if button was pressed now, but was not already pressed before. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Button} & on pressed value
+\begin{DoxyItemize}
+\item 0\+: In case that button has been already pressed on last call or was not pressed at all yet
+\item $>$ 0\+: Button was pressed, but state before was released 
+\end{DoxyItemize}\\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___d_i_s_c_o___functions_ga3b6eee495f312c38eefaa90c40ccff5a}{}\index{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Functions@{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Functions}!T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Button\+On\+Released@{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Button\+On\+Released}}
+\index{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Button\+On\+Released@{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Button\+On\+Released}!T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Functions@{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Button\+On\+Released}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Button\+On\+Released (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{group___t_m___d_i_s_c_o___functions_ga3b6eee495f312c38eefaa90c40ccff5a}
+
+
+Check if button was released now, but was already pressed before. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Button} & on released value
+\begin{DoxyItemize}
+\item 0\+: In case that button has been already released on last call or was not released at all yet
+\item $>$ 0\+: Button was released, but state before was pressed 
+\end{DoxyItemize}\\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___d_i_s_c_o___functions_ga14630e30f567396ddc945c577d762ee1}{}\index{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Functions@{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Functions}!T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Led\+Init@{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Led\+Init}}
+\index{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Led\+Init@{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Led\+Init}!T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Functions@{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Led\+Init}]{\setlength{\rightskip}{0pt plus 5cm}void T\+M\+\_\+\+D\+I\+S\+C\+O\+\_\+\+Led\+Init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{group___t_m___d_i_s_c_o___functions_ga14630e30f567396ddc945c577d762ee1}
+
+
+Configures L\+E\+D pins as outputs. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}

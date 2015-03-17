@@ -1,0 +1,64 @@
+\hypertarget{tm__stm32f4__pwm_8h_source}{}\subsection{tm\+\_\+stm32f4\+\_\+pwm.\+h}
+
+\begin{DoxyCode}
+00001 
+00071 \textcolor{preprocessor}{#ifndef TM\_PWM\_H}
+00072 \textcolor{preprocessor}{#define TM\_PWM\_H 210}
+00073 
+00086 \textcolor{preprocessor}{#include "stm32f4xx.h"}
+00087 \textcolor{preprocessor}{#include "stm32f4xx\_rcc.h"}
+00088 \textcolor{preprocessor}{#include "stm32f4xx\_gpio.h"}
+00089 \textcolor{preprocessor}{#include "stm32f4xx\_tim.h"}
+00090 \textcolor{preprocessor}{#include "tm\_stm32f4\_timer\_properties.h"}
+00091 \textcolor{preprocessor}{#include "tm\_stm32f4\_gpio.h"}
+00092 \textcolor{preprocessor}{#include "defines.h"}
+00093 
+00116 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+00117     TM\_PWM\_Result\_Ok = 0,
+00118     TM\_PWM\_Result\_FrequencyTooHigh,
+00119     TM\_PWM\_Result\_FrequencyTooLow,
+00120     TM\_PWM\_Result\_PulseTooHigh,
+00121     TM\_PWM\_Result\_TimerNotValid,
+00122     TM\_PWM\_Result\_ChannelNotValid,
+00123     TM\_PWM\_Result\_PinNotValid
+00124 \} TM\_PWM\_Result\_t;
+00125 
+\hypertarget{tm__stm32f4__pwm_8h_source_l00143}{}\hyperlink{struct_t_m___p_w_m___t_i_m__t}{00143} \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{
+00144     TIM\_TypeDef* TIM;
+00145     uint32\_t Period;
+00146     uint32\_t Prescaler;
+00147     uint32\_t Frequency;
+00148     uint32\_t Micros;
+00149 \} \hyperlink{struct_t_m___p_w_m___t_i_m__t}{TM\_PWM\_TIM\_t};
+00150 
+00155 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+00156     TM\_PWM\_Channel\_1 = 0,
+00157     TM\_PWM\_Channel\_2,
+00158     TM\_PWM\_Channel\_3,
+00159     TM\_PWM\_Channel\_4
+00160 \} TM\_PWM\_Channel\_t;
+00161 
+00166 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+00167     TM\_PWM\_PinsPack\_1 = 0,
+00168     TM\_PWM\_PinsPack\_2,
+00169     TM\_PWM\_PinsPack\_3
+00170 \} TM\_PWM\_PinsPack\_t;
+00171 
+00186 \textcolor{keyword}{extern} TM\_PWM\_Result\_t TM\_PWM\_InitTimer(TIM\_TypeDef* TIMx, \hyperlink{struct_t_m___p_w_m___t_i_m__t}{TM\_PWM\_TIM\_t}* TIM\_Data, \textcolor{keywordtype}{double} 
+      PWMFrequency);
+00187 
+00201 \textcolor{keyword}{extern} TM\_PWM\_Result\_t TM\_PWM\_InitChannel(\hyperlink{struct_t_m___p_w_m___t_i_m__t}{TM\_PWM\_TIM\_t}* TIM\_Data, TM\_PWM\_Channel\_t Channel, 
+      TM\_PWM\_PinsPack\_t PinsPack);
+00202 
+00216 \textcolor{keyword}{extern} TM\_PWM\_Result\_t TM\_PWM\_SetChannel(\hyperlink{struct_t_m___p_w_m___t_i_m__t}{TM\_PWM\_TIM\_t}* TIM\_Data, TM\_PWM\_Channel\_t Channel, 
+      uint32\_t Pulse);
+00217 
+00231 \textcolor{keyword}{extern} TM\_PWM\_Result\_t TM\_PWM\_SetChannelPercent(\hyperlink{struct_t_m___p_w_m___t_i_m__t}{TM\_PWM\_TIM\_t}* TIM\_Data, TM\_PWM\_Channel\_t 
+      Channel, \textcolor{keywordtype}{float} percent);
+00232 
+00251 \textcolor{keyword}{extern} TM\_PWM\_Result\_t TM\_PWM\_SetChannelMicros(\hyperlink{struct_t_m___p_w_m___t_i_m__t}{TM\_PWM\_TIM\_t}* TIM\_Data, TM\_PWM\_Channel\_t Channel
+      , uint32\_t micros);
+00252 
+00253 \textcolor{preprocessor}{#endif}
+00254 
+\end{DoxyCode}

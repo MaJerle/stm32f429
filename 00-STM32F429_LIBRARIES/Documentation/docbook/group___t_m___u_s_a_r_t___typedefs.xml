@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="group___t_m___u_s_a_r_t___typedefs">
+    <title>TM_USART_Typedefs</title>
+
+<para>USART Typedefs. </para>
+        <section>
+            <title>Detailed Description</title>
+        </section>
+        <section>
+            <title>Enumerations</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para><literallayout>enum <link linkend="group___t_m___u_s_a_r_t___typedefs_1gafa8a506eb27c93db067bb06039ae210f">TM_USART_PinsPack_t</link> {
+<link linkend="group___t_m___u_s_a_r_t___typedefs_1ggafa8a506eb27c93db067bb06039ae210fa94af1877da4d4b84340ff267ae13a3f4">TM_USART_PinsPack_1</link>,
+<link linkend="group___t_m___u_s_a_r_t___typedefs_1ggafa8a506eb27c93db067bb06039ae210fa20e52aedd65d52a8285abf6ea5bda8b1">TM_USART_PinsPack_2</link>,
+<link linkend="group___t_m___u_s_a_r_t___typedefs_1ggafa8a506eb27c93db067bb06039ae210fa9ac05e507f2948219af8594554d41bdb">TM_USART_PinsPack_3</link>,
+<link linkend="group___t_m___u_s_a_r_t___typedefs_1ggafa8a506eb27c93db067bb06039ae210fa4bb4ccf03eef1dee9f00fb89cbff97b3">TM_USART_PinsPack_Custom</link>
+}</literallayout>
+<para><emphasis>USART PinsPack enumeration to select pins combination for USART.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Enumeration Type Documentation</title>
+            <section xml:id="group___t_m___u_s_a_r_t___typedefs_1gafa8a506eb27c93db067bb06039ae210f">
+               <title>enum TM_USART_PinsPack_t </title>
+               
+               <formalpara>
+                    <title>Enumerator:</title>
+                    <variablelist>
+                        <varlistentry xml:id="group___t_m___u_s_a_r_t___typedefs_1ggafa8a506eb27c93db067bb06039ae210fa94af1877da4d4b84340ff267ae13a3f4">
+                            <term>TM_USART_PinsPack_1</term>
+                            <listitem>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry xml:id="group___t_m___u_s_a_r_t___typedefs_1ggafa8a506eb27c93db067bb06039ae210fa20e52aedd65d52a8285abf6ea5bda8b1">
+                            <term>TM_USART_PinsPack_2</term>
+                            <listitem>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry xml:id="group___t_m___u_s_a_r_t___typedefs_1ggafa8a506eb27c93db067bb06039ae210fa9ac05e507f2948219af8594554d41bdb">
+                            <term>TM_USART_PinsPack_3</term>
+                            <listitem>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry xml:id="group___t_m___u_s_a_r_t___typedefs_1ggafa8a506eb27c93db067bb06039ae210fa4bb4ccf03eef1dee9f00fb89cbff97b3">
+                            <term>TM_USART_PinsPack_Custom</term>
+                            <listitem>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                     </variablelist>
+                </formalpara>
+                <para>Definition at line 409 of file tm_stm32f4_usart.h
+                    <computeroutput><literallayout>
+{
+TM_USART_PinsPack_1, 
+TM_USART_PinsPack_2, 
+TM_USART_PinsPack_3, 
+TM_USART_PinsPack_Custom, 
+}TM_USART_PinsPack_t;
+                    </literallayout></computeroutput>
+                </para>
+            </section>
+        </section>
+</section>

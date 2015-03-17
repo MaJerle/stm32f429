@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="group___t_m___g_p_i_o">
+    <title>TM_GPIO</title>
+
+<para>TM GPIO Library for STM32F4xx - <link xlink:href="http://stm32f4-discovery.com/2015/03/library-53-gpio-for-stm32f4">http://stm32f4-discovery.com/2015/03/library-53-gpio-for-stm32f4</link>. </para>
+        <section>
+            <title>Detailed Description</title>
+
+<para>GPIO library can be used for GPIO pins. It features fast initialization methods as well pin input/output methods.</para>
+
+<para><formalpara><title></title>
+<title>Changelog</title>
+<para></para>
+</formalpara>
+<literallayout>  Version 1.2
+    - March 10, 2015
+    - Added functions TM_GPIO_SetPinAsInput and TM_GPIO_SetPinAsOutput
+    - Added functions TM_GPIO_GetPortSource and TM_GPIO_GetPinSource
+
+  Version 1.1
+    - March 09, 2015
+    - Added function to deinit pin. Pin is set to analog input which allows lowest current consumption
+</literallayout></para>
+
+<para><formalpara><title></title>
+<title>Dependencies</title>
+<para></para>
+</formalpara>
+<literallayout> - STM32F4xx
+ - STM32F4xx RCC
+ - STM32F4xx GPIO
+ - defines.h
+</literallayout> </para>
+        </section>
+    <simplesect>
+        <title>Modules</title>
+    </simplesect>
+    <para>
+        <itemizedlist>
+            <listitem><para><link linkend="group___t_m___g_p_i_o___macros">TM_GPIO_Macros</link></para></listitem>
+            <listitem><para><link linkend="group___t_m___g_p_i_o___typedefs">TM_GPIO_Typedefs</link></para></listitem>
+            <listitem><para><link linkend="group___t_m___g_p_i_o___functions">TM_GPIO_Functions</link></para></listitem>
+        </itemizedlist>
+    </para>
+<xi:include href="group___t_m___g_p_i_o___macros.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+<xi:include href="group___t_m___g_p_i_o___typedefs.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+<xi:include href="group___t_m___g_p_i_o___functions.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+</section>

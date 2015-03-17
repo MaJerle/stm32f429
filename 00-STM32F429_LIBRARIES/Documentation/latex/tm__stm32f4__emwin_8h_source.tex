@@ -1,0 +1,57 @@
+\hypertarget{tm__stm32f4__emwin_8h_source}{}\subsection{tm\+\_\+stm32f4\+\_\+emwin.\+h}
+
+\begin{DoxyCode}
+00001 
+00029 \textcolor{preprocessor}{#ifndef TM\_EMWIN\_H}
+00030 \textcolor{preprocessor}{#define TM\_EMWIN\_H 100}
+00031 
+00032 \textcolor{comment}{/* C++ detection */}
+00033 \textcolor{preprocessor}{#ifdef \_\_cplusplus}
+00034 \textcolor{keyword}{extern} C \{
+00035 \textcolor{preprocessor}{#endif}
+00036 
+00057 \textcolor{preprocessor}{#include "stm32f4xx.h"}
+00058 \textcolor{preprocessor}{#include "stm32f4xx\_rcc.h"}
+00059 \textcolor{preprocessor}{#include "defines.h"}
+00060 \textcolor{preprocessor}{#include "tm\_stm32f4\_sdram.h"}
+00061 \textcolor{preprocessor}{#include "tm\_stm32f4\_ili9341\_ltdc.h"}
+00062 \textcolor{preprocessor}{#include "tm\_stm32f4\_stmpe811.h"}
+00063 \textcolor{preprocessor}{#include "GUI.h"}
+00064 
+00065 \textcolor{comment}{/* If you want to rotate feature for LCD, set this define to 1 */}
+00066 \textcolor{preprocessor}{#ifndef TM\_EMWIN\_ROTATE\_LCD}
+00067 \textcolor{preprocessor}{#define TM\_EMWIN\_ROTATE\_LCD             0}
+00068 \textcolor{preprocessor}{#endif}
+00069 
+00070 \textcolor{comment}{/* Update touch every 50ms */}
+00071 \textcolor{preprocessor}{#ifndef EMWIN\_UPDATE\_TOUCH\_MILLIS}
+00072 \textcolor{preprocessor}{#define EMWIN\_UPDATE\_TOUCH\_MILLIS       50}
+00073 \textcolor{preprocessor}{#endif}
+00074 
+00088 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+00089     TM\_EMWIN\_Result\_Ok = 0,
+00090     TM\_EMWIN\_Result\_Error,
+00091     TM\_EMWIN\_Result\_TouchError,
+00092     TM\_EMWIN\_Result\_GUIError
+00093 \} TM\_EMWIN\_Result\_t;
+00094 
+00108 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+00109     TM\_EMWIN\_Rotate\_0 = 0,
+00110     TM\_EMWIN\_Rotate\_90,
+00111     TM\_EMWIN\_Rotate\_180,
+00112     TM\_EMWIN\_Rotate\_270,
+00113 \} TM\_EMWIN\_Rotate\_t;
+00114 
+00121 \textcolor{keyword}{extern} TM\_EMWIN\_Result\_t TM\_EMWIN\_Init(\textcolor{keywordtype}{void});
+00122 
+00136 \textcolor{keyword}{extern} TM\_EMWIN\_Result\_t TM\_EMWIN\_Rotate(TM\_EMWIN\_Rotate\_t rotation);
+00137 
+00146 \textcolor{keyword}{extern} TM\_EMWIN\_Result\_t TM\_EMWIN\_UpdateTouch(\textcolor{keywordtype}{void});
+00147 
+00148 \textcolor{comment}{/* C++ detection */}
+00149 \textcolor{preprocessor}{#ifdef \_\_cplusplus}
+00150 \}
+00151 \textcolor{preprocessor}{#endif}
+00152 
+00153 \textcolor{preprocessor}{#endif}
+\end{DoxyCode}

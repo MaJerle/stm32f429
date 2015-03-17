@@ -1,0 +1,216 @@
+\hypertarget{group___t_m___l_o_w_p_o_w_e_r___functions}{}\subsection{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Functions}
+\label{group___t_m___l_o_w_p_o_w_e_r___functions}\index{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Functions@{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Functions}}
+
+
+Library Functions.  
+
+
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___t_m___l_o_w_p_o_w_e_r___functions_gaabe385d1398fe280b93db08bd615c966}{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Sleep\+Until\+Interrupt} (uint8\+\_\+t delay\+\_\+timer)
+\begin{DoxyCompactList}\small\item\em Put device into sleep mode. \end{DoxyCompactList}\item 
+void \hyperlink{group___t_m___l_o_w_p_o_w_e_r___functions_gaf92d2da64f91b05c1f3638903d597e74}{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Sleep\+Until\+Event} (void)
+\begin{DoxyCompactList}\small\item\em Put device into sleep mode. \end{DoxyCompactList}\item 
+void \hyperlink{group___t_m___l_o_w_p_o_w_e_r___functions_gaacd221196935edc76adb733354d7b095}{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Stop\+Until\+Interrupt} (void)
+\begin{DoxyCompactList}\small\item\em Go to S\+T\+O\+P mode with \char`\"{}\+Wait For Interrupt\char`\"{} instruction. \end{DoxyCompactList}\item 
+void \hyperlink{group___t_m___l_o_w_p_o_w_e_r___functions_gac5f4965b4e018c7a0fba6279a639017a}{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Stop\+Until\+Event} (void)
+\begin{DoxyCompactList}\small\item\em Go to S\+T\+O\+P mode with \char`\"{}\+Wait For Event\char`\"{} instruction. \end{DoxyCompactList}\item 
+void \hyperlink{group___t_m___l_o_w_p_o_w_e_r___functions_ga80d88be15aa15b16681fa46cc49d25e2}{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Standby} (void)
+\begin{DoxyCompactList}\small\item\em To go Standby mode. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{group___t_m___l_o_w_p_o_w_e_r___functions_gaef5251d969255825dfd430b7239c93d4}{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Standby\+Reset} (void)
+\begin{DoxyCompactList}\small\item\em Checks if system was reset because of wakeup from standby mode. \end{DoxyCompactList}\item 
+void \hyperlink{group___t_m___l_o_w_p_o_w_e_r___functions_gab69784956d57ac303e60ff2766af9671}{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Enable\+Wake\+Up\+Pin} (void)
+\begin{DoxyCompactList}\small\item\em Enables Wakeup pin, fixed pin, P\+A0. \end{DoxyCompactList}\item 
+void \hyperlink{group___t_m___l_o_w_p_o_w_e_r___functions_ga522159a613fd2a682d29b8e8938a8bf9}{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Disable\+Wake\+Up\+Pin} (void)
+\begin{DoxyCompactList}\small\item\em Disables Wakeup pin. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+Library Functions. 
+
+All functions for sleep mode configuration 
+
+\subsubsection{Function Documentation}
+\hypertarget{group___t_m___l_o_w_p_o_w_e_r___functions_ga522159a613fd2a682d29b8e8938a8bf9}{}\index{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Functions@{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Functions}!T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Disable\+Wake\+Up\+Pin@{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Disable\+Wake\+Up\+Pin}}
+\index{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Disable\+Wake\+Up\+Pin@{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Disable\+Wake\+Up\+Pin}!T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Functions@{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Disable\+Wake\+Up\+Pin}]{\setlength{\rightskip}{0pt plus 5cm}void T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Disable\+Wake\+Up\+Pin (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{group___t_m___l_o_w_p_o_w_e_r___functions_ga522159a613fd2a682d29b8e8938a8bf9}
+
+
+Disables Wakeup pin. 
+
+\begin{DoxyNote}{Note}
+If you go to standby mode after P\+A0 is disabled, then you can\textquotesingle{}t wake him up with rising edge 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___l_o_w_p_o_w_e_r___functions_gab69784956d57ac303e60ff2766af9671}{}\index{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Functions@{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Functions}!T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Enable\+Wake\+Up\+Pin@{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Enable\+Wake\+Up\+Pin}}
+\index{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Enable\+Wake\+Up\+Pin@{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Enable\+Wake\+Up\+Pin}!T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Functions@{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Enable\+Wake\+Up\+Pin}]{\setlength{\rightskip}{0pt plus 5cm}void T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Enable\+Wake\+Up\+Pin (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{group___t_m___l_o_w_p_o_w_e_r___functions_gab69784956d57ac303e60ff2766af9671}
+
+
+Enables Wakeup pin, fixed pin, P\+A0. 
+
+\begin{DoxyNote}{Note}
+This pin is fixed and can\textquotesingle{}t be changed. 
+
+Rising edge on wakeup pin will wake up device from standby mode 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___l_o_w_p_o_w_e_r___functions_gaf92d2da64f91b05c1f3638903d597e74}{}\index{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Functions@{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Functions}!T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Sleep\+Until\+Event@{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Sleep\+Until\+Event}}
+\index{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Sleep\+Until\+Event@{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Sleep\+Until\+Event}!T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Functions@{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Sleep\+Until\+Event}]{\setlength{\rightskip}{0pt plus 5cm}void T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Sleep\+Until\+Event (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{group___t_m___l_o_w_p_o_w_e_r___functions_gaf92d2da64f91b05c1f3638903d597e74}
+
+
+Put device into sleep mode. 
+
+\begin{DoxyNote}{Note}
+M\+C\+U will be in sleep mode until next event occured 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___l_o_w_p_o_w_e_r___functions_gaabe385d1398fe280b93db08bd615c966}{}\index{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Functions@{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Functions}!T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Sleep\+Until\+Interrupt@{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Sleep\+Until\+Interrupt}}
+\index{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Sleep\+Until\+Interrupt@{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Sleep\+Until\+Interrupt}!T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Functions@{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Sleep\+Until\+Interrupt}]{\setlength{\rightskip}{0pt plus 5cm}void T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Sleep\+Until\+Interrupt (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{delay\+\_\+timer}
+\end{DoxyParamCaption}
+)}\label{group___t_m___l_o_w_p_o_w_e_r___functions_gaabe385d1398fe280b93db08bd615c966}
+
+
+Put device into sleep mode. 
+
+\begin{DoxyNote}{Note}
+M\+C\+U will be in sleep mode until next interrupt occured. This means, that delay timer (Systick or any user selectable delay timer) can wakeup S\+T\+M32\+F4 too. If you want prevent this, you have to disable delay timer as well it. This can be done with this function.
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em delay\+\_\+timer} & Set to $>$ 0 and delay timer will be disabled or set to 0 and it will stay as is \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & $\vert$-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- $\vert$ Copyright (C) Tilen Majerle, 2014 $\vert$ $\vert$ This program is free software\+: you can redistribute it and/or modify $\vert$ it under the terms of the G\+N\+U General Public License as published by $\vert$ the Free Software Foundation, either version 3 of the License, or $\vert$ any later version. $\vert$ $\vert$ This program is distributed in the hope that it will be useful, $\vert$ but W\+I\+T\+H\+O\+U\+T A\+N\+Y W\+A\+R\+R\+A\+N\+T\+Y; without even the implied warranty of $\vert$ M\+E\+R\+C\+H\+A\+N\+T\+A\+B\+I\+L\+I\+T\+Y or F\+I\+T\+N\+E\+S\+S F\+O\+R A P\+A\+R\+T\+I\+C\+U\+L\+A\+R P\+U\+R\+P\+O\+S\+E. See the $\vert$ G\+N\+U General Public License for more details. $\vert$ $\vert$ You should have received a copy of the G\+N\+U General Public License $\vert$ along with this program. If not, see \href{http://www.gnu.org/licenses/}{\tt http\+://www.\+gnu.\+org/licenses/}. $\vert$-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/--- \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___l_o_w_p_o_w_e_r___functions_ga80d88be15aa15b16681fa46cc49d25e2}{}\index{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Functions@{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Functions}!T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Standby@{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Standby}}
+\index{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Standby@{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Standby}!T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Functions@{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Standby}]{\setlength{\rightskip}{0pt plus 5cm}void T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Standby (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{group___t_m___l_o_w_p_o_w_e_r___functions_ga80d88be15aa15b16681fa46cc49d25e2}
+
+
+To go Standby mode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___l_o_w_p_o_w_e_r___functions_gaef5251d969255825dfd430b7239c93d4}{}\index{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Functions@{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Functions}!T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Standby\+Reset@{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Standby\+Reset}}
+\index{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Standby\+Reset@{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Standby\+Reset}!T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Functions@{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Standby\+Reset}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Standby\+Reset (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{group___t_m___l_o_w_p_o_w_e_r___functions_gaef5251d969255825dfd430b7239c93d4}
+
+
+Checks if system was reset because of wakeup from standby mode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 0} & System was not reset because of wake up from standby mode 1\+: System was reset because of wake up from standby mode \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___l_o_w_p_o_w_e_r___functions_gac5f4965b4e018c7a0fba6279a639017a}{}\index{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Functions@{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Functions}!T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Stop\+Until\+Event@{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Stop\+Until\+Event}}
+\index{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Stop\+Until\+Event@{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Stop\+Until\+Event}!T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Functions@{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Stop\+Until\+Event}]{\setlength{\rightskip}{0pt plus 5cm}void T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Stop\+Until\+Event (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{group___t_m___l_o_w_p_o_w_e_r___functions_gac5f4965b4e018c7a0fba6279a639017a}
+
+
+Go to S\+T\+O\+P mode with \char`\"{}\+Wait For Event\char`\"{} instruction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___l_o_w_p_o_w_e_r___functions_gaacd221196935edc76adb733354d7b095}{}\index{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Functions@{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Functions}!T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Stop\+Until\+Interrupt@{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Stop\+Until\+Interrupt}}
+\index{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Stop\+Until\+Interrupt@{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Stop\+Until\+Interrupt}!T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Functions@{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Stop\+Until\+Interrupt}]{\setlength{\rightskip}{0pt plus 5cm}void T\+M\+\_\+\+L\+O\+W\+P\+O\+W\+E\+R\+\_\+\+Stop\+Until\+Interrupt (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{group___t_m___l_o_w_p_o_w_e_r___functions_gaacd221196935edc76adb733354d7b095}
+
+
+Go to S\+T\+O\+P mode with \char`\"{}\+Wait For Interrupt\char`\"{} instruction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}

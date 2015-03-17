@@ -1,0 +1,317 @@
+.TH "TM_DISCO_Functions" 3 "Wed Mar 18 2015" "Version v1.0.0" "TM STM32F4xx Libraries" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TM_DISCO_Functions \- TM_DISCO_Functions
+.PP
+Library Functions\&.  
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBTM_DISCO_LedOn\fP(led)   \fBTM_GPIO_SetPinHigh\fP(TM_DISCO_LED_PORT, (led))"
+.br
+.RI "\fITurn on LED on board\&. \fP"
+.ti -1c
+.RI "#define \fBTM_DISCO_LedOff\fP(led)   \fBTM_GPIO_SetPinLow\fP(TM_DISCO_LED_PORT, (led))"
+.br
+.RI "\fITurn off LED on board\&. \fP"
+.ti -1c
+.RI "#define \fBTM_DISCO_LedToggle\fP(led)   \fBTM_GPIO_TogglePinValue\fP(TM_DISCO_LED_PORT, (led))"
+.br
+.RI "\fIToggle LED on board\&. \fP"
+.ti -1c
+.RI "#define \fBTM_DISCO_LedIsOn\fP(led)   \fBTM_GPIO_GetOutputPinValue\fP(TM_DISCO_LED_PORT, (led))"
+.br
+.RI "\fIChecks if led is on\&. \fP"
+.ti -1c
+.RI "#define \fBTM_DISCO_SetLed\fP(led,  state)   ((state) ? \fBTM_DISCO_LedOn\fP(led): \fBTM_DISCO_LedOff\fP(led))"
+.br
+.RI "\fISet led value\&. \fP"
+.ti -1c
+.RI "#define \fBTM_DISCO_ButtonPressed\fP()   ((\fBTM_GPIO_GetInputPinValue\fP(TM_DISCO_BUTTON_PORT, TM_DISCO_BUTTON_PIN) == 0) != TM_DISCO_BUTTON_PRESSED)"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBTM_DISCO_LedInit\fP (void)"
+.br
+.RI "\fIConfigures LED pins as outputs\&. \fP"
+.ti -1c
+.RI "void \fBTM_DISCO_ButtonInit\fP (void)"
+.br
+.RI "\fIConfigures Button pin as input\&. \fP"
+.ti -1c
+.RI "uint8_t \fBTM_DISCO_ButtonOnPressed\fP (void)"
+.br
+.RI "\fICheck if button was pressed now, but was not already pressed before\&. \fP"
+.ti -1c
+.RI "uint8_t \fBTM_DISCO_ButtonOnReleased\fP (void)"
+.br
+.RI "\fICheck if button was released now, but was already pressed before\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Library Functions\&. 
+
+
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define TM_DISCO_ButtonPressed()   ((\fBTM_GPIO_GetInputPinValue\fP(TM_DISCO_BUTTON_PORT, TM_DISCO_BUTTON_PIN) == 0) != TM_DISCO_BUTTON_PRESSED)"
+
+.PP
+\fBParameters:\fP
+.RS 4
+\fIChecks\fP if user button is pressed 
+.br
+\fINone\fP 
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fIButton\fP status
+.IP "\(bu" 2
+0: Button is not pressed
+.IP "\(bu" 2
+> 0: Button is pressed 
+.PP
+.RE
+.PP
+
+.SS "#define TM_DISCO_LedIsOn(led)   \fBTM_GPIO_GetOutputPinValue\fP(TM_DISCO_LED_PORT, (led))"
+
+.PP
+Checks if led is on\&. 
+.PP
+\fBNote:\fP
+.RS 4
+STM32F4x9-Eval board uses inverse logic for leds 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIled\fP Led you want to checking 
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fI1\fP if led is on or 0 if not 
+.RE
+.PP
+
+.SS "#define TM_DISCO_LedOff(led)   \fBTM_GPIO_SetPinLow\fP(TM_DISCO_LED_PORT, (led))"
+
+.PP
+Turn off LED on board\&. 
+.PP
+\fBNote:\fP
+.RS 4
+STM32F4x9-Eval board uses inverse logic for leds 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIled\fP LED you want to turn off
+.IP "\(bu" 2
+LED_RED: Red led
+.IP "\(bu" 2
+LED_GREEN: Green led
+.IP "\(bu" 2
+LED_BLUE: Blue led
+.IP "\(bu" 2
+LED_ORANGE: Orange led
+.IP "\(bu" 2
+LED_ALL: All leds 
+.PP
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+
+.SS "#define TM_DISCO_LedOn(led)   \fBTM_GPIO_SetPinHigh\fP(TM_DISCO_LED_PORT, (led))"
+
+.PP
+Turn on LED on board\&. 
+.PP
+\fBNote:\fP
+.RS 4
+STM32F4x9-Eval board uses inverse logic for leds 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIled\fP LED you want to turn on
+.IP "\(bu" 2
+LED_RED: Red led
+.IP "\(bu" 2
+LED_GREEN: Green led
+.IP "\(bu" 2
+LED_BLUE: Blue led
+.IP "\(bu" 2
+LED_ORANGE: Orange led
+.IP "\(bu" 2
+LED_ALL: All leds 
+.PP
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+
+.SS "#define TM_DISCO_LedToggle(led)   \fBTM_GPIO_TogglePinValue\fP(TM_DISCO_LED_PORT, (led))"
+
+.PP
+Toggle LED on board\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIled\fP LED you want to toggle
+.IP "\(bu" 2
+LED_RED: Red led
+.IP "\(bu" 2
+LED_GREEN: Green led
+.IP "\(bu" 2
+LED_BLUE: Blue led
+.IP "\(bu" 2
+LED_ORANGE: Orange led
+.IP "\(bu" 2
+LED_ALL: All leds 
+.PP
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+
+.SS "#define TM_DISCO_SetLed(led, state)   ((state) ? \fBTM_DISCO_LedOn\fP(led): \fBTM_DISCO_LedOff\fP(led))"
+
+.PP
+Set led value\&. Set led's state with one function
+.PP
+Parameters:
+.IP "\(bu" 2
+uint16_t led: LED_GREEN LED_RED LED_ORANGE LED_BLUE
+.PP
+.PP
+uint8_t state: 0: led is off > 0: led is on
+.PP
+Return 1 if turned on, otherwise 0 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIled\fP LED you want to set value
+.IP "\(bu" 2
+LED_RED: Red led
+.IP "\(bu" 2
+LED_GREEN: Green led
+.IP "\(bu" 2
+LED_BLUE: Blue led
+.IP "\(bu" 2
+LED_ORANGE: Orange led
+.IP "\(bu" 2
+LED_ALL: All leds 
+.PP
+.br
+\fIstate\fP Set or clear led
+.IP "\(bu" 2
+0: led is off
+.IP "\(bu" 2
+> 0: led is on 
+.PP
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+
+.SH "Function Documentation"
+.PP 
+.SS "void TM_DISCO_ButtonInit (void)"
+
+.PP
+Configures Button pin as input\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+
+.SS "uint8_t TM_DISCO_ButtonOnPressed (void)"
+
+.PP
+Check if button was pressed now, but was not already pressed before\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fIButton\fP on pressed value
+.IP "\(bu" 2
+0: In case that button has been already pressed on last call or was not pressed at all yet
+.IP "\(bu" 2
+> 0: Button was pressed, but state before was released 
+.PP
+.RE
+.PP
+
+.SS "uint8_t TM_DISCO_ButtonOnReleased (void)"
+
+.PP
+Check if button was released now, but was already pressed before\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fIButton\fP on released value
+.IP "\(bu" 2
+0: In case that button has been already released on last call or was not released at all yet
+.IP "\(bu" 2
+> 0: Button was released, but state before was pressed 
+.PP
+.RE
+.PP
+
+.SS "void TM_DISCO_LedInit (void)"
+
+.PP
+Configures LED pins as outputs\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for TM STM32F4xx Libraries from the source code\&.

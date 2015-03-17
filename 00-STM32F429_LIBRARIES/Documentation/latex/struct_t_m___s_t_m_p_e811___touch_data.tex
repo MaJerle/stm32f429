@@ -1,0 +1,45 @@
+\hypertarget{struct_t_m___s_t_m_p_e811___touch_data}{}\subsection{T\+M\+\_\+\+S\+T\+M\+P\+E811\+\_\+\+Touch\+Data Struct Reference}
+\label{struct_t_m___s_t_m_p_e811___touch_data}\index{T\+M\+\_\+\+S\+T\+M\+P\+E811\+\_\+\+Touch\+Data@{T\+M\+\_\+\+S\+T\+M\+P\+E811\+\_\+\+Touch\+Data}}
+
+
+{\ttfamily \#include $<$tm\+\_\+stm32f4\+\_\+stmpe811.\+h$>$}
+
+\subsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{struct_t_m___s_t_m_p_e811___touch_data_a4dde988b1b2adba65ae3efa69f65d960}{}uint16\+\_\+t {\bfseries x}\label{struct_t_m___s_t_m_p_e811___touch_data_a4dde988b1b2adba65ae3efa69f65d960}
+
+\item 
+\hypertarget{struct_t_m___s_t_m_p_e811___touch_data_ab0580f504a7428539be299fa71565f30}{}uint16\+\_\+t {\bfseries y}\label{struct_t_m___s_t_m_p_e811___touch_data_ab0580f504a7428539be299fa71565f30}
+
+\item 
+\hypertarget{struct_t_m___s_t_m_p_e811___touch_data_a8a47f10a2772f8d1685926bf7a52defe}{}T\+M\+\_\+\+S\+T\+M\+P\+E811\+\_\+\+State\+\_\+t {\bfseries pressed}\label{struct_t_m___s_t_m_p_e811___touch_data_a8a47f10a2772f8d1685926bf7a52defe}
+
+\item 
+\hypertarget{struct_t_m___s_t_m_p_e811___touch_data_af2f04296e4b455eeeaf3e6a693d2c5ef}{}T\+M\+\_\+\+S\+T\+M\+P\+E811\+\_\+\+State\+\_\+t {\bfseries last\+\_\+pressed}\label{struct_t_m___s_t_m_p_e811___touch_data_af2f04296e4b455eeeaf3e6a693d2c5ef}
+
+\item 
+\hypertarget{struct_t_m___s_t_m_p_e811___touch_data_ad19731e19afc6a47f7100eeabc628223}{}T\+M\+\_\+\+S\+T\+M\+P\+E811\+\_\+\+Orientation\+\_\+t {\bfseries orientation}\label{struct_t_m___s_t_m_p_e811___touch_data_ad19731e19afc6a47f7100eeabc628223}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+Struct, which is passed into T\+M\+\_\+\+S\+T\+M\+P\+E811\+\_\+\+Read\+Touch function
+
+Parameters\+:
+\begin{DoxyItemize}
+\item uint16\+\_\+t x\+: x coordinate for lcd
+\item uint16\+\_\+t y\+: y coordinate for lcd
+\item T\+M\+\_\+\+S\+T\+M\+P\+E811\+\_\+\+State\+\_\+t pressed\+:
+\begin{DoxyItemize}
+\item T\+M\+\_\+\+S\+T\+M\+P\+E811\+\_\+\+State\+\_\+\+Pressed when pressed
+\item T\+M\+\_\+\+S\+T\+M\+P\+E811\+\_\+\+State\+\_\+\+Released when released
+\end{DoxyItemize}
+\item T\+M\+\_\+\+S\+T\+M\+P\+E811\+\_\+\+State\+\_\+t last\+\_\+pressed\+:
+\begin{DoxyItemize}
+\item T\+M\+\_\+\+S\+T\+M\+P\+E811\+\_\+\+State\+\_\+\+Pressed when was pressed
+\item T\+M\+\_\+\+S\+T\+M\+P\+E811\+\_\+\+State\+\_\+\+Released when was released
+\end{DoxyItemize}
+\item T\+M\+\_\+\+S\+T\+M\+P\+E811\+\_\+\+Orientation\+\_\+t orientation\+: Set touch screen orientation to read 
+\end{DoxyItemize}

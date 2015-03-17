@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="group___t_m___i_w_d_g___functions">
+    <title>TM_IWDG_Functions</title>
+
+<para>Library Functions. </para>
+        <section>
+            <title>Detailed Description</title>
+        </section>
+        <section>
+            <title>Functions</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint8_t <link linkend="group___t_m___i_w_d_g___functions_1gafd88c97066851c92fe25c1b5c2cd74cf">TM_WATCHDOG_Init</link> (
+<link linkend="group___t_m___i_w_d_g___typedefs_1ga3c9514e409e8cc70048b868ca9a64671">TM_WATCHDOG_Timeout_t</link> timeout)<para><emphasis>Initialize Watchdog timer.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="group___t_m___i_w_d_g___functions_1ga73a095378efd3426d63a1879f582220b">TM_WATCHDOG_Reset</link> (
+void )<para><emphasis>Reset Watchdog timer.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Function Documentation</title>
+            <section xml:id="group___t_m___i_w_d_g___functions_1gafd88c97066851c92fe25c1b5c2cd74cf">
+                <title>uint8_t TM_WATCHDOG_Init (TM_WATCHDOG_Timeout_t timeout)</title> <emphasis>Initialize Watchdog timer.</emphasis>
+                
+<para><formalpara><title>Note: </title>
+
+<para>After you initialize it, you can&apos;t disable it unless reset occur. </para>
+</formalpara>
+
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>timeout.</entry>
+                                <entry>
+<para>Timeout value when watchdog reset happen if not reset by user. This parameter can be a value of <link linkend="group___t_m___i_w_d_g___typedefs_1ga3c9514e409e8cc70048b868ca9a64671">TM_WATCHDOG_Timeout_t</link> enumeration </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Return values                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>Value</entry>
+                                <entry>
+<para>if system was reset because of watchdog timer<itemizedlist>
+<listitem>
+<para>1: Reset happen because of watchdog</para>
+</listitem><listitem>
+<para>0: Otherwise</para>
+</listitem></itemizedlist>
+</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                |-------------------------------------------------------------------&#8212; | Copyright (C) Tilen Majerle, 2014 | | This program is free software: you can redistribute it and/or modify | it under the terms of the GNU General Public License as published by | the Free Software Foundation, either version 3 of the License, or | any later version. | | This program is distributed in the hope that it will be useful, | but WITHOUT ANY WARRANTY; without even the implied warranty of | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the | GNU General Public License for more details. | | You should have received a copy of the GNU General Public License | along with this program. If not, see <link xlink:href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</link>. |-------------------------------------------------------------------&#8212; </para>
+
+            </section>
+            <section xml:id="group___t_m___i_w_d_g___functions_1ga73a095378efd3426d63a1879f582220b">
+                <title>void TM_WATCHDOG_Reset (void)</title> <emphasis>Reset Watchdog timer.</emphasis>
+                
+<para><formalpara><title>Note: </title>
+
+<para>This function have to be called periodically to reset watchdog timer, or your system will reset </para>
+</formalpara>
+
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>None</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Return values                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>None</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+            </section>
+        </section>
+</section>

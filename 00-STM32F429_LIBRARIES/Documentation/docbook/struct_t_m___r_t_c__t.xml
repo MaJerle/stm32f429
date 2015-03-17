@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="struct_t_m___r_t_c__t">
+<title>TM_RTC_t struct Reference</title>
+<para>
+    <programlisting>#include <link linkend="tm__stm32f4__rtc_8h">&lt;tm_stm32f4_rtc.h&gt;</link></programlisting>
+</para>
+        <section>
+            <title>Data Fields</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint8_t seconds</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint16_t subseconds</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint8_t minutes</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint8_t hours uint8_t day</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint8_t date</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint8_t month</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint8_t year</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint32_t unix</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+    <simplesect>
+
+<para>RTC Struct for date/time. </para>
+    </simplesect>
+        <section>
+            <title>Field Documentation</title>
+            <simplesect>
+                <title>uint8_t seconds</title>                
+<para>Seconds parameter, from 00 to 59 </para>
+
+                <para>Definition at line 164 of file tm_stm32f4_rtc.h</para>
+                <para>The Documentation for this struct was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_rtc.h</para></listitem></itemizedlist></para>
+            </simplesect>
+            <simplesect>
+                <title>uint16_t subseconds</title>                
+<para>Subsecond downcounter. When it reaches zero, it&apos;s reload value is the same as RTC_SYNC_PREDIV, so in our case 0x3FF = 1023, 1024 steps in one second </para>
+
+                <para>Definition at line 165 of file tm_stm32f4_rtc.h</para>
+                <para>The Documentation for this struct was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_rtc.h</para></listitem></itemizedlist></para>
+            </simplesect>
+            <simplesect>
+                <title>uint8_t minutes</title>                
+<para>Minutes parameter, from 00 to 59 </para>
+
+                <para>Definition at line 167 of file tm_stm32f4_rtc.h</para>
+                <para>The Documentation for this struct was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_rtc.h</para></listitem></itemizedlist></para>
+            </simplesect>
+            <simplesect>
+                <title>uint8_t hours uint8_t day</title>                
+<para>&lt; Hours parameter, 24Hour mode, 00 to 23 Day in a week, from 1 to 7 </para>
+
+                <para>Definition at line 169 of file tm_stm32f4_rtc.h</para>
+                <para>The Documentation for this struct was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_rtc.h</para></listitem></itemizedlist></para>
+            </simplesect>
+            <simplesect>
+                <title>uint8_t date</title>                
+<para>Date in a month, 1 to 31 </para>
+
+                <para>Definition at line 170 of file tm_stm32f4_rtc.h</para>
+                <para>The Documentation for this struct was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_rtc.h</para></listitem></itemizedlist></para>
+            </simplesect>
+            <simplesect>
+                <title>uint8_t month</title>                
+<para>Month in a year, 1 to 12 </para>
+
+                <para>Definition at line 171 of file tm_stm32f4_rtc.h</para>
+                <para>The Documentation for this struct was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_rtc.h</para></listitem></itemizedlist></para>
+            </simplesect>
+            <simplesect>
+                <title>uint8_t year</title>                
+<para>Year parameter, 00 to 99, 00 is 2000 and 99 is 2099 </para>
+
+                <para>Definition at line 172 of file tm_stm32f4_rtc.h</para>
+                <para>The Documentation for this struct was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_rtc.h</para></listitem></itemizedlist></para>
+            </simplesect>
+            <simplesect>
+                <title>uint32_t unix</title>                
+<para>Seconds from 01.01.1970 00:00:00 </para>
+
+                <para>Definition at line 173 of file tm_stm32f4_rtc.h</para>
+                <para>The Documentation for this struct was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_rtc.h</para></listitem></itemizedlist></para>
+            </simplesect>
+        </section>
+</section>

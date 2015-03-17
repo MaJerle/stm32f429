@@ -1,0 +1,70 @@
+\hypertarget{tm__stm32f4__usb__vcp_8h_source}{}\subsection{tm\+\_\+stm32f4\+\_\+usb\+\_\+vcp.\+h}
+
+\begin{DoxyCode}
+00001 
+00082 \textcolor{preprocessor}{#ifndef TM\_USB\_VCP\_H}
+00083 \textcolor{preprocessor}{#define TM\_USB\_VCP\_H    120}
+00084 
+00097 \textcolor{preprocessor}{#include "stm32f4xx.h"}
+00098 \textcolor{preprocessor}{#include "stm32f4xx\_rcc.h"}
+00099 \textcolor{preprocessor}{#include "stm32f4xx\_gpio.h"}
+00100 \textcolor{preprocessor}{#include "stm32f4xx\_exti.h"}
+00101 \textcolor{preprocessor}{#include "misc.h"}
+00102 \textcolor{preprocessor}{#include "defines.h"}
+00103 \textcolor{comment}{/* Parts of USB device */}
+00104 \textcolor{preprocessor}{#include "usbd\_cdc\_core.h"}
+00105 \textcolor{preprocessor}{#include "usb\_conf.h"}
+00106 \textcolor{preprocessor}{#include "usbd\_desc.h"}
+00107 \textcolor{preprocessor}{#include "usbd\_cdc\_vcp.h"}
+00108 
+00109 \textcolor{comment}{/* Default buffer length */}
+00110 \textcolor{preprocessor}{#ifndef USB\_VCP\_RECEIVE\_BUFFER\_LENGTH}
+00111 \textcolor{preprocessor}{#define USB\_VCP\_RECEIVE\_BUFFER\_LENGTH       128}
+00112 \textcolor{preprocessor}{#endif}
+00113 
+00117 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+00118     TM\_USB\_VCP\_OK,
+00119     TM\_USB\_VCP\_ERROR,
+00120     TM\_USB\_VCP\_RECEIVE\_BUFFER\_FULL,
+00121     TM\_USB\_VCP\_DATA\_OK,
+00122     TM\_USB\_VCP\_DATA\_EMPTY,
+00123     TM\_USB\_VCP\_NOT\_CONNECTED,
+00124     TM\_USB\_VCP\_CONNECTED,
+00125     TM\_USB\_VCP\_DEVICE\_SUSPENDED,
+00126     TM\_USB\_VCP\_DEVICE\_RESUMED
+00127 \} TM\_USB\_VCP\_Result;
+00128 
+\hypertarget{tm__stm32f4__usb__vcp_8h_source_l00161}{}\hyperlink{struct_t_m___u_s_b___v_c_p___settings__t}{00161} \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{
+00162     uint32\_t Baudrate;
+00163     uint8\_t Stopbits;
+00164     uint8\_t DataBits;
+00165     uint8\_t Parity;
+00166     uint8\_t Changed;
+00167 \} \hyperlink{struct_t_m___u_s_b___v_c_p___settings__t}{TM\_USB\_VCP\_Settings\_t};
+00168 
+00174 \textcolor{keyword}{extern} TM\_USB\_VCP\_Result TM\_USB\_VCP\_Init(\textcolor{keywordtype}{void});
+00175 
+00186 \textcolor{keyword}{extern} TM\_USB\_VCP\_Result TM\_USB\_VCP\_GetSettings(\hyperlink{struct_t_m___u_s_b___v_c_p___settings__t}{TM\_USB\_VCP\_Settings\_t}* Settings);
+00187 
+00196 \textcolor{keyword}{extern} TM\_USB\_VCP\_Result TM\_USB\_VCP\_Getc(uint8\_t* c);
+00197 
+00206 \textcolor{keyword}{extern} TM\_USB\_VCP\_Result TM\_USB\_VCP\_Putc(\textcolor{keyword}{volatile} \textcolor{keywordtype}{char} c);
+00207 
+00220 \textcolor{keyword}{extern} uint16\_t TM\_USB\_VCP\_Gets(\textcolor{keywordtype}{char}* buffer, uint16\_t bufsize);
+00221 
+00230 \textcolor{keyword}{extern} TM\_USB\_VCP\_Result TM\_USB\_VCP\_Puts(\textcolor{keywordtype}{char}* str);
+00231 
+00237 \textcolor{keyword}{extern} TM\_USB\_VCP\_Result TM\_USB\_VCP\_GetStatus(\textcolor{keywordtype}{void});
+00238 
+00244 \textcolor{keyword}{extern} uint8\_t TM\_USB\_VCP\_BufferEmpty(\textcolor{keywordtype}{void});
+00245 
+00251 \textcolor{keyword}{extern} uint8\_t TM\_USB\_VCP\_BufferFull(\textcolor{keywordtype}{void});
+00252 
+00261 \textcolor{keyword}{extern} uint8\_t TM\_USB\_VCP\_FindCharacter(\textcolor{keyword}{volatile} \textcolor{keywordtype}{char} c);
+00262 
+00263 \textcolor{comment}{/* Internal functions */}
+00264 \textcolor{keyword}{extern} TM\_USB\_VCP\_Result TM\_INT\_USB\_VCP\_AddReceived(uint8\_t c);
+00265 
+00266 \textcolor{preprocessor}{#endif}
+00267 
+\end{DoxyCode}

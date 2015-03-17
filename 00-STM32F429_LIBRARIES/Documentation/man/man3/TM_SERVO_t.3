@@ -1,0 +1,56 @@
+.TH "TM_SERVO_t" 3 "Wed Mar 18 2015" "Version v1.0.0" "TM STM32F4xx Libraries" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TM_SERVO_t \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <tm_stm32f4_servo\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "\fBTM_PWM_TIM_t\fP \fBPWM\fP"
+.br
+.ti -1c
+.RI "TIM_TypeDef * \fBTIM\fP"
+.br
+.ti -1c
+.RI "TM_PWM_Channel_t \fBChannel\fP"
+.br
+.ti -1c
+.RI "TM_PWM_PinsPack_t \fBPinspack\fP"
+.br
+.ti -1c
+.RI "float \fBDegrees\fP"
+.br
+.ti -1c
+.RI "uint16_t \fBMicros\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Servo struct
+.PP
+Parameters:
+.IP "\(bu" 2
+\fBTM_PWM_TIM_t\fP PWM: PWM settings
+.IP "\(bu" 2
+TIM_TypeDef* TIM: Pointer to specific timer you will use for servo
+.IP "\(bu" 2
+TM_PWM_Channel_t Channel: Output channel on specific timer
+.IP "\(bu" 2
+TM_PWM_PinsPack_t Pinspack: Pinspack for specific channel
+.PP
+.PP
+float Degrees: Position of servo in degrees
+.IP "\(bu" 2
+uint16_t Micros: Pulse length in micro seconds for current servo position 
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for TM STM32F4xx Libraries from the source code\&.

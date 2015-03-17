@@ -1,0 +1,75 @@
+.TH "TM_MPU6050_t" 3 "Wed Mar 18 2015" "Version v1.0.0" "TM STM32F4xx Libraries" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TM_MPU6050_t \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <tm_stm32f4_mpu6050\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "uint8_t \fBAddress\fP"
+.br
+.ti -1c
+.RI "float \fBGyro_Mult\fP"
+.br
+.ti -1c
+.RI "float \fBAcce_Mult\fP"
+.br
+.ti -1c
+.RI "int16_t \fBAccelerometer_X\fP"
+.br
+.ti -1c
+.RI "int16_t \fBAccelerometer_Y\fP"
+.br
+.ti -1c
+.RI "int16_t \fBAccelerometer_Z\fP"
+.br
+.ti -1c
+.RI "int16_t \fBGyroscope_X\fP"
+.br
+.ti -1c
+.RI "int16_t \fBGyroscope_Y\fP"
+.br
+.ti -1c
+.RI "int16_t \fBGyroscope_Z\fP"
+.br
+.ti -1c
+.RI "float \fBTemperature\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Main MPU6050 struct
+.PP
+Parameters:
+.IP "\(bu" 2
+uint8_t Address: I2C address of device Only for private use
+.IP "\(bu" 2
+float Gyro_Mult: Gyroscope corrector from raw data to 'degrees/s' Only for private use
+.IP "\(bu" 2
+float Acce_Mult: Accelerometer corrector from raw data to 'g' Only for private use
+.IP "\(bu" 2
+int16_t Accelerometer_X: Accelerometer value X axis
+.IP "\(bu" 2
+int16_t Accelerometer_Y: Accelerometer value Y axis
+.IP "\(bu" 2
+int16_t Accelerometer_Z: Accelerometer value Z axis
+.IP "\(bu" 2
+int16_t Gyroscope_X: Gyroscope value X axis
+.IP "\(bu" 2
+int16_t Gyroscope_Y: Gyroscope value Y axis
+.IP "\(bu" 2
+int16_t Gyroscope_Z: Gyroscope value Z axis
+.IP "\(bu" 2
+float Temperature: Temperature in degrees 
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for TM STM32F4xx Libraries from the source code\&.

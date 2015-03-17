@@ -1,0 +1,175 @@
+\hypertarget{tm__stm32f4__esp8266_8h_source}{}\subsection{tm\+\_\+stm32f4\+\_\+esp8266.\+h}
+
+\begin{DoxyCode}
+00001 
+00037 \textcolor{preprocessor}{#ifndef TM\_ESP8266\_H}
+00038 \textcolor{preprocessor}{#define TM\_ESP8266\_H 100}
+00039 
+00040 \textcolor{comment}{/* C++ detection */}
+00041 \textcolor{preprocessor}{#ifdef \_\_cplusplus}
+00042 \textcolor{keyword}{extern} C \{
+00043 \textcolor{preprocessor}{#endif}
+00044 
+00054 \textcolor{preprocessor}{#include "stm32f4xx.h"}
+00055 \textcolor{preprocessor}{#include "stm32f4xx\_rcc.h"}
+00056 \textcolor{preprocessor}{#include "defines.h"}
+00057 \textcolor{preprocessor}{#include "tm\_stm32f4\_usart.h"}
+00058 \textcolor{preprocessor}{#include "tm\_stm32f4\_delay.h"}
+00059 \textcolor{preprocessor}{#include "tm\_stm32f4\_gpio.h"}
+00060 \textcolor{preprocessor}{#include <string.h>}
+00061 \textcolor{preprocessor}{#include <stdio.h>}
+00062 
+00063 \textcolor{comment}{/* ESP8266 USART */}
+00064 \textcolor{preprocessor}{#ifndef ESP8266\_USART}
+00065 \textcolor{preprocessor}{#define ESP8266\_USART               USART1}
+00066 \textcolor{preprocessor}{#define ESP8266\_USART\_PINSPACK      TM\_USART\_PinsPack\_1}
+00067 \textcolor{preprocessor}{#endif}
+00068 
+00069 \textcolor{comment}{/* Debug settings */}
+00070 \textcolor{preprocessor}{#define ESP8266\_DEBUG\_USART         USART3}
+00071 \textcolor{preprocessor}{#define ESP8266\_DEBUG\_USART\_PP      TM\_USART\_PinsPack\_1 }
+00072 \textcolor{preprocessor}{#define ESP8266\_DEBUG\_SEND(x)       TM\_USART\_Puts(ESP8266\_DEBUG\_USART, x);}
+00073 
+00074 \textcolor{comment}{/* ESP8266 Reset pin */}
+00075 \textcolor{preprocessor}{#ifndef ESP8266\_RESET\_PIN}
+00076 \textcolor{preprocessor}{#define ESP8266\_RESET\_PORT          GPIOD}
+00077 \textcolor{preprocessor}{#define ESP8266\_RESET\_PIN           GPIO\_PIN\_3}
+00078 \textcolor{preprocessor}{#endif}
+00079 
+00080 \textcolor{comment}{/* Reset commands */}
+00081 \textcolor{preprocessor}{#define ESP8266\_RESET\_SET           TM\_GPIO\_SetPinLow(ESP8266\_RESET\_PORT, ESP8266\_RESET\_PIN)}
+00082 \textcolor{preprocessor}{#define ESP8266\_RESET\_RELEASE       TM\_GPIO\_SetPinHigh(ESP8266\_RESET\_PORT, ESP8266\_RESET\_PIN)}
+00083 
+00084 \textcolor{comment}{/* Send data to ESP8266 */}  
+00085 \textcolor{preprocessor}{#define ESP8266\_USART\_SEND(x)       TM\_USART\_Puts(ESP8266\_USART, x); TM\_USART\_Puts(ESP8266\_USART, "\(\backslash\)r\(\backslash\)n")}
+00086 
+00087 \textcolor{comment}{/* Is character a digit */}
+00088 \textcolor{preprocessor}{#define ESP8266\_IS\_DIGIT(x)         ((x) >= '0' && (x) <= '9')}
+00089 
+00090 \textcolor{comment}{/* Char 2 digit conversions */}
+00091 \textcolor{preprocessor}{#define ESP8266\_C2N(a)              ((a) - 48)}
+00092 \textcolor{preprocessor}{#define ESP8266\_C2NM(a, x)          (C2N(a) * (x))}
+00093 
+00094 \textcolor{comment}{/* Supported ESP8266 FIRMWARE */}
+00095 \textcolor{preprocessor}{#define ESP8266\_FIRMWARE            "00200.9.4"}
+00096 \textcolor{preprocessor}{#define ESP8266\_FIRMWARE\_LEN        10}
+00097 
+00098 \textcolor{comment}{/* AT commands */}
+00099 \textcolor{preprocessor}{#define ESP8266\_AT                  "AT"            }\textcolor{comment}{/* General test */}\textcolor{preprocessor}{}
+00100 \textcolor{preprocessor}{#define ESP8266\_AT\_RESET            "AT+RST"        }\textcolor{comment}{/* Restart the module */}\textcolor{preprocessor}{}
+00101 \textcolor{preprocessor}{#define ESP8266\_AT\_FIRMWARE         "AT+GMR"        }\textcolor{comment}{/* Check firmware version */}\textcolor{preprocessor}{}
+00102 \textcolor{preprocessor}{#define ESP8266\_AT\_WIFI\_MODE        "AT+CWMODE"     }\textcolor{comment}{/* Wifi mode */}\textcolor{preprocessor}{}
+00103 \textcolor{preprocessor}{#define ESP8266\_AT\_JOIN\_AP          "AT+CWJAP"      }\textcolor{comment}{/* Join the AP */}\textcolor{preprocessor}{}
+00104 \textcolor{preprocessor}{#define ESP8266\_AT\_LIST\_AP          "AT+CWLAP"      }\textcolor{comment}{/* List the AP */}\textcolor{preprocessor}{}
+00105 \textcolor{preprocessor}{#define ESP8266\_AT\_QUIT\_AP          "AT+CWQAP"      }\textcolor{comment}{/* Quit the AP */}\textcolor{preprocessor}{}
+00106 \textcolor{preprocessor}{#define ESP8266\_AT\_SET\_AP\_PARAMS    "AT+CWSAP"      }\textcolor{comment}{/* Set the parameters of AP */}\textcolor{preprocessor}{}
+00107 \textcolor{preprocessor}{#define ESP8266\_AT\_JOIN\_DEVICES     "AT+CWLIF"      }\textcolor{comment}{/* Check joing devices' IP */}\textcolor{preprocessor}{}
+00108 \textcolor{preprocessor}{#define ESP8266\_AT\_GET\_CONN\_STATUS  "AT+CIPSTATUS"  }\textcolor{comment}{/* Get the connection status */}\textcolor{preprocessor}{}
+00109 \textcolor{preprocessor}{#define ESP8266\_AT\_START\_CONN       "AT+CIPSTART"   }\textcolor{comment}{/* Set up TCP or UDP connection */}\textcolor{preprocessor}{}
+00110 \textcolor{preprocessor}{#define ESP8266\_AT\_SET\_TRANS\_MODE   "AT+CIPMODE"    }\textcolor{comment}{/* Set data transmission mode */}\textcolor{preprocessor}{}
+00111 \textcolor{preprocessor}{#define ESP8266\_AT\_SEND             "AT+CIPSEND"    }\textcolor{comment}{/* Send data */}\textcolor{preprocessor}{}
+00112 \textcolor{preprocessor}{#define ESP8266\_AT\_CLOSE            "AT+CIPCLOSE"   }\textcolor{comment}{/* Close TCP or UDP connection */}\textcolor{preprocessor}{}
+00113 \textcolor{preprocessor}{#define ESP8266\_AT\_GETIP            "AT+CIFSR"      }\textcolor{comment}{/* Get IP address */}\textcolor{preprocessor}{}
+00114 \textcolor{preprocessor}{#define ESP8266\_AT\_SET\_MUL\_CONN     "AT+CIPMUX"     }\textcolor{comment}{/* Set multiple connection */}\textcolor{preprocessor}{}
+00115 \textcolor{preprocessor}{#define ESP8266\_AT\_SET\_SERVER       "AT+CIPSERVER"  }\textcolor{comment}{/* Set as server */}\textcolor{preprocessor}{}
+00116 \textcolor{preprocessor}{#define ESP8266\_AT\_SET\_SERV\_TIMEOUT "AT+CIPSTO"     }\textcolor{comment}{/* Set the server timeout */}\textcolor{preprocessor}{}
+00117 \textcolor{preprocessor}{#define ESP8266\_AT\_RECEIVED\_DATA    "+IPD"          }\textcolor{comment}{/* Received data */}\textcolor{preprocessor}{}
+00118 \textcolor{preprocessor}{#define ESP8266\_AT\_SET\_BAUDRATE     "AT+IPR"        }\textcolor{comment}{/* Set UART baudrate */}\textcolor{preprocessor}{}
+00119 \textcolor{preprocessor}{#define ESP8266\_AT\_ECHO             "ATE"           }\textcolor{comment}{/* Set ECHO setings */}\textcolor{preprocessor}{}
+00120 \textcolor{preprocessor}{#define ESP8266\_AT\_ECHO1            "ATE1"          }\textcolor{comment}{/* Enable echo */}\textcolor{preprocessor}{}
+00121 \textcolor{preprocessor}{#define ESP8266\_AT\_ECHO0            "ATE0"          }\textcolor{comment}{/* Disable echo */}\textcolor{preprocessor}{}
+00122 
+00123 \textcolor{preprocessor}{#define ESP8266\_TEXT\_BUSY           "busy p"}
+00124 \textcolor{preprocessor}{#define ESP8266\_TEXT\_OK             "OK"}
+00125 \textcolor{preprocessor}{#define ESP8266\_TEXT\_SEND\_OK        "SEND OK"}
+00126 \textcolor{preprocessor}{#define ESP8266\_TEXT\_SEND\_READY     "ready"}
+00127 
+00128 \textcolor{preprocessor}{#define ESP8266\_REQUEST\_BUFFER\_LEN  1024}
+00129 
+00130 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+00131     TM\_ESP8266\_Result\_Ok = 0,
+00132     TM\_ESP8266\_Result\_Error,
+00133     TM\_ESP8266\_Result\_FirmwareNotValid,
+00134     TM\_ESP8266\_Result\_DeviceError,
+00135     TM\_ESP8266\_Result\_ResetError,
+00136     TM\_ESP8266\_Result\_TimeoutError,
+00137     TM\_ESP8266\_Result\_NoNewData,
+00138     TM\_ESP8266\_Result\_NewData,
+00139     TM\_ESP8266\_Result\_NewClientConnected,
+00140     TM\_ESP8266\_Result\_LineTooLong
+00141 \} TM\_ESP8266\_Result\_t;
+00142 
+\hypertarget{tm__stm32f4__esp8266_8h_source_l00143}{}\hyperlink{struct_t_m___e_s_p8266__t}{00143} \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{
+00144     uint8\_t Connections;
+00145     uint8\_t MultiConnections;
+00146     uint32\_t IncomingBytes[5];
+00147     \textcolor{keywordtype}{char} Request[5][ESP8266\_REQUEST\_BUFFER\_LEN];
+00148     uint8\_t APIP[4];
+00149     uint8\_t STAIP[4];
+00150     uint8\_t APMAC[6];
+00151     uint8\_t STAMAC[6];
+00152     uint32\_t Baudrate;
+00153     TM\_ESP8266\_Result\_t Status;
+00154 \} \hyperlink{struct_t_m___e_s_p8266__t}{TM\_ESP8266\_t};
+00155 
+00156 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+00157     TM\_ESP8266\_WifiMode\_STA = 1,
+00158     TM\_ESP8266\_WifiMode\_AP = 2,
+00159     TM\_ESP8266\_WifiMode\_Both = 3
+00160 \} TM\_ESP8266\_WifiMode\_t;
+00161 
+00162 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+00163     TM\_ESP8266\_Mode\_Server,
+00164     TM\_ESP8266\_Mode\_Client
+00165 \} TM\_ESP8266\_Mode\_t;
+00166 
+00167 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+00168     TM\_ESP8266\_Set\_AP\_IP,
+00169     TM\_ESP8266\_Set\_STA\_IP,
+00170     TM\_ESP8266\_Set\_AP\_MAC,
+00171     TM\_ESP8266\_Set\_STA\_MAC
+00172 \} TM\_ESP8266\_Set\_IP\_MAC\_t;
+00173 
+00174 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+00175     TM\_ESP8266\_Baudrate\_9600 = 9600,
+00176     TM\_ESP8266\_Baudrate\_19200 = 19200,
+00177     TM\_ESP8266\_Baudrate\_38400 = 38400,
+00178     TM\_ESP8266\_Baudrate\_57600 = 57600,
+00179     TM\_ESP8266\_Baudrate\_74880 = 74880,
+00180     TM\_ESP8266\_Baudrate\_115200 = 115200,
+00181     TM\_ESP8266\_Baudrate\_230400 = 230400,
+00182     TM\_ESP8266\_Baudrate\_460800 = 460800,
+00183     TM\_ESP8266\_Baudrate\_921600 = 921600
+00184 \} TM\_ESP8266\_Baudrate\_t;
+00185 
+00186 \textcolor{keyword}{extern} TM\_ESP8266\_Result\_t TM\_ESP8266\_Init(\hyperlink{struct_t_m___e_s_p8266__t}{TM\_ESP8266\_t}* ESP8266\_Data, uint32\_t USART\_Baudrate)
+      ;
+00187 \textcolor{keyword}{extern} TM\_ESP8266\_Result\_t TM\_ESP8266\_Reset(\hyperlink{struct_t_m___e_s_p8266__t}{TM\_ESP8266\_t}* ESP8266\_Data);
+00188 \textcolor{keyword}{extern} TM\_ESP8266\_Result\_t TM\_ESP8266\_ServerEnable(\hyperlink{struct_t_m___e_s_p8266__t}{TM\_ESP8266\_t}* ESP8266\_Data, uint32\_t port);
+00189 \textcolor{keyword}{extern} TM\_ESP8266\_Result\_t TM\_ESP8266\_WifiMode(\hyperlink{struct_t_m___e_s_p8266__t}{TM\_ESP8266\_t}* ESP8266\_Data, 
+      TM\_ESP8266\_WifiMode\_t WifiMode);
+00190 \textcolor{keyword}{extern} TM\_ESP8266\_Result\_t TM\_ESP8266\_CheckIncomingData(\hyperlink{struct_t_m___e_s_p8266__t}{TM\_ESP8266\_t}* ESP8266\_Data, 
+      TM\_ESP8266\_Mode\_t mode);
+00191 \textcolor{keyword}{extern} TM\_ESP8266\_Result\_t TM\_ESP8266\_SendLine(\hyperlink{struct_t_m___e_s_p8266__t}{TM\_ESP8266\_t}* ESP8266\_Data, uint8\_t 
+      connection\_id, \textcolor{keywordtype}{char}* str);
+00192 \textcolor{keyword}{extern} TM\_ESP8266\_Result\_t TM\_ESP8266\_CloseConnection(\hyperlink{struct_t_m___e_s_p8266__t}{TM\_ESP8266\_t}* ESP8266\_Data, uint8\_t 
+      connection\_id);
+00193 \textcolor{keyword}{extern} TM\_ESP8266\_Result\_t TM\_ESP8266\_SetBaudrate(\hyperlink{struct_t_m___e_s_p8266__t}{TM\_ESP8266\_t}* ESP8266\_Data, 
+      TM\_ESP8266\_Baudrate\_t baud);
+00194 \textcolor{keyword}{extern} TM\_ESP8266\_Result\_t TM\_ESP8266\_GetIPsMACs(\hyperlink{struct_t_m___e_s_p8266__t}{TM\_ESP8266\_t}* ESP8266\_Data);
+00195 \textcolor{keyword}{extern} TM\_ESP8266\_Result\_t TM\_ESP8266\_SetIP\_MAC(\hyperlink{struct_t_m___e_s_p8266__t}{TM\_ESP8266\_t}* ESP8266\_Data, 
+      TM\_ESP8266\_Set\_IP\_MAC\_t type, uint8\_t* data);
+00196 \textcolor{keyword}{extern} TM\_ESP8266\_Result\_t TM\_ESP8266\_ClientAvailable(\hyperlink{struct_t_m___e_s_p8266__t}{TM\_ESP8266\_t}* ESP8266\_Data);
+00197 \textcolor{keyword}{extern} TM\_ESP8266\_Result\_t TM\_ESP8266\_DisableEcho(\hyperlink{struct_t_m___e_s_p8266__t}{TM\_ESP8266\_t}* ESP8266\_Data);
+00198 \textcolor{keyword}{extern} TM\_ESP8266\_Result\_t TM\_ESP8266\_EnableEcho(\hyperlink{struct_t_m___e_s_p8266__t}{TM\_ESP8266\_t}* ESP8266\_Data);
+00199 \textcolor{keyword}{extern} TM\_ESP8266\_Result\_t TM\_ESP8266\_CustomCommand(\hyperlink{struct_t_m___e_s_p8266__t}{TM\_ESP8266\_t}* ESP8266\_Data, \textcolor{keywordtype}{char}* command, \textcolor{keywordtype}{
+      char}* response, uint16\_t timeout);
+00200     
+00201 \textcolor{comment}{/* C++ detection */}
+00202 \textcolor{preprocessor}{#ifdef \_\_cplusplus}
+00203 \}
+00204 \textcolor{preprocessor}{#endif}
+00205 
+00206 \textcolor{preprocessor}{#endif}
+00207 
+\end{DoxyCode}

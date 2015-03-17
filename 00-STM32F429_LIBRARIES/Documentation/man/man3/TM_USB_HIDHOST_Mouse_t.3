@@ -1,0 +1,60 @@
+.TH "TM_USB_HIDHOST_Mouse_t" 3 "Wed Mar 18 2015" "Version v1.0.0" "TM STM32F4xx Libraries" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TM_USB_HIDHOST_Mouse_t \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <tm_stm32f4_usb_hid_host\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "int16_t \fBAbsoluteX\fP"
+.br
+.ti -1c
+.RI "int16_t \fBAbsoluteY\fP"
+.br
+.ti -1c
+.RI "int16_t \fBDiffX\fP"
+.br
+.ti -1c
+.RI "int16_t \fBDiffY\fP"
+.br
+.ti -1c
+.RI "TM_USB_HIDHOST_Button_t \fBLeftButton\fP"
+.br
+.ti -1c
+.RI "TM_USB_HIDHOST_Button_t \fBRightButton\fP"
+.br
+.ti -1c
+.RI "TM_USB_HIDHOST_Button_t \fBMiddleButton\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+HID Host mouse struct
+.PP
+Parameters:
+.IP "\(bu" 2
+int16_t AbsoluteX Absolute cursor X position
+.IP "\(bu" 2
+int16_t AbsoluteY Absolute cursor Y position
+.IP "\(bu" 2
+int16_t DiffX Difference cursor X position from last check
+.IP "\(bu" 2
+int16_t DiffY Difference cursor Y position from last check
+.IP "\(bu" 2
+TM_USB_HIDHOST_Button_t LeftButton Indicates if left button is pressed or released
+.IP "\(bu" 2
+TM_USB_HIDHOST_Button_t RightButton Indicates if right button is pressed or released
+.IP "\(bu" 2
+TM_USB_HIDHOST_Button_t MiddleButton Indicates if middle button is pressed or released 
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for TM STM32F4xx Libraries from the source code\&.

@@ -1,0 +1,428 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="group___t_m___g_p_s___macros">
+    <title>TM_GPS_Macros</title>
+
+<para>Library private defines without any sense for USER. </para>
+        <section>
+            <title>Detailed Description</title>
+        </section>
+        <section>
+            <title>Macros</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1ga3549cf40f9b02ef2311757b87a742a48">GPS_IS_DIGIT</link> ((x) &gt;= &apos;0&apos; &amp;&amp; (x) &lt;= &apos;9&apos;)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1ga479301dab3f213c47ee51af3188957b2">GPS_C2N</link> (((a) - 48))</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1ga6b8c0a2bccde3d6a853e53ecf895506e">GPS_C2NM</link> C2N(a) * (x)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1ga5debc0fb8a688ce5d2e3d4df08db39d6">GPS_CONCAT</link> ((x) &lt;&lt; 5 | (y))</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1gad5dbcbcc4248b8bd114546c29cef8ce3">GPS_GPGGA</link> 0</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1ga89f6894d41f315f56560ecd5802ac078">GPS_GPRMC</link> 1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1ga4f7fb2d7454dace968c8243ba8da37a4">GPS_GPGSA</link> 2</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1gaf407f50b998a3e0ea6bfdccd7cf06f50">GPS_GPGSV</link> 3</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1ga1ab7860ffb618cd73e5c55551ef20aaa">GPS_ERR</link> 4</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1gac5529e01e540ec81a8e80ec0308854d2">GPS_FLAG_LATITUDE</link> 0x00000001</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1ga550aa6aec0ac42fcb27f9706ecee5ca9">GPS_FLAG_LONGITUDE</link> 0x00000002</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1gad8b53e8f2811b7ffea261a953e5dee96">GPS_FLAG_SATS</link> 0x00000004</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1ga11939dc15d5793d4d75853b22f9a891d">GPS_FLAG_FIX</link> 0x00000008</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1ga8f2c38d15738a24e88ed0632798a9d7a">GPS_FLAG_ALTITUDE</link> 0x00000010</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1ga5b43481faf811bd80e10a752c1057152">GPS_FLAG_EW</link> 0x00000020</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1ga0a38f772a5a99875c5740b55fe4883be">GPS_FLAG_NS</link> 0x00000040</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1gab3cd8fc75582c6a1fb0ff2d5e67a81ee">GPS_FLAG_TIME</link> 0x00000080</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1gacc3efeb4af5972098b437a9cd3d704e1">GPS_FLAG_SPEED</link> 0x00000100</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1ga2d6c359348a48059c272709c4ac1d0c7">GPS_FLAG_DATE</link> 0x00000200</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1gafc47a33de48183cf5d9eea64e45d528c">GPS_FLAG_VALIDITY</link> 0x00000400</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1ga3b0affe8ae20e112fa4bb175699ee5dd">GPS_FLAG_DIRECTION</link> 0x00008000</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1ga2f8cbc31ea5be9a7d743b2308b4e4484">GPS_FLAG_HDOP</link> 0x00000800</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1ga940b5a76c55e794a0251e73e88f23a49">GPS_FLAG_VDOP</link> 0x00001000</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1gad635e68f817182b5568ab577132ba194">GPS_FLAG_PDOP</link> 0x00002000</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1gaad3fa0dd675da8d7a36a64301b69607e">GPS_FLAG_FIXMODE</link> 0x00004000</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1gaabcdeb4349b9c23c5ccb03698160845f">GPS_FLAG_SATS1_12</link> 0x00020000</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1ga5f44dcc5737306b8a559215c91a73a29">GPS_FLAG_SATSINVIEW</link> 0x00010000</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1gaf34bae4a76126c8f11084be24791f0f9">GPS_POS_LATITUDE</link> GPS_CONCAT(GPS_GPGGA, 2)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1gaa234c253bf4abd5b2339d0df385c5503">GPS_POS_LONGITUDE</link> GPS_CONCAT(GPS_GPGGA, 4)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1ga6574440fb481eec75f24a39af635b2cf">GPS_POS_SATS</link> GPS_CONCAT(GPS_GPGGA, 7)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1gac7ab6ca762b8f54e9ac13e853a17140b">GPS_POS_FIX</link> GPS_CONCAT(GPS_GPGGA, 6)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1ga20c8a52e80e930782d6f59172541ca45">GPS_POS_ALTITUDE</link> GPS_CONCAT(GPS_GPGGA, 9)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1ga930835327feb841bd66b24506719fa08">GPS_POS_TIME</link> GPS_CONCAT(GPS_GPGGA, 1)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1ga88670fe57059646ec87bcb3b743a15df">GPS_POS_EW</link> GPS_CONCAT(GPS_GPGGA, 5)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1ga3c89835a16da1a65839c1087379b480a">GPS_POS_NS</link> GPS_CONCAT(GPS_GPGGA, 3)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1ga2251034186a93272cf611ef1cd245f09">GPS_POS_SPEED</link> GPS_CONCAT(GPS_GPRMC, 7)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1ga166688f16fbb8d7b3833820901706dfe">GPS_POS_DATE</link> GPS_CONCAT(GPS_GPRMC, 9)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1ga84b414fde2a0afca6bec07dcf73cb9d8">GPS_POS_VALIDITY</link> GPS_CONCAT(GPS_GPRMC, 2)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1gae8c6b709013b3a82b7cb163d8f90d363">GPS_POS_DIRECTION</link> GPS_CONCAT(GPS_GPRMC, 8)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1ga204c7d13c52622f52a7e2851f66deeff">GPS_POS_PDOP</link> GPS_CONCAT(GPS_GPGSA, 15)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1gae733a3b1c643f873a73a464fab776677">GPS_POS_HDOP</link> GPS_CONCAT(GPS_GPGSA, 16)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1gaa400a7eb553cc3e305156431cd422f9b">GPS_POS_VDOP</link> GPS_CONCAT(GPS_GPGSA, 17)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1gad8de7d4376d5785c927843ca5ce35f56">GPS_POS_FIXMODE</link> GPS_CONCAT(GPS_GPGSA, 2)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1gaa91cd09303baa12699ddc0b1d13434c2">GPS_POS_SAT1</link> GPS_CONCAT(GPS_GPGSA, 3)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1gabd1ad9c2a8026780cc0abaa6e6c367c0">GPS_POS_SAT2</link> GPS_CONCAT(GPS_GPGSA, 4)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1ga0c86e8be497feed2379f993d4f0f4907">GPS_POS_SAT3</link> GPS_CONCAT(GPS_GPGSA, 5)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1ga47a8889aa0fca7daeedd8829f0c7031d">GPS_POS_SAT4</link> GPS_CONCAT(GPS_GPGSA, 6)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1ga61923695056e41c2389d8e163e51f530">GPS_POS_SAT5</link> GPS_CONCAT(GPS_GPGSA, 7)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1ga0144273a6effe1404346a1104a0ed80f">GPS_POS_SAT6</link> GPS_CONCAT(GPS_GPGSA, 8)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1ga2753e457eeb22f7143bfb44026b152be">GPS_POS_SAT7</link> GPS_CONCAT(GPS_GPGSA, 9)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1ga3bc4aff3bf6a03258d2d3789a806c055">GPS_POS_SAT8</link> GPS_CONCAT(GPS_GPGSA, 10)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1gac0146d8c4eb0f53fd5320f0702262d27">GPS_POS_SAT9</link> GPS_CONCAT(GPS_GPGSA, 11)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1ga9d74d3fb3c3061e4ef7950d35b612771">GPS_POS_SAT10</link> GPS_CONCAT(GPS_GPGSA, 12)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1ga7712a77217ba7b6b9c27c8984278853c">GPS_POS_SAT11</link> GPS_CONCAT(GPS_GPGSA, 13)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1gafc51d50327a324ea23fa838f892579be">GPS_POS_SAT12</link> GPS_CONCAT(GPS_GPGSA, 14)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1ga1db9e7b12d9416e1144793da9e51f5e1">GPS_POS_SATSINVIEW</link> GPS_CONCAT(GPS_GPGSV, 3)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1ga550b34dc59c859ae3b25198167cd30c5">GPS_EARTH_RADIUS</link> 6371</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1gac3b4faf735022b37bca58234578e883d">GPS_DEGREES2RADIANS</link> ((x) * (float)0.01745329251994)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_s___macros_1ga5aa88fbb1990eb8ff302ddfe7a33e9bd">GPS_RADIANS2DEGREES</link> ((x) * (float)57.29577951308232)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Macro Definition Documentation</title>
+        </section>
+</section>

@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		http://stm32f4-discovery.com/2014/09/library-33-pwm-for-stm32f4xx/
- *	@version 	v2.0
+ *	@version 	v2.1
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -25,6 +25,10 @@
  * | You should have received a copy of the GNU General Public License
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
+ *
+ * Version 2.1
+ *	- March 15, 2015
+ *	- Added support for new GPIO library
  *
  * Version 2.0
  *	- January 03, 2015
@@ -65,7 +69,7 @@
  * 	- All channels at one timer have the same PWM frequency!
  */
 #ifndef TM_PWM_H
-#define TM_PWM_H 200
+#define TM_PWM_H 210
 /**
  * Library dependencies
  * - STM32F4xx
@@ -74,6 +78,7 @@
  * - STM32F4xx TIM
  * - defines.h
  * - TM TIMER PROPERTIES
+ * - TM GPIO
  */
 /**
  * Includes
@@ -83,6 +88,7 @@
 #include "stm32f4xx_gpio.h"
 #include "stm32f4xx_tim.h"
 #include "tm_stm32f4_timer_properties.h"
+#include "tm_stm32f4_gpio.h"
 #include "defines.h"
 
 /**

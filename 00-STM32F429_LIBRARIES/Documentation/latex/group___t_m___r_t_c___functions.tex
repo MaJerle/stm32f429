@@ -1,0 +1,458 @@
+\hypertarget{group___t_m___r_t_c___functions}{}\subsection{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions}
+\label{group___t_m___r_t_c___functions}\index{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions}}
+
+
+Library Functions.  
+
+
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \hyperlink{group___t_m___r_t_c___functions_gac0fab900e7150c1d28b1f3238482d4e4}{T\+M\+\_\+\+R\+T\+C\+\_\+\+Init} (\hyperlink{group___t_m___r_t_c___typedefs_ga944a179f7f7042272040b3464ab89eb5}{T\+M\+\_\+\+R\+T\+C\+\_\+\+Clock\+Source\+\_\+t} source)
+\begin{DoxyCompactList}\small\item\em Initializes R\+T\+C and starts counting. \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{group___t_m___r_t_c___functions_gab5f3515bc1cf70c83e9e178defa65a04}{T\+M\+\_\+\+R\+T\+C\+\_\+\+Get\+Unix\+Time\+Stamp} (\hyperlink{struct_t_m___r_t_c__t}{T\+M\+\_\+\+R\+T\+C\+\_\+t} $\ast$data)
+\begin{DoxyCompactList}\small\item\em Get number of seconds from date and time since 01.\+01.\+1970 00\+:00\+:00. \end{DoxyCompactList}\item 
+void \hyperlink{group___t_m___r_t_c___functions_gac82051e0b33111d68efd1f91fc76e38a}{T\+M\+\_\+\+R\+T\+C\+\_\+\+Get\+Date\+Time\+From\+Unix} (\hyperlink{struct_t_m___r_t_c__t}{T\+M\+\_\+\+R\+T\+C\+\_\+t} $\ast$data, uint32\+\_\+t unix)
+\begin{DoxyCompactList}\small\item\em Get formatted time from seconds till 01.\+01.\+1970 00\+:00\+:00 It fills struct with valid data. \end{DoxyCompactList}\item 
+void \hyperlink{group___t_m___r_t_c___functions_ga79476631cb5999d82b4bf453f136423e}{T\+M\+\_\+\+R\+T\+C\+\_\+\+Interrupts} (\hyperlink{group___t_m___r_t_c___typedefs_ga05e753ad5f63f28a20fe9f3b85e799f2}{T\+M\+\_\+\+R\+T\+C\+\_\+\+Int\+\_\+t} int\+\_\+value)
+\begin{DoxyCompactList}\small\item\em Select R\+T\+C wakeup interrupts interval. \end{DoxyCompactList}\item 
+\hyperlink{group___t_m___r_t_c___typedefs_gaad29b647ee0def818f3b9efc717731f8}{T\+M\+\_\+\+R\+T\+C\+\_\+\+Result\+\_\+t} \hyperlink{group___t_m___r_t_c___functions_ga58c057ad43d7b9ab4f3ad85f7e66fc93}{T\+M\+\_\+\+R\+T\+C\+\_\+\+Set\+Date\+Time} (\hyperlink{struct_t_m___r_t_c__t}{T\+M\+\_\+\+R\+T\+C\+\_\+t} $\ast$data, \hyperlink{group___t_m___r_t_c___typedefs_ga4ef7bf7d2c67f2dc6208ecb5926b0354}{T\+M\+\_\+\+R\+T\+C\+\_\+\+Format\+\_\+t} format)
+\begin{DoxyCompactList}\small\item\em Set date and time to internal R\+T\+C registers. \end{DoxyCompactList}\item 
+\hyperlink{group___t_m___r_t_c___typedefs_gaad29b647ee0def818f3b9efc717731f8}{T\+M\+\_\+\+R\+T\+C\+\_\+\+Result\+\_\+t} \hyperlink{group___t_m___r_t_c___functions_ga6468f31074c15395f5be86a72aa096f0}{T\+M\+\_\+\+R\+T\+C\+\_\+\+Set\+Date\+Time\+String} (char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Set date and time using string formatted date time. \end{DoxyCompactList}\item 
+void \hyperlink{group___t_m___r_t_c___functions_gac2a333f70db9cdb117255ab6c0e38fa7}{T\+M\+\_\+\+R\+T\+C\+\_\+\+Get\+Date\+Time} (\hyperlink{struct_t_m___r_t_c__t}{T\+M\+\_\+\+R\+T\+C\+\_\+t} $\ast$data, \hyperlink{group___t_m___r_t_c___typedefs_ga4ef7bf7d2c67f2dc6208ecb5926b0354}{T\+M\+\_\+\+R\+T\+C\+\_\+\+Format\+\_\+t} format)
+\begin{DoxyCompactList}\small\item\em Get date and time from internal R\+T\+C registers. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{group___t_m___r_t_c___functions_ga502000f5779e894fb0f0586b0e875a39}{T\+M\+\_\+\+R\+T\+C\+\_\+\+Get\+Days\+In\+Month} (uint8\+\_\+t month, uint8\+\_\+t year)
+\begin{DoxyCompactList}\small\item\em Get number of days in month. \end{DoxyCompactList}\item 
+uint16\+\_\+t \hyperlink{group___t_m___r_t_c___functions_ga27b98b821e1592bfca5eee2d8dd7d7cb}{T\+M\+\_\+\+R\+T\+C\+\_\+\+Get\+Days\+In\+Year} (uint8\+\_\+t year)
+\begin{DoxyCompactList}\small\item\em Get number of days in specific year. \end{DoxyCompactList}\item 
+void \hyperlink{group___t_m___r_t_c___functions_ga0e64097447132cfaca8e9f966eb5b364}{T\+M\+\_\+\+R\+T\+C\+\_\+\+Write\+Backup\+Register} (uint8\+\_\+t location, uint32\+\_\+t value)
+\begin{DoxyCompactList}\small\item\em Write R\+T\+C backup register value. This method allows you to write 32bit value from backup register 0 -\/ 18. \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{group___t_m___r_t_c___functions_ga36b9c6ac83cb17f06710ce83d1d2f407}{T\+M\+\_\+\+R\+T\+C\+\_\+\+Read\+Backup\+Register} (uint8\+\_\+t location)
+\begin{DoxyCompactList}\small\item\em Read R\+T\+C backup register value. This method allows you to read 32bit value from backup register 0 -\/ 18. \end{DoxyCompactList}\item 
+void \hyperlink{group___t_m___r_t_c___functions_gaee6b82bb5861cb4427cc4296dfa1c0ee}{T\+M\+\_\+\+R\+T\+C\+\_\+\+Set\+Alarm} (\hyperlink{group___t_m___r_t_c___typedefs_ga3c4d1d5831bf262f1994e8cc45007e7b}{T\+M\+\_\+\+R\+T\+C\+\_\+\+Alarm\+\_\+t} Alarm, \hyperlink{struct_t_m___r_t_c___alarm_time__t}{T\+M\+\_\+\+R\+T\+C\+\_\+\+Alarm\+Time\+\_\+t} $\ast$Alarm\+Time, \hyperlink{group___t_m___r_t_c___typedefs_ga4ef7bf7d2c67f2dc6208ecb5926b0354}{T\+M\+\_\+\+R\+T\+C\+\_\+\+Format\+\_\+t} format)
+\begin{DoxyCompactList}\small\item\em Enables alarm A or alarm B. \end{DoxyCompactList}\item 
+void \hyperlink{group___t_m___r_t_c___functions_ga46f745b32e15b1d3df2619114d1da9af}{T\+M\+\_\+\+R\+T\+C\+\_\+\+Disable\+Alarm} (\hyperlink{group___t_m___r_t_c___typedefs_ga3c4d1d5831bf262f1994e8cc45007e7b}{T\+M\+\_\+\+R\+T\+C\+\_\+\+Alarm\+\_\+t} Alarm)
+\begin{DoxyCompactList}\small\item\em Disables specific alarm. \end{DoxyCompactList}\item 
+void \hyperlink{group___t_m___r_t_c___functions_gac7dd8cc4cabfeaea791b6004ebecc33b}{T\+M\+\_\+\+R\+T\+C\+\_\+\+Request\+Handler} (void)
+\begin{DoxyCompactList}\small\item\em R\+T\+C Wakeup handler function. Called when wakeup interrupt is triggered. \end{DoxyCompactList}\item 
+void \hyperlink{group___t_m___r_t_c___functions_ga67d39fc806bd2cf02b6bc2f93e818e45}{T\+M\+\_\+\+R\+T\+C\+\_\+\+Alarm\+A\+Handler} (void)
+\begin{DoxyCompactList}\small\item\em R\+T\+C Alarm A handler function. Called when interrupt is triggered for alarm B. \end{DoxyCompactList}\item 
+void \hyperlink{group___t_m___r_t_c___functions_gac02ceb4f42dcab6c1fec7af7a8350454}{T\+M\+\_\+\+R\+T\+C\+\_\+\+Alarm\+B\+Handler} (void)
+\begin{DoxyCompactList}\small\item\em R\+T\+C Alarm B handler function. Called when interrupt is triggered for alarm B. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+Library Functions. 
+
+
+
+\subsubsection{Function Documentation}
+\hypertarget{group___t_m___r_t_c___functions_ga67d39fc806bd2cf02b6bc2f93e818e45}{}\index{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions}!T\+M\+\_\+\+R\+T\+C\+\_\+\+Alarm\+A\+Handler@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Alarm\+A\+Handler}}
+\index{T\+M\+\_\+\+R\+T\+C\+\_\+\+Alarm\+A\+Handler@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Alarm\+A\+Handler}!T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+R\+T\+C\+\_\+\+Alarm\+A\+Handler}]{\setlength{\rightskip}{0pt plus 5cm}void T\+M\+\_\+\+R\+T\+C\+\_\+\+Alarm\+A\+Handler (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{group___t_m___r_t_c___functions_ga67d39fc806bd2cf02b6bc2f93e818e45}
+
+
+R\+T\+C Alarm A handler function. Called when interrupt is triggered for alarm B. 
+
+\begin{DoxyNote}{Note}
+Called from my R\+T\+C library 
+
+With \+\_\+\+\_\+weak parameter to prevent link errors if not defined by user 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___r_t_c___functions_gac02ceb4f42dcab6c1fec7af7a8350454}{}\index{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions}!T\+M\+\_\+\+R\+T\+C\+\_\+\+Alarm\+B\+Handler@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Alarm\+B\+Handler}}
+\index{T\+M\+\_\+\+R\+T\+C\+\_\+\+Alarm\+B\+Handler@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Alarm\+B\+Handler}!T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+R\+T\+C\+\_\+\+Alarm\+B\+Handler}]{\setlength{\rightskip}{0pt plus 5cm}void T\+M\+\_\+\+R\+T\+C\+\_\+\+Alarm\+B\+Handler (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{group___t_m___r_t_c___functions_gac02ceb4f42dcab6c1fec7af7a8350454}
+
+
+R\+T\+C Alarm B handler function. Called when interrupt is triggered for alarm B. 
+
+\begin{DoxyNote}{Note}
+Called from my R\+T\+C library 
+
+With \+\_\+\+\_\+weak parameter to prevent link errors if not defined by user 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___r_t_c___functions_ga46f745b32e15b1d3df2619114d1da9af}{}\index{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions}!T\+M\+\_\+\+R\+T\+C\+\_\+\+Disable\+Alarm@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Disable\+Alarm}}
+\index{T\+M\+\_\+\+R\+T\+C\+\_\+\+Disable\+Alarm@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Disable\+Alarm}!T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+R\+T\+C\+\_\+\+Disable\+Alarm}]{\setlength{\rightskip}{0pt plus 5cm}void T\+M\+\_\+\+R\+T\+C\+\_\+\+Disable\+Alarm (
+\begin{DoxyParamCaption}
+\item[{{\bf T\+M\+\_\+\+R\+T\+C\+\_\+\+Alarm\+\_\+t}}]{Alarm}
+\end{DoxyParamCaption}
+)}\label{group___t_m___r_t_c___functions_ga46f745b32e15b1d3df2619114d1da9af}
+
+
+Disables specific alarm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Alarm} & Select which alarm you want to disable. This parameter can be a value of \hyperlink{group___t_m___r_t_c___typedefs_ga3c4d1d5831bf262f1994e8cc45007e7b}{T\+M\+\_\+\+R\+T\+C\+\_\+\+Alarm\+\_\+t} enumeration \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___r_t_c___functions_gac2a333f70db9cdb117255ab6c0e38fa7}{}\index{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions}!T\+M\+\_\+\+R\+T\+C\+\_\+\+Get\+Date\+Time@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Get\+Date\+Time}}
+\index{T\+M\+\_\+\+R\+T\+C\+\_\+\+Get\+Date\+Time@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Get\+Date\+Time}!T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+R\+T\+C\+\_\+\+Get\+Date\+Time}]{\setlength{\rightskip}{0pt plus 5cm}void T\+M\+\_\+\+R\+T\+C\+\_\+\+Get\+Date\+Time (
+\begin{DoxyParamCaption}
+\item[{{\bf T\+M\+\_\+\+R\+T\+C\+\_\+t} $\ast$}]{data, }
+\item[{{\bf T\+M\+\_\+\+R\+T\+C\+\_\+\+Format\+\_\+t}}]{format}
+\end{DoxyParamCaption}
+)}\label{group___t_m___r_t_c___functions_gac2a333f70db9cdb117255ab6c0e38fa7}
+
+
+Get date and time from internal R\+T\+C registers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$data} & Pointer to \hyperlink{struct_t_m___r_t_c__t}{T\+M\+\_\+\+R\+T\+C\+\_\+t} structure to save data to \\
+\hline
+{\em format} & Format of your structure. This parameter can be a value of \hyperlink{group___t_m___r_t_c___typedefs_ga4ef7bf7d2c67f2dc6208ecb5926b0354}{T\+M\+\_\+\+R\+T\+C\+\_\+\+Format\+\_\+t} enumeration \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___t_m___r_t_c___functions_gac82051e0b33111d68efd1f91fc76e38a}{}\index{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions}!T\+M\+\_\+\+R\+T\+C\+\_\+\+Get\+Date\+Time\+From\+Unix@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Get\+Date\+Time\+From\+Unix}}
+\index{T\+M\+\_\+\+R\+T\+C\+\_\+\+Get\+Date\+Time\+From\+Unix@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Get\+Date\+Time\+From\+Unix}!T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+R\+T\+C\+\_\+\+Get\+Date\+Time\+From\+Unix}]{\setlength{\rightskip}{0pt plus 5cm}void T\+M\+\_\+\+R\+T\+C\+\_\+\+Get\+Date\+Time\+From\+Unix (
+\begin{DoxyParamCaption}
+\item[{{\bf T\+M\+\_\+\+R\+T\+C\+\_\+t} $\ast$}]{data, }
+\item[{uint32\+\_\+t}]{unix}
+\end{DoxyParamCaption}
+)}\label{group___t_m___r_t_c___functions_gac82051e0b33111d68efd1f91fc76e38a}
+
+
+Get formatted time from seconds till 01.\+01.\+1970 00\+:00\+:00 It fills struct with valid data. 
+
+\begin{DoxyNote}{Note}
+Valid if year is greater or equal ($>$=) than 2000 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$data} & Pointer to \hyperlink{group___t_m___r_t_c___typedefs_gaeb7262d02f6cc61342a91b78d7429805}{T\+M\+\_\+\+R\+T\+C\+\_\+\+Time\+\_\+t} struct to store formatted data in \\
+\hline
+{\em unix} & Seconds from 01.\+01.\+1970 00\+:00\+:00 to calculate user friendly time \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___t_m___r_t_c___functions_ga502000f5779e894fb0f0586b0e875a39}{}\index{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions}!T\+M\+\_\+\+R\+T\+C\+\_\+\+Get\+Days\+In\+Month@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Get\+Days\+In\+Month}}
+\index{T\+M\+\_\+\+R\+T\+C\+\_\+\+Get\+Days\+In\+Month@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Get\+Days\+In\+Month}!T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+R\+T\+C\+\_\+\+Get\+Days\+In\+Month}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t T\+M\+\_\+\+R\+T\+C\+\_\+\+Get\+Days\+In\+Month (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{month, }
+\item[{uint8\+\_\+t}]{year}
+\end{DoxyParamCaption}
+)}\label{group___t_m___r_t_c___functions_ga502000f5779e894fb0f0586b0e875a39}
+
+
+Get number of days in month. 
+
+\begin{DoxyNote}{Note}
+This function also detects if it is leap year and returns different number for February 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em month} & Month number in year, valid numbers are 1 -\/ 12 \\
+\hline
+{\em year} & Year number where you want to get days in month, last 2 digits \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Number} & of days in specific month and year \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___r_t_c___functions_ga27b98b821e1592bfca5eee2d8dd7d7cb}{}\index{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions}!T\+M\+\_\+\+R\+T\+C\+\_\+\+Get\+Days\+In\+Year@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Get\+Days\+In\+Year}}
+\index{T\+M\+\_\+\+R\+T\+C\+\_\+\+Get\+Days\+In\+Year@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Get\+Days\+In\+Year}!T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+R\+T\+C\+\_\+\+Get\+Days\+In\+Year}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t T\+M\+\_\+\+R\+T\+C\+\_\+\+Get\+Days\+In\+Year (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{year}
+\end{DoxyParamCaption}
+)}\label{group___t_m___r_t_c___functions_ga27b98b821e1592bfca5eee2d8dd7d7cb}
+
+
+Get number of days in specific year. 
+
+\begin{DoxyNote}{Note}
+This function also detects if it is leap year 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em year} & Year number where you want to get days in month, last 2 digits \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Returns} & number of days in year \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___r_t_c___functions_gab5f3515bc1cf70c83e9e178defa65a04}{}\index{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions}!T\+M\+\_\+\+R\+T\+C\+\_\+\+Get\+Unix\+Time\+Stamp@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Get\+Unix\+Time\+Stamp}}
+\index{T\+M\+\_\+\+R\+T\+C\+\_\+\+Get\+Unix\+Time\+Stamp@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Get\+Unix\+Time\+Stamp}!T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+R\+T\+C\+\_\+\+Get\+Unix\+Time\+Stamp}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t T\+M\+\_\+\+R\+T\+C\+\_\+\+Get\+Unix\+Time\+Stamp (
+\begin{DoxyParamCaption}
+\item[{{\bf T\+M\+\_\+\+R\+T\+C\+\_\+t} $\ast$}]{data}
+\end{DoxyParamCaption}
+)}\label{group___t_m___r_t_c___functions_gab5f3515bc1cf70c83e9e178defa65a04}
+
+
+Get number of seconds from date and time since 01.\+01.\+1970 00\+:00\+:00. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$data} & Pointer to \hyperlink{struct_t_m___r_t_c__t}{T\+M\+\_\+\+R\+T\+C\+\_\+t} data structure \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Calculated} & seconds from date and time since 01.\+01.\+1970 00\+:00\+:00 \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___r_t_c___functions_gac0fab900e7150c1d28b1f3238482d4e4}{}\index{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions}!T\+M\+\_\+\+R\+T\+C\+\_\+\+Init@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Init}}
+\index{T\+M\+\_\+\+R\+T\+C\+\_\+\+Init@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Init}!T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+R\+T\+C\+\_\+\+Init}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t T\+M\+\_\+\+R\+T\+C\+\_\+\+Init (
+\begin{DoxyParamCaption}
+\item[{{\bf T\+M\+\_\+\+R\+T\+C\+\_\+\+Clock\+Source\+\_\+t}}]{source}
+\end{DoxyParamCaption}
+)}\label{group___t_m___r_t_c___functions_gac0fab900e7150c1d28b1f3238482d4e4}
+
+
+Initializes R\+T\+C and starts counting. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em source.} & R\+T\+C Clock source \hyperlink{group___t_m___r_t_c___typedefs_ga944a179f7f7042272040b3464ab89eb5}{T\+M\+\_\+\+R\+T\+C\+\_\+\+Clock\+Source\+\_\+t} to be used for R\+T\+C \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Internal clock source is not so accurate 
+
+If you reset your M\+C\+U and R\+T\+C still has power, it will count independent of M\+C\+U status 
+\end{DoxyNote}
+
+\begin{DoxyRetVals}{Return values}
+{\em Returns} & R\+T\+C status.
+\begin{DoxyItemize}
+\item 1\+: R\+T\+C has already been initialized and time is set
+\item 0\+: R\+T\+C was now initialized first time. Now you can set your first clock 
+\end{DoxyItemize}\\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___r_t_c___functions_ga79476631cb5999d82b4bf453f136423e}{}\index{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions}!T\+M\+\_\+\+R\+T\+C\+\_\+\+Interrupts@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Interrupts}}
+\index{T\+M\+\_\+\+R\+T\+C\+\_\+\+Interrupts@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Interrupts}!T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+R\+T\+C\+\_\+\+Interrupts}]{\setlength{\rightskip}{0pt plus 5cm}void T\+M\+\_\+\+R\+T\+C\+\_\+\+Interrupts (
+\begin{DoxyParamCaption}
+\item[{{\bf T\+M\+\_\+\+R\+T\+C\+\_\+\+Int\+\_\+t}}]{int\+\_\+value}
+\end{DoxyParamCaption}
+)}\label{group___t_m___r_t_c___functions_ga79476631cb5999d82b4bf453f136423e}
+
+
+Select R\+T\+C wakeup interrupts interval. 
+
+\begin{DoxyNote}{Note}
+This function can also be used to disable interrupt 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em int\+\_\+value} & Look for \hyperlink{group___t_m___r_t_c___typedefs_ga05e753ad5f63f28a20fe9f3b85e799f2}{T\+M\+\_\+\+R\+T\+C\+\_\+\+Int\+\_\+t} for valid inputs \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___r_t_c___functions_ga36b9c6ac83cb17f06710ce83d1d2f407}{}\index{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions}!T\+M\+\_\+\+R\+T\+C\+\_\+\+Read\+Backup\+Register@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Read\+Backup\+Register}}
+\index{T\+M\+\_\+\+R\+T\+C\+\_\+\+Read\+Backup\+Register@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Read\+Backup\+Register}!T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+R\+T\+C\+\_\+\+Read\+Backup\+Register}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t T\+M\+\_\+\+R\+T\+C\+\_\+\+Read\+Backup\+Register (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{location}
+\end{DoxyParamCaption}
+)}\label{group___t_m___r_t_c___functions_ga36b9c6ac83cb17f06710ce83d1d2f407}
+
+
+Read R\+T\+C backup register value. This method allows you to read 32bit value from backup register 0 -\/ 18. 
+
+\begin{DoxyNote}{Note}
+R\+T\+C has 20 backup registers where you can store data which will be available all the time R\+T\+C is running and has power.
+
+My library uses register 19 to store info about R\+T\+C settings and is not available for U\+S\+E\+R to store data there.
+
+R\+T\+C H\+A\+V\+E to be initialized first before you can use this method 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em location} & R\+T\+C backup register location. 0 to 18 are valid \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Value} & at specific R\+T\+C backup register location \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___r_t_c___functions_gac7dd8cc4cabfeaea791b6004ebecc33b}{}\index{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions}!T\+M\+\_\+\+R\+T\+C\+\_\+\+Request\+Handler@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Request\+Handler}}
+\index{T\+M\+\_\+\+R\+T\+C\+\_\+\+Request\+Handler@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Request\+Handler}!T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+R\+T\+C\+\_\+\+Request\+Handler}]{\setlength{\rightskip}{0pt plus 5cm}void T\+M\+\_\+\+R\+T\+C\+\_\+\+Request\+Handler (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{group___t_m___r_t_c___functions_gac7dd8cc4cabfeaea791b6004ebecc33b}
+
+
+R\+T\+C Wakeup handler function. Called when wakeup interrupt is triggered. 
+
+\begin{DoxyNote}{Note}
+Called from my R\+T\+C library 
+
+With \+\_\+\+\_\+weak parameter to prevent link errors if not defined by user 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___r_t_c___functions_gaee6b82bb5861cb4427cc4296dfa1c0ee}{}\index{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions}!T\+M\+\_\+\+R\+T\+C\+\_\+\+Set\+Alarm@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Set\+Alarm}}
+\index{T\+M\+\_\+\+R\+T\+C\+\_\+\+Set\+Alarm@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Set\+Alarm}!T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+R\+T\+C\+\_\+\+Set\+Alarm}]{\setlength{\rightskip}{0pt plus 5cm}void T\+M\+\_\+\+R\+T\+C\+\_\+\+Set\+Alarm (
+\begin{DoxyParamCaption}
+\item[{{\bf T\+M\+\_\+\+R\+T\+C\+\_\+\+Alarm\+\_\+t}}]{Alarm, }
+\item[{{\bf T\+M\+\_\+\+R\+T\+C\+\_\+\+Alarm\+Time\+\_\+t} $\ast$}]{Alarm\+Time, }
+\item[{{\bf T\+M\+\_\+\+R\+T\+C\+\_\+\+Format\+\_\+t}}]{format}
+\end{DoxyParamCaption}
+)}\label{group___t_m___r_t_c___functions_gaee6b82bb5861cb4427cc4296dfa1c0ee}
+
+
+Enables alarm A or alarm B. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Alarm} & Specify which alarm to set. This parameter can be a value of \hyperlink{group___t_m___r_t_c___typedefs_ga3c4d1d5831bf262f1994e8cc45007e7b}{T\+M\+\_\+\+R\+T\+C\+\_\+\+Alarm\+\_\+t} enumeration \\
+\hline
+{\em $\ast$\+Alarm\+Time} & Pointer to \hyperlink{struct_t_m___r_t_c___alarm_time__t}{T\+M\+\_\+\+R\+T\+C\+\_\+\+Alarm\+Time\+\_\+t} structure to get data from. \\
+\hline
+{\em format} & R\+T\+C date and time format. This parameter can be a value of \hyperlink{group___t_m___r_t_c___typedefs_ga4ef7bf7d2c67f2dc6208ecb5926b0354}{T\+M\+\_\+\+R\+T\+C\+\_\+\+Format\+\_\+t} enumeration. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___r_t_c___functions_ga58c057ad43d7b9ab4f3ad85f7e66fc93}{}\index{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions}!T\+M\+\_\+\+R\+T\+C\+\_\+\+Set\+Date\+Time@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Set\+Date\+Time}}
+\index{T\+M\+\_\+\+R\+T\+C\+\_\+\+Set\+Date\+Time@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Set\+Date\+Time}!T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+R\+T\+C\+\_\+\+Set\+Date\+Time}]{\setlength{\rightskip}{0pt plus 5cm}{\bf T\+M\+\_\+\+R\+T\+C\+\_\+\+Result\+\_\+t} T\+M\+\_\+\+R\+T\+C\+\_\+\+Set\+Date\+Time (
+\begin{DoxyParamCaption}
+\item[{{\bf T\+M\+\_\+\+R\+T\+C\+\_\+t} $\ast$}]{data, }
+\item[{{\bf T\+M\+\_\+\+R\+T\+C\+\_\+\+Format\+\_\+t}}]{format}
+\end{DoxyParamCaption}
+)}\label{group___t_m___r_t_c___functions_ga58c057ad43d7b9ab4f3ad85f7e66fc93}
+
+
+Set date and time to internal R\+T\+C registers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$data} & Pointer to filled \hyperlink{struct_t_m___r_t_c__t}{T\+M\+\_\+\+R\+T\+C\+\_\+t} structure with date and time \\
+\hline
+{\em format} & Format of your structure. This parameter can be a value of \hyperlink{group___t_m___r_t_c___typedefs_ga4ef7bf7d2c67f2dc6208ecb5926b0354}{T\+M\+\_\+\+R\+T\+C\+\_\+\+Format\+\_\+t} enumeration. \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___t_m___r_t_c___functions_ga6468f31074c15395f5be86a72aa096f0}{}\index{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions}!T\+M\+\_\+\+R\+T\+C\+\_\+\+Set\+Date\+Time\+String@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Set\+Date\+Time\+String}}
+\index{T\+M\+\_\+\+R\+T\+C\+\_\+\+Set\+Date\+Time\+String@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Set\+Date\+Time\+String}!T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+R\+T\+C\+\_\+\+Set\+Date\+Time\+String}]{\setlength{\rightskip}{0pt plus 5cm}{\bf T\+M\+\_\+\+R\+T\+C\+\_\+\+Result\+\_\+t} T\+M\+\_\+\+R\+T\+C\+\_\+\+Set\+Date\+Time\+String (
+\begin{DoxyParamCaption}
+\item[{char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}\label{group___t_m___r_t_c___functions_ga6468f31074c15395f5be86a72aa096f0}
+
+
+Set date and time using string formatted date time. 
+
+\begin{DoxyNote}{Note}
+Valid string format is\+: dd.\+mm.\+Y\+Y.\+x;H\+H\+:ii\+:ss
+\begin{DoxyItemize}
+\item dd\+: date, 2 digits, decimal
+\item mm\+: month, 2 digits, decimal
+\item Y\+Y\+: year, last 2 digits, decimal
+\item x\+: day in a week\+: 1 digit,
+\item H\+H\+: hours, 24-\/hour mode, 2 digits, decimal
+\item ii\+: minutes, 2 digits, decimal
+\item ss\+: seconds, 2 digigs, decimal 
+\end{DoxyItemize}
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$str} & Pointer to string with datetime format \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em R\+T\+C} & datetime status \hyperlink{group___t_m___r_t_c___typedefs_gaad29b647ee0def818f3b9efc717731f8}{T\+M\+\_\+\+R\+T\+C\+\_\+\+Result\+\_\+t}.
+\begin{DoxyItemize}
+\item T\+M\+\_\+\+R\+T\+C\+\_\+\+Result\+\_\+\+Ok\+: Date and Time set O\+K
+\item T\+M\+\_\+\+R\+T\+C\+\_\+\+Result\+\_\+\+Error\+: Date and time is wrong 
+\end{DoxyItemize}\\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___r_t_c___functions_ga0e64097447132cfaca8e9f966eb5b364}{}\index{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions}!T\+M\+\_\+\+R\+T\+C\+\_\+\+Write\+Backup\+Register@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Write\+Backup\+Register}}
+\index{T\+M\+\_\+\+R\+T\+C\+\_\+\+Write\+Backup\+Register@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Write\+Backup\+Register}!T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions@{T\+M\+\_\+\+R\+T\+C\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+R\+T\+C\+\_\+\+Write\+Backup\+Register}]{\setlength{\rightskip}{0pt plus 5cm}void T\+M\+\_\+\+R\+T\+C\+\_\+\+Write\+Backup\+Register (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{location, }
+\item[{uint32\+\_\+t}]{value}
+\end{DoxyParamCaption}
+)}\label{group___t_m___r_t_c___functions_ga0e64097447132cfaca8e9f966eb5b364}
+
+
+Write R\+T\+C backup register value. This method allows you to write 32bit value from backup register 0 -\/ 18. 
+
+\begin{DoxyNote}{Note}
+R\+T\+C has 20 backup registers where you can store data which will be available all the time R\+T\+C is running and has power.
+
+My library uses register 19 to store info about R\+T\+C settings and is not available for U\+S\+E\+R to store data there.
+
+R\+T\+C H\+A\+V\+E to be initialized first before you can use this method 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em location} & R\+T\+C backup register location. 0 to 18 are valid \\
+\hline
+{\em value} & 32-\/bit long value to be stored in R\+T\+C backup register \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Value} & at specific R\+T\+C backup register location \\
+\hline
+\end{DoxyRetVals}

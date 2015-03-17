@@ -1,0 +1,74 @@
+\hypertarget{tm__stm32f4__usb__hid__host_8h_source}{}\subsection{tm\+\_\+stm32f4\+\_\+usb\+\_\+hid\+\_\+host.\+h}
+
+\begin{DoxyCode}
+00001 
+00079 \textcolor{preprocessor}{#ifndef TM\_USB\_HID\_HOST\_H}
+00080 \textcolor{preprocessor}{#define TM\_USB\_HID\_HOST\_H 100}
+00081 
+00092 \textcolor{preprocessor}{#include "stm32f4xx.h"}
+00093 \textcolor{preprocessor}{#include "stm32f4xx\_rcc.h"}
+00094 \textcolor{preprocessor}{#include "stm32f4xx\_gpio.h"}
+00095 \textcolor{preprocessor}{#include "defines.h"}
+00096 
+00097 \textcolor{preprocessor}{#include "usb\_bsp.h"}
+00098 \textcolor{preprocessor}{#include "usbh\_core.h"}
+00099 \textcolor{preprocessor}{#include "usbh\_usr.h"}
+00100 \textcolor{preprocessor}{#include "usbh\_hid\_core.h"}
+00101 
+00102 \textcolor{comment}{/* Reinitialize mouse values after read */}
+00103 \textcolor{preprocessor}{#ifndef USB\_HIDHOST\_REINITIALIZE\_MOUSE\_AFTER\_READ}
+00104 \textcolor{preprocessor}{#define USB\_HIDHOST\_REINITIALIZE\_MOUSE\_AFTER\_READ       0}
+00105 \textcolor{preprocessor}{#endif}
+00106 
+00107 \textcolor{comment}{/* Reiintialize keyboard values after read */}
+00108 \textcolor{preprocessor}{#ifndef USB\_HIDHOST\_REINITIALIZE\_KEYBOARD\_AFTER\_READ}
+00109 \textcolor{preprocessor}{#define USB\_HIDHOST\_REINITIALIZE\_KEYBOARD\_AFTER\_READ    0}
+00110 \textcolor{preprocessor}{#endif}
+00111 
+00129 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+00130     TM\_USB\_HIDHOST\_Result\_Error,
+00131     TM\_USB\_HIDHOST\_Result\_KeyboardConnected,
+00132     TM\_USB\_HIDHOST\_Result\_MouseConnected,
+00133     TM\_USB\_HIDHOST\_Result\_Disconnected,
+00134     TM\_USB\_HIDHOST\_Result\_DeviceNotSupported,
+00135     TM\_USB\_HIDHOST\_Result\_LibraryNotInitialized
+00136 \} TM\_USB\_HIDHOST\_Result\_t;
+00137 
+00147 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+00148     TM\_USB\_HIDHOST\_Button\_Pressed = 0,
+00149     TM\_USB\_HIDHOST\_Button\_Released
+00150 \} TM\_USB\_HIDHOST\_Button\_t;
+00151 
+\hypertarget{tm__stm32f4__usb__hid__host_8h_source_l00161}{}\hyperlink{struct_t_m___u_s_b___h_i_d_h_o_s_t___keyboard__t}{00161} \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{
+00162     TM\_USB\_HIDHOST\_Button\_t ButtonStatus;
+00163     uint8\_t Button;
+00164 \} \hyperlink{struct_t_m___u_s_b___h_i_d_h_o_s_t___keyboard__t}{TM\_USB\_HIDHOST\_Keyboard\_t};
+00165 
+\hypertarget{tm__stm32f4__usb__hid__host_8h_source_l00185}{}\hyperlink{struct_t_m___u_s_b___h_i_d_h_o_s_t___mouse__t}{00185} \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{
+00186     \textcolor{comment}{/* Cursor movement */}
+00187     int16\_t AbsoluteX;
+00188     int16\_t AbsoluteY;
+00189     int16\_t DiffX;
+00190     int16\_t DiffY;
+00191     
+00192     \textcolor{comment}{/* Buttons */}
+00193     TM\_USB\_HIDHOST\_Button\_t LeftButton;
+00194     TM\_USB\_HIDHOST\_Button\_t RightButton;
+00195     TM\_USB\_HIDHOST\_Button\_t MiddleButton;
+00196 \} \hyperlink{struct_t_m___u_s_b___h_i_d_h_o_s_t___mouse__t}{TM\_USB\_HIDHOST\_Mouse\_t};
+00197 
+00203 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_USB\_HIDHOST\_Init(\textcolor{keywordtype}{void});
+00204 
+00212 \textcolor{keyword}{extern} TM\_USB\_HIDHOST\_Result\_t TM\_USB\_HIDHOST\_Process(\textcolor{keywordtype}{void});
+00213 
+00219 \textcolor{keyword}{extern} TM\_USB\_HIDHOST\_Result\_t TM\_USB\_HIDHOST\_Device(\textcolor{keywordtype}{void});
+00220 
+00230 \textcolor{keyword}{extern} TM\_USB\_HIDHOST\_Result\_t TM\_USB\_HIDHOST\_ReadKeyboard(
+      \hyperlink{struct_t_m___u_s_b___h_i_d_h_o_s_t___keyboard__t}{TM\_USB\_HIDHOST\_Keyboard\_t}* Keyboard);
+00231 
+00241 \textcolor{keyword}{extern} TM\_USB\_HIDHOST\_Result\_t TM\_USB\_HIDHOST\_ReadMouse(\hyperlink{struct_t_m___u_s_b___h_i_d_h_o_s_t___mouse__t}{TM\_USB\_HIDHOST\_Mouse\_t}* Mouse
+      );
+00242 
+00243 \textcolor{preprocessor}{#endif}
+00244 
+\end{DoxyCode}

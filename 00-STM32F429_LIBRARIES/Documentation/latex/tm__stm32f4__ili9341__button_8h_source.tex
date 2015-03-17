@@ -1,0 +1,64 @@
+\hypertarget{tm__stm32f4__ili9341__button_8h_source}{}\subsection{tm\+\_\+stm32f4\+\_\+ili9341\+\_\+button.\+h}
+
+\begin{DoxyCode}
+00001 
+00036 \textcolor{preprocessor}{#ifndef TM\_ILI9341\_BUTTON\_H}
+00037 \textcolor{preprocessor}{#define TM\_ILI9341\_BUTTON\_H}
+00038 
+00053 \textcolor{preprocessor}{#include "stm32f4xx.h"}
+00054 \textcolor{preprocessor}{#include "stm32f4xx\_rcc.h"}
+00055 \textcolor{preprocessor}{#include "stm32f4xx\_gpio.h"}
+00056 \textcolor{preprocessor}{#include "defines.h"}
+00057 \textcolor{preprocessor}{#include "tm\_stm32f4\_i2c.h"}
+00058 \textcolor{preprocessor}{#include "tm\_stm32f4\_delay.h"}
+00059 \textcolor{preprocessor}{#include "tm\_stm32f4\_ili9341.h"}
+00060 \textcolor{preprocessor}{#include "tm\_stm32f4\_fonts.h"}
+00061 \textcolor{preprocessor}{#include "tm\_stm32f4\_stmpe811.h"}
+00062 
+00063 \textcolor{comment}{// Maximum number of buttons available}
+00064 \textcolor{preprocessor}{#ifndef TM\_ILI9341\_BUTTON\_MAX\_BUTTONS}
+00065 \textcolor{preprocessor}{#define TM\_ILI9341\_BUTTON\_MAX\_BUTTONS   10}
+00066 \textcolor{preprocessor}{#endif}
+00067 
+00068 \textcolor{comment}{//Button flags}
+00069 \textcolor{preprocessor}{#define TM\_BUTTON\_FLAG\_ENABLED          0x0001  // Button is enabled - internal flag}
+00070 \textcolor{preprocessor}{#define TM\_BUTTON\_FLAG\_NOBORDER         0x0002  // No border used in}
+00071 \textcolor{preprocessor}{#define TM\_BUTTON\_FLAG\_IMAGE            0x0004  // Use image for background}
+00072 \textcolor{preprocessor}{#define TM\_BUTTON\_FLAG\_NOLABEL          0x0008  // Do not display button label}
+00073 \textcolor{preprocessor}{#define TM\_BUTTON\_FLAG\_USED             0x8000  // Button is used - internal flag}
+00074 
+\hypertarget{tm__stm32f4__ili9341__button_8h_source_l00091}{}\hyperlink{struct_t_m___i_l_i9341___button__t}{00091} \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{
+00092     uint16\_t x;
+00093     uint16\_t y;
+00094     uint16\_t width;
+00095     uint16\_t height;
+00096     uint16\_t background;
+00097     uint16\_t borderColor;
+00098     uint16\_t flags;
+00099     \textcolor{keywordtype}{char}* label;
+00100     \hyperlink{struct_t_m___font_def__t}{TM\_FontDef\_t}* font;
+00101     uint16\_t color;
+00102     uint16\_t* image;
+00103 \} \hyperlink{struct_t_m___i_l_i9341___button__t}{TM\_ILI9341\_Button\_t};
+00104 
+00105 \textcolor{keyword}{extern} \hyperlink{struct_t_m___i_l_i9341___button__t}{TM\_ILI9341\_Button\_t} TM\_ILI9341\_Buttons[TM\_ILI9341\_BUTTON\_MAX\_BUTTONS];
+00106 
+00115 \textcolor{keyword}{extern} int8\_t TM\_ILI9341\_Button\_Add(\hyperlink{struct_t_m___i_l_i9341___button__t}{TM\_ILI9341\_Button\_t}* button);
+00116 
+00125 \textcolor{keyword}{extern} ErrorStatus TM\_ILI9341\_Button\_Draw(uint8\_t \textcolor{keywordtype}{id});
+00126 
+00132 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ILI9341\_Button\_DrawAll(\textcolor{keywordtype}{void});
+00133 
+00140 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ILI9341\_Button\_Enable(uint8\_t \textcolor{keywordtype}{id});
+00141 
+00148 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ILI9341\_Button\_Disable(uint8\_t \textcolor{keywordtype}{id});
+00149 
+00155 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ILI9341\_Button\_DeleteAll(\textcolor{keywordtype}{void});
+00156 
+00163 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ILI9341\_Button\_Delete(uint8\_t \textcolor{keywordtype}{id});
+00164 
+00173 \textcolor{keyword}{extern} int8\_t TM\_ILI9341\_Button\_Touch(\hyperlink{struct_t_m___s_t_m_p_e811___touch_data}{TM\_STMPE811\_TouchData}* TouchData);
+00174 
+00175 \textcolor{preprocessor}{#endif}
+00176 
+\end{DoxyCode}

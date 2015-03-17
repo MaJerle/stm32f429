@@ -1,0 +1,83 @@
+\hypertarget{tm__stm32f4__delay_8h_source}{}\subsection{tm\+\_\+stm32f4\+\_\+delay.\+h}
+
+\begin{DoxyCode}
+00001 
+00089 \textcolor{preprocessor}{#ifndef TM\_DELAY\_H}
+00090 \textcolor{preprocessor}{#define TM\_DELAY\_H 210}
+00091 
+00104 \textcolor{preprocessor}{#include "stm32f4xx.h"}
+00105 \textcolor{preprocessor}{#include "stm32f4xx\_rcc.h"}
+00106 \textcolor{preprocessor}{#include "defines.h"}
+00107 \textcolor{preprocessor}{#include "attributes.h"}
+00108 \textcolor{comment}{/* If user selectable timer is selected for delay */}
+00109 \textcolor{preprocessor}{#if defined(TM\_DELAY\_TIM)}
+00110 \textcolor{preprocessor}{#include "misc.h"}
+00111 \textcolor{preprocessor}{#include "stm32f4xx\_tim.h"}
+00112 \textcolor{preprocessor}{#include "tm\_stm32f4\_timer\_properties.h"}
+00113 \textcolor{preprocessor}{#endif}
+00114 
+00119 \textcolor{keyword}{extern} \_\_IO uint32\_t TM\_Time;
+00120 \textcolor{keyword}{extern} \_\_IO uint32\_t TM\_Time2;
+00121 \textcolor{keyword}{extern} \_\_IO uint32\_t mult;
+00122 
+00130 \textcolor{keyword}{static} \_\_INLINE \textcolor{keywordtype}{void} Delay(uint32\_t micros) \{
+00131 \textcolor{preprocessor}{#if defined(TM\_DELAY\_TIM)}
+00132     \textcolor{keyword}{volatile} uint32\_t timer = TM\_DELAY\_TIM->CNT;
+00133 
+00134     \textcolor{keywordflow}{do} \{
+00135         \textcolor{comment}{/* Count timer ticks */}
+00136         \textcolor{keywordflow}{while} ((TM\_DELAY\_TIM->CNT - timer) == 0);
+00137 
+00138         \textcolor{comment}{/* Increase timer */}
+00139         timer = TM\_DELAY\_TIM->CNT;
+00140 
+00141         \textcolor{comment}{/* Decrease microseconds */}
+00142     \} \textcolor{keywordflow}{while} (--micros);
+00143 \textcolor{preprocessor}{#else}
+00144     uint32\_t amicros;
+00145 
+00146     \textcolor{comment}{/* Multiply micro seconds */}
+00147     amicros = (micros) * (mult);
+00148 
+00149 \textcolor{preprocessor}{    #ifdef \_\_GNUC\_\_}
+00150         \textcolor{keywordflow}{if} (SystemCoreClock == 180000000 || SystemCoreClock == 100000000) \{
+00151             amicros -= mult;
+00152         \}
+00153 \textcolor{preprocessor}{    #endif}
+00154 
+00155     \textcolor{comment}{/* If clock is 100MHz, then add additional multiplier */}
+00156     \textcolor{comment}{/* 100/3 = 33.3 = 33 and delay wouldn't be so accurate */}
+00157 \textcolor{preprocessor}{    #if defined(STM32F411xE)}
+00158     amicros += mult;
+00159 \textcolor{preprocessor}{    #endif}
+00160 
+00161     \textcolor{comment}{/* While loop */}
+00162     \textcolor{keywordflow}{while} (amicros--);
+00163 \textcolor{preprocessor}{#endif }\textcolor{comment}{/* TM\_DELAY\_TIM */}\textcolor{preprocessor}{}
+00164 \}
+00165 
+00173 \textcolor{keyword}{static} \_\_INLINE \textcolor{keywordtype}{void} Delayms(uint32\_t millis) \{
+00174     \textcolor{keyword}{volatile} uint32\_t timer = TM\_Time;
+00175 
+00176     \textcolor{comment}{/* Wait for timer to count milliseconds */}
+00177     \textcolor{keywordflow}{while} ((TM\_Time - timer) < millis);
+00178 \}
+00179 
+00185 \textcolor{keywordtype}{void} TM\_DELAY\_Init(\textcolor{keywordtype}{void});
+00186 
+00192 \textcolor{preprocessor}{#define TM\_DELAY\_Time()                 (TM\_Time)}
+00193 
+00201 \textcolor{preprocessor}{#define TM\_DELAY\_SetTime(time)          (TM\_Time = (time))}
+00202 
+00209 \textcolor{keywordtype}{void} TM\_DELAY\_EnableDelayTimer(\textcolor{keywordtype}{void});
+00210 
+00216 \textcolor{keywordtype}{void} TM\_DELAY\_DisableDelayTimer(\textcolor{keywordtype}{void});
+00217 
+00225 \textcolor{preprocessor}{#define TM\_DELAY\_Time2()                (TM\_Time2)}
+00226 
+00236 \textcolor{preprocessor}{#define TM\_DELAY\_SetTime2(time)         (TM\_Time2 = (time))}
+00237 
+00243 \_\_weak \textcolor{keywordtype}{void} TM\_DELAY\_1msHandler(\textcolor{keywordtype}{void});
+00244 
+00245 \textcolor{preprocessor}{#endif}
+\end{DoxyCode}

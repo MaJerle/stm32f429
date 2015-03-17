@@ -1,0 +1,45 @@
+\hypertarget{struct_t_m___e_t_h_e_r_n_e_t_p_o_s_t__t}{}\subsection{T\+M\+\_\+\+E\+T\+H\+E\+R\+N\+E\+T\+P\+O\+S\+T\+\_\+t Struct Reference}
+\label{struct_t_m___e_t_h_e_r_n_e_t_p_o_s_t__t}\index{T\+M\+\_\+\+E\+T\+H\+E\+R\+N\+E\+T\+P\+O\+S\+T\+\_\+t@{T\+M\+\_\+\+E\+T\+H\+E\+R\+N\+E\+T\+P\+O\+S\+T\+\_\+t}}
+
+
+{\ttfamily \#include $<$tm\+\_\+stm32f4\+\_\+ethernet.\+h$>$}
+
+\subsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{struct_t_m___e_t_h_e_r_n_e_t_p_o_s_t__t_abea7ed80ddfcd3b1e36fd67989bdf0e8}{}void $\ast$ {\bfseries connection}\label{struct_t_m___e_t_h_e_r_n_e_t_p_o_s_t__t_abea7ed80ddfcd3b1e36fd67989bdf0e8}
+
+\item 
+\hypertarget{struct_t_m___e_t_h_e_r_n_e_t_p_o_s_t__t_a69ec24fb2d0a5f5e532deb9adaab81d6}{}const char $\ast$ {\bfseries uri}\label{struct_t_m___e_t_h_e_r_n_e_t_p_o_s_t__t_a69ec24fb2d0a5f5e532deb9adaab81d6}
+
+\item 
+\hypertarget{struct_t_m___e_t_h_e_r_n_e_t_p_o_s_t__t_add065c6cf2c73d8b68da34b5c7dbd299}{}const char $\ast$ {\bfseries http\+\_\+request}\label{struct_t_m___e_t_h_e_r_n_e_t_p_o_s_t__t_add065c6cf2c73d8b68da34b5c7dbd299}
+
+\item 
+\hypertarget{struct_t_m___e_t_h_e_r_n_e_t_p_o_s_t__t_adee3c0e15599bfc0d0b2a56e431b90bc}{}uint16\+\_\+t {\bfseries http\+\_\+request\+\_\+len}\label{struct_t_m___e_t_h_e_r_n_e_t_p_o_s_t__t_adee3c0e15599bfc0d0b2a56e431b90bc}
+
+\item 
+\hypertarget{struct_t_m___e_t_h_e_r_n_e_t_p_o_s_t__t_a80a1f21a9b54ef5a937907b7fc0ae687}{}int {\bfseries content\+\_\+len}\label{struct_t_m___e_t_h_e_r_n_e_t_p_o_s_t__t_a80a1f21a9b54ef5a937907b7fc0ae687}
+
+\item 
+\hypertarget{struct_t_m___e_t_h_e_r_n_e_t_p_o_s_t__t_adb5fd3ee3a0c3434d5fbd6306d11789b}{}char $\ast$ {\bfseries response\+\_\+uri}\label{struct_t_m___e_t_h_e_r_n_e_t_p_o_s_t__t_adb5fd3ee3a0c3434d5fbd6306d11789b}
+
+\item 
+\hypertarget{struct_t_m___e_t_h_e_r_n_e_t_p_o_s_t__t_aa363003c2485ce585b755115c9248db8}{}uint16\+\_\+t {\bfseries response\+\_\+uri\+\_\+len}\label{struct_t_m___e_t_h_e_r_n_e_t_p_o_s_t__t_aa363003c2485ce585b755115c9248db8}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+P\+O\+S\+T request structure Used in P\+O\+S\+T request callbacks
+
+Parameters\+:
+\begin{DoxyItemize}
+\item void {\itshape connection\+: Pointer to connection, it is type of struct http\+\_\+state $\ast$}
+\item {\itshape const char} uri\+: U\+R\+L which is used in P\+O\+S\+T request U\+R\+L user use with P\+O\+S\+T request
+\item const char$\ast$ http\+\_\+request\+: Pointer to H\+T\+T\+P request buffer. Here are stored entire H\+T\+T\+P request headers
+\item uint16\+\_\+t http\+\_\+request\+\_\+len\+: Length of H\+T\+T\+P request buffer
+\item int content\+\_\+len\+: Length of content (data) in bytes
+\item char$\ast$ response\+\_\+uri\+: Pointer to address (file address, \char`\"{}/index.\+html\char`\"{} for example) which will be used to show url to user. This parameter must be filled by user
+\item uint16\+\_\+t response\+\_\+uri\+\_\+len\+: Length of buffer for response uri 
+\end{DoxyItemize}

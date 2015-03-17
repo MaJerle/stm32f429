@@ -1,0 +1,37 @@
+\hypertarget{tm__stm32f4__stdio_8h_source}{}\subsection{tm\+\_\+stm32f4\+\_\+stdio.\+h}
+
+\begin{DoxyCode}
+00001 
+00043 \textcolor{preprocessor}{#ifndef TM\_STDIO\_H}
+00044 \textcolor{preprocessor}{#define TM\_STDIO\_H 100}
+00045 
+00046 \textcolor{comment}{/* C++ detection */}
+00047 \textcolor{preprocessor}{#ifdef \_\_cplusplus}
+00048 \textcolor{keyword}{extern} C \{
+00049 \textcolor{preprocessor}{#endif}
+00050 
+00061 \textcolor{preprocessor}{#include "stm32f4xx.h"}
+00062 \textcolor{preprocessor}{#include "defines.h"}
+00063 \textcolor{preprocessor}{#include "attributes.h"}
+00064 \textcolor{preprocessor}{#include "stdio.h"}
+00065 
+\hypertarget{tm__stm32f4__stdio_8h_source_l00075}{}\hyperlink{struct_____f_i_l_e}{00075} \textcolor{keyword}{struct }\hyperlink{struct_____f_i_l_e}{\_\_FILE} \{
+00076     int (*outputFuncPointer)(int, FILE *);
+00077     int (*inputFuncPointer)(FILE *);
+00078 \};
+00079 
+00091 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_STDIO\_SetOutputFunction(FILE* f, \textcolor{keywordtype}{int} (*outputFuncPointer)(\textcolor{keywordtype}{int}, FILE *));
+00092 
+00104 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_STDIO\_SetInputFunction(FILE* f, \textcolor{keywordtype}{int} (*inputFuncPointer)(FILE *));
+00105 
+00120 \_\_weak \textcolor{keywordtype}{int} TM\_STDIO\_StdoutHandler(\textcolor{keywordtype}{int} c, FILE* f);
+00121 
+00134 \_\_weak \textcolor{keywordtype}{int} TM\_STDIO\_StdinHandler(FILE* f);
+00135 
+00136 \textcolor{comment}{/* C++ detection */}
+00137 \textcolor{preprocessor}{#ifdef \_\_cplusplus}
+00138 \}
+00139 \textcolor{preprocessor}{#endif}
+00140 
+00141 \textcolor{preprocessor}{#endif}
+\end{DoxyCode}

@@ -1,0 +1,28 @@
+\hypertarget{tm__stm32f4__fatfs_8h_source}{}\subsection{tm\+\_\+stm32f4\+\_\+fatfs.\+h}
+
+\begin{DoxyCode}
+00001 
+00258 \textcolor{preprocessor}{#ifndef TM\_FATFS\_H}
+00259 \textcolor{preprocessor}{#define TM\_FATFS\_H  160}
+00260 
+00278 \textcolor{preprocessor}{#include "stm32f4xx.h"}
+00279 \textcolor{preprocessor}{#include "stm32f4xx\_rcc.h"}
+00280 \textcolor{preprocessor}{#include "stm32f4xx\_gpio.h"}
+00281 \textcolor{preprocessor}{#include "defines.h"}
+00282 \textcolor{preprocessor}{#include "tm\_stm32f4\_gpio.h"}
+00283 \textcolor{preprocessor}{#include "ff.h"}
+00284 
+00285 \textcolor{comment}{/* Default truncate buffer size in bytes */}
+00286 \textcolor{preprocessor}{#ifndef FATFS\_TRUNCATE\_BUFFER\_SIZE}
+00287 \textcolor{preprocessor}{#define FATFS\_TRUNCATE\_BUFFER\_SIZE  256}
+00288 \textcolor{preprocessor}{#endif}
+00289 
+00301 FRESULT TM\_FATFS\_DriveSize(uint32\_t* total, uint32\_t* free);
+00302 
+00314 FRESULT TM\_FATFS\_USBDriveSize(uint32\_t* total, uint32\_t* free);
+00315 
+00334 FRESULT TM\_FATFS\_TruncateBeginning(FIL* fil, uint32\_t index);
+00335 
+00336 \textcolor{preprocessor}{#endif}
+00337 
+\end{DoxyCode}

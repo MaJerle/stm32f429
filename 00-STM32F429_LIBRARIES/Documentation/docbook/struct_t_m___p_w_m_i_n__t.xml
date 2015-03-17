@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="struct_t_m___p_w_m_i_n__t">
+<title>TM_PWMIN_t struct Reference</title>
+<para>
+    <programlisting>#include <link linkend="tm__stm32f4__pwmin_8h">&lt;tm_stm32f4_pwmin.h&gt;</link></programlisting>
+</para>
+        <section>
+            <title>Data Fields</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>float Frequency</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>float DutyCycle</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>TIM_TypeDef * __TIM</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>TM_TIMER_PROPERTIES_t __TIM_Data</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>float __Freq</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>float __Duty</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint8_t __SubPriority</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <simplesect>
+            <title>Detailed Description</title>
+
+<para>PWM Input working struct</para>
+
+<para>Parameters:<itemizedlist>
+<listitem>
+<para>float Frequency: Public, Measured frequency on input pin</para>
+</listitem><listitem>
+<para>float DutyCycle: Public, Measured duty cycle on input pin<itemizedlist>
+<listitem>
+<para>TIM_TypeDef* __TIM: Private, Pointer to timer used for measure</para>
+</listitem><listitem>
+<para><link linkend="struct_t_m___t_i_m_e_r___p_r_o_p_e_r_t_i_e_s__t">TM_TIMER_PROPERTIES_t</link> __TIM_Data: Settings about timer</para>
+</listitem><listitem>
+<para>float __Freq: Private, temporary frequency value</para>
+</listitem><listitem>
+<para>float __Duty: Private, temporary duty cycle value</para>
+</listitem><listitem>
+<para>uint8_t __SubPriority: Private, NVIC subpriority </para>
+</listitem></itemizedlist>
+</para>
+</listitem></itemizedlist>
+</para>
+                <para>Definition at line 128 of file tm_stm32f4_pwmin.h</para>
+                <para>The Documentation for this struct was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_pwmin.h</para></listitem></itemizedlist></para>
+        </simplesect>
+        <section>
+            <title>Field Documentation</title>
+        </section>
+</section>

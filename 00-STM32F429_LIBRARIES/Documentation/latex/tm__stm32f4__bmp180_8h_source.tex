@@ -1,0 +1,95 @@
+\hypertarget{tm__stm32f4__bmp180_8h_source}{}\subsection{tm\+\_\+stm32f4\+\_\+bmp180.\+h}
+
+\begin{DoxyCode}
+00001 
+00052 \textcolor{preprocessor}{#ifndef TM\_BMP180\_H}
+00053 \textcolor{preprocessor}{#define TM\_BMP180\_H 100}
+00054 
+00055 \textcolor{comment}{/* C++ detection */}
+00056 \textcolor{preprocessor}{#ifdef \_\_cplusplus}
+00057 \textcolor{keyword}{extern} C \{
+00058 \textcolor{preprocessor}{#endif}
+00059 
+00072 \textcolor{preprocessor}{#include "stm32f4xx.h"}
+00073 \textcolor{preprocessor}{#include "stm32f4xx\_rcc.h"}
+00074 \textcolor{preprocessor}{#include "stm32f4xx\_gpio.h"}
+00075 \textcolor{preprocessor}{#include "defines.h"}
+00076 \textcolor{preprocessor}{#include "tm\_stm32f4\_i2c.h"}
+00077 \textcolor{preprocessor}{#include "math.h"}
+00078 
+00079 \textcolor{comment}{/* Default I2C pin */}
+00080 \textcolor{preprocessor}{#ifndef BMP180\_I2C}
+00081 \textcolor{preprocessor}{#define BMP180\_I2C                  I2C3}
+00082 \textcolor{preprocessor}{#define BMP180\_I2C\_PINSPACK         TM\_I2C\_PinsPack\_1}
+00083 \textcolor{preprocessor}{#endif}
+00084 
+00085 \textcolor{comment}{/* Default I2C speed */}
+00086 \textcolor{preprocessor}{#ifndef BMP180\_I2C\_SPEED}
+00087 \textcolor{preprocessor}{#define BMP180\_I2C\_SPEED            100000}
+00088 \textcolor{preprocessor}{#endif}
+00089 
+00090 \textcolor{comment}{/* BMP180 I2C address */}
+00091 \textcolor{preprocessor}{#ifndef BMP180\_I2C\_ADDRESS}
+00092 \textcolor{preprocessor}{#define BMP180\_I2C\_ADDRESS          0xEE}
+00093 \textcolor{preprocessor}{#endif}
+00094 
+00095 \textcolor{comment}{/* Registers */}
+00096 \textcolor{preprocessor}{#define BMP180\_REGISTER\_CONTROL     0xF4}
+00097 \textcolor{preprocessor}{#define BMP180\_REGISTER\_RESULT      0xF6}
+00098 \textcolor{preprocessor}{#define BMP180\_REGISTER\_EEPROM      0xAA}
+00099 
+00100 \textcolor{comment}{/* Commands */}
+00101 \textcolor{preprocessor}{#define BMP180\_COMMAND\_TEMPERATURE  0x2E}
+00102 \textcolor{preprocessor}{#define BMP180\_COMMAND\_PRESSURE\_0   0x34}
+00103 \textcolor{preprocessor}{#define BMP180\_COMMAND\_PRESSURE\_1   0x74}
+00104 \textcolor{preprocessor}{#define BMP180\_COMMAND\_PRESSURE\_2   0xB4}
+00105 \textcolor{preprocessor}{#define BMP180\_COMMAND\_PRESSURE\_3   0xF4}
+00106 
+00107 \textcolor{comment}{/* Minimum waiting delay, in microseconds */}
+00108 \textcolor{preprocessor}{#define BMP180\_TEMPERATURE\_DELAY    4500}
+00109 \textcolor{preprocessor}{#define BMP180\_PRESSURE\_0\_DELAY     4500}
+00110 \textcolor{preprocessor}{#define BMP180\_PRESSURE\_1\_DELAY     7500}
+00111 \textcolor{preprocessor}{#define BMP180\_PRESSURE\_2\_DELAY     13000}
+00112 \textcolor{preprocessor}{#define BMP180\_PRESSURE\_3\_DELAY     25000}
+00113 
+00126 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+00127     TM\_BMP180\_Result\_Ok = 0x00,
+00128     TM\_BMP180\_Result\_DeviceNotConnected,
+00129     TM\_BMP180\_Result\_LibraryNotInitialized
+00130 \} TM\_BMP180\_Result\_t;
+00131 
+00147 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+00148     TM\_BMP180\_Oversampling\_UltraLowPower = 0,
+00149     TM\_BMP180\_Oversampling\_Standard = 1,
+00150     TM\_BMP180\_Oversampling\_HighResolution = 2,
+00151     TM\_BMP180\_Oversampling\_UltraHighResolution = 3
+00152 \} TM\_BMP180\_Oversampling\_t;
+00153 
+\hypertarget{tm__stm32f4__bmp180_8h_source_l00169}{}\hyperlink{struct_t_m___b_m_p180__t}{00169} \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{
+00170     \textcolor{keywordtype}{float} Altitude;
+00171     uint32\_t Pressure;
+00172     \textcolor{keywordtype}{float} Temperature;
+00173     uint16\_t Delay;
+00174     TM\_BMP180\_Oversampling\_t Oversampling;
+00175 \} \hyperlink{struct_t_m___b_m_p180__t}{TM\_BMP180\_t};
+00176 
+00186 \textcolor{keyword}{extern} TM\_BMP180\_Result\_t TM\_BMP180\_Init(\hyperlink{struct_t_m___b_m_p180__t}{TM\_BMP180\_t}* BMP180\_Data);
+00187 
+00197 \textcolor{keyword}{extern} TM\_BMP180\_Result\_t TM\_BMP180\_StartTemperature(\hyperlink{struct_t_m___b_m_p180__t}{TM\_BMP180\_t}* BMP180\_Data);
+00198 
+00209 \textcolor{keyword}{extern} TM\_BMP180\_Result\_t TM\_BMP180\_ReadTemperature(\hyperlink{struct_t_m___b_m_p180__t}{TM\_BMP180\_t}* BMP180\_Data);
+00210 
+00222 \textcolor{keyword}{extern} TM\_BMP180\_Result\_t TM\_BMP180\_StartPressure(\hyperlink{struct_t_m___b_m_p180__t}{TM\_BMP180\_t}* BMP180\_Data, 
+      TM\_BMP180\_Oversampling\_t Oversampling);
+00223 
+00233 \textcolor{keyword}{extern} TM\_BMP180\_Result\_t TM\_BMP180\_ReadPressure(\hyperlink{struct_t_m___b_m_p180__t}{TM\_BMP180\_t}* BMP180\_Data);
+00234 
+00253 \textcolor{keyword}{extern} uint32\_t TM\_BMP180\_GetPressureAtSeaLevel(uint32\_t pressure, \textcolor{keywordtype}{float} altitude);
+00254 
+00255 \textcolor{comment}{/* C++ detection */}
+00256 \textcolor{preprocessor}{#ifdef \_\_cplusplus}
+00257 \}
+00258 \textcolor{preprocessor}{#endif}
+00259 
+00260 \textcolor{preprocessor}{#endif}
+\end{DoxyCode}

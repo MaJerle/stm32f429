@@ -1,0 +1,206 @@
+\hypertarget{tm__stm32f4__spi_8h_source}{}\subsection{tm\+\_\+stm32f4\+\_\+spi.\+h}
+
+\begin{DoxyCode}
+00001 
+00094 \textcolor{preprocessor}{#ifndef TM\_SPI\_H}
+00095 \textcolor{preprocessor}{#define TM\_SPI\_H 180}
+00096 
+00097 \textcolor{comment}{/* C++ detection */}
+00098 \textcolor{preprocessor}{#ifdef \_\_cplusplus}
+00099 \textcolor{keyword}{extern} C \{
+00100 \textcolor{preprocessor}{#endif}
+00101 
+00114 \textcolor{preprocessor}{#include "stm32f4xx.h"}
+00115 \textcolor{preprocessor}{#include "stm32f4xx\_rcc.h"}
+00116 \textcolor{preprocessor}{#include "stm32f4xx\_gpio.h"}
+00117 \textcolor{preprocessor}{#include "stm32f4xx\_spi.h"}
+00118 \textcolor{preprocessor}{#include "defines.h"}
+00119 \textcolor{preprocessor}{#include "tm\_stm32f4\_gpio.h"}
+00120 
+00124 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+00125     TM\_SPI\_Mode\_0,  \textcolor{comment}{//Clock polarity low, clock phase 1st edge}
+00126     TM\_SPI\_Mode\_1,  \textcolor{comment}{//Clock polarity low, clock phase 2nd edge}
+00127     TM\_SPI\_Mode\_2,  \textcolor{comment}{//Clock polarity high, clock phase 1st edge}
+00128     TM\_SPI\_Mode\_3   \textcolor{comment}{//Clock polarity high, clock phase 2nd edge}
+00129 \} TM\_SPI\_Mode\_t;
+00130 
+00131 \textcolor{comment}{//----- SPI1 options start -------}
+00132 \textcolor{comment}{//Options can be overwriten in defines.h file}
+00133 \textcolor{preprocessor}{#ifndef TM\_SPI1\_PRESCALER}
+00134 \textcolor{preprocessor}{#define TM\_SPI1\_PRESCALER   SPI\_BaudRatePrescaler\_32}
+00135 \textcolor{preprocessor}{#endif}
+00136 \textcolor{comment}{//Specify datasize}
+00137 \textcolor{preprocessor}{#ifndef TM\_SPI1\_DATASIZE}
+00138 \textcolor{preprocessor}{#define TM\_SPI1\_DATASIZE    SPI\_DataSize\_8b}
+00139 \textcolor{preprocessor}{#endif}
+00140 \textcolor{comment}{//Specify which bit is first}
+00141 \textcolor{preprocessor}{#ifndef TM\_SPI1\_FIRSTBIT}
+00142 \textcolor{preprocessor}{#define TM\_SPI1\_FIRSTBIT    SPI\_FirstBit\_MSB}
+00143 \textcolor{preprocessor}{#endif}
+00144 \textcolor{comment}{//Mode, master or slave}
+00145 \textcolor{preprocessor}{#ifndef TM\_SPI1\_MASTERSLAVE}
+00146 \textcolor{preprocessor}{#define TM\_SPI1\_MASTERSLAVE SPI\_Mode\_Master}
+00147 \textcolor{preprocessor}{#endif}
+00148 \textcolor{comment}{//Specify mode of operation, clock polarity and clock phase}
+00149 \textcolor{preprocessor}{#ifndef TM\_SPI1\_MODE}
+00150 \textcolor{preprocessor}{#define TM\_SPI1\_MODE        TM\_SPI\_Mode\_0}
+00151 \textcolor{preprocessor}{#endif}
+00152 \textcolor{comment}{//----- SPI1 options end -------}
+00153 
+00154 \textcolor{comment}{//----- SPI2 options start -------}
+00155 \textcolor{comment}{//Options can be overwriten in defines.h file}
+00156 \textcolor{preprocessor}{#ifndef TM\_SPI2\_PRESCALER}
+00157 \textcolor{preprocessor}{#define TM\_SPI2\_PRESCALER   SPI\_BaudRatePrescaler\_32}
+00158 \textcolor{preprocessor}{#endif}
+00159 \textcolor{comment}{//Specify datasize}
+00160 \textcolor{preprocessor}{#ifndef TM\_SPI2\_DATASIZE}
+00161 \textcolor{preprocessor}{#define TM\_SPI2\_DATASIZE    SPI\_DataSize\_8b}
+00162 \textcolor{preprocessor}{#endif}
+00163 \textcolor{comment}{//Specify which bit is first}
+00164 \textcolor{preprocessor}{#ifndef TM\_SPI2\_FIRSTBIT}
+00165 \textcolor{preprocessor}{#define TM\_SPI2\_FIRSTBIT    SPI\_FirstBit\_MSB}
+00166 \textcolor{preprocessor}{#endif}
+00167 \textcolor{comment}{//Mode, master or slave}
+00168 \textcolor{preprocessor}{#ifndef TM\_SPI2\_MASTERSLAVE}
+00169 \textcolor{preprocessor}{#define TM\_SPI2\_MASTERSLAVE SPI\_Mode\_Master}
+00170 \textcolor{preprocessor}{#endif}
+00171 \textcolor{comment}{//Specify mode of operation, clock polarity and clock phase}
+00172 \textcolor{preprocessor}{#ifndef TM\_SPI2\_MODE}
+00173 \textcolor{preprocessor}{#define TM\_SPI2\_MODE        TM\_SPI\_Mode\_0}
+00174 \textcolor{preprocessor}{#endif}
+00175 \textcolor{comment}{//----- SPI2 options end -------}
+00176 
+00177 \textcolor{comment}{//----- SPI3 options start -------}
+00178 \textcolor{comment}{//Options can be overwriten in defines.h file}
+00179 \textcolor{preprocessor}{#ifndef TM\_SPI3\_PRESCALER}
+00180 \textcolor{preprocessor}{#define TM\_SPI3\_PRESCALER   SPI\_BaudRatePrescaler\_32}
+00181 \textcolor{preprocessor}{#endif}
+00182 \textcolor{comment}{//Specify datasize}
+00183 \textcolor{preprocessor}{#ifndef TM\_SPI3\_DATASIZE}
+00184 \textcolor{preprocessor}{#define TM\_SPI3\_DATASIZE    SPI\_DataSize\_8b}
+00185 \textcolor{preprocessor}{#endif}
+00186 \textcolor{comment}{//Specify which bit is first}
+00187 \textcolor{preprocessor}{#ifndef TM\_SPI3\_FIRSTBIT}
+00188 \textcolor{preprocessor}{#define TM\_SPI3\_FIRSTBIT    SPI\_FirstBit\_MSB}
+00189 \textcolor{preprocessor}{#endif}
+00190 \textcolor{comment}{//Mode, master or slave}
+00191 \textcolor{preprocessor}{#ifndef TM\_SPI3\_MASTERSLAVE}
+00192 \textcolor{preprocessor}{#define TM\_SPI3\_MASTERSLAVE SPI\_Mode\_Master}
+00193 \textcolor{preprocessor}{#endif}
+00194 \textcolor{comment}{//Specify mode of operation, clock polarity and clock phase}
+00195 \textcolor{preprocessor}{#ifndef TM\_SPI3\_MODE}
+00196 \textcolor{preprocessor}{#define TM\_SPI3\_MODE        TM\_SPI\_Mode\_0}
+00197 \textcolor{preprocessor}{#endif}
+00198 \textcolor{comment}{//----- SPI3 options end -------}
+00199 
+00200 \textcolor{comment}{//----- SPI4 options start -------}
+00201 \textcolor{comment}{//Options can be overwriten in defines.h file}
+00202 \textcolor{preprocessor}{#ifndef TM\_SPI4\_PRESCALER}
+00203 \textcolor{preprocessor}{#define TM\_SPI4\_PRESCALER   SPI\_BaudRatePrescaler\_32}
+00204 \textcolor{preprocessor}{#endif}
+00205 \textcolor{comment}{//Specify datasize}
+00206 \textcolor{preprocessor}{#ifndef TM\_SPI4\_DATASIZE}
+00207 \textcolor{preprocessor}{#define TM\_SPI4\_DATASIZE    SPI\_DataSize\_8b}
+00208 \textcolor{preprocessor}{#endif}
+00209 \textcolor{comment}{//Specify which bit is first}
+00210 \textcolor{preprocessor}{#ifndef TM\_SPI4\_FIRSTBIT}
+00211 \textcolor{preprocessor}{#define TM\_SPI4\_FIRSTBIT    SPI\_FirstBit\_MSB}
+00212 \textcolor{preprocessor}{#endif}
+00213 \textcolor{comment}{//Mode, master or slave}
+00214 \textcolor{preprocessor}{#ifndef TM\_SPI4\_MASTERSLAVE}
+00215 \textcolor{preprocessor}{#define TM\_SPI4\_MASTERSLAVE SPI\_Mode\_Master}
+00216 \textcolor{preprocessor}{#endif}
+00217 \textcolor{comment}{//Specify mode of operation, clock polarity and clock phase}
+00218 \textcolor{preprocessor}{#ifndef TM\_SPI4\_MODE}
+00219 \textcolor{preprocessor}{#define TM\_SPI4\_MODE        TM\_SPI\_Mode\_0}
+00220 \textcolor{preprocessor}{#endif}
+00221 \textcolor{comment}{//----- SPI4 options end -------}
+00222 
+00223 \textcolor{comment}{//----- SPI5 options start -------}
+00224 \textcolor{comment}{//Options can be overwriten in defines.h file}
+00225 \textcolor{preprocessor}{#ifndef TM\_SPI5\_PRESCALER}
+00226 \textcolor{preprocessor}{#define TM\_SPI5\_PRESCALER   SPI\_BaudRatePrescaler\_32}
+00227 \textcolor{preprocessor}{#endif}
+00228 \textcolor{comment}{//Specify datasize}
+00229 \textcolor{preprocessor}{#ifndef TM\_SPI5\_DATASIZE}
+00230 \textcolor{preprocessor}{#define TM\_SPI5\_DATASIZE    SPI\_DataSize\_8b}
+00231 \textcolor{preprocessor}{#endif}
+00232 \textcolor{comment}{//Specify which bit is first}
+00233 \textcolor{preprocessor}{#ifndef TM\_SPI5\_FIRSTBIT}
+00234 \textcolor{preprocessor}{#define TM\_SPI5\_FIRSTBIT    SPI\_FirstBit\_MSB}
+00235 \textcolor{preprocessor}{#endif}
+00236 \textcolor{comment}{//Mode, master or slave}
+00237 \textcolor{preprocessor}{#ifndef TM\_SPI5\_MASTERSLAVE}
+00238 \textcolor{preprocessor}{#define TM\_SPI5\_MASTERSLAVE SPI\_Mode\_Master}
+00239 \textcolor{preprocessor}{#endif}
+00240 \textcolor{comment}{//Specify mode of operation, clock polarity and clock phase}
+00241 \textcolor{preprocessor}{#ifndef TM\_SPI5\_MODE}
+00242 \textcolor{preprocessor}{#define TM\_SPI5\_MODE        TM\_SPI\_Mode\_0}
+00243 \textcolor{preprocessor}{#endif}
+00244 \textcolor{comment}{//----- SPI5 options end -------}
+00245 
+00246 \textcolor{comment}{//----- SPI6 options start -------}
+00247 \textcolor{comment}{//Options can be overwriten in defines.h file}
+00248 \textcolor{preprocessor}{#ifndef TM\_SPI6\_PRESCALER}
+00249 \textcolor{preprocessor}{#define TM\_SPI6\_PRESCALER   SPI\_BaudRatePrescaler\_32}
+00250 \textcolor{preprocessor}{#endif}
+00251 \textcolor{comment}{//Specify datasize}
+00252 \textcolor{preprocessor}{#ifndef TM\_SPI6\_DATASIZE}
+00253 \textcolor{preprocessor}{#define TM\_SPI6\_DATASIZE    SPI\_DataSize\_8b}
+00254 \textcolor{preprocessor}{#endif}
+00255 \textcolor{comment}{//Specify which bit is first}
+00256 \textcolor{preprocessor}{#ifndef TM\_SPI6\_FIRSTBIT}
+00257 \textcolor{preprocessor}{#define TM\_SPI6\_FIRSTBIT    SPI\_FirstBit\_MSB}
+00258 \textcolor{preprocessor}{#endif}
+00259 \textcolor{comment}{//Mode, master or slave}
+00260 \textcolor{preprocessor}{#ifndef TM\_SPI6\_MASTERSLAVE}
+00261 \textcolor{preprocessor}{#define TM\_SPI6\_MASTERSLAVE SPI\_Mode\_Master}
+00262 \textcolor{preprocessor}{#endif}
+00263 \textcolor{comment}{//Specify mode of operation, clock polarity and clock phase}
+00264 \textcolor{preprocessor}{#ifndef TM\_SPI6\_MODE}
+00265 \textcolor{preprocessor}{#define TM\_SPI6\_MODE        TM\_SPI\_Mode\_0}
+00266 \textcolor{preprocessor}{#endif}
+00267 \textcolor{comment}{//----- SPI6 options end -------}
+00268 
+00272 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+00273     TM\_SPI\_PinsPack\_1,
+00274     TM\_SPI\_PinsPack\_2,
+00275     TM\_SPI\_PinsPack\_3,
+00276     TM\_SPI\_PinsPack\_Custom
+00277 \} TM\_SPI\_PinsPack\_t;
+00278 
+00290 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_SPI\_Init(SPI\_TypeDef* SPIx, TM\_SPI\_PinsPack\_t pinspack);
+00291 
+00307 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_SPI\_InitWithMode(SPI\_TypeDef* SPIx, TM\_SPI\_PinsPack\_t pinspack, TM\_SPI\_Mode\_t SPI\_Mode);
+00308 
+00330 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_SPI\_InitFull(SPI\_TypeDef* SPIx, TM\_SPI\_PinsPack\_t pinspack, uint16\_t SPI\_BaudRatePrescaler, 
+      TM\_SPI\_Mode\_t SPI\_Mode\_t, uint16\_t SPI\_Mode, uint16\_t SPI\_FirstBit);
+00331 
+00351 \textcolor{keyword}{extern} uint16\_t TM\_SPI\_GetPrescalerFromMaxFrequency(SPI\_TypeDef* SPIx, uint32\_t MAX\_SPI\_Frequency);
+00352 
+00362 \textcolor{keyword}{extern} uint8\_t TM\_SPI\_Send(SPI\_TypeDef* SPIx, uint8\_t data);
+00363 
+00375 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_SPI\_SendMulti(SPI\_TypeDef* SPIx, uint8\_t* dataOut, uint8\_t* dataIn, uint16\_t count);
+00376 
+00387 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_SPI\_WriteMulti(SPI\_TypeDef* SPIx, uint8\_t* dataOut, uint16\_t count);
+00388 
+00400 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_SPI\_ReadMulti(SPI\_TypeDef* SPIx, uint8\_t *dataIn, uint8\_t dummy, uint16\_t count);
+00401 
+00412 \textcolor{keyword}{extern} uint16\_t TM\_SPI\_Send16(SPI\_TypeDef* SPIx, uint16\_t data);
+00413 
+00426 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_SPI\_SendMulti16(SPI\_TypeDef* SPIx, uint16\_t* dataOut, uint16\_t* dataIn, uint16\_t count);
+00427 
+00439 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_SPI\_WriteMulti16(SPI\_TypeDef* SPIx, uint16\_t* dataOut, uint16\_t count);
+00440 
+00453 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_SPI\_ReadMulti16(SPI\_TypeDef* SPIx, uint16\_t* dataIn, uint16\_t dummy, uint16\_t count);
+00454 
+00469 \textcolor{keyword}{extern} \_\_weak \textcolor{keywordtype}{void} TM\_SPI\_InitCustomPinsCallback(SPI\_TypeDef* SPIx);
+00470 
+00471 \textcolor{comment}{/* C++ detection */}
+00472 \textcolor{preprocessor}{#ifdef \_\_cplusplus}
+00473 \}
+00474 \textcolor{preprocessor}{#endif}
+00475 
+00476 \textcolor{preprocessor}{#endif}
+00477 
+\end{DoxyCode}

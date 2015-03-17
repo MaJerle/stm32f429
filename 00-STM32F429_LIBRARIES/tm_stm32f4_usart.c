@@ -18,7 +18,10 @@
  */
 #include "tm_stm32f4_usart.h"
 
-/* Internal USART struct */
+/**
+ * @brief Internal USART struct
+ */
+ 
 typedef struct {
 	uint8_t *Buffer;
 	uint16_t Size;
@@ -94,27 +97,11 @@ uint8_t TM_USART_INT_GetSubPriority(USART_TypeDef* USARTx);
 uint8_t TM_USART_BufferFull(USART_TypeDef* USARTx);
 
 void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t baudrate) {
+	USART_InitTypeDef USART_InitStruct;
+	NVIC_InitTypeDef NVIC_InitStruct;
 	TM_USART_t* u = TM_USART_INT_GetUsart(USARTx);
-	
-	/**
-	 * Initialization structures declared
-	 *
-	 * USART: Universal Synchronous/Asynchronous Receiver/Transmitter
-	 * NVIC: Nested Vector Interrupt Controller
-	 */
-	USART_InitTypeDef 	USART_InitStruct;
-	NVIC_InitTypeDef	NVIC_InitStruct;
-	
-	/**
-	 * Default settings:
-	 * 
-	 * Set Baudrate to value you pass to function
-	 * Disable Hardware Flow control
-	 * Set Mode To TX and RX, so USART will work in full-duplex mode
-	 * Disable parity bit
-	 * Set 1 stop bit
-	 * Set Data bits to 8
-	 */
+
+	/* Set USART baudrate */
 	USART_InitStruct.USART_BaudRate = baudrate;
 	
 	/*
@@ -125,10 +112,14 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 	if (USARTx == USART1) {
 		/* Enable USART clock */
 		RCC->APB2ENR |= RCC_APB2ENR_USART1EN;
-
+		
+		/* Init pins */
 		TM_USART1_InitPins(pinspack);
+		
+		/* Set IRQ channel */
 		NVIC_InitStruct.NVIC_IRQChannel = USART1_IRQn;
 		
+		/* Fill default settings */
 		USART_InitStruct.USART_HardwareFlowControl = TM_USART1_HARDWARE_FLOW_CONTROL;
 		USART_InitStruct.USART_Mode = TM_USART1_MODE;
 		USART_InitStruct.USART_Parity = TM_USART1_PARITY;
@@ -140,10 +131,14 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 	if (USARTx == USART2) {
 		/* Enable USART clock */
 		RCC->APB1ENR |= RCC_APB1ENR_USART2EN;
-
+		
+		/* Init pins */
 		TM_USART2_InitPins(pinspack);
+		
+		/* Set IRQ channel */
 		NVIC_InitStruct.NVIC_IRQChannel = USART2_IRQn;
 		
+		/* Fill default settings */
 		USART_InitStruct.USART_HardwareFlowControl = TM_USART2_HARDWARE_FLOW_CONTROL;
 		USART_InitStruct.USART_Mode = TM_USART2_MODE;
 		USART_InitStruct.USART_Parity = TM_USART2_PARITY;
@@ -158,8 +153,11 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 		
 		/* Init pins */
 		TM_USART3_InitPins(pinspack);
+		
+		/* Set IRQ channel */
 		NVIC_InitStruct.NVIC_IRQChannel = USART3_IRQn;
 		
+		/* Fill default settings */
 		USART_InitStruct.USART_HardwareFlowControl = TM_USART3_HARDWARE_FLOW_CONTROL;
 		USART_InitStruct.USART_Mode = TM_USART3_MODE;
 		USART_InitStruct.USART_Parity = TM_USART3_PARITY;
@@ -174,8 +172,11 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 		
 		/* Init pins */
 		TM_UART4_InitPins(pinspack);
+		
+		/* Set IRQ channel */
 		NVIC_InitStruct.NVIC_IRQChannel = UART4_IRQn;
 		
+		/* Fill default settings */
 		USART_InitStruct.USART_HardwareFlowControl = TM_UART4_HARDWARE_FLOW_CONTROL;
 		USART_InitStruct.USART_Mode = TM_UART4_MODE;
 		USART_InitStruct.USART_Parity = TM_UART4_PARITY;
@@ -190,8 +191,11 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 
 		/* Init pins */
 		TM_UART5_InitPins(pinspack);
+		
+		/* Set IRQ channel */
 		NVIC_InitStruct.NVIC_IRQChannel = UART5_IRQn;
 		
+		/* Fill default settings */
 		USART_InitStruct.USART_HardwareFlowControl = TM_UART5_HARDWARE_FLOW_CONTROL;
 		USART_InitStruct.USART_Mode = TM_UART5_MODE;
 		USART_InitStruct.USART_Parity = TM_UART5_PARITY;
@@ -206,8 +210,11 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 		
 		/* Init pins */
 		TM_USART6_InitPins(pinspack);
+		
+		/* Set IRQ channel */
 		NVIC_InitStruct.NVIC_IRQChannel = USART6_IRQn;
 		
+		/* Fill default settings */
 		USART_InitStruct.USART_HardwareFlowControl = TM_USART6_HARDWARE_FLOW_CONTROL;
 		USART_InitStruct.USART_Mode = TM_USART6_MODE;
 		USART_InitStruct.USART_Parity = TM_USART6_PARITY;
@@ -222,8 +229,11 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 		
 		/* Init pins */
 		TM_UART7_InitPins(pinspack);
+		
+		/* Set IRQ channel */
 		NVIC_InitStruct.NVIC_IRQChannel = UART7_IRQn;
 		
+		/* Fill default settings */
 		USART_InitStruct.USART_HardwareFlowControl = TM_UART7_HARDWARE_FLOW_CONTROL;
 		USART_InitStruct.USART_Mode = TM_UART7_MODE;
 		USART_InitStruct.USART_Parity = TM_UART7_PARITY;
@@ -238,8 +248,11 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 
 		/* Init pins */
 		TM_UART8_InitPins(pinspack);
+		
+		/* Set IRQ channel */
 		NVIC_InitStruct.NVIC_IRQChannel = UART8_IRQn;
 		
+		/* Fill default settings */
 		USART_InitStruct.USART_HardwareFlowControl = TM_UART8_HARDWARE_FLOW_CONTROL;
 		USART_InitStruct.USART_Mode = TM_UART8_MODE;
 		USART_InitStruct.USART_Parity = TM_UART8_PARITY;
@@ -251,30 +264,23 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 	/* We are initialized */
 	u->Initialized = 1;
 	
-	/* Disable */
-	USART_Cmd(USARTx, DISABLE);
-	/* Deinit */
-	USART_DeInit(USARTx);
+	/* Disable if not already */
+	USARTx->CR1 &= ~USART_CR1_UE;
 	
 	/* Init */
 	USART_Init(USARTx, &USART_InitStruct);
-	/* Enable */
-	USART_Cmd(USARTx, ENABLE);
 	
 	/* Enable RX interrupt */
-	USART_ITConfig(USARTx, USART_IT_RXNE, ENABLE);
+	USARTx->CR1 |= USART_CR1_RXNEIE;
 
-	/**
-	 * Set Channel Cmd to enable. That will enable USARTx channel in NVIC
-	 * Set NVIC_IRQChannelPreemptionPriority. This means high priority for USARTs
-	 * USARTx with lower x has high subpriority
-	 *
-	 * Initialize NVIC
-	 */
+	/* Fill NVIC settings */
 	NVIC_InitStruct.NVIC_IRQChannelCmd = ENABLE;
 	NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority = TM_USART_NVIC_PRIORITY;
 	NVIC_InitStruct.NVIC_IRQChannelSubPriority = TM_USART_INT_GetSubPriority(USARTx);
 	NVIC_Init(&NVIC_InitStruct);
+	
+	/* Enable USART peripheral */
+	USARTx->CR1 |= USART_CR1_UE;
 }
 
 uint8_t TM_USART_Getc(USART_TypeDef* USARTx) {
@@ -372,8 +378,10 @@ void TM_USART_Puts(USART_TypeDef* USARTx, char* str) {
 	}
 	
 	while (*str) {
-		/* Send char by char */
-		TM_USART_Putc(USARTx, *str++);
+		/* Wait to be ready, buffer empty */
+		while (!(USARTx->SR & USART_FLAG_TXE));
+		/* Send data */
+		USARTx->DR = (uint16_t)(*str++ & 0x01FF);
 	}
 }
 
@@ -403,6 +411,11 @@ void TM_USART_INT_InsertToBuffer(TM_USART_t* u, uint8_t c) {
 		u->In++;
 		u->Num++;
 	}
+}
+
+__weak void TM_USART_InitCustomPinsCallback(USART_TypeDef* USARTx) {
+	/* Custom user function. */
+	/* In case user needs functionality for custom pins, this function should be declared outside this library */
 }
 
 TM_USART_t* TM_USART_INT_GetUsart(USART_TypeDef* USARTx) {

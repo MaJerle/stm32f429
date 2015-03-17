@@ -1,0 +1,45 @@
+.TH "TM_USART_Typedefs" 3 "Wed Mar 18 2015" "Version v1.0.0" "TM STM32F4xx Libraries" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TM_USART_Typedefs \- TM_USART_Typedefs
+.PP
+USART Typedefs\&.  
+
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBTM_USART_PinsPack_t\fP { \fBTM_USART_PinsPack_1\fP, \fBTM_USART_PinsPack_2\fP, \fBTM_USART_PinsPack_3\fP, \fBTM_USART_PinsPack_Custom\fP }"
+.br
+.RI "\fIUSART PinsPack enumeration to select pins combination for USART\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+USART Typedefs\&. 
+
+
+.SH "Enumeration Type Documentation"
+.PP 
+.SS "enum \fBTM_USART_PinsPack_t\fP"
+
+.PP
+USART PinsPack enumeration to select pins combination for USART\&. 
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fITM_USART_PinsPack_1 \fP\fP
+Select PinsPack1 from Pinout table for specific USART 
+.TP
+\fB\fITM_USART_PinsPack_2 \fP\fP
+Select PinsPack2 from Pinout table for specific USART 
+.TP
+\fB\fITM_USART_PinsPack_3 \fP\fP
+Select PinsPack3 from Pinout table for specific USART 
+.TP
+\fB\fITM_USART_PinsPack_Custom \fP\fP
+Select custom pins for specific USART, callback will be called, look \fBTM_USART_InitCustomPinsCallback\fP 
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for TM STM32F4xx Libraries from the source code\&.

@@ -1,0 +1,1074 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="group___t_m___g_p_i_o___functions">
+    <title>TM_GPIO_Functions</title>
+
+<para>GPIO Functions. </para>
+        <section>
+            <title>Detailed Description</title>
+
+<para>TM_GPIO_Typedefs </para>
+        </section>
+        <section>
+            <title>Functions</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="group___t_m___g_p_i_o___functions_1ga7ea61719f45c8d46e56f636d7ffdf0d0">TM_GPIO_Init</link> (
+GPIO_TypeDef * GPIOx, uint16_t GPIO_Pin, <link linkend="group___t_m___g_p_i_o___typedefs_1gacbb363a57d0e70ea563e494eff1db3ca">TM_GPIO_Mode_t</link> GPIO_Mode, <link linkend="group___t_m___g_p_i_o___typedefs_1ga1d443fe266a4073f40ea271ae7b8df9f">TM_GPIO_OType_t</link> GPIO_OType, <link linkend="group___t_m___g_p_i_o___typedefs_1ga50ddb0da56d8a388dee368c55e968602">TM_GPIO_PuPd_t</link> GPIO_PuPd, <link linkend="group___t_m___g_p_i_o___typedefs_1gaa57736d106efbe14067be22025f296c4">TM_GPIO_Speed_t</link> GPIO_Speed)<para><emphasis>Initialize GPIO pins(s)</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="group___t_m___g_p_i_o___functions_1gac91349d1bf42b50463ebc2716130eb89">TM_GPIO_InitAlternate</link> (
+GPIO_TypeDef * GPIOx, uint16_t GPIO_Pin, <link linkend="group___t_m___g_p_i_o___typedefs_1ga1d443fe266a4073f40ea271ae7b8df9f">TM_GPIO_OType_t</link> GPIO_OType, <link linkend="group___t_m___g_p_i_o___typedefs_1ga50ddb0da56d8a388dee368c55e968602">TM_GPIO_PuPd_t</link> GPIO_PuPd, <link linkend="group___t_m___g_p_i_o___typedefs_1gaa57736d106efbe14067be22025f296c4">TM_GPIO_Speed_t</link> GPIO_Speed, uint8_t Alternate)<para><emphasis>Initialize GPIO pins(s) as alternate function.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="group___t_m___g_p_i_o___functions_1gac87f1d18ac3e984bce0cbf44f7210198">TM_GPIO_DeInit</link> (
+GPIO_TypeDef * GPIOx, uint16_t GPIO_Pin)<para><emphasis>Deinitialize pin(s)</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="group___t_m___g_p_i_o___functions_1ga9c5ca4f894b1f46d413d2bfc692fcf43">TM_GPIO_SetPinAsInput</link> (
+GPIO_TypeDef * GPIOx, uint16_t GPIO_Pin)<para><emphasis>Set pin as input.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="group___t_m___g_p_i_o___functions_1gabfa399cb17386714bd9c395a81b43035">TM_GPIO_SetPinAsOutput</link> (
+GPIO_TypeDef * GPIOx, uint16_t GPIO_Pin)<para><emphasis>Set pin as output.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint16_t <link linkend="group___t_m___g_p_i_o___functions_1gaa5a2f30f33cc19408daeb5db3b7cb59c">TM_GPIO_GetPortSource</link> (
+GPIO_TypeDef * GPIOx)<para><emphasis>Get port source from desired GPIOx PORT.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint16_t <link linkend="group___t_m___g_p_i_o___functions_1ga29aaed3ba7054d4c3a3fed55012403e5">TM_GPIO_GetPinSource</link> (
+uint16_t GPIO_Pin)<para><emphasis>Get pin source from desired GPIO pin.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Macros</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_i_o___functions_1gaccceda87ce348c73b43780fdfed048d3">TM_GPIO_SetPinLow</link> ((GPIOx)-&gt;BSRRH = (GPIO_Pin))<para><emphasis>Set pin low.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_i_o___functions_1gac5aa8fbc39ed67f47972097fb7c8d69d">TM_GPIO_SetPinHigh</link> ((GPIOx)-&gt;BSRRL = (GPIO_Pin))<para><emphasis>Set pin high.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_i_o___functions_1gaf0bc34b72794ca43246ef88cfd261e80">TM_GPIO_SetPinValue</link> ((val) ? <link linkend="group___t_m___g_p_i_o___functions_1gac5aa8fbc39ed67f47972097fb7c8d69d">TM_GPIO_SetPinHigh</link>(GPIOx, GPIO_Pin) : <link linkend="group___t_m___g_p_i_o___functions_1gaccceda87ce348c73b43780fdfed048d3">TM_GPIO_SetPinLow</link>(GPIOx, GPIO_Pin))<para><emphasis>Set pin value.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_i_o___functions_1ga92ef176c8195c54b326b3c7526b878b2">TM_GPIO_TogglePinValue</link> ((GPIOx)-&gt;ODR ^= (GPIO_Pin))<para><emphasis>Toggle pin.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_i_o___functions_1ga191a4bbb4e55573d19eb5c2f18122680">TM_GPIO_SetPortValue</link> ((GPIOx)-&gt;ODR = (value))<para><emphasis>Set value to entire GPIO PORT.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_i_o___functions_1gacd91a02149d1f1bc648a3fe06648460d">TM_GPIO_GetInputPinValue</link> (((GPIOx)-&gt;IDR &amp; (GPIO_Pin)) == 0 ? 0 : 1)<para><emphasis>Get input data bit.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_i_o___functions_1ga6402ec4503fa0f3380d3bdbb1d9510db">TM_GPIO_GetOutputPinValue</link> (((GPIOx)-&gt;ODR &amp; (GPIO_Pin)) == 0 ? 0 : 1)<para><emphasis>Get output data bit.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_i_o___functions_1gabab8c885687b36adc083ae906f5d432e">TM_GPIO_GetPortInputValue</link> ((GPIOx)-&gt;IDR)<para><emphasis>Get input value from entire GPIO PORT.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___g_p_i_o___functions_1gaa84d8eae98478601cb845dfc13089769">TM_GPIO_GetPortOutputValue</link> ((GPIOx)-&gt;ODR)<para><emphasis>Get output value from entire GPIO PORT.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Function Documentation</title>
+            <section xml:id="group___t_m___g_p_i_o___functions_1ga7ea61719f45c8d46e56f636d7ffdf0d0">
+                <title>void TM_GPIO_Init (GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin, TM_GPIO_Mode_t GPIO_Mode, TM_GPIO_OType_t GPIO_OType, TM_GPIO_PuPd_t GPIO_PuPd, TM_GPIO_Speed_t GPIO_Speed)</title> <emphasis>Initialize GPIO pins(s)</emphasis>
+                
+<para><formalpara><title>Note: </title>
+
+<para>This function also enables clock for GPIO port </para>
+</formalpara>
+
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>GPIOx</entry>
+                                <entry>
+<para>Pointer to GPIOx port you will use for initialization </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>GPIO_Pin</entry>
+                                <entry>
+<para>GPIO pin(s) you will use for initialization </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>GPIO_Mode</entry>
+                                <entry>
+<para>Select GPIO mode. This parameter can be a value of <link linkend="group___t_m___g_p_i_o___typedefs_1gacbb363a57d0e70ea563e494eff1db3ca">TM_GPIO_Mode_t</link> enumeration </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>GPIO_OType</entry>
+                                <entry>
+<para>Select GPIO Output type. This parameter can be a value of <link linkend="group___t_m___g_p_i_o___typedefs_1ga1d443fe266a4073f40ea271ae7b8df9f">TM_GPIO_OType_t</link> enumeration </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>GPIO_PuPd</entry>
+                                <entry>
+<para>Select GPIO pull resistor. This parameter can be a value of <link linkend="group___t_m___g_p_i_o___typedefs_1ga50ddb0da56d8a388dee368c55e968602">TM_GPIO_PuPd_t</link> enumeration </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>GPIO_Speed</entry>
+                                <entry>
+<para>Select GPIO speed. This parameter can be a value of <link linkend="group___t_m___g_p_i_o___typedefs_1gaa57736d106efbe14067be22025f296c4">TM_GPIO_Speed_t</link> enumeration </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Return values                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>None</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+            </section>
+            <section xml:id="group___t_m___g_p_i_o___functions_1gac91349d1bf42b50463ebc2716130eb89">
+                <title>void TM_GPIO_InitAlternate (GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin, TM_GPIO_OType_t GPIO_OType, TM_GPIO_PuPd_t GPIO_PuPd, TM_GPIO_Speed_t GPIO_Speed, uint8_t Alternate)</title> <emphasis>Initialize GPIO pins(s) as alternate function.</emphasis>
+                
+<para><formalpara><title>Note: </title>
+
+<para>This function also enables clock for GPIO port </para>
+</formalpara>
+
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>GPIOx</entry>
+                                <entry>
+<para>Pointer to GPIOx port you will use for initialization </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>GPIO_Pin</entry>
+                                <entry>
+<para>GPIO pin(s) you will use for initialization </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>GPIO_OType</entry>
+                                <entry>
+<para>Select GPIO Output type. This parameter can be a value of <link linkend="group___t_m___g_p_i_o___typedefs_1ga1d443fe266a4073f40ea271ae7b8df9f">TM_GPIO_OType_t</link> enumeration </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>GPIO_PuPd</entry>
+                                <entry>
+<para>Select GPIO pull resistor. This parameter can be a value of <link linkend="group___t_m___g_p_i_o___typedefs_1ga50ddb0da56d8a388dee368c55e968602">TM_GPIO_PuPd_t</link> enumeration </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>GPIO_Speed</entry>
+                                <entry>
+<para>Select GPIO speed. This parameter can be a value of <link linkend="group___t_m___g_p_i_o___typedefs_1gaa57736d106efbe14067be22025f296c4">TM_GPIO_Speed_t</link> enumeration </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>Alternate</entry>
+                                <entry>
+<para>Alternate function you will use </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Return values                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>None</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+            </section>
+            <section xml:id="group___t_m___g_p_i_o___functions_1gac87f1d18ac3e984bce0cbf44f7210198">
+                <title>void TM_GPIO_DeInit (GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin)</title> <emphasis>Deinitialize pin(s)</emphasis>
+                
+<para><formalpara><title>Note: </title>
+
+<para>Pins(s) will be set as analog mode to get low power consumption </para>
+</formalpara>
+
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>GPIOx</entry>
+                                <entry>
+<para>GPIOx PORT where you want to set pin as input </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>GPIO_Pin</entry>
+                                <entry>
+<para>Select GPIO pin(s). You can select more pins with | (OR) operator to set them as input </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Return values                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>None</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+            </section>
+            <section xml:id="group___t_m___g_p_i_o___functions_1ga9c5ca4f894b1f46d413d2bfc692fcf43">
+                <title>void TM_GPIO_SetPinAsInput (GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin)</title> <emphasis>Set pin as input.</emphasis>
+                
+<para><formalpara><title>Note: </title>
+
+<para>Pins HAVE to be initialized first using init function </para>
+<simplesect/>
+<para>This is just an option for fast input mode </para>
+</formalpara>
+
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>GPIOx</entry>
+                                <entry>
+<para>GPIOx PORT where you want to set pin as input </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>GPIO_Pin</entry>
+                                <entry>
+<para>Select GPIO pin(s). You can select more pins with | (OR) operator to set them as input </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Return values                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>None</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+            </section>
+            <section xml:id="group___t_m___g_p_i_o___functions_1gabfa399cb17386714bd9c395a81b43035">
+                <title>void TM_GPIO_SetPinAsOutput (GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin)</title> <emphasis>Set pin as output.</emphasis>
+                
+<para><formalpara><title>Note: </title>
+
+<para>Pins HAVE to be initialized first using init function </para>
+<simplesect/>
+<para>This is just an option for fast output mode </para>
+</formalpara>
+
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>GPIOx</entry>
+                                <entry>
+<para>GPIOx PORT where you want to set pin as output </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>GPIO_Pin</entry>
+                                <entry>
+<para>Select GPIO pin(s). You can select more pins with | (OR) operator to set them as output </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Return values                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>None</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+            </section>
+            <section xml:id="group___t_m___g_p_i_o___functions_1gaa5a2f30f33cc19408daeb5db3b7cb59c">
+                <title>uint16_t TM_GPIO_GetPortSource (GPIO_TypeDef *GPIOx)</title> <emphasis>Get port source from desired GPIOx PORT.</emphasis>
+                
+<para><formalpara><title>Note: </title>
+
+<para>Meant for private use, unless you know what are you doing </para>
+</formalpara>
+
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>GPIOx</entry>
+                                <entry>
+<para>GPIO PORT for calculating port source </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Return values                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>Calculated</entry>
+                                <entry>
+<para>port source for GPIO </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+            </section>
+            <section xml:id="group___t_m___g_p_i_o___functions_1ga29aaed3ba7054d4c3a3fed55012403e5">
+                <title>uint16_t TM_GPIO_GetPinSource (uint16_t GPIO_Pin)</title> <emphasis>Get pin source from desired GPIO pin.</emphasis>
+                
+<para><formalpara><title>Note: </title>
+
+<para>Meant for private use, unless you know what are you doing </para>
+</formalpara>
+
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>GPIO_Pin</entry>
+                                <entry>
+<para>GPIO pin for calculating port source </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Return values                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>Calculated</entry>
+                                <entry>
+<para>pin source for GPIO </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+            </section>
+        </section>
+        <section>
+            <title>Macro Definition Documentation</title>
+            <section xml:id="group___t_m___g_p_i_o___functions_1gaccceda87ce348c73b43780fdfed048d3">
+                <title>#define TM_GPIO_SetPinLow</title>                
+<para><formalpara><title>Note: </title>
+
+<para>Defined as macro to get maximum speed using register access </para>
+</formalpara>
+
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>GPIOx</entry>
+                                <entry>
+<para>GPIOx PORT where you want to set pin low </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>GPIO_Pin</entry>
+                                <entry>
+<para>Select GPIO pin(s). You can select more pins with | (OR) operator to set them low </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Return values                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>None</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+                <para>Definition at line 258 of file tm_stm32f4_gpio.h</para>
+                <para>The Documentation for this define was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_gpio.h</para></listitem></itemizedlist></para>
+            </section>
+            <section xml:id="group___t_m___g_p_i_o___functions_1gac5aa8fbc39ed67f47972097fb7c8d69d">
+                <title>#define TM_GPIO_SetPinHigh</title>                
+<para><formalpara><title>Note: </title>
+
+<para>Defined as macro to get maximum speed using register access </para>
+</formalpara>
+
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>GPIOx</entry>
+                                <entry>
+<para>GPIOx PORT where you want to set pin high </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>GPIO_Pin</entry>
+                                <entry>
+<para>Select GPIO pin(s). You can select more pins with | (OR) operator to set them high </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Return values                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>None</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+                <para>Definition at line 267 of file tm_stm32f4_gpio.h</para>
+                <para>The Documentation for this define was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_gpio.h</para></listitem></itemizedlist></para>
+            </section>
+            <section xml:id="group___t_m___g_p_i_o___functions_1gaf0bc34b72794ca43246ef88cfd261e80">
+                <title>#define TM_GPIO_SetPinValue</title>                
+<para><formalpara><title>Note: </title>
+
+<para>Defined as macro to get maximum speed using register access </para>
+</formalpara>
+
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>GPIOx</entry>
+                                <entry>
+<para>GPIOx PORT where you want to set pin value </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>GPIO_Pin</entry>
+                                <entry>
+<para>Select GPIO pin(s). You can select more pins with | (OR) operator to set them value </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>val</entry>
+                                <entry>
+<para>If parameter is 0 then pin will be low, otherwise high </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Return values                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>None</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+                <para>Definition at line 277 of file tm_stm32f4_gpio.h</para>
+                <para>The Documentation for this define was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_gpio.h</para></listitem></itemizedlist></para>
+            </section>
+            <section xml:id="group___t_m___g_p_i_o___functions_1ga92ef176c8195c54b326b3c7526b878b2">
+                <title>#define TM_GPIO_TogglePinValue</title>                
+<para><formalpara><title>Note: </title>
+
+<para>Defined as macro to get maximum speed using register access </para>
+</formalpara>
+
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>GPIOx</entry>
+                                <entry>
+<para>GPIOx PORT where you want to toggle pin value </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>GPIO_Pin</entry>
+                                <entry>
+<para>Select GPIO pin(s). You can select more pins with | (OR) operator to toggle them all at a time </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Return values                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>None</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+                <para>Definition at line 286 of file tm_stm32f4_gpio.h</para>
+                <para>The Documentation for this define was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_gpio.h</para></listitem></itemizedlist></para>
+            </section>
+            <section xml:id="group___t_m___g_p_i_o___functions_1ga191a4bbb4e55573d19eb5c2f18122680">
+                <title>#define TM_GPIO_SetPortValue</title>                
+<para><formalpara><title>Note: </title>
+
+<para>Defined as macro to get maximum speed using register access </para>
+</formalpara>
+
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>GPIOx</entry>
+                                <entry>
+<para>GPIOx PORT where you want to set value </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>value</entry>
+                                <entry>
+<para>Value for GPIO OUTPUT data </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Return values                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>None</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+                <para>Definition at line 295 of file tm_stm32f4_gpio.h</para>
+                <para>The Documentation for this define was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_gpio.h</para></listitem></itemizedlist></para>
+            </section>
+            <section xml:id="group___t_m___g_p_i_o___functions_1gacd91a02149d1f1bc648a3fe06648460d">
+                <title>#define TM_GPIO_GetInputPinValue</title>                
+<para><formalpara><title>Note: </title>
+
+<para>Defined as macro to get maximum speed using register access </para>
+</formalpara>
+
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>GPIOx</entry>
+                                <entry>
+<para>GPIOx PORT where you want to read input bit value </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>GPIO_Pin</entry>
+                                <entry>
+<para>GPIO pin where you want to read value </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Return values                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>1</entry>
+                                <entry>
+<para>in case pin is high, or 0 if low </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+                <para>Definition at line 304 of file tm_stm32f4_gpio.h</para>
+                <para>The Documentation for this define was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_gpio.h</para></listitem></itemizedlist></para>
+            </section>
+            <section xml:id="group___t_m___g_p_i_o___functions_1ga6402ec4503fa0f3380d3bdbb1d9510db">
+                <title>#define TM_GPIO_GetOutputPinValue</title>                
+<para><formalpara><title>Note: </title>
+
+<para>Defined as macro to get maximum speed using register access </para>
+</formalpara>
+
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>GPIOx</entry>
+                                <entry>
+<para>GPIOx PORT where you want to read output bit value </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>GPIO_Pin</entry>
+                                <entry>
+<para>GPIO pin where you want to read value </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Return values                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>1</entry>
+                                <entry>
+<para>in case pin is high, or 0 if low </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+                <para>Definition at line 313 of file tm_stm32f4_gpio.h</para>
+                <para>The Documentation for this define was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_gpio.h</para></listitem></itemizedlist></para>
+            </section>
+            <section xml:id="group___t_m___g_p_i_o___functions_1gabab8c885687b36adc083ae906f5d432e">
+                <title>#define TM_GPIO_GetPortInputValue</title>                
+<para><formalpara><title>Note: </title>
+
+<para>Defined as macro to get maximum speed using register access </para>
+</formalpara>
+
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>GPIOx</entry>
+                                <entry>
+<para>GPIOx PORT where you want to read input data value </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Return values                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>Entire</entry>
+                                <entry>
+<para>PORT INPUT register </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+                <para>Definition at line 321 of file tm_stm32f4_gpio.h</para>
+                <para>The Documentation for this define was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_gpio.h</para></listitem></itemizedlist></para>
+            </section>
+            <section xml:id="group___t_m___g_p_i_o___functions_1gaa84d8eae98478601cb845dfc13089769">
+                <title>#define TM_GPIO_GetPortOutputValue</title>                
+<para><formalpara><title>Note: </title>
+
+<para>Defined as macro to get maximum speed using register access </para>
+</formalpara>
+
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>GPIOx</entry>
+                                <entry>
+<para>GPIOx PORT where you want to read output data value </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Return values                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>Entire</entry>
+                                <entry>
+<para>PORT OUTPUT register </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+                <para>Definition at line 329 of file tm_stm32f4_gpio.h</para>
+                <para>The Documentation for this define was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_gpio.h</para></listitem></itemizedlist></para>
+            </section>
+        </section>
+</section>

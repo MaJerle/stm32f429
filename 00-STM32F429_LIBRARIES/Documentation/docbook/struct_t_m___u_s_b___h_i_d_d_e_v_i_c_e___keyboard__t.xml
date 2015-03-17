@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="struct_t_m___u_s_b___h_i_d_d_e_v_i_c_e___keyboard__t">
+<title>TM_USB_HIDDEVICE_Keyboard_t struct Reference</title>
+<para>
+    <programlisting>#include <link linkend="tm__stm32f4__usb__hid__device_8h">&lt;tm_stm32f4_usb_hid_device.h&gt;</link></programlisting>
+</para>
+        <section>
+            <title>Data Fields</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>TM_USB_HIDDEVICE_Button_t L_CTRL</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>TM_USB_HIDDEVICE_Button_t L_ALT</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>TM_USB_HIDDEVICE_Button_t L_SHIFT</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>TM_USB_HIDDEVICE_Button_t L_GUI</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>TM_USB_HIDDEVICE_Button_t R_CTRL</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>TM_USB_HIDDEVICE_Button_t R_ALT</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>TM_USB_HIDDEVICE_Button_t R_SHIFT</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>TM_USB_HIDDEVICE_Button_t R_GUI</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint8_t Key1</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint8_t Key2</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint8_t Key3</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint8_t Key4</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint8_t Key5</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint8_t Key6</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <simplesect>
+            <title>Detailed Description</title>
+
+<para>Keyboard typedef</para>
+
+<para>Keyboard has special 8 buttons (CTRL, ALT, SHIFT, GUI (or WIN), all are left and right). It also supports 6 others keys to be pressed at same time, let&apos;s say Key1 = &apos;a&apos;, Key2 = &apos;b&apos;, and you will get &quot;ab&quot; result on the screen. If key is not used, then 0x00 value should be set</para>
+
+<para>Parameters:<itemizedlist>
+<listitem>
+<para>TM_USB_HIDDEVICE_Button_t L_CTRL: Left CTRL button</para>
+</listitem><listitem>
+<para>TM_USB_HIDDEVICE_Button_t L_ALT: Left ALT button</para>
+</listitem><listitem>
+<para>TM_USB_HIDDEVICE_Button_t L_SHIFT: Left SHIFT button</para>
+</listitem><listitem>
+<para>TM_USB_HIDDEVICE_Button_t L_GUI: Left GUI (or Win) button</para>
+</listitem><listitem>
+<para>TM_USB_HIDDEVICE_Button_t R_CTRL: Right CTRL button</para>
+</listitem><listitem>
+<para>TM_USB_HIDDEVICE_Button_t R_ALT: Right ALT button</para>
+</listitem><listitem>
+<para>TM_USB_HIDDEVICE_Button_t R_SHIFT: Right SHIFT button</para>
+</listitem><listitem>
+<para>TM_USB_HIDDEVICE_Button_t R_GUI: Right GUI (or Win) button</para>
+</listitem><listitem>
+<para>uint8_t Key[1:6]: Key used with keyboard. This can be whatever. Like numbers, letters, everything. Also, 6 Key parameters you have. It means you can set 6 different numbers, letters, whatever in one keyboard update. </para>
+</listitem></itemizedlist>
+</para>
+                <para>Definition at line 245 of file tm_stm32f4_usb_hid_device.h</para>
+                <para>The Documentation for this struct was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_usb_hid_device.h</para></listitem></itemizedlist></para>
+        </simplesect>
+        <section>
+            <title>Field Documentation</title>
+        </section>
+</section>

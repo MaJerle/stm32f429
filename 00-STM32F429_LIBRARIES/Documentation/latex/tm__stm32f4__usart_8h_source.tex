@@ -1,0 +1,262 @@
+\hypertarget{tm__stm32f4__usart_8h_source}{}\subsection{tm\+\_\+stm32f4\+\_\+usart.\+h}
+
+\begin{DoxyCode}
+00001 
+00030 \textcolor{preprocessor}{#ifndef TM\_USART\_H}
+00031 \textcolor{preprocessor}{#define TM\_USART\_H 230}
+00032 
+00177 \textcolor{preprocessor}{#include "misc.h"}
+00178 \textcolor{preprocessor}{#include "stm32f4xx.h"}
+00179 \textcolor{preprocessor}{#include "stm32f4xx\_rcc.h"}
+00180 \textcolor{preprocessor}{#include "stm32f4xx\_gpio.h"}
+00181 \textcolor{preprocessor}{#include "stm32f4xx\_usart.h"}
+00182 \textcolor{preprocessor}{#include "attributes.h"}
+00183 \textcolor{preprocessor}{#include "defines.h"}
+00184 \textcolor{preprocessor}{#include "tm\_stm32f4\_gpio.h"}
+00185 
+00186 \textcolor{comment}{/* F405/407/415/417/F446 */}
+00187 \textcolor{preprocessor}{#if defined (STM32F40\_41xxx) || defined(STM32F446xx)}
+00188 \textcolor{preprocessor}{#define USE\_USART1}
+00189 \textcolor{preprocessor}{#define USE\_USART2}
+00190 \textcolor{preprocessor}{#define USE\_USART3}
+00191 \textcolor{preprocessor}{#define USE\_UART4}
+00192 \textcolor{preprocessor}{#define USE\_UART5}
+00193 \textcolor{preprocessor}{#define USE\_USART6}
+00194 \textcolor{preprocessor}{#endif}
+00195 \textcolor{comment}{/* F427/429/437/439 */}
+00196 \textcolor{preprocessor}{#if defined (STM32F427\_437xx) || defined (STM32F429\_439xx)}
+00197 \textcolor{preprocessor}{#define USE\_USART1}
+00198 \textcolor{preprocessor}{#define USE\_USART2}
+00199 \textcolor{preprocessor}{#define USE\_USART3}
+00200 \textcolor{preprocessor}{#define USE\_UART4}
+00201 \textcolor{preprocessor}{#define USE\_UART5}
+00202 \textcolor{preprocessor}{#define USE\_USART6}
+00203 \textcolor{preprocessor}{#define USE\_UART7}
+00204 \textcolor{preprocessor}{#define USE\_UART8}
+00205 \textcolor{preprocessor}{#endif}
+00206 \textcolor{comment}{/* F401/411 */}
+00207 \textcolor{preprocessor}{#if defined (STM32F401xx) || defined(STM32F411xE)}
+00208 \textcolor{preprocessor}{#define USE\_USART1}
+00209 \textcolor{preprocessor}{#define USE\_USART2}
+00210 \textcolor{preprocessor}{#define USE\_USART6}
+00211 \textcolor{preprocessor}{#endif}
+00212 
+00223 \textcolor{comment}{/* Default buffer size for each USART */}
+00224 \textcolor{preprocessor}{#ifndef TM\_USART\_BUFFER\_SIZE}
+00225 \textcolor{preprocessor}{#define TM\_USART\_BUFFER\_SIZE                32}
+00226 \textcolor{preprocessor}{#endif}
+00227 
+00228 \textcolor{comment}{/* Set default buffer size for specific USART if not set by user */}
+00229 \textcolor{preprocessor}{#ifndef TM\_USART1\_BUFFER\_SIZE}
+00230 \textcolor{preprocessor}{#define TM\_USART1\_BUFFER\_SIZE               TM\_USART\_BUFFER\_SIZE}
+00231 \textcolor{preprocessor}{#endif}
+00232 \textcolor{preprocessor}{#ifndef TM\_USART2\_BUFFER\_SIZE}
+00233 \textcolor{preprocessor}{#define TM\_USART2\_BUFFER\_SIZE               TM\_USART\_BUFFER\_SIZE}
+00234 \textcolor{preprocessor}{#endif}
+00235 \textcolor{preprocessor}{#ifndef TM\_USART3\_BUFFER\_SIZE}
+00236 \textcolor{preprocessor}{#define TM\_USART3\_BUFFER\_SIZE               TM\_USART\_BUFFER\_SIZE}
+00237 \textcolor{preprocessor}{#endif}
+00238 \textcolor{preprocessor}{#ifndef TM\_UART4\_BUFFER\_SIZE}
+00239 \textcolor{preprocessor}{#define TM\_UART4\_BUFFER\_SIZE                TM\_USART\_BUFFER\_SIZE}
+00240 \textcolor{preprocessor}{#endif}
+00241 \textcolor{preprocessor}{#ifndef TM\_UART5\_BUFFER\_SIZE}
+00242 \textcolor{preprocessor}{#define TM\_UART5\_BUFFER\_SIZE                TM\_USART\_BUFFER\_SIZE}
+00243 \textcolor{preprocessor}{#endif}
+00244 \textcolor{preprocessor}{#ifndef TM\_USART6\_BUFFER\_SIZE}
+00245 \textcolor{preprocessor}{#define TM\_USART6\_BUFFER\_SIZE               TM\_USART\_BUFFER\_SIZE}
+00246 \textcolor{preprocessor}{#endif}
+00247 \textcolor{preprocessor}{#ifndef TM\_UART7\_BUFFER\_SIZE}
+00248 \textcolor{preprocessor}{#define TM\_UART7\_BUFFER\_SIZE                TM\_USART\_BUFFER\_SIZE}
+00249 \textcolor{preprocessor}{#endif}
+00250 \textcolor{preprocessor}{#ifndef TM\_UART8\_BUFFER\_SIZE}
+00251 \textcolor{preprocessor}{#define TM\_UART8\_BUFFER\_SIZE                TM\_USART\_BUFFER\_SIZE}
+00252 \textcolor{preprocessor}{#endif}
+00253 
+00254 \textcolor{comment}{/* NVIC Global Priority */}
+00255 \textcolor{preprocessor}{#ifndef TM\_USART\_NVIC\_PRIORITY}
+00256 \textcolor{preprocessor}{#define TM\_USART\_NVIC\_PRIORITY              0x06}
+00257 \textcolor{preprocessor}{#endif}
+00258 
+00259 \textcolor{comment}{/* U(S)ART settings, can be changed in your defines.h project file */}
+00260 \textcolor{comment}{/* USART1 default settings */}
+00261 \textcolor{preprocessor}{#ifndef TM\_USART1\_HARDWARE\_FLOW\_CONTROL}
+00262 \textcolor{preprocessor}{#define TM\_USART1\_HARDWARE\_FLOW\_CONTROL     USART\_HardwareFlowControl\_None}
+00263 \textcolor{preprocessor}{#endif}
+00264 \textcolor{preprocessor}{#ifndef TM\_USART1\_MODE}
+00265 \textcolor{preprocessor}{#define TM\_USART1\_MODE                      USART\_Mode\_Tx | USART\_Mode\_Rx}
+00266 \textcolor{preprocessor}{#endif}
+00267 \textcolor{preprocessor}{#ifndef TM\_USART1\_PARITY}
+00268 \textcolor{preprocessor}{#define TM\_USART1\_PARITY                    USART\_Parity\_No}
+00269 \textcolor{preprocessor}{#endif}
+00270 \textcolor{preprocessor}{#ifndef TM\_USART1\_STOP\_BITS}
+00271 \textcolor{preprocessor}{#define TM\_USART1\_STOP\_BITS                 USART\_StopBits\_1}
+00272 \textcolor{preprocessor}{#endif}
+00273 \textcolor{preprocessor}{#ifndef TM\_USART1\_WORD\_LENGTH}
+00274 \textcolor{preprocessor}{#define TM\_USART1\_WORD\_LENGTH               USART\_WordLength\_8b}
+00275 \textcolor{preprocessor}{#endif}
+00276 
+00277 \textcolor{comment}{/* USART2 default settings */}
+00278 \textcolor{preprocessor}{#ifndef TM\_USART2\_HARDWARE\_FLOW\_CONTROL}
+00279 \textcolor{preprocessor}{#define TM\_USART2\_HARDWARE\_FLOW\_CONTROL     USART\_HardwareFlowControl\_None}
+00280 \textcolor{preprocessor}{#endif}
+00281 \textcolor{preprocessor}{#ifndef TM\_USART2\_MODE}
+00282 \textcolor{preprocessor}{#define TM\_USART2\_MODE                      USART\_Mode\_Tx | USART\_Mode\_Rx}
+00283 \textcolor{preprocessor}{#endif}
+00284 \textcolor{preprocessor}{#ifndef TM\_USART2\_PARITY}
+00285 \textcolor{preprocessor}{#define TM\_USART2\_PARITY                    USART\_Parity\_No}
+00286 \textcolor{preprocessor}{#endif}
+00287 \textcolor{preprocessor}{#ifndef TM\_USART2\_STOP\_BITS}
+00288 \textcolor{preprocessor}{#define TM\_USART2\_STOP\_BITS                 USART\_StopBits\_1}
+00289 \textcolor{preprocessor}{#endif}
+00290 \textcolor{preprocessor}{#ifndef TM\_USART2\_WORD\_LENGTH}
+00291 \textcolor{preprocessor}{#define TM\_USART2\_WORD\_LENGTH               USART\_WordLength\_8b}
+00292 \textcolor{preprocessor}{#endif}
+00293 
+00294 \textcolor{comment}{/* USART3 default settings */}
+00295 \textcolor{preprocessor}{#ifndef TM\_USART3\_HARDWARE\_FLOW\_CONTROL}
+00296 \textcolor{preprocessor}{#define TM\_USART3\_HARDWARE\_FLOW\_CONTROL     USART\_HardwareFlowControl\_None}
+00297 \textcolor{preprocessor}{#endif}
+00298 \textcolor{preprocessor}{#ifndef TM\_USART3\_MODE}
+00299 \textcolor{preprocessor}{#define TM\_USART3\_MODE                      USART\_Mode\_Tx | USART\_Mode\_Rx}
+00300 \textcolor{preprocessor}{#endif}
+00301 \textcolor{preprocessor}{#ifndef TM\_USART3\_PARITY}
+00302 \textcolor{preprocessor}{#define TM\_USART3\_PARITY                    USART\_Parity\_No}
+00303 \textcolor{preprocessor}{#endif}
+00304 \textcolor{preprocessor}{#ifndef TM\_USART3\_STOP\_BITS}
+00305 \textcolor{preprocessor}{#define TM\_USART3\_STOP\_BITS                 USART\_StopBits\_1}
+00306 \textcolor{preprocessor}{#endif}
+00307 \textcolor{preprocessor}{#ifndef TM\_USART3\_WORD\_LENGTH}
+00308 \textcolor{preprocessor}{#define TM\_USART3\_WORD\_LENGTH               USART\_WordLength\_8b}
+00309 \textcolor{preprocessor}{#endif}
+00310 
+00311 \textcolor{comment}{/* UART4 default settings */}
+00312 \textcolor{preprocessor}{#ifndef TM\_UART4\_HARDWARE\_FLOW\_CONTROL}
+00313 \textcolor{preprocessor}{#define TM\_UART4\_HARDWARE\_FLOW\_CONTROL      USART\_HardwareFlowControl\_None}
+00314 \textcolor{preprocessor}{#endif}
+00315 \textcolor{preprocessor}{#ifndef TM\_UART4\_MODE}
+00316 \textcolor{preprocessor}{#define TM\_UART4\_MODE                       USART\_Mode\_Tx | USART\_Mode\_Rx}
+00317 \textcolor{preprocessor}{#endif}
+00318 \textcolor{preprocessor}{#ifndef TM\_UART4\_PARITY}
+00319 \textcolor{preprocessor}{#define TM\_UART4\_PARITY                     USART\_Parity\_No}
+00320 \textcolor{preprocessor}{#endif}
+00321 \textcolor{preprocessor}{#ifndef TM\_UART4\_STOP\_BITS}
+00322 \textcolor{preprocessor}{#define TM\_UART4\_STOP\_BITS                  USART\_StopBits\_1}
+00323 \textcolor{preprocessor}{#endif}
+00324 \textcolor{preprocessor}{#ifndef TM\_UART4\_WORD\_LENGTH}
+00325 \textcolor{preprocessor}{#define TM\_UART4\_WORD\_LENGTH                USART\_WordLength\_8b}
+00326 \textcolor{preprocessor}{#endif}
+00327 
+00328 \textcolor{comment}{/* UART5 default settings */}
+00329 \textcolor{preprocessor}{#ifndef TM\_UART5\_HARDWARE\_FLOW\_CONTROL}
+00330 \textcolor{preprocessor}{#define TM\_UART5\_HARDWARE\_FLOW\_CONTROL      USART\_HardwareFlowControl\_None}
+00331 \textcolor{preprocessor}{#endif}
+00332 \textcolor{preprocessor}{#ifndef TM\_UART5\_MODE}
+00333 \textcolor{preprocessor}{#define TM\_UART5\_MODE                       USART\_Mode\_Tx | USART\_Mode\_Rx}
+00334 \textcolor{preprocessor}{#endif}
+00335 \textcolor{preprocessor}{#ifndef TM\_UART5\_PARITY}
+00336 \textcolor{preprocessor}{#define TM\_UART5\_PARITY                     USART\_Parity\_No}
+00337 \textcolor{preprocessor}{#endif}
+00338 \textcolor{preprocessor}{#ifndef TM\_UART5\_STOP\_BITS}
+00339 \textcolor{preprocessor}{#define TM\_UART5\_STOP\_BITS                  USART\_StopBits\_1}
+00340 \textcolor{preprocessor}{#endif}
+00341 \textcolor{preprocessor}{#ifndef TM\_UART5\_WORD\_LENGTH}
+00342 \textcolor{preprocessor}{#define TM\_UART5\_WORD\_LENGTH                USART\_WordLength\_8b}
+00343 \textcolor{preprocessor}{#endif}
+00344 
+00345 \textcolor{comment}{/* USART6 default settings */}
+00346 \textcolor{preprocessor}{#ifndef TM\_USART6\_HARDWARE\_FLOW\_CONTROL}
+00347 \textcolor{preprocessor}{#define TM\_USART6\_HARDWARE\_FLOW\_CONTROL     USART\_HardwareFlowControl\_None}
+00348 \textcolor{preprocessor}{#endif}
+00349 \textcolor{preprocessor}{#ifndef TM\_USART6\_MODE}
+00350 \textcolor{preprocessor}{#define TM\_USART6\_MODE                      USART\_Mode\_Tx | USART\_Mode\_Rx}
+00351 \textcolor{preprocessor}{#endif}
+00352 \textcolor{preprocessor}{#ifndef TM\_USART6\_PARITY}
+00353 \textcolor{preprocessor}{#define TM\_USART6\_PARITY                    USART\_Parity\_No}
+00354 \textcolor{preprocessor}{#endif}
+00355 \textcolor{preprocessor}{#ifndef TM\_USART6\_STOP\_BITS}
+00356 \textcolor{preprocessor}{#define TM\_USART6\_STOP\_BITS                 USART\_StopBits\_1}
+00357 \textcolor{preprocessor}{#endif}
+00358 \textcolor{preprocessor}{#ifndef TM\_USART6\_WORD\_LENGTH}
+00359 \textcolor{preprocessor}{#define TM\_USART6\_WORD\_LENGTH               USART\_WordLength\_8b}
+00360 \textcolor{preprocessor}{#endif}
+00361 
+00362 \textcolor{comment}{/* UART7 default settings */}
+00363 \textcolor{preprocessor}{#ifndef TM\_UART7\_HARDWARE\_FLOW\_CONTROL}
+00364 \textcolor{preprocessor}{#define TM\_UART7\_HARDWARE\_FLOW\_CONTROL      USART\_HardwareFlowControl\_None}
+00365 \textcolor{preprocessor}{#endif}
+00366 \textcolor{preprocessor}{#ifndef TM\_UART7\_MODE}
+00367 \textcolor{preprocessor}{#define TM\_UART7\_MODE                       USART\_Mode\_Tx | USART\_Mode\_Rx}
+00368 \textcolor{preprocessor}{#endif}
+00369 \textcolor{preprocessor}{#ifndef TM\_UART7\_PARITY}
+00370 \textcolor{preprocessor}{#define TM\_UART7\_PARITY                     USART\_Parity\_No}
+00371 \textcolor{preprocessor}{#endif}
+00372 \textcolor{preprocessor}{#ifndef TM\_UART7\_STOP\_BITS}
+00373 \textcolor{preprocessor}{#define TM\_UART7\_STOP\_BITS                  USART\_StopBits\_1}
+00374 \textcolor{preprocessor}{#endif}
+00375 \textcolor{preprocessor}{#ifndef TM\_UART7\_WORD\_LENGTH}
+00376 \textcolor{preprocessor}{#define TM\_UART7\_WORD\_LENGTH                USART\_WordLength\_8b}
+00377 \textcolor{preprocessor}{#endif}
+00378 
+00379 \textcolor{comment}{/* UART8 default settings */}
+00380 \textcolor{preprocessor}{#ifndef TM\_UART8\_HARDWARE\_FLOW\_CONTROL}
+00381 \textcolor{preprocessor}{#define TM\_UART8\_HARDWARE\_FLOW\_CONTROL      USART\_HardwareFlowControl\_None}
+00382 \textcolor{preprocessor}{#endif}
+00383 \textcolor{preprocessor}{#ifndef TM\_UART8\_MODE}
+00384 \textcolor{preprocessor}{#define TM\_UART8\_MODE                       USART\_Mode\_Tx | USART\_Mode\_Rx}
+00385 \textcolor{preprocessor}{#endif}
+00386 \textcolor{preprocessor}{#ifndef TM\_UART8\_PARITY}
+00387 \textcolor{preprocessor}{#define TM\_UART8\_PARITY                     USART\_Parity\_No}
+00388 \textcolor{preprocessor}{#endif}
+00389 \textcolor{preprocessor}{#ifndef TM\_UART8\_STOP\_BITS}
+00390 \textcolor{preprocessor}{#define TM\_UART8\_STOP\_BITS                  USART\_StopBits\_1}
+00391 \textcolor{preprocessor}{#endif}
+00392 \textcolor{preprocessor}{#ifndef TM\_UART8\_WORD\_LENGTH}
+00393 \textcolor{preprocessor}{#define TM\_UART8\_WORD\_LENGTH                USART\_WordLength\_8b}
+00394 \textcolor{preprocessor}{#endif}
+00395 
+\hypertarget{tm__stm32f4__usart_8h_source_l00409}{}\hyperlink{group___t_m___u_s_a_r_t___typedefs_gafa8a506eb27c93db067bb06039ae210f}{00409} \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+\hypertarget{tm__stm32f4__usart_8h_source_l00410}{}\hyperlink{group___t_m___u_s_a_r_t___typedefs_ggafa8a506eb27c93db067bb06039ae210fa94af1877da4d4b84340ff267ae13a3f4}{00410}     \hyperlink{group___t_m___u_s_a_r_t___typedefs_ggafa8a506eb27c93db067bb06039ae210fa94af1877da4d4b84340ff267ae13a3f4}{TM\_USART\_PinsPack\_1},     
+\hypertarget{tm__stm32f4__usart_8h_source_l00411}{}\hyperlink{group___t_m___u_s_a_r_t___typedefs_ggafa8a506eb27c93db067bb06039ae210fa20e52aedd65d52a8285abf6ea5bda8b1}{00411}     \hyperlink{group___t_m___u_s_a_r_t___typedefs_ggafa8a506eb27c93db067bb06039ae210fa20e52aedd65d52a8285abf6ea5bda8b1}{TM\_USART\_PinsPack\_2},     
+\hypertarget{tm__stm32f4__usart_8h_source_l00412}{}\hyperlink{group___t_m___u_s_a_r_t___typedefs_ggafa8a506eb27c93db067bb06039ae210fa9ac05e507f2948219af8594554d41bdb}{00412}     \hyperlink{group___t_m___u_s_a_r_t___typedefs_ggafa8a506eb27c93db067bb06039ae210fa9ac05e507f2948219af8594554d41bdb}{TM\_USART\_PinsPack\_3},     
+\hypertarget{tm__stm32f4__usart_8h_source_l00413}{}\hyperlink{group___t_m___u_s_a_r_t___typedefs_ggafa8a506eb27c93db067bb06039ae210fa4bb4ccf03eef1dee9f00fb89cbff97b3}{00413}     \hyperlink{group___t_m___u_s_a_r_t___typedefs_ggafa8a506eb27c93db067bb06039ae210fa4bb4ccf03eef1dee9f00fb89cbff97b3}{TM\_USART\_PinsPack\_Custom} 
+00414 \} \hyperlink{group___t_m___u_s_a_r_t___typedefs_gafa8a506eb27c93db067bb06039ae210f}{TM\_USART\_PinsPack\_t};
+00415 
+00433 \textcolor{keywordtype}{void} \hyperlink{group___t_m___u_s_a_r_t___functions_ga70bed9fb6612cb572a8c10e148404344}{TM\_USART\_Init}(USART\_TypeDef* USARTx, \hyperlink{group___t_m___u_s_a_r_t___typedefs_gafa8a506eb27c93db067bb06039ae210f}{TM\_USART\_PinsPack\_t} pinspack, 
+      uint32\_t baudrate);
+00434 
+00441 \textcolor{keywordtype}{void} \hyperlink{group___t_m___u_s_a_r_t___functions_gadea35f4eaffbeb65ac900fe32710aeb8}{TM\_USART\_Putc}(USART\_TypeDef* USARTx, \textcolor{keyword}{volatile} \textcolor{keywordtype}{char} c);
+00442 
+00448 \textcolor{keywordtype}{void} \hyperlink{group___t_m___u_s_a_r_t___functions_ga453aeaa886278333403ff4937c01dcf3}{TM\_USART\_Puts}(USART\_TypeDef* USARTx, \textcolor{keywordtype}{char}* str);
+00449 
+00455 uint8\_t \hyperlink{group___t_m___u_s_a_r_t___functions_ga340391d061340e4635b4bbafea23602b}{TM\_USART\_Getc}(USART\_TypeDef* USARTx);
+00456 
+00470 uint16\_t \hyperlink{group___t_m___u_s_a_r_t___functions_gabb0a95fd20e5e2a894e658b64a29ee61}{TM\_USART\_Gets}(USART\_TypeDef* USARTx, \textcolor{keywordtype}{char}* buffer, uint16\_t bufsize);
+00471 
+00478 uint8\_t \hyperlink{group___t_m___u_s_a_r_t___functions_ga5f708a330c9fc45032143a5777d9b6fd}{TM\_USART\_FindCharacter}(USART\_TypeDef* USARTx, uint8\_t c);
+00479 
+00485 uint8\_t \hyperlink{group___t_m___u_s_a_r_t___functions_gabcee39f90c8c33ff3b1fb07e6496eef6}{TM\_USART\_BufferEmpty}(USART\_TypeDef* USARTx);
+00486 
+00492 uint8\_t \hyperlink{group___t_m___u_s_a_r_t___functions_ga0bf136abba24771c4a5a83ace52a76c1}{TM\_USART\_BufferFull}(USART\_TypeDef* USARTx);
+00493 
+00499 \textcolor{keywordtype}{void} \hyperlink{group___t_m___u_s_a_r_t___functions_ga6c8dfcc950305f511393240ea847b2ad}{TM\_USART\_ClearBuffer}(USART\_TypeDef* USARTx);
+00500 
+00509 \textcolor{keywordtype}{void} \hyperlink{group___t_m___u_s_a_r_t___functions_ga299f46d68e55bc8e5054ac3eef9e39ee}{TM\_USART\_InitCustomPinsCallback}(USART\_TypeDef* USARTx);
+00510 
+00517 \_\_weak \textcolor{keywordtype}{void} \hyperlink{group___t_m___u_s_a_r_t___functions_gafbf9e2222953815c9f35cd46863dbc26}{TM\_USART1\_ReceiveHandler}(uint8\_t c);
+00518 
+00525 \_\_weak \textcolor{keywordtype}{void} \hyperlink{group___t_m___u_s_a_r_t___functions_ga21823124b3d98ea2085671f4a5af6017}{TM\_USART2\_ReceiveHandler}(uint8\_t c);
+00526 
+00533 \_\_weak \textcolor{keywordtype}{void} \hyperlink{group___t_m___u_s_a_r_t___functions_ga868eb8844f04487e714b63b016a93bae}{TM\_USART3\_ReceiveHandler}(uint8\_t c);
+00534 
+00541 \_\_weak \textcolor{keywordtype}{void} \hyperlink{group___t_m___u_s_a_r_t___functions_gada9d723469cf9d7d0ac11930b8e14f2a}{TM\_UART4\_ReceiveHandler}(uint8\_t c);
+00542 
+00549 \_\_weak \textcolor{keywordtype}{void} \hyperlink{group___t_m___u_s_a_r_t___functions_ga4338d265fa58103332ea234f63594b81}{TM\_UART5\_ReceiveHandler}(uint8\_t c);
+00550 
+00557 \_\_weak \textcolor{keywordtype}{void} \hyperlink{group___t_m___u_s_a_r_t___functions_ga65c1d6a6bcc2dbd40ea0e7cbf5e924de}{TM\_USART6\_ReceiveHandler}(uint8\_t c);
+00558 
+00565 \_\_weak \textcolor{keywordtype}{void} \hyperlink{group___t_m___u_s_a_r_t___functions_ga461a5123a57231d34d51330f12ea39d2}{TM\_UART7\_ReceiveHandler}(uint8\_t c);
+00566 
+00573 \_\_weak \textcolor{keywordtype}{void} \hyperlink{group___t_m___u_s_a_r_t___functions_ga37fe7ffa31a540627af5ebfe93f2dcf5}{TM\_UART8\_ReceiveHandler}(uint8\_t c);
+00574 
+00587 \textcolor{preprocessor}{#endif}
+\end{DoxyCode}

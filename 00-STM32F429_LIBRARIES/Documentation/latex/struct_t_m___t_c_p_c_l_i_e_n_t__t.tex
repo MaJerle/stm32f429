@@ -1,0 +1,57 @@
+\hypertarget{struct_t_m___t_c_p_c_l_i_e_n_t__t}{}\subsection{T\+M\+\_\+\+T\+C\+P\+C\+L\+I\+E\+N\+T\+\_\+t Struct Reference}
+\label{struct_t_m___t_c_p_c_l_i_e_n_t__t}\index{T\+M\+\_\+\+T\+C\+P\+C\+L\+I\+E\+N\+T\+\_\+t@{T\+M\+\_\+\+T\+C\+P\+C\+L\+I\+E\+N\+T\+\_\+t}}
+
+
+{\ttfamily \#include $<$tm\+\_\+stm32f4\+\_\+ethernet.\+h$>$}
+
+\subsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{struct_t_m___t_c_p_c_l_i_e_n_t__t_a7849befe648605976cbad9850f4afb52}{}char {\bfseries name} \mbox{[}E\+T\+H\+E\+R\+N\+E\+T\+\_\+\+M\+A\+X\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+N\+A\+M\+E\mbox{]}\label{struct_t_m___t_c_p_c_l_i_e_n_t__t_a7849befe648605976cbad9850f4afb52}
+
+\item 
+\hypertarget{struct_t_m___t_c_p_c_l_i_e_n_t__t_a05c940dbc220f5a723afd70071aebff8}{}uint8\+\_\+t {\bfseries active}\label{struct_t_m___t_c_p_c_l_i_e_n_t__t_a05c940dbc220f5a723afd70071aebff8}
+
+\item 
+\hypertarget{struct_t_m___t_c_p_c_l_i_e_n_t__t_a43d041f66a68d7de2411f35f23ee2d97}{}uint8\+\_\+t {\bfseries ip\+\_\+addr} \mbox{[}4\mbox{]}\label{struct_t_m___t_c_p_c_l_i_e_n_t__t_a43d041f66a68d7de2411f35f23ee2d97}
+
+\item 
+\hypertarget{struct_t_m___t_c_p_c_l_i_e_n_t__t_a8e0798404bf2cf5dabb84c5ba9a4f236}{}uint16\+\_\+t {\bfseries port}\label{struct_t_m___t_c_p_c_l_i_e_n_t__t_a8e0798404bf2cf5dabb84c5ba9a4f236}
+
+\item 
+\hypertarget{struct_t_m___t_c_p_c_l_i_e_n_t__t_ab66a7c6d7a262ea60c9919e3d08654d3}{}uint8\+\_\+t {\bfseries headers\+\_\+done}\label{struct_t_m___t_c_p_c_l_i_e_n_t__t_ab66a7c6d7a262ea60c9919e3d08654d3}
+
+\item 
+\hypertarget{struct_t_m___t_c_p_c_l_i_e_n_t__t_ae648ebdf3ea1f285a7dfe429707bce0e}{}uint8\+\_\+t $\ast$ {\bfseries active\+\_\+connections\+\_\+count}\label{struct_t_m___t_c_p_c_l_i_e_n_t__t_ae648ebdf3ea1f285a7dfe429707bce0e}
+
+\item 
+\hypertarget{struct_t_m___t_c_p_c_l_i_e_n_t__t_a402b1466b53a8c77e92e5f9a0883693c}{}void $\ast$ {\bfseries user\+\_\+parameters}\label{struct_t_m___t_c_p_c_l_i_e_n_t__t_a402b1466b53a8c77e92e5f9a0883693c}
+
+\item 
+\hypertarget{struct_t_m___t_c_p_c_l_i_e_n_t__t_a7d8c5f5eed3154f7848c3a2ac9a9863a}{}struct tcp\+\_\+pcb $\ast$ {\bfseries pcb}\label{struct_t_m___t_c_p_c_l_i_e_n_t__t_a7d8c5f5eed3154f7848c3a2ac9a9863a}
+
+\item 
+\hypertarget{struct_t_m___t_c_p_c_l_i_e_n_t__t_a698f457b284f988a16a150e7e2e08ed4}{}client\+\_\+states {\bfseries state}\label{struct_t_m___t_c_p_c_l_i_e_n_t__t_a698f457b284f988a16a150e7e2e08ed4}
+
+\item 
+\hypertarget{struct_t_m___t_c_p_c_l_i_e_n_t__t_a464574d4b7ed1ccdf0bfb551858c930c}{}struct pbuf $\ast$ {\bfseries p\+\_\+tx}\label{struct_t_m___t_c_p_c_l_i_e_n_t__t_a464574d4b7ed1ccdf0bfb551858c930c}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+Client structure, passed as first parameter in all client based callback functions
+
+Parameters\+:
+\begin{DoxyItemize}
+\item char name\mbox{[}E\+T\+H\+E\+R\+N\+E\+T\+\_\+\+M\+A\+X\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+O\+N\+\_\+\+N\+A\+M\+E\mbox{]}\+: Connection name, we choose it when we call T\+M\+\_\+\+E\+T\+H\+E\+R\+N\+E\+T\+C\+L\+I\+E\+N\+T\+\_\+\+Connect function
+\item uint8\+\_\+t active\+: Connection is active
+\item uint8\+\_\+t ip\+\_\+addr\mbox{[}4\mbox{]}\+: I\+P address for our external connection
+\item uint16\+\_\+t port\+: Port for our external connection
+\item uint8\+\_\+t headers\+\_\+done\+: This is user defined option. When you connect to some website and receive data back, you will also get H\+T\+T\+P headers and your data. When receive data handler will be first called, this parameter will be set to 0. If you detect when headers are done (\char`\"{}\textbackslash{}r\textbackslash{}n\textbackslash{}r\textbackslash{}n\char`\"{} string) then you can set this parameter to 1, and it will stay 1 until connection is closed. This can be used, if you don\textquotesingle{}t want to print headers to user.
+\end{DoxyItemize}
+
+uint8\+\_\+t$\ast$ active\+\_\+connections\+\_\+count\+: Pointer to number of active connections this time.
+\begin{DoxyItemize}
+\item void$\ast$ user\+\_\+parameters\+: Pointer to user parameters for connection which are passed on \char`\"{}\+Connect\char`\"{} function This can be used to pass special data for your connection, which you can then easily be used in headers callback to format proper request string. 
+\end{DoxyItemize}

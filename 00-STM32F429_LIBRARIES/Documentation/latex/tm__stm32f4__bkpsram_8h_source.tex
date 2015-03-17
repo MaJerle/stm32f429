@@ -1,0 +1,49 @@
+\hypertarget{tm__stm32f4__bkpsram_8h_source}{}\subsection{tm\+\_\+stm32f4\+\_\+bkpsram.\+h}
+
+\begin{DoxyCode}
+00001 
+00039 \textcolor{preprocessor}{#ifndef TM\_BKPSRAM\_H}
+00040 \textcolor{preprocessor}{#define TM\_BKPSRAM\_H 110}
+00041 
+00042 \textcolor{comment}{/* C++ detection */}
+00043 \textcolor{preprocessor}{#ifdef \_\_cplusplus}
+00044 \textcolor{keyword}{extern} C \{
+00045 \textcolor{preprocessor}{#endif}
+00046 
+00057 \textcolor{preprocessor}{#include "stm32f4xx.h"}
+00058 \textcolor{preprocessor}{#include "stm32f4xx\_rcc.h"}
+00059 \textcolor{preprocessor}{#include "stm32f4xx\_pwr.h"}
+00060 \textcolor{preprocessor}{#include "defines.h"}
+00061 
+00062 \textcolor{comment}{/* Check compatibility */}
+00063 \textcolor{preprocessor}{#if defined(STM32F401xx) || defined(STM32F411xE)}
+00064 \textcolor{preprocessor}{    #error "Not available on F401/F411 devices"}
+00065 \textcolor{preprocessor}{#endif  }
+00066     
+00072 \textcolor{preprocessor}{#define TM\_BKPSRAM\_GetMemorySize()          (0x00001000)}
+00073 
+00082 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_BKPSRAM\_Init(\textcolor{keywordtype}{void});
+00083 
+00098 \textcolor{preprocessor}{#define TM\_BKPSRAM\_Write8(address, value)   (*(\_\_IO uint8\_t *) (BKPSRAM\_BASE + (address)) = (value))}
+00099 
+00112 \textcolor{preprocessor}{#define TM\_BKPSRAM\_Read8(address)           (*(\_\_IO uint8\_t *) (BKPSRAM\_BASE + address))}
+00113 
+00128 \textcolor{preprocessor}{#define TM\_BKPSRAM\_Write16(address, value)  (*(\_\_IO uint16\_t *) (BKPSRAM\_BASE + (address)) = (value))}
+00129 
+00142 \textcolor{preprocessor}{#define TM\_BKPSRAM\_Read16(address)          (*(\_\_IO uint16\_t *) (BKPSRAM\_BASE + address))}
+00143 
+00158 \textcolor{preprocessor}{#define TM\_BKPSRAM\_Write32(address, value)  (*(\_\_IO uint32\_t *) (BKPSRAM\_BASE + (address)) = (value))}
+00159 
+00172 \textcolor{preprocessor}{#define TM\_BKPSRAM\_Read32(address)          (*(\_\_IO uint32\_t *) (BKPSRAM\_BASE + address))}
+00173 
+00188 \textcolor{preprocessor}{#define TM\_BKPSRAM\_WriteFloat(address, value)   (*(\_\_IO float *) (BKPSRAM\_BASE + (address)) = (value))}
+00189 
+00202 \textcolor{preprocessor}{#define TM\_BKPSRAM\_ReadFloat(address)           (*(\_\_IO float *) (BKPSRAM\_BASE + address))}
+00203 
+00204 \textcolor{comment}{/* C++ detection */}
+00205 \textcolor{preprocessor}{#ifdef \_\_cplusplus}
+00206 \}
+00207 \textcolor{preprocessor}{#endif}
+00208 
+00209 \textcolor{preprocessor}{#endif}
+\end{DoxyCode}

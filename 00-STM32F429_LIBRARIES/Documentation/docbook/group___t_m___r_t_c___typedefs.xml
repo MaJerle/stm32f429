@@ -1,0 +1,376 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="group___t_m___r_t_c___typedefs">
+    <title>TM_RTC_Typedefs</title>
+
+<para>Library Typedefs. </para>
+        <section>
+            <title>Detailed Description</title>
+        </section>
+        <section>
+            <title> Data Structures </title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="struct_t_m___r_t_c__t">TM_RTC_t</link></para>
+<para><emphasis>RTC Struct for date/time.</emphasis></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>struct <link linkend="struct_t_m___r_t_c___alarm_time__t">TM_RTC_AlarmTime_t</link></para>
+<para><emphasis>RTC structure for alarm time.</emphasis></para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Enumerations</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para><literallayout>enum <link linkend="group___t_m___r_t_c___typedefs_1gaad29b647ee0def818f3b9efc717731f8">TM_RTC_Result_t</link> {
+<link linkend="group___t_m___r_t_c___typedefs_1ggaad29b647ee0def818f3b9efc717731f8ab3ceefc4a5b384fbd0097705e535a36c">TM_RTC_Result_Ok</link>,
+<link linkend="group___t_m___r_t_c___typedefs_1ggaad29b647ee0def818f3b9efc717731f8aad05d660a457ab908300b74873595acb">TM_RTC_Result_Error</link>
+}</literallayout>
+<para><emphasis>RTC Result enumeration.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para><literallayout>enum <link linkend="group___t_m___r_t_c___typedefs_1ga4ef7bf7d2c67f2dc6208ecb5926b0354">TM_RTC_Format_t</link> {
+<link linkend="group___t_m___r_t_c___typedefs_1gga4ef7bf7d2c67f2dc6208ecb5926b0354ae48695293a3f8d72c95a88afff4d44e5">TM_RTC_Format_BIN</link>= 0x00,
+<link linkend="group___t_m___r_t_c___typedefs_1gga4ef7bf7d2c67f2dc6208ecb5926b0354afe6637c02d11e68c7e190dbef8381b60">TM_RTC_Format_BCD</link>
+}</literallayout>
+<para><emphasis>RTC date and time format.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para><literallayout>enum <link linkend="group___t_m___r_t_c___typedefs_1ga05e753ad5f63f28a20fe9f3b85e799f2">TM_RTC_Int_t</link> {
+<link linkend="group___t_m___r_t_c___typedefs_1gga05e753ad5f63f28a20fe9f3b85e799f2a0ad3976b890949bd566913a5a346373b">TM_RTC_Int_Disable</link>= 0x00,
+<link linkend="group___t_m___r_t_c___typedefs_1gga05e753ad5f63f28a20fe9f3b85e799f2a14b3a6859ea6fae5cbd90183e6b75a17">TM_RTC_Int_60s</link>,
+<link linkend="group___t_m___r_t_c___typedefs_1gga05e753ad5f63f28a20fe9f3b85e799f2a6844794554d9da4e42f43c1a272434e2">TM_RTC_Int_30s</link>,
+<link linkend="group___t_m___r_t_c___typedefs_1gga05e753ad5f63f28a20fe9f3b85e799f2a613f64eae4037ed606f9aaf2c41169aa">TM_RTC_Int_15s</link>,
+<link linkend="group___t_m___r_t_c___typedefs_1gga05e753ad5f63f28a20fe9f3b85e799f2a63bac01a68472de21dd3232843540312">TM_RTC_Int_10s</link>,
+<link linkend="group___t_m___r_t_c___typedefs_1gga05e753ad5f63f28a20fe9f3b85e799f2ab29f4d48a6b77b7b42e8d1662b45ec41">TM_RTC_Int_5s</link>,
+<link linkend="group___t_m___r_t_c___typedefs_1gga05e753ad5f63f28a20fe9f3b85e799f2a9eb35942f5a16621500f5a6fa6ede1e1">TM_RTC_Int_2s</link>,
+<link linkend="group___t_m___r_t_c___typedefs_1gga05e753ad5f63f28a20fe9f3b85e799f2ad956fd15a6c14d25720ea675825c23ab">TM_RTC_Int_1s</link>,
+<link linkend="group___t_m___r_t_c___typedefs_1gga05e753ad5f63f28a20fe9f3b85e799f2a3ac0536e0b710f85451872984195c8f9">TM_RTC_Int_500ms</link>,
+<link linkend="group___t_m___r_t_c___typedefs_1gga05e753ad5f63f28a20fe9f3b85e799f2a9cbcfe25519c2aa2a55f1af2d72aa19d">TM_RTC_Int_250ms</link>,
+<link linkend="group___t_m___r_t_c___typedefs_1gga05e753ad5f63f28a20fe9f3b85e799f2a66cc3516e9208bb6e5c28635106be9fb">TM_RTC_Int_125ms</link>
+}</literallayout>
+<para><emphasis>RTC Interrupt enumeration.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para><literallayout>enum <link linkend="group___t_m___r_t_c___typedefs_1ga944a179f7f7042272040b3464ab89eb5">TM_RTC_ClockSource_t</link> {
+<link linkend="group___t_m___r_t_c___typedefs_1gga944a179f7f7042272040b3464ab89eb5aee0e2b895cc0067dcfa19f258813bdd5">TM_RTC_ClockSource_Internal</link>= 0x00,
+<link linkend="group___t_m___r_t_c___typedefs_1gga944a179f7f7042272040b3464ab89eb5a1eec7d5db7c364bdcdf9f700206d9dd3">TM_RTC_ClockSource_External</link>
+}</literallayout>
+<para><emphasis>Select RTC clock source.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para><literallayout>enum <link linkend="group___t_m___r_t_c___typedefs_1gaf7ce20d46cd105428f15c7f45b3b0882">TM_RTC_AlarmType_t</link> {
+<link linkend="group___t_m___r_t_c___typedefs_1ggaf7ce20d46cd105428f15c7f45b3b0882af7f180386b56c0bb0c0947ffa8835671">TM_RTC_AlarmType_DayInWeek</link>,
+<link linkend="group___t_m___r_t_c___typedefs_1ggaf7ce20d46cd105428f15c7f45b3b0882aa37801e1c78b16c4aef0cdd55abfedbd">TM_RTC_AlarmType_DayInMonth</link>
+}</literallayout>
+<para><emphasis>RTC Alarm type.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para><literallayout>enum <link linkend="group___t_m___r_t_c___typedefs_1ga3c4d1d5831bf262f1994e8cc45007e7b">TM_RTC_Alarm_t</link> {
+<link linkend="group___t_m___r_t_c___typedefs_1gga3c4d1d5831bf262f1994e8cc45007e7ba598f0843c22db1e229493414ddf14e8d">TM_RTC_Alarm_A</link>= 0x00,
+<link linkend="group___t_m___r_t_c___typedefs_1gga3c4d1d5831bf262f1994e8cc45007e7ba9d774b8679fbb5936a0e32aeb8e49e0c">TM_RTC_Alarm_B</link>
+}</literallayout>
+<para><emphasis>Alarm identifier you will use for Alarm functions.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Typedefs</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>typedef <link linkend="struct_t_m___r_t_c__t">TM_RTC_t</link>  <link linkend="group___t_m___r_t_c___typedefs_1gaeb7262d02f6cc61342a91b78d7429805">TM_RTC_Time_t</link><para><emphasis>Backward compatibility for RTC time.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Enumeration Type Documentation</title>
+            <section xml:id="group___t_m___r_t_c___typedefs_1gaad29b647ee0def818f3b9efc717731f8">
+               <title>enum TM_RTC_Result_t </title>
+               
+               <formalpara>
+                    <title>Enumerator:</title>
+                    <variablelist>
+                        <varlistentry xml:id="group___t_m___r_t_c___typedefs_1ggaad29b647ee0def818f3b9efc717731f8ab3ceefc4a5b384fbd0097705e535a36c">
+                            <term>TM_RTC_Result_Ok</term>
+                            <listitem>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry xml:id="group___t_m___r_t_c___typedefs_1ggaad29b647ee0def818f3b9efc717731f8aad05d660a457ab908300b74873595acb">
+                            <term>TM_RTC_Result_Error</term>
+                            <listitem>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                     </variablelist>
+                </formalpara>
+                <para>Definition at line 184 of file tm_stm32f4_rtc.h
+                    <computeroutput><literallayout>
+{
+TM_RTC_Result_Ok, 
+TM_RTC_Result_Error, 
+}TM_RTC_Result_t;
+                    </literallayout></computeroutput>
+                </para>
+            </section>
+            <section xml:id="group___t_m___r_t_c___typedefs_1ga4ef7bf7d2c67f2dc6208ecb5926b0354">
+               <title>enum TM_RTC_Format_t </title>
+               
+               <formalpara>
+                    <title>Enumerator:</title>
+                    <variablelist>
+                        <varlistentry xml:id="group___t_m___r_t_c___typedefs_1gga4ef7bf7d2c67f2dc6208ecb5926b0354ae48695293a3f8d72c95a88afff4d44e5">
+                            <term>TM_RTC_Format_BIN</term>
+                            <listitem>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry xml:id="group___t_m___r_t_c___typedefs_1gga4ef7bf7d2c67f2dc6208ecb5926b0354afe6637c02d11e68c7e190dbef8381b60">
+                            <term>TM_RTC_Format_BCD</term>
+                            <listitem>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                     </variablelist>
+                </formalpara>
+                <para>Definition at line 192 of file tm_stm32f4_rtc.h
+                    <computeroutput><literallayout>
+{
+TM_RTC_Format_BIN= 0x00, 
+TM_RTC_Format_BCD, 
+}TM_RTC_Format_t;
+                    </literallayout></computeroutput>
+                </para>
+            </section>
+            <section xml:id="group___t_m___r_t_c___typedefs_1ga05e753ad5f63f28a20fe9f3b85e799f2">
+               <title>enum TM_RTC_Int_t </title>
+               
+               <formalpara>
+                    <title>Enumerator:</title>
+                    <variablelist>
+                        <varlistentry xml:id="group___t_m___r_t_c___typedefs_1gga05e753ad5f63f28a20fe9f3b85e799f2a0ad3976b890949bd566913a5a346373b">
+                            <term>TM_RTC_Int_Disable</term>
+                            <listitem>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry xml:id="group___t_m___r_t_c___typedefs_1gga05e753ad5f63f28a20fe9f3b85e799f2a14b3a6859ea6fae5cbd90183e6b75a17">
+                            <term>TM_RTC_Int_60s</term>
+                            <listitem>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry xml:id="group___t_m___r_t_c___typedefs_1gga05e753ad5f63f28a20fe9f3b85e799f2a6844794554d9da4e42f43c1a272434e2">
+                            <term>TM_RTC_Int_30s</term>
+                            <listitem>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry xml:id="group___t_m___r_t_c___typedefs_1gga05e753ad5f63f28a20fe9f3b85e799f2a613f64eae4037ed606f9aaf2c41169aa">
+                            <term>TM_RTC_Int_15s</term>
+                            <listitem>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry xml:id="group___t_m___r_t_c___typedefs_1gga05e753ad5f63f28a20fe9f3b85e799f2a63bac01a68472de21dd3232843540312">
+                            <term>TM_RTC_Int_10s</term>
+                            <listitem>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry xml:id="group___t_m___r_t_c___typedefs_1gga05e753ad5f63f28a20fe9f3b85e799f2ab29f4d48a6b77b7b42e8d1662b45ec41">
+                            <term>TM_RTC_Int_5s</term>
+                            <listitem>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry xml:id="group___t_m___r_t_c___typedefs_1gga05e753ad5f63f28a20fe9f3b85e799f2a9eb35942f5a16621500f5a6fa6ede1e1">
+                            <term>TM_RTC_Int_2s</term>
+                            <listitem>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry xml:id="group___t_m___r_t_c___typedefs_1gga05e753ad5f63f28a20fe9f3b85e799f2ad956fd15a6c14d25720ea675825c23ab">
+                            <term>TM_RTC_Int_1s</term>
+                            <listitem>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry xml:id="group___t_m___r_t_c___typedefs_1gga05e753ad5f63f28a20fe9f3b85e799f2a3ac0536e0b710f85451872984195c8f9">
+                            <term>TM_RTC_Int_500ms</term>
+                            <listitem>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry xml:id="group___t_m___r_t_c___typedefs_1gga05e753ad5f63f28a20fe9f3b85e799f2a9cbcfe25519c2aa2a55f1af2d72aa19d">
+                            <term>TM_RTC_Int_250ms</term>
+                            <listitem>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry xml:id="group___t_m___r_t_c___typedefs_1gga05e753ad5f63f28a20fe9f3b85e799f2a66cc3516e9208bb6e5c28635106be9fb">
+                            <term>TM_RTC_Int_125ms</term>
+                            <listitem>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                     </variablelist>
+                </formalpara>
+                <para>Definition at line 200 of file tm_stm32f4_rtc.h
+                    <computeroutput><literallayout>
+{
+TM_RTC_Int_Disable= 0x00, 
+TM_RTC_Int_60s, 
+TM_RTC_Int_30s, 
+TM_RTC_Int_15s, 
+TM_RTC_Int_10s, 
+TM_RTC_Int_5s, 
+TM_RTC_Int_2s, 
+TM_RTC_Int_1s, 
+TM_RTC_Int_500ms, 
+TM_RTC_Int_250ms, 
+TM_RTC_Int_125ms, 
+}TM_RTC_Int_t;
+                    </literallayout></computeroutput>
+                </para>
+            </section>
+            <section xml:id="group___t_m___r_t_c___typedefs_1ga944a179f7f7042272040b3464ab89eb5">
+               <title>enum TM_RTC_ClockSource_t </title>
+               
+<para><formalpara><title>Note: </title>
+
+<para>Internal clock is not accurate and should not be used in production </para>
+</formalpara>
+</para>
+
+               <formalpara>
+                    <title>Enumerator:</title>
+                    <variablelist>
+                        <varlistentry xml:id="group___t_m___r_t_c___typedefs_1gga944a179f7f7042272040b3464ab89eb5aee0e2b895cc0067dcfa19f258813bdd5">
+                            <term>TM_RTC_ClockSource_Internal</term>
+                            <listitem>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry xml:id="group___t_m___r_t_c___typedefs_1gga944a179f7f7042272040b3464ab89eb5a1eec7d5db7c364bdcdf9f700206d9dd3">
+                            <term>TM_RTC_ClockSource_External</term>
+                            <listitem>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                     </variablelist>
+                </formalpara>
+                <para>Definition at line 218 of file tm_stm32f4_rtc.h
+                    <computeroutput><literallayout>
+{
+TM_RTC_ClockSource_Internal= 0x00, 
+TM_RTC_ClockSource_External, 
+}TM_RTC_ClockSource_t;
+                    </literallayout></computeroutput>
+                </para>
+            </section>
+            <section xml:id="group___t_m___r_t_c___typedefs_1gaf7ce20d46cd105428f15c7f45b3b0882">
+               <title>enum TM_RTC_AlarmType_t </title>
+               
+               <formalpara>
+                    <title>Enumerator:</title>
+                    <variablelist>
+                        <varlistentry xml:id="group___t_m___r_t_c___typedefs_1ggaf7ce20d46cd105428f15c7f45b3b0882af7f180386b56c0bb0c0947ffa8835671">
+                            <term>TM_RTC_AlarmType_DayInWeek</term>
+                            <listitem>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry xml:id="group___t_m___r_t_c___typedefs_1ggaf7ce20d46cd105428f15c7f45b3b0882aa37801e1c78b16c4aef0cdd55abfedbd">
+                            <term>TM_RTC_AlarmType_DayInMonth</term>
+                            <listitem>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                     </variablelist>
+                </formalpara>
+                <para>Definition at line 226 of file tm_stm32f4_rtc.h
+                    <computeroutput><literallayout>
+{
+TM_RTC_AlarmType_DayInWeek, 
+TM_RTC_AlarmType_DayInMonth, 
+}TM_RTC_AlarmType_t;
+                    </literallayout></computeroutput>
+                </para>
+            </section>
+            <section xml:id="group___t_m___r_t_c___typedefs_1ga3c4d1d5831bf262f1994e8cc45007e7b">
+               <title>enum TM_RTC_Alarm_t </title>
+               
+               <formalpara>
+                    <title>Enumerator:</title>
+                    <variablelist>
+                        <varlistentry xml:id="group___t_m___r_t_c___typedefs_1gga3c4d1d5831bf262f1994e8cc45007e7ba598f0843c22db1e229493414ddf14e8d">
+                            <term>TM_RTC_Alarm_A</term>
+                            <listitem>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry xml:id="group___t_m___r_t_c___typedefs_1gga3c4d1d5831bf262f1994e8cc45007e7ba9d774b8679fbb5936a0e32aeb8e49e0c">
+                            <term>TM_RTC_Alarm_B</term>
+                            <listitem>
+                                <para></para>
+                            </listitem>
+                        </varlistentry>
+                     </variablelist>
+                </formalpara>
+                <para>Definition at line 234 of file tm_stm32f4_rtc.h
+                    <computeroutput><literallayout>
+{
+TM_RTC_Alarm_A= 0x00, 
+TM_RTC_Alarm_B, 
+}TM_RTC_Alarm_t;
+                    </literallayout></computeroutput>
+                </para>
+            </section>
+        </section>
+        <section>
+            <title>Typedef Documentation</title>
+            <section xml:id="group___t_m___r_t_c___typedefs_1gaeb7262d02f6cc61342a91b78d7429805">
+                <title>typedef TM_RTC_t TM_RTC_Time_t</title> <emphasis>Backward compatibility for RTC time.</emphasis>
+                
+            </section>
+        </section>
+</section>

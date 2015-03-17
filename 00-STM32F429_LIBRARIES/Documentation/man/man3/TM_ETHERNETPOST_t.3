@@ -1,0 +1,60 @@
+.TH "TM_ETHERNETPOST_t" 3 "Wed Mar 18 2015" "Version v1.0.0" "TM STM32F4xx Libraries" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TM_ETHERNETPOST_t \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <tm_stm32f4_ethernet\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "void * \fBconnection\fP"
+.br
+.ti -1c
+.RI "const char * \fBuri\fP"
+.br
+.ti -1c
+.RI "const char * \fBhttp_request\fP"
+.br
+.ti -1c
+.RI "uint16_t \fBhttp_request_len\fP"
+.br
+.ti -1c
+.RI "int \fBcontent_len\fP"
+.br
+.ti -1c
+.RI "char * \fBresponse_uri\fP"
+.br
+.ti -1c
+.RI "uint16_t \fBresponse_uri_len\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+POST request structure Used in POST request callbacks
+.PP
+Parameters:
+.IP "\(bu" 2
+void \fIconnection: Pointer to connection, it is type of struct http_state *\fP
+.IP "\(bu" 2
+\fIconst char\fP uri: URL which is used in POST request URL user use with POST request
+.IP "\(bu" 2
+const char* http_request: Pointer to HTTP request buffer\&. Here are stored entire HTTP request headers
+.IP "\(bu" 2
+uint16_t http_request_len: Length of HTTP request buffer
+.IP "\(bu" 2
+int content_len: Length of content (data) in bytes
+.IP "\(bu" 2
+char* response_uri: Pointer to address (file address, '/index\&.html' for example) which will be used to show url to user\&. This parameter must be filled by user
+.IP "\(bu" 2
+uint16_t response_uri_len: Length of buffer for response uri 
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for TM STM32F4xx Libraries from the source code\&.

@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="struct_t_m___u_s_b___h_i_d_h_o_s_t___keyboard__t">
+<title>TM_USB_HIDHOST_Keyboard_t struct Reference</title>
+<para>
+    <programlisting>#include <link linkend="tm__stm32f4__usb__hid__host_8h">&lt;tm_stm32f4_usb_hid_host.h&gt;</link></programlisting>
+</para>
+        <section>
+            <title>Data Fields</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>TM_USB_HIDHOST_Button_t ButtonStatus</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint8_t Button</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <simplesect>
+            <title>Detailed Description</title>
+
+<para>HID Host keyboard struct</para>
+
+<para>Parameters:<itemizedlist>
+<listitem>
+<para>TM_USB_HIDHOST_Button_t ButtonStatus Indicates if button is pressed or released</para>
+</listitem><listitem>
+<para>uint8_t Button Button number pressed </para>
+</listitem></itemizedlist>
+</para>
+                <para>Definition at line 161 of file tm_stm32f4_usb_hid_host.h</para>
+                <para>The Documentation for this struct was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_usb_hid_host.h</para></listitem></itemizedlist></para>
+        </simplesect>
+        <section>
+            <title>Field Documentation</title>
+        </section>
+</section>

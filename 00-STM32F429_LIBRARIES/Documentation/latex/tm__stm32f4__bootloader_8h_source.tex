@@ -1,0 +1,25 @@
+\hypertarget{tm__stm32f4__bootloader_8h_source}{}\subsection{tm\+\_\+stm32f4\+\_\+bootloader.\+h}
+
+\begin{DoxyCode}
+00001 
+00029 \textcolor{preprocessor}{#ifndef TM\_BOOTLOADER\_H}
+00030 \textcolor{preprocessor}{#define TM\_BOOTLOADER\_H 100}
+00031 
+00032 \textcolor{comment}{/* C++ detection */}
+00033 \textcolor{preprocessor}{#ifdef \_\_cplusplus}
+00034 \textcolor{keyword}{extern} C \{
+00035 \textcolor{preprocessor}{#endif}
+00036 
+00046 \textcolor{preprocessor}{#include "stm32f4xx.h"}
+00047 \textcolor{preprocessor}{#include "stm32f4xx\_rcc.h"}
+00048 \textcolor{preprocessor}{#include "defines.h"}
+00049     
+00050 \textcolor{keyword}{extern} uint8\_t TM\_BOOTLOADER\_JumpToProgram(uint32\_t program\_address);
+00051 
+00052 \textcolor{comment}{/* C++ detection */}
+00053 \textcolor{preprocessor}{#ifdef \_\_cplusplus}
+00054 \}
+00055 \textcolor{preprocessor}{#endif}
+00056 
+00057 \textcolor{preprocessor}{#endif}
+\end{DoxyCode}

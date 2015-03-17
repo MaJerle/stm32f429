@@ -1,0 +1,209 @@
+.TH "TM_ID_Functions" 3 "Wed Mar 18 2015" "Version v1.0.0" "TM STM32F4xx Libraries" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TM_ID_Functions \- TM_ID_Functions
+.PP
+Library Functions\&.  
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBTM_ID_GetSignature\fP()   ((*(uint16_t *) (\fBID_DBGMCU_IDCODE\fP)) & 0x0FFF)"
+.br
+.RI "\fIGet STM32F4xx device signature\&. \fP"
+.ti -1c
+.RI "#define \fBTM_ID_GetRevision\fP()   (*(uint16_t *) (\fBID_DBGMCU_IDCODE\fP + 2))"
+.br
+.RI "\fIGet STM32F4xx device revision\&. \fP"
+.ti -1c
+.RI "#define \fBTM_ID_GetFlashSize\fP()   (*(uint16_t *) (\fBID_FLASH_ADDRESS\fP))"
+.br
+.RI "\fIGet STM32F4xx device's flash size in kilo bytes\&. \fP"
+.ti -1c
+.RI "#define \fBTM_ID_GetUnique8\fP(x)   ((x >= 0 && x < 12) ? (*(uint8_t *) (\fBID_UNIQUE_ADDRESS\fP + (x))) : 0)"
+.br
+.RI "\fIGet unique ID number in 8-bit format\&. \fP"
+.ti -1c
+.RI "#define \fBTM_ID_GetUnique16\fP(x)   ((x >= 0 && x < 6) ? (*(uint16_t *) (\fBID_UNIQUE_ADDRESS\fP + 2 * (x))) : 0)"
+.br
+.RI "\fIGet unique ID number in 16-bit format\&. \fP"
+.ti -1c
+.RI "#define \fBTM_ID_GetUnique32\fP(x)   ((x >= 0 && x < 3) ? (*(uint32_t *) (\fBID_UNIQUE_ADDRESS\fP + 4 * (x))) : 0)"
+.br
+.RI "\fIGet unique ID number in 32-bit format\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Library Functions\&. 
+
+
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define TM_ID_GetFlashSize()   (*(uint16_t *) (\fBID_FLASH_ADDRESS\fP))"
+
+.PP
+Get STM32F4xx device's flash size in kilo bytes\&. 
+.PP
+\fBNote:\fP
+.RS 4
+Defined as macro to get maximal response time 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fIFlash\fP size in kilo bytes 
+.RE
+.PP
+
+.SS "#define TM_ID_GetRevision()   (*(uint16_t *) (\fBID_DBGMCU_IDCODE\fP + 2))"
+
+.PP
+Get STM32F4xx device revision\&. 
+.PP
+\fBNote:\fP
+.RS 4
+Defined as macro to get maximal response time 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fIDevice\fP revision value
+.IP "\(bu" 2
+0x1000: Revision A
+.IP "\(bu" 2
+0x1001: Revision Z
+.IP "\(bu" 2
+0x1003: Revision Y
+.IP "\(bu" 2
+0x1007: Revision 1
+.IP "\(bu" 2
+0x2001: Revision 3 
+.PP
+.RE
+.PP
+
+.SS "#define TM_ID_GetSignature()   ((*(uint16_t *) (\fBID_DBGMCU_IDCODE\fP)) & 0x0FFF)"
+
+.PP
+Get STM32F4xx device signature\&. 
+.PP
+\fBNote:\fP
+.RS 4
+Defined as macro to get maximal response time 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fIDevice\fP signature, bits 11:0 are valid, 15:12 are always 0\&.
+.IP "\(bu" 2
+0x0413: STM32F405xx/07xx and STM32F415xx/17xx)
+.IP "\(bu" 2
+0x0419: STM32F42xxx and STM32F43xxx
+.IP "\(bu" 2
+0x0423: STM32F401xB/C
+.IP "\(bu" 2
+0x0433: STM32F401xD/E
+.IP "\(bu" 2
+0x0431: STM32F411xC/E 
+.PP
+.RE
+.PP
+
+.SS "#define TM_ID_GetUnique16(x)   ((x >= 0 && x < 6) ? (*(uint16_t *) (\fBID_UNIQUE_ADDRESS\fP + 2 * (x))) : 0)"
+
+.PP
+Get unique ID number in 16-bit format\&. 
+.PP
+\fBNote:\fP
+.RS 4
+STM32F4xx has 96bits long unique ID, so 6 2-bytes values are available for read in 16-bit format 
+.PP
+Defined as macro to get maximal response time 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIx\fP Byte number: specify which part of 16 bits you want to read
+.IP "\(bu" 2
+Values between 0 and 5 are allowed 
+.PP
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fIUnique\fP ID address 
+.RE
+.PP
+
+.SS "#define TM_ID_GetUnique32(x)   ((x >= 0 && x < 3) ? (*(uint32_t *) (\fBID_UNIQUE_ADDRESS\fP + 4 * (x))) : 0)"
+
+.PP
+Get unique ID number in 32-bit format\&. 
+.PP
+\fBNote:\fP
+.RS 4
+STM32F4xx has 96bits long unique ID, so 3 4-bytes values are available for read in 32-bit format 
+.PP
+Defined as macro to get maximal response time 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIx\fP Byte number: specify which part of 16 bits you want to read
+.IP "\(bu" 2
+Values between 0 and 2 are allowed 
+.PP
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fIUnique\fP ID address 
+.RE
+.PP
+
+.SS "#define TM_ID_GetUnique8(x)   ((x >= 0 && x < 12) ? (*(uint8_t *) (\fBID_UNIQUE_ADDRESS\fP + (x))) : 0)"
+
+.PP
+Get unique ID number in 8-bit format\&. 
+.PP
+\fBNote:\fP
+.RS 4
+STM32F4xx has 96bits long unique ID, so 12 bytes are available for read in 8-bit format 
+.PP
+Defined as macro to get maximal response time 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIx\fP Byte number: specify which part of 8 bits you want to read
+.IP "\(bu" 2
+Values between 0 and 11 are allowed 
+.PP
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fIUnique\fP ID address 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for TM STM32F4xx Libraries from the source code\&.

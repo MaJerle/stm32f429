@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="struct_t_m___u_s_b___v_c_p___settings__t">
+<title>TM_USB_VCP_Settings_t struct Reference</title>
+<para>
+    <programlisting>#include <link linkend="tm__stm32f4__usb__vcp_8h">&lt;tm_stm32f4_usb_vcp.h&gt;</link></programlisting>
+</para>
+        <section>
+            <title>Data Fields</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint32_t Baudrate</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint8_t Stopbits</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint8_t DataBits</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint8_t Parity</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint8_t Changed</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <simplesect>
+            <title>Detailed Description</title>
+
+<para>Structure for USART if you are working USB/UART converter with STM32F4xx</para>
+
+<para>Parameters:<itemizedlist>
+<listitem>
+<para>uint32_t Baudrate: Baudrate, which is set by user on terminal. Value is number of bits per second, for example: 115200</para>
+</listitem><listitem>
+<para>uint8_t Stopbits: Stop bits, which is set by user on terminal. Values:<itemizedlist>
+<listitem>
+<para>0: 1 stop bit</para>
+</listitem><listitem>
+<para>1: 1.5 stop bits</para>
+</listitem><listitem>
+<para>2: 2 stop bits</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem>
+<para>uint8_t DataBits: Data bits, which is set by user on terminal. Values:<itemizedlist>
+<listitem>
+<para>5: 5 data bits</para>
+</listitem><listitem>
+<para>6: 6 data bits</para>
+</listitem><listitem>
+<para>7: 7 data bits</para>
+</listitem><listitem>
+<para>8: 8 data bits</para>
+</listitem><listitem>
+<para>9: 9 data bits</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem>
+<para>uint8_t Parity: Parity, which is set by user on terminal. Values:<itemizedlist>
+<listitem>
+<para>0: No parity</para>
+</listitem><listitem>
+<para>1: Odd parity</para>
+</listitem><listitem>
+<para>2: Even parity</para>
+</listitem><listitem>
+<para>3: Mark parity</para>
+</listitem><listitem>
+<para>4: Space parity</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem>
+<para>uint8_t Changed: When you check for settings in my function, this will be set to 1 if user has changed parameters, so you can reinitialize USART peripheral if you need to. </para>
+</listitem></itemizedlist>
+</para>
+                <para>Definition at line 161 of file tm_stm32f4_usb_vcp.h</para>
+                <para>The Documentation for this struct was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_usb_vcp.h</para></listitem></itemizedlist></para>
+        </simplesect>
+        <section>
+            <title>Field Documentation</title>
+        </section>
+</section>

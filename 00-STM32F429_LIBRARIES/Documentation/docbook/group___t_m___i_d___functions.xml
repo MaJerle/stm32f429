@@ -1,0 +1,405 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="group___t_m___i_d___functions">
+    <title>TM_ID_Functions</title>
+
+<para>Library Functions. </para>
+        <section>
+            <title>Detailed Description</title>
+        </section>
+        <section>
+            <title>Macros</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___i_d___functions_1gaef7e65dccfaeaacc4f20c74da8e76d8b">TM_ID_GetSignature</link> ((*(uint16_t *) (<link linkend="group___t_m___i_d___macros_1gad1789f86a55e8fc3c2c486dacf3df1a6">ID_DBGMCU_IDCODE</link>)) &amp; 0x0FFF)<para><emphasis>Get STM32F4xx device signature.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___i_d___functions_1ga9a440783a624ab0a8411dcb36e8a415d">TM_ID_GetRevision</link> (*(uint16_t *) (<link linkend="group___t_m___i_d___macros_1gad1789f86a55e8fc3c2c486dacf3df1a6">ID_DBGMCU_IDCODE</link> + 2))<para><emphasis>Get STM32F4xx device revision.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___i_d___functions_1ga6dfec7d283e405bbf6ca0593f9b6d43e">TM_ID_GetFlashSize</link> (*(uint16_t *) (<link linkend="group___t_m___i_d___macros_1ga95fa471f6d9518cbf3228a2a6d69f5a7">ID_FLASH_ADDRESS</link>))<para><emphasis>Get STM32F4xx device&apos;s flash size in kilo bytes.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___i_d___functions_1ga66bf1f5c5762fb380eef6f00875faf3d">TM_ID_GetUnique8</link> ((x &gt;= 0 &amp;&amp; x &lt; 12) ? (*(uint8_t *) (<link linkend="group___t_m___i_d___macros_1ga631ce0b70a16d3e71bb83d4ad88552c2">ID_UNIQUE_ADDRESS</link> + (x))) : 0)<para><emphasis>Get unique ID number in 8-bit format.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___i_d___functions_1gaf8c268973e3725a676c8aadc54ba1404">TM_ID_GetUnique16</link> ((x &gt;= 0 &amp;&amp; x &lt; 6) ? (*(uint16_t *) (<link linkend="group___t_m___i_d___macros_1ga631ce0b70a16d3e71bb83d4ad88552c2">ID_UNIQUE_ADDRESS</link> + 2 * (x))) : 0)<para><emphasis>Get unique ID number in 16-bit format.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___i_d___functions_1gaff28a006a5aea7048bafd765c6dc9f3e">TM_ID_GetUnique32</link> ((x &gt;= 0 &amp;&amp; x &lt; 3) ? (*(uint32_t *) (<link linkend="group___t_m___i_d___macros_1ga631ce0b70a16d3e71bb83d4ad88552c2">ID_UNIQUE_ADDRESS</link> + 4 * (x))) : 0)<para><emphasis>Get unique ID number in 32-bit format.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Macro Definition Documentation</title>
+            <section xml:id="group___t_m___i_d___functions_1gaef7e65dccfaeaacc4f20c74da8e76d8b">
+                <title>#define TM_ID_GetSignature</title>                
+<para><formalpara><title>Note: </title>
+
+<para>Defined as macro to get maximal response time </para>
+</formalpara>
+
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>None</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Return values                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>Device</entry>
+                                <entry>
+<para>signature, bits 11:0 are valid, 15:12 are always 0.<itemizedlist>
+<listitem>
+<para>0x0413: STM32F405xx/07xx and STM32F415xx/17xx)</para>
+</listitem><listitem>
+<para>0x0419: STM32F42xxx and STM32F43xxx</para>
+</listitem><listitem>
+<para>0x0423: STM32F401xB/C</para>
+</listitem><listitem>
+<para>0x0433: STM32F401xD/E</para>
+</listitem><listitem>
+<para>0x0431: STM32F411xC/E </para>
+</listitem></itemizedlist>
+</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+                <para>Definition at line 131 of file tm_stm32f4_id.h</para>
+                <para>The Documentation for this define was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_id.h</para></listitem></itemizedlist></para>
+            </section>
+            <section xml:id="group___t_m___i_d___functions_1ga9a440783a624ab0a8411dcb36e8a415d">
+                <title>#define TM_ID_GetRevision</title>                
+<para><formalpara><title>Note: </title>
+
+<para>Defined as macro to get maximal response time </para>
+</formalpara>
+
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>None</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Return values                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>Device</entry>
+                                <entry>
+<para>revision value<itemizedlist>
+<listitem>
+<para>0x1000: Revision A</para>
+</listitem><listitem>
+<para>0x1001: Revision Z</para>
+</listitem><listitem>
+<para>0x1003: Revision Y</para>
+</listitem><listitem>
+<para>0x1007: Revision 1</para>
+</listitem><listitem>
+<para>0x2001: Revision 3 </para>
+</listitem></itemizedlist>
+</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+                <para>Definition at line 144 of file tm_stm32f4_id.h</para>
+                <para>The Documentation for this define was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_id.h</para></listitem></itemizedlist></para>
+            </section>
+            <section xml:id="group___t_m___i_d___functions_1ga6dfec7d283e405bbf6ca0593f9b6d43e">
+                <title>#define TM_ID_GetFlashSize</title>                
+<para><formalpara><title>Note: </title>
+
+<para>Defined as macro to get maximal response time </para>
+</formalpara>
+
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>None</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Return values                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>Flash</entry>
+                                <entry>
+<para>size in kilo bytes </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+                <para>Definition at line 152 of file tm_stm32f4_id.h</para>
+                <para>The Documentation for this define was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_id.h</para></listitem></itemizedlist></para>
+            </section>
+            <section xml:id="group___t_m___i_d___functions_1ga66bf1f5c5762fb380eef6f00875faf3d">
+                <title>#define TM_ID_GetUnique8</title>                
+<para><formalpara><title>Note: </title>
+
+<para>STM32F4xx has 96bits long unique ID, so 12 bytes are available for read in 8-bit format </para>
+<simplesect/>
+<para>Defined as macro to get maximal response time </para>
+</formalpara>
+
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>x</entry>
+                                <entry>
+<para>Byte number: specify which part of 8 bits you want to read<itemizedlist>
+<listitem>
+<para>Values between 0 and 11 are allowed </para>
+</listitem></itemizedlist>
+</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Return values                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>Unique</entry>
+                                <entry>
+<para>ID address </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+                <para>Definition at line 162 of file tm_stm32f4_id.h</para>
+                <para>The Documentation for this define was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_id.h</para></listitem></itemizedlist></para>
+            </section>
+            <section xml:id="group___t_m___i_d___functions_1gaf8c268973e3725a676c8aadc54ba1404">
+                <title>#define TM_ID_GetUnique16</title>                
+<para><formalpara><title>Note: </title>
+
+<para>STM32F4xx has 96bits long unique ID, so 6 2-bytes values are available for read in 16-bit format </para>
+<simplesect/>
+<para>Defined as macro to get maximal response time </para>
+</formalpara>
+
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>x</entry>
+                                <entry>
+<para>Byte number: specify which part of 16 bits you want to read<itemizedlist>
+<listitem>
+<para>Values between 0 and 5 are allowed </para>
+</listitem></itemizedlist>
+</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Return values                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>Unique</entry>
+                                <entry>
+<para>ID address </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+                <para>Definition at line 172 of file tm_stm32f4_id.h</para>
+                <para>The Documentation for this define was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_id.h</para></listitem></itemizedlist></para>
+            </section>
+            <section xml:id="group___t_m___i_d___functions_1gaff28a006a5aea7048bafd765c6dc9f3e">
+                <title>#define TM_ID_GetUnique32</title>                
+<para><formalpara><title>Note: </title>
+
+<para>STM32F4xx has 96bits long unique ID, so 3 4-bytes values are available for read in 32-bit format </para>
+<simplesect/>
+<para>Defined as macro to get maximal response time </para>
+</formalpara>
+
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>x</entry>
+                                <entry>
+<para>Byte number: specify which part of 16 bits you want to read<itemizedlist>
+<listitem>
+<para>Values between 0 and 2 are allowed </para>
+</listitem></itemizedlist>
+</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Return values                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>Unique</entry>
+                                <entry>
+<para>ID address </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+                <para>Definition at line 182 of file tm_stm32f4_id.h</para>
+                <para>The Documentation for this define was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_id.h</para></listitem></itemizedlist></para>
+            </section>
+        </section>
+</section>

@@ -1,0 +1,77 @@
+\hypertarget{tm__stm32f4__adc_8h_source}{}\subsection{tm\+\_\+stm32f4\+\_\+adc.\+h}
+
+\begin{DoxyCode}
+00001 
+00056 \textcolor{preprocessor}{#ifndef TM\_ADC\_H}
+00057 \textcolor{preprocessor}{#define TM\_ADC\_H 120}
+00058 
+00070 \textcolor{preprocessor}{#include "stm32f4xx.h"}
+00071 \textcolor{preprocessor}{#include "stm32f4xx\_rcc.h"}
+00072 \textcolor{preprocessor}{#include "stm32f4xx\_gpio.h"}
+00073 \textcolor{preprocessor}{#include "stm32f4xx\_adc.h"}
+00074 \textcolor{preprocessor}{#include "defines.h"}
+00075 \textcolor{preprocessor}{#include "tm\_stm32f4\_gpio.h"}
+00076 
+00080 \textcolor{preprocessor}{#ifndef TM\_ADC1\_RESOLUTION}
+00081 \textcolor{preprocessor}{#define TM\_ADC1\_RESOLUTION      ADC\_Resolution\_12b}
+00082 \textcolor{preprocessor}{#endif}
+00083 
+00084 \textcolor{preprocessor}{#ifndef TM\_ADC2\_RESOLUTION}
+00085 \textcolor{preprocessor}{#define TM\_ADC2\_RESOLUTION      ADC\_Resolution\_12b}
+00086 \textcolor{preprocessor}{#endif}
+00087 
+00088 \textcolor{preprocessor}{#ifndef TM\_ADC3\_RESOLUTION}
+00089 \textcolor{preprocessor}{#define TM\_ADC3\_RESOLUTION      ADC\_Resolution\_12b}
+00090 \textcolor{preprocessor}{#endif}
+00091 
+00092 \textcolor{comment}{/* Supply voltage is 3.3V */}
+00093 \textcolor{preprocessor}{#ifndef ADC\_SUPPLY\_VOLTAGE}
+00094 \textcolor{preprocessor}{#define ADC\_SUPPLY\_VOLTAGE      3300}
+00095 \textcolor{preprocessor}{#endif}
+00096 
+00097 \textcolor{comment}{/* Get multipliers for vbat, vref measurements */}
+00098 \textcolor{preprocessor}{#if defined (STM32F40\_41xxx)}
+00099 \textcolor{preprocessor}{#define ADC\_VBAT\_MULTI          2}
+00100 \textcolor{preprocessor}{#endif}
+00101 \textcolor{preprocessor}{#if defined (STM32F427\_437xx) || defined (STM32F429\_439xx) || defined (STM32F401xx) || defined
+       (STM32F411xE)}
+00102 \textcolor{preprocessor}{#define ADC\_VBAT\_MULTI          4}
+00103 \textcolor{preprocessor}{#endif}
+00104 
+00105 \textcolor{comment}{/* Channel you want to use */}
+00106 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+00107     TM\_ADC\_Channel\_0,
+00108     TM\_ADC\_Channel\_1,
+00109     TM\_ADC\_Channel\_2,
+00110     TM\_ADC\_Channel\_3,
+00111     TM\_ADC\_Channel\_4,
+00112     TM\_ADC\_Channel\_5,
+00113     TM\_ADC\_Channel\_6,
+00114     TM\_ADC\_Channel\_7,
+00115     TM\_ADC\_Channel\_8,
+00116     TM\_ADC\_Channel\_9,
+00117     TM\_ADC\_Channel\_10,
+00118     TM\_ADC\_Channel\_11,
+00119     TM\_ADC\_Channel\_12,
+00120     TM\_ADC\_Channel\_13,
+00121     TM\_ADC\_Channel\_14,
+00122     TM\_ADC\_Channel\_15,
+00123     TM\_ADC\_Channel\_16,
+00124     TM\_ADC\_Channel\_18,
+00125     TM\_ADC\_Channel\_19
+00126 \} TM\_ADC\_Channel\_t;
+00127 
+00135 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ADC\_InitADC(ADC\_TypeDef* ADCx);
+00136 
+00146 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ADC\_Init(ADC\_TypeDef* ADCx, uint8\_t channel);
+00147 
+00157 \textcolor{keyword}{extern} uint16\_t TM\_ADC\_Read(ADC\_TypeDef* ADCx, uint8\_t channel);
+00158 
+00164 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ADC\_EnableVbat(\textcolor{keywordtype}{void});
+00165 
+00171 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ADC\_DisableVbat(\textcolor{keywordtype}{void});
+00172 
+00182 \textcolor{keyword}{extern} uint16\_t TM\_ADC\_ReadVbat(ADC\_TypeDef* ADCx);
+00183 
+00184 \textcolor{preprocessor}{#endif}
+\end{DoxyCode}

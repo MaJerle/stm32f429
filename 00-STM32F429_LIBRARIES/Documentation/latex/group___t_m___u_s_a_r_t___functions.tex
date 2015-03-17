@@ -1,0 +1,482 @@
+\hypertarget{group___t_m___u_s_a_r_t___functions}{}\subsection{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions}
+\label{group___t_m___u_s_a_r_t___functions}\index{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions}}
+
+
+U\+S\+A\+R\+T Functions.  
+
+
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___t_m___u_s_a_r_t___functions_ga70bed9fb6612cb572a8c10e148404344}{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Init} (U\+S\+A\+R\+T\+\_\+\+Type\+Def $\ast$U\+S\+A\+R\+Tx, \hyperlink{group___t_m___u_s_a_r_t___typedefs_gafa8a506eb27c93db067bb06039ae210f}{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Pins\+Pack\+\_\+t} pinspack, uint32\+\_\+t baudrate)
+\begin{DoxyCompactList}\small\item\em Initialize U\+S\+A\+R\+Tx peripheral and corresponding pins. \end{DoxyCompactList}\item 
+void \hyperlink{group___t_m___u_s_a_r_t___functions_gadea35f4eaffbeb65ac900fe32710aeb8}{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Putc} (U\+S\+A\+R\+T\+\_\+\+Type\+Def $\ast$U\+S\+A\+R\+Tx, volatile char c)
+\begin{DoxyCompactList}\small\item\em Put character to U\+S\+A\+R\+T port. \end{DoxyCompactList}\item 
+void \hyperlink{group___t_m___u_s_a_r_t___functions_ga453aeaa886278333403ff4937c01dcf3}{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Puts} (U\+S\+A\+R\+T\+\_\+\+Type\+Def $\ast$U\+S\+A\+R\+Tx, char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Put string to U\+S\+A\+R\+T port. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{group___t_m___u_s_a_r_t___functions_ga340391d061340e4635b4bbafea23602b}{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Getc} (U\+S\+A\+R\+T\+\_\+\+Type\+Def $\ast$U\+S\+A\+R\+Tx)
+\begin{DoxyCompactList}\small\item\em Gets character from internal U\+S\+A\+R\+T buffer. \end{DoxyCompactList}\item 
+uint16\+\_\+t \hyperlink{group___t_m___u_s_a_r_t___functions_gabb0a95fd20e5e2a894e658b64a29ee61}{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Gets} (U\+S\+A\+R\+T\+\_\+\+Type\+Def $\ast$U\+S\+A\+R\+Tx, char $\ast$buffer, uint16\+\_\+t bufsize)
+\begin{DoxyCompactList}\small\item\em Get string from U\+S\+A\+R\+T. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{group___t_m___u_s_a_r_t___functions_ga5f708a330c9fc45032143a5777d9b6fd}{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Find\+Character} (U\+S\+A\+R\+T\+\_\+\+Type\+Def $\ast$U\+S\+A\+R\+Tx, uint8\+\_\+t c)
+\begin{DoxyCompactList}\small\item\em Check if character c is available in internal buffer. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{group___t_m___u_s_a_r_t___functions_gabcee39f90c8c33ff3b1fb07e6496eef6}{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Buffer\+Empty} (U\+S\+A\+R\+T\+\_\+\+Type\+Def $\ast$U\+S\+A\+R\+Tx)
+\begin{DoxyCompactList}\small\item\em Checks if internal U\+S\+A\+R\+Tx buffer is empty. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{group___t_m___u_s_a_r_t___functions_ga0bf136abba24771c4a5a83ace52a76c1}{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Buffer\+Full} (U\+S\+A\+R\+T\+\_\+\+Type\+Def $\ast$U\+S\+A\+R\+Tx)
+\begin{DoxyCompactList}\small\item\em Checks if internal U\+S\+A\+R\+Tx buffer is full. \end{DoxyCompactList}\item 
+void \hyperlink{group___t_m___u_s_a_r_t___functions_ga6c8dfcc950305f511393240ea847b2ad}{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Clear\+Buffer} (U\+S\+A\+R\+T\+\_\+\+Type\+Def $\ast$U\+S\+A\+R\+Tx)
+\begin{DoxyCompactList}\small\item\em Clears internal U\+S\+A\+R\+T buffer. \end{DoxyCompactList}\item 
+void \hyperlink{group___t_m___u_s_a_r_t___functions_ga299f46d68e55bc8e5054ac3eef9e39ee}{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Init\+Custom\+Pins\+Callback} (U\+S\+A\+R\+T\+\_\+\+Type\+Def $\ast$U\+S\+A\+R\+Tx)
+\begin{DoxyCompactList}\small\item\em Callback for custom pins initialization for U\+S\+A\+R\+Tx. When you call \hyperlink{group___t_m___u_s_a_r_t___functions_ga70bed9fb6612cb572a8c10e148404344}{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Init()} function, and if you pass T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Pins\+Pack\+\_\+\+Custom to function, then this function will be called where you can initialize custom pins for U\+S\+A\+R\+T peripheral. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+weak void \hyperlink{group___t_m___u_s_a_r_t___functions_gafbf9e2222953815c9f35cd46863dbc26}{T\+M\+\_\+\+U\+S\+A\+R\+T1\+\_\+\+Receive\+Handler} (uint8\+\_\+t c)
+\begin{DoxyCompactList}\small\item\em Callback function for receive interrupt on U\+S\+A\+R\+T1 in case you have enabled custom U\+S\+A\+R\+T handler mode. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+weak void \hyperlink{group___t_m___u_s_a_r_t___functions_ga21823124b3d98ea2085671f4a5af6017}{T\+M\+\_\+\+U\+S\+A\+R\+T2\+\_\+\+Receive\+Handler} (uint8\+\_\+t c)
+\begin{DoxyCompactList}\small\item\em Callback function for receive interrupt on U\+S\+A\+R\+T2 in case you have enabled custom U\+S\+A\+R\+T handler mode. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+weak void \hyperlink{group___t_m___u_s_a_r_t___functions_ga868eb8844f04487e714b63b016a93bae}{T\+M\+\_\+\+U\+S\+A\+R\+T3\+\_\+\+Receive\+Handler} (uint8\+\_\+t c)
+\begin{DoxyCompactList}\small\item\em Callback function for receive interrupt on U\+S\+A\+R\+T3 in case you have enabled custom U\+S\+A\+R\+T handler mode. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+weak void \hyperlink{group___t_m___u_s_a_r_t___functions_gada9d723469cf9d7d0ac11930b8e14f2a}{T\+M\+\_\+\+U\+A\+R\+T4\+\_\+\+Receive\+Handler} (uint8\+\_\+t c)
+\begin{DoxyCompactList}\small\item\em Callback function for receive interrupt on U\+A\+R\+T4 in case you have enabled custom U\+S\+A\+R\+T handler mode. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+weak void \hyperlink{group___t_m___u_s_a_r_t___functions_ga4338d265fa58103332ea234f63594b81}{T\+M\+\_\+\+U\+A\+R\+T5\+\_\+\+Receive\+Handler} (uint8\+\_\+t c)
+\begin{DoxyCompactList}\small\item\em Callback function for receive interrupt on U\+A\+R\+T5 in case you have enabled custom U\+S\+A\+R\+T handler mode. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+weak void \hyperlink{group___t_m___u_s_a_r_t___functions_ga65c1d6a6bcc2dbd40ea0e7cbf5e924de}{T\+M\+\_\+\+U\+S\+A\+R\+T6\+\_\+\+Receive\+Handler} (uint8\+\_\+t c)
+\begin{DoxyCompactList}\small\item\em Callback function for receive interrupt on U\+S\+A\+R\+T6 in case you have enabled custom U\+S\+A\+R\+T handler mode. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+weak void \hyperlink{group___t_m___u_s_a_r_t___functions_ga461a5123a57231d34d51330f12ea39d2}{T\+M\+\_\+\+U\+A\+R\+T7\+\_\+\+Receive\+Handler} (uint8\+\_\+t c)
+\begin{DoxyCompactList}\small\item\em Callback function for receive interrupt on U\+A\+R\+T7 in case you have enabled custom U\+S\+A\+R\+T handler mode. \end{DoxyCompactList}\item 
+\+\_\+\+\_\+weak void \hyperlink{group___t_m___u_s_a_r_t___functions_ga37fe7ffa31a540627af5ebfe93f2dcf5}{T\+M\+\_\+\+U\+A\+R\+T8\+\_\+\+Receive\+Handler} (uint8\+\_\+t c)
+\begin{DoxyCompactList}\small\item\em Callback function for receive interrupt on U\+A\+R\+T8 in case you have enabled custom U\+S\+A\+R\+T handler mode. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+U\+S\+A\+R\+T Functions. 
+
+
+
+\subsubsection{Function Documentation}
+\hypertarget{group___t_m___u_s_a_r_t___functions_gada9d723469cf9d7d0ac11930b8e14f2a}{}\index{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions}!T\+M\+\_\+\+U\+A\+R\+T4\+\_\+\+Receive\+Handler@{T\+M\+\_\+\+U\+A\+R\+T4\+\_\+\+Receive\+Handler}}
+\index{T\+M\+\_\+\+U\+A\+R\+T4\+\_\+\+Receive\+Handler@{T\+M\+\_\+\+U\+A\+R\+T4\+\_\+\+Receive\+Handler}!T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+U\+A\+R\+T4\+\_\+\+Receive\+Handler}]{\setlength{\rightskip}{0pt plus 5cm}\+\_\+\+\_\+weak void T\+M\+\_\+\+U\+A\+R\+T4\+\_\+\+Receive\+Handler (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{c}
+\end{DoxyParamCaption}
+)}\label{group___t_m___u_s_a_r_t___functions_gada9d723469cf9d7d0ac11930b8e14f2a}
+
+
+Callback function for receive interrupt on U\+A\+R\+T4 in case you have enabled custom U\+S\+A\+R\+T handler mode. 
+
+\begin{DoxyNote}{Note}
+With \+\_\+\+\_\+weak parameter to prevent link errors if not defined by user 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em c} & character received via U\+S\+A\+R\+T \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___u_s_a_r_t___functions_ga4338d265fa58103332ea234f63594b81}{}\index{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions}!T\+M\+\_\+\+U\+A\+R\+T5\+\_\+\+Receive\+Handler@{T\+M\+\_\+\+U\+A\+R\+T5\+\_\+\+Receive\+Handler}}
+\index{T\+M\+\_\+\+U\+A\+R\+T5\+\_\+\+Receive\+Handler@{T\+M\+\_\+\+U\+A\+R\+T5\+\_\+\+Receive\+Handler}!T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+U\+A\+R\+T5\+\_\+\+Receive\+Handler}]{\setlength{\rightskip}{0pt plus 5cm}\+\_\+\+\_\+weak void T\+M\+\_\+\+U\+A\+R\+T5\+\_\+\+Receive\+Handler (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{c}
+\end{DoxyParamCaption}
+)}\label{group___t_m___u_s_a_r_t___functions_ga4338d265fa58103332ea234f63594b81}
+
+
+Callback function for receive interrupt on U\+A\+R\+T5 in case you have enabled custom U\+S\+A\+R\+T handler mode. 
+
+\begin{DoxyNote}{Note}
+With \+\_\+\+\_\+weak parameter to prevent link errors if not defined by user 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em c} & character received via U\+S\+A\+R\+T \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___u_s_a_r_t___functions_ga461a5123a57231d34d51330f12ea39d2}{}\index{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions}!T\+M\+\_\+\+U\+A\+R\+T7\+\_\+\+Receive\+Handler@{T\+M\+\_\+\+U\+A\+R\+T7\+\_\+\+Receive\+Handler}}
+\index{T\+M\+\_\+\+U\+A\+R\+T7\+\_\+\+Receive\+Handler@{T\+M\+\_\+\+U\+A\+R\+T7\+\_\+\+Receive\+Handler}!T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+U\+A\+R\+T7\+\_\+\+Receive\+Handler}]{\setlength{\rightskip}{0pt plus 5cm}\+\_\+\+\_\+weak void T\+M\+\_\+\+U\+A\+R\+T7\+\_\+\+Receive\+Handler (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{c}
+\end{DoxyParamCaption}
+)}\label{group___t_m___u_s_a_r_t___functions_ga461a5123a57231d34d51330f12ea39d2}
+
+
+Callback function for receive interrupt on U\+A\+R\+T7 in case you have enabled custom U\+S\+A\+R\+T handler mode. 
+
+\begin{DoxyNote}{Note}
+With \+\_\+\+\_\+weak parameter to prevent link errors if not defined by user 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em c} & character received via U\+S\+A\+R\+T \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___u_s_a_r_t___functions_ga37fe7ffa31a540627af5ebfe93f2dcf5}{}\index{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions}!T\+M\+\_\+\+U\+A\+R\+T8\+\_\+\+Receive\+Handler@{T\+M\+\_\+\+U\+A\+R\+T8\+\_\+\+Receive\+Handler}}
+\index{T\+M\+\_\+\+U\+A\+R\+T8\+\_\+\+Receive\+Handler@{T\+M\+\_\+\+U\+A\+R\+T8\+\_\+\+Receive\+Handler}!T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+U\+A\+R\+T8\+\_\+\+Receive\+Handler}]{\setlength{\rightskip}{0pt plus 5cm}\+\_\+\+\_\+weak void T\+M\+\_\+\+U\+A\+R\+T8\+\_\+\+Receive\+Handler (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{c}
+\end{DoxyParamCaption}
+)}\label{group___t_m___u_s_a_r_t___functions_ga37fe7ffa31a540627af5ebfe93f2dcf5}
+
+
+Callback function for receive interrupt on U\+A\+R\+T8 in case you have enabled custom U\+S\+A\+R\+T handler mode. 
+
+\begin{DoxyNote}{Note}
+With \+\_\+\+\_\+weak parameter to prevent link errors if not defined by user 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em c} & character received via U\+S\+A\+R\+T \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___u_s_a_r_t___functions_gafbf9e2222953815c9f35cd46863dbc26}{}\index{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions}!T\+M\+\_\+\+U\+S\+A\+R\+T1\+\_\+\+Receive\+Handler@{T\+M\+\_\+\+U\+S\+A\+R\+T1\+\_\+\+Receive\+Handler}}
+\index{T\+M\+\_\+\+U\+S\+A\+R\+T1\+\_\+\+Receive\+Handler@{T\+M\+\_\+\+U\+S\+A\+R\+T1\+\_\+\+Receive\+Handler}!T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+U\+S\+A\+R\+T1\+\_\+\+Receive\+Handler}]{\setlength{\rightskip}{0pt plus 5cm}\+\_\+\+\_\+weak void T\+M\+\_\+\+U\+S\+A\+R\+T1\+\_\+\+Receive\+Handler (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{c}
+\end{DoxyParamCaption}
+)}\label{group___t_m___u_s_a_r_t___functions_gafbf9e2222953815c9f35cd46863dbc26}
+
+
+Callback function for receive interrupt on U\+S\+A\+R\+T1 in case you have enabled custom U\+S\+A\+R\+T handler mode. 
+
+\begin{DoxyNote}{Note}
+With \+\_\+\+\_\+weak parameter to prevent link errors if not defined by user 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em c} & character received via U\+S\+A\+R\+T \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___u_s_a_r_t___functions_ga21823124b3d98ea2085671f4a5af6017}{}\index{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions}!T\+M\+\_\+\+U\+S\+A\+R\+T2\+\_\+\+Receive\+Handler@{T\+M\+\_\+\+U\+S\+A\+R\+T2\+\_\+\+Receive\+Handler}}
+\index{T\+M\+\_\+\+U\+S\+A\+R\+T2\+\_\+\+Receive\+Handler@{T\+M\+\_\+\+U\+S\+A\+R\+T2\+\_\+\+Receive\+Handler}!T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+U\+S\+A\+R\+T2\+\_\+\+Receive\+Handler}]{\setlength{\rightskip}{0pt plus 5cm}\+\_\+\+\_\+weak void T\+M\+\_\+\+U\+S\+A\+R\+T2\+\_\+\+Receive\+Handler (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{c}
+\end{DoxyParamCaption}
+)}\label{group___t_m___u_s_a_r_t___functions_ga21823124b3d98ea2085671f4a5af6017}
+
+
+Callback function for receive interrupt on U\+S\+A\+R\+T2 in case you have enabled custom U\+S\+A\+R\+T handler mode. 
+
+\begin{DoxyNote}{Note}
+With \+\_\+\+\_\+weak parameter to prevent link errors if not defined by user 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em c} & character received via U\+S\+A\+R\+T \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___u_s_a_r_t___functions_ga868eb8844f04487e714b63b016a93bae}{}\index{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions}!T\+M\+\_\+\+U\+S\+A\+R\+T3\+\_\+\+Receive\+Handler@{T\+M\+\_\+\+U\+S\+A\+R\+T3\+\_\+\+Receive\+Handler}}
+\index{T\+M\+\_\+\+U\+S\+A\+R\+T3\+\_\+\+Receive\+Handler@{T\+M\+\_\+\+U\+S\+A\+R\+T3\+\_\+\+Receive\+Handler}!T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+U\+S\+A\+R\+T3\+\_\+\+Receive\+Handler}]{\setlength{\rightskip}{0pt plus 5cm}\+\_\+\+\_\+weak void T\+M\+\_\+\+U\+S\+A\+R\+T3\+\_\+\+Receive\+Handler (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{c}
+\end{DoxyParamCaption}
+)}\label{group___t_m___u_s_a_r_t___functions_ga868eb8844f04487e714b63b016a93bae}
+
+
+Callback function for receive interrupt on U\+S\+A\+R\+T3 in case you have enabled custom U\+S\+A\+R\+T handler mode. 
+
+\begin{DoxyNote}{Note}
+With \+\_\+\+\_\+weak parameter to prevent link errors if not defined by user 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em c} & character received via U\+S\+A\+R\+T \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___u_s_a_r_t___functions_ga65c1d6a6bcc2dbd40ea0e7cbf5e924de}{}\index{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions}!T\+M\+\_\+\+U\+S\+A\+R\+T6\+\_\+\+Receive\+Handler@{T\+M\+\_\+\+U\+S\+A\+R\+T6\+\_\+\+Receive\+Handler}}
+\index{T\+M\+\_\+\+U\+S\+A\+R\+T6\+\_\+\+Receive\+Handler@{T\+M\+\_\+\+U\+S\+A\+R\+T6\+\_\+\+Receive\+Handler}!T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+U\+S\+A\+R\+T6\+\_\+\+Receive\+Handler}]{\setlength{\rightskip}{0pt plus 5cm}\+\_\+\+\_\+weak void T\+M\+\_\+\+U\+S\+A\+R\+T6\+\_\+\+Receive\+Handler (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{c}
+\end{DoxyParamCaption}
+)}\label{group___t_m___u_s_a_r_t___functions_ga65c1d6a6bcc2dbd40ea0e7cbf5e924de}
+
+
+Callback function for receive interrupt on U\+S\+A\+R\+T6 in case you have enabled custom U\+S\+A\+R\+T handler mode. 
+
+\begin{DoxyNote}{Note}
+With \+\_\+\+\_\+weak parameter to prevent link errors if not defined by user 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em c} & character received via U\+S\+A\+R\+T \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___u_s_a_r_t___functions_gabcee39f90c8c33ff3b1fb07e6496eef6}{}\index{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions}!T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Buffer\+Empty@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Buffer\+Empty}}
+\index{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Buffer\+Empty@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Buffer\+Empty}!T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Buffer\+Empty}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Buffer\+Empty (
+\begin{DoxyParamCaption}
+\item[{U\+S\+A\+R\+T\+\_\+\+Type\+Def $\ast$}]{U\+S\+A\+R\+Tx}
+\end{DoxyParamCaption}
+)}\label{group___t_m___u_s_a_r_t___functions_gabcee39f90c8c33ff3b1fb07e6496eef6}
+
+
+Checks if internal U\+S\+A\+R\+Tx buffer is empty. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$\+U\+S\+A\+R\+Tx} & Pointer to U\+S\+A\+R\+Tx peripheral you will use \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 1} & in case buffer is empty, or 0 if not \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___u_s_a_r_t___functions_ga0bf136abba24771c4a5a83ace52a76c1}{}\index{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions}!T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Buffer\+Full@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Buffer\+Full}}
+\index{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Buffer\+Full@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Buffer\+Full}!T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Buffer\+Full}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Buffer\+Full (
+\begin{DoxyParamCaption}
+\item[{U\+S\+A\+R\+T\+\_\+\+Type\+Def $\ast$}]{U\+S\+A\+R\+Tx}
+\end{DoxyParamCaption}
+)}\label{group___t_m___u_s_a_r_t___functions_ga0bf136abba24771c4a5a83ace52a76c1}
+
+
+Checks if internal U\+S\+A\+R\+Tx buffer is full. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$\+U\+S\+A\+R\+Tx} & Pointer to U\+S\+A\+R\+Tx peripheral you will use \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 1} & in case buffer is full, or 0 if not \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___u_s_a_r_t___functions_ga6c8dfcc950305f511393240ea847b2ad}{}\index{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions}!T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Clear\+Buffer@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Clear\+Buffer}}
+\index{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Clear\+Buffer@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Clear\+Buffer}!T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Clear\+Buffer}]{\setlength{\rightskip}{0pt plus 5cm}void T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Clear\+Buffer (
+\begin{DoxyParamCaption}
+\item[{U\+S\+A\+R\+T\+\_\+\+Type\+Def $\ast$}]{U\+S\+A\+R\+Tx}
+\end{DoxyParamCaption}
+)}\label{group___t_m___u_s_a_r_t___functions_ga6c8dfcc950305f511393240ea847b2ad}
+
+
+Clears internal U\+S\+A\+R\+T buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$\+U\+S\+A\+R\+Tx} & Pointer to U\+S\+A\+R\+Tx peripheral you will use \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___u_s_a_r_t___functions_ga5f708a330c9fc45032143a5777d9b6fd}{}\index{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions}!T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Find\+Character@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Find\+Character}}
+\index{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Find\+Character@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Find\+Character}!T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Find\+Character}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Find\+Character (
+\begin{DoxyParamCaption}
+\item[{U\+S\+A\+R\+T\+\_\+\+Type\+Def $\ast$}]{U\+S\+A\+R\+Tx, }
+\item[{uint8\+\_\+t}]{c}
+\end{DoxyParamCaption}
+)}\label{group___t_m___u_s_a_r_t___functions_ga5f708a330c9fc45032143a5777d9b6fd}
+
+
+Check if character c is available in internal buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$\+U\+S\+A\+R\+Tx} & Pointer to U\+S\+A\+R\+Tx peripheral you will use \\
+\hline
+{\em c} & character to check if it is in U\+S\+A\+R\+Tx\textquotesingle{}s buffer \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em 1} & in case character is, or 0 if not \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___u_s_a_r_t___functions_ga340391d061340e4635b4bbafea23602b}{}\index{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions}!T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Getc@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Getc}}
+\index{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Getc@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Getc}!T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Getc}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Getc (
+\begin{DoxyParamCaption}
+\item[{U\+S\+A\+R\+T\+\_\+\+Type\+Def $\ast$}]{U\+S\+A\+R\+Tx}
+\end{DoxyParamCaption}
+)}\label{group___t_m___u_s_a_r_t___functions_ga340391d061340e4635b4bbafea23602b}
+
+
+Gets character from internal U\+S\+A\+R\+T buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$\+U\+S\+A\+R\+Tx} & Pointer to U\+S\+A\+R\+Tx peripheral you will use \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Character} & from buffer, or 0 if nothing in buffer \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___u_s_a_r_t___functions_gabb0a95fd20e5e2a894e658b64a29ee61}{}\index{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions}!T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Gets@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Gets}}
+\index{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Gets@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Gets}!T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Gets}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Gets (
+\begin{DoxyParamCaption}
+\item[{U\+S\+A\+R\+T\+\_\+\+Type\+Def $\ast$}]{U\+S\+A\+R\+Tx, }
+\item[{char $\ast$}]{buffer, }
+\item[{uint16\+\_\+t}]{bufsize}
+\end{DoxyParamCaption}
+)}\label{group___t_m___u_s_a_r_t___functions_gabb0a95fd20e5e2a894e658b64a29ee61}
+
+
+Get string from U\+S\+A\+R\+T. 
+
+This function can create a string from U\+S\+A\+R\+T received data.
+
+It generates string until \char`\"{}\textbackslash{}n\char`\"{} is not recognized or buffer length is full.
+
+\begin{DoxyNote}{Note}
+As of version 1.\+5, this function automatically adds 0x0\+A (Line feed) at the end of string. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$\+U\+S\+A\+R\+Tx} & Pointer to U\+S\+A\+R\+Tx peripheral you will use \\
+\hline
+{\em $\ast$buffer} & Pointer to buffer where data will be stored from buffer \\
+\hline
+{\em bufsize} & maximal number of characters we can add to your buffer, including leading zero \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Number} & of characters in buffer \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___u_s_a_r_t___functions_ga70bed9fb6612cb572a8c10e148404344}{}\index{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions}!T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Init@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Init}}
+\index{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Init@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Init}!T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Init}]{\setlength{\rightskip}{0pt plus 5cm}void T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Init (
+\begin{DoxyParamCaption}
+\item[{U\+S\+A\+R\+T\+\_\+\+Type\+Def $\ast$}]{U\+S\+A\+R\+Tx, }
+\item[{{\bf T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Pins\+Pack\+\_\+t}}]{pinspack, }
+\item[{uint32\+\_\+t}]{baudrate}
+\end{DoxyParamCaption}
+)}\label{group___t_m___u_s_a_r_t___functions_ga70bed9fb6612cb572a8c10e148404344}
+
+
+Initialize U\+S\+A\+R\+Tx peripheral and corresponding pins. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$\+U\+S\+A\+R\+Tx} & Pointer to U\+S\+A\+R\+Tx peripheral you will use \\
+\hline
+{\em pinspack} & This parameter can be a value of \hyperlink{group___t_m___u_s_a_r_t___typedefs_gafa8a506eb27c93db067bb06039ae210f}{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Pins\+Pack\+\_\+t} typedef \\
+\hline
+{\em baudrate} & Baudrate number for U\+S\+A\+R\+T communication \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___u_s_a_r_t___functions_ga299f46d68e55bc8e5054ac3eef9e39ee}{}\index{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions}!T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Init\+Custom\+Pins\+Callback@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Init\+Custom\+Pins\+Callback}}
+\index{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Init\+Custom\+Pins\+Callback@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Init\+Custom\+Pins\+Callback}!T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Init\+Custom\+Pins\+Callback}]{\setlength{\rightskip}{0pt plus 5cm}void T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Init\+Custom\+Pins\+Callback (
+\begin{DoxyParamCaption}
+\item[{U\+S\+A\+R\+T\+\_\+\+Type\+Def $\ast$}]{U\+S\+A\+R\+Tx}
+\end{DoxyParamCaption}
+)}\label{group___t_m___u_s_a_r_t___functions_ga299f46d68e55bc8e5054ac3eef9e39ee}
+
+
+Callback for custom pins initialization for U\+S\+A\+R\+Tx. When you call \hyperlink{group___t_m___u_s_a_r_t___functions_ga70bed9fb6612cb572a8c10e148404344}{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Init()} function, and if you pass T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Pins\+Pack\+\_\+\+Custom to function, then this function will be called where you can initialize custom pins for U\+S\+A\+R\+T peripheral. 
+
+\begin{DoxyNote}{Note}
+With \+\_\+\+\_\+weak parameter to prevent link errors if not defined by user 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$\+U\+S\+A\+R\+Tx} & Pointer to U\+S\+A\+R\+Tx peripheral you will use for initialization \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___u_s_a_r_t___functions_gadea35f4eaffbeb65ac900fe32710aeb8}{}\index{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions}!T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Putc@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Putc}}
+\index{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Putc@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Putc}!T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Putc}]{\setlength{\rightskip}{0pt plus 5cm}void T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Putc (
+\begin{DoxyParamCaption}
+\item[{U\+S\+A\+R\+T\+\_\+\+Type\+Def $\ast$}]{U\+S\+A\+R\+Tx, }
+\item[{volatile char}]{c}
+\end{DoxyParamCaption}
+)}\label{group___t_m___u_s_a_r_t___functions_gadea35f4eaffbeb65ac900fe32710aeb8}
+
+
+Put character to U\+S\+A\+R\+T port. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$\+U\+S\+A\+R\+Tx} & Pointer to U\+S\+A\+R\+Tx peripheral you will use \\
+\hline
+{\em c} & character to be send over U\+S\+A\+R\+T \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___u_s_a_r_t___functions_ga453aeaa886278333403ff4937c01dcf3}{}\index{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions}!T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Puts@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Puts}}
+\index{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Puts@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Puts}!T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions@{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Puts}]{\setlength{\rightskip}{0pt plus 5cm}void T\+M\+\_\+\+U\+S\+A\+R\+T\+\_\+\+Puts (
+\begin{DoxyParamCaption}
+\item[{U\+S\+A\+R\+T\+\_\+\+Type\+Def $\ast$}]{U\+S\+A\+R\+Tx, }
+\item[{char $\ast$}]{str}
+\end{DoxyParamCaption}
+)}\label{group___t_m___u_s_a_r_t___functions_ga453aeaa886278333403ff4937c01dcf3}
+
+
+Put string to U\+S\+A\+R\+T port. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$\+U\+S\+A\+R\+Tx} & Pointer to U\+S\+A\+R\+Tx peripheral you will use \\
+\hline
+{\em $\ast$str} & Pointer to string to send over U\+S\+A\+R\+T \\
+\hline
+\end{DoxyParams}

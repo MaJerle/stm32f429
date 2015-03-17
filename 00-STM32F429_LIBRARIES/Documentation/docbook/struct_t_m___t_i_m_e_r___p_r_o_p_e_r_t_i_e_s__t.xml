@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="struct_t_m___t_i_m_e_r___p_r_o_p_e_r_t_i_e_s__t">
+<title>TM_TIMER_PROPERTIES_t struct Reference</title>
+<para>
+    <programlisting>#include <link linkend="tm__stm32f4__timer__properties_8h">&lt;tm_stm32f4_timer_properties.h&gt;</link></programlisting>
+</para>
+        <section>
+            <title>Data Fields</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint32_t TimerFrequency</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint32_t MaxPeriod</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint32_t MaxPrescaler</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint32_t Period</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint32_t Prescaler</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint32_t Frequency</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <simplesect>
+            <title>Detailed Description</title>
+
+<para>Struct for timer data</para>
+
+<para>Parameters:<itemizedlist>
+<listitem>
+<para>uint32_t TimerFrequency: timer&apos;s working frequency</para>
+</listitem><listitem>
+<para>uint32_t MaxPeriod: Max timer period</para>
+</listitem><listitem>
+<para>uint32_t MaxPrescaler: Max timer prescaler</para>
+</listitem><listitem>
+<para>uint32_t Period: Timer&apos;s working period</para>
+</listitem><listitem>
+<para>uint32_t Prescaler: Timer&apos;s working prescaler</para>
+</listitem><listitem>
+<para>uint32_t Frequency: Timer&apos;s reload frequency </para>
+</listitem></itemizedlist>
+</para>
+                <para>Definition at line 95 of file tm_stm32f4_timer_properties.h</para>
+                <para>The Documentation for this struct was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_timer_properties.h</para></listitem></itemizedlist></para>
+        </simplesect>
+        <section>
+            <title>Field Documentation</title>
+        </section>
+</section>

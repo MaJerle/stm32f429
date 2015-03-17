@@ -1,0 +1,68 @@
+\hypertarget{tm__stm32f4__rotary__encoder_8h_source}{}\subsection{tm\+\_\+stm32f4\+\_\+rotary\+\_\+encoder.\+h}
+
+\begin{DoxyCode}
+00001 
+00049 \textcolor{preprocessor}{#ifndef TM\_RE\_H}
+00050 \textcolor{preprocessor}{#define TM\_RE\_H 100}
+00051 
+00064 \textcolor{preprocessor}{#include "stm32f4xx.h"}
+00065 \textcolor{preprocessor}{#include "stm32f4xx\_rcc.h"}
+00066 \textcolor{preprocessor}{#include "stm32f4xx\_gpio.h"}
+00067 \textcolor{preprocessor}{#include "stm32f4xx\_exti.h"}
+00068 \textcolor{preprocessor}{#include "stm32f4xx\_syscfg.h"}
+00069 \textcolor{preprocessor}{#include "misc.h"}
+00070 \textcolor{preprocessor}{#include "defines.h"}
+00071 
+00072 \textcolor{comment}{/* Rotary encoder A pin */}
+00073 \textcolor{comment}{/* Connected to interrupt channel */}
+00074 \textcolor{preprocessor}{#ifndef TM\_RE\_A\_PIN}
+00075 \textcolor{preprocessor}{#define TM\_RE\_A\_RCC                 RCC\_AHB1Periph\_GPIOD            }
+00076 \textcolor{preprocessor}{#define TM\_RE\_A\_PORT                GPIOD}
+00077 \textcolor{preprocessor}{#define TM\_RE\_A\_PIN                 GPIO\_Pin\_0}
+00078 \textcolor{preprocessor}{#define TM\_RE\_A\_EXTI\_LINE           EXTI\_Line0}
+00079 \textcolor{preprocessor}{#define TM\_RE\_A\_EXTIPINSOURCE       EXTI\_PinSource0}
+00080 \textcolor{preprocessor}{#define TM\_RE\_A\_EXTIPORTSOURCE      EXTI\_PortSourceGPIOD}
+00081 \textcolor{preprocessor}{#define TM\_RE\_A\_NVIC                EXTI0\_IRQn}
+00082 \textcolor{preprocessor}{#define TM\_RE\_A\_DEFAULT}
+00083 \textcolor{preprocessor}{#endif}
+00084 
+00085 \textcolor{comment}{/* Rotary encoder B pin */}
+00086 \textcolor{preprocessor}{#ifndef TM\_RE\_B\_PIN}
+00087 \textcolor{preprocessor}{#define TM\_RE\_B\_RCC                 RCC\_AHB1Periph\_GPIOD            }
+00088 \textcolor{preprocessor}{#define TM\_RE\_B\_PORT                GPIOD}
+00089 \textcolor{preprocessor}{#define TM\_RE\_B\_PIN                 GPIO\_Pin\_1}
+00090 \textcolor{preprocessor}{#endif}
+00091 
+00092 \textcolor{comment}{/* Default NVIC priority */}
+00093 \textcolor{preprocessor}{#ifndef RE\_NVIC\_PRIORITY}
+00094 \textcolor{preprocessor}{#define RE\_NVIC\_PRIORITY            0x03}
+00095 \textcolor{preprocessor}{#endif}
+00096 
+00097 \textcolor{comment}{/* Default NVIC sub priority */}
+00098 \textcolor{preprocessor}{#ifndef RE\_NVIC\_SUBPRIORITY}
+00099 \textcolor{preprocessor}{#define RE\_NVIC\_SUBPRIORITY         0x00}
+00100 \textcolor{preprocessor}{#endif}
+00101 
+00113 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+00114     TM\_RE\_Rotate\_Increment,
+00115     TM\_RE\_Rotate\_Decrement,
+00116     TM\_RE\_Rotate\_Nothing
+00117 \} TM\_RE\_Rotate\_t;
+00118 
+\hypertarget{tm__stm32f4__rotary__encoder_8h_source_l00130}{}\hyperlink{struct_t_m___r_e__t}{00130} \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{
+00131     int32\_t Absolute;               \textcolor{comment}{/* Absolute rotation from beginning */}
+00132     int32\_t Diff;                   \textcolor{comment}{/* Rotary difference from last check */}
+00133     TM\_RE\_Rotate\_t Rotation;        \textcolor{comment}{/* Increment, Decrement or nothing */}
+00134 \} \hyperlink{struct_t_m___r_e__t}{TM\_RE\_t};
+00135 
+00136 
+00144 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_RE\_Init(\hyperlink{struct_t_m___r_e__t}{TM\_RE\_t}* data);
+00145 
+00155 \textcolor{keyword}{extern} TM\_RE\_Rotate\_t TM\_RE\_Get(\hyperlink{struct_t_m___r_e__t}{TM\_RE\_t}* data);
+00156 
+00163 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_RE\_Process(\textcolor{keywordtype}{void});
+00164 
+00165 \textcolor{preprocessor}{#endif}
+00166 
+00167 
+\end{DoxyCode}

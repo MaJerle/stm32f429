@@ -1,0 +1,151 @@
+.TH "TM_LOWPOWER" 3 "Wed Mar 18 2015" "Version v1.0.0" "TM STM32F4xx Libraries" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TM_LOWPOWER \- TM_LOWPOWER
+.PP
+Low power library for STM32F4xx devices - http://stm32f4-discovery.com/2014/10/library-39-power-consumption-modes-for-stm32f4\&.  
+
+.SS "Modules"
+
+.in +1c
+.ti -1c
+.RI "\fBTM_LOWPOWER_Macros\fP"
+.br
+.RI "\fILibrary macros\&. \fP"
+.ti -1c
+.RI "\fBTM_LOWPOWER_Functions\fP"
+.br
+.RI "\fILibrary Functions\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Low power library for STM32F4xx devices - http://stm32f4-discovery.com/2014/10/library-39-power-consumption-modes-for-stm32f4\&. 
+
+This library can put MCU into 3 different modes:
+.PP
+\fBSLEEP mode\fP
+.RS 4
+
+.RE
+.PP
+.IP "\(bu" 2
+Cortex-M4 core is stopped
+.IP "\(bu" 2
+Peripherals kept running
+.IP "\(bu" 2
+How to enter this mode?
+.IP "  \(bu" 4
+Use \fBTM_LOWPOWER_SleepUntilInterrupt()\fP or
+.IP "  \(bu" 4
+Use \fBTM_LOWPOWER_SleepUntilEvent()\fP;
+.PP
+
+.IP "\(bu" 2
+How to exit this mode?
+.IP "  \(bu" 4
+Any peripheral interrupt acknowledged by the nested vectored interrupt controller (NVIC)
+.PP
+
+.PP
+.PP
+\fBSTOP mode\fP
+.RS 4
+
+.RE
+.PP
+.IP "\(bu" 2
+All clocks in 1\&.2V domain are stopped
+.IP "\(bu" 2
+PLL, HSI and HSE RC oscillators disabled
+.IP "\(bu" 2
+Internal SRAM and register contents are preserved
+.IP "\(bu" 2
+Voltage regulator in low-power mode
+.IP "\(bu" 2
+How to enter this mode?
+.IP "  \(bu" 4
+Use \fBTM_LOWPOWER_StopUntilEvent()\fP or
+.IP "  \(bu" 4
+Use \fBTM_LOWPOWER_StopUntilInterrupt()\fP
+.PP
+
+.IP "\(bu" 2
+How to exit this mode?
+.IP "  \(bu" 4
+Any EXTI Line (Internal or External) configured in Interrupt/Event mode
+.PP
+
+.PP
+.PP
+\fBSTANDBY mode\fP
+.RS 4
+
+.RE
+.PP
+.IP "\(bu" 2
+Cortex-M4 deepsleep mode
+.IP "\(bu" 2
+Voltage regulator disabled
+.IP "\(bu" 2
+1\&.2V domain consequently powered off
+.IP "\(bu" 2
+PLL, HSI and HSE RC oscillators disabled
+.IP "\(bu" 2
+SRAM and register contents are lost except for the RTC registers, RTC backup registers, backup SRAM and Standby circuitry
+.IP "\(bu" 2
+How to enter this mode?
+.IP "  \(bu" 4
+Use \fBTM_LOWPOWER_Standby()\fP function
+.PP
+
+.IP "\(bu" 2
+How to exit this mode?
+.IP "  \(bu" 4
+Wakeup pin rising edge
+.IP "  \(bu" 4
+RTC alarm (Alarm A and B) and wakeup
+.IP "  \(bu" 4
+tamper and time-stamp event
+.IP "  \(bu" 4
+external reset in NRST pin
+.IP "  \(bu" 4
+IWDG reset
+.PP
+
+.PP
+.PP
+\fBChangelog\fP
+.RS 4
+
+.RE
+.PP
+.PP
+.nf
+ Version 1.1
+   - October 18, 2014
+   - Added TM_LOWPOWER_StandbyReset(). This allows you to check if system was reset from standby wakeup
+
+ Version 1.0
+   - First release
+.fi
+.PP
+.PP
+\fBDependencies\fP
+.RS 4
+
+.RE
+.PP
+.PP
+.nf
+ - STM32F4xx
+ - STM32F4xx RCC
+ - STM32F4xx PWR
+ - defines.h
+ - TM DELAY
+.fi
+.PP
+ 
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for TM STM32F4xx Libraries from the source code\&.

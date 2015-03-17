@@ -5,7 +5,7 @@
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.com
  *	@link		
- *	@version 	v1.0
+ *	@version 	v1.1
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
  *	
@@ -26,13 +26,17 @@
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
  *
+ * Version 1.1
+ *	- March 15, 2015
+ *	- Removed unnecessary function calls, used register access
+ *
  * This library allows you to enable/disable clock for specific timer,
  * and returns you settings for timer, ex. max period, max prescaler and timer's clock
  *
  * Also, it is used in every library where timers are used. 
  */
 #ifndef TM_TIMER_PROPERTIES_H
-#define TM_TIMER_PROPERTIES_H	100
+#define TM_TIMER_PROPERTIES_H 110
 /**
  * Dependencies
  * - STM32F4xx

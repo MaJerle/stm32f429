@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="struct_t_m___s_e_r_v_o__t">
+<title>TM_SERVO_t struct Reference</title>
+<para>
+    <programlisting>#include <link linkend="tm__stm32f4__servo_8h">&lt;tm_stm32f4_servo.h&gt;</link></programlisting>
+</para>
+        <section>
+            <title>Data Fields</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>TM_PWM_TIM_t PWM</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>TIM_TypeDef * TIM</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>TM_PWM_Channel_t Channel</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>TM_PWM_PinsPack_t Pinspack</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>float Degrees</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint16_t Micros</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <simplesect>
+            <title>Detailed Description</title>
+
+<para>Servo struct</para>
+
+<para>Parameters:<itemizedlist>
+<listitem>
+<para><link linkend="struct_t_m___p_w_m___t_i_m__t">TM_PWM_TIM_t</link> PWM: PWM settings</para>
+</listitem><listitem>
+<para>TIM_TypeDef* TIM: Pointer to specific timer you will use for servo</para>
+</listitem><listitem>
+<para>TM_PWM_Channel_t Channel: Output channel on specific timer</para>
+</listitem><listitem>
+<para>TM_PWM_PinsPack_t Pinspack: Pinspack for specific channel</para>
+</listitem></itemizedlist>
+</para>
+
+<para>float Degrees: Position of servo in degrees<itemizedlist>
+<listitem>
+<para>uint16_t Micros: Pulse length in micro seconds for current servo position </para>
+</listitem></itemizedlist>
+</para>
+                <para>Definition at line 94 of file tm_stm32f4_servo.h</para>
+                <para>The Documentation for this struct was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_servo.h</para></listitem></itemizedlist></para>
+        </simplesect>
+        <section>
+            <title>Field Documentation</title>
+        </section>
+</section>

@@ -1,0 +1,33 @@
+\hypertarget{tm__stm32f4__usb__msc__host_8h_source}{}\subsection{tm\+\_\+stm32f4\+\_\+usb\+\_\+msc\+\_\+host.\+h}
+
+\begin{DoxyCode}
+00001 
+00084 \textcolor{preprocessor}{#ifndef TM\_USB\_MSCHOST}
+00085 \textcolor{preprocessor}{#define TM\_USB\_MSCHOST  100}
+00086 
+00096 \textcolor{preprocessor}{#include "stm32f4xx.h"}
+00097 \textcolor{preprocessor}{#include "defines.h"}
+00098 
+00099 \textcolor{preprocessor}{#include "ff.h"}
+00100 \textcolor{preprocessor}{#include "usbh\_core.h"}
+00101 \textcolor{preprocessor}{#include "usbh\_usr.h"}
+00102 \textcolor{preprocessor}{#include "usbh\_msc\_core.h"}
+00103 
+00119 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+00120     TM\_USB\_MSCHOST\_Result\_Error,
+00121     TM\_USB\_MSCHOST\_Result\_Connected,
+00122     TM\_USB\_MSCHOST\_Result\_Disconnected,
+00123     TM\_USB\_MSCHOST\_Result\_DeviceNotSupported,
+00124     TM\_USB\_MSCHOST\_Result\_WriteProtected,
+00125     TM\_USB\_MSCHOST\_Result\_LibraryNotInitialized
+00126 \} TM\_USB\_MSCHOST\_Result\_t;
+00127 
+00133 \textcolor{keyword}{extern} TM\_USB\_MSCHOST\_Result\_t TM\_USB\_MSCHOST\_Init(\textcolor{keywordtype}{void});
+00134 
+00143 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_USB\_MSCHOST\_Process(\textcolor{keywordtype}{void});
+00144 
+00151 \textcolor{keyword}{extern} TM\_USB\_MSCHOST\_Result\_t TM\_USB\_MSCHOST\_Device(\textcolor{keywordtype}{void});
+00152 
+00153 \textcolor{preprocessor}{#endif}
+00154 
+\end{DoxyCode}

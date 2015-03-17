@@ -1,0 +1,36 @@
+\hypertarget{tm__stm32f4__sdram_8h_source}{}\subsection{tm\+\_\+stm32f4\+\_\+sdram.\+h}
+
+\begin{DoxyCode}
+00001 
+00038 \textcolor{preprocessor}{#ifndef TM\_SDRAM\_H}
+00039 \textcolor{preprocessor}{#define TM\_SDRAM\_H 120}
+00040 
+00051 \textcolor{preprocessor}{#include "stm32f4xx.h"}
+00052 \textcolor{preprocessor}{#include "stm32f4xx\_rcc.h"}
+00053 \textcolor{preprocessor}{#include "stm32f4xx\_fmc.h"}
+00054 \textcolor{preprocessor}{#include "defines.h"}
+00055 \textcolor{preprocessor}{#include "tm\_stm32f4\_gpio.h"}
+00056 
+00057 \textcolor{comment}{/* SDRAM start address = FMC peripheral start address */}
+00058 \textcolor{preprocessor}{#define SDRAM\_START\_ADR         (uint32\_t)0xD0000000}
+00059 \textcolor{comment}{/* SDRAM max memory width = 8MB */}
+00060 \textcolor{preprocessor}{#define SDRAM\_MEMORY\_WIDTH      (uint32\_t)0x800000}
+00061 \textcolor{comment}{/* Timeout for SDRAM initialization */}
+00062 \textcolor{preprocessor}{#define SDRAM\_TIMEOUT           ((uint32\_t)0xFFFF) }
+00063 
+00069 \textcolor{keyword}{extern} uint8\_t TM\_SDRAM\_Init(\textcolor{keywordtype}{void});
+00070 
+00080 \textcolor{preprocessor}{#define TM\_SDRAM\_Write8(address, value)     *(\_\_IO uint8\_t *) (SDRAM\_START\_ADR + address) = value}
+00081 
+00090 \textcolor{preprocessor}{#define TM\_SDRAM\_Read8(address)             (*(\_\_IO uint8\_t *) (SDRAM\_START\_ADR + address))}
+00091 
+00101 \textcolor{preprocessor}{#define TM\_SDRAM\_Write16(address, value)    *(\_\_IO uint16\_t *) (SDRAM\_START\_ADR + address) = value}
+00102 
+00111 \textcolor{preprocessor}{#define TM\_SDRAM\_Read16(address)            (*(\_\_IO uint16\_t *) (SDRAM\_START\_ADR + address))}
+00112 
+00122 \textcolor{preprocessor}{#define TM\_SDRAM\_Write32(address, value)    *(\_\_IO uint32\_t *) (SDRAM\_START\_ADR + address) = value}
+00123 
+00132 \textcolor{preprocessor}{#define TM\_SDRAM\_Read32(address)            (*(\_\_IO uint32\_t *) (SDRAM\_START\_ADR + address))}
+00133 
+00134 \textcolor{preprocessor}{#endif}
+\end{DoxyCode}

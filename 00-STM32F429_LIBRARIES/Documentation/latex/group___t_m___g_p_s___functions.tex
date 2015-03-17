@@ -1,0 +1,178 @@
+\hypertarget{group___t_m___g_p_s___functions}{}\subsection{T\+M\+\_\+\+G\+P\+S\+\_\+\+Functions}
+\label{group___t_m___g_p_s___functions}\index{T\+M\+\_\+\+G\+P\+S\+\_\+\+Functions@{T\+M\+\_\+\+G\+P\+S\+\_\+\+Functions}}
+
+
+Library Functions.  
+
+
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group___t_m___g_p_s___functions_gaa1e7909c24c99c907d5edcd688b8cdcb}{T\+M\+\_\+\+G\+P\+S\+\_\+\+Init} (\hyperlink{struct_t_m___g_p_s___data__t}{T\+M\+\_\+\+G\+P\+S\+\_\+\+Data\+\_\+t} $\ast$G\+P\+S\+\_\+\+Data, uint32\+\_\+t baudrate)
+\begin{DoxyCompactList}\small\item\em Initializes G\+P\+S and U\+S\+A\+R\+T peripheral. \end{DoxyCompactList}\item 
+\hyperlink{group___t_m___g_p_s___typedefs_gaf3a9184315a145cb8288691c9c529427}{T\+M\+\_\+\+G\+P\+S\+\_\+\+Result\+\_\+t} \hyperlink{group___t_m___g_p_s___functions_ga31b1673ec7171ea8c552afddaa8e5bb6}{T\+M\+\_\+\+G\+P\+S\+\_\+\+Update} (\hyperlink{struct_t_m___g_p_s___data__t}{T\+M\+\_\+\+G\+P\+S\+\_\+\+Data\+\_\+t} $\ast$G\+P\+S\+\_\+\+Data)
+\begin{DoxyCompactList}\small\item\em Update G\+P\+S data. \end{DoxyCompactList}\item 
+float \hyperlink{group___t_m___g_p_s___functions_gaa9fb934f21d0fb34dab7a672497826c6}{T\+M\+\_\+\+G\+P\+S\+\_\+\+Convert\+Speed} (float Speed\+In\+Knots, \hyperlink{group___t_m___g_p_s___typedefs_ga287710c2af22ad207c305aeb2e6ea69c}{T\+M\+\_\+\+G\+P\+S\+\_\+\+Speed\+\_\+t} to\+Speed)
+\begin{DoxyCompactList}\small\item\em Converts speed in knots (from G\+P\+S) to user selectable speed. \end{DoxyCompactList}\item 
+void \hyperlink{group___t_m___g_p_s___functions_gaad0f22897c6acf1b2530a6547b39b0d9}{T\+M\+\_\+\+G\+P\+S\+\_\+\+Convert\+Float} (float num, \hyperlink{struct_t_m___g_p_s___float__t}{T\+M\+\_\+\+G\+P\+S\+\_\+\+Float\+\_\+t} $\ast$Float\+\_\+\+Data, uint8\+\_\+t decimals)
+\begin{DoxyCompactList}\small\item\em Converts float number into integer and decimal part. \end{DoxyCompactList}\item 
+void \hyperlink{group___t_m___g_p_s___functions_ga7a44cb46476dea773206800f3cb5e99b}{T\+M\+\_\+\+G\+P\+S\+\_\+\+Distance\+Between} (\hyperlink{struct_t_m___g_p_s___distance__t}{T\+M\+\_\+\+G\+P\+S\+\_\+\+Distance\+\_\+t} $\ast$Distance\+\_\+\+Data)
+\begin{DoxyCompactList}\small\item\em Calculates distance between 2 coordinates on earth and bearing from start to end point in relation to the north. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+Library Functions. 
+
+
+
+\subsubsection{Function Documentation}
+\hypertarget{group___t_m___g_p_s___functions_gaad0f22897c6acf1b2530a6547b39b0d9}{}\index{T\+M\+\_\+\+G\+P\+S\+\_\+\+Functions@{T\+M\+\_\+\+G\+P\+S\+\_\+\+Functions}!T\+M\+\_\+\+G\+P\+S\+\_\+\+Convert\+Float@{T\+M\+\_\+\+G\+P\+S\+\_\+\+Convert\+Float}}
+\index{T\+M\+\_\+\+G\+P\+S\+\_\+\+Convert\+Float@{T\+M\+\_\+\+G\+P\+S\+\_\+\+Convert\+Float}!T\+M\+\_\+\+G\+P\+S\+\_\+\+Functions@{T\+M\+\_\+\+G\+P\+S\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+G\+P\+S\+\_\+\+Convert\+Float}]{\setlength{\rightskip}{0pt plus 5cm}void T\+M\+\_\+\+G\+P\+S\+\_\+\+Convert\+Float (
+\begin{DoxyParamCaption}
+\item[{float}]{num, }
+\item[{{\bf T\+M\+\_\+\+G\+P\+S\+\_\+\+Float\+\_\+t} $\ast$}]{Float\+\_\+\+Data, }
+\item[{uint8\+\_\+t}]{decimals}
+\end{DoxyParamCaption}
+)}\label{group___t_m___g_p_s___functions_gaad0f22897c6acf1b2530a6547b39b0d9}
+
+
+Converts float number into integer and decimal part. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em num} & Float number to split into 2 parts \\
+\hline
+{\em $\ast$\+Float\+\_\+\+Data} & Pointer to \hyperlink{struct_t_m___g_p_s___float__t}{T\+M\+\_\+\+G\+P\+S\+\_\+\+Float\+\_\+t} structure where to save result \\
+\hline
+{\em decimals} & Number of decimal places for conversion \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Example\+: You have number 15.\+002 in float format.
+\begin{DoxyItemize}
+\item You want to split this to integer and decimal part with 6 decimal places.
+\item Call T\+M\+\_\+\+G\+P\+S\+\_\+\+Convert\+Float(15.\+002, \&Float\+\_\+\+Struct, 6);
+\item Result will be\+: Integer\+: 15; Decimal\+: 2000 (0.\+002 $\ast$ 10$^\wedge$6) 
+\end{DoxyItemize}
+\end{DoxyNote}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___g_p_s___functions_gaa9fb934f21d0fb34dab7a672497826c6}{}\index{T\+M\+\_\+\+G\+P\+S\+\_\+\+Functions@{T\+M\+\_\+\+G\+P\+S\+\_\+\+Functions}!T\+M\+\_\+\+G\+P\+S\+\_\+\+Convert\+Speed@{T\+M\+\_\+\+G\+P\+S\+\_\+\+Convert\+Speed}}
+\index{T\+M\+\_\+\+G\+P\+S\+\_\+\+Convert\+Speed@{T\+M\+\_\+\+G\+P\+S\+\_\+\+Convert\+Speed}!T\+M\+\_\+\+G\+P\+S\+\_\+\+Functions@{T\+M\+\_\+\+G\+P\+S\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+G\+P\+S\+\_\+\+Convert\+Speed}]{\setlength{\rightskip}{0pt plus 5cm}float T\+M\+\_\+\+G\+P\+S\+\_\+\+Convert\+Speed (
+\begin{DoxyParamCaption}
+\item[{float}]{Speed\+In\+Knots, }
+\item[{{\bf T\+M\+\_\+\+G\+P\+S\+\_\+\+Speed\+\_\+t}}]{to\+Speed}
+\end{DoxyParamCaption}
+)}\label{group___t_m___g_p_s___functions_gaa9fb934f21d0fb34dab7a672497826c6}
+
+
+Converts speed in knots (from G\+P\+S) to user selectable speed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em speed\+In\+Knots} & float value from G\+P\+S module \\
+\hline
+{\em to\+Speed} & Select to which speed you want conversion from knot. This parameter ca be a value of T\+M\+\_\+\+G\+P\+S\+\_\+\+Speed\+\_\+t enumeration. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Calculated} & speed from knots to user selectable format \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___g_p_s___functions_ga7a44cb46476dea773206800f3cb5e99b}{}\index{T\+M\+\_\+\+G\+P\+S\+\_\+\+Functions@{T\+M\+\_\+\+G\+P\+S\+\_\+\+Functions}!T\+M\+\_\+\+G\+P\+S\+\_\+\+Distance\+Between@{T\+M\+\_\+\+G\+P\+S\+\_\+\+Distance\+Between}}
+\index{T\+M\+\_\+\+G\+P\+S\+\_\+\+Distance\+Between@{T\+M\+\_\+\+G\+P\+S\+\_\+\+Distance\+Between}!T\+M\+\_\+\+G\+P\+S\+\_\+\+Functions@{T\+M\+\_\+\+G\+P\+S\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+G\+P\+S\+\_\+\+Distance\+Between}]{\setlength{\rightskip}{0pt plus 5cm}void T\+M\+\_\+\+G\+P\+S\+\_\+\+Distance\+Between (
+\begin{DoxyParamCaption}
+\item[{{\bf T\+M\+\_\+\+G\+P\+S\+\_\+\+Distance\+\_\+t} $\ast$}]{Distance\+\_\+\+Data}
+\end{DoxyParamCaption}
+)}\label{group___t_m___g_p_s___functions_ga7a44cb46476dea773206800f3cb5e99b}
+
+
+Calculates distance between 2 coordinates on earth and bearing from start to end point in relation to the north. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$\+Distance\+\_\+\+Data} & Pointer to \hyperlink{struct_t_m___g_p_s___distance__t}{T\+M\+\_\+\+G\+P\+S\+\_\+\+Distance\+\_\+t} structure with latitude and longitude set values \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Calculation results will be saved in $\ast$\+Distance\+\_\+\+Data \hyperlink{struct_t_m___g_p_s___distance__t}{T\+M\+\_\+\+G\+P\+S\+\_\+\+Distance\+\_\+t} structure 
+\end{DoxyNote}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___g_p_s___functions_gaa1e7909c24c99c907d5edcd688b8cdcb}{}\index{T\+M\+\_\+\+G\+P\+S\+\_\+\+Functions@{T\+M\+\_\+\+G\+P\+S\+\_\+\+Functions}!T\+M\+\_\+\+G\+P\+S\+\_\+\+Init@{T\+M\+\_\+\+G\+P\+S\+\_\+\+Init}}
+\index{T\+M\+\_\+\+G\+P\+S\+\_\+\+Init@{T\+M\+\_\+\+G\+P\+S\+\_\+\+Init}!T\+M\+\_\+\+G\+P\+S\+\_\+\+Functions@{T\+M\+\_\+\+G\+P\+S\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+G\+P\+S\+\_\+\+Init}]{\setlength{\rightskip}{0pt plus 5cm}void T\+M\+\_\+\+G\+P\+S\+\_\+\+Init (
+\begin{DoxyParamCaption}
+\item[{{\bf T\+M\+\_\+\+G\+P\+S\+\_\+\+Data\+\_\+t} $\ast$}]{G\+P\+S\+\_\+\+Data, }
+\item[{uint32\+\_\+t}]{baudrate}
+\end{DoxyParamCaption}
+)}\label{group___t_m___g_p_s___functions_gaa1e7909c24c99c907d5edcd688b8cdcb}
+
+
+Initializes G\+P\+S and U\+S\+A\+R\+T peripheral. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$\+G\+P\+S\+\_\+\+Data} & Pointer to \hyperlink{struct_t_m___g_p_s___data__t}{T\+M\+\_\+\+G\+P\+S\+\_\+\+Data\+\_\+t} structure to set default values \\
+\hline
+{\em baudrate} & Specify G\+P\+S baudrate for U\+S\+A\+R\+T. Most common are 9600 or 115200 bauds \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+G\+P\+S baudrate can have other values. Check G\+P\+S datasheet for proper info. 
+\end{DoxyNote}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___t_m___g_p_s___functions_ga31b1673ec7171ea8c552afddaa8e5bb6}{}\index{T\+M\+\_\+\+G\+P\+S\+\_\+\+Functions@{T\+M\+\_\+\+G\+P\+S\+\_\+\+Functions}!T\+M\+\_\+\+G\+P\+S\+\_\+\+Update@{T\+M\+\_\+\+G\+P\+S\+\_\+\+Update}}
+\index{T\+M\+\_\+\+G\+P\+S\+\_\+\+Update@{T\+M\+\_\+\+G\+P\+S\+\_\+\+Update}!T\+M\+\_\+\+G\+P\+S\+\_\+\+Functions@{T\+M\+\_\+\+G\+P\+S\+\_\+\+Functions}}
+\paragraph[{T\+M\+\_\+\+G\+P\+S\+\_\+\+Update}]{\setlength{\rightskip}{0pt plus 5cm}{\bf T\+M\+\_\+\+G\+P\+S\+\_\+\+Result\+\_\+t} T\+M\+\_\+\+G\+P\+S\+\_\+\+Update (
+\begin{DoxyParamCaption}
+\item[{{\bf T\+M\+\_\+\+G\+P\+S\+\_\+\+Data\+\_\+t} $\ast$}]{G\+P\+S\+\_\+\+Data}
+\end{DoxyParamCaption}
+)}\label{group___t_m___g_p_s___functions_ga31b1673ec7171ea8c552afddaa8e5bb6}
+
+
+Update G\+P\+S data. 
+
+Update G\+P\+S data. This function must be called periodically, as fast as possible. It basically checks if data is available on U\+S\+A\+R\+T and parse it to useful value.
+
+Parameters\+:
+\begin{DoxyItemize}
+\item T\+M\+\_\+\+G\+P\+S\+\_\+\+Data\+\_\+t$\ast$ G\+P\+S\+\_\+\+Data\+: Pointer to \hyperlink{struct_t_m___g_p_s___data__t}{T\+M\+\_\+\+G\+P\+S\+\_\+\+Data\+\_\+t} struct variable
+\end{DoxyItemize}
+
+When you first call this function and there is not available data from G\+P\+S, this function will return T\+M\+\_\+\+G\+P\+S\+\_\+\+Result\+\_\+\+First\+Time\+Waiting. This will be returning all the time we don\textquotesingle{}t have any useful data. When first time useful data is received from G\+P\+S (everything parsed), T\+M\+\_\+\+G\+P\+S\+\_\+\+Result\+\_\+\+New\+Data will be returned. When we have already new data, next time we call this function, T\+M\+\_\+\+G\+P\+S\+\_\+\+Result\+\_\+\+Old\+Data will be returning until we don\textquotesingle{}t receive new packet of useful data. \begin{DoxyNote}{Note}
+This function must be called periodically, as fast as possible. It basically checks if data is available on G\+P\+S U\+S\+A\+R\+T and parse it to useful data for user. 
+
+-\/ When you first call this function and there is not available data from G\+P\+S, this function will return T\+M\+\_\+\+G\+P\+S\+\_\+\+Result\+\_\+\+First\+Time\+Waiting.
+\begin{DoxyItemize}
+\item This will be returning all the time we don\textquotesingle{}t have any useful data.
+\item When first time useful data is received from G\+P\+S (everything parsed), \hyperlink{group___t_m___g_p_s___typedefs_ggaf3a9184315a145cb8288691c9c529427a53532f11f7d268cfe75af5360985ff34}{T\+M\+\_\+\+G\+P\+S\+\_\+\+Result\+\_\+\+New\+Data} will be returned.
+\item When we have already new data, next time we call this function, \hyperlink{group___t_m___g_p_s___typedefs_ggaf3a9184315a145cb8288691c9c529427a5098e6636e25483bc0580f8d947a0ff8}{T\+M\+\_\+\+G\+P\+S\+\_\+\+Result\+\_\+\+Old\+Data} will be returning until we don\textquotesingle{}t receive new packet of useful data. 
+\end{DoxyItemize}
+
+If you are making G\+P\+S logger, then when you receive \hyperlink{group___t_m___g_p_s___typedefs_ggaf3a9184315a145cb8288691c9c529427a53532f11f7d268cfe75af5360985ff34}{T\+M\+\_\+\+G\+P\+S\+\_\+\+Result\+\_\+\+New\+Data} it is time to save your data. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$\+G\+P\+S\+\_\+\+Data} & Pointer to working \hyperlink{struct_t_m___g_p_s___data__t}{T\+M\+\_\+\+G\+P\+S\+\_\+\+Data\+\_\+t} structure \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em Returns} & value of \hyperlink{group___t_m___g_p_s___typedefs_gaf3a9184315a145cb8288691c9c529427}{T\+M\+\_\+\+G\+P\+S\+\_\+\+Result\+\_\+t} structure \\
+\hline
+\end{DoxyRetVals}

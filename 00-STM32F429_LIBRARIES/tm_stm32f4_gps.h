@@ -1,34 +1,42 @@
 /**
- *	GPS NMEA standard data parser for STM32F4xx devices
- *
- *	@author 	Tilen Majerle
- *	@email		tilen@majerle.eu
- *	@website	http://stm32f4-discovery.com
- *	@link		http://stm32f4-discovery.com/2014/08/library-27-gps-stm32f4-devices/
- *	@version 	v1.1
- *	@ide		Keil uVision
- *	@license	GNU GPL v3
- *	
- * |----------------------------------------------------------------------
- * | Copyright (C) Tilen Majerle, 2014
- * | 
- * | This program is free software: you can redistribute it and/or modify
- * | it under the terms of the GNU General Public License as published by
- * | the Free Software Foundation, either version 3 of the License, or
- * | any later version.
- * |  
- * | This program is distributed in the hope that it will be useful,
- * | but WITHOUT ANY WARRANTY; without even the implied warranty of
- * | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * | GNU General Public License for more details.
- * | 
- * | You should have received a copy of the GNU General Public License
- * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * |----------------------------------------------------------------------
- * 
- * Version v1.1
- * 	- 22.08.2014
- * 	- Added support for calculating distance between 2 coordinates and bearing in degrees
+ * @author  Tilen Majerle
+ * @email  tilen@majerle.eu
+ * @website http://stm32f4-discovery.com
+ * @link    http://stm32f4-discovery.com/2014/08/library-27-gps-stm32f4-devices/
+ * @version v1.1
+ * @ide     Keil uVision
+ * @license GNU GPL v3
+ * @brief   GPS NMEA standard data parser for STM32F4xx devices
+@verbatim
+   ----------------------------------------------------------------------
+    Copyright (C) Tilen Majerle, 2015
+    
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    any later version.
+     
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+   ----------------------------------------------------------------------
+@endverbatim
+ */
+#ifndef TM_GPS_H
+#define TM_GPS_H 110
+/**
+ * @addtogroup TM_STM32F4xx_Libraries
+ * @{
+ */
+
+/**
+ * @defgroup TM_GPS
+ * @brief    GPS NMEA standard data parser for STM32F4xx devices - http://stm32f4-discovery.com/2014/08/library-27-gps-stm32f4-devices/
+ * @{
  *
  * This library parses response from GPS module, in NMEA statements format.
  * 
@@ -37,74 +45,88 @@
  *	http://aprs.gids.nl/nmea/
  *
  * There is a lot of possible sentences, which can be returned from GPS.
- * This library uses only 4. But some GPS don's returns all of this 4 sentences,
+ * This library uses only 4. But some GPS don't returns all of this 4 sentences,
  * so I made a possibility to disable them.
  *
- * By default, these statements are in use:
- * 	- GPGGA: Global Positioning System Fix Data
- * 		- Latitude
- * 		- Longitude
- * 		- Altitude
- * 		- Fix
- * 		- Satellites in use
- * 		- Time
- *	- GPRMC: Recommended minimum specific GPS/Transit data
- *		- Date
- *		- Speed
- *		- Validity
- *		- Direction
- *	- GPGSA: GPS DOP and Active Satellites
- *		- HDOP
- *		- VDOP
- *		- PDOP
- *		- FixMode
- *		- Id's of satellites in use
- *	- GPGSV: GPS Satellites in view
- *		- Satellites in view
+ * By default, these statements are in use and supported:
+ *  - GPGGA: Global Positioning System Fix Data
+ *     - Latitude
+ *     - Longitude
+ *     - Altitude
+ *     - Fix
+ *     - Satellites in use
+ *     - Time
+ *  - GPRMC: Recommended minimum specific GPS/Transit data
+ *     - Date
+ *     - Speed
+ *     - Validity
+ *     - Direction
+ *  - GPGSA: GPS DOP and Active Satellites
+ *     - HDOP
+ *     - VDOP
+ *     - PDOP
+ *     - FixMode
+ *     - Id's of satellites in use
+ *  - GPGSV: GPS Satellites in view
+ *     - Satellites in view
  *
  * By default, each of this data has to be detected in order to get "VALID" data.
  * If your GPS does not return any of this statement, you can disable option.
  * If you disable any of statements, then you will loose data, corresponding to statement.
  *
  * Add lines below in your defines.h file and uncomment your settings
- *
- *  //#define GPS_DISABLE_GPGGA 	//Disable GPGGA statement
- *  //#define GPS_DISABLE_GPRMC		//Disable GPRMC statement
- *  //#define GPS_DISABLE_GPGSA		//Disable GPGSA statement
- *  //#define GPS_DISABLE_GPGSV		//Disable GPGSV statement
+@verbatim
+//Disable GPGGA statement
+#define GPS_DISABLE_GPGGA
+//Disable GPRMC statement
+#define GPS_DISABLE_GPRMC 
+//Disable GPGSA statement
+#define GPS_DISABLE_GPGSA
+//Disable GPGSV statement
+#define GPS_DISABLE_GPGSV
+@endverbatim
+ * \par Pinout
  *
  * To communicate with GPS, USART is commonly used. By default, my library uses USART1,
  * but if you want your own USARTx, add lines below in your defines.h file:
  *
- * 	#define GPS_USART				USART1
- * 	#define GPS_USART_PINSPACK		TM_USART_PinsPack_2
+@verbatim
+#define GPS_USART				USART1
+#define GPS_USART_PINSPACK		TM_USART_PinsPack_2
+@endverbatim
  *
  * With default pinout:
  *
- *	STM32F4xx TX = PB6
- * 	STM32F4xx RX = PB7
+ *  STM32F4xx TX = PB6\n
+ *  STM32F4xx RX = PB7
  *
- * 	Connect GPS's TX to STM32F4xx's RX.
+ * @note Connect GPS's TX to STM32F4xx's RX and vice versa.
  *
- */
-#ifndef TM_GPS_H
-#define TM_GPS_H	110
-/**
- * Dependencies
- * - STM32F4xx
- * - STM32F4xx RCC
- * - STM32F4xx GPIO
- * - TM USART
- * - defines.h
- */
-/**
- * Includes
+ * \par Changelog
+ *
+@verbatim
+ Version 1.1
+   - August 22, 2014
+   - Added support for calculating distance between 2 coordinates and bearing in degrees
+
+  Version 1.0
+   - First release
+@endverbatim
+ *
+ * \par Dependencies
+ *
+@verbatim
+ - STM32F4xx
+ - STM32F4xx RCC
+ - defines.h
+ - TM USART
+ - defines.h
+ - math.h
+@endverbatim
  */
 #include "stm32f4xx.h"
 #include "stm32f4xx_rcc.h"
-#include "stm32f4xx_gpio.h"
 #include "tm_stm32f4_usart.h"
-#include "tm_stm32f4_disco.h"
 #include "defines.h"
 #include "math.h"
 
@@ -113,6 +135,12 @@
 #define GPS_USART				USART1
 #define GPS_USART_PINSPACK		TM_USART_PinsPack_2
 #endif
+
+/**
+ * @defgroup TM_GPS_Macros
+ * @brief    Library private defines without any sense for USER
+ * @{
+ */
 
 /* Is character a digit */
 #define GPS_IS_DIGIT(x)			((x) >= '0' && (x) <= '9')
@@ -196,215 +224,147 @@
 /* Radians to degrees */
 #define GPS_RADIANS2DEGREES(x)	((x) * (float)57.29577951308232)
 
-/**
- * Possible return statements
- *
- * 	- TM_GPS_Result_NewData:
- * 		We received completely new data, which were never read.
- * 	- TM_GPS_Result_OldData:
- * 		We already read this data, no new data.
- * 	- TM_GPS_Result_FirstDataWaiting:
- * 		We never receive any useful data.
- * 		Returned at the beginning of the program
+ /**
+ * @}
  */
-typedef enum {
-	TM_GPS_Result_NewData,
-	TM_GPS_Result_OldData,
-	TM_GPS_Result_FirstDataWaiting,
-} TM_GPS_Result_t;
 
 /**
- * Enumeration for speed conversion.
- *
- * GPS returns speed in knots, if you want to display a human value,
- * use this enumeration with TM_GPS_ConvertSpeed function
+ * @defgroup TM_GPS_Typedefs
+ * @brief    Library Typedefs
+ * @{
+ */
+
+/**
+ * @brief  GPS Result enumeration
+ */
+typedef enum {
+	TM_GPS_Result_NewData,          /*!< New data are available to operate with */
+	TM_GPS_Result_OldData,          /*!< We don't have new data available yet */
+	TM_GPS_Result_FirstDataWaiting, /*!< We are waiting for first data from GPS module */
+} TM_GPS_Result_t;
+
+
+/**
+ * @brief  Speed conversion enumeration
+ * @note   Speed from GPS is in knots, use TM_GPS_ConvertSpeed() to convert to useable value
  */
 typedef enum {
 	/* Metric */
-	TM_GPS_Speed_KilometerPerSecond,	
-	TM_GPS_Speed_MeterPerSecond,
-	TM_GPS_Speed_KilometerPerHour,
-	TM_GPS_Speed_MeterPerMinute,
+	TM_GPS_Speed_KilometerPerSecond,  /*!< Convert speed to kilo meters per second */
+	TM_GPS_Speed_MeterPerSecond,      /*!< Convert speed to meters per second */
+	TM_GPS_Speed_KilometerPerHour,    /*!< Convert speed to kilo meters per hour */
+	TM_GPS_Speed_MeterPerMinute,      /*!< Convert speed to meter per minute */
 	/* Imperial */
-	TM_GPS_Speed_MilePerSecond,
-	TM_GPS_Speed_MilePerHour,
-	TM_GPS_Speed_FootPerSecond,
-	TM_GPS_Speed_FootPerMinute,
+	TM_GPS_Speed_MilePerSecond,       /*!< Convert speed to miles per second */
+	TM_GPS_Speed_MilePerHour,         /*!< Convert speed to miles per hour */
+	TM_GPS_Speed_FootPerSecond,       /*!< Convert speed to foots per second */
+	TM_GPS_Speed_FootPerMinute,       /*!< Convert speed to foots per minute */
 	/* For Runners and Joggers */
-	TM_GPS_Speed_MinutePerKilometer,
-	TM_GPS_Speed_SecondPerKilometer,
-	TM_GPS_Speed_SecondPer100Meters,
-	TM_GPS_Speed_MinutePerMile,
-	TM_GPS_Speed_SecondPerMile,
-	TM_GPS_Speed_SecondPer100Yards,
+	TM_GPS_Speed_MinutePerKilometer,  /*!< Convert speed to minutes per kilo meter */
+	TM_GPS_Speed_SecondPerKilometer,  /*!< Convert speed to seconds per kilo meter */
+	TM_GPS_Speed_SecondPer100Meters,  /*!< Convert speed to seconds per 100 meters */
+	TM_GPS_Speed_MinutePerMile,       /*!< Convert speed to minutes per mile */
+	TM_GPS_Speed_SecondPerMile,       /*!< Convert speed to seconds per mile */
+	TM_GPS_Speed_SecondPer100Yards,   /*!< Convert speed to seconds per 100 yards */
 	/* Nautical */
-	TM_GPS_Speed_SeaMilePerHour,
+	TM_GPS_Speed_SeaMilePerHour,      /*!< Convert speed to sea miles per hour */
 } TM_GPS_Speed_t;
 
+
 /**
- * GPS has longitude, latitude, altitude, etc
- * in float format.
- * But, if you want to make a tracker and save data to SD card, there is a problem,
- * because FATFS library breaks %f with sprintf() function.
- * For that purpose I made a new function TM_GPS_ConvertFloat() which converts float number
- * to an integer and decimal part.
- *
- * Parameters:
- * 	- int32_t Integer:
- * 		- Integer part of float number
- * 	- uint32_t Decimal:
- * 		- Decimal part of float number in integer format
+ * @brief  GPS float structure
+ * @note   GPS has longitude, latitude, altitude, etc.. in float format.
+ *         
+ *         But, if you want to make a tracker and save data to SD card, there is a problem, because FATFS library breaks %f with sprintf() function.
+ *         
+ *         For that purpose I made a new function TM_GPS_ConvertFloat() which converts float number to an integer and decimal part.
  */
 typedef struct {
-	int32_t Integer;
-	uint32_t Decimal;
+	int32_t Integer;   /*!< Integer part of float number. */
+	uint32_t Decimal;  /*!< Decimal part of float number, in integer format. */
 } TM_GPS_Float_t;
 
 /**
- * Date struct for GPS
- *
- * Parameters:
- * 	- uint8_t Date:
- * 	- uint8_t Month:
- * 	- uint8_t Year:
+ * @brief  Date struct for GPS date 
  */
 typedef struct {
-	uint8_t Date;					/* GPGMC */
-	uint8_t Month;					/* GPGMC */
-	uint8_t Year;					/* GPGMC */
+	uint8_t Date;  /*!< Date in month from GPS. */
+	uint8_t Month; /*!< Month from GPS. */
+	uint8_t Year;  /*!< Year from GPS. */
 } TM_GPS_Date_t;
 
 /**
- * Time struct for GPS
- *
- * Parameters:
- * 	- uint8_t Hours:
- * 	- uint8_t Minutes:
- * 	- uint8_t Seconds:
- * 	- uint8_t Hundredths:
+ * @brief  Time structure for GPS
  */
 typedef struct {
-	uint8_t Hours;					/* GPGGA */
-	uint8_t Minutes;				/* GPGGA */			
-	uint8_t Seconds;				/* GPGGA */
-	uint8_t Hundredths;				/* GPGGA */
+	uint8_t Hours;      /*!< Hours from GPS time. */
+	uint8_t Minutes;    /*!< Minutes from GPS time. */			
+	uint8_t Seconds;    /*!< Seconds from GPS time. */
+	uint8_t Hundredths; /*!< Hundredths from GPS time. */
 } TM_GPS_Time_t;
 
 /**
- * Main struct to work with GPS
- *
- * Parameters in this struct depends on which GPS NMEA statements you have activated.
- * By default all parameters are active. These are.
- *
- *  - float Latitude:
- *  	Latitude. From -90 to 90 degrees response
- *  - float Longitude:
- *  	Longitude, from -180 to 180 degrees response
- *  - uint8_t Satellites:
- *  	Number of satellites in use
- *  - uint8_t Fix:
- *  	Fix.
- *  	0 = Invalid
- *  	1 = GPS Fix
- *  	2 = DGPS Fix
- *  - float Altitude:
- *  	Altitude above the sea
- *  - TM_GPS_Time_t Time:
- *  	Time struct
- *  - TM_GPS_Date_t Date:
- *  	Date struct
- *  - float Speed:
- *  	Speed in knots
- *  - uint8_t Validity:
- *  	GPS Signal valid?
- *  	1 = Valid
- *  	0 = Invalid
- *  - float Direction:
- *  	Course on the ground
- *  - float HDOP:
- *  	Horizontal dilution of precision
- *  - float PDOP:
- *  	Position dilution od precision
- *  - float VDOP:
- *  	Vertical dilution of precision
- *  - uint8_t FixMode:
- *  	Current fix mode in use:
- *		1 = Fix not available
- *		2 = 2D
- *		3 = 3D
- *  - uint8_t SatelliteIDs[12]:
- *  	Array with IDs of satellites in use.
- *  	Only first data are valid, so if you have 5 satellites in use, only SatelliteIDs[4:0] are valid
- *  - uint8_t SatellitesInView:
- *  	Number of satellites in view
+ * @brief  Main GPS data structure 
  */
 typedef struct {
 #ifndef GPS_DISABLE_GPGGA
-	float Latitude;					/* GPGGA */
-	float Longitude;				/* GPGGA */
-	uint8_t Satellites;				/* GPGGA */
-	uint8_t Fix;					/* GPGGA */
-	float Altitude;					/* GPGGA */
-	TM_GPS_Time_t Time;				/* GPGGA */
+	float Latitude;           /*!< Latitude position from GPS, -90 to 90 degrees response. */
+	float Longitude;          /*!< Longitude position from GPS, -180 to 180 degrees response. */
+	uint8_t Satellites;       /*!< Number of satellites in use for GPS position. */
+	uint8_t Fix;              /*!< GPS fix; 0: Invalid; 1: GPS Fix; 2: DGPS Fix. */
+	float Altitude;           /*!< Altitude above the sea. */
+	TM_GPS_Time_t Time;       /*!< Current time from GPS. @ref TM_GPS_Time_t. */
 #endif
 #ifndef GPS_DISABLE_GPRMC
-	TM_GPS_Date_t Date;				/* GPRMC */
-	float Speed;					/* GPRMC */
-	uint8_t Validity;				/* GPRMC */
-	float Direction;				/* GPRMC */
+	TM_GPS_Date_t Date;       /*!< Current data from GPS. @ref TM_GPS_Date_t. */
+	float Speed;              /*!< Speed in knots from GPS. */
+	uint8_t Validity;         /*!< GPS validation; 1: valid; 0: invalid. */
+	float Direction;          /*!< Course on the ground in relation to North. */
 #endif
 #ifndef GPS_DISABLE_GPGSA
-	float HDOP;						/* GPGSA */
-	float PDOP;						/* GPGSA */
-	float VDOP;						/* GPGSA */
-	uint8_t FixMode;				/* GPGSA */
-	uint8_t SatelliteIDs[12];		/* GPGSA */
+	float HDOP;               /*!< Horizontal dilution of precision. */
+	float PDOP;               /*!< Position dilution od precision. */
+	float VDOP;               /*!< Vertical dilution of precision. */
+	uint8_t FixMode;          /*!< Current fix mode in use:; 1: Fix not available; 2: 2D; 3: 3D. */
+	uint8_t SatelliteIDs[12]; /*!< Array with IDs of satellites in use. 
+	                               Only first data are valid, so if you have 5 satellites in use, only SatelliteIDs[4:0] are valid */
 #endif
 #ifndef GPS_DISABLE_GPGSV	
-	uint8_t SatellitesInView;		/* GPGSV */
+	uint8_t SatellitesInView; /*!< Number of satellites in view */
 #endif
-	TM_GPS_Result_t Status;			/* GPS Data status */
+	TM_GPS_Result_t Status;   /*!< GPS result. This parameter is value of @ref TM_GPS_Result_t */
 } TM_GPS_Data_t;
 
 /**
- * Added in version v1.1
- *
- * GPS Distance struct
- *
- * Parameters:
- * 	- float Latitude1:
- * 		Latitude of starting point
- * 	- float Longitude1:
- * 		Longitude of starting point
- * 	- float Latitude2:
- * 		Latitude of starting point
- * 	- float Longitude2:
- * 		Longitude of starting point
- * 	- float Distance:
- * 		Distance returned in meters
- * 	- float Bearing:
- * 		Bearing returned in degrees
+ * @brief  GPS Distance and bearing struct
  */
 typedef struct {
-	float Latitude1;
-	float Longitude1;
-	float Latitude2;
-	float Longitude2;
-	float Distance;
-	float Bearing;
+	float Latitude1;  /*!< Latitude of starting point. */
+	float Longitude1; /*!< Longitude of starting point. */
+	float Latitude2;  /*!< Latitude of ending point. */
+	float Longitude2; /*!< Longitude of ending point. */
+	float Distance;   /*!< Distance between 2 points which will be calculated. */
+	float Bearing;    /*!< Bearing from start to stop point according to North. */
 } TM_GPS_Distance_t;
 
-/* Public */
 /**
- * Initialize GPS
- *
- * Parameters:
- * 	- TM_GPS_Data_t* GPS_Data:
- * 		Pointer to TM_GPS_Data_t struct variable
- * 	- uint32_t baudrate:
- * 		Baudrate used for USART
+ * @}
  */
-extern void TM_GPS_Init(TM_GPS_Data_t* GPS_Data, uint32_t baudrate);
+
+/**
+ * @defgroup TM_GPS_Functions
+ * @brief    Library Functions
+ * @{
+ */
+
+/**
+ * @brief  Initializes GPS and USART peripheral
+ * @param  *GPS_Data: Pointer to TM_GPS_Data_t structure to set default values
+ * @param  baudrate: Specify GPS baudrate for USART. Most common are 9600 or 115200 bauds
+ * @note   GPS baudrate can have other values. Check GPS datasheet for proper info.
+ * @retval None
+ */
+void TM_GPS_Init(TM_GPS_Data_t* GPS_Data, uint32_t baudrate);
 
 /**
  * Update GPS data.
@@ -415,51 +375,66 @@ extern void TM_GPS_Init(TM_GPS_Data_t* GPS_Data, uint32_t baudrate);
  *	- TM_GPS_Data_t* GPS_Data:
  *		Pointer to TM_GPS_Data_t struct variable
  *
- * When you first call this function and there is not available data from GPS, this function will return TM_GPS_Result_FirstTimeWaiting.
+ * When you first call this function and there is not available data from GPS, this function will return @ref TM_GPS_Result_FirstTimeWaiting.
  * This will be returning all the time we don't have any useful data.
  * When first time useful data is received from GPS (everything parsed), TM_GPS_Result_NewData will be returned.
  * When we have already new data, next time we call this function, TM_GPS_Result_OldData will be returning until we don't receive new packet of useful data.
  */
-extern TM_GPS_Result_t TM_GPS_Update(TM_GPS_Data_t* GPS_Data);
 
 /**
- * Convert speed from knots to desired value
- *
- * Parameters:
- * 	- double SpeedInKnots:
- * 		Speed from GPS, in knots
- * 	- TM_GPS_Speed_t toSpeed:
- * 		Parameter of TM_GPS_Speed_t enumeration to convert data to
- *
- * Returns speed in desired format
+ * @brief  Update GPS data.
+ * @note   This function must be called periodically, as fast as possible. 
+ *         It basically checks if data is available on GPS USART and parse it to useful data for user.
+ * @note   - When you first call this function and there is not available data from GPS, this function will return @ref TM_GPS_Result_FirstTimeWaiting.
+ *         - This will be returning all the time we don't have any useful data.
+ *         - When first time useful data is received from GPS (everything parsed), @ref TM_GPS_Result_NewData will be returned.
+ *         - When we have already new data, next time we call this function, @ref TM_GPS_Result_OldData will be returning until we don't receive new packet of useful data.
+ * @note   If you are making GPS logger, then when you receive @ref TM_GPS_Result_NewData it is time to save your data.
+ * @param  *GPS_Data: Pointer to working @ref TM_GPS_Data_t structure
+ * @retval Returns value of @ref TM_GPS_Result_t structure
  */
-extern float TM_GPS_ConvertSpeed(float SpeedInKnots, TM_GPS_Speed_t toSpeed);
+TM_GPS_Result_t TM_GPS_Update(TM_GPS_Data_t* GPS_Data);
 
 /**
- * Converts float number into Integer and Decimal parts.
- *
- * Parameters:
- *  - float num:
- *  	Float number to convert
- *  - TM_GPS_Float_t* Float_Data:
- *  	Pointer to TM_GPS_Float_t struct to store data into
- *  - uint8_t decimals:
- *  	Number of decimals places
+ * @brief  Converts speed in knots (from GPS) to user selectable speed
+ * @param  speedInKnots: float value from GPS module
+ * @param  toSpeed: Select to which speed you want conversion from knot. This parameter ca be a value of TM_GPS_Speed_t enumeration.
+ * @retval Calculated speed from knots to user selectable format
  */
-extern void TM_GPS_ConvertFloat(float num, TM_GPS_Float_t* Float_Data, uint8_t decimals);
+float TM_GPS_ConvertSpeed(float SpeedInKnots, TM_GPS_Speed_t toSpeed);
 
 /**
- * Added in version v1.1
- *
- * Calculates distance between 2 coordinates on earth and bearing in relation to the north
- *
- * Distance is returned in meters and bearing in degrees
- *
- * Parameters:
- * 	- TM_GPS_Distance_t* Distance_Data
- * 		Pointer to TM_GPS_Distance_t struct to get data and calculate back
+ * @brief  Converts float number into integer and decimal part
+ * @param  num: Float number to split into 2 parts
+ * @param  *Float_Data: Pointer to TM_GPS_Float_t structure where to save result
+ * @param  decimals: Number of decimal places for conversion
+ * @note   Example: You have number 15.002 in float format.
+ *            - You want to split this to integer and decimal part with 6 decimal places.
+ *            - Call TM_GPS_ConvertFloat(15.002, &Float_Struct, 6);
+ *            - Result will be: Integer: 15; Decimal: 2000 (0.002 * 10^6)
+ * @retval None
  */
-extern void TM_GPS_DistanceBetween(TM_GPS_Distance_t* Distance_Data);
+void TM_GPS_ConvertFloat(float num, TM_GPS_Float_t* Float_Data, uint8_t decimals);
+
+/**
+ * @brief  Calculates distance between 2 coordinates on earth and bearing from start to end point in relation to the north
+ * @param  *Distance_Data: Pointer to TM_GPS_Distance_t structure with latitude and longitude set values
+ * @note   Calculation results will be saved in *Distance_Data TM_GPS_Distance_t structure
+ * @retval None
+ */
+void TM_GPS_DistanceBetween(TM_GPS_Distance_t* Distance_Data);
+
+/**
+ * @}
+ */
+ 
+/**
+ * @}
+ */
+ 
+/**
+ * @}
+ */ 
 
 #endif
 

@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="struct_t_m___u_s_a_r_t__t">
+<title>TM_USART_t struct Reference</title>
+        <section>
+            <title>Data Fields</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint8_t * Buffer</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint16_t Size</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint16_t Num</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint16_t In</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint16_t Out</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint8_t Initialized</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+    <simplesect>
+
+<para>Internal USART struct. </para>
+    </simplesect>
+        <simplesect>
+            <title>Detailed Description</title>
+
+<para>|----------------------------------------------------------------&#8212;&#8212; | Copyright (C) Tilen Majerle, 2014 | | This program is free software: you can redistribute it and/or modify | it under the terms of the GNU General Public License as published by | the Free Software Foundation, either version 3 of the License, or | any later version. | | This program is distributed in the hope that it will be useful, | but WITHOUT ANY WARRANTY; without even the implied warranty of | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the | GNU General Public License for more details. | | You should have received a copy of the GNU General Public License | along with this program. If not, see <link xlink:href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</link>. |----------------------------------------------------------------&#8212;&#8212; </para>
+                <para>Definition at line 25 of file tm_stm32f4_usart.c</para>
+                <para>The Documentation for this struct was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_usart.c</para></listitem></itemizedlist></para>
+        </simplesect>
+        <section>
+            <title>Field Documentation</title>
+        </section>
+</section>

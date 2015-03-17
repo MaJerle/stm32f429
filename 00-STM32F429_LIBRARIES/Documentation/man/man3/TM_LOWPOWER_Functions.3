@@ -1,0 +1,204 @@
+.TH "TM_LOWPOWER_Functions" 3 "Wed Mar 18 2015" "Version v1.0.0" "TM STM32F4xx Libraries" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TM_LOWPOWER_Functions \- TM_LOWPOWER_Functions
+.PP
+Library Functions\&.  
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBTM_LOWPOWER_SleepUntilInterrupt\fP (uint8_t delay_timer)"
+.br
+.RI "\fIPut device into sleep mode\&. \fP"
+.ti -1c
+.RI "void \fBTM_LOWPOWER_SleepUntilEvent\fP (void)"
+.br
+.RI "\fIPut device into sleep mode\&. \fP"
+.ti -1c
+.RI "void \fBTM_LOWPOWER_StopUntilInterrupt\fP (void)"
+.br
+.RI "\fIGo to STOP mode with 'Wait For Interrupt' instruction\&. \fP"
+.ti -1c
+.RI "void \fBTM_LOWPOWER_StopUntilEvent\fP (void)"
+.br
+.RI "\fIGo to STOP mode with 'Wait For Event' instruction\&. \fP"
+.ti -1c
+.RI "void \fBTM_LOWPOWER_Standby\fP (void)"
+.br
+.RI "\fITo go Standby mode\&. \fP"
+.ti -1c
+.RI "uint8_t \fBTM_LOWPOWER_StandbyReset\fP (void)"
+.br
+.RI "\fIChecks if system was reset because of wakeup from standby mode\&. \fP"
+.ti -1c
+.RI "void \fBTM_LOWPOWER_EnableWakeUpPin\fP (void)"
+.br
+.RI "\fIEnables Wakeup pin, fixed pin, PA0\&. \fP"
+.ti -1c
+.RI "void \fBTM_LOWPOWER_DisableWakeUpPin\fP (void)"
+.br
+.RI "\fIDisables Wakeup pin\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+Library Functions\&. 
+
+All functions for sleep mode configuration 
+.SH "Function Documentation"
+.PP 
+.SS "void TM_LOWPOWER_DisableWakeUpPin (void)"
+
+.PP
+Disables Wakeup pin\&. 
+.PP
+\fBNote:\fP
+.RS 4
+If you go to standby mode after PA0 is disabled, then you can't wake him up with rising edge 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+
+.SS "void TM_LOWPOWER_EnableWakeUpPin (void)"
+
+.PP
+Enables Wakeup pin, fixed pin, PA0\&. 
+.PP
+\fBNote:\fP
+.RS 4
+This pin is fixed and can't be changed\&. 
+.PP
+Rising edge on wakeup pin will wake up device from standby mode 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+
+.SS "void TM_LOWPOWER_SleepUntilEvent (void)"
+
+.PP
+Put device into sleep mode\&. 
+.PP
+\fBNote:\fP
+.RS 4
+MCU will be in sleep mode until next event occured 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+
+.SS "void TM_LOWPOWER_SleepUntilInterrupt (uint8_t delay_timer)"
+
+.PP
+Put device into sleep mode\&. 
+.PP
+\fBNote:\fP
+.RS 4
+MCU will be in sleep mode until next interrupt occured\&. This means, that delay timer (Systick or any user selectable delay timer) can wakeup STM32F4 too\&. If you want prevent this, you have to disable delay timer as well it\&. This can be done with this function\&.
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIdelay_timer\fP Set to > 0 and delay timer will be disabled or set to 0 and it will stay as is 
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fINone\fP |---------------------------------------------------------------------- | Copyright (C) Tilen Majerle, 2014 | | This program is free software: you can redistribute it and/or modify | it under the terms of the GNU General Public License as published by | the Free Software Foundation, either version 3 of the License, or | any later version\&. | | This program is distributed in the hope that it will be useful, | but WITHOUT ANY WARRANTY; without even the implied warranty of | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE\&. See the | GNU General Public License for more details\&. | | You should have received a copy of the GNU General Public License | along with this program\&. If not, see http://www.gnu.org/licenses/\&. |---------------------------------------------------------------------- 
+.RE
+.PP
+
+.SS "void TM_LOWPOWER_Standby (void)"
+
+.PP
+To go Standby mode\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+
+.SS "uint8_t TM_LOWPOWER_StandbyReset (void)"
+
+.PP
+Checks if system was reset because of wakeup from standby mode\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fI0\fP System was not reset because of wake up from standby mode 1: System was reset because of wake up from standby mode 
+.RE
+.PP
+
+.SS "void TM_LOWPOWER_StopUntilEvent (void)"
+
+.PP
+Go to STOP mode with 'Wait For Event' instruction\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+
+.SS "void TM_LOWPOWER_StopUntilInterrupt (void)"
+
+.PP
+Go to STOP mode with 'Wait For Interrupt' instruction\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for TM STM32F4xx Libraries from the source code\&.

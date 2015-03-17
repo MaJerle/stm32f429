@@ -1,0 +1,67 @@
+\hypertarget{tm__stm32f4__pwmin_8h_source}{}\subsection{tm\+\_\+stm32f4\+\_\+pwmin.\+h}
+
+\begin{DoxyCode}
+00001 
+00059 \textcolor{preprocessor}{#ifndef TM\_PWMIN\_H}
+00060 \textcolor{preprocessor}{#define TM\_PWMIN\_H 100}
+00061 
+00062 \textcolor{comment}{/* C++ detection */}
+00063 \textcolor{preprocessor}{#ifdef \_\_cplusplus}
+00064 \textcolor{keyword}{extern} C \{
+00065 \textcolor{preprocessor}{#endif}
+00066 
+00078 \textcolor{preprocessor}{#include "stm32f4xx.h"}
+00079 \textcolor{preprocessor}{#include "stm32f4xx\_rcc.h"}
+00080 \textcolor{preprocessor}{#include "stm32f4xx\_gpio.h"}
+00081 \textcolor{preprocessor}{#include "tm\_stm32f4\_timer\_properties.h"}
+00082 \textcolor{preprocessor}{#include "defines.h"}
+00083 
+00084 \textcolor{comment}{/* PWM IN timer global priority */}
+00085 \textcolor{preprocessor}{#ifndef PWMIN\_PRIORITY}
+00086 \textcolor{preprocessor}{#define PWMIN\_PRIORITY      0x01}
+00087 \textcolor{preprocessor}{#endif}
+00088 
+00102 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+00103     TM\_PWMIN\_Result\_Ok = 0,
+00104     TM\_PWMIN\_Result\_TimerNotValid,
+00105     TM\_PWMIN\_Result\_ChannelNotValid,
+00106     TM\_PWMIN\_Result\_PinNotValid
+00107 \} TM\_PWMIN\_Result\_t;
+00108 
+\hypertarget{tm__stm32f4__pwmin_8h_source_l00128}{}\hyperlink{struct_t_m___p_w_m_i_n__t}{00128} \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{
+00129     \textcolor{comment}{/* Public */}
+00130     \textcolor{keywordtype}{float} Frequency;
+00131     \textcolor{keywordtype}{float} DutyCycle;
+00132     \textcolor{comment}{/* Private */}
+00133     TIM\_TypeDef* \_\_TIM;
+00134     \hyperlink{struct_t_m___t_i_m_e_r___p_r_o_p_e_r_t_i_e_s__t}{TM\_TIMER\_PROPERTIES\_t} \_\_TIM\_Data;
+00135     \textcolor{keywordtype}{float} \_\_Freq;
+00136     \textcolor{keywordtype}{float} \_\_Duty;
+00137     uint8\_t \_\_SubPriority;
+00138 \} \hyperlink{struct_t_m___p_w_m_i_n__t}{TM\_PWMIN\_t};
+00139 
+00144 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+00145     TM\_PWMIN\_Channel\_1 = 0,
+00146     TM\_PWMIN\_Channel\_2
+00147 \} TM\_PWMIN\_Channel\_t;
+00148 
+00153 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+00154     TM\_PWMIN\_PinsPack\_1 = 0,
+00155     TM\_PWMIN\_PinsPack\_2,
+00156     TM\_PWMIN\_PinsPack\_3
+00157 \} TM\_PWMIN\_PinsPack\_t;
+00158 
+00178 \textcolor{keyword}{extern} TM\_PWMIN\_Result\_t TM\_PWMIN\_InitTimer(TIM\_TypeDef* TIMx, \hyperlink{struct_t_m___p_w_m_i_n__t}{TM\_PWMIN\_t}* PWMIN\_Data, 
+      TM\_PWMIN\_Channel\_t PWMIN\_Channel, TM\_PWMIN\_PinsPack\_t PinsPack, \textcolor{keywordtype}{float} MinExpectedFrequency, IRQn\_Type TIMx\_IRQn);
+00179 
+00192 \textcolor{keyword}{extern} TM\_PWMIN\_Result\_t TM\_PWMIN\_Get(\hyperlink{struct_t_m___p_w_m_i_n__t}{TM\_PWMIN\_t}* PWMIN\_Data);
+00193 
+00210 \textcolor{keyword}{extern} TM\_PWMIN\_Result\_t TM\_PWMIN\_InterruptHandler(\hyperlink{struct_t_m___p_w_m_i_n__t}{TM\_PWMIN\_t}* PWMIN\_Data);
+00211 
+00212 \textcolor{comment}{/* C++ detection */}
+00213 \textcolor{preprocessor}{#ifdef \_\_cplusplus}
+00214 \}
+00215 \textcolor{preprocessor}{#endif}
+00216 
+00217 \textcolor{preprocessor}{#endif}
+\end{DoxyCode}

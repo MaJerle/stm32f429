@@ -1,0 +1,31 @@
+\hypertarget{tm__stm32f4__watchdog_8h_source}{}\subsection{tm\+\_\+stm32f4\+\_\+watchdog.\+h}
+
+\begin{DoxyCode}
+00001 
+00030 \textcolor{preprocessor}{#ifndef TM\_WATCHDOG\_H}
+00031 \textcolor{preprocessor}{#define TM\_WATCHDOG\_H 110}
+00032 
+00060 \textcolor{preprocessor}{#include "stm32f4xx.h"}
+00061 \textcolor{preprocessor}{#include "defines.h"}
+00062 
+\hypertarget{tm__stm32f4__watchdog_8h_source_l00072}{}\hyperlink{group___t_m___w_a_t_c_h_d_o_g___typedefs_ga3c9514e409e8cc70048b868ca9a64671}{00072} \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+\hypertarget{tm__stm32f4__watchdog_8h_source_l00073}{}\hyperlink{group___t_m___w_a_t_c_h_d_o_g___typedefs_gga3c9514e409e8cc70048b868ca9a64671a764ef29a2656c829c98f2d78dc549d43}{00073}     \hyperlink{group___t_m___w_a_t_c_h_d_o_g___typedefs_gga3c9514e409e8cc70048b868ca9a64671a764ef29a2656c829c98f2d78dc549d43}{TM\_WATCHDOG\_Timeout\_5ms}, 
+\hypertarget{tm__stm32f4__watchdog_8h_source_l00074}{}\hyperlink{group___t_m___w_a_t_c_h_d_o_g___typedefs_gga3c9514e409e8cc70048b868ca9a64671a7bbd32ffec01b6a95f4f71edb000b861}{00074}     \hyperlink{group___t_m___w_a_t_c_h_d_o_g___typedefs_gga3c9514e409e8cc70048b868ca9a64671a7bbd32ffec01b6a95f4f71edb000b861}{TM\_WATCHDOG\_Timeout\_10ms},   
+\hypertarget{tm__stm32f4__watchdog_8h_source_l00075}{}\hyperlink{group___t_m___w_a_t_c_h_d_o_g___typedefs_gga3c9514e409e8cc70048b868ca9a64671a8f990a8259213c4d2500ba221a1b73ac}{00075}     \hyperlink{group___t_m___w_a_t_c_h_d_o_g___typedefs_gga3c9514e409e8cc70048b868ca9a64671a8f990a8259213c4d2500ba221a1b73ac}{TM\_WATCHDOG\_Timeout\_15ms},   
+\hypertarget{tm__stm32f4__watchdog_8h_source_l00076}{}\hyperlink{group___t_m___w_a_t_c_h_d_o_g___typedefs_gga3c9514e409e8cc70048b868ca9a64671a17a2e91a073e2ff292e2f4412b7fd04b}{00076}     \hyperlink{group___t_m___w_a_t_c_h_d_o_g___typedefs_gga3c9514e409e8cc70048b868ca9a64671a17a2e91a073e2ff292e2f4412b7fd04b}{TM\_WATCHDOG\_Timeout\_30ms},   
+\hypertarget{tm__stm32f4__watchdog_8h_source_l00077}{}\hyperlink{group___t_m___w_a_t_c_h_d_o_g___typedefs_gga3c9514e409e8cc70048b868ca9a64671a1b82d78d2e7dcbe39b9182aa3a3860b7}{00077}     \hyperlink{group___t_m___w_a_t_c_h_d_o_g___typedefs_gga3c9514e409e8cc70048b868ca9a64671a1b82d78d2e7dcbe39b9182aa3a3860b7}{TM\_WATCHDOG\_Timeout\_60ms},   
+\hypertarget{tm__stm32f4__watchdog_8h_source_l00078}{}\hyperlink{group___t_m___w_a_t_c_h_d_o_g___typedefs_gga3c9514e409e8cc70048b868ca9a64671a7de64610008ce6a16fdb7787a944ccbd}{00078}     \hyperlink{group___t_m___w_a_t_c_h_d_o_g___typedefs_gga3c9514e409e8cc70048b868ca9a64671a7de64610008ce6a16fdb7787a944ccbd}{TM\_WATCHDOG\_Timeout\_120ms}, 
+\hypertarget{tm__stm32f4__watchdog_8h_source_l00079}{}\hyperlink{group___t_m___w_a_t_c_h_d_o_g___typedefs_gga3c9514e409e8cc70048b868ca9a64671ab4090a7f35ab14b8f10e58a9cf287ed5}{00079}     \hyperlink{group___t_m___w_a_t_c_h_d_o_g___typedefs_gga3c9514e409e8cc70048b868ca9a64671ab4090a7f35ab14b8f10e58a9cf287ed5}{TM\_WATCHDOG\_Timeout\_250ms}, 
+\hypertarget{tm__stm32f4__watchdog_8h_source_l00080}{}\hyperlink{group___t_m___w_a_t_c_h_d_o_g___typedefs_gga3c9514e409e8cc70048b868ca9a64671afd9f485930deba69e725472106491094}{00080}     \hyperlink{group___t_m___w_a_t_c_h_d_o_g___typedefs_gga3c9514e409e8cc70048b868ca9a64671afd9f485930deba69e725472106491094}{TM\_WATCHDOG\_Timeout\_500ms}, 
+\hypertarget{tm__stm32f4__watchdog_8h_source_l00081}{}\hyperlink{group___t_m___w_a_t_c_h_d_o_g___typedefs_gga3c9514e409e8cc70048b868ca9a64671a46d9f4e33c28c9e182bbbf48019b48a2}{00081}     \hyperlink{group___t_m___w_a_t_c_h_d_o_g___typedefs_gga3c9514e409e8cc70048b868ca9a64671a46d9f4e33c28c9e182bbbf48019b48a2}{TM\_WATCHDOG\_Timeout\_1s},       
+\hypertarget{tm__stm32f4__watchdog_8h_source_l00082}{}\hyperlink{group___t_m___w_a_t_c_h_d_o_g___typedefs_gga3c9514e409e8cc70048b868ca9a64671ae8bcb0df93e0eeb1ee862a7a053ada58}{00082}     \hyperlink{group___t_m___w_a_t_c_h_d_o_g___typedefs_gga3c9514e409e8cc70048b868ca9a64671ae8bcb0df93e0eeb1ee862a7a053ada58}{TM\_WATCHDOG\_Timeout\_2s},       
+\hypertarget{tm__stm32f4__watchdog_8h_source_l00083}{}\hyperlink{group___t_m___w_a_t_c_h_d_o_g___typedefs_gga3c9514e409e8cc70048b868ca9a64671a578a86c87af4d8dcbad89e1e10e0f1c4}{00083}     \hyperlink{group___t_m___w_a_t_c_h_d_o_g___typedefs_gga3c9514e409e8cc70048b868ca9a64671a578a86c87af4d8dcbad89e1e10e0f1c4}{TM\_WATCHDOG\_Timeout\_4s}        
+00084 \} \hyperlink{group___t_m___w_a_t_c_h_d_o_g___typedefs_ga3c9514e409e8cc70048b868ca9a64671}{TM\_WATCHDOG\_Timeout\_t};
+00085 
+00106 uint8\_t \hyperlink{group___t_m___w_a_t_c_h_d_o_g___functions_gafd88c97066851c92fe25c1b5c2cd74cf}{TM\_WATCHDOG\_Init}(\hyperlink{group___t_m___w_a_t_c_h_d_o_g___typedefs_ga3c9514e409e8cc70048b868ca9a64671}{TM\_WATCHDOG\_Timeout\_t} timeout);
+00107 
+00114 \textcolor{keywordtype}{void} \hyperlink{group___t_m___w_a_t_c_h_d_o_g___functions_ga73a095378efd3426d63a1879f582220b}{TM\_WATCHDOG\_Reset}(\textcolor{keywordtype}{void});
+00115 
+00128 \textcolor{preprocessor}{#endif}
+00129 
+\end{DoxyCode}

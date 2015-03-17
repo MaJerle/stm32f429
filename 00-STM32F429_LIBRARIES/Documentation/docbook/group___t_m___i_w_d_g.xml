@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="group___t_m___i_w_d_g">
+    <title>TM_IWDG</title>
+
+<para>Independent Watchdog timer for STM32F4xx - <link xlink:href="http://stm32f4-discovery.com/2014/07/library-20-independent-watchdog-timer-on-stm32f4xx/">http://stm32f4-discovery.com/2014/07/library-20-independent-watchdog-timer-on-stm32f4xx/</link>. </para>
+        <section>
+            <title>Detailed Description</title>
+
+<para><formalpara><title></title>
+<title>Changelog</title>
+<para></para>
+</formalpara>
+<literallayout> Version 1.1
+  - March 10, 2015
+  - Support for STD/HAL drivers
+
+ Version 1.0
+  - First release
+</literallayout></para>
+
+<para><formalpara><title></title>
+<title>Dependencies</title>
+<para></para>
+</formalpara>
+<literallayout> - STM32F4xx
+ - defines.h
+</literallayout> </para>
+        </section>
+    <simplesect>
+        <title>Modules</title>
+    </simplesect>
+    <para>
+        <itemizedlist>
+            <listitem><para><link linkend="group___t_m___i_w_d_g___typedefs">TM_IWDG_Typedefs</link></para></listitem>
+            <listitem><para><link linkend="group___t_m___i_w_d_g___functions">TM_IWDG_Functions</link></para></listitem>
+        </itemizedlist>
+    </para>
+<xi:include href="group___t_m___i_w_d_g___typedefs.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+<xi:include href="group___t_m___i_w_d_g___functions.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+</section>

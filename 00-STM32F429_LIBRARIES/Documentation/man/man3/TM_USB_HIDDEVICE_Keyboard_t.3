@@ -1,0 +1,87 @@
+.TH "TM_USB_HIDDEVICE_Keyboard_t" 3 "Wed Mar 18 2015" "Version v1.0.0" "TM STM32F4xx Libraries" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TM_USB_HIDDEVICE_Keyboard_t \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <tm_stm32f4_usb_hid_device\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "TM_USB_HIDDEVICE_Button_t \fBL_CTRL\fP"
+.br
+.ti -1c
+.RI "TM_USB_HIDDEVICE_Button_t \fBL_ALT\fP"
+.br
+.ti -1c
+.RI "TM_USB_HIDDEVICE_Button_t \fBL_SHIFT\fP"
+.br
+.ti -1c
+.RI "TM_USB_HIDDEVICE_Button_t \fBL_GUI\fP"
+.br
+.ti -1c
+.RI "TM_USB_HIDDEVICE_Button_t \fBR_CTRL\fP"
+.br
+.ti -1c
+.RI "TM_USB_HIDDEVICE_Button_t \fBR_ALT\fP"
+.br
+.ti -1c
+.RI "TM_USB_HIDDEVICE_Button_t \fBR_SHIFT\fP"
+.br
+.ti -1c
+.RI "TM_USB_HIDDEVICE_Button_t \fBR_GUI\fP"
+.br
+.ti -1c
+.RI "uint8_t \fBKey1\fP"
+.br
+.ti -1c
+.RI "uint8_t \fBKey2\fP"
+.br
+.ti -1c
+.RI "uint8_t \fBKey3\fP"
+.br
+.ti -1c
+.RI "uint8_t \fBKey4\fP"
+.br
+.ti -1c
+.RI "uint8_t \fBKey5\fP"
+.br
+.ti -1c
+.RI "uint8_t \fBKey6\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Keyboard typedef
+.PP
+Keyboard has special 8 buttons (CTRL, ALT, SHIFT, GUI (or WIN), all are left and right)\&. It also supports 6 others keys to be pressed at same time, let's say Key1 = 'a', Key2 = 'b', and you will get 'ab' result on the screen\&. If key is not used, then 0x00 value should be set
+.PP
+Parameters:
+.IP "\(bu" 2
+TM_USB_HIDDEVICE_Button_t L_CTRL: Left CTRL button
+.IP "\(bu" 2
+TM_USB_HIDDEVICE_Button_t L_ALT: Left ALT button
+.IP "\(bu" 2
+TM_USB_HIDDEVICE_Button_t L_SHIFT: Left SHIFT button
+.IP "\(bu" 2
+TM_USB_HIDDEVICE_Button_t L_GUI: Left GUI (or Win) button
+.IP "\(bu" 2
+TM_USB_HIDDEVICE_Button_t R_CTRL: Right CTRL button
+.IP "\(bu" 2
+TM_USB_HIDDEVICE_Button_t R_ALT: Right ALT button
+.IP "\(bu" 2
+TM_USB_HIDDEVICE_Button_t R_SHIFT: Right SHIFT button
+.IP "\(bu" 2
+TM_USB_HIDDEVICE_Button_t R_GUI: Right GUI (or Win) button
+.IP "\(bu" 2
+uint8_t Key[1:6]: Key used with keyboard\&. This can be whatever\&. Like numbers, letters, everything\&. Also, 6 Key parameters you have\&. It means you can set 6 different numbers, letters, whatever in one keyboard update\&. 
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for TM STM32F4xx Libraries from the source code\&.

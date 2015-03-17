@@ -1,0 +1,274 @@
+\hypertarget{tm__stm32f4__nrf24l01_8h_source}{}\subsection{tm\+\_\+stm32f4\+\_\+nrf24l01.\+h}
+
+\begin{DoxyCode}
+00001 
+00073 \textcolor{preprocessor}{#ifndef TM\_NRF24L01\_H}
+00074 \textcolor{preprocessor}{#define TM\_NRF24L01\_H 110}
+00075 
+00086 \textcolor{preprocessor}{#include "stm32f4xx.h"}
+00087 \textcolor{preprocessor}{#include "tm\_stm32f4\_spi.h"}
+00088 \textcolor{preprocessor}{#include "defines.h"}
+00089 \textcolor{preprocessor}{#include "tm\_stm32f4\_gpio.h"}
+00090 
+00091 \textcolor{comment}{/* Set default SPI used */}
+00092 \textcolor{preprocessor}{#ifndef NRF24L01\_SPI}
+00093 \textcolor{preprocessor}{#define NRF24L01\_SPI                SPI3}
+00094 \textcolor{preprocessor}{#define NRF24L01\_SPI\_PINS           TM\_SPI\_PinsPack\_2}
+00095 \textcolor{preprocessor}{#endif}
+00096 \textcolor{comment}{/* SPI chip enable pin */}
+00097 \textcolor{preprocessor}{#ifndef NRF24L01\_CSN\_PIN}
+00098 \textcolor{preprocessor}{#define NRF24L01\_CSN\_PORT           GPIOD}
+00099 \textcolor{preprocessor}{#define NRF24L01\_CSN\_PIN            GPIO\_PIN\_7}
+00100 \textcolor{preprocessor}{#endif}
+00101 \textcolor{comment}{/* Chip enable for transmitting */}
+00102 \textcolor{preprocessor}{#ifndef NRF24L01\_CE\_PIN}
+00103 \textcolor{preprocessor}{#define NRF24L01\_CE\_PORT            GPIOD}
+00104 \textcolor{preprocessor}{#define NRF24L01\_CE\_PIN             GPIO\_PIN\_8}
+00105 \textcolor{preprocessor}{#endif}
+00106 
+00107 \textcolor{comment}{/* Pins configuration */}
+00108 \textcolor{preprocessor}{#define NRF24L01\_CE\_LOW             TM\_GPIO\_SetPinHigh(NRF24L01\_CE\_PORT, NRF24L01\_CE\_PIN)}
+00109 \textcolor{preprocessor}{#define NRF24L01\_CE\_HIGH            TM\_GPIO\_SetPinHigh(NRF24L01\_CE\_PORT, NRF24L01\_CE\_PIN)}
+00110 \textcolor{preprocessor}{#define NRF24L01\_CSN\_LOW            TM\_GPIO\_SetPinHigh(NRF24L01\_CSN\_PORT, NRF24L01\_CSN\_PIN)}
+00111 \textcolor{preprocessor}{#define NRF24L01\_CSN\_HIGH           TM\_GPIO\_SetPinHigh(NRF24L01\_CSN\_PORT, NRF24L01\_CSN\_PIN)}
+00112 
+00113 \textcolor{comment}{/* NRF24L01+ registers*/}
+00114 \textcolor{preprocessor}{#define NRF24L01\_REG\_CONFIG         0x00    //Configuration Register}
+00115 \textcolor{preprocessor}{#define NRF24L01\_REG\_EN\_AA          0x01    //Enable ‘Auto Acknowledgment’ Function}
+00116 \textcolor{preprocessor}{#define NRF24L01\_REG\_EN\_RXADDR      0x02    //Enabled RX Addresses}
+00117 \textcolor{preprocessor}{#define NRF24L01\_REG\_SETUP\_AW       0x03    //Setup of Address Widths (common for all data pipes)}
+00118 \textcolor{preprocessor}{#define NRF24L01\_REG\_SETUP\_RETR     0x04    //Setup of Automatic Retransmission}
+00119 \textcolor{preprocessor}{#define NRF24L01\_REG\_RF\_CH          0x05    //RF Channel}
+00120 \textcolor{preprocessor}{#define NRF24L01\_REG\_RF\_SETUP       0x06    //RF Setup Register }
+00121 \textcolor{preprocessor}{#define NRF24L01\_REG\_STATUS         0x07    //Status Register}
+00122 \textcolor{preprocessor}{#define NRF24L01\_REG\_OBSERVE\_TX     0x08    //Transmit observe register}
+00123 \textcolor{preprocessor}{#define NRF24L01\_REG\_RPD            0x09    }
+00124 \textcolor{preprocessor}{#define NRF24L01\_REG\_RX\_ADDR\_P0     0x0A    //Receive address data pipe 0. 5 Bytes maximum length.}
+00125 \textcolor{preprocessor}{#define NRF24L01\_REG\_RX\_ADDR\_P1     0x0B    //Receive address data pipe 1. 5 Bytes maximum length.}
+00126 \textcolor{preprocessor}{#define NRF24L01\_REG\_RX\_ADDR\_P2     0x0C    //Receive address data pipe 2. Only LSB}
+00127 \textcolor{preprocessor}{#define NRF24L01\_REG\_RX\_ADDR\_P3     0x0D    //Receive address data pipe 3. Only LSB}
+00128 \textcolor{preprocessor}{#define NRF24L01\_REG\_RX\_ADDR\_P4     0x0E    //Receive address data pipe 4. Only LSB}
+00129 \textcolor{preprocessor}{#define NRF24L01\_REG\_RX\_ADDR\_P5     0x0F    //Receive address data pipe 5. Only LSB}
+00130 \textcolor{preprocessor}{#define NRF24L01\_REG\_TX\_ADDR        0x10    //Transmit address. Used for a PTX device only}
+00131 \textcolor{preprocessor}{#define NRF24L01\_REG\_RX\_PW\_P0       0x11    }
+00132 \textcolor{preprocessor}{#define NRF24L01\_REG\_RX\_PW\_P1       0x12    }
+00133 \textcolor{preprocessor}{#define NRF24L01\_REG\_RX\_PW\_P2       0x13    }
+00134 \textcolor{preprocessor}{#define NRF24L01\_REG\_RX\_PW\_P3       0x14    }
+00135 \textcolor{preprocessor}{#define NRF24L01\_REG\_RX\_PW\_P4       0x15    }
+00136 \textcolor{preprocessor}{#define NRF24L01\_REG\_RX\_PW\_P5       0x16    }
+00137 \textcolor{preprocessor}{#define NRF24L01\_REG\_FIFO\_STATUS    0x17    //FIFO Status Register}
+00138 \textcolor{preprocessor}{#define NRF24L01\_REG\_DYNPD          0x1C    //Enable dynamic payload length}
+00139 \textcolor{preprocessor}{#define NRF24L01\_REG\_FEATURE        0x1D}
+00140 
+00141 \textcolor{comment}{/* Registers default values */}
+00142 \textcolor{preprocessor}{#define NRF24L01\_REG\_DEFAULT\_VAL\_CONFIG         0x08    }
+00143 \textcolor{preprocessor}{#define NRF24L01\_REG\_DEFAULT\_VAL\_EN\_AA          0x3F    }
+00144 \textcolor{preprocessor}{#define NRF24L01\_REG\_DEFAULT\_VAL\_EN\_RXADDR      0x03    }
+00145 \textcolor{preprocessor}{#define NRF24L01\_REG\_DEFAULT\_VAL\_SETUP\_AW       0x03    }
+00146 \textcolor{preprocessor}{#define NRF24L01\_REG\_DEFAULT\_VAL\_SETUP\_RETR     0x03    }
+00147 \textcolor{preprocessor}{#define NRF24L01\_REG\_DEFAULT\_VAL\_RF\_CH          0x02    }
+00148 \textcolor{preprocessor}{#define NRF24L01\_REG\_DEFAULT\_VAL\_RF\_SETUP       0x0E    }
+00149 \textcolor{preprocessor}{#define NRF24L01\_REG\_DEFAULT\_VAL\_STATUS         0x0E    }
+00150 \textcolor{preprocessor}{#define NRF24L01\_REG\_DEFAULT\_VAL\_OBSERVE\_TX     0x00    }
+00151 \textcolor{preprocessor}{#define NRF24L01\_REG\_DEFAULT\_VAL\_RPD            0x00}
+00152 \textcolor{preprocessor}{#define NRF24L01\_REG\_DEFAULT\_VAL\_RX\_ADDR\_P0\_0   0xE7}
+00153 \textcolor{preprocessor}{#define NRF24L01\_REG\_DEFAULT\_VAL\_RX\_ADDR\_P0\_1   0xE7}
+00154 \textcolor{preprocessor}{#define NRF24L01\_REG\_DEFAULT\_VAL\_RX\_ADDR\_P0\_2   0xE7}
+00155 \textcolor{preprocessor}{#define NRF24L01\_REG\_DEFAULT\_VAL\_RX\_ADDR\_P0\_3   0xE7}
+00156 \textcolor{preprocessor}{#define NRF24L01\_REG\_DEFAULT\_VAL\_RX\_ADDR\_P0\_4   0xE7}
+00157 \textcolor{preprocessor}{#define NRF24L01\_REG\_DEFAULT\_VAL\_RX\_ADDR\_P1\_0   0xC2}
+00158 \textcolor{preprocessor}{#define NRF24L01\_REG\_DEFAULT\_VAL\_RX\_ADDR\_P1\_1   0xC2}
+00159 \textcolor{preprocessor}{#define NRF24L01\_REG\_DEFAULT\_VAL\_RX\_ADDR\_P1\_2   0xC2}
+00160 \textcolor{preprocessor}{#define NRF24L01\_REG\_DEFAULT\_VAL\_RX\_ADDR\_P1\_3   0xC2}
+00161 \textcolor{preprocessor}{#define NRF24L01\_REG\_DEFAULT\_VAL\_RX\_ADDR\_P1\_4   0xC2}
+00162 \textcolor{preprocessor}{#define NRF24L01\_REG\_DEFAULT\_VAL\_RX\_ADDR\_P2     0xC3    }
+00163 \textcolor{preprocessor}{#define NRF24L01\_REG\_DEFAULT\_VAL\_RX\_ADDR\_P3     0xC4    }
+00164 \textcolor{preprocessor}{#define NRF24L01\_REG\_DEFAULT\_VAL\_RX\_ADDR\_P4     0xC5}
+00165 \textcolor{preprocessor}{#define NRF24L01\_REG\_DEFAULT\_VAL\_RX\_ADDR\_P5     0xC6}
+00166 \textcolor{preprocessor}{#define NRF24L01\_REG\_DEFAULT\_VAL\_TX\_ADDR\_0      0xE7}
+00167 \textcolor{preprocessor}{#define NRF24L01\_REG\_DEFAULT\_VAL\_TX\_ADDR\_1      0xE7}
+00168 \textcolor{preprocessor}{#define NRF24L01\_REG\_DEFAULT\_VAL\_TX\_ADDR\_2      0xE7}
+00169 \textcolor{preprocessor}{#define NRF24L01\_REG\_DEFAULT\_VAL\_TX\_ADDR\_3      0xE7}
+00170 \textcolor{preprocessor}{#define NRF24L01\_REG\_DEFAULT\_VAL\_TX\_ADDR\_4      0xE7}
+00171 \textcolor{preprocessor}{#define NRF24L01\_REG\_DEFAULT\_VAL\_RX\_PW\_P0       0x00}
+00172 \textcolor{preprocessor}{#define NRF24L01\_REG\_DEFAULT\_VAL\_RX\_PW\_P1       0x00}
+00173 \textcolor{preprocessor}{#define NRF24L01\_REG\_DEFAULT\_VAL\_RX\_PW\_P2       0x00}
+00174 \textcolor{preprocessor}{#define NRF24L01\_REG\_DEFAULT\_VAL\_RX\_PW\_P3       0x00}
+00175 \textcolor{preprocessor}{#define NRF24L01\_REG\_DEFAULT\_VAL\_RX\_PW\_P4       0x00}
+00176 \textcolor{preprocessor}{#define NRF24L01\_REG\_DEFAULT\_VAL\_RX\_PW\_P5       0x00}
+00177 \textcolor{preprocessor}{#define NRF24L01\_REG\_DEFAULT\_VAL\_FIFO\_STATUS    0x11}
+00178 \textcolor{preprocessor}{#define NRF24L01\_REG\_DEFAULT\_VAL\_DYNPD          0x00}
+00179 \textcolor{preprocessor}{#define NRF24L01\_REG\_DEFAULT\_VAL\_FEATURE        0x00}
+00180 
+00181 \textcolor{comment}{/* Configuration register*/}
+00182 \textcolor{preprocessor}{#define NRF24L01\_MASK\_RX\_DR     6}
+00183 \textcolor{preprocessor}{#define NRF24L01\_MASK\_TX\_DS     5}
+00184 \textcolor{preprocessor}{#define NRF24L01\_MASK\_MAX\_RT    4}
+00185 \textcolor{preprocessor}{#define NRF24L01\_EN\_CRC         3}
+00186 \textcolor{preprocessor}{#define NRF24L01\_CRCO           2}
+00187 \textcolor{preprocessor}{#define NRF24L01\_PWR\_UP         1}
+00188 \textcolor{preprocessor}{#define NRF24L01\_PRIM\_RX        0}
+00189 
+00190 \textcolor{comment}{/* Enable auto acknowledgment*/}
+00191 \textcolor{preprocessor}{#define NRF24L01\_ENAA\_P5        5}
+00192 \textcolor{preprocessor}{#define NRF24L01\_ENAA\_P4        4}
+00193 \textcolor{preprocessor}{#define NRF24L01\_ENAA\_P3        3}
+00194 \textcolor{preprocessor}{#define NRF24L01\_ENAA\_P2        2}
+00195 \textcolor{preprocessor}{#define NRF24L01\_ENAA\_P1        1}
+00196 \textcolor{preprocessor}{#define NRF24L01\_ENAA\_P0        0}
+00197 
+00198 \textcolor{comment}{/* Enable rx addresses */}
+00199 \textcolor{preprocessor}{#define NRF24L01\_ERX\_P5         5}
+00200 \textcolor{preprocessor}{#define NRF24L01\_ERX\_P4         4}
+00201 \textcolor{preprocessor}{#define NRF24L01\_ERX\_P3         3}
+00202 \textcolor{preprocessor}{#define NRF24L01\_ERX\_P2         2}
+00203 \textcolor{preprocessor}{#define NRF24L01\_ERX\_P1         1}
+00204 \textcolor{preprocessor}{#define NRF24L01\_ERX\_P0         0}
+00205 
+00206 \textcolor{comment}{/* Setup of address width */}
+00207 \textcolor{preprocessor}{#define NRF24L01\_AW             0 //2 bits}
+00208 
+00209 \textcolor{comment}{/* Setup of auto re-transmission*/}
+00210 \textcolor{preprocessor}{#define NRF24L01\_ARD            4 //4 bits}
+00211 \textcolor{preprocessor}{#define NRF24L01\_ARC            0 //4 bits}
+00212 
+00213 \textcolor{comment}{/* RF setup register*/}
+00214 \textcolor{preprocessor}{#define NRF24L01\_PLL\_LOCK       4}
+00215 \textcolor{preprocessor}{#define NRF24L01\_RF\_DR\_LOW      5}
+00216 \textcolor{preprocessor}{#define NRF24L01\_RF\_DR\_HIGH     3}
+00217 \textcolor{preprocessor}{#define NRF24L01\_RF\_DR          3}
+00218 \textcolor{preprocessor}{#define NRF24L01\_RF\_PWR         1 //2 bits   }
+00219 
+00220 \textcolor{comment}{/* General status register */}
+00221 \textcolor{preprocessor}{#define NRF24L01\_RX\_DR          6}
+00222 \textcolor{preprocessor}{#define NRF24L01\_TX\_DS          5}
+00223 \textcolor{preprocessor}{#define NRF24L01\_MAX\_RT         4}
+00224 \textcolor{preprocessor}{#define NRF24L01\_RX\_P\_NO        1 //3 bits}
+00225 \textcolor{preprocessor}{#define NRF24L01\_TX\_FULL        0}
+00226 
+00227 \textcolor{comment}{/* Transmit observe register */}
+00228 \textcolor{preprocessor}{#define NRF24L01\_PLOS\_CNT       4 //4 bits}
+00229 \textcolor{preprocessor}{#define NRF24L01\_ARC\_CNT        0 //4 bits}
+00230 
+00231 \textcolor{comment}{/* FIFO status*/}
+00232 \textcolor{preprocessor}{#define NRF24L01\_TX\_REUSE       6}
+00233 \textcolor{preprocessor}{#define NRF24L01\_FIFO\_FULL      5}
+00234 \textcolor{preprocessor}{#define NRF24L01\_TX\_EMPTY       4}
+00235 \textcolor{preprocessor}{#define NRF24L01\_RX\_FULL        1}
+00236 \textcolor{preprocessor}{#define NRF24L01\_RX\_EMPTY       0}
+00237 
+00238 \textcolor{comment}{//Dynamic length}
+00239 \textcolor{preprocessor}{#define NRF24L01\_DPL\_P0         0}
+00240 \textcolor{preprocessor}{#define NRF24L01\_DPL\_P1         1}
+00241 \textcolor{preprocessor}{#define NRF24L01\_DPL\_P2         2}
+00242 \textcolor{preprocessor}{#define NRF24L01\_DPL\_P3         3}
+00243 \textcolor{preprocessor}{#define NRF24L01\_DPL\_P4         4}
+00244 \textcolor{preprocessor}{#define NRF24L01\_DPL\_P5         5}
+00245 
+00246 \textcolor{comment}{/* Transmitter power*/}
+00247 \textcolor{preprocessor}{#define NRF24L01\_M18DBM         0 //-18 dBm}
+00248 \textcolor{preprocessor}{#define NRF24L01\_M12DBM         1 //-12 dBm}
+00249 \textcolor{preprocessor}{#define NRF24L01\_M6DBM          2 //-6 dBm}
+00250 \textcolor{preprocessor}{#define NRF24L01\_0DBM           3 //0 dBm}
+00251 
+00252 \textcolor{comment}{/* Data rates */}
+00253 \textcolor{preprocessor}{#define NRF24L01\_2MBPS          0}
+00254 \textcolor{preprocessor}{#define NRF24L01\_1MBPS          1}
+00255 \textcolor{preprocessor}{#define NRF24L01\_250KBPS        2}
+00256 
+00257 \textcolor{comment}{/* Configuration */}
+00258 \textcolor{preprocessor}{#define NRF24L01\_CONFIG         ((1 << NRF24L01\_EN\_CRC) | (0 << NRF24L01\_CRCO))}
+00259 
+00260 \textcolor{comment}{/* Instruction Mnemonics */}
+00261 \textcolor{preprocessor}{#define NRF24L01\_REGISTER\_MASK              0x1F}
+00262 
+00263 \textcolor{preprocessor}{#define NRF24L01\_READ\_REGISTER\_MASK(reg)    (0x00 | (NRF24L01\_REGISTER\_MASK & reg)) //Last 5 bits will
+       indicate reg. address}
+00264 \textcolor{preprocessor}{#define NRF24L01\_WRITE\_REGISTER\_MASK(reg)   (0x20 | (NRF24L01\_REGISTER\_MASK & reg)) //Last 5 bits will
+       indicate reg. address}
+00265 \textcolor{preprocessor}{#define NRF24L01\_R\_RX\_PAYLOAD\_MASK          0x61}
+00266 \textcolor{preprocessor}{#define NRF24L01\_W\_TX\_PAYLOAD\_MASK          0xA0}
+00267 \textcolor{preprocessor}{#define NRF24L01\_FLUSH\_TX\_MASK              0xE1}
+00268 \textcolor{preprocessor}{#define NRF24L01\_FLUSH\_RX\_MASK              0xE2}
+00269 \textcolor{preprocessor}{#define NRF24L01\_REUSE\_TX\_PL\_MASK           0xE3}
+00270 \textcolor{preprocessor}{#define NRF24L01\_ACTIVATE\_MASK              0x50 }
+00271 \textcolor{preprocessor}{#define NRF24L01\_R\_RX\_PL\_WID\_MASK           0x60}
+00272 \textcolor{preprocessor}{#define NRF24L01\_NOP\_MASK                   0xFF}
+00273 
+00274 \textcolor{comment}{/* Clear interrupt flags */}
+00275 \textcolor{preprocessor}{#define NRF24L01\_CLEAR\_INTERRUPTS           TM\_NRF24L01\_WriteBit(7, 4, Bit\_SET); TM\_NRF24L01\_WriteBit(7, 5,
+       Bit\_SET); TM\_NRF24L01\_WriteBit(7, 6, Bit\_SET)       }
+00276 
+00277 \textcolor{comment}{/* Flush FIFOs */}
+00278 \textcolor{preprocessor}{#define NRF24L01\_FLUSH\_TX                   NRF24L01\_CSN\_LOW; TM\_SPI\_Send(NRF24L01\_SPI,
+       NRF24L01\_FLUSH\_TX\_MASK); NRF24L01\_CSN\_HIGH}
+00279 \textcolor{preprocessor}{#define NRF24L01\_FLUSH\_RX                   NRF24L01\_CSN\_LOW; TM\_SPI\_Send(NRF24L01\_SPI,
+       NRF24L01\_FLUSH\_RX\_MASK); NRF24L01\_CSN\_HIGH}
+00280 
+00281 \textcolor{preprocessor}{#define NRF24L01\_TRANSMISSON\_OK             0}
+00282 \textcolor{preprocessor}{#define NRF24L01\_MESSAGE\_LOST               1}
+00283 
+00284 \textcolor{preprocessor}{#define NRF24L01\_CHECK\_BIT(reg,bit)         (reg & (1 << bit))}
+00285 
+00286 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+00287     TM\_NRF24L01\_Transmit\_Status\_Lost = 0,       \textcolor{comment}{//Message is lost, reached max retransmissions}
+00288     TM\_NRF24L01\_Transmit\_Status\_Ok = 1,         \textcolor{comment}{//Message sent successfully}
+00289     TM\_NRF24L01\_Transmit\_Status\_Sending = 0xFF  \textcolor{comment}{//Message is still sending}
+00290 \} TM\_NRF24L01\_Transmit\_Status\_t;
+00291 
+00292 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+00293     TM\_NRF24L01\_DataRate\_2M,        \textcolor{comment}{// 2Mbps}
+00294     TM\_NRF24L01\_DataRate\_1M,        \textcolor{comment}{// 1Mbps}
+00295     TM\_NRF24L01\_DataRate\_250k       \textcolor{comment}{// 250kbps}
+00296 \} TM\_NRF24L01\_DataRate\_t;
+00297 
+00298 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+00299     TM\_NRF24L01\_OutputPower\_M18dBm, \textcolor{comment}{// -18dBm}
+00300     TM\_NRF24L01\_OutputPower\_M12dBm, \textcolor{comment}{// -12dBm}
+00301     TM\_NRF24L01\_OutputPower\_M6dBm,  \textcolor{comment}{// -6dBm}
+00302     TM\_NRF24L01\_OutputPower\_0dBm    \textcolor{comment}{// 0dBm}
+00303 \} TM\_NRF24L01\_OutputPower\_t;
+00304 
+\hypertarget{tm__stm32f4__nrf24l01_8h_source_l00305}{}\hyperlink{struct_t_m___n_r_f24_l01__t}{00305} \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{
+00306     uint8\_t PayloadSize;                \textcolor{comment}{//Payload size}
+00307     uint8\_t Channel;                    \textcolor{comment}{//Channel selected}
+00308     TM\_NRF24L01\_OutputPower\_t OutPwr;   \textcolor{comment}{//Output power}
+00309     TM\_NRF24L01\_DataRate\_t DataRate;    \textcolor{comment}{//Data rate}
+00310 \} \hyperlink{struct_t_m___n_r_f24_l01__t}{TM\_NRF24L01\_t};
+00311 
+00321 \textcolor{keyword}{extern} uint8\_t TM\_NRF24L01\_Init(uint8\_t channel, uint8\_t payload\_size);
+00322 
+00329 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_NRF24L01\_SetMyAddress(uint8\_t* adr);
+00330 
+00331 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_NRF24L01\_SetPipe2Address(uint8\_t adr);
+00332 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_NRF24L01\_SetPipe3Address(uint8\_t adr);
+00333 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_NRF24L01\_SetPipe4Address(uint8\_t adr);
+00334 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_NRF24L01\_SetPipe5Address(uint8\_t adr);
+00335 
+00342 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_NRF24L01\_SetTxAddress(uint8\_t* adr);
+00343 
+00349 \textcolor{keyword}{extern} uint8\_t TM\_NRF24L01\_GetRetransmissionsCount(\textcolor{keywordtype}{void});
+00350 
+00356 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_NRF24L01\_PowerUpTx(\textcolor{keywordtype}{void});
+00357 
+00363 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_NRF24L01\_PowerUpRx(\textcolor{keywordtype}{void});
+00364 
+00370 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_NRF24L01\_PowerDown(\textcolor{keywordtype}{void});
+00371 
+00380 \textcolor{keyword}{extern} TM\_NRF24L01\_Transmit\_Status\_t TM\_NRF24L01\_GetTransmissionStatus(\textcolor{keywordtype}{void});
+00381 
+00388 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_NRF24L01\_Transmit(uint8\_t *data);
+00389 
+00396 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_NRF24L01\_GetData(uint8\_t *data);
+00397 
+00403 \textcolor{keyword}{extern} uint8\_t TM\_NRF24L01\_DataReady(\textcolor{keywordtype}{void});
+00404 
+00411 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_NRF24L01\_SetChannel(uint8\_t channel);
+00412 
+00427 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_NRF24L01\_SetRF(TM\_NRF24L01\_DataRate\_t DataRate, TM\_NRF24L01\_OutputPower\_t OutPwr);
+00428 
+00432 \textcolor{keyword}{extern} uint8\_t TM\_NRF24L01\_GetStatus(\textcolor{keywordtype}{void});
+00433 
+00434 \textcolor{preprocessor}{#endif}
+00435 
+\end{DoxyCode}

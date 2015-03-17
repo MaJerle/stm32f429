@@ -1,0 +1,62 @@
+.TH "TM_PWMIN_t" 3 "Wed Mar 18 2015" "Version v1.0.0" "TM STM32F4xx Libraries" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TM_PWMIN_t \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <tm_stm32f4_pwmin\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "float \fBFrequency\fP"
+.br
+.ti -1c
+.RI "float \fBDutyCycle\fP"
+.br
+.ti -1c
+.RI "TIM_TypeDef * \fB__TIM\fP"
+.br
+.ti -1c
+.RI "\fBTM_TIMER_PROPERTIES_t\fP \fB__TIM_Data\fP"
+.br
+.ti -1c
+.RI "float \fB__Freq\fP"
+.br
+.ti -1c
+.RI "float \fB__Duty\fP"
+.br
+.ti -1c
+.RI "uint8_t \fB__SubPriority\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+PWM Input working struct
+.PP
+Parameters:
+.IP "\(bu" 2
+float Frequency: Public, Measured frequency on input pin
+.IP "\(bu" 2
+float DutyCycle: Public, Measured duty cycle on input pin
+.IP "  \(bu" 4
+TIM_TypeDef* __TIM: Private, Pointer to timer used for measure
+.IP "  \(bu" 4
+\fBTM_TIMER_PROPERTIES_t\fP __TIM_Data: Settings about timer
+.IP "  \(bu" 4
+float __Freq: Private, temporary frequency value
+.IP "  \(bu" 4
+float __Duty: Private, temporary duty cycle value
+.IP "  \(bu" 4
+uint8_t __SubPriority: Private, NVIC subpriority 
+.PP
+
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for TM STM32F4xx Libraries from the source code\&.

@@ -1,0 +1,47 @@
+\hypertarget{struct_t_m___p_w_m_i_n__t}{}\subsection{T\+M\+\_\+\+P\+W\+M\+I\+N\+\_\+t Struct Reference}
+\label{struct_t_m___p_w_m_i_n__t}\index{T\+M\+\_\+\+P\+W\+M\+I\+N\+\_\+t@{T\+M\+\_\+\+P\+W\+M\+I\+N\+\_\+t}}
+
+
+{\ttfamily \#include $<$tm\+\_\+stm32f4\+\_\+pwmin.\+h$>$}
+
+\subsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{struct_t_m___p_w_m_i_n__t_a9d3c19e881c80a6596884ecb8da4a0f4}{}float {\bfseries Frequency}\label{struct_t_m___p_w_m_i_n__t_a9d3c19e881c80a6596884ecb8da4a0f4}
+
+\item 
+\hypertarget{struct_t_m___p_w_m_i_n__t_a3f8f40802b67665aaafbdf1fb4c6c4c4}{}float {\bfseries Duty\+Cycle}\label{struct_t_m___p_w_m_i_n__t_a3f8f40802b67665aaafbdf1fb4c6c4c4}
+
+\item 
+\hypertarget{struct_t_m___p_w_m_i_n__t_a496ac0a45cbd303e60a9e9b3096c3aae}{}T\+I\+M\+\_\+\+Type\+Def $\ast$ {\bfseries \+\_\+\+\_\+\+T\+I\+M}\label{struct_t_m___p_w_m_i_n__t_a496ac0a45cbd303e60a9e9b3096c3aae}
+
+\item 
+\hypertarget{struct_t_m___p_w_m_i_n__t_af15ba4c18fb7e346889438bc24484ca7}{}\hyperlink{struct_t_m___t_i_m_e_r___p_r_o_p_e_r_t_i_e_s__t}{T\+M\+\_\+\+T\+I\+M\+E\+R\+\_\+\+P\+R\+O\+P\+E\+R\+T\+I\+E\+S\+\_\+t} {\bfseries \+\_\+\+\_\+\+T\+I\+M\+\_\+\+Data}\label{struct_t_m___p_w_m_i_n__t_af15ba4c18fb7e346889438bc24484ca7}
+
+\item 
+\hypertarget{struct_t_m___p_w_m_i_n__t_a4336a40733b75720701681d08ebd5532}{}float {\bfseries \+\_\+\+\_\+\+Freq}\label{struct_t_m___p_w_m_i_n__t_a4336a40733b75720701681d08ebd5532}
+
+\item 
+\hypertarget{struct_t_m___p_w_m_i_n__t_ae53851ad473d5dffb94ad7bf08c98a8d}{}float {\bfseries \+\_\+\+\_\+\+Duty}\label{struct_t_m___p_w_m_i_n__t_ae53851ad473d5dffb94ad7bf08c98a8d}
+
+\item 
+\hypertarget{struct_t_m___p_w_m_i_n__t_ad88fcca9a18f9215a85e669cdf89ebca}{}uint8\+\_\+t {\bfseries \+\_\+\+\_\+\+Sub\+Priority}\label{struct_t_m___p_w_m_i_n__t_ad88fcca9a18f9215a85e669cdf89ebca}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+P\+W\+M Input working struct
+
+Parameters\+:
+\begin{DoxyItemize}
+\item float Frequency\+: Public, Measured frequency on input pin
+\item float Duty\+Cycle\+: Public, Measured duty cycle on input pin
+\begin{DoxyItemize}
+\item T\+I\+M\+\_\+\+Type\+Def$\ast$ \+\_\+\+\_\+\+T\+I\+M\+: Private, Pointer to timer used for measure
+\item \hyperlink{struct_t_m___t_i_m_e_r___p_r_o_p_e_r_t_i_e_s__t}{T\+M\+\_\+\+T\+I\+M\+E\+R\+\_\+\+P\+R\+O\+P\+E\+R\+T\+I\+E\+S\+\_\+t} \+\_\+\+\_\+\+T\+I\+M\+\_\+\+Data\+: Settings about timer
+\item float \+\_\+\+\_\+\+Freq\+: Private, temporary frequency value
+\item float \+\_\+\+\_\+\+Duty\+: Private, temporary duty cycle value
+\item uint8\+\_\+t \+\_\+\+\_\+\+Sub\+Priority\+: Private, N\+V\+I\+C subpriority 
+\end{DoxyItemize}
+\end{DoxyItemize}

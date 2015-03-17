@@ -1,0 +1,195 @@
+\hypertarget{tm__stm32f4__ili9341__ltdc_8h_source}{}\subsection{tm\+\_\+stm32f4\+\_\+ili9341\+\_\+ltdc.\+h}
+
+\begin{DoxyCode}
+00001 
+00048 \textcolor{preprocessor}{#ifndef TM\_ILI9341\_LTDC\_H}
+00049 \textcolor{preprocessor}{#define TM\_ILI9341\_LTDC\_H 140}
+00050 
+00066 \textcolor{preprocessor}{#include "stm32f4xx.h"}
+00067 \textcolor{preprocessor}{#include "stm32f4xx\_rcc.h"}
+00068 \textcolor{preprocessor}{#include "stm32f4xx\_gpio.h"}
+00069 \textcolor{preprocessor}{#include "stm32f4xx\_ltdc.h"}
+00070 \textcolor{preprocessor}{#include "defines.h"}
+00071 \textcolor{preprocessor}{#include "tm\_stm32f4\_spi.h"}
+00072 \textcolor{preprocessor}{#include "tm\_stm32f4\_fonts.h"}
+00073 \textcolor{preprocessor}{#include "tm\_stm32f4\_sdram.h"}
+00074 \textcolor{preprocessor}{#include "tm\_stm32f4\_gpio.h"}
+00075 
+00076 \textcolor{comment}{/* This SPI pins are used on STM32F429 Discovery board */}
+00077 \textcolor{preprocessor}{#ifndef ILI9341\_SPI}
+00078 \textcolor{preprocessor}{#define ILI9341\_SPI                 SPI5}
+00079 \textcolor{preprocessor}{#define ILI9341\_SPI\_PINS            TM\_SPI\_PinsPack\_1}
+00080 \textcolor{preprocessor}{#endif}
+00081 
+00082 \textcolor{comment}{/* CS PIN for SPI */}
+00083 \textcolor{preprocessor}{#ifndef ILI9341\_CS\_PIN}
+00084 \textcolor{preprocessor}{#define ILI9341\_CS\_CLK              RCC\_AHB1Periph\_GPIOC}
+00085 \textcolor{preprocessor}{#define ILI9341\_CS\_PORT             GPIOC}
+00086 \textcolor{preprocessor}{#define ILI9341\_CS\_PIN              GPIO\_PIN\_2}
+00087 \textcolor{preprocessor}{#endif}
+00088 
+00089 \textcolor{comment}{/* This pin is used on STM32F429 discovery board */}
+00090 \textcolor{preprocessor}{#ifndef ILI9341\_WRX\_PIN}
+00091 \textcolor{preprocessor}{#define ILI9341\_WRX\_PORT            GPIOD}
+00092 \textcolor{preprocessor}{#define ILI9341\_WRX\_PIN             GPIO\_PIN\_13}
+00093 \textcolor{preprocessor}{#endif}
+00094 
+00095 \textcolor{comment}{/* Reset pin */}
+00096 \textcolor{preprocessor}{#ifndef ILI9341\_RST\_PIN}
+00097 \textcolor{preprocessor}{#define ILI9341\_RST\_PORT            GPIOD}
+00098 \textcolor{preprocessor}{#define ILI9341\_RST\_PIN             GPIO\_PIN\_12}
+00099 \textcolor{preprocessor}{#endif}
+00100 
+00101 \textcolor{comment}{/* Pin functions */}
+00102 \textcolor{preprocessor}{#define ILI9341\_RST\_SET             TM\_GPIO\_SetPinHigh(ILI9341\_RST\_PORT, ILI9341\_RST\_PIN)}
+00103 \textcolor{preprocessor}{#define ILI9341\_RST\_RESET           TM\_GPIO\_SetPinLow(ILI9341\_RST\_PORT, ILI9341\_RST\_PIN)}
+00104 \textcolor{preprocessor}{#define ILI9341\_CS\_SET              TM\_GPIO\_SetPinHigh(ILI9341\_CS\_PORT, ILI9341\_CS\_PIN)}
+00105 \textcolor{preprocessor}{#define ILI9341\_CS\_RESET            TM\_GPIO\_SetPinLow(ILI9341\_CS\_PORT, ILI9341\_CS\_PIN)}
+00106 \textcolor{preprocessor}{#define ILI9341\_WRX\_SET             TM\_GPIO\_SetPinHigh(ILI9341\_WRX\_PORT, ILI9341\_WRX\_PIN)}
+00107 \textcolor{preprocessor}{#define ILI9341\_WRX\_RESET           TM\_GPIO\_SetPinLow(ILI9341\_WRX\_PORT, ILI9341\_WRX\_PIN)}
+00108 
+00109 \textcolor{comment}{/* LCD settings */}
+00110 \textcolor{preprocessor}{#define ILI9341\_WIDTH               240}
+00111 \textcolor{preprocessor}{#define ILI9341\_HEIGHT              320}
+00112 \textcolor{preprocessor}{#define ILI9341\_PIXEL               76800}
+00113 
+00114 \textcolor{comment}{/* Starting buffer address in RAM */}
+00115 \textcolor{comment}{/* Offset for Layer 1 = SDRAM START ADDRESS + FRAME\_BUFFER */}
+00116 \textcolor{preprocessor}{#define ILI9341\_FRAME\_BUFFER        SDRAM\_START\_ADR}
+00117 \textcolor{comment}{/* Offset for Layer 2 */}
+00118 \textcolor{preprocessor}{#define ILI9341\_FRAME\_OFFSET        (uint32\_t)ILI9341\_PIXEL * 2}
+00119 
+00120 \textcolor{comment}{/* Colors */}
+00121 \textcolor{preprocessor}{#define ILI9341\_COLOR\_WHITE         0xFFFF}
+00122 \textcolor{preprocessor}{#define ILI9341\_COLOR\_BLACK         0x0000}
+00123 \textcolor{preprocessor}{#define ILI9341\_COLOR\_RED           0xF800}
+00124 \textcolor{preprocessor}{#define ILI9341\_COLOR\_GREEN         0x07E0}
+00125 \textcolor{preprocessor}{#define ILI9341\_COLOR\_GREEN2        0xB723}
+00126 \textcolor{preprocessor}{#define ILI9341\_COLOR\_BLUE          0x001F}
+00127 \textcolor{preprocessor}{#define ILI9341\_COLOR\_BLUE2         0x051D}
+00128 \textcolor{preprocessor}{#define ILI9341\_COLOR\_YELLOW        0xFFE0}
+00129 \textcolor{preprocessor}{#define ILI9341\_COLOR\_ORANGE        0xFBE4}
+00130 \textcolor{preprocessor}{#define ILI9341\_COLOR\_CYAN          0x07FF}
+00131 \textcolor{preprocessor}{#define ILI9341\_COLOR\_MAGENTA       0xA254}
+00132 \textcolor{preprocessor}{#define ILI9341\_COLOR\_GRAY          0x7BEF //1111 0111 1101 1110}
+00133 \textcolor{preprocessor}{#define ILI9341\_COLOR\_BROWN         0xBBCA}
+00134 
+00135 \textcolor{comment}{/* Transparent background, only for chars and strings */}
+00136 \textcolor{preprocessor}{#define ILI9341\_TRANSPARENT         0x80000000}
+00137 
+00138 \textcolor{comment}{/* Commands */}
+00139 \textcolor{preprocessor}{#define ILI9341\_RESET               0x01}
+00140 \textcolor{preprocessor}{#define ILI9341\_SLEEP\_OUT           0x11}
+00141 \textcolor{preprocessor}{#define ILI9341\_GAMMA               0x26}
+00142 \textcolor{preprocessor}{#define ILI9341\_DISPLAY\_OFF         0x28}
+00143 \textcolor{preprocessor}{#define ILI9341\_DISPLAY\_ON          0x29}
+00144 \textcolor{preprocessor}{#define ILI9341\_COLUMN\_ADDR         0x2A}
+00145 \textcolor{preprocessor}{#define ILI9341\_PAGE\_ADDR           0x2B}
+00146 \textcolor{preprocessor}{#define ILI9341\_GRAM                0x2C}
+00147 \textcolor{preprocessor}{#define ILI9341\_MAC                 0x36}
+00148 \textcolor{preprocessor}{#define ILI9341\_PIXEL\_FORMAT        0x3A}
+00149 \textcolor{preprocessor}{#define ILI9341\_WDB                 0x51}
+00150 \textcolor{preprocessor}{#define ILI9341\_WCD                 0x53}
+00151 \textcolor{preprocessor}{#define ILI9341\_RGB\_INTERFACE       0xB0}
+00152 \textcolor{preprocessor}{#define ILI9341\_FRC                 0xB1}
+00153 \textcolor{preprocessor}{#define ILI9341\_BPC                 0xB5}
+00154 \textcolor{preprocessor}{#define ILI9341\_DFC                 0xB6}
+00155 \textcolor{preprocessor}{#define ILI9341\_POWER1              0xC0}
+00156 \textcolor{preprocessor}{#define ILI9341\_POWER2              0xC1}
+00157 \textcolor{preprocessor}{#define ILI9341\_VCOM1               0xC5}
+00158 \textcolor{preprocessor}{#define ILI9341\_VCOM2               0xC7}
+00159 \textcolor{preprocessor}{#define ILI9341\_POWERA              0xCB}
+00160 \textcolor{preprocessor}{#define ILI9341\_POWERB              0xCF}
+00161 \textcolor{preprocessor}{#define ILI9341\_PGAMMA              0xE0}
+00162 \textcolor{preprocessor}{#define ILI9341\_NGAMMA              0xE1}
+00163 \textcolor{preprocessor}{#define ILI9341\_DTCA                0xE8}
+00164 \textcolor{preprocessor}{#define ILI9341\_DTCB                0xEA}
+00165 \textcolor{preprocessor}{#define ILI9341\_POWER\_SEQ           0xED}
+00166 \textcolor{preprocessor}{#define ILI9341\_3GAMMA\_EN           0xF2}
+00167 \textcolor{preprocessor}{#define ILI9341\_INTERFACE           0xF6}
+00168 \textcolor{preprocessor}{#define ILI9341\_PRC                 0xF7}
+00169 
+00175 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+00176     TM\_ILI9341\_Orientation\_Portrait\_1,
+00177     TM\_ILI9341\_Orientation\_Portrait\_2,
+00178     TM\_ILI9341\_Orientation\_Landscape\_1,
+00179     TM\_ILI9341\_Orientation\_Landscape\_2
+00180 \} TM\_ILI9341\_Orientation\_t;
+00181 
+00186 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+00187     TM\_ILI9341\_Landscape,
+00188     TM\_ILI9341\_Portrait
+00189 \} TM\_ILI9341\_Orientation;
+00190 
+00195 \textcolor{keyword}{typedef} \textcolor{keyword}{struct }\{
+00196     uint16\_t Width;
+00197     uint16\_t Height;
+00198     TM\_ILI9341\_Orientation Orientation; \textcolor{comment}{// 1 = portrait; 0 = landscape}
+00199     uint8\_t CurrentLayer;
+00200     uint32\_t CurrentLayerOffset;
+00201     uint8\_t Layer1Opacity;
+00202     uint8\_t Layer2Opacity;
+00203     TM\_ILI9341\_Orientation\_t Orient;
+00204 \} \hyperlink{struct_t_m___i_l_i931___options__t}{TM\_ILI931\_Options\_t};
+00205 
+00206 
+00210 \textcolor{keyword}{extern} \hyperlink{struct_t_m___font_def__t}{TM\_FontDef\_t} TM\_Font\_7x10;
+00211 \textcolor{keyword}{extern} \hyperlink{struct_t_m___font_def__t}{TM\_FontDef\_t} TM\_Font\_11x18;
+00212 \textcolor{keyword}{extern} \hyperlink{struct_t_m___font_def__t}{TM\_FontDef\_t} TM\_Font\_16x26;
+00213 
+00218 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ILI9341\_Init(\textcolor{keywordtype}{void});
+00219 
+00228 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ILI9341\_DrawPixel(uint16\_t x, uint16\_t y, uint32\_t color);
+00229 
+00236 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ILI9341\_Fill(uint32\_t color);
+00237 
+00249 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ILI9341\_Rotate(TM\_ILI9341\_Orientation\_t orientation);
+00250 
+00262 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ILI9341\_Putc(uint16\_t x, uint16\_t y, \textcolor{keywordtype}{char} c, \hyperlink{struct_t_m___font_def__t}{TM\_FontDef\_t} *font, uint32\_t 
+      foreground, uint32\_t background);
+00263 
+00275 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ILI9341\_Puts(uint16\_t x, uint16\_t y, \textcolor{keywordtype}{char} *str, \hyperlink{struct_t_m___font_def__t}{TM\_FontDef\_t} *font, uint32\_t 
+      foreground, uint32\_t background);
+00276 
+00286 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ILI9341\_GetStringSize(\textcolor{keywordtype}{char} *str, \hyperlink{struct_t_m___font_def__t}{TM\_FontDef\_t} *font, uint16\_t *width, uint16\_t *
+      height);
+00287 
+00298 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ILI9341\_DrawLine(uint16\_t x0, uint16\_t y0, uint16\_t x1, uint16\_t y1, uint32\_t color);
+00299 
+00310 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ILI9341\_DrawRectangle(uint16\_t x0, uint16\_t y0, uint16\_t x1, uint16\_t y1, uint32\_t color);
+00311 
+00322 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ILI9341\_DrawFilledRectangle(uint16\_t x0, uint16\_t y0, uint16\_t x1, uint16\_t y1, uint32\_t 
+      color);
+00323 
+00335 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ILI9341\_DrawRoundedRectangle(uint16\_t x0, uint16\_t y0, uint16\_t x1, uint16\_t y1, uint16\_t r,
+       uint32\_t color);
+00336 
+00348 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ILI9341\_DrawFilledRoundedRectangle(uint16\_t x0, uint16\_t y0, uint16\_t x1, uint16\_t y1, 
+      uint16\_t r, uint32\_t color);
+00349 
+00359 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ILI9341\_DrawCircle(int16\_t x0, int16\_t y0, int16\_t r, uint32\_t color);
+00360 
+00370 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ILI9341\_DrawFilledCircle(int16\_t x0, int16\_t y0, int16\_t r, uint32\_t color);
+00371 
+00377 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ILI9341\_SetLayer1(\textcolor{keywordtype}{void});
+00378 
+00384 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ILI9341\_SetLayer2(\textcolor{keywordtype}{void});
+00385 
+00392 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ILI9341\_SetLayer1Opacity(uint8\_t opacity);
+00393 
+00400 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ILI9341\_SetLayer2Opacity(uint8\_t opacity);
+00401 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ILI9341\_UpdateLayerOpacity(\textcolor{keywordtype}{void});
+00402 
+00410 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ILI9341\_ChangeLayers(\textcolor{keywordtype}{void});
+00411 
+00416 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ILI9341\_Layer2To1(\textcolor{keywordtype}{void});
+00417 
+00422 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ILI9341\_Layer1To2(\textcolor{keywordtype}{void});
+00423 
+00429 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ILI9341\_DisplayOn(\textcolor{keywordtype}{void});
+00430 
+00435 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_ILI9341\_DisplayOff(\textcolor{keywordtype}{void});
+00436 
+00437 \textcolor{preprocessor}{#endif}
+00438 
+\end{DoxyCode}

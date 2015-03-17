@@ -1,0 +1,662 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="group___t_m___d_i_s_c_o___functions">
+    <title>TM_DISCO_Functions</title>
+
+<para>Library Functions. </para>
+        <section>
+            <title>Detailed Description</title>
+        </section>
+        <section>
+            <title>Functions</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="group___t_m___d_i_s_c_o___functions_1ga14630e30f567396ddc945c577d762ee1">TM_DISCO_LedInit</link> (
+void )<para><emphasis>Configures LED pins as outputs.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>void <link linkend="group___t_m___d_i_s_c_o___functions_1gabe5d286b45c36b96b3eb4df0e5b9cfde">TM_DISCO_ButtonInit</link> (
+void )<para><emphasis>Configures Button pin as input.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint8_t <link linkend="group___t_m___d_i_s_c_o___functions_1ga24330bb47f3ed88ae841054a8023cd2a">TM_DISCO_ButtonOnPressed</link> (
+void )<para><emphasis>Check if button was pressed now, but was not already pressed before.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                        <para>uint8_t <link linkend="group___t_m___d_i_s_c_o___functions_1ga3b6eee495f312c38eefaa90c40ccff5a">TM_DISCO_ButtonOnReleased</link> (
+void )<para><emphasis>Check if button was released now, but was already pressed before.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Macros</title>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___d_i_s_c_o___functions_1ga72aa66c1c0647cf3bbb3c2c069f1901a">TM_DISCO_LedOn</link> <link linkend="group___t_m___g_p_i_o___functions_1gac5aa8fbc39ed67f47972097fb7c8d69d">TM_GPIO_SetPinHigh</link>(TM_DISCO_LED_PORT, (led))<para><emphasis>Turn on LED on board.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___d_i_s_c_o___functions_1gab295e2ecb3dc81210a9af3f5281cae79">TM_DISCO_LedOff</link> <link linkend="group___t_m___g_p_i_o___functions_1gaccceda87ce348c73b43780fdfed048d3">TM_GPIO_SetPinLow</link>(TM_DISCO_LED_PORT, (led))<para><emphasis>Turn off LED on board.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___d_i_s_c_o___functions_1gaacaee2ef25adf5ff2cc2be660b561d94">TM_DISCO_LedToggle</link> <link linkend="group___t_m___g_p_i_o___functions_1ga92ef176c8195c54b326b3c7526b878b2">TM_GPIO_TogglePinValue</link>(TM_DISCO_LED_PORT, (led))<para><emphasis>Toggle LED on board.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___d_i_s_c_o___functions_1ga88ebf703816bec3e79e60fef9c469950">TM_DISCO_LedIsOn</link> <link linkend="group___t_m___g_p_i_o___functions_1ga6402ec4503fa0f3380d3bdbb1d9510db">TM_GPIO_GetOutputPinValue</link>(TM_DISCO_LED_PORT, (led))<para><emphasis>Checks if led is on.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___d_i_s_c_o___functions_1ga45b9e10ff16b153c3d26db3a23481623">TM_DISCO_SetLed</link> ((state) ? <link linkend="group___t_m___d_i_s_c_o___functions_1ga72aa66c1c0647cf3bbb3c2c069f1901a">TM_DISCO_LedOn</link>(led): <link linkend="group___t_m___d_i_s_c_o___functions_1gab295e2ecb3dc81210a9af3f5281cae79">TM_DISCO_LedOff</link>(led))<para><emphasis>Set led value.</emphasis></para>
+</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+            <para>
+                <itemizedlist>
+                    <listitem>
+                            <para>#define <link linkend="group___t_m___d_i_s_c_o___functions_1ga02c997906998f75a6cd676810022f9b3">TM_DISCO_ButtonPressed</link> ((<link linkend="group___t_m___g_p_i_o___functions_1gacd91a02149d1f1bc648a3fe06648460d">TM_GPIO_GetInputPinValue</link>(TM_DISCO_BUTTON_PORT, TM_DISCO_BUTTON_PIN) == 0) != TM_DISCO_BUTTON_PRESSED)</para>
+                    </listitem>
+                </itemizedlist>
+            </para>
+        </section>
+        <section>
+            <title>Function Documentation</title>
+            <section xml:id="group___t_m___d_i_s_c_o___functions_1ga14630e30f567396ddc945c577d762ee1">
+                <title>void TM_DISCO_LedInit (void)</title> <emphasis>Configures LED pins as outputs.</emphasis>
+                
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>None</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Return values                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>None</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+            </section>
+            <section xml:id="group___t_m___d_i_s_c_o___functions_1gabe5d286b45c36b96b3eb4df0e5b9cfde">
+                <title>void TM_DISCO_ButtonInit (void)</title> <emphasis>Configures Button pin as input.</emphasis>
+                
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>None</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Return values                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>None</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+            </section>
+            <section xml:id="group___t_m___d_i_s_c_o___functions_1ga24330bb47f3ed88ae841054a8023cd2a">
+                <title>uint8_t TM_DISCO_ButtonOnPressed (void)</title> <emphasis>Check if button was pressed now, but was not already pressed before.</emphasis>
+                
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>None</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Return values                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>Button</entry>
+                                <entry>
+<para>on pressed value<itemizedlist>
+<listitem>
+<para>0: In case that button has been already pressed on last call or was not pressed at all yet</para>
+</listitem><listitem>
+<para>&gt; 0: Button was pressed, but state before was released </para>
+</listitem></itemizedlist>
+</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+            </section>
+            <section xml:id="group___t_m___d_i_s_c_o___functions_1ga3b6eee495f312c38eefaa90c40ccff5a">
+                <title>uint8_t TM_DISCO_ButtonOnReleased (void)</title> <emphasis>Check if button was released now, but was already pressed before.</emphasis>
+                
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>None</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Return values                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>Button</entry>
+                                <entry>
+<para>on released value<itemizedlist>
+<listitem>
+<para>0: In case that button has been already released on last call or was not released at all yet</para>
+</listitem><listitem>
+<para>&gt; 0: Button was released, but state before was pressed </para>
+</listitem></itemizedlist>
+</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+            </section>
+        </section>
+        <section>
+            <title>Macro Definition Documentation</title>
+            <section xml:id="group___t_m___d_i_s_c_o___functions_1ga72aa66c1c0647cf3bbb3c2c069f1901a">
+                <title>#define TM_DISCO_LedOn</title>                
+<para><formalpara><title>Note: </title>
+
+<para>STM32F4x9-Eval board uses inverse logic for leds </para>
+</formalpara>
+
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>led</entry>
+                                <entry>
+<para>LED you want to turn on<itemizedlist>
+<listitem>
+<para>LED_RED: Red led</para>
+</listitem><listitem>
+<para>LED_GREEN: Green led</para>
+</listitem><listitem>
+<para>LED_BLUE: Blue led</para>
+</listitem><listitem>
+<para>LED_ORANGE: Orange led</para>
+</listitem><listitem>
+<para>LED_ALL: All leds </para>
+</listitem></itemizedlist>
+</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Return values                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>None</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+                <para>Definition at line 277 of file tm_stm32f4_disco.h</para>
+                <para>The Documentation for this define was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_disco.h</para></listitem></itemizedlist></para>
+            </section>
+            <section xml:id="group___t_m___d_i_s_c_o___functions_1gab295e2ecb3dc81210a9af3f5281cae79">
+                <title>#define TM_DISCO_LedOff</title>                
+<para><formalpara><title>Note: </title>
+
+<para>STM32F4x9-Eval board uses inverse logic for leds </para>
+</formalpara>
+
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>led</entry>
+                                <entry>
+<para>LED you want to turn off<itemizedlist>
+<listitem>
+<para>LED_RED: Red led</para>
+</listitem><listitem>
+<para>LED_GREEN: Green led</para>
+</listitem><listitem>
+<para>LED_BLUE: Blue led</para>
+</listitem><listitem>
+<para>LED_ORANGE: Orange led</para>
+</listitem><listitem>
+<para>LED_ALL: All leds </para>
+</listitem></itemizedlist>
+</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Return values                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>None</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+                <para>Definition at line 294 of file tm_stm32f4_disco.h</para>
+                <para>The Documentation for this define was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_disco.h</para></listitem></itemizedlist></para>
+            </section>
+            <section xml:id="group___t_m___d_i_s_c_o___functions_1gaacaee2ef25adf5ff2cc2be660b561d94">
+                <title>#define TM_DISCO_LedToggle</title>                
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>led</entry>
+                                <entry>
+<para>LED you want to toggle<itemizedlist>
+<listitem>
+<para>LED_RED: Red led</para>
+</listitem><listitem>
+<para>LED_GREEN: Green led</para>
+</listitem><listitem>
+<para>LED_BLUE: Blue led</para>
+</listitem><listitem>
+<para>LED_ORANGE: Orange led</para>
+</listitem><listitem>
+<para>LED_ALL: All leds </para>
+</listitem></itemizedlist>
+</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Return values                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>None</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+                <para>Definition at line 309 of file tm_stm32f4_disco.h</para>
+                <para>The Documentation for this define was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_disco.h</para></listitem></itemizedlist></para>
+            </section>
+            <section xml:id="group___t_m___d_i_s_c_o___functions_1ga88ebf703816bec3e79e60fef9c469950">
+                <title>#define TM_DISCO_LedIsOn</title>                
+<para><formalpara><title>Note: </title>
+
+<para>STM32F4x9-Eval board uses inverse logic for leds </para>
+</formalpara>
+
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>led</entry>
+                                <entry>
+<para>Led you want to checking </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Return values                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>1</entry>
+                                <entry>
+<para>if led is on or 0 if not </para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+                <para>Definition at line 318 of file tm_stm32f4_disco.h</para>
+                <para>The Documentation for this define was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_disco.h</para></listitem></itemizedlist></para>
+            </section>
+            <section xml:id="group___t_m___d_i_s_c_o___functions_1ga45b9e10ff16b153c3d26db3a23481623">
+                <title>#define TM_DISCO_SetLed</title>                
+<para>Set led&apos;s state with one function</para>
+
+<para>Parameters:<itemizedlist>
+<listitem>
+<para>uint16_t led: LED_GREEN LED_RED LED_ORANGE LED_BLUE</para>
+</listitem></itemizedlist>
+</para>
+
+<para>uint8_t state: 0: led is off &gt; 0: led is on</para>
+
+<para>Return 1 if turned on, otherwise 0 
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>led</entry>
+                                <entry>
+<para>LED you want to set value<itemizedlist>
+<listitem>
+<para>LED_RED: Red led</para>
+</listitem><listitem>
+<para>LED_GREEN: Green led</para>
+</listitem><listitem>
+<para>LED_BLUE: Blue led</para>
+</listitem><listitem>
+<para>LED_ORANGE: Orange led</para>
+</listitem><listitem>
+<para>LED_ALL: All leds </para>
+</listitem></itemizedlist>
+</para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>state</entry>
+                                <entry>
+<para>Set or clear led<itemizedlist>
+<listitem>
+<para>0: led is off</para>
+</listitem><listitem>
+<para>&gt; 0: led is on </para>
+</listitem></itemizedlist>
+</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Return values                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>None</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+                <para>Definition at line 351 of file tm_stm32f4_disco.h</para>
+                <para>The Documentation for this define was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_disco.h</para></listitem></itemizedlist></para>
+            </section>
+            <section xml:id="group___t_m___d_i_s_c_o___functions_1ga02c997906998f75a6cd676810022f9b3">
+                <title>#define TM_DISCO_ButtonPressed</title>                
+<para>
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Parameters                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>Checks</entry>
+                                <entry>
+<para>if user button is pressed </para>
+</entry>
+                            </row>
+                            <row>
+                                <entry>None</entry>
+                                <entry>
+<para></para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                
+                <formalpara>
+                    <title/>
+                    <table frame="all">
+                        <title>Return values                        </title>
+                        <tgroup cols="2" align="left" colsep="1" rowsep="1">
+                        <colspec colwidth="1*"/>
+                        <colspec colwidth="4*"/>
+                        <tbody>
+                            <row>
+                                <entry>Button</entry>
+                                <entry>
+<para>status<itemizedlist>
+<listitem>
+<para>0: Button is not pressed</para>
+</listitem><listitem>
+<para>&gt; 0: Button is pressed </para>
+</listitem></itemizedlist>
+</para>
+</entry>
+                            </row>
+                        </tbody>
+                        </tgroup>
+                    </table>
+                </formalpara>
+                </para>
+
+                <para>Definition at line 360 of file tm_stm32f4_disco.h</para>
+                <para>The Documentation for this define was generated from the following file: </para>
+                <para><itemizedlist><listitem><para>tm_stm32f4_disco.h</para></listitem></itemizedlist></para>
+            </section>
+        </section>
+</section>

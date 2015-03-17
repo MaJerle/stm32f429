@@ -1,0 +1,443 @@
+.TH "TM_USART_Functions" 3 "Wed Mar 18 2015" "Version v1.0.0" "TM STM32F4xx Libraries" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TM_USART_Functions \- TM_USART_Functions
+.PP
+USART Functions\&.  
+
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBTM_USART_Init\fP (USART_TypeDef *USARTx, \fBTM_USART_PinsPack_t\fP pinspack, uint32_t baudrate)"
+.br
+.RI "\fIInitialize USARTx peripheral and corresponding pins\&. \fP"
+.ti -1c
+.RI "void \fBTM_USART_Putc\fP (USART_TypeDef *USARTx, volatile char c)"
+.br
+.RI "\fIPut character to USART port\&. \fP"
+.ti -1c
+.RI "void \fBTM_USART_Puts\fP (USART_TypeDef *USARTx, char *str)"
+.br
+.RI "\fIPut string to USART port\&. \fP"
+.ti -1c
+.RI "uint8_t \fBTM_USART_Getc\fP (USART_TypeDef *USARTx)"
+.br
+.RI "\fIGets character from internal USART buffer\&. \fP"
+.ti -1c
+.RI "uint16_t \fBTM_USART_Gets\fP (USART_TypeDef *USARTx, char *buffer, uint16_t bufsize)"
+.br
+.RI "\fIGet string from USART\&. \fP"
+.ti -1c
+.RI "uint8_t \fBTM_USART_FindCharacter\fP (USART_TypeDef *USARTx, uint8_t c)"
+.br
+.RI "\fICheck if character c is available in internal buffer\&. \fP"
+.ti -1c
+.RI "uint8_t \fBTM_USART_BufferEmpty\fP (USART_TypeDef *USARTx)"
+.br
+.RI "\fIChecks if internal USARTx buffer is empty\&. \fP"
+.ti -1c
+.RI "uint8_t \fBTM_USART_BufferFull\fP (USART_TypeDef *USARTx)"
+.br
+.RI "\fIChecks if internal USARTx buffer is full\&. \fP"
+.ti -1c
+.RI "void \fBTM_USART_ClearBuffer\fP (USART_TypeDef *USARTx)"
+.br
+.RI "\fIClears internal USART buffer\&. \fP"
+.ti -1c
+.RI "void \fBTM_USART_InitCustomPinsCallback\fP (USART_TypeDef *USARTx)"
+.br
+.RI "\fICallback for custom pins initialization for USARTx\&. When you call \fBTM_USART_Init()\fP function, and if you pass TM_USART_PinsPack_Custom to function, then this function will be called where you can initialize custom pins for USART peripheral\&. \fP"
+.ti -1c
+.RI "__weak void \fBTM_USART1_ReceiveHandler\fP (uint8_t c)"
+.br
+.RI "\fICallback function for receive interrupt on USART1 in case you have enabled custom USART handler mode\&. \fP"
+.ti -1c
+.RI "__weak void \fBTM_USART2_ReceiveHandler\fP (uint8_t c)"
+.br
+.RI "\fICallback function for receive interrupt on USART2 in case you have enabled custom USART handler mode\&. \fP"
+.ti -1c
+.RI "__weak void \fBTM_USART3_ReceiveHandler\fP (uint8_t c)"
+.br
+.RI "\fICallback function for receive interrupt on USART3 in case you have enabled custom USART handler mode\&. \fP"
+.ti -1c
+.RI "__weak void \fBTM_UART4_ReceiveHandler\fP (uint8_t c)"
+.br
+.RI "\fICallback function for receive interrupt on UART4 in case you have enabled custom USART handler mode\&. \fP"
+.ti -1c
+.RI "__weak void \fBTM_UART5_ReceiveHandler\fP (uint8_t c)"
+.br
+.RI "\fICallback function for receive interrupt on UART5 in case you have enabled custom USART handler mode\&. \fP"
+.ti -1c
+.RI "__weak void \fBTM_USART6_ReceiveHandler\fP (uint8_t c)"
+.br
+.RI "\fICallback function for receive interrupt on USART6 in case you have enabled custom USART handler mode\&. \fP"
+.ti -1c
+.RI "__weak void \fBTM_UART7_ReceiveHandler\fP (uint8_t c)"
+.br
+.RI "\fICallback function for receive interrupt on UART7 in case you have enabled custom USART handler mode\&. \fP"
+.ti -1c
+.RI "__weak void \fBTM_UART8_ReceiveHandler\fP (uint8_t c)"
+.br
+.RI "\fICallback function for receive interrupt on UART8 in case you have enabled custom USART handler mode\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+USART Functions\&. 
+
+
+.SH "Function Documentation"
+.PP 
+.SS "__weak void TM_UART4_ReceiveHandler (uint8_t c)"
+
+.PP
+Callback function for receive interrupt on UART4 in case you have enabled custom USART handler mode\&. 
+.PP
+\fBNote:\fP
+.RS 4
+With __weak parameter to prevent link errors if not defined by user 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIc\fP character received via USART 
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+
+.SS "__weak void TM_UART5_ReceiveHandler (uint8_t c)"
+
+.PP
+Callback function for receive interrupt on UART5 in case you have enabled custom USART handler mode\&. 
+.PP
+\fBNote:\fP
+.RS 4
+With __weak parameter to prevent link errors if not defined by user 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIc\fP character received via USART 
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+
+.SS "__weak void TM_UART7_ReceiveHandler (uint8_t c)"
+
+.PP
+Callback function for receive interrupt on UART7 in case you have enabled custom USART handler mode\&. 
+.PP
+\fBNote:\fP
+.RS 4
+With __weak parameter to prevent link errors if not defined by user 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIc\fP character received via USART 
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+
+.SS "__weak void TM_UART8_ReceiveHandler (uint8_t c)"
+
+.PP
+Callback function for receive interrupt on UART8 in case you have enabled custom USART handler mode\&. 
+.PP
+\fBNote:\fP
+.RS 4
+With __weak parameter to prevent link errors if not defined by user 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIc\fP character received via USART 
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+
+.SS "__weak void TM_USART1_ReceiveHandler (uint8_t c)"
+
+.PP
+Callback function for receive interrupt on USART1 in case you have enabled custom USART handler mode\&. 
+.PP
+\fBNote:\fP
+.RS 4
+With __weak parameter to prevent link errors if not defined by user 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIc\fP character received via USART 
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+
+.SS "__weak void TM_USART2_ReceiveHandler (uint8_t c)"
+
+.PP
+Callback function for receive interrupt on USART2 in case you have enabled custom USART handler mode\&. 
+.PP
+\fBNote:\fP
+.RS 4
+With __weak parameter to prevent link errors if not defined by user 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIc\fP character received via USART 
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+
+.SS "__weak void TM_USART3_ReceiveHandler (uint8_t c)"
+
+.PP
+Callback function for receive interrupt on USART3 in case you have enabled custom USART handler mode\&. 
+.PP
+\fBNote:\fP
+.RS 4
+With __weak parameter to prevent link errors if not defined by user 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIc\fP character received via USART 
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+
+.SS "__weak void TM_USART6_ReceiveHandler (uint8_t c)"
+
+.PP
+Callback function for receive interrupt on USART6 in case you have enabled custom USART handler mode\&. 
+.PP
+\fBNote:\fP
+.RS 4
+With __weak parameter to prevent link errors if not defined by user 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fIc\fP character received via USART 
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+
+.SS "uint8_t TM_USART_BufferEmpty (USART_TypeDef * USARTx)"
+
+.PP
+Checks if internal USARTx buffer is empty\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI*USARTx\fP Pointer to USARTx peripheral you will use 
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fI1\fP in case buffer is empty, or 0 if not 
+.RE
+.PP
+
+.SS "uint8_t TM_USART_BufferFull (USART_TypeDef * USARTx)"
+
+.PP
+Checks if internal USARTx buffer is full\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI*USARTx\fP Pointer to USARTx peripheral you will use 
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fI1\fP in case buffer is full, or 0 if not 
+.RE
+.PP
+
+.SS "void TM_USART_ClearBuffer (USART_TypeDef * USARTx)"
+
+.PP
+Clears internal USART buffer\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI*USARTx\fP Pointer to USARTx peripheral you will use 
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+
+.SS "uint8_t TM_USART_FindCharacter (USART_TypeDef * USARTx, uint8_t c)"
+
+.PP
+Check if character c is available in internal buffer\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI*USARTx\fP Pointer to USARTx peripheral you will use 
+.br
+\fIc\fP character to check if it is in USARTx's buffer 
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fI1\fP in case character is, or 0 if not 
+.RE
+.PP
+
+.SS "uint8_t TM_USART_Getc (USART_TypeDef * USARTx)"
+
+.PP
+Gets character from internal USART buffer\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI*USARTx\fP Pointer to USARTx peripheral you will use 
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fICharacter\fP from buffer, or 0 if nothing in buffer 
+.RE
+.PP
+
+.SS "uint16_t TM_USART_Gets (USART_TypeDef * USARTx, char * buffer, uint16_t bufsize)"
+
+.PP
+Get string from USART\&. This function can create a string from USART received data\&.
+.PP
+It generates string until '\\n' is not recognized or buffer length is full\&.
+.PP
+\fBNote:\fP
+.RS 4
+As of version 1\&.5, this function automatically adds 0x0A (Line feed) at the end of string\&. 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fI*USARTx\fP Pointer to USARTx peripheral you will use 
+.br
+\fI*buffer\fP Pointer to buffer where data will be stored from buffer 
+.br
+\fIbufsize\fP maximal number of characters we can add to your buffer, including leading zero 
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fINumber\fP of characters in buffer 
+.RE
+.PP
+
+.SS "void TM_USART_Init (USART_TypeDef * USARTx, \fBTM_USART_PinsPack_t\fP pinspack, uint32_t baudrate)"
+
+.PP
+Initialize USARTx peripheral and corresponding pins\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI*USARTx\fP Pointer to USARTx peripheral you will use 
+.br
+\fIpinspack\fP This parameter can be a value of \fBTM_USART_PinsPack_t\fP typedef 
+.br
+\fIbaudrate\fP Baudrate number for USART communication 
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+
+.SS "void TM_USART_InitCustomPinsCallback (USART_TypeDef * USARTx)"
+
+.PP
+Callback for custom pins initialization for USARTx\&. When you call \fBTM_USART_Init()\fP function, and if you pass TM_USART_PinsPack_Custom to function, then this function will be called where you can initialize custom pins for USART peripheral\&. 
+.PP
+\fBNote:\fP
+.RS 4
+With __weak parameter to prevent link errors if not defined by user 
+.RE
+.PP
+\fBParameters:\fP
+.RS 4
+\fI*USARTx\fP Pointer to USARTx peripheral you will use for initialization 
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+
+.SS "void TM_USART_Putc (USART_TypeDef * USARTx, volatile char c)"
+
+.PP
+Put character to USART port\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI*USARTx\fP Pointer to USARTx peripheral you will use 
+.br
+\fIc\fP character to be send over USART 
+.RE
+.PP
+\fBReturn values:\fP
+.RS 4
+\fINone\fP 
+.RE
+.PP
+
+.SS "void TM_USART_Puts (USART_TypeDef * USARTx, char * str)"
+
+.PP
+Put string to USART port\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fI*USARTx\fP Pointer to USARTx peripheral you will use 
+.br
+\fI*str\fP Pointer to string to send over USART 
+.RE
+.PP
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for TM STM32F4xx Libraries from the source code\&.

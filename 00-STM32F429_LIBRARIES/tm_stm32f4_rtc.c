@@ -18,17 +18,36 @@
  */
 #include "tm_stm32f4_rtc.h"
 
+/* Private macros */
+/* Internal status registers for RTC */
+#define RTC_STATUS_REG      			RTC_BKP_DR19 /* Status Register */
+#define RTC_STATUS_INIT_OK  			0x1234       /* RTC initialised */
+#define RTC_STATUS_TIME_OK  			0x4321       /* RTC time OK */
+#define	RTC_STATUS_ZERO					0x0000
+
+/* Internal RTC defines */
+#define TM_RTC_LEAP_YEAR(year) 			((((year) % 4 == 0) && ((year) % 100 != 0)) || ((year) % 400 == 0))
+#define TM_RTC_DAYS_IN_YEAR(x)			TM_RTC_LEAP_YEAR(x) ? 366 : 365
+#define TM_RTC_OFFSET_YEAR				1970
+#define TM_RTC_SECONDS_PER_DAY			86400
+#define TM_RTC_SECONDS_PER_HOUR			3600
+#define TM_RTC_SECONDS_PER_MINUTE		60
+#define TM_RTC_BCD2BIN(x)				((((x) >> 4) & 0x0F) * 10 + ((x) & 0x0F))
+#define TM_RTC_CHAR2NUM(x)				((x) - '0')
+#define TM_RTC_CHARISNUM(x)				((x) >= '0' && (x) <= '9')
+
 /* Internal functions */
 void TM_RTC_Config(TM_RTC_ClockSource_t source);
-
+/* Default RTC status */
 uint32_t TM_RTC_Status = RTC_STATUS_ZERO;
-
+/* RTC declarations */
 RTC_TimeTypeDef RTC_TimeStruct;
 RTC_InitTypeDef RTC_InitStruct;
 RTC_DateTypeDef RTC_DateStruct;
 NVIC_InitTypeDef NVIC_InitStruct;
 EXTI_InitTypeDef EXTI_InitStruct;
 
+/* Days in a month */
 uint8_t TM_RTC_Months[2][12] = {
 	{31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31},	/* Not leap year */
 	{31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}	/* Leap year */

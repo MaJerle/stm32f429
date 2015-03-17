@@ -1,0 +1,70 @@
+.TH "TM_TCPCLIENT_t" 3 "Wed Mar 18 2015" "Version v1.0.0" "TM STM32F4xx Libraries" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+TM_TCPCLIENT_t \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <tm_stm32f4_ethernet\&.h>\fP
+.SS "Data Fields"
+
+.in +1c
+.ti -1c
+.RI "char \fBname\fP [ETHERNET_MAX_CONNECTION_NAME]"
+.br
+.ti -1c
+.RI "uint8_t \fBactive\fP"
+.br
+.ti -1c
+.RI "uint8_t \fBip_addr\fP [4]"
+.br
+.ti -1c
+.RI "uint16_t \fBport\fP"
+.br
+.ti -1c
+.RI "uint8_t \fBheaders_done\fP"
+.br
+.ti -1c
+.RI "uint8_t * \fBactive_connections_count\fP"
+.br
+.ti -1c
+.RI "void * \fBuser_parameters\fP"
+.br
+.ti -1c
+.RI "struct tcp_pcb * \fBpcb\fP"
+.br
+.ti -1c
+.RI "client_states \fBstate\fP"
+.br
+.ti -1c
+.RI "struct pbuf * \fBp_tx\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Client structure, passed as first parameter in all client based callback functions
+.PP
+Parameters:
+.IP "\(bu" 2
+char name[ETHERNET_MAX_CONNECTION_NAME]: Connection name, we choose it when we call TM_ETHERNETCLIENT_Connect function
+.IP "\(bu" 2
+uint8_t active: Connection is active
+.IP "\(bu" 2
+uint8_t ip_addr[4]: IP address for our external connection
+.IP "\(bu" 2
+uint16_t port: Port for our external connection
+.IP "\(bu" 2
+uint8_t headers_done: This is user defined option\&. When you connect to some website and receive data back, you will also get HTTP headers and your data\&. When receive data handler will be first called, this parameter will be set to 0\&. If you detect when headers are done ('\\r\\n\\r\\n' string) then you can set this parameter to 1, and it will stay 1 until connection is closed\&. This can be used, if you don't want to print headers to user\&.
+.PP
+.PP
+uint8_t* active_connections_count: Pointer to number of active connections this time\&.
+.IP "\(bu" 2
+void* user_parameters: Pointer to user parameters for connection which are passed on 'Connect' function This can be used to pass special data for your connection, which you can then easily be used in headers callback to format proper request string\&. 
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for TM STM32F4xx Libraries from the source code\&.

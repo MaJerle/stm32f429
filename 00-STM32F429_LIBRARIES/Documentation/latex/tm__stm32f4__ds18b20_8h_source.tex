@@ -1,0 +1,74 @@
+\hypertarget{tm__stm32f4__ds18b20_8h_source}{}\subsection{tm\+\_\+stm32f4\+\_\+ds18b20.\+h}
+
+\begin{DoxyCode}
+00001 
+00043 \textcolor{preprocessor}{#ifndef TM\_DS18B20\_H}
+00044 \textcolor{preprocessor}{#define TM\_DS18B20\_H 200}
+00045 
+00054 \textcolor{preprocessor}{#include "stm32f4xx.h"}
+00055 \textcolor{preprocessor}{#include "tm\_stm32f4\_onewire.h"}
+00056 \textcolor{preprocessor}{#include "defines.h"}
+00057 
+00058 \textcolor{comment}{/* OneWire version check */}
+00059 \textcolor{preprocessor}{#if TM\_ONEWIRE\_H < 200}
+00060 \textcolor{preprocessor}{#error "Please update TM ONEWIRE LIB, minimum required version is 2.0.0"}
+00061 \textcolor{preprocessor}{#endif}
+00062 
+00063 \textcolor{comment}{/* Every onewire chip has different ROM code, but all the same chips has same family code */}
+00064 \textcolor{comment}{/* in case of DS18B20 this is 0x28 and this is first byte of ROM address */}
+00065 \textcolor{preprocessor}{#define DS18B20\_FAMILY\_CODE             0x28}
+00066 \textcolor{preprocessor}{#define DS18B20\_CMD\_ALARMSEARCH         0xEC}
+00067 
+00068 \textcolor{comment}{/* DS18B20 read temperature command */}
+00069 \textcolor{preprocessor}{#define DS18B20\_CMD\_CONVERTTEMP         0x44    }\textcolor{comment}{/* Convert temperature */}\textcolor{preprocessor}{}
+00070 \textcolor{preprocessor}{#define DS18B20\_DECIMAL\_STEPS\_12BIT     0.0625}
+00071 \textcolor{preprocessor}{#define DS18B20\_DECIMAL\_STEPS\_11BIT     0.125}
+00072 \textcolor{preprocessor}{#define DS18B20\_DECIMAL\_STEPS\_10BIT     0.25}
+00073 \textcolor{preprocessor}{#define DS18B20\_DECIMAL\_STEPS\_9BIT      0.5}
+00074 
+00075 \textcolor{comment}{/* Bits locations for resolution */}
+00076 \textcolor{preprocessor}{#define DS18B20\_RESOLUTION\_R1           6}
+00077 \textcolor{preprocessor}{#define DS18B20\_RESOLUTION\_R0           5}
+00078 
+00079 \textcolor{preprocessor}{#ifdef DS18B20\_USE\_CRC  }
+00080 \textcolor{preprocessor}{#define DS18B20\_DATA\_LEN                9}
+00081 \textcolor{preprocessor}{#else}
+00082 \textcolor{preprocessor}{#define DS18B20\_DATA\_LEN                2}
+00083 \textcolor{preprocessor}{#endif}
+00084 
+00098 \textcolor{keyword}{typedef} \textcolor{keyword}{enum} \{
+00099     TM\_DS18B20\_Resolution\_9bits = 9,
+00100     TM\_DS18B20\_Resolution\_10bits = 10,
+00101     TM\_DS18B20\_Resolution\_11bits = 11,
+00102     TM\_DS18B20\_Resolution\_12bits = 12
+00103 \} TM\_DS18B20\_Resolution\_t;
+00104 
+00116 \textcolor{keyword}{extern} uint8\_t TM\_DS18B20\_Start(\hyperlink{struct_t_m___one_wire__t}{TM\_OneWire\_t}* OneWireStruct, uint8\_t* ROM);
+00117 
+00127 \textcolor{keyword}{extern} \textcolor{keywordtype}{void} TM\_DS18B20\_StartAll(\hyperlink{struct_t_m___one_wire__t}{TM\_OneWire\_t}* OneWireStruct);
+00128 
+00142 \textcolor{keyword}{extern} uint8\_t TM\_DS18B20\_Read(\hyperlink{struct_t_m___one_wire__t}{TM\_OneWire\_t}* OneWireStruct, uint8\_t* ROM, \textcolor{keywordtype}{float}* destination);
+00143 
+00155 \textcolor{keyword}{extern} uint8\_t TM\_DS18B20\_GetResolution(\hyperlink{struct_t_m___one_wire__t}{TM\_OneWire\_t}* OneWireStruct, uint8\_t* ROM);
+00156 
+00174 \textcolor{keyword}{extern} uint8\_t TM\_DS18B20\_SetResolution(\hyperlink{struct_t_m___one_wire__t}{TM\_OneWire\_t}* OneWireStruct, uint8\_t* ROM, 
+      TM\_DS18B20\_Resolution\_t resolution);
+00175 
+00185 \textcolor{keyword}{extern} uint8\_t TM\_DS18B20\_Is(uint8\_t* ROM);
+00186 
+00200 \textcolor{keyword}{extern} uint8\_t TM\_DS18B20\_SetAlarmHighTemperature(\hyperlink{struct_t_m___one_wire__t}{TM\_OneWire\_t}* OneWireStruct, uint8\_t* ROM, 
+      int8\_t temp);
+00201 
+00215 \textcolor{keyword}{extern} uint8\_t TM\_DS18B20\_SetAlarmLowTemperature(\hyperlink{struct_t_m___one_wire__t}{TM\_OneWire\_t}* OneWireStruct, uint8\_t* ROM, 
+      int8\_t temp);
+00216 
+00228 \textcolor{keyword}{extern} uint8\_t TM\_DS18B20\_DisableAlarmTemperature(\hyperlink{struct_t_m___one_wire__t}{TM\_OneWire\_t}* OneWireStruct, uint8\_t* ROM);
+00229 
+00239 \textcolor{keyword}{extern} uint8\_t TM\_DS18B20\_AlarmSearch(\hyperlink{struct_t_m___one_wire__t}{TM\_OneWire\_t}* OneWireStruct);
+00240 
+00250 \textcolor{keyword}{extern} uint8\_t TM\_DS18B20\_AllDone(\hyperlink{struct_t_m___one_wire__t}{TM\_OneWire\_t}* OneWireStruct);
+00251 
+00252 
+00253 \textcolor{preprocessor}{#endif}
+00254 
+\end{DoxyCode}
