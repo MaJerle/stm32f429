@@ -6,6 +6,7 @@ var group___t_m___s_t_m32_f4xx___libraries =
     [ "TM_EXTI", "group___t_m___e_x_t_i.html", "group___t_m___e_x_t_i" ],
     [ "TM_GPIO", "group___t_m___g_p_i_o.html", "group___t_m___g_p_i_o" ],
     [ "TM_GPS", "group___t_m___g_p_s.html", "group___t_m___g_p_s" ],
+    [ "TM_I2C", "group___t_m___i2_c.html", "group___t_m___i2_c" ],
     [ "TM_ID", "group___t_m___i_d.html", "group___t_m___i_d" ],
     [ "TM_LIBNAME", "group___t_m___l_i_b_n_a_m_e.html", "group___t_m___l_i_b_n_a_m_e" ],
     [ "TM_LOWPOWER", "group___t_m___l_o_w_p_o_w_e_r.html", "group___t_m___l_o_w_p_o_w_e_r" ],

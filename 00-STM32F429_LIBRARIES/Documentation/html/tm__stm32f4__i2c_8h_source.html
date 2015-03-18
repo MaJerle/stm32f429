@@ -104,125 +104,143 @@ $(document).ready(function(){initNavTree('tm__stm32f4__i2c_8h_source.html','');}
 </div><!--header-->
 <div class="contents">
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">#ifndef TM_I2C_H</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#define TM_I2C_H 150</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx.h&quot;</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx_i2c.h&quot;</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor">#include &quot;attributes.h&quot;</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="preprocessor">#include &quot;defines.h&quot;</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="preprocessor">#include &quot;tm_stm32f4_gpio.h&quot;</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment">/* Timeout */</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="preprocessor">#ifndef TM_I2C_TIMEOUT</span></div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="preprocessor">#define TM_I2C_TIMEOUT                  20000</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="comment">/* I2C1 settings, change them in defines.h project file */</span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="preprocessor">#ifndef TM_I2C1_ACKNOWLEDGED_ADDRESS</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="preprocessor">#define TM_I2C1_ACKNOWLEDGED_ADDRESS    I2C_AcknowledgedAddress_7bit</span></div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="preprocessor">#ifndef TM_I2C1_MODE</span></div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="preprocessor">#define TM_I2C1_MODE                    I2C_Mode_I2C</span></div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="preprocessor">#ifndef TM_I2C1_OWN_ADDRESS</span></div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="preprocessor">#define TM_I2C1_OWN_ADDRESS             0x00</span></div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="preprocessor">#ifndef TM_I2C1_ACK</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="preprocessor">#define TM_I2C1_ACK                     I2C_Ack_Disable</span></div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="preprocessor">#ifndef TM_I2C1_DUTY_CYCLE</span></div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="preprocessor">#define TM_I2C1_DUTY_CYCLE              I2C_DutyCycle_2</span></div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="comment">/* I2C2 settings, change them in defines.h project file */</span></div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="preprocessor">#ifndef TM_I2C2_ACKNOWLEDGED_ADDRESS</span></div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="preprocessor">#define TM_I2C2_ACKNOWLEDGED_ADDRESS    I2C_AcknowledgedAddress_7bit</span></div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="preprocessor">#ifndef TM_I2C2_MODE</span></div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="preprocessor">#define TM_I2C2_MODE                    I2C_Mode_I2C</span></div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="preprocessor">#ifndef TM_I2C2_OWN_ADDRESS</span></div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="preprocessor">#define TM_I2C2_OWN_ADDRESS             0x00</span></div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="preprocessor">#ifndef TM_I2C2_ACK</span></div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="preprocessor">#define TM_I2C2_ACK                     I2C_Ack_Disable</span></div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="preprocessor">#ifndef TM_I2C2_DUTY_CYCLE</span></div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="preprocessor">#define TM_I2C2_DUTY_CYCLE              I2C_DutyCycle_2</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#ifndef TM_I2C_H</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#define TM_I2C_H 160</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx.h&quot;</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx_i2c.h&quot;</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="preprocessor">#include &quot;attributes.h&quot;</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="preprocessor">#include &quot;defines.h&quot;</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="preprocessor">#include &quot;tm_stm32f4_gpio.h&quot;</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="preprocessor">#ifndef TM_I2C_TIMEOUT</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno"><a class="line" href="group___t_m___i2_c___macros.html#ga6ac564799bb2406a6db07f765c1a1cec">  133</a></span>&#160;<span class="preprocessor">#define TM_I2C_TIMEOUT                  20000</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="comment">/* I2C1 settings, change them in defines.h project file */</span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="preprocessor">#ifndef TM_I2C1_ACKNOWLEDGED_ADDRESS</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="preprocessor">#define TM_I2C1_ACKNOWLEDGED_ADDRESS    I2C_AcknowledgedAddress_7bit</span></div>
 <div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="comment">/* I2C3 settings, change them in defines.h project file */</span></div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="preprocessor">#ifndef TM_I2C3_ACKNOWLEDGED_ADDRESS</span></div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="preprocessor">#define TM_I2C3_ACKNOWLEDGED_ADDRESS    I2C_AcknowledgedAddress_7bit</span></div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="preprocessor">#ifndef TM_I2C3_MODE</span></div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="preprocessor">#define TM_I2C3_MODE                    I2C_Mode_I2C</span></div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="preprocessor">#ifndef TM_I2C3_OWN_ADDRESS</span></div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="preprocessor">#define TM_I2C3_OWN_ADDRESS             0x00</span></div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="preprocessor">#ifndef TM_I2C3_ACK</span></div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="preprocessor">#define TM_I2C3_ACK                     I2C_Ack_Disable</span></div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="preprocessor">#ifndef TM_I2C3_DUTY_CYCLE</span></div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;<span class="preprocessor">#define TM_I2C3_DUTY_CYCLE              I2C_DutyCycle_2</span></div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="preprocessor">#ifndef TM_I2C1_MODE</span></div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="preprocessor">#define TM_I2C1_MODE                    I2C_Mode_I2C</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="preprocessor">#ifndef TM_I2C1_OWN_ADDRESS</span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="preprocessor">#define TM_I2C1_OWN_ADDRESS             0x00</span></div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="preprocessor">#ifndef TM_I2C1_ACK</span></div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="preprocessor">#define TM_I2C1_ACK                     I2C_Ack_Disable</span></div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="preprocessor">#ifndef TM_I2C1_DUTY_CYCLE</span></div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="preprocessor">#define TM_I2C1_DUTY_CYCLE              I2C_DutyCycle_2</span></div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="comment">/* I2C2 settings, change them in defines.h project file */</span></div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="preprocessor">#ifndef TM_I2C2_ACKNOWLEDGED_ADDRESS</span></div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;<span class="preprocessor">#define TM_I2C2_ACKNOWLEDGED_ADDRESS    I2C_AcknowledgedAddress_7bit</span></div>
 <div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="comment">/* I2C speed modes */</span></div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="preprocessor">#define TM_I2C_CLOCK_STANDARD           100000</span></div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="preprocessor">#define TM_I2C_CLOCK_FAST_MODE          400000</span></div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="preprocessor">#define TM_I2C_CLOCK_FAST_MODE_PLUS     1000000</span></div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<span class="preprocessor">#define TM_I2C_CLOCK_HIGH_SPEED         3400000</span></div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    TM_I2C_PinsPack_1,</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    TM_I2C_PinsPack_2,</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    TM_I2C_PinsPack_3,</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    TM_I2C_PinsPack_Custom</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;} TM_I2C_PinsPack_t;</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> TM_I2C_Init(I2C_TypeDef* I2Cx, TM_I2C_PinsPack_t pinspack, uint32_t clockSpeed);</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;<span class="keyword">extern</span> uint8_t TM_I2C_Read(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg);</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> TM_I2C_ReadMulti(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t *data, uint16_t count);</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;<span class="keyword">extern</span> uint8_t TM_I2C_ReadNoRegister(I2C_TypeDef* I2Cx, uint8_t address);</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> TM_I2C_ReadMultiNoRegister(I2C_TypeDef* I2Cx, uint8_t address, uint8_t* data, uint16_t count);</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> TM_I2C_Write(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t data);</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> TM_I2C_WriteMulti(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t *data, uint16_t count);</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> TM_I2C_WriteNoRegister(I2C_TypeDef* I2Cx, uint8_t address, uint8_t data);</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> TM_I2C_WriteMultiNoRegister(I2C_TypeDef* I2Cx, uint8_t address, uint8_t* data, uint16_t count);</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;<span class="keyword">extern</span> uint8_t TM_I2C_IsDeviceConnected(I2C_TypeDef* I2Cx, uint8_t address);</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;<span class="keyword">extern</span> int16_t TM_I2C_Start(I2C_TypeDef* I2Cx, uint8_t address, uint8_t direction, uint8_t ack);</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;<span class="keyword">extern</span> uint8_t TM_I2C_Stop(I2C_TypeDef* I2Cx);</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;<span class="keyword">extern</span> uint8_t TM_I2C_ReadNack(I2C_TypeDef* I2Cx);</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;</div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;<span class="keyword">extern</span> uint8_t TM_I2C_ReadAck(I2C_TypeDef* I2Cx);</div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;</div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> TM_I2C_WriteData(I2C_TypeDef* I2Cx, uint8_t data);</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="preprocessor">#ifndef TM_I2C2_MODE</span></div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="preprocessor">#define TM_I2C2_MODE                    I2C_Mode_I2C</span></div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="preprocessor">#ifndef TM_I2C2_OWN_ADDRESS</span></div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="preprocessor">#define TM_I2C2_OWN_ADDRESS             0x00</span></div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="preprocessor">#ifndef TM_I2C2_ACK</span></div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="preprocessor">#define TM_I2C2_ACK                     I2C_Ack_Disable</span></div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="preprocessor">#ifndef TM_I2C2_DUTY_CYCLE</span></div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="preprocessor">#define TM_I2C2_DUTY_CYCLE              I2C_DutyCycle_2</span></div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;<span class="comment">/* I2C3 settings, change them in defines.h project file */</span></div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;<span class="preprocessor">#ifndef TM_I2C3_ACKNOWLEDGED_ADDRESS</span></div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<span class="preprocessor">#define TM_I2C3_ACKNOWLEDGED_ADDRESS    I2C_AcknowledgedAddress_7bit</span></div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="preprocessor">#ifndef TM_I2C3_MODE</span></div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="preprocessor">#define TM_I2C3_MODE                    I2C_Mode_I2C</span></div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="preprocessor">#ifndef TM_I2C3_OWN_ADDRESS</span></div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="preprocessor">#define TM_I2C3_OWN_ADDRESS             0x00</span></div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;<span class="preprocessor">#ifndef TM_I2C3_ACK</span></div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<span class="preprocessor">#define TM_I2C3_ACK                     I2C_Ack_Disable</span></div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;<span class="preprocessor">#ifndef TM_I2C3_DUTY_CYCLE</span></div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;<span class="preprocessor">#define TM_I2C3_DUTY_CYCLE              I2C_DutyCycle_2</span></div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;</div>
+<div class="line"><a name="l00187"></a><span class="lineno"><a class="line" href="group___t_m___i2_c___macros.html#gabfb93d738bcfbf395c1dceb11bf69c2f">  187</a></span>&#160;<span class="preprocessor">#define TM_I2C_CLOCK_STANDARD           100000  </span></div>
+<div class="line"><a name="l00188"></a><span class="lineno"><a class="line" href="group___t_m___i2_c___macros.html#gadf64c89a41fde8326dbabfa6fcd16c2a">  188</a></span>&#160;<span class="preprocessor">#define TM_I2C_CLOCK_FAST_MODE          400000  </span></div>
+<div class="line"><a name="l00189"></a><span class="lineno"><a class="line" href="group___t_m___i2_c___macros.html#ga96599f900099f4992824423942371e74">  189</a></span>&#160;<span class="preprocessor">#define TM_I2C_CLOCK_FAST_MODE_PLUS     1000000 </span></div>
+<div class="line"><a name="l00190"></a><span class="lineno"><a class="line" href="group___t_m___i2_c___macros.html#ga15117eee34f8438904064a3a90dc3d04">  190</a></span>&#160;<span class="preprocessor">#define TM_I2C_CLOCK_HIGH_SPEED         3400000 </span></div>
+<div class="line"><a name="l00205"></a><span class="lineno"><a class="line" href="group___t_m___i2_c___typedefs.html#ga147eaedbc759821741191431f2d3cc1d">  205</a></span>&#160;<span class="preprocessor">typedef enum {</span></div>
+<div class="line"><a name="l00206"></a><span class="lineno"><a class="line" href="group___t_m___i2_c___typedefs.html#gga147eaedbc759821741191431f2d3cc1daa21b1fc3f936f1b309d67a2c5df6930f">  206</a></span>&#160;    <a class="code" href="group___t_m___i2_c___typedefs.html#gga147eaedbc759821741191431f2d3cc1daa21b1fc3f936f1b309d67a2c5df6930f">TM_I2C_PinsPack_1</a>,      </div>
+<div class="line"><a name="l00207"></a><span class="lineno"><a class="line" href="group___t_m___i2_c___typedefs.html#gga147eaedbc759821741191431f2d3cc1dabf9b7250b807fea2d725b4a0d09f0609">  207</a></span>&#160;    <a class="code" href="group___t_m___i2_c___typedefs.html#gga147eaedbc759821741191431f2d3cc1dabf9b7250b807fea2d725b4a0d09f0609">TM_I2C_PinsPack_2</a>,      </div>
+<div class="line"><a name="l00208"></a><span class="lineno"><a class="line" href="group___t_m___i2_c___typedefs.html#gga147eaedbc759821741191431f2d3cc1da94d4f57d07cde452fa6525ffee04e188">  208</a></span>&#160;    <a class="code" href="group___t_m___i2_c___typedefs.html#gga147eaedbc759821741191431f2d3cc1da94d4f57d07cde452fa6525ffee04e188">TM_I2C_PinsPack_3</a>,      </div>
+<div class="line"><a name="l00209"></a><span class="lineno"><a class="line" href="group___t_m___i2_c___typedefs.html#gga147eaedbc759821741191431f2d3cc1da2fcabed73c1f7a1d5e9766cf3c83c5da">  209</a></span>&#160;    <a class="code" href="group___t_m___i2_c___typedefs.html#gga147eaedbc759821741191431f2d3cc1da2fcabed73c1f7a1d5e9766cf3c83c5da">TM_I2C_PinsPack_Custom</a>  </div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;} <a class="code" href="group___t_m___i2_c___typedefs.html#ga147eaedbc759821741191431f2d3cc1d">TM_I2C_PinsPack_t</a>;</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___i2_c___functions.html#ga562ac4ee07b749003c6725d01de9b3fb">TM_I2C_Init</a>(I2C_TypeDef* I2Cx, <a class="code" href="group___t_m___i2_c___typedefs.html#ga147eaedbc759821741191431f2d3cc1d">TM_I2C_PinsPack_t</a> pinspack, uint32_t clockSpeed);</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;uint8_t <a class="code" href="group___t_m___i2_c___functions.html#ga6c2cfa206001c49571c0e1e33ae85b4d">TM_I2C_Read</a>(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg);</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___i2_c___functions.html#gafdabd1e3f871bc7afece84b988c71ee8">TM_I2C_ReadMulti</a>(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t *data, uint16_t count);</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;uint8_t <a class="code" href="group___t_m___i2_c___functions.html#gade17597b0fcb3cc5f37a1dc0067765c4">TM_I2C_ReadNoRegister</a>(I2C_TypeDef* I2Cx, uint8_t address);</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___i2_c___functions.html#ga5c0673b6755c8d640ba72efbbece8637">TM_I2C_ReadMultiNoRegister</a>(I2C_TypeDef* I2Cx, uint8_t address, uint8_t* data, uint16_t count);</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___i2_c___functions.html#ga49f5a49862ed21dd7a4691c27b5daffb">TM_I2C_Write</a>(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t data);</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___i2_c___functions.html#ga375b601d892cff3ed7c36b7202003f5a">TM_I2C_WriteMulti</a>(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t *data, uint16_t count);</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___i2_c___functions.html#gaacc4f71b1f038a1ffb283e79d4a0892d">TM_I2C_WriteNoRegister</a>(I2C_TypeDef* I2Cx, uint8_t address, uint8_t data);</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___i2_c___functions.html#ga6216bcc5c45a0992d17523c266622990">TM_I2C_WriteMultiNoRegister</a>(I2C_TypeDef* I2Cx, uint8_t address, uint8_t* data, uint16_t count);</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;uint8_t <a class="code" href="group___t_m___i2_c___functions.html#ga4ce64aa39e0efe9135f360913f86bfda">TM_I2C_IsDeviceConnected</a>(I2C_TypeDef* I2Cx, uint8_t address);</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;int16_t <a class="code" href="group___t_m___i2_c___functions.html#ga5cf2e491d1aa251e6c153fded28426e6">TM_I2C_Start</a>(I2C_TypeDef* I2Cx, uint8_t address, uint8_t direction, uint8_t ack);</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;uint8_t <a class="code" href="group___t_m___i2_c___functions.html#gab5f50d8aa7af3b6378c4a863d23bcb90">TM_I2C_Stop</a>(I2C_TypeDef* I2Cx);</div>
 <div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;</div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;<span class="keyword">extern</span> __weak <span class="keywordtype">void</span> TM_I2C_InitCustomPinsCallback(I2C_TypeDef* I2Cx);</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;uint8_t <a class="code" href="group___t_m___i2_c___functions.html#gaa92a17936fd33523358a8f1544282399">TM_I2C_ReadNack</a>(I2C_TypeDef* I2Cx);</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;uint8_t <a class="code" href="group___t_m___i2_c___functions.html#ga87f7ccb32114544aa27d41bccf67a4c0">TM_I2C_ReadAck</a>(I2C_TypeDef* I2Cx);</div>
 <div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;</div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;</div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___i2_c___functions.html#ga39a9e30afb0a9a8a378b0c617aed45d8">TM_I2C_WriteData</a>(I2C_TypeDef* I2Cx, uint8_t data);</div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;__weak <span class="keywordtype">void</span> <a class="code" href="group___t_m___i2_c___functions.html#ga2209241b8bccb245c4a773948db8a8a2">TM_I2C_InitCustomPinsCallback</a>(I2C_TypeDef* I2Cx);</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;</div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;</div>
+<div class="ttc" id="group___t_m___i2_c___functions_html_ga375b601d892cff3ed7c36b7202003f5a"><div class="ttname"><a href="group___t_m___i2_c___functions.html#ga375b601d892cff3ed7c36b7202003f5a">TM_I2C_WriteMulti</a></div><div class="ttdeci">void TM_I2C_WriteMulti(I2C_TypeDef *I2Cx, uint8_t address, uint8_t reg, uint8_t *data, uint16_t count)</div><div class="ttdoc">Writes multi bytes to slave. </div></div>
+<div class="ttc" id="group___t_m___i2_c___typedefs_html_gga147eaedbc759821741191431f2d3cc1dabf9b7250b807fea2d725b4a0d09f0609"><div class="ttname"><a href="group___t_m___i2_c___typedefs.html#gga147eaedbc759821741191431f2d3cc1dabf9b7250b807fea2d725b4a0d09f0609">TM_I2C_PinsPack_2</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_i2c.h:207</div></div>
+<div class="ttc" id="group___t_m___i2_c___functions_html_ga2209241b8bccb245c4a773948db8a8a2"><div class="ttname"><a href="group___t_m___i2_c___functions.html#ga2209241b8bccb245c4a773948db8a8a2">TM_I2C_InitCustomPinsCallback</a></div><div class="ttdeci">__weak void TM_I2C_InitCustomPinsCallback(I2C_TypeDef *I2Cx)</div><div class="ttdoc">Callback for custom pins initialization. </div></div>
+<div class="ttc" id="group___t_m___i2_c___functions_html_ga5cf2e491d1aa251e6c153fded28426e6"><div class="ttname"><a href="group___t_m___i2_c___functions.html#ga5cf2e491d1aa251e6c153fded28426e6">TM_I2C_Start</a></div><div class="ttdeci">int16_t TM_I2C_Start(I2C_TypeDef *I2Cx, uint8_t address, uint8_t direction, uint8_t ack)</div><div class="ttdoc">I2C Start condition. </div></div>
+<div class="ttc" id="group___t_m___i2_c___functions_html_ga562ac4ee07b749003c6725d01de9b3fb"><div class="ttname"><a href="group___t_m___i2_c___functions.html#ga562ac4ee07b749003c6725d01de9b3fb">TM_I2C_Init</a></div><div class="ttdeci">void TM_I2C_Init(I2C_TypeDef *I2Cx, TM_I2C_PinsPack_t pinspack, uint32_t clockSpeed)</div><div class="ttdoc">Initializes I2C. </div></div>
+<div class="ttc" id="group___t_m___i2_c___functions_html_gaacc4f71b1f038a1ffb283e79d4a0892d"><div class="ttname"><a href="group___t_m___i2_c___functions.html#gaacc4f71b1f038a1ffb283e79d4a0892d">TM_I2C_WriteNoRegister</a></div><div class="ttdeci">void TM_I2C_WriteNoRegister(I2C_TypeDef *I2Cx, uint8_t address, uint8_t data)</div><div class="ttdoc">Writes byte to slave without specify register address. </div></div>
+<div class="ttc" id="group___t_m___i2_c___typedefs_html_ga147eaedbc759821741191431f2d3cc1d"><div class="ttname"><a href="group___t_m___i2_c___typedefs.html#ga147eaedbc759821741191431f2d3cc1d">TM_I2C_PinsPack_t</a></div><div class="ttdeci">TM_I2C_PinsPack_t</div><div class="ttdoc">I2C pinspack enumeration. </div><div class="ttdef"><b>Definition:</b> tm_stm32f4_i2c.h:205</div></div>
+<div class="ttc" id="group___t_m___i2_c___functions_html_ga49f5a49862ed21dd7a4691c27b5daffb"><div class="ttname"><a href="group___t_m___i2_c___functions.html#ga49f5a49862ed21dd7a4691c27b5daffb">TM_I2C_Write</a></div><div class="ttdeci">void TM_I2C_Write(I2C_TypeDef *I2Cx, uint8_t address, uint8_t reg, uint8_t data)</div><div class="ttdoc">Writes single byte to slave. </div></div>
+<div class="ttc" id="group___t_m___i2_c___functions_html_ga6c2cfa206001c49571c0e1e33ae85b4d"><div class="ttname"><a href="group___t_m___i2_c___functions.html#ga6c2cfa206001c49571c0e1e33ae85b4d">TM_I2C_Read</a></div><div class="ttdeci">uint8_t TM_I2C_Read(I2C_TypeDef *I2Cx, uint8_t address, uint8_t reg)</div><div class="ttdoc">Reads single byte from slave. </div></div>
+<div class="ttc" id="group___t_m___i2_c___functions_html_gafdabd1e3f871bc7afece84b988c71ee8"><div class="ttname"><a href="group___t_m___i2_c___functions.html#gafdabd1e3f871bc7afece84b988c71ee8">TM_I2C_ReadMulti</a></div><div class="ttdeci">void TM_I2C_ReadMulti(I2C_TypeDef *I2Cx, uint8_t address, uint8_t reg, uint8_t *data, uint16_t count)</div><div class="ttdoc">Reads multi bytes from slave. </div></div>
+<div class="ttc" id="group___t_m___i2_c___typedefs_html_gga147eaedbc759821741191431f2d3cc1da94d4f57d07cde452fa6525ffee04e188"><div class="ttname"><a href="group___t_m___i2_c___typedefs.html#gga147eaedbc759821741191431f2d3cc1da94d4f57d07cde452fa6525ffee04e188">TM_I2C_PinsPack_3</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_i2c.h:208</div></div>
+<div class="ttc" id="group___t_m___i2_c___functions_html_gade17597b0fcb3cc5f37a1dc0067765c4"><div class="ttname"><a href="group___t_m___i2_c___functions.html#gade17597b0fcb3cc5f37a1dc0067765c4">TM_I2C_ReadNoRegister</a></div><div class="ttdeci">uint8_t TM_I2C_ReadNoRegister(I2C_TypeDef *I2Cx, uint8_t address)</div><div class="ttdoc">Reads byte from slave without specify register address. </div></div>
+<div class="ttc" id="group___t_m___i2_c___functions_html_ga5c0673b6755c8d640ba72efbbece8637"><div class="ttname"><a href="group___t_m___i2_c___functions.html#ga5c0673b6755c8d640ba72efbbece8637">TM_I2C_ReadMultiNoRegister</a></div><div class="ttdeci">void TM_I2C_ReadMultiNoRegister(I2C_TypeDef *I2Cx, uint8_t address, uint8_t *data, uint16_t count)</div><div class="ttdoc">Reads multi bytes from slave without setting register from where to start read. </div></div>
+<div class="ttc" id="group___t_m___i2_c___functions_html_ga6216bcc5c45a0992d17523c266622990"><div class="ttname"><a href="group___t_m___i2_c___functions.html#ga6216bcc5c45a0992d17523c266622990">TM_I2C_WriteMultiNoRegister</a></div><div class="ttdeci">void TM_I2C_WriteMultiNoRegister(I2C_TypeDef *I2Cx, uint8_t address, uint8_t *data, uint16_t count)</div><div class="ttdoc">Writes multi bytes to slave without setting register from where to start write. </div></div>
+<div class="ttc" id="group___t_m___i2_c___functions_html_ga4ce64aa39e0efe9135f360913f86bfda"><div class="ttname"><a href="group___t_m___i2_c___functions.html#ga4ce64aa39e0efe9135f360913f86bfda">TM_I2C_IsDeviceConnected</a></div><div class="ttdeci">uint8_t TM_I2C_IsDeviceConnected(I2C_TypeDef *I2Cx, uint8_t address)</div><div class="ttdoc">Checks if device is connected to I2C bus. </div></div>
+<div class="ttc" id="group___t_m___i2_c___typedefs_html_gga147eaedbc759821741191431f2d3cc1daa21b1fc3f936f1b309d67a2c5df6930f"><div class="ttname"><a href="group___t_m___i2_c___typedefs.html#gga147eaedbc759821741191431f2d3cc1daa21b1fc3f936f1b309d67a2c5df6930f">TM_I2C_PinsPack_1</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_i2c.h:206</div></div>
+<div class="ttc" id="group___t_m___i2_c___functions_html_ga87f7ccb32114544aa27d41bccf67a4c0"><div class="ttname"><a href="group___t_m___i2_c___functions.html#ga87f7ccb32114544aa27d41bccf67a4c0">TM_I2C_ReadAck</a></div><div class="ttdeci">uint8_t TM_I2C_ReadAck(I2C_TypeDef *I2Cx)</div><div class="ttdoc">Reads byte with ack. </div></div>
+<div class="ttc" id="group___t_m___i2_c___functions_html_gab5f50d8aa7af3b6378c4a863d23bcb90"><div class="ttname"><a href="group___t_m___i2_c___functions.html#gab5f50d8aa7af3b6378c4a863d23bcb90">TM_I2C_Stop</a></div><div class="ttdeci">uint8_t TM_I2C_Stop(I2C_TypeDef *I2Cx)</div><div class="ttdoc">Stop condition on I2C. </div></div>
+<div class="ttc" id="group___t_m___i2_c___typedefs_html_gga147eaedbc759821741191431f2d3cc1da2fcabed73c1f7a1d5e9766cf3c83c5da"><div class="ttname"><a href="group___t_m___i2_c___typedefs.html#gga147eaedbc759821741191431f2d3cc1da2fcabed73c1f7a1d5e9766cf3c83c5da">TM_I2C_PinsPack_Custom</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_i2c.h:209</div></div>
+<div class="ttc" id="group___t_m___i2_c___functions_html_gaa92a17936fd33523358a8f1544282399"><div class="ttname"><a href="group___t_m___i2_c___functions.html#gaa92a17936fd33523358a8f1544282399">TM_I2C_ReadNack</a></div><div class="ttdeci">uint8_t TM_I2C_ReadNack(I2C_TypeDef *I2Cx)</div><div class="ttdoc">Reads byte without ack. </div></div>
+<div class="ttc" id="group___t_m___i2_c___functions_html_ga39a9e30afb0a9a8a378b0c617aed45d8"><div class="ttname"><a href="group___t_m___i2_c___functions.html#ga39a9e30afb0a9a8a378b0c617aed45d8">TM_I2C_WriteData</a></div><div class="ttdeci">void TM_I2C_WriteData(I2C_TypeDef *I2Cx, uint8_t data)</div><div class="ttdoc">Writes to slave. </div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>tm_stm32f4_i2c.h</b></li>
-    <li class="footer">Generated on Wed Mar 18 2015 23:13:21 for TM STM32F4xx Libraries by
+    <li class="footer">Generated on Wed Mar 18 2015 23:36:12 for TM STM32F4xx Libraries by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>
