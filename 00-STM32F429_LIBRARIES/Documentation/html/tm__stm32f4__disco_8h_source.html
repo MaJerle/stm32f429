@@ -206,34 +206,34 @@ $(document).ready(function(){initNavTree('tm__stm32f4__disco_8h_source.html','')
 <div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___d_i_s_c_o___functions.html#gabe5d286b45c36b96b3eb4df0e5b9cfde">TM_DISCO_ButtonInit</a>(<span class="keywordtype">void</span>);</div>
 <div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;</div>
 <div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;<span class="preprocessor">#ifndef TM_DISCO_SWAP_LOGIC</span></div>
-<div class="line"><a name="l00277"></a><span class="lineno"><a class="line" href="group___t_m___d_i_s_c_o___functions.html#ga72aa66c1c0647cf3bbb3c2c069f1901a">  277</a></span>&#160;<span class="preprocessor">    #define TM_DISCO_LedOn(led)         TM_GPIO_SetPinHigh(TM_DISCO_LED_PORT, (led))</span></div>
+<div class="line"><a name="l00277"></a><span class="lineno"><a class="line" href="group___t_m___d_i_s_c_o___functions.html#ga72aa66c1c0647cf3bbb3c2c069f1901a">  277</a></span>&#160;<span class="preprocessor">    #define TM_DISCO_LedOn(led)        TM_GPIO_SetPinHigh(TM_DISCO_LED_PORT, (led))</span></div>
 <div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;<span class="preprocessor">    #define TM_DISCO_LedOn(led)         TM_GPIO_SetPinLow(TM_DISCO_LED_PORT, (led))</span></div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;<span class="preprocessor">    #define TM_DISCO_LedOn(led)        TM_GPIO_SetPinLow(TM_DISCO_LED_PORT, (led))</span></div>
 <div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;</div>
 <div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;<span class="preprocessor">#ifndef TM_DISCO_SWAP_LOGIC</span></div>
-<div class="line"><a name="l00294"></a><span class="lineno"><a class="line" href="group___t_m___d_i_s_c_o___functions.html#gab295e2ecb3dc81210a9af3f5281cae79">  294</a></span>&#160;<span class="preprocessor">    #define TM_DISCO_LedOff(led)            TM_GPIO_SetPinLow(TM_DISCO_LED_PORT, (led))</span></div>
+<div class="line"><a name="l00294"></a><span class="lineno"><a class="line" href="group___t_m___d_i_s_c_o___functions.html#gab295e2ecb3dc81210a9af3f5281cae79">  294</a></span>&#160;<span class="preprocessor">    #define TM_DISCO_LedOff(led)       TM_GPIO_SetPinLow(TM_DISCO_LED_PORT, (led))</span></div>
 <div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;<span class="preprocessor">    #define TM_DISCO_LedOff(led)            TM_GPIO_SetPinHigh(TM_DISCO_LED_PORT, (led))</span></div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;<span class="preprocessor">    #define TM_DISCO_LedOff(led)       TM_GPIO_SetPinHigh(TM_DISCO_LED_PORT, (led))</span></div>
 <div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;</div>
-<div class="line"><a name="l00309"></a><span class="lineno"><a class="line" href="group___t_m___d_i_s_c_o___functions.html#gaacaee2ef25adf5ff2cc2be660b561d94">  309</a></span>&#160;<span class="preprocessor">#define TM_DISCO_LedToggle(led)     TM_GPIO_TogglePinValue(TM_DISCO_LED_PORT, (led))</span></div>
+<div class="line"><a name="l00309"></a><span class="lineno"><a class="line" href="group___t_m___d_i_s_c_o___functions.html#gaacaee2ef25adf5ff2cc2be660b561d94">  309</a></span>&#160;<span class="preprocessor">#define TM_DISCO_LedToggle(led)        TM_GPIO_TogglePinValue(TM_DISCO_LED_PORT, (led))</span></div>
 <div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;<span class="preprocessor">#ifndef TM_DISCO_SWAP_LOGIC</span></div>
-<div class="line"><a name="l00318"></a><span class="lineno"><a class="line" href="group___t_m___d_i_s_c_o___functions.html#ga88ebf703816bec3e79e60fef9c469950">  318</a></span>&#160;<span class="preprocessor">#define TM_DISCO_LedIsOn(led)       TM_GPIO_GetOutputPinValue(TM_DISCO_LED_PORT, (led))</span></div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;<span class="preprocessor">#define TM_DISCO_LedIsOn(led)       !TM_GPIO_GetOutputPinValue(TM_DISCO_LED_PORT, (led))</span></div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;</div>
-<div class="line"><a name="l00351"></a><span class="lineno"><a class="line" href="group___t_m___d_i_s_c_o___functions.html#ga45b9e10ff16b153c3d26db3a23481623">  351</a></span>&#160;<span class="preprocessor">#define TM_DISCO_SetLed(led, state) ((state) ? TM_DISCO_LedOn(led): TM_DISCO_LedOff(led))</span></div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;</div>
-<div class="line"><a name="l00360"></a><span class="lineno"><a class="line" href="group___t_m___d_i_s_c_o___functions.html#ga02c997906998f75a6cd676810022f9b3">  360</a></span>&#160;<span class="preprocessor">#define TM_DISCO_ButtonPressed()    ((TM_GPIO_GetInputPinValue(TM_DISCO_BUTTON_PORT, TM_DISCO_BUTTON_PIN) == 0) != TM_DISCO_BUTTON_PRESSED)</span></div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;</div>
-<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;uint8_t <a class="code" href="group___t_m___d_i_s_c_o___functions.html#ga24330bb47f3ed88ae841054a8023cd2a">TM_DISCO_ButtonOnPressed</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;</div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;uint8_t <a class="code" href="group___t_m___d_i_s_c_o___functions.html#ga3b6eee495f312c38eefaa90c40ccff5a">TM_DISCO_ButtonOnReleased</a>(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;</div>
-<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;<span class="preprocessor">#ifndef TM_DISCO_SWAP_LOGIC</span></div>
+<div class="line"><a name="l00323"></a><span class="lineno"><a class="line" href="group___t_m___d_i_s_c_o___functions.html#ga88ebf703816bec3e79e60fef9c469950">  323</a></span>&#160;<span class="preprocessor">#define TM_DISCO_LedIsOn(led)          TM_GPIO_GetOutputPinValue(TM_DISCO_LED_PORT, (led))</span></div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;<span class="preprocessor">#define TM_DISCO_LedIsOn(led)          !TM_GPIO_GetOutputPinValue(TM_DISCO_LED_PORT, (led))</span></div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;</div>
+<div class="line"><a name="l00341"></a><span class="lineno"><a class="line" href="group___t_m___d_i_s_c_o___functions.html#ga45b9e10ff16b153c3d26db3a23481623">  341</a></span>&#160;<span class="preprocessor">#define TM_DISCO_SetLed(led, state)    ((state) ? TM_DISCO_LedOn(led): TM_DISCO_LedOff(led))</span></div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;</div>
+<div class="line"><a name="l00350"></a><span class="lineno"><a class="line" href="group___t_m___d_i_s_c_o___functions.html#ga02c997906998f75a6cd676810022f9b3">  350</a></span>&#160;<span class="preprocessor">#define TM_DISCO_ButtonPressed()       ((TM_GPIO_GetInputPinValue(TM_DISCO_BUTTON_PORT, TM_DISCO_BUTTON_PIN) == 0) != TM_DISCO_BUTTON_PRESSED)</span></div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;uint8_t <a class="code" href="group___t_m___d_i_s_c_o___functions.html#ga24330bb47f3ed88ae841054a8023cd2a">TM_DISCO_ButtonOnPressed</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;</div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;uint8_t <a class="code" href="group___t_m___d_i_s_c_o___functions.html#ga3b6eee495f312c38eefaa90c40ccff5a">TM_DISCO_ButtonOnReleased</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="group___t_m___d_i_s_c_o___functions_html_gabe5d286b45c36b96b3eb4df0e5b9cfde"><div class="ttname"><a href="group___t_m___d_i_s_c_o___functions.html#gabe5d286b45c36b96b3eb4df0e5b9cfde">TM_DISCO_ButtonInit</a></div><div class="ttdeci">void TM_DISCO_ButtonInit(void)</div><div class="ttdoc">Configures Button pin as input. </div><div class="ttdef"><b>Definition:</b> tm_stm32f4_disco.c:29</div></div>
 <div class="ttc" id="group___t_m___d_i_s_c_o___functions_html_ga14630e30f567396ddc945c577d762ee1"><div class="ttname"><a href="group___t_m___d_i_s_c_o___functions.html#ga14630e30f567396ddc945c577d762ee1">TM_DISCO_LedInit</a></div><div class="ttdeci">void TM_DISCO_LedInit(void)</div><div class="ttdoc">Configures LED pins as outputs. </div><div class="ttdef"><b>Definition:</b> tm_stm32f4_disco.c:24</div></div>
 <div class="ttc" id="group___t_m___d_i_s_c_o___functions_html_ga3b6eee495f312c38eefaa90c40ccff5a"><div class="ttname"><a href="group___t_m___d_i_s_c_o___functions.html#ga3b6eee495f312c38eefaa90c40ccff5a">TM_DISCO_ButtonOnReleased</a></div><div class="ttdeci">uint8_t TM_DISCO_ButtonOnReleased(void)</div><div class="ttdoc">Check if button was released now, but was already pressed before. </div><div class="ttdef"><b>Definition:</b> tm_stm32f4_disco.c:53</div></div>
@@ -244,7 +244,7 @@ $(document).ready(function(){initNavTree('tm__stm32f4__disco_8h_source.html','')
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>tm_stm32f4_disco.h</b></li>
-    <li class="footer">Generated on Wed Mar 18 2015 00:39:12 for TM STM32F4xx Libraries by
+    <li class="footer">Generated on Wed Mar 18 2015 07:56:33 for TM STM32F4xx Libraries by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

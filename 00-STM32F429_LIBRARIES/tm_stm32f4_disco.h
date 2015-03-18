@@ -274,9 +274,9 @@ void TM_DISCO_ButtonInit(void);
  * @retval None
  */
 #ifndef TM_DISCO_SWAP_LOGIC
-	#define TM_DISCO_LedOn(led)			TM_GPIO_SetPinHigh(TM_DISCO_LED_PORT, (led))
+	#define TM_DISCO_LedOn(led)        TM_GPIO_SetPinHigh(TM_DISCO_LED_PORT, (led))
 #else
-	#define TM_DISCO_LedOn(led)			TM_GPIO_SetPinLow(TM_DISCO_LED_PORT, (led))
+	#define TM_DISCO_LedOn(led)        TM_GPIO_SetPinLow(TM_DISCO_LED_PORT, (led))
 #endif
 
 /**
@@ -291,9 +291,9 @@ void TM_DISCO_ButtonInit(void);
  * @retval None
  */
 #ifndef TM_DISCO_SWAP_LOGIC
-	#define TM_DISCO_LedOff(led)			TM_GPIO_SetPinLow(TM_DISCO_LED_PORT, (led))
+	#define TM_DISCO_LedOff(led)       TM_GPIO_SetPinLow(TM_DISCO_LED_PORT, (led))
 #else
-	#define TM_DISCO_LedOff(led)			TM_GPIO_SetPinHigh(TM_DISCO_LED_PORT, (led))
+	#define TM_DISCO_LedOff(led)       TM_GPIO_SetPinHigh(TM_DISCO_LED_PORT, (led))
 #endif
 
 /**
@@ -306,35 +306,25 @@ void TM_DISCO_ButtonInit(void);
  *            - LED_ALL: All leds
  * @retval None
  */
-#define TM_DISCO_LedToggle(led)		TM_GPIO_TogglePinValue(TM_DISCO_LED_PORT, (led))
+#define TM_DISCO_LedToggle(led)        TM_GPIO_TogglePinValue(TM_DISCO_LED_PORT, (led))
 
 /**
  * @brief  Checks if led is on
  * @note   STM32F4x9-Eval board uses inverse logic for leds
  * @param  led: Led you want to checking
+ *            - LED_RED: Red led
+ *            - LED_GREEN: Green led
+ *            - LED_BLUE: Blue led
+ *            - LED_ORANGE: Orange led
+ *            - LED_ALL: All leds
  * @retval 1 if led is on or 0 if not
  */
 #ifndef TM_DISCO_SWAP_LOGIC
-#define TM_DISCO_LedIsOn(led)		TM_GPIO_GetOutputPinValue(TM_DISCO_LED_PORT, (led))
+#define TM_DISCO_LedIsOn(led)          TM_GPIO_GetOutputPinValue(TM_DISCO_LED_PORT, (led))
 #else
-#define TM_DISCO_LedIsOn(led)		!TM_GPIO_GetOutputPinValue(TM_DISCO_LED_PORT, (led))
+#define TM_DISCO_LedIsOn(led)          !TM_GPIO_GetOutputPinValue(TM_DISCO_LED_PORT, (led))
 #endif
 
-/**
- * Set led's state with one function
- *
- * Parameters:
- * 	- uint16_t led:
- * 		LED_GREEN
- * 		LED_RED
- *		LED_ORANGE
- *		LED_BLUE
- *	- uint8_t state:
- *		0: led is off
- *		> 0: led is on
- * 
- * Return 1 if turned on, otherwise 0
- */
 /**
  * @brief  Set led value
  * @param  led: LED you want to set value
@@ -348,16 +338,16 @@ void TM_DISCO_ButtonInit(void);
  *            - > 0: led is on
  * @retval None
  */
-#define TM_DISCO_SetLed(led, state)	((state) ? TM_DISCO_LedOn(led): TM_DISCO_LedOff(led))
+#define TM_DISCO_SetLed(led, state)    ((state) ? TM_DISCO_LedOn(led): TM_DISCO_LedOff(led))
 
 /**
- * @param  Checks if user button is pressed
+ * @brief  Checks if user button is pressed
  * @param  None
  * @retval Button status
  *            - 0: Button is not pressed
  *            - > 0: Button is pressed
  */
-#define TM_DISCO_ButtonPressed()	((TM_GPIO_GetInputPinValue(TM_DISCO_BUTTON_PORT, TM_DISCO_BUTTON_PIN) == 0) != TM_DISCO_BUTTON_PRESSED)
+#define TM_DISCO_ButtonPressed()       ((TM_GPIO_GetInputPinValue(TM_DISCO_BUTTON_PORT, TM_DISCO_BUTTON_PIN) == 0) != TM_DISCO_BUTTON_PRESSED)
 
 /**
  * @brief  Check if button was pressed now, but was not already pressed before

@@ -128,6 +128,7 @@ Macros</h2></td></tr>
 <tr class="memdesc:ga45b9e10ff16b153c3d26db3a23481623"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set led value.  <a href="#ga45b9e10ff16b153c3d26db3a23481623">More...</a><br /></td></tr>
 <tr class="separator:ga45b9e10ff16b153c3d26db3a23481623"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga02c997906998f75a6cd676810022f9b3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_m___d_i_s_c_o___functions.html#ga02c997906998f75a6cd676810022f9b3">TM_DISCO_ButtonPressed</a>()&#160;&#160;&#160;((<a class="el" href="group___t_m___g_p_i_o___functions.html#gacd91a02149d1f1bc648a3fe06648460d">TM_GPIO_GetInputPinValue</a>(TM_DISCO_BUTTON_PORT, TM_DISCO_BUTTON_PIN) == 0) != TM_DISCO_BUTTON_PRESSED)</td></tr>
+<tr class="memdesc:ga02c997906998f75a6cd676810022f9b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if user button is pressed.  <a href="#ga02c997906998f75a6cd676810022f9b3">More...</a><br /></td></tr>
 <tr class="separator:ga02c997906998f75a6cd676810022f9b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
@@ -160,9 +161,10 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Checks if user button is pressed. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">Checks</td><td>if user button is pressed </td></tr>
     <tr><td class="paramname">None</td><td></td></tr>
   </table>
   </dd>
@@ -198,7 +200,14 @@ Functions</h2></td></tr>
 <dl class="section note"><dt>Note</dt><dd>STM32F4x9-Eval board uses inverse logic for leds </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">led</td><td>Led you want to checking </td></tr>
+    <tr><td class="paramname">led</td><td>Led you want to checking<ul>
+<li>LED_RED: Red led</li>
+<li>LED_GREEN: Green led</li>
+<li>LED_BLUE: Blue led</li>
+<li>LED_ORANGE: Orange led</li>
+<li>LED_ALL: All leds </li>
+</ul>
+</td></tr>
   </table>
   </dd>
 </dl>
@@ -349,12 +358,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Set led value. </p>
-<p>Set led's state with one function</p>
-<p>Parameters:</p><ul>
-<li>uint16_t led: LED_GREEN LED_RED LED_ORANGE LED_BLUE</li>
-</ul>
-<p>uint8_t state: 0: led is off &gt; 0: led is on</p>
-<p>Return 1 if turned on, otherwise 0 </p><dl class="params"><dt>Parameters</dt><dd>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">led</td><td>LED you want to set value<ul>
 <li>LED_RED: Red led</li>
@@ -515,7 +519,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed Mar 18 2015 00:39:12 for TM STM32F4xx Libraries by
+    <li class="footer">Generated on Wed Mar 18 2015 07:56:34 for TM STM32F4xx Libraries by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>
