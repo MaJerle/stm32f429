@@ -109,64 +109,178 @@ $(document).ready(function(){initNavTree('struct_t_m___t_c_p_c_l_i_e_n_t__t.html
   <div class="summary">
 <a href="#pub-attribs">Data Fields</a>  </div>
   <div class="headertitle">
-<div class="title">TM_TCPCLIENT_t Struct Reference</div>  </div>
+<div class="title">TM_TCPCLIENT_t Struct Reference<div class="ingroups"><a class="el" href="group___t_m___s_t_m32_f4xx___libraries.html">TM_STM32F4xx_Libraries</a> &raquo; <a class="el" href="group___t_m___e_t_h_e_r_n_e_t.html">TM_ETHERNET</a> &raquo; <a class="el" href="group___t_m___e_t_h_e_r_n_e_t___typedefs.html">TM_ETHERNET_Typedefs</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Client structure, passed as first parameter in all client based callback functions.  
+ <a href="struct_t_m___t_c_p_c_l_i_e_n_t__t.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="tm__stm32f4__ethernet_8h_source.html">tm_stm32f4_ethernet.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:a7849befe648605976cbad9850f4afb52"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7849befe648605976cbad9850f4afb52"></a>
-char&#160;</td><td class="memItemRight" valign="bottom"><b>name</b> [ETHERNET_MAX_CONNECTION_NAME]</td></tr>
+<tr class="memitem:a7849befe648605976cbad9850f4afb52"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_t_m___t_c_p_c_l_i_e_n_t__t.html#a7849befe648605976cbad9850f4afb52">name</a> [<a class="el" href="group___t_m___e_t_h_e_r_n_e_t___macros.html#gabc39d8d143cdd369a58eb108b390016d">ETHERNET_MAX_CONNECTION_NAME</a>]</td></tr>
 <tr class="separator:a7849befe648605976cbad9850f4afb52"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a05c940dbc220f5a723afd70071aebff8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a05c940dbc220f5a723afd70071aebff8"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>active</b></td></tr>
+<tr class="memitem:a05c940dbc220f5a723afd70071aebff8"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_t_m___t_c_p_c_l_i_e_n_t__t.html#a05c940dbc220f5a723afd70071aebff8">active</a></td></tr>
 <tr class="separator:a05c940dbc220f5a723afd70071aebff8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a43d041f66a68d7de2411f35f23ee2d97"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a43d041f66a68d7de2411f35f23ee2d97"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>ip_addr</b> [4]</td></tr>
+<tr class="memitem:a43d041f66a68d7de2411f35f23ee2d97"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_t_m___t_c_p_c_l_i_e_n_t__t.html#a43d041f66a68d7de2411f35f23ee2d97">ip_addr</a> [4]</td></tr>
 <tr class="separator:a43d041f66a68d7de2411f35f23ee2d97"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e0798404bf2cf5dabb84c5ba9a4f236"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8e0798404bf2cf5dabb84c5ba9a4f236"></a>
-uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>port</b></td></tr>
+<tr class="memitem:a8e0798404bf2cf5dabb84c5ba9a4f236"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_t_m___t_c_p_c_l_i_e_n_t__t.html#a8e0798404bf2cf5dabb84c5ba9a4f236">port</a></td></tr>
 <tr class="separator:a8e0798404bf2cf5dabb84c5ba9a4f236"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab66a7c6d7a262ea60c9919e3d08654d3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab66a7c6d7a262ea60c9919e3d08654d3"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>headers_done</b></td></tr>
+<tr class="memitem:ab66a7c6d7a262ea60c9919e3d08654d3"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_t_m___t_c_p_c_l_i_e_n_t__t.html#ab66a7c6d7a262ea60c9919e3d08654d3">headers_done</a></td></tr>
 <tr class="separator:ab66a7c6d7a262ea60c9919e3d08654d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae648ebdf3ea1f285a7dfe429707bce0e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae648ebdf3ea1f285a7dfe429707bce0e"></a>
-uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><b>active_connections_count</b></td></tr>
+<tr class="memitem:ae648ebdf3ea1f285a7dfe429707bce0e"><td class="memItemLeft" align="right" valign="top">uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_t_m___t_c_p_c_l_i_e_n_t__t.html#ae648ebdf3ea1f285a7dfe429707bce0e">active_connections_count</a></td></tr>
 <tr class="separator:ae648ebdf3ea1f285a7dfe429707bce0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a402b1466b53a8c77e92e5f9a0883693c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a402b1466b53a8c77e92e5f9a0883693c"></a>
-void *&#160;</td><td class="memItemRight" valign="bottom"><b>user_parameters</b></td></tr>
+<tr class="memitem:a402b1466b53a8c77e92e5f9a0883693c"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_t_m___t_c_p_c_l_i_e_n_t__t.html#a402b1466b53a8c77e92e5f9a0883693c">user_parameters</a></td></tr>
 <tr class="separator:a402b1466b53a8c77e92e5f9a0883693c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d8c5f5eed3154f7848c3a2ac9a9863a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7d8c5f5eed3154f7848c3a2ac9a9863a"></a>
-struct tcp_pcb *&#160;</td><td class="memItemRight" valign="bottom"><b>pcb</b></td></tr>
+<tr class="memitem:a7d8c5f5eed3154f7848c3a2ac9a9863a"><td class="memItemLeft" align="right" valign="top">struct tcp_pcb *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_t_m___t_c_p_c_l_i_e_n_t__t.html#a7d8c5f5eed3154f7848c3a2ac9a9863a">pcb</a></td></tr>
 <tr class="separator:a7d8c5f5eed3154f7848c3a2ac9a9863a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a698f457b284f988a16a150e7e2e08ed4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a698f457b284f988a16a150e7e2e08ed4"></a>
-client_states&#160;</td><td class="memItemRight" valign="bottom"><b>state</b></td></tr>
+<tr class="memitem:a698f457b284f988a16a150e7e2e08ed4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___t_m___e_t_h_e_r_n_e_t___p_r_i_v_a_t_e___typedefs.html#ga6a4fbda175dd0fd2f62b42b8f3affac1">client_states</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_t_m___t_c_p_c_l_i_e_n_t__t.html#a698f457b284f988a16a150e7e2e08ed4">state</a></td></tr>
 <tr class="separator:a698f457b284f988a16a150e7e2e08ed4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a464574d4b7ed1ccdf0bfb551858c930c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a464574d4b7ed1ccdf0bfb551858c930c"></a>
-struct pbuf *&#160;</td><td class="memItemRight" valign="bottom"><b>p_tx</b></td></tr>
+<tr class="memitem:a464574d4b7ed1ccdf0bfb551858c930c"><td class="memItemLeft" align="right" valign="top">struct pbuf *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_t_m___t_c_p_c_l_i_e_n_t__t.html#a464574d4b7ed1ccdf0bfb551858c930c">p_tx</a></td></tr>
 <tr class="separator:a464574d4b7ed1ccdf0bfb551858c930c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Client structure, passed as first parameter in all client based callback functions</p>
-<p>Parameters:</p><ul>
-<li>char name[ETHERNET_MAX_CONNECTION_NAME]: Connection name, we choose it when we call TM_ETHERNETCLIENT_Connect function</li>
-<li>uint8_t active: Connection is active</li>
-<li>uint8_t ip_addr[4]: IP address for our external connection</li>
-<li>uint16_t port: Port for our external connection</li>
-<li>uint8_t headers_done: This is user defined option. When you connect to some website and receive data back, you will also get HTTP headers and your data. When receive data handler will be first called, this parameter will be set to 0. If you detect when headers are done ("\r\n\r\n" string) then you can set this parameter to 1, and it will stay 1 until connection is closed. This can be used, if you don't want to print headers to user.</li>
-</ul>
-<p>uint8_t* active_connections_count: Pointer to number of active connections this time.</p><ul>
-<li>void* user_parameters: Pointer to user parameters for connection which are passed on "Connect" function This can be used to pass special data for your connection, which you can then easily be used in headers callback to format proper request string. </li>
-</ul>
-</div></div><!-- contents -->
+<div class="textblock"><p>Client structure, passed as first parameter in all client based callback functions. </p>
+</div><h2 class="groupheader">Field Documentation</h2>
+<a class="anchor" id="a05c940dbc220f5a723afd70071aebff8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t active</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Connection is active </p>
+
+</div>
+</div>
+<a class="anchor" id="ae648ebdf3ea1f285a7dfe429707bce0e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t* active_connections_count</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Pointer to number of active connections this time. </p>
+
+</div>
+</div>
+<a class="anchor" id="ab66a7c6d7a262ea60c9919e3d08654d3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t headers_done</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This is user defined option. When you connect to some website and receive data back, you will also get HTTP headers and your data. When receive data handler will be first called, this parameter will be set to 0. If you detect when headers are done ("\r\n\r\n" string) then you can set this parameter to 1, and it will stay 1 until connection is closed. This can be used, if you don't want to print headers to user. </p>
+
+</div>
+</div>
+<a class="anchor" id="a43d041f66a68d7de2411f35f23ee2d97"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t ip_addr[4]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>IP address for our external connection </p>
+
+</div>
+</div>
+<a class="anchor" id="a7849befe648605976cbad9850f4afb52"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char name[<a class="el" href="group___t_m___e_t_h_e_r_n_e_t___macros.html#gabc39d8d143cdd369a58eb108b390016d">ETHERNET_MAX_CONNECTION_NAME</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Connection name, we choose it when we call <a class="el" href="group___t_m___e_t_h_e_r_n_e_t___c_l_i_e_n_t___functions.html#gac37d4acdfab2b907af8f9cb8ac24001a">TM_ETHERNETCLIENT_Connect</a> function </p>
+
+</div>
+</div>
+<a class="anchor" id="a464574d4b7ed1ccdf0bfb551858c930c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct pbuf* p_tx</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Pointer to current active buffer </p>
+
+</div>
+</div>
+<a class="anchor" id="a7d8c5f5eed3154f7848c3a2ac9a9863a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct tcp_pcb* pcb</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Pointer to currently active PCB </p>
+
+</div>
+</div>
+<a class="anchor" id="a8e0798404bf2cf5dabb84c5ba9a4f236"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t port</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Port for our external connection </p>
+
+</div>
+</div>
+<a class="anchor" id="a698f457b284f988a16a150e7e2e08ed4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group___t_m___e_t_h_e_r_n_e_t___p_r_i_v_a_t_e___typedefs.html#ga6a4fbda175dd0fd2f62b42b8f3affac1">client_states</a> state</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>client status </p>
+
+</div>
+</div>
+<a class="anchor" id="a402b1466b53a8c77e92e5f9a0883693c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* user_parameters</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Pointer to user parameters for connection which are passed on "Connect" function This can be used to pass special data for your connection, which you can then easily be used in headers callback to format proper request string. </p>
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="struct_t_m___t_c_p_c_l_i_e_n_t__t.html">TM_TCPCLIENT_t</a></li>
-    <li class="footer">Generated on Wed Mar 18 2015 10:44:24 for TM STM32F4xx Libraries by
+    <li class="footer">Generated on Wed Mar 18 2015 22:50:37 for TM STM32F4xx Libraries by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

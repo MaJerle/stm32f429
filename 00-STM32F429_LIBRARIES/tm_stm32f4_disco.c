@@ -24,6 +24,9 @@ volatile uint8_t TM_INT_DISCO_ButtonPressed = 0;
 void TM_DISCO_LedInit(void) {
 	/* Set pins as output */
 	TM_GPIO_Init(TM_DISCO_LED_PORT, LED_ALL, TM_GPIO_Mode_OUT, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High);
+	
+	/* Turn leds off */
+	TM_DISCO_LedOff(LED_ALL);
 }
 
 void TM_DISCO_ButtonInit(void) {

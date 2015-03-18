@@ -125,10 +125,7 @@ Modules</h2></td></tr>
 <p>External interrupts library for STM32F4 devices - <a href="http://stm32f4-discovery.com/2014/10/library-38-external-interrupts-for-stm32f4">http://stm32f4-discovery.com/2014/10/library-38-external-interrupts-for-stm32f4</a>. </p>
 <p>This library allows you to easy enable external interrupt on specific pin.</p>
 <p>You only need to specify GPIOx, pin and interrupt trigger you want to use and you are ready to use. There are predefined function names that you use to handle this interrupts.</p>
-<p>There are 16 external interrupts possible, GPIO lines 0 to 15.</p>
-<p>Each GPIO_PIN_x from all GPIOx is connected to one line. In other words, PC0, PA0, PB0, PJ0,...</p>
-<p>are all connected to line 0, and so on. But you can use only one pin for one line at a time.</p>
-<p>So only PA0 at one time, or PD0 or PC0, but one a time.</p>
+<p>There are 16 external interrupts possible, GPIO lines 0 to 15. Each GPIO_PIN_x from all GPIOx is connected to one line. In other words, PC0, PA0, PB0, PJ0,... are all connected to line 0, and so on. But you can use only one pin for one line at a time. So only PA0 at one time, or PD0 or PC0, but one a time.</p>
 <p>You can still use more lines at the same time. So let's say PA0 is line0 and PC13 is line13. This 2 interrupts can be used simultaneouly without problems.</p>
 <p>Next step is handling interrupts. There are 16 interrupt lines, but only 7 interrupt handlers. Lines0 to 4 have each own handler, then lines 5 to 9 have one common and lines 10 to 15 have one common.</p>
 <p>I write these functions in my library and use my own to handle specific line for you for easly. Sometimes there is need for use default handler names in your own, but 2 functions with same name can not be used, so I made some settings.</p>
@@ -176,7 +173,7 @@ Modules</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed Mar 18 2015 10:44:23 for TM STM32F4xx Libraries by
+    <li class="footer">Generated on Wed Mar 18 2015 22:50:37 for TM STM32F4xx Libraries by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

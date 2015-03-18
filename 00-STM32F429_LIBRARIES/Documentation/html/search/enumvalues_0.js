@@ -1,5 +1,11 @@
 var searchData=
 [
+  ['tm_5fethernet_5fresult_5ferror',['TM_ETHERNET_Result_Error',['../group___t_m___e_t_h_e_r_n_e_t___typedefs.html#ggacb3ccf45d6927338b4ff75262a2fb5ada9f739324f5f98e325d0844f8286539c4',1,'tm_stm32f4_ethernet.h']]],
+  ['tm_5fethernet_5fresult_5fipisnotsetyet',['TM_ETHERNET_Result_IPIsNotSetYet',['../group___t_m___e_t_h_e_r_n_e_t___typedefs.html#ggacb3ccf45d6927338b4ff75262a2fb5ada3407480a761b8c56bc2d9d5003013adc',1,'tm_stm32f4_ethernet.h']]],
+  ['tm_5fethernet_5fresult_5flibrarynotinitialized',['TM_ETHERNET_Result_LibraryNotInitialized',['../group___t_m___e_t_h_e_r_n_e_t___typedefs.html#ggacb3ccf45d6927338b4ff75262a2fb5ada6bf1ecbd7302dcb1e287cf36c4919d52',1,'tm_stm32f4_ethernet.h']]],
+  ['tm_5fethernet_5fresult_5flinkisdown',['TM_ETHERNET_Result_LinkIsDown',['../group___t_m___e_t_h_e_r_n_e_t___typedefs.html#ggacb3ccf45d6927338b4ff75262a2fb5ada75546104ccb4ac9b4bc5b8ab8167fa69',1,'tm_stm32f4_ethernet.h']]],
+  ['tm_5fethernet_5fresult_5fneedhardreset',['TM_ETHERNET_Result_NeedHardReset',['../group___t_m___e_t_h_e_r_n_e_t___typedefs.html#ggacb3ccf45d6927338b4ff75262a2fb5ada4c4e26d01e1533884bf3b3931fc54672',1,'tm_stm32f4_ethernet.h']]],
+  ['tm_5fethernet_5fresult_5fok',['TM_ETHERNET_Result_Ok',['../group___t_m___e_t_h_e_r_n_e_t___typedefs.html#ggacb3ccf45d6927338b4ff75262a2fb5ada31d1d5337cbafaab520293ffdad6ef3b',1,'tm_stm32f4_ethernet.h']]],
   ['tm_5fexti_5fresult_5ferror',['TM_EXTI_Result_Error',['../group___t_m___e_x_t_i___typedefs.html#ggadb012a72344d790c82de4cd595208781a63f5a38d2defcfbda94e3c24b2f5cde6',1,'tm_stm32f4_exti.h']]],
   ['tm_5fexti_5fresult_5fok',['TM_EXTI_Result_Ok',['../group___t_m___e_x_t_i___typedefs.html#ggadb012a72344d790c82de4cd595208781acf2bd95d7fb1c1904da4db9911bb079b',1,'tm_stm32f4_exti.h']]],
   ['tm_5fexti_5ftrigger_5ffalling',['TM_EXTI_Trigger_Falling',['../group___t_m___e_x_t_i___typedefs.html#ggaeb403ab27383f3f96e6f194f9fc89b02a103793507bf339672c2e566b45c3d142',1,'tm_stm32f4_exti.h']]],

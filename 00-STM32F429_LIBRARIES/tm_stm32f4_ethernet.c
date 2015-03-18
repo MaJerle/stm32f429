@@ -18,6 +18,7 @@
  */
 #include "tm_stm32f4_ethernet.h"
 
+/* Private variables */
 static __IO uint32_t EthernetLocalTime = 0;
 static __IO uint8_t Initialized = 0;
 static __IO uint8_t DNS_Working = 0;

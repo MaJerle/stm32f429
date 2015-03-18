@@ -2,6 +2,7 @@ var group___t_m___s_t_m32_f4xx___libraries =
 [
     [ "TM_CRC", "group___t_m___c_r_c.html", "group___t_m___c_r_c" ],
     [ "TM_DISCO", "group___t_m___d_i_s_c_o.html", "group___t_m___d_i_s_c_o" ],
+    [ "TM_ETHERNET", "group___t_m___e_t_h_e_r_n_e_t.html", "group___t_m___e_t_h_e_r_n_e_t" ],
     [ "TM_EXTI", "group___t_m___e_x_t_i.html", "group___t_m___e_x_t_i" ],
     [ "TM_GPIO", "group___t_m___g_p_i_o.html", "group___t_m___g_p_i_o" ],
     [ "TM_GPS", "group___t_m___g_p_s.html", "group___t_m___g_p_s" ],

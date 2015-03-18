@@ -277,33 +277,33 @@ $(document).ready(function(){initNavTree('tm__stm32f4__spi_8h_source.html','');}
 <div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;</div>
 <div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___s_p_i___functions.html#ga1204e453b6efb989c105d4e5b4a3eded">TM_SPI_InitFull</a>(SPI_TypeDef* SPIx, <a class="code" href="group___t_m___s_p_i___typedefs.html#gaaea351a7377ef8de4249cd4608c52d7b">TM_SPI_PinsPack_t</a> pinspack, uint16_t SPI_BaudRatePrescaler, <a class="code" href="group___t_m___s_p_i___typedefs.html#gab43ae1eb8a7cf9ba1d9d48441fc99e51">TM_SPI_Mode_t</a> SPI_Mode_t, uint16_t SPI_Mode, uint16_t SPI_FirstBit);</div>
 <div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;</div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;uint16_t <a class="code" href="group___t_m___s_p_i___functions.html#ga4589a7f712c54f27dd0d0e8811bcb354">TM_SPI_GetPrescalerFromMaxFrequency</a>(SPI_TypeDef* SPIx, uint32_t MAX_SPI_Frequency);</div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;</div>
-<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;uint8_t <a class="code" href="group___t_m___s_p_i___functions.html#ga2ab935461ffb47dae4e077efc26a5aec">TM_SPI_Send</a>(SPI_TypeDef* SPIx, uint8_t data);</div>
-<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;</div>
-<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___s_p_i___functions.html#ga8f64079c7f59bd1c4830dd79a6ed9197">TM_SPI_SendMulti</a>(SPI_TypeDef* SPIx, uint8_t* dataOut, uint8_t* dataIn, uint16_t count);</div>
-<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;</div>
-<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___s_p_i___functions.html#gaa589d60226b56b20b5e61169bbe92672">TM_SPI_WriteMulti</a>(SPI_TypeDef* SPIx, uint8_t* dataOut, uint16_t count);</div>
-<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;</div>
-<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___s_p_i___functions.html#ga6ccd9d1f67058ea160537eaf4ec77b86">TM_SPI_ReadMulti</a>(SPI_TypeDef* SPIx, uint8_t *dataIn, uint8_t dummy, uint16_t count);</div>
-<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;</div>
-<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;uint16_t <a class="code" href="group___t_m___s_p_i___functions.html#ga36a979cac19089edfbc3f3700ad8fd85">TM_SPI_Send16</a>(SPI_TypeDef* SPIx, uint16_t data);</div>
-<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;</div>
-<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___s_p_i___functions.html#ga5565c1db3cf2532069fa0b8cb2eeb1c0">TM_SPI_SendMulti16</a>(SPI_TypeDef* SPIx, uint16_t* dataOut, uint16_t* dataIn, uint16_t count);</div>
-<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;</div>
-<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___s_p_i___functions.html#ga05f51bb9f016851e6366239f5beb72c2">TM_SPI_WriteMulti16</a>(SPI_TypeDef* SPIx, uint16_t* dataOut, uint16_t count);</div>
-<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;</div>
-<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___s_p_i___functions.html#gaab62813fe2733e176111cf93c05dc095">TM_SPI_ReadMulti16</a>(SPI_TypeDef* SPIx, uint16_t* dataIn, uint16_t dummy, uint16_t count);</div>
-<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;</div>
-<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;__weak <span class="keywordtype">void</span> <a class="code" href="group___t_m___s_p_i___functions.html#ga9b59dc93791950c6eb94c467c3932ae5">TM_SPI_InitCustomPinsCallback</a>(SPI_TypeDef* SPIx);</div>
-<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;</div>
-<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;<span class="comment">/* C++ detection */</span></div>
-<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;}</div>
-<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;</div>
-<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;uint16_t <a class="code" href="group___t_m___s_p_i___functions.html#ga4589a7f712c54f27dd0d0e8811bcb354">TM_SPI_GetPrescalerFromMaxFrequency</a>(SPI_TypeDef* SPIx, uint32_t MAX_SPI_Frequency);</div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;</div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;uint8_t <a class="code" href="group___t_m___s_p_i___functions.html#ga2ab935461ffb47dae4e077efc26a5aec">TM_SPI_Send</a>(SPI_TypeDef* SPIx, uint8_t data);</div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;</div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___s_p_i___functions.html#ga8f64079c7f59bd1c4830dd79a6ed9197">TM_SPI_SendMulti</a>(SPI_TypeDef* SPIx, uint8_t* dataOut, uint8_t* dataIn, uint16_t count);</div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;</div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___s_p_i___functions.html#gaa589d60226b56b20b5e61169bbe92672">TM_SPI_WriteMulti</a>(SPI_TypeDef* SPIx, uint8_t* dataOut, uint16_t count);</div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;</div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___s_p_i___functions.html#ga6ccd9d1f67058ea160537eaf4ec77b86">TM_SPI_ReadMulti</a>(SPI_TypeDef* SPIx, uint8_t *dataIn, uint8_t dummy, uint16_t count);</div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;</div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;uint16_t <a class="code" href="group___t_m___s_p_i___functions.html#ga36a979cac19089edfbc3f3700ad8fd85">TM_SPI_Send16</a>(SPI_TypeDef* SPIx, uint16_t data);</div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;</div>
+<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___s_p_i___functions.html#ga5565c1db3cf2532069fa0b8cb2eeb1c0">TM_SPI_SendMulti16</a>(SPI_TypeDef* SPIx, uint16_t* dataOut, uint16_t* dataIn, uint16_t count);</div>
+<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;</div>
+<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___s_p_i___functions.html#ga05f51bb9f016851e6366239f5beb72c2">TM_SPI_WriteMulti16</a>(SPI_TypeDef* SPIx, uint16_t* dataOut, uint16_t count);</div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;</div>
+<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___s_p_i___functions.html#gaab62813fe2733e176111cf93c05dc095">TM_SPI_ReadMulti16</a>(SPI_TypeDef* SPIx, uint16_t* dataIn, uint16_t dummy, uint16_t count);</div>
+<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;</div>
+<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;__weak <span class="keywordtype">void</span> <a class="code" href="group___t_m___s_p_i___functions.html#ga9b59dc93791950c6eb94c467c3932ae5">TM_SPI_InitCustomPinsCallback</a>(SPI_TypeDef* SPIx);</div>
+<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;</div>
+<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;<span class="comment">/* C++ detection */</span></div>
+<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;}</div>
+<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;</div>
+<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;</div>
 <div class="ttc" id="group___t_m___s_p_i___functions_html_ga05f51bb9f016851e6366239f5beb72c2"><div class="ttname"><a href="group___t_m___s_p_i___functions.html#ga05f51bb9f016851e6366239f5beb72c2">TM_SPI_WriteMulti16</a></div><div class="ttdeci">void TM_SPI_WriteMulti16(SPI_TypeDef *SPIx, uint16_t *dataOut, uint16_t count)</div><div class="ttdoc">Write multiple data via SPI in 16-bit SPI mode. </div></div>
 <div class="ttc" id="group___t_m___s_p_i___functions_html_ga5565c1db3cf2532069fa0b8cb2eeb1c0"><div class="ttname"><a href="group___t_m___s_p_i___functions.html#ga5565c1db3cf2532069fa0b8cb2eeb1c0">TM_SPI_SendMulti16</a></div><div class="ttdeci">void TM_SPI_SendMulti16(SPI_TypeDef *SPIx, uint16_t *dataOut, uint16_t *dataIn, uint16_t count)</div><div class="ttdoc">Send and receive multiple bytes over SPIx in 16-bit SPI mode. </div></div>
 <div class="ttc" id="group___t_m___s_p_i___functions_html_ga2ab935461ffb47dae4e077efc26a5aec"><div class="ttname"><a href="group___t_m___s_p_i___functions.html#ga2ab935461ffb47dae4e077efc26a5aec">TM_SPI_Send</a></div><div class="ttdeci">uint8_t TM_SPI_Send(SPI_TypeDef *SPIx, uint8_t data)</div><div class="ttdoc">Send single byte over SPI. </div></div>
@@ -333,7 +333,7 @@ $(document).ready(function(){initNavTree('tm__stm32f4__spi_8h_source.html','');}
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>tm_stm32f4_spi.h</b></li>
-    <li class="footer">Generated on Wed Mar 18 2015 10:44:23 for TM STM32F4xx Libraries by
+    <li class="footer">Generated on Wed Mar 18 2015 22:50:37 for TM STM32F4xx Libraries by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

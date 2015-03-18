@@ -177,7 +177,23 @@
 #endif
 
 /* STM32F429 Discovery */
-#if defined(TM_DISCO_STM32F429_DISCOVERY)
+#if defined(TM_DISCO_STM324x9_EVAL)
+	#define LED_GREEN					GPIO_PIN_6
+	#define LED_ORANGE					GPIO_PIN_7
+	#define LED_RED						GPIO_PIN_10
+	#define LED_BLUE					GPIO_PIN_12
+	#define LED_ALL						LED_GREEN | LED_RED | LED_ORANGE | LED_BLUE
+	
+	#define TM_DISCO_SWAP_LOGIC
+	
+	#define TM_DISCO_LED_PORT			GPIOG
+	#define TM_DISCO_LED_PINS			LED_GREEN | LED_RED | LED_ORANGE | LED_BLUE
+
+	#define TM_DISCO_BUTTON_PORT		GPIOA
+	#define TM_DISCO_BUTTON_PIN			GPIO_PIN_0
+	#define TM_DISCO_BUTTON_PRESSED		1
+	#define TM_DISCO_BUTTON_PULL		TM_GPIO_PuPd_DOWN
+#elif defined(TM_DISCO_STM32F429_DISCOVERY)
 	#define LED_GREEN					GPIO_PIN_13
 	#define LED_RED						GPIO_PIN_14
 	#define LED_ORANGE					0
@@ -222,22 +238,6 @@
 	#define TM_DISCO_BUTTON_PRESSED		0
 	#define TM_DISCO_BUTTON_PULL		TM_GPIO_PuPd_UP
 /* STM324x9 EVAL board */
-#elif defined(TM_DISCO_STM324x9_EVAL)
-	#define LED_GREEN					GPIO_PIN_6
-	#define LED_ORANGE					GPIO_PIN_7
-	#define LED_RED						GPIO_PIN_10
-	#define LED_BLUE					GPIO_PIN_12
-	#define LED_ALL						LED_GREEN | LED_RED | LED_ORANGE | LED_BLUE
-	
-	#define TM_DISCO_SWAP_LOGIC
-	
-	#define TM_DISCO_LED_PORT			GPIOG
-	#define TM_DISCO_LED_PINS			LED_GREEN | LED_RED | LED_ORANGE | LED_BLUE
-
-	#define TM_DISCO_BUTTON_PORT		GPIOA
-	#define TM_DISCO_BUTTON_PIN			GPIO_PIN_0
-	#define TM_DISCO_BUTTON_PRESSED		1
-	#define TM_DISCO_BUTTON_PULL		TM_GPIO_PuPd_DOWN
 #else
 	#error "tm_stm32f4_disco.h: Please select your board. Open tm_stm32f4_disco.h and follow instructions!!"
 #endif

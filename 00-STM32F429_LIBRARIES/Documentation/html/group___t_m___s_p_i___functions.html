@@ -186,7 +186,7 @@ This function will return you a bits you must set in your CR1 register.</dd>
 Imagine, you can use 20MHz max clock in your system, your system is running on 168MHz, and you use SPI on APB2 bus. On 168 and 180MHz devices, APB2 works on Fclk/2, so 84 and 90MHz. So, if you calculate this, prescaler will need to be 84MHz / 20MHz = 4.xx, but if you use 4 prescaler, then you will be over 20MHz. You need 8 prescaler then. This function will calculate this. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">*SPIx:Pointer</td><td>to SPIx peripheral you will use, where x is between 1 to 6. Different SPIx works on different clock and is important to know for which SPI you need prescaler. </td></tr>
+    <tr><td class="paramname">*SPIx</td><td>Pointer to SPIx peripheral you will use, where x is between 1 to 6. Different SPIx works on different clock and is important to know for which SPI you need prescaler. </td></tr>
     <tr><td class="paramname">MAX_SPI_Frequency</td><td>Max SPI frequency you can use. Function will calculate the minimum prescaler you need for that.</td></tr>
   </table>
   </dd>
@@ -809,7 +809,7 @@ With __weak parameter to prevent link errors if not defined by user</dd></dl>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed Mar 18 2015 10:44:23 for TM STM32F4xx Libraries by
+    <li class="footer">Generated on Wed Mar 18 2015 22:50:37 for TM STM32F4xx Libraries by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

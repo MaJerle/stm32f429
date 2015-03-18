@@ -162,25 +162,41 @@ void ETH_GPIO_Config(void) {
 	/* Init alternate function for PA8 = MCO */
 	TM_GPIO_Init(GPIOA, GPIO_PIN_8, TM_GPIO_Mode_AF, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High);
 	
-	/* Set PA8 output */
+#ifdef ETHERNET_MCO_CLOCK
+	/* Set PA8 output HSE value */
 	RCC_MCO1Config(RCC_MCO1Source_HSE, RCC_MCO1Div_1);
-	
-	/* RMII Media interface selection */
-	SYSCFG_ETH_MediaInterfaceConfig(SYSCFG_ETH_MediaInterface_RMII);
+#endif
 
-	/* Init MII pins */
-	
-	
-	return;
-	
-	
-	RCC_MCO1Config(RCC_MCO1Source_HSE, RCC_MCO1Div_1);
-	
+#ifdef ETHERNET_MII_MODE
+	/* MII Media interface selection */
+	SYSCFG_ETH_MediaInterfaceConfig(SYSCFG_ETH_MediaInterface_MII);
+#else
 	/* RMII Media interface selection */
 	SYSCFG_ETH_MediaInterfaceConfig(SYSCFG_ETH_MediaInterface_RMII);
-	
+#endif
 	/* Check if user has defined it's own pins */
 	if (!TM_ETHERNET_InitPinsCallback()) {
+#ifdef ETHERNET_MII_MODE
+		/* MII */
+		/* GPIOA                     REF_CLK      MDIO         RX_DV */
+		TM_GPIO_InitAlternate(GPIOA, GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_7, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_ETH);
+		
+		/* GPIOB                     PPS_PUT      TDX3 */
+		TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_5 | GPIO_PIN_8, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_ETH);
+		
+		/* GPIOC                     MDC          TDX2         TX_CLK       RXD0         RXD1 */
+		TM_GPIO_InitAlternate(GPIOC, GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_5, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_ETH);
+		
+		/* GPIOG                     TX_EN         TXD0          TXD1 */
+		TM_GPIO_InitAlternate(GPIOG, GPIO_PIN_11 | GPIO_PIN_13 | GPIO_PIN_14, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_ETH);
+		
+		/* GPIOH                     CRS          COL          RDX2         RXD3 */
+		TM_GPIO_InitAlternate(GPIOH, GPIO_PIN_2 | GPIO_PIN_3 | GPIO_PIN_6 | GPIO_PIN_7, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_ETH);
+		
+		/* GPIOI                     RX_ER */
+		TM_GPIO_InitAlternate(GPIOI, GPIO_PIN_10, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_ETH);
+#else
+		/* RMII */
 		/* Init default pins */		
 		/* Ethernet pins configuration */
 		TM_GPIO_InitAlternate(GPIOA, GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_7, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_ETH);
@@ -195,7 +211,8 @@ void ETH_GPIO_Config(void) {
 #else
 		/* Pinspack 1, TXD0, TXD1 and TX_EN pins are connected to GPIOB pins */
 		TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_11 | GPIO_PIN_12 | GPIO_PIN_13, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_ETH);
-#endif
+#endif /* RMII pinspack 2 */
+#endif /* ETHERNET_USE_MII */
 	}
 }
 
