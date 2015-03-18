@@ -168,6 +168,17 @@ void ETH_GPIO_Config(void) {
 	/* RMII Media interface selection */
 	SYSCFG_ETH_MediaInterfaceConfig(SYSCFG_ETH_MediaInterface_RMII);
 
+	/* Init MII pins */
+	
+	
+	return;
+	
+	
+	RCC_MCO1Config(RCC_MCO1Source_HSE, RCC_MCO1Div_1);
+	
+	/* RMII Media interface selection */
+	SYSCFG_ETH_MediaInterfaceConfig(SYSCFG_ETH_MediaInterface_RMII);
+	
 	/* Check if user has defined it's own pins */
 	if (!TM_ETHERNET_InitPinsCallback()) {
 		/* Init default pins */		

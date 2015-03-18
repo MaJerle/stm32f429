@@ -51,11 +51,8 @@ extern C {
  * There are predefined function names that you use to handle this interrupts.
  * 
  * There are 16 external interrupts possible, GPIO lines 0 to 15.
-	
  * Each GPIO_PIN_x from all GPIOx is connected to one line. In other words, PC0, PA0, PB0, PJ0,...
-	
  * are all connected to line 0, and so on. But you can use only one pin for one line at a time.
- 
  * So only PA0 at one time, or PD0 or PC0, but one a time.
  * 
  * You can still use more lines at the same time. So let's say PA0 is line0 and PC13 is line13.
