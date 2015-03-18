@@ -12,7 +12,6 @@ var searchData=
   ['tm_5fgps_5fdistance_5ft',['TM_GPS_Distance_t',['../struct_t_m___g_p_s___distance__t.html',1,'']]],
   ['tm_5fgps_5ffloat_5ft',['TM_GPS_Float_t',['../struct_t_m___g_p_s___float__t.html',1,'']]],
   ['tm_5fgps_5ftime_5ft',['TM_GPS_Time_t',['../struct_t_m___g_p_s___time__t.html',1,'']]],
-  ['tm_5fgraphic_5foptions_5ft',['TM_GRAPHIC_Options_t',['../struct_t_m___g_r_a_p_h_i_c___options__t.html',1,'']]],
   ['tm_5fili931_5foptions_5ft',['TM_ILI931_Options_t',['../struct_t_m___i_l_i931___options__t.html',1,'']]],
   ['tm_5fili9341_5fbutton_5ft',['TM_ILI9341_Button_t',['../struct_t_m___i_l_i9341___button__t.html',1,'']]],
   ['tm_5fl3gd20_5ft',['TM_L3GD20_t',['../struct_t_m___l3_g_d20__t.html',1,'']]],

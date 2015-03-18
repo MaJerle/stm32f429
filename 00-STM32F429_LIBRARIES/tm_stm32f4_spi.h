@@ -1,95 +1,30 @@
 /**
- *	SPI library for STM32F4xx.
- *
- *	@author 	Tilen Majerle
- *	@email		tilen@majerle.eu
- *	@website	http://stm32f4-discovery.com
- *	@link		http://stm32f4-discovery.com/2014/04/library-05-spi-for-stm32f4xx/
- *	@version 	v1.8
- *	@ide		Keil uVision
- *	@license	GNU GPL v3
+ * @author  Tilen Majerle
+ * @email   tilen@majerle.eu
+ * @website http://stm32f4-discovery.com
+ * @link    http://stm32f4-discovery.com/2014/04/library-05-spi-for-stm32f4xx/
+ * @version v1.8
+ * @ide     Keil uVision
+ * @license GNU GPL v3
+ * @brief   SPI library for STM32F4xx
  *	
- * |----------------------------------------------------------------------
- * | Copyright (C) Tilen Majerle, 2014
- * | 
- * | This program is free software: you can redistribute it and/or modify
- * | it under the terms of the GNU General Public License as published by
- * | the Free Software Foundation, either version 3 of the License, or
- * | any later version.
- * |  
- * | This program is distributed in the hope that it will be useful,
- * | but WITHOUT ANY WARRANTY; without even the implied warranty of
- * | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * | GNU General Public License for more details.
- * | 
- * | You should have received a copy of the GNU General Public License
- * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * |----------------------------------------------------------------------
- *
- * Version 1.8
- *	- March 10, 2015
- *	- Updated to be mode independent of STD/HAL drivers
- * 
- * Version 1.7
- *	- March 08, 2015
- *	- Added support for my new GPIO settings
- *
- * Version 1.6
- *	- March 05, 2015
- *	- Added 2 new functions, TM_SPI_InitFull and TM_SPI_GetPrescalerFromMaxFrequency()
- *
- * Version 1.5	
- *	- January 13, 2015
- *	- Added function TM_SPI_InitWithMode() to initialize SPI with custom SPI mode on the fly
- *
- * Version 1.4
- *	- November 09, 2014
- *	- Added methods for 16-bit SPI mode
- *
- * Version 1.3
- *	 - September 14, 2014
- *	 - Added additional pins for SPI2
- *
- * It supports all 6 SPIs in master with 2Line Full Duplex mode
- *
- * All six spis work the same principle by default.
- *	- Master
- *	- 8data bits
- *	- data sampled at first edge
- *	- prescaler 32
- *	- firstbit MSB
- *	- software SS pin configure
- *	- direction is full duplex 2 wire
- *	
- *	Pinout
- *				|PINS PACK 1			|PINS PACK 2			|PINS PACK 3
- *		SPIX	|MOSI	MISO	SCK		|MOSI	MISO	SCK		|MOSI	MISO	SCK
- *				|			
- *		SPI1	|PA7	PA6		PA5		|PB5	PB4		PB3		|
- *		SPI2	|PC3	PC2		PB10	|PB15	PB14	PB13	|PI3	PI2		PI0
- *		SPI3	|PB5	PB4		PB3		|PC12	PC11	PC10	|
- *		SPI4	|PE6	PE5		PE2		|PE14	PE13	PE12	|
- *		SPI5	|PF9	PF8		PF7		|PF11	PH7		PH6		|
- *		SPI6	|PG14	PG12	PG13	|
- *
- *	In case these pins are not good for you, you can use
- *	TM_SPI_PinsPack_Custom in function and callback function will be called,
- *	where you can initialize your custom pinout for your SPI peripheral
- *	
- *	Possible changes to each SPI. Set this defines in your defines.h file.
- *	
- *	Change x with 1-6, to match your SPI
- *	
- *	//Default prescaler
- *	#define TM_SPIx_PRESCALER	SPI_BaudRatePrescaler_32
- *	//Specify datasize
- *	#define TM_SPIx_DATASIZE 	SPI_DataSize_8b
- *	//Specify which bit is first
- *	#define TM_SPIx_FIRSTBIT 	SPI_FirstBit_MSB
- *	//Mode, master or slave
- *	#define TM_SPIx_MASTERSLAVE	SPI_Mode_Master
- *	//Specify mode of operation, clock polarity and clock phase
- *	#define TM_SPIx_MODE		TM_SPI_Mode_0
+@verbatim
+   ----------------------------------------------------------------------
+    Copyright (C) Tilen Majerle, 2015
+    
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    any later version.
+     
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+@endverbatim
  */
 #ifndef TM_SPI_H
 #define TM_SPI_H 180
@@ -100,17 +35,106 @@ extern C {
 #endif
 
 /**
- * Library dependencies
- * - STM32F4xx
- * - STM32F4xx RCC
- * - STM32F4xx GPIO
- * - STM32F4xx SPI
- * - defines.h
- * - TM GPIO
+ * @addtogroup TM_STM32F4xx_Libraries
+ * @{
  */
+
 /**
- * Includes
+ * @defgroup TM_SPI
+ * @brief    SPI library for STM32F4xx
+ * @{
+ *
+ * It supports all 6 SPIs in master with 3 Lines Full Duplex mode
+ *
+ * \par Default SPI settings
+ *
+ * All six SPIs work the same principle by default:
+ *	- Master mode
+ *	- 8 data bits
+ *	- data sampled at first edge, SPI mode 0
+ *	- prescaler 32
+ *	- firstbit MSB
+ *	- software SS pin configure
+ *	- direction is full duplex 3 wires
+ *	
+ *	\par Pinout
+ *
+@verbatim
+        |PINS PACK 1            |PINS PACK 2            |PINS PACK 3
+SPIX    |MOSI   MISO    SCK     |MOSI   MISO    SCK     |MOSI   MISO    SCK
+        |                                                    
+SPI1    |PA7    PA6     PA5     |PB5    PB4     PB3     |
+SPI2    |PC3    PC2     PB10    |PB15   PB14    PB13    |PI3    PI2     PI0
+SPI3    |PB5    PB4     PB3     |PC12   PC11    PC10    |
+SPI4    |PE6    PE5     PE2     |PE14   PE13    PE12    |
+SPI5    |PF9    PF8     PF7     |PF11   PH7     PH6     |
+SPI6    |PG14   PG12    PG13    |
+@endverbatim
+ *
+ *	In case these pins are not good for you, you can use
+ *	TM_SPI_PinsPack_Custom in function and callback function will be called,
+ *	where you can initialize your custom pinout for your SPI peripheral
+ *	
+ *	Possible changes to each SPI. Set this defines in your defines.h file.
+ *	
+ *	Change x with 1-6, to match your SPI
+ *
+@verbatim
+//Default prescaler
+#define TM_SPIx_PRESCALER   SPI_BaudRatePrescaler_32
+//Specify datasize
+#define TM_SPIx_DATASIZE    SPI_DataSize_8b
+//Specify which bit is first
+#define TM_SPIx_FIRSTBIT    SPI_FirstBit_MSB
+//Mode, master or slave
+#define TM_SPIx_MASTERSLAVE SPI_Mode_Master
+//Specify mode of operation, clock polarity and clock phase
+#define TM_SPIx_MODE        TM_SPI_Mode_0
+@endverbatim
+ *
+ * \par Changelog
+ *
+@verbatim
+ Version 1.8
+  - March 10, 2015
+  - Updated to be mode independent of STD/HAL drivers
+ 
+ Version 1.7
+  - March 08, 2015
+  - Added support for my new GPIO settings
+ 
+ Version 1.6
+  - March 05, 2015
+  - Added 2 new functions, TM_SPI_InitFull and TM_SPI_GetPrescalerFromMaxFrequency()
+ 
+ Version 1.5	
+  - January 13, 2015
+  - Added function TM_SPI_InitWithMode() to initialize SPI with custom SPI mode on the fly
+ 
+ Version 1.4
+  - November 09, 2014
+  - Added methods for 16-bit SPI mode
+ 
+ Version 1.3
+  - September 14, 2014
+  - Added additional pins for SPI2
+
+ Version 1.0
+  - First release
+@endverbatim
+ *
+ * \par Dependencies
+ *
+@verbatim
+ - STM32F4xx
+ - STM32F4xx RCC
+ - STM32F4xx GPIO
+ - STM32F4xx SPI
+ - defines.h
+ - TM GPIO
+@endverbatim
  */
+
 #include "stm32f4xx.h"
 #include "stm32f4xx_rcc.h"
 #include "stm32f4xx_gpio.h"
@@ -119,14 +143,40 @@ extern C {
 #include "tm_stm32f4_gpio.h"
 
 /**
- * Every SPIx can work in 4 different modes
+ * @defgroup TM_SPI_Typedefs
+ * @brief    Library Typedefs
+ * @{
+ */
+
+/**
+ * @brief  SPI modes selection
  */
 typedef enum {
-	TM_SPI_Mode_0,	//Clock polarity low, clock phase 1st edge
-	TM_SPI_Mode_1,	//Clock polarity low, clock phase 2nd edge
-	TM_SPI_Mode_2,	//Clock polarity high, clock phase 1st edge
-	TM_SPI_Mode_3	//Clock polarity high, clock phase 2nd edge
+	TM_SPI_Mode_0, /*!< Clock polarity low, clock phase 1st edge */
+	TM_SPI_Mode_1, /*!< Clock polarity low, clock phase 2nd edge */
+	TM_SPI_Mode_2, /*!< Clock polarity high, clock phase 1st edge */
+	TM_SPI_Mode_3  /*!< Clock polarity high, clock phase 2nd edge */
 } TM_SPI_Mode_t;
+
+/**
+ * @brief  USART PinsPack enumeration to select pins combination for USART
+ */
+typedef enum {
+	TM_SPI_PinsPack_1,       /*!< Select PinsPack1 from Pinout table for specific SPI */
+	TM_SPI_PinsPack_2,       /*!< Select PinsPack2 from Pinout table for specific SPI */
+	TM_SPI_PinsPack_3,       /*!< Select PinsPack3 from Pinout table for specific SPI */
+	TM_SPI_PinsPack_Custom   /*!< Select custom pins for specific SPI, callback will be called, look @ref TM_SPI_InitCustomPinsCallback */
+} TM_SPI_PinsPack_t;
+
+/**
+ * @}
+ */
+ 
+ /**
+ * @defgroup TM_SPI_Macros
+ * @brief    Library defines
+ * @{
+ */
 
 //----- SPI1 options start -------
 //Options can be overwriten in defines.h file
@@ -267,206 +317,169 @@ typedef enum {
 //----- SPI6 options end -------
 
 /**
- * Every SPIx has 3 pins for MISO, MOSI and SCK
+ * @}
  */
-typedef enum {
-	TM_SPI_PinsPack_1,
-	TM_SPI_PinsPack_2,
-	TM_SPI_PinsPack_3,
-	TM_SPI_PinsPack_Custom
-} TM_SPI_PinsPack_t;
 
 /**
- * Initialize SPIx
- *
- * Parameters:
- * 	- SPI_TypeDef* SPIx:
- * 		SPI 1 - 6
- * 	- TM_SPI_PinsPack_t pinspack: select pins pack to use
- * 		- TM_SPI_PinsPack_1
- * 		- TM_SPI_PinsPack_2
- *		- TM_SPI_PinsPack_3
+ * @defgroup TM_SPI_Functions
+ * @brief    Library Functions
+ * @{
  */
-extern void TM_SPI_Init(SPI_TypeDef* SPIx, TM_SPI_PinsPack_t pinspack);
 
 /**
- * Initialize SPIx with SPI mode
- *
- * Parameters:
- * 	- SPI_TypeDef* SPIx:
- * 		SPI 1 - 6
- * 	- TM_SPI_PinsPack_t pinspack: select pins pack to use
- * 		- TM_SPI_PinsPack_1
- * 		- TM_SPI_PinsPack_2
- *		- TM_SPI_PinsPack_3
- *	- TM_SPI_Mode_t SPI_Mode:
- *		SPI mode to be initialized
- *
- * No return
+ * @brief  Initializes SPIx peripheral with custom pinspack and default other settings
+ * @param  *SPIx: Pointer to SPIx peripheral you will use, where x is between 1 to 6
+ * @param  pinspack: Pinspack you will use from default SPI table. This parameter can be a value of @ref TM_SPI_PinsPack_t enumeration
+ * @retval None
  */
-extern void TM_SPI_InitWithMode(SPI_TypeDef* SPIx, TM_SPI_PinsPack_t pinspack, TM_SPI_Mode_t SPI_Mode);
+void TM_SPI_Init(SPI_TypeDef* SPIx, TM_SPI_PinsPack_t pinspack);
 
 /**
- * Initialize SPIx with most used SPI features
- *
- * Parameters:
- * 	- SPI_TypeDef* SPIx:
- * 		SPI, x valid 1 - 6
- * 	- TM_SPI_PinsPack_t pinspack: select pins pack to use
- * 		- TM_SPI_PinsPack_1
- * 		- TM_SPI_PinsPack_2
- *		- TM_SPI_PinsPack_3
- *	- TM_SPI_Mode_t SPI_Mode:
- *		SPI mode to be initialized, CPOL and CPHA settings, Mode 0 to 3
- *	- uint16_t SPI_BaudRatePrescaler:
- *		SPI baudrate prescaler values. SPI_BaudRatePrescaler_x is valid, valid x is: 2, 4, 8, 16, 32, 64, 128, 256
- *	- uint16_t SPI_Mode:
- *		Master or slave mode: SPI_Mode_Master or SPI_Mode_Slave valid.
- *	- uint16_t SPI_FirstBit:
- *		Select first bit in your transmission, SPI_FirstBit_MSB or SPI_FirstBit_LSB are valid
- *
- * No return
+ * @brief  Initializes SPIx peripheral with custom pinspack and SPI mode and default other settings
+ * @param  *SPIx: Pointer to SPIx peripheral you will use, where x is between 1 to 6
+ * @param  pinspack: Pinspack you will use from default SPI table. This parameter can be a value of @ref TM_SPI_PinsPack_t enumeration
+ * @param  SPI_Mode: SPI mode you will use. This parameter can be a value of @ref TM_SPI_Mode_t enumeration
+ * @retval None
  */
-extern void TM_SPI_InitFull(SPI_TypeDef* SPIx, TM_SPI_PinsPack_t pinspack, uint16_t SPI_BaudRatePrescaler, TM_SPI_Mode_t SPI_Mode_t, uint16_t SPI_Mode, uint16_t SPI_FirstBit);
+void TM_SPI_InitWithMode(SPI_TypeDef* SPIx, TM_SPI_PinsPack_t pinspack, TM_SPI_Mode_t SPI_Mode);
 
 /**
- * This function can be used to calculate smaller prescaler for your clock frequency
- * SPI has 8 prescalers available, 2,4,6,...,128,256
- *
- * This function will return you a bits you must set in your CR1 register.
- *
- * Imagine, you can use 20MHz max clock in your system, your system is running on 168MHz, and you use SPI on APB2 bus.
- * On 168 and 180MHz devices, APB2 works on Fclk/2, so 84 and 90MHz.
- * So, if you calculate this, prescaler will need to be 84MHz / 20MHz = 4.xx, but if you use 4 prescaler, then you will be over 20MHz.
- * You need 8 prescaler then. This function will calculate this.
- *
- * Parameters:
- * 	- SPI_TypeDef* SPIx:
- * 		SPI, x valid 1 - 6
- *	- uint32_t MAX_SPI_Frequency:
- *		Maximal frequency you can use on your device on SPI port
- *
- * Returns bits you must set in SPI CR1 register.
+ * @brief  Initializes SPIx peripheral with custom settings
+ * @param  *SPIx: Pointer to SPIx peripheral you will use, where x is between 1 to 6
+ * @param  pinspack: Pinspack you will use from default SPI table. This parameter can be a value of @ref TM_SPI_PinsPack_t enumeration
+ * @param  SPI_BaudRatePrescaler: SPI baudrate prescaler. This parameter can be a value of @ref SPI_BaudRatePrescaler
+ * @param  SPI_Mode_t: SPI mode you will use. This parameter can be a value of @ref TM_SPI_Mode_t enumeration
+ * @param  SPI_Mode: SPI mode you will use:
+ *            - SPI_Mode_Master: SPI in master mode (default)
+ *            - SPI_Mode_Slave: SPI in slave mode
+ * @param  SPI_FirstBit: select first bit for SPI
+ *            - SPI_FirstBit_MSB: MSB is first bit (default)
+ *            - SPI_FirstBit_LSB: LSB is first bit
+ * @retval None
  */
-extern uint16_t TM_SPI_GetPrescalerFromMaxFrequency(SPI_TypeDef* SPIx, uint32_t MAX_SPI_Frequency);
+void TM_SPI_InitFull(SPI_TypeDef* SPIx, TM_SPI_PinsPack_t pinspack, uint16_t SPI_BaudRatePrescaler, TM_SPI_Mode_t SPI_Mode_t, uint16_t SPI_Mode, uint16_t SPI_FirstBit);
 
 /**
- * Send and receive data over SPI
+ * @brief  Calculate bits for SPI prescaler register to get minimal prescaler value for SPI peripheral
+ * @note   SPI has 8 prescalers available, 2,4,6,...,128,256
+ * @note   This function will return you a bits you must set in your CR1 register.
  *
- * Parameters:
- * 	- SPI_TypeDef* SPIx: Select SPI which will operate with data
- * 	- uint8_t data: data to be sent
+ * @note   Imagine, you can use 20MHz max clock in your system, your system is running on 168MHz, and you use SPI on APB2 bus.
+ *         On 168 and 180MHz devices, APB2 works on Fclk/2, so 84 and 90MHz.
+ *         So, if you calculate this, prescaler will need to be 84MHz / 20MHz = 4.xx, but if you use 4 prescaler, then you will be over 20MHz.
+ *         You need 8 prescaler then. This function will calculate this.
+ * @param  *SPIx: Pointer to SPIx peripheral you will use, where x is between 1 to 6.
+ *            Different SPIx works on different clock and is important to know for which SPI you need prescaler.
+ * @param  MAX_SPI_Frequency: Max SPI frequency you can use. Function will calculate the minimum prescaler you need for that.
  *
- * Returns: Data returned from slave
+ * @retval Bits combination for SPI_CR1 register, with aligned location already, prepared to set parameter for @ref TM_SPI_InitFull() function.
  */
-extern uint8_t TM_SPI_Send(SPI_TypeDef* SPIx, uint8_t data);
+uint16_t TM_SPI_GetPrescalerFromMaxFrequency(SPI_TypeDef* SPIx, uint32_t MAX_SPI_Frequency);
 
 /**
- * Send and receive multiple data bytes over SPI
- *
- * Parameters:
- * 	- SPI_TypeDef* SPIx: Select SPI which will operate with data
- * 	- uint8_t dataOut: pointer to data to be sent out
- *	- uint8_t dataIn: pointer to received data
- *	- uint16_t count: number of bytes to send
- *
- * No return
+ * @brief  Send single byte over SPI
+ * @param  *SPIx: Pointer to SPIx peripheral you will use, where x is between 1 to 6
+ * @param  data: 8-bit data size to send over SPI
+ * @retval Received byte from slave device
  */
-extern void TM_SPI_SendMulti(SPI_TypeDef* SPIx, uint8_t* dataOut, uint8_t* dataIn, uint16_t count);
+uint8_t TM_SPI_Send(SPI_TypeDef* SPIx, uint8_t data);
 
 /**
- * Write multiple data via SPI
- *
- * Parameters:
- * 	- SPI_TypeDef* SPIx: Select SPI which will operate with data
- * 	- uint8_t dataOut: pointer to data to be sent out
- *	- uint16_t count: number of bytes to send
- *
- * No return
+ * @brief  Send and receive multiple bytes over SPIx
+ * @param  *SPIx: Pointer to SPIx peripheral you will use, where x is between 1 to 6
+ * @param  *dataOut: Pointer to array with data to send over SPI
+ * @param  *dataIn: Pointer to array to to save incoming data
+ * @param  count: Number of bytes to send/receive over SPI
+ * @retval None
  */
-extern void TM_SPI_WriteMulti(SPI_TypeDef* SPIx, uint8_t* dataOut, uint16_t count);
+void TM_SPI_SendMulti(SPI_TypeDef* SPIx, uint8_t* dataOut, uint8_t* dataIn, uint16_t count);
 
 /**
- * Send and receive multiple data bytes over SPI
- *
- * Parameters:
- * 	- SPI_TypeDef* SPIx: Select SPI which will operate with data
- *	- uint8_t dataIn: pointer to received data
- *	- uint8_t dummy: dummy byte to be sent to SPI
- *	- uint16_t count: number of bytes to receive
- *
- * No return
+ * @brief  Write multiple bytes over SPI
+ * @param  *SPIx: Pointer to SPIx peripheral you will use, where x is between 1 to 6
+ * @param  *dataOut: Pointer to array with data to send over SPI
+ * @param  count: Number of elements to send over SPI
+ * @retval None
  */
-extern void TM_SPI_ReadMulti(SPI_TypeDef* SPIx, uint8_t *dataIn, uint8_t dummy, uint16_t count);
+void TM_SPI_WriteMulti(SPI_TypeDef* SPIx, uint8_t* dataOut, uint16_t count);
 
 /**
- * Send and receive data over SPI in 16-bit SPI mode
- * Selected SPI must be set in 16-bit mode
- *
- * Parameters:
- * 	- SPI_TypeDef* SPIx: Select SPI which will operate with data
- * 	- uint16_t data: data to be sent
- *
- * Returns: Data returned from slave
+ * @brief  Receive multiple data bytes over SPI
+ * @note   Selected SPI must be set in 16-bit mode
+ * @param  *SPIx: Pointer to SPIx peripheral you will use, where x is between 1 to 6
+ * @param  *dataIn: Pointer to 8-bit array to save data into
+ * @param  dummy: Dummy byte  to be sent over SPI, to receive data back. In most cases 0x00 or 0xFF
+ * @param  count: Number of bytes you want read from device
+ * @retval None
  */
-extern uint16_t TM_SPI_Send16(SPI_TypeDef* SPIx, uint16_t data);
+void TM_SPI_ReadMulti(SPI_TypeDef* SPIx, uint8_t *dataIn, uint8_t dummy, uint16_t count);
 
 /**
- * Send and receive multiple data bytes over SPI in 16-bit SPI mode
- * Selected SPI must be set in 16-bit mode
- *
- * Parameters:
- * 	- SPI_TypeDef* SPIx: Select SPI which will operate with data
- * 	- uint16_t dataOut: pointer to data to be sent out
- *	- uint16_t dataIn: pointer to received data
- *	- uint16_t count: number of bytes to send
- *
- * No return
+ * @brief  Send single byte over SPI
+ * @note   Selected SPI must be set in 16-bit mode
+ * @param  *SPIx: Pointer to SPIx peripheral you will use, where x is between 1 to 6
+ * @param  data: 16-bit data size to send over SPI
+ * @retval Received 16-bit value from slave device
  */
-extern void TM_SPI_SendMulti16(SPI_TypeDef* SPIx, uint16_t* dataOut, uint16_t* dataIn, uint16_t count);
+uint16_t TM_SPI_Send16(SPI_TypeDef* SPIx, uint16_t data);
 
 /**
- * Write multiple data via SPI in 16-bit SPI mode
- * Selected SPI must be set in 16-bit mode
- *
- * Parameters:
- * 	- SPI_TypeDef* SPIx: Select SPI which will operate with data
- * 	- uint16_t dataOut: pointer to data to be sent out
- *	- uint16_t count: number of bytes to send
- *
- * No return
+ * @brief  Send and receive multiple bytes over SPIx in 16-bit SPI mode
+ * @note   Selected SPI must be set in 16-bit mode
+ * @param  *SPIx: Pointer to SPIx peripheral you will use, where x is between 1 to 6
+ * @param  *dataOut: Pointer to array with data to send over SPI
+ * @param  *dataIn: Pointer to array to to save incoming data
+ * @param  count: Number of 16-bit values to send/receive over SPI
+ * @retval None
  */
-extern void TM_SPI_WriteMulti16(SPI_TypeDef* SPIx, uint16_t* dataOut, uint16_t count);
+void TM_SPI_SendMulti16(SPI_TypeDef* SPIx, uint16_t* dataOut, uint16_t* dataIn, uint16_t count);
 
 /**
- * Send and receive multiple data bytes over SPI in 16-bit SPI mode
- * Selected SPI must be set in 16-bit mode
- *
- * Parameters:
- * 	- SPI_TypeDef* SPIx: Select SPI which will operate with data
- *	- uint16_t dataIn: pointer to received data
- *	- uint16_t dummy: dummy 16bit to be sent to SPI
- *	- uint16_t count: number of bytes to receive
- *
- * No return
+ * @brief  Write multiple data via SPI in 16-bit SPI mode
+ * @note   Selected SPI must be set in 16-bit mode
+ * @param  *SPIx: Pointer to SPIx peripheral you will use, where x is between 1 to 6
+ * @param  *dataOut: Pointer to 16-bit array with data to send over SPI
+ * @param  count: Number of elements to send over SPI
+ * @retval None
  */
-extern void TM_SPI_ReadMulti16(SPI_TypeDef* SPIx, uint16_t* dataIn, uint16_t dummy, uint16_t count);
+void TM_SPI_WriteMulti16(SPI_TypeDef* SPIx, uint16_t* dataOut, uint16_t count);
 
 /**
- * Callback for custom pins initialization.
- * 
- * When you call TM_SPI_Init() function, and if you pass TM_SPI_PinsPack_Custom to function,
- * then this function will be called where you can initialize custom pins for SPI peripheral.
- *
- * Parameters:
- *	- SPI_TypeDef* SPIx:
- *		SPI for which initialization will be set
- * 
- * With __weak parameter to prevent link errors if not defined by user
- *
- * No return
+ * @brief  Receive multiple data bytes over SPI in 16-bit SPI mode
+ * @note   Selected SPI must be set in 16-bit mode
+ * @param  *SPIx: Pointer to SPIx peripheral you will use, where x is between 1 to 6
+ * @param  *dataIn: Pointer to 16-bit array to save data into
+ * @param  dummy: Dummy 16-bit value to be sent over SPI, to receive data back. In most cases 0x00 or 0xFF
+ * @param  count: Number of 16-bit values you want read from device
+ * @retval None
  */
-extern __weak void TM_SPI_InitCustomPinsCallback(SPI_TypeDef* SPIx);
+void TM_SPI_ReadMulti16(SPI_TypeDef* SPIx, uint16_t* dataIn, uint16_t dummy, uint16_t count);
+
+/**
+ * @brief  Init custom SPI pins for your SPIx. This is callback function and will be called from my library if needed.
+ * @note   When you call TM_SPI_Init() function, and if you pass TM_SPI_PinsPack_Custom to function,
+ *         then this function will be called where you can initialize custom pins for SPI peripheral
+ *
+ * @note   You have to initialize MOSI, MISO and SCK pin
+ *
+ * @note   With __weak parameter to prevent link errors if not defined by user
+ *
+ * @param  *SPIx: Pointer to SPIx peripheral for which you have to set your custom pin settings
+ * @retval None
+ */
+__weak void TM_SPI_InitCustomPinsCallback(SPI_TypeDef* SPIx);
+
+/**
+ * @}
+ */
+ 
+/**
+ * @}
+ */
+ 
+/**
+ * @}
+ */
 
 /* C++ detection */
 #ifdef __cplusplus

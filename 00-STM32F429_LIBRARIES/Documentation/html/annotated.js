@@ -13,7 +13,6 @@ var annotated =
     [ "TM_GPS_Distance_t", "struct_t_m___g_p_s___distance__t.html", "struct_t_m___g_p_s___distance__t" ],
     [ "TM_GPS_Float_t", "struct_t_m___g_p_s___float__t.html", "struct_t_m___g_p_s___float__t" ],
     [ "TM_GPS_Time_t", "struct_t_m___g_p_s___time__t.html", "struct_t_m___g_p_s___time__t" ],
-    [ "TM_GRAPHIC_Options_t", "struct_t_m___g_r_a_p_h_i_c___options__t.html", "struct_t_m___g_r_a_p_h_i_c___options__t" ],
     [ "TM_ILI931_Options_t", "struct_t_m___i_l_i931___options__t.html", "struct_t_m___i_l_i931___options__t" ],
     [ "TM_ILI9341_Button_t", "struct_t_m___i_l_i9341___button__t.html", "struct_t_m___i_l_i9341___button__t" ],
     [ "TM_L3GD20_t", "struct_t_m___l3_g_d20__t.html", "struct_t_m___l3_g_d20__t" ],

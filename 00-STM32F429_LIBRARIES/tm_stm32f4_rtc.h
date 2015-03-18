@@ -165,7 +165,7 @@ typedef struct {
 	uint16_t subseconds; /*!< Subsecond downcounter. When it reaches zero, it's reload value is the same as
                                  RTC_SYNC_PREDIV, so in our case 0x3FF = 1023, 1024 steps in one second */
 	uint8_t minutes;     /*!< Minutes parameter, from 00 to 59 */
-	uint8_t hours        /*!< Hours parameter, 24Hour mode, 00 to 23 */
+	uint8_t hours;       /*!< Hours parameter, 24Hour mode, 00 to 23 */
 	uint8_t day;         /*!< Day in a week, from 1 to 7 */
 	uint8_t date;        /*!< Date in a month, 1 to 31 */
 	uint8_t month;       /*!< Month in a year, 1 to 12 */
