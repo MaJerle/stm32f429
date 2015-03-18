@@ -26,6 +26,14 @@ void TM_RNG_Init(void) {
 	RNG->CR |= RNG_CR_RNGEN;
 }
 
+void TM_RNG_DeInit(void) {
+	/* Disable RNG clock source */
+	RCC->AHB2ENR &= ~RCC_AHB2ENR_RNGEN;
+	
+	/* RNG Peripheral ¸disable */
+	RNG->CR &= ~RNG_CR_RNGEN;
+}
+
 uint32_t TM_RNG_Get(void) {
 	/* Wait until one RNG number is ready */
 	while (!(RNG->SR & (RNG_SR_DRDY)));

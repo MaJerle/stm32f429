@@ -304,18 +304,18 @@ TM_RTC_Result_t TM_RTC_SetDateTime(TM_RTC_t* data, TM_RTC_Format_t format);
 
 /**
  * @brief  Set date and time using string formatted date time
- * @note   Valid string format is: dd.mm.YY.x;HH:ii:ss
- *            - dd: date, 2 digits, decimal
- *            - mm: month, 2 digits, decimal
- *            - YY: year, last 2 digits, decimal
- *            - x: day in a week: 1 digit,
- *            - HH: hours, 24-hour mode, 2 digits, decimal
- *            - ii: minutes, 2 digits, decimal
- *            - ss: seconds, 2 digigs, decimal
+ * @note   Valid string format is: <b>dd.mm.YY.x;HH:ii:ss</b>
+ *            - <b>dd</b>: date, 2 digits, decimal
+ *            - <b>mm</b>: month, 2 digits, decimal
+ *            - <b>YY</b>: year, last 2 digits, decimal
+ *            - <b>x</b>: day in a week: 1 digit, 1 = Monday, 7 = Sunday
+ *            - <b>HH</b>: hours, 24-hour mode, 2 digits, decimal
+ *            - <b>ii</b>: minutes, 2 digits, decimal
+ *            - <b>ss</b>: seconds, 2 digits, decimal
  * @param  *str: Pointer to string with datetime format
  * @retval RTC datetime status @ref TM_RTC_Result_t.
- *            - TM_RTC_Result_Ok: Date and Time set OK
- *            - TM_RTC_Result_Error: Date and time is wrong
+ *            - @ref TM_RTC_Result_Ok: Date and Time set OK
+ *            - @ref TM_RTC_Result_Error: Date and time is wrong
  */
 TM_RTC_Result_t TM_RTC_SetDateTimeString(char* str);
 
@@ -350,7 +350,7 @@ uint16_t TM_RTC_GetDaysInYear(uint8_t year);
  *
  * @note   My library uses register 19 to store info about RTC settings and is not available for USER to store data there.
  *
- * @note   RTC HAVE to be initialized first before you can use this method
+ * @note   RTC HAS to be initialized first before you can use this method.
  * @param  location: RTC backup register location. 0 to 18 are valid
  * @param  value: 32-bit long value to be stored in RTC backup register
  * @retval Value at specific RTC backup register location
@@ -364,7 +364,7 @@ void TM_RTC_WriteBackupRegister(uint8_t location, uint32_t value);
  *
  * @note   My library uses register 19 to store info about RTC settings and is not available for USER to store data there.
  *
- * @note   RTC HAVE to be initialized first before you can use this method
+ * @note   RTC HAS to be initialized first before you can use this method.
  * @param  location: RTC backup register location. 0 to 18 are valid
  * @retval Value at specific RTC backup register location
  */

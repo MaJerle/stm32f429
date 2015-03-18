@@ -104,25 +104,30 @@ $(document).ready(function(){initNavTree('tm__stm32f4__rng_8h_source.html','');}
 </div><!--header-->
 <div class="contents">
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#ifndef TM_RNG_H</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#define TM_RNG_H 110</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx.h&quot;</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#include &quot;defines.h&quot;</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> TM_RNG_Init(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keyword">extern</span> uint32_t TM_RNG_Get(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#ifndef TM_RNG_H</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#define TM_RNG_H 110</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx.h&quot;</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor">#include &quot;defines.h&quot;</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___r_n_g___functions.html#ga8cd385f093319cfee45226fbb9beaf54">TM_RNG_Init</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___r_n_g___functions.html#ga7c7a1842d509e7d781c989644a5048e4">TM_RNG_DeInit</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;uint32_t <a class="code" href="group___t_m___r_n_g___functions.html#ga3a7d9d82919133b8a6db5c6098671dee">TM_RNG_Get</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
+<div class="ttc" id="group___t_m___r_n_g___functions_html_ga7c7a1842d509e7d781c989644a5048e4"><div class="ttname"><a href="group___t_m___r_n_g___functions.html#ga7c7a1842d509e7d781c989644a5048e4">TM_RNG_DeInit</a></div><div class="ttdeci">void TM_RNG_DeInit(void)</div><div class="ttdoc">De initializes RNG peripheral and disables clock. </div><div class="ttdef"><b>Definition:</b> tm_stm32f4_rng.c:29</div></div>
+<div class="ttc" id="group___t_m___r_n_g___functions_html_ga3a7d9d82919133b8a6db5c6098671dee"><div class="ttname"><a href="group___t_m___r_n_g___functions.html#ga3a7d9d82919133b8a6db5c6098671dee">TM_RNG_Get</a></div><div class="ttdeci">uint32_t TM_RNG_Get(void)</div><div class="ttdoc">Get 32bit random number. </div><div class="ttdef"><b>Definition:</b> tm_stm32f4_rng.c:37</div></div>
+<div class="ttc" id="group___t_m___r_n_g___functions_html_ga8cd385f093319cfee45226fbb9beaf54"><div class="ttname"><a href="group___t_m___r_n_g___functions.html#ga8cd385f093319cfee45226fbb9beaf54">TM_RNG_Init</a></div><div class="ttdeci">void TM_RNG_Init(void)</div><div class="ttdoc">Initializes RNG peripheral and disables clock. </div><div class="ttdef"><b>Definition:</b> tm_stm32f4_rng.c:21</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>tm_stm32f4_rng.h</b></li>
-    <li class="footer">Generated on Wed Mar 18 2015 07:56:34 for TM STM32F4xx Libraries by
+    <li class="footer">Generated on Wed Mar 18 2015 08:41:37 for TM STM32F4xx Libraries by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

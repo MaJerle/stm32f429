@@ -520,7 +520,7 @@ If you reset your MCU and RTC still has power, it will count independent of MCU 
 <dd>
 My library uses register 19 to store info about RTC settings and is not available for USER to store data there.</dd>
 <dd>
-RTC HAVE to be initialized first before you can use this method </dd></dl>
+RTC HAS to be initialized first before you can use this method. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">location</td><td>RTC backup register location. 0 to 18 are valid </td></tr>
@@ -667,14 +667,14 @@ With __weak parameter to prevent link errors if not defined by user </dd></dl>
 </div><div class="memdoc">
 
 <p>Set date and time using string formatted date time. </p>
-<dl class="section note"><dt>Note</dt><dd>Valid string format is: dd.mm.YY.x;HH:ii:ss<ul>
-<li>dd: date, 2 digits, decimal</li>
-<li>mm: month, 2 digits, decimal</li>
-<li>YY: year, last 2 digits, decimal</li>
-<li>x: day in a week: 1 digit,</li>
-<li>HH: hours, 24-hour mode, 2 digits, decimal</li>
-<li>ii: minutes, 2 digits, decimal</li>
-<li>ss: seconds, 2 digigs, decimal </li>
+<dl class="section note"><dt>Note</dt><dd>Valid string format is: <b>dd.mm.YY.x;HH:ii:ss</b><ul>
+<li><b>dd</b>: date, 2 digits, decimal</li>
+<li><b>mm</b>: month, 2 digits, decimal</li>
+<li><b>YY</b>: year, last 2 digits, decimal</li>
+<li><b>x</b>: day in a week: 1 digit, 1 = Monday, 7 = Sunday</li>
+<li><b>HH</b>: hours, 24-hour mode, 2 digits, decimal</li>
+<li><b>ii</b>: minutes, 2 digits, decimal</li>
+<li><b>ss</b>: seconds, 2 digits, decimal </li>
 </ul>
 </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -725,7 +725,7 @@ With __weak parameter to prevent link errors if not defined by user </dd></dl>
 <dd>
 My library uses register 19 to store info about RTC settings and is not available for USER to store data there.</dd>
 <dd>
-RTC HAVE to be initialized first before you can use this method </dd></dl>
+RTC HAS to be initialized first before you can use this method. </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">location</td><td>RTC backup register location. 0 to 18 are valid </td></tr>
@@ -747,7 +747,7 @@ RTC HAVE to be initialized first before you can use this method </dd></dl>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed Mar 18 2015 07:56:34 for TM STM32F4xx Libraries by
+    <li class="footer">Generated on Wed Mar 18 2015 08:41:37 for TM STM32F4xx Libraries by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

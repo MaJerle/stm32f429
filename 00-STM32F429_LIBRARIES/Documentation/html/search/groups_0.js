@@ -1,5 +1,7 @@
 var searchData=
 [
+  ['tm_5fcrc',['TM_CRC',['../group___t_m___c_r_c.html',1,'']]],
+  ['tm_5fcrc_5ffunctions',['TM_CRC_Functions',['../group___t_m___c_r_c___functions.html',1,'']]],
   ['tm_5fdisco',['TM_DISCO',['../group___t_m___d_i_s_c_o.html',1,'']]],
   ['tm_5fdisco_5ffunctions',['TM_DISCO_Functions',['../group___t_m___d_i_s_c_o___functions.html',1,'']]],
   ['tm_5fgpio',['TM_GPIO',['../group___t_m___g_p_i_o.html',1,'']]],
@@ -20,6 +22,8 @@ var searchData=
   ['tm_5flowpower',['TM_LOWPOWER',['../group___t_m___l_o_w_p_o_w_e_r.html',1,'']]],
   ['tm_5flowpower_5ffunctions',['TM_LOWPOWER_Functions',['../group___t_m___l_o_w_p_o_w_e_r___functions.html',1,'']]],
   ['tm_5flowpower_5fmacros',['TM_LOWPOWER_Macros',['../group___t_m___l_o_w_p_o_w_e_r___macros.html',1,'']]],
+  ['tm_5frng',['TM_RNG',['../group___t_m___r_n_g.html',1,'']]],
+  ['tm_5frng_5ffunctions',['TM_RNG_Functions',['../group___t_m___r_n_g___functions.html',1,'']]],
   ['tm_5frtc',['TM_RTC',['../group___t_m___r_t_c.html',1,'']]],
   ['tm_5frtc_5ffunctions',['TM_RTC_Functions',['../group___t_m___r_t_c___functions.html',1,'']]],
   ['tm_5frtc_5fmacros',['TM_RTC_Macros',['../group___t_m___r_t_c___macros.html',1,'']]],

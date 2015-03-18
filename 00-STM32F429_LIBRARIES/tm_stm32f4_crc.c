@@ -23,6 +23,11 @@ void TM_CRC_Init(void) {
 	RCC->AHB1ENR |= RCC_AHB1ENR_CRCEN;
 }
 
+void TM_CRC_DeInit(void) {
+	/* Disable CRC clock */
+	RCC->AHB1ENR &= ~RCC_AHB1ENR_CRCEN;
+}
+
 uint32_t TM_CRC_Calculate8(uint8_t* arr, uint16_t count, uint8_t reset) {
 	uint16_t i;
 	

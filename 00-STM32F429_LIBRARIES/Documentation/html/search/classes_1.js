@@ -1,11 +1,9 @@
 var searchData=
 [
-  ['tm_5f24xx02x_5ft',['TM_24XX02X_t',['../struct_t_m__24_x_x02_x__t.html',1,'']]],
   ['tm_5fam2301_5fdata_5ft',['TM_AM2301_Data_t',['../struct_t_m___a_m2301___data__t.html',1,'']]],
   ['tm_5fbmp180_5ft',['TM_BMP180_t',['../struct_t_m___b_m_p180__t.html',1,'']]],
   ['tm_5fdma2draphic_5fpoly_5ft',['TM_DMA2DRAPHIC_Poly_t',['../struct_t_m___d_m_a2_d_r_a_p_h_i_c___poly__t.html',1,'']]],
   ['tm_5fds1307_5ftime_5ft',['TM_DS1307_Time_t',['../struct_t_m___d_s1307___time__t.html',1,'']]],
-  ['tm_5fesp8266_5ft',['TM_ESP8266_t',['../struct_t_m___e_s_p8266__t.html',1,'']]],
   ['tm_5fethernet_5ft',['TM_ETHERNET_t',['../struct_t_m___e_t_h_e_r_n_e_t__t.html',1,'']]],
   ['tm_5fethernetpost_5ft',['TM_ETHERNETPOST_t',['../struct_t_m___e_t_h_e_r_n_e_t_p_o_s_t__t.html',1,'']]],
   ['tm_5ffontdef_5ft',['TM_FontDef_t',['../struct_t_m___font_def__t.html',1,'']]],
@@ -27,7 +25,6 @@ var searchData=
   ['tm_5fpwm_5ftim_5ft',['TM_PWM_TIM_t',['../struct_t_m___p_w_m___t_i_m__t.html',1,'']]],
   ['tm_5fpwmin_5ft',['TM_PWMIN_t',['../struct_t_m___p_w_m_i_n__t.html',1,'']]],
   ['tm_5fre_5ft',['TM_RE_t',['../struct_t_m___r_e__t.html',1,'']]],
-  ['tm_5frs485_5ft',['TM_RS485_t',['../struct_t_m___r_s485__t.html',1,'']]],
   ['tm_5frtc_5falarmtime_5ft',['TM_RTC_AlarmTime_t',['../struct_t_m___r_t_c___alarm_time__t.html',1,'']]],
   ['tm_5frtc_5ft',['TM_RTC_t',['../struct_t_m___r_t_c__t.html',1,'']]],
   ['tm_5fservo_5ft',['TM_SERVO_t',['../struct_t_m___s_e_r_v_o__t.html',1,'']]],
