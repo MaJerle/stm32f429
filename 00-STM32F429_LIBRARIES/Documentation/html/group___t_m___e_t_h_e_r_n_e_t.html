@@ -173,6 +173,13 @@ TX_EN       |PB11   |PG11
 TXD0        |PB12   |PG13
 TXD1        |PB13   |PG14
 </pre><p>Also, PA8 pins HAVE TO be initialized as MCO alternate function, or communication will not work. Who knows why.</p>
+<p>PA8 pin is also MCO output, which has ability to output different clocks.</p>
+<p>I've added feature to output HSE crystal on this MCO pin. It can be used for 25MHz output if you have HSE 25MHz crystal and MII connection.</p>
+<p>Then you don't need separate crystal for PHY device.</p>
+<p>To enable MCO output HSE crystal value, open defines.h file and add define:</p>
+<pre class="fragment">//Enable MCO output with HSE clock
+#define ETHERNET_MCO_CLOCK
+</pre><dl class="section user"><dt>DHCP</dt><dd></dd></dl>
 <p>Library supports DHCP to get IP from router. This feature is disabled by default To enable it, you need to add define in defines.h file:</p>
 <pre class="fragment">//Enable DHCP 
 #define ETHERNET_USE_DHCP
@@ -209,7 +216,7 @@ TXD1        |PB13   |PG14
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed Mar 18 2015 22:50:37 for TM STM32F4xx Libraries by
+    <li class="footer">Generated on Wed Mar 18 2015 23:13:21 for TM STM32F4xx Libraries by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

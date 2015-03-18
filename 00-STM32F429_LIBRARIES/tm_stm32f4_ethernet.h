@@ -116,8 +116,22 @@ TXD0        |PB12   |PG13
 TXD1        |PB13   |PG14
 @endverbatim
  *
- * Also, PA8 pins HAVE TO be initialized as MCO alternate function,
- * or communication will not work. Who knows why.
+ * Also, PA8 pins HAVE TO be initialized as MCO alternate function, or communication will not work. Who knows why.
+ *
+ * PA8 pin is also MCO output, which has ability to output different clocks.
+ *
+ * I've added feature to output HSE crystal on this MCO pin. It can be used for 25MHz output if you have HSE 25MHz crystal and MII connection.
+ *
+ * Then you don't need separate crystal for PHY device.
+ *
+ * To enable MCO output HSE crystal value, open defines.h file and add define:
+ *
+@verbatim
+//Enable MCO output with HSE clock
+#define ETHERNET_MCO_CLOCK
+@endverbatim
+ *
+ * \par DHCP
  *
  * Library supports DHCP to get IP from router.
  * This feature is disabled by default
