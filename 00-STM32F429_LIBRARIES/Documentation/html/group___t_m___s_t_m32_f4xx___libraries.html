@@ -117,6 +117,9 @@ Modules</h2></td></tr>
 <tr class="memitem:group___t_m___c_r_c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_m___c_r_c.html">TM_CRC</a></td></tr>
 <tr class="memdesc:group___t_m___c_r_c"><td class="mdescLeft">&#160;</td><td class="mdescRight">CRC library for STM32F4xx devices - <a href="http://stm32f4-discovery.com/2015/01/library-47-crc-module-on-stm32f4">http://stm32f4-discovery.com/2015/01/library-47-crc-module-on-stm32f4</a>. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:group___t_m___d_e_l_a_y"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_m___d_e_l_a_y.html">TM_DELAY</a></td></tr>
+<tr class="memdesc:group___t_m___d_e_l_a_y"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pretty accurate delay functions with SysTick or any other timer - <a href="http://stm32f4-discovery.com/2014/04/library-03-stm32f429-discovery-system-clock-and-pretty-precise-delay-library/">http://stm32f4-discovery.com/2014/04/library-03-stm32f429-discovery-system-clock-and-pretty-precise-delay-library/</a>. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:group___t_m___d_i_s_c_o"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_m___d_i_s_c_o.html">TM_DISCO</a></td></tr>
 <tr class="memdesc:group___t_m___d_i_s_c_o"><td class="mdescLeft">&#160;</td><td class="mdescRight">Leds and buttons for STM32F4 Discovery, Nucleo and eval boards - <a href="http://stm32f4-discovery.com/2014/04/stm32f429-discovery-gpio-tutorial-with-onboard-leds-and-button/">http://stm32f4-discovery.com/2014/04/stm32f429-discovery-gpio-tutorial-with-onboard-leds-and-button/</a>. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -147,6 +150,9 @@ Modules</h2></td></tr>
 <tr class="memitem:group___t_m___o_t_p"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_m___o_t_p.html">TM_OTP</a></td></tr>
 <tr class="memdesc:group___t_m___o_t_p"><td class="mdescLeft">&#160;</td><td class="mdescRight">OTP (One-Time Programmable) flash section library for STM32F4xx - <a href="http://stm32f4-discovery.com/2015/01/library-49-one-time-programmable-otp-bytes-on-stm32f4xx">http://stm32f4-discovery.com/2015/01/library-49-one-time-programmable-otp-bytes-on-stm32f4xx</a>. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:group___t_m___p_w_m"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_m___p_w_m.html">TM_PWM</a></td></tr>
+<tr class="memdesc:group___t_m___p_w_m"><td class="mdescLeft">&#160;</td><td class="mdescRight">PWM library for STM32F4xx devices, supporting all possible timers with PWM feature - <a href="http://stm32f4-discovery.com/2014/09/library-33-pwm-for-stm32f4xx/">http://stm32f4-discovery.com/2014/09/library-33-pwm-for-stm32f4xx/</a>. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:group___t_m___r_n_g"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_m___r_n_g.html">TM_RNG</a></td></tr>
 <tr class="memdesc:group___t_m___r_n_g"><td class="mdescLeft">&#160;</td><td class="mdescRight">Random number generator library for STM32F4xx devices - <a href="http://stm32f4-discovery.com/2014/07/library-22-true-random-number-generator-stm32f4xx/">http://stm32f4-discovery.com/2014/07/library-22-true-random-number-generator-stm32f4xx/</a>. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -169,13 +175,22 @@ Modules</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>STM32F4xx developed by Tilen Majerle. </p>
 <p>Here are (or will be) listed all my STM32F4xx modules and libraries I had developed or modified for some reason.</p>
-<p>From the <b>modules</b> section you can select your module for details. </p>
+<p>From the <b>modules</b> section you can select your module for details.</p>
+<p>Library dependencies</p><ul>
+<li>STM32F4xx</li>
+<li>STM32F4xx RCC</li>
+<li>STM32F4xx TIM (Only if you want to use TIMx for delay instead of Systick)</li>
+<li>MISC (Only if you want to use TIMx for delay instead of Systick)</li>
+<li>TM TIMER PROPERTIES (Only if you want to use TIMx for delay instead of Systick)</li>
+<li>defines.h</li>
+<li><a class="el" href="attributes_8h_source.html">attributes.h</a> Includes </li>
+</ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu Mar 19 2015 21:26:57 for TM STM32F4xx Libraries by
+    <li class="footer">Generated on Thu Mar 19 2015 22:33:36 for TM STM32F4xx Libraries by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

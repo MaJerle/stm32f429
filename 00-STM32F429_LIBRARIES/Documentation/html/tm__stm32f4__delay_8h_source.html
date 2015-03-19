@@ -104,91 +104,96 @@ $(document).ready(function(){initNavTree('tm__stm32f4__delay_8h_source.html','')
 </div><!--header-->
 <div class="contents">
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor">#ifndef TM_DELAY_H</span></div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="preprocessor">#define TM_DELAY_H 210</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx.h&quot;</span></div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx_rcc.h&quot;</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="preprocessor">#include &quot;defines.h&quot;</span></div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="preprocessor">#include &quot;attributes.h&quot;</span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="comment">/* If user selectable timer is selected for delay */</span></div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="preprocessor">#if defined(TM_DELAY_TIM)</span></div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="preprocessor">#include &quot;misc.h&quot;</span></div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx_tim.h&quot;</span></div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="preprocessor">#include &quot;tm_stm32f4_timer_properties.h&quot;</span></div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="keyword">extern</span> __IO uint32_t TM_Time;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="keyword">extern</span> __IO uint32_t TM_Time2;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="keyword">extern</span> __IO uint32_t mult;</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="keyword">static</span> __INLINE <span class="keywordtype">void</span> Delay(uint32_t micros) {</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="preprocessor">#if defined(TM_DELAY_TIM)</span></div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="keyword">volatile</span> uint32_t timer = TM_DELAY_TIM-&gt;CNT;</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    <span class="keywordflow">do</span> {</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        <span class="comment">/* Count timer ticks */</span></div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        <span class="keywordflow">while</span> ((TM_DELAY_TIM-&gt;CNT - timer) == 0);</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        <span class="comment">/* Increase timer */</span></div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        timer = TM_DELAY_TIM-&gt;CNT;</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        <span class="comment">/* Decrease microseconds */</span></div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    } <span class="keywordflow">while</span> (--micros);</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    uint32_t amicros;</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    <span class="comment">/* Multiply micro seconds */</span></div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    amicros = (micros) * (mult);</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="preprocessor">    #ifdef __GNUC__</span></div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        <span class="keywordflow">if</span> (SystemCoreClock == 180000000 || SystemCoreClock == 100000000) {</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;            amicros -= mult;</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        }</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="preprocessor">    #endif</span></div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <span class="comment">/* If clock is 100MHz, then add additional multiplier */</span></div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    <span class="comment">/* 100/3 = 33.3 = 33 and delay wouldn&#39;t be so accurate */</span></div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="preprocessor">    #if defined(STM32F411xE)</span></div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    amicros += mult;</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="preprocessor">    #endif</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#ifndef TM_DELAY_H</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#define TM_DELAY_H 220</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx.h&quot;</span></div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx_rcc.h&quot;</span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="preprocessor">#include &quot;defines.h&quot;</span></div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="preprocessor">#include &quot;attributes.h&quot;</span></div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="comment">/* If user selectable timer is selected for delay */</span></div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="preprocessor">#if defined(TM_DELAY_TIM)</span></div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="preprocessor">#include &quot;misc.h&quot;</span></div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx_tim.h&quot;</span></div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="preprocessor">#include &quot;tm_stm32f4_timer_properties.h&quot;</span></div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="keyword">extern</span> __IO uint32_t <a class="code" href="group___t_m___d_e_l_a_y.html#ga7c995255b1d6e58256f1b6e1db969000">TM_Time</a>;</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="keyword">extern</span> __IO uint32_t TM_Time2;</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="keyword">extern</span> __IO uint32_t mult;</div>
 <div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    <span class="comment">/* While loop */</span></div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    <span class="keywordflow">while</span> (amicros--);</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* TM_DELAY_TIM */</span><span class="preprocessor"></span></div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;}</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="keyword">static</span> __INLINE <span class="keywordtype">void</span> Delayms(uint32_t millis) {</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    <span class="keyword">volatile</span> uint32_t timer = TM_Time;</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    <span class="comment">/* Wait for timer to count milliseconds */</span></div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    <span class="keywordflow">while</span> ((TM_Time - timer) &lt; millis);</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;}</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;<span class="keywordtype">void</span> TM_DELAY_Init(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;<span class="preprocessor">#define TM_DELAY_Time()                 (TM_Time)</span></div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="preprocessor">#define TM_DELAY_SetTime(time)          (TM_Time = (time))</span></div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;<span class="keywordtype">void</span> TM_DELAY_EnableDelayTimer(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;<span class="keywordtype">void</span> TM_DELAY_DisableDelayTimer(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="keyword">static</span> __INLINE <span class="keywordtype">void</span> Delay(uint32_t micros) {</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="preprocessor">#if defined(TM_DELAY_TIM)</span></div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    <span class="keyword">volatile</span> uint32_t timer = TM_DELAY_TIM-&gt;CNT;</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    <span class="keywordflow">do</span> {</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        <span class="comment">/* Count timer ticks */</span></div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        <span class="keywordflow">while</span> ((TM_DELAY_TIM-&gt;CNT - timer) == 0);</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        <span class="comment">/* Increase timer */</span></div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;        timer = TM_DELAY_TIM-&gt;CNT;</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        <span class="comment">/* Decrease microseconds */</span></div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    } <span class="keywordflow">while</span> (--micros);</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    uint32_t amicros;</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    <span class="comment">/* Multiply micro seconds */</span></div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    amicros = (micros) * (mult);</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;<span class="preprocessor">    #ifdef __GNUC__</span></div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        <span class="keywordflow">if</span> (SystemCoreClock == 180000000 || SystemCoreClock == 100000000) {</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;            amicros -= mult;</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        }</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="preprocessor">    #endif</span></div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    <span class="comment">/* If clock is 100MHz, then add additional multiplier */</span></div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    <span class="comment">/* 100/3 = 33.3 = 33 and delay wouldn&#39;t be so accurate */</span></div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;<span class="preprocessor">    #if defined(STM32F411xE)</span></div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;    amicros += mult;</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;<span class="preprocessor">    #endif</span></div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    <span class="comment">/* While loop */</span></div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    <span class="keywordflow">while</span> (amicros--);</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* TM_DELAY_TIM */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;}</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;<span class="keyword">static</span> __INLINE <span class="keywordtype">void</span> Delayms(uint32_t millis) {</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;    <span class="keyword">volatile</span> uint32_t timer = <a class="code" href="group___t_m___d_e_l_a_y.html#ga7c995255b1d6e58256f1b6e1db969000">TM_Time</a>;</div>
 <div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;<span class="preprocessor">#define TM_DELAY_Time2()                (TM_Time2)</span></div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;<span class="preprocessor">#define TM_DELAY_SetTime2(time)         (TM_Time2 = (time))</span></div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;__weak <span class="keywordtype">void</span> TM_DELAY_1msHandler(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    <span class="comment">/* Wait for timer to count milliseconds */</span></div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    <span class="keywordflow">while</span> ((<a class="code" href="group___t_m___d_e_l_a_y.html#ga7c995255b1d6e58256f1b6e1db969000">TM_Time</a> - timer) &lt; millis);</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;}</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___l_i_b___functions.html#ga16d6653998938f4fc10c4f806db6784d">TM_DELAY_Init</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;</div>
+<div class="line"><a name="l00235"></a><span class="lineno"><a class="line" href="group___t_m___l_i_b___functions.html#gaaf46291b088791f6b2025d327a810c16">  235</a></span>&#160;<span class="preprocessor">#define TM_DELAY_Time()                 (TM_Time)</span></div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;</div>
+<div class="line"><a name="l00242"></a><span class="lineno"><a class="line" href="group___t_m___l_i_b___functions.html#ga72caa68e7ce61cb2dcb4ed9e219f58ce">  242</a></span>&#160;<span class="preprocessor">#define TM_DELAY_SetTime(time)          (TM_Time = (time))</span></div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___l_i_b___functions.html#gabd5794c32a31780844f8c83ef5d6162c">TM_DELAY_EnableDelayTimer</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___l_i_b___functions.html#gad2d750c9aa93771cf71e3c7a8f48931f">TM_DELAY_DisableDelayTimer</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;</div>
+<div class="line"><a name="l00266"></a><span class="lineno"><a class="line" href="group___t_m___l_i_b___functions.html#ga5781218a9887f4883a311b52c11a7a59">  266</a></span>&#160;<span class="preprocessor">#define TM_DELAY_Time2()                (TM_Time2)</span></div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;</div>
+<div class="line"><a name="l00274"></a><span class="lineno"><a class="line" href="group___t_m___l_i_b___functions.html#ga6b725c20fcbea9c3f3e549d86434d030">  274</a></span>&#160;<span class="preprocessor">#define TM_DELAY_SetTime2(time)         (TM_Time2 = (time))</span></div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;__weak <span class="keywordtype">void</span> <a class="code" href="group___t_m___l_i_b___functions.html#ga14312d8ada241797b8d34ce56d060273">TM_DELAY_1msHandler</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="group___t_m___l_i_b___functions_html_ga14312d8ada241797b8d34ce56d060273"><div class="ttname"><a href="group___t_m___l_i_b___functions.html#ga14312d8ada241797b8d34ce56d060273">TM_DELAY_1msHandler</a></div><div class="ttdeci">__weak void TM_DELAY_1msHandler(void)</div><div class="ttdoc">User function, called each 1ms when interrupt from timer happen. </div></div>
+<div class="ttc" id="group___t_m___l_i_b___functions_html_ga16d6653998938f4fc10c4f806db6784d"><div class="ttname"><a href="group___t_m___l_i_b___functions.html#ga16d6653998938f4fc10c4f806db6784d">TM_DELAY_Init</a></div><div class="ttdeci">void TM_DELAY_Init(void)</div><div class="ttdoc">Initializes timer settings for delay. </div></div>
+<div class="ttc" id="group___t_m___l_i_b___functions_html_gabd5794c32a31780844f8c83ef5d6162c"><div class="ttname"><a href="group___t_m___l_i_b___functions.html#gabd5794c32a31780844f8c83ef5d6162c">TM_DELAY_EnableDelayTimer</a></div><div class="ttdeci">void TM_DELAY_EnableDelayTimer(void)</div><div class="ttdoc">Re-enables delay timer It has to be configured before with TM_DELAY_Init() </div></div>
+<div class="ttc" id="group___t_m___l_i_b___functions_html_gad2d750c9aa93771cf71e3c7a8f48931f"><div class="ttname"><a href="group___t_m___l_i_b___functions.html#gad2d750c9aa93771cf71e3c7a8f48931f">TM_DELAY_DisableDelayTimer</a></div><div class="ttdeci">void TM_DELAY_DisableDelayTimer(void)</div><div class="ttdoc">Disables delay timer. </div></div>
+<div class="ttc" id="group___t_m___d_e_l_a_y_html_ga7c995255b1d6e58256f1b6e1db969000"><div class="ttname"><a href="group___t_m___d_e_l_a_y.html#ga7c995255b1d6e58256f1b6e1db969000">TM_Time</a></div><div class="ttdeci">__IO uint32_t TM_Time</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>tm_stm32f4_delay.h</b></li>
-    <li class="footer">Generated on Thu Mar 19 2015 21:26:57 for TM STM32F4xx Libraries by
+    <li class="footer">Generated on Thu Mar 19 2015 22:33:36 for TM STM32F4xx Libraries by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

@@ -619,7 +619,7 @@
             <NotGenerated>0</NotGenerated>
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
-          <OutputDirectory>.\Targets\</OutputDirectory>
+          <OutputDirectory>.\Targets\STM324x9_Eval\</OutputDirectory>
           <OutputName>project</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>

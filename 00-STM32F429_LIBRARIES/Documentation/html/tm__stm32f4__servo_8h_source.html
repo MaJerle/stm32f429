@@ -133,8 +133,8 @@ $(document).ready(function(){initNavTree('tm__stm32f4__servo_8h_source.html','')
 <div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="struct_t_m___s_e_r_v_o__t.html">   94</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <a class="code" href="struct_t_m___p_w_m___t_i_m__t.html">TM_PWM_TIM_t</a> PWM;</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    TIM_TypeDef* TIM;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    TM_PWM_Channel_t Channel;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    TM_PWM_PinsPack_t Pinspack;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <a class="code" href="group___t_m___p_w_m___typedefs.html#ga7f3166fc83034930a1d7435933b93410">TM_PWM_Channel_t</a> Channel;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <a class="code" href="group___t_m___p_w_m___typedefs.html#gab417cacda7ec02bf7a44543f23f9307c">TM_PWM_PinsPack_t</a> Pinspack;</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordtype">float</span> Degrees;</div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    uint16_t Micros;</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;} <a class="code" href="struct_t_m___s_e_r_v_o__t.html">TM_SERVO_t</a>;</div>
@@ -144,7 +144,7 @@ $(document).ready(function(){initNavTree('tm__stm32f4__servo_8h_source.html','')
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    TM_SERVO_Result_Error</div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;} TM_SERVO_Result_t;</div>
 <div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="keyword">extern</span> TM_SERVO_Result_t TM_SERVO_Init(<a class="code" href="struct_t_m___s_e_r_v_o__t.html">TM_SERVO_t</a>* ServoStruct, TIM_TypeDef* TIMx, TM_PWM_Channel_t PWMChannel, TM_PWM_PinsPack_t Pinspack);</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="keyword">extern</span> TM_SERVO_Result_t TM_SERVO_Init(<a class="code" href="struct_t_m___s_e_r_v_o__t.html">TM_SERVO_t</a>* ServoStruct, TIM_TypeDef* TIMx, <a class="code" href="group___t_m___p_w_m___typedefs.html#ga7f3166fc83034930a1d7435933b93410">TM_PWM_Channel_t</a> PWMChannel, <a class="code" href="group___t_m___p_w_m___typedefs.html#gab417cacda7ec02bf7a44543f23f9307c">TM_PWM_PinsPack_t</a> Pinspack);</div>
 <div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;</div>
 <div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="keyword">extern</span> TM_SERVO_Result_t TM_SERVO_SetDegrees(<a class="code" href="struct_t_m___s_e_r_v_o__t.html">TM_SERVO_t</a>* ServoStruct, <span class="keywordtype">float</span> degrees);</div>
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;</div>
@@ -156,15 +156,17 @@ $(document).ready(function(){initNavTree('tm__stm32f4__servo_8h_source.html','')
 <div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;</div>
 <div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="struct_t_m___p_w_m___t_i_m__t_html"><div class="ttname"><a href="struct_t_m___p_w_m___t_i_m__t.html">TM_PWM_TIM_t</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_pwm.h:143</div></div>
+<div class="ttc" id="struct_t_m___p_w_m___t_i_m__t_html"><div class="ttname"><a href="struct_t_m___p_w_m___t_i_m__t.html">TM_PWM_TIM_t</a></div><div class="ttdoc">PWM Timer data. </div><div class="ttdef"><b>Definition:</b> tm_stm32f4_pwm.h:195</div></div>
 <div class="ttc" id="struct_t_m___s_e_r_v_o__t_html"><div class="ttname"><a href="struct_t_m___s_e_r_v_o__t.html">TM_SERVO_t</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_servo.h:94</div></div>
+<div class="ttc" id="group___t_m___p_w_m___typedefs_html_gab417cacda7ec02bf7a44543f23f9307c"><div class="ttname"><a href="group___t_m___p_w_m___typedefs.html#gab417cacda7ec02bf7a44543f23f9307c">TM_PWM_PinsPack_t</a></div><div class="ttdeci">TM_PWM_PinsPack_t</div><div class="ttdoc">Pin selected for corresponding channel on specific channel. </div><div class="ttdef"><b>Definition:</b> tm_stm32f4_pwm.h:218</div></div>
+<div class="ttc" id="group___t_m___p_w_m___typedefs_html_ga7f3166fc83034930a1d7435933b93410"><div class="ttname"><a href="group___t_m___p_w_m___typedefs.html#ga7f3166fc83034930a1d7435933b93410">TM_PWM_Channel_t</a></div><div class="ttdeci">TM_PWM_Channel_t</div><div class="ttdoc">Channel selection for PWM on specific timer. </div><div class="ttdef"><b>Definition:</b> tm_stm32f4_pwm.h:208</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>tm_stm32f4_servo.h</b></li>
-    <li class="footer">Generated on Thu Mar 19 2015 21:26:57 for TM STM32F4xx Libraries by
+    <li class="footer">Generated on Thu Mar 19 2015 22:33:36 for TM STM32F4xx Libraries by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

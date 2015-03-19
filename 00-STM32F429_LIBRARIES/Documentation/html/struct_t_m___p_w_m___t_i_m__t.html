@@ -109,48 +109,103 @@ $(document).ready(function(){initNavTree('struct_t_m___p_w_m___t_i_m__t.html',''
   <div class="summary">
 <a href="#pub-attribs">Data Fields</a>  </div>
   <div class="headertitle">
-<div class="title">TM_PWM_TIM_t Struct Reference</div>  </div>
+<div class="title">TM_PWM_TIM_t Struct Reference<div class="ingroups"><a class="el" href="group___t_m___s_t_m32_f4xx___libraries.html">TM_STM32F4xx_Libraries</a> &raquo; <a class="el" href="group___t_m___p_w_m.html">TM_PWM</a> &raquo; <a class="el" href="group___t_m___p_w_m___typedefs.html">TM_PWM_Typedefs</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>PWM Timer data.  
+ <a href="struct_t_m___p_w_m___t_i_m__t.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="tm__stm32f4__pwm_8h_source.html">tm_stm32f4_pwm.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:ae84f988a5d19bcf60544a3d0934ccf02"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae84f988a5d19bcf60544a3d0934ccf02"></a>
-TIM_TypeDef *&#160;</td><td class="memItemRight" valign="bottom"><b>TIM</b></td></tr>
+<tr class="memitem:ae84f988a5d19bcf60544a3d0934ccf02"><td class="memItemLeft" align="right" valign="top">TIM_TypeDef *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_t_m___p_w_m___t_i_m__t.html#ae84f988a5d19bcf60544a3d0934ccf02">TIM</a></td></tr>
 <tr class="separator:ae84f988a5d19bcf60544a3d0934ccf02"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49500eef6a2354eeee4adc005bf9cef6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a49500eef6a2354eeee4adc005bf9cef6"></a>
-uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>Period</b></td></tr>
+<tr class="memitem:a49500eef6a2354eeee4adc005bf9cef6"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_t_m___p_w_m___t_i_m__t.html#a49500eef6a2354eeee4adc005bf9cef6">Period</a></td></tr>
 <tr class="separator:a49500eef6a2354eeee4adc005bf9cef6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:affb82025da5b8d4a06e61f1690460f4d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="affb82025da5b8d4a06e61f1690460f4d"></a>
-uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>Prescaler</b></td></tr>
+<tr class="memitem:affb82025da5b8d4a06e61f1690460f4d"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_t_m___p_w_m___t_i_m__t.html#affb82025da5b8d4a06e61f1690460f4d">Prescaler</a></td></tr>
 <tr class="separator:affb82025da5b8d4a06e61f1690460f4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade3d190636488dad9a89b19446b7acf1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ade3d190636488dad9a89b19446b7acf1"></a>
-uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>Frequency</b></td></tr>
+<tr class="memitem:ade3d190636488dad9a89b19446b7acf1"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_t_m___p_w_m___t_i_m__t.html#ade3d190636488dad9a89b19446b7acf1">Frequency</a></td></tr>
 <tr class="separator:ade3d190636488dad9a89b19446b7acf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaf0e4ad527f6f760784d14fdeb299c75"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaf0e4ad527f6f760784d14fdeb299c75"></a>
-uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>Micros</b></td></tr>
+<tr class="memitem:aaf0e4ad527f6f760784d14fdeb299c75"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_t_m___p_w_m___t_i_m__t.html#aaf0e4ad527f6f760784d14fdeb299c75">Micros</a></td></tr>
 <tr class="separator:aaf0e4ad527f6f760784d14fdeb299c75"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Timer data</p>
-<p>Parameters:</p><ul>
-<li>TIM_TypeDef* TIM: Pointer to timer used<ul>
-<li>uint32_t Period: Period used, set on initialization for PWM</li>
-<li>uint32_t Prescaler: Prescaler used for PWM frequency</li>
-<li>uint32_t Frequency: PWM frequency used</li>
-<li>uint32_t Micros: Microseconds used for one period. This is not useful in large pwm frequency, but good for controlling servos or similar, Where you need exact time of pulse high </li>
-</ul>
-</li>
-</ul>
-</div></div><!-- contents -->
+<div class="textblock"><p>PWM Timer data. </p>
+</div><h2 class="groupheader">Field Documentation</h2>
+<a class="anchor" id="ade3d190636488dad9a89b19446b7acf1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t Frequency</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>PWM frequency used </p>
+
+</div>
+</div>
+<a class="anchor" id="aaf0e4ad527f6f760784d14fdeb299c75"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t Micros</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Microseconds used for one period. This is not useful in large pwm frequency, but good for controlling servos or similar, Where you need exact time of pulse high </p>
+
+</div>
+</div>
+<a class="anchor" id="a49500eef6a2354eeee4adc005bf9cef6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t Period</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Period used, set on initialization for PWM </p>
+
+</div>
+</div>
+<a class="anchor" id="affb82025da5b8d4a06e61f1690460f4d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t Prescaler</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Prescaler used for PWM frequency </p>
+
+</div>
+</div>
+<a class="anchor" id="ae84f988a5d19bcf60544a3d0934ccf02"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TIM_TypeDef* TIM</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Pointer to timer used </p>
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="struct_t_m___p_w_m___t_i_m__t.html">TM_PWM_TIM_t</a></li>
-    <li class="footer">Generated on Thu Mar 19 2015 21:26:57 for TM STM32F4xx Libraries by
+    <li class="footer">Generated on Thu Mar 19 2015 22:33:37 for TM STM32F4xx Libraries by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>
