@@ -46,6 +46,8 @@ var searchData=
   ['tm_5fi2c_5fpinspack_5f2',['TM_I2C_PinsPack_2',['../group___t_m___i2_c___typedefs.html#gga147eaedbc759821741191431f2d3cc1dabf9b7250b807fea2d725b4a0d09f0609',1,'tm_stm32f4_i2c.h']]],
   ['tm_5fi2c_5fpinspack_5f3',['TM_I2C_PinsPack_3',['../group___t_m___i2_c___typedefs.html#gga147eaedbc759821741191431f2d3cc1da94d4f57d07cde452fa6525ffee04e188',1,'tm_stm32f4_i2c.h']]],
   ['tm_5fi2c_5fpinspack_5fcustom',['TM_I2C_PinsPack_Custom',['../group___t_m___i2_c___typedefs.html#gga147eaedbc759821741191431f2d3cc1da2fcabed73c1f7a1d5e9766cf3c83c5da',1,'tm_stm32f4_i2c.h']]],
+  ['tm_5fotp_5fresult_5ferror',['TM_OTP_Result_Error',['../group___t_m___o_t_p___typedefs.html#gga78c460aebb9990e39752dbac94551461aa43e9c3981c2285c4081a8cc2d7ffe0b',1,'tm_stm32f4_otp.h']]],
+  ['tm_5fotp_5fresult_5fok',['TM_OTP_Result_Ok',['../group___t_m___o_t_p___typedefs.html#gga78c460aebb9990e39752dbac94551461a7793ef1a330b78cc484428f100aaf5f4',1,'tm_stm32f4_otp.h']]],
   ['tm_5frtc_5falarm_5fa',['TM_RTC_Alarm_A',['../group___t_m___r_t_c___typedefs.html#gga3c4d1d5831bf262f1994e8cc45007e7ba598f0843c22db1e229493414ddf14e8d',1,'tm_stm32f4_rtc.h']]],
   ['tm_5frtc_5falarm_5fb',['TM_RTC_Alarm_B',['../group___t_m___r_t_c___typedefs.html#gga3c4d1d5831bf262f1994e8cc45007e7ba9d774b8679fbb5936a0e32aeb8e49e0c',1,'tm_stm32f4_rtc.h']]],
   ['tm_5frtc_5falarmtype_5fdayinmonth',['TM_RTC_AlarmType_DayInMonth',['../group___t_m___r_t_c___typedefs.html#ggaf7ce20d46cd105428f15c7f45b3b0882aa37801e1c78b16c4aef0cdd55abfedbd',1,'tm_stm32f4_rtc.h']]],

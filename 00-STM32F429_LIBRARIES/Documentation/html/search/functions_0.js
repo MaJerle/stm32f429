@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['tm_5fbkpsram_5finit',['TM_BKPSRAM_Init',['../group___t_m___b_k_p_s_r_a_m___functions.html#gae16694a49b2d8faf9a00f61f60ca13fe',1,'tm_stm32f4_bkpsram.h']]],
   ['tm_5fcrc_5fcalculate16',['TM_CRC_Calculate16',['../group___t_m___c_r_c___functions.html#gade3139b2442b15e0c6d4bba975194d75',1,'tm_stm32f4_crc.h']]],
   ['tm_5fcrc_5fcalculate32',['TM_CRC_Calculate32',['../group___t_m___c_r_c___functions.html#ga9d584a45a6ec088449d3e45c5d33a8b4',1,'tm_stm32f4_crc.h']]],
   ['tm_5fcrc_5fcalculate8',['TM_CRC_Calculate8',['../group___t_m___c_r_c___functions.html#ga8b8b3362a4598ce8d53d5a529bb7f7bb',1,'tm_stm32f4_crc.h']]],
@@ -82,6 +83,9 @@ var searchData=
   ['tm_5flowpower_5fstandbyreset',['TM_LOWPOWER_StandbyReset',['../group___t_m___l_o_w_p_o_w_e_r___functions.html#gaef5251d969255825dfd430b7239c93d4',1,'tm_stm32f4_low_power.h']]],
   ['tm_5flowpower_5fstopuntilevent',['TM_LOWPOWER_StopUntilEvent',['../group___t_m___l_o_w_p_o_w_e_r___functions.html#gac5f4965b4e018c7a0fba6279a639017a',1,'tm_stm32f4_low_power.h']]],
   ['tm_5flowpower_5fstopuntilinterrupt',['TM_LOWPOWER_StopUntilInterrupt',['../group___t_m___l_o_w_p_o_w_e_r___functions.html#gaacd221196935edc76adb733354d7b095',1,'tm_stm32f4_low_power.h']]],
+  ['tm_5fotp_5fblocklock',['TM_OTP_BlockLock',['../group___t_m___o_t_p___functions.html#gaf315e43ad1348db61ca34501862860b4',1,'tm_stm32f4_otp.h']]],
+  ['tm_5fotp_5fread',['TM_OTP_Read',['../group___t_m___o_t_p___functions.html#ga34c8634d10101a3e611d4787f4612f92',1,'tm_stm32f4_otp.h']]],
+  ['tm_5fotp_5fwrite',['TM_OTP_Write',['../group___t_m___o_t_p___functions.html#gac216210deb3b96459687d91c5f509b43',1,'tm_stm32f4_otp.h']]],
   ['tm_5frng_5fdeinit',['TM_RNG_DeInit',['../group___t_m___r_n_g___functions.html#ga7c7a1842d509e7d781c989644a5048e4',1,'tm_stm32f4_rng.h']]],
   ['tm_5frng_5fget',['TM_RNG_Get',['../group___t_m___r_n_g___functions.html#ga3a7d9d82919133b8a6db5c6098671dee',1,'tm_stm32f4_rng.h']]],
   ['tm_5frng_5finit',['TM_RNG_Init',['../group___t_m___r_n_g___functions.html#ga8cd385f093319cfee45226fbb9beaf54',1,'tm_stm32f4_rng.h']]],
@@ -101,6 +105,7 @@ var searchData=
   ['tm_5frtc_5fsetdatetime',['TM_RTC_SetDateTime',['../group___t_m___r_t_c___functions.html#ga58c057ad43d7b9ab4f3ad85f7e66fc93',1,'tm_stm32f4_rtc.h']]],
   ['tm_5frtc_5fsetdatetimestring',['TM_RTC_SetDateTimeString',['../group___t_m___r_t_c___functions.html#ga6468f31074c15395f5be86a72aa096f0',1,'tm_stm32f4_rtc.h']]],
   ['tm_5frtc_5fwritebackupregister',['TM_RTC_WriteBackupRegister',['../group___t_m___r_t_c___functions.html#ga0e64097447132cfaca8e9f966eb5b364',1,'tm_stm32f4_rtc.h']]],
+  ['tm_5fsdram_5finit',['TM_SDRAM_Init',['../group___t_m___s_d_r_a_m___functions.html#gaf25413498fc044afca11364bc48389d2',1,'tm_stm32f4_sdram.h']]],
   ['tm_5fspi_5fgetprescalerfrommaxfrequency',['TM_SPI_GetPrescalerFromMaxFrequency',['../group___t_m___s_p_i___functions.html#ga4589a7f712c54f27dd0d0e8811bcb354',1,'tm_stm32f4_spi.h']]],
   ['tm_5fspi_5finit',['TM_SPI_Init',['../group___t_m___s_p_i___functions.html#ga3648e7ca6e9d02e22a65723e658b5afa',1,'tm_stm32f4_spi.h']]],
   ['tm_5fspi_5finitcustompinscallback',['TM_SPI_InitCustomPinsCallback',['../group___t_m___s_p_i___functions.html#ga9b59dc93791950c6eb94c467c3932ae5',1,'tm_stm32f4_spi.h']]],

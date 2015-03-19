@@ -1,7 +1,7 @@
 /**
  *	Keil project for SDRAM connected on STM32F429 Discovery board
  *
- *	Works only for STM32F429-Discovery board
+ *	Works only for STM32F429-Discovery board or STM324x9-EVAL board
  *
  *	@author		Tilen Majerle
  *	@email		tilen@majerle.eu

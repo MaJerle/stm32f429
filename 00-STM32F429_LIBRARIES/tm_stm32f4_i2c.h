@@ -221,8 +221,6 @@ typedef enum {
 
 /**
  * @brief  Initializes I2C
- * @param  *
- * Parameters:
  * @param  *I2Cx: I2C used
  * @param  pinspack: Pins used. This parameter can have a value of @ref TM_I2C_PinsPack_t enumeration
  * @param  clockSpeed: Clock speed for SCL in Hertz

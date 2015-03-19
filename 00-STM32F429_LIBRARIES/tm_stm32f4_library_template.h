@@ -71,7 +71,7 @@ extern C {
  * @{
  */
 /* Macros here */
- /**
+/**
  * @}
  */
  

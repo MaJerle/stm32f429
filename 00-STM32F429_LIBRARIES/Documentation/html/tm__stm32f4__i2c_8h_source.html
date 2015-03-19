@@ -179,40 +179,40 @@ $(document).ready(function(){initNavTree('tm__stm32f4__i2c_8h_source.html','');}
 <div class="line"><a name="l00209"></a><span class="lineno"><a class="line" href="group___t_m___i2_c___typedefs.html#gga147eaedbc759821741191431f2d3cc1da2fcabed73c1f7a1d5e9766cf3c83c5da">  209</a></span>&#160;    <a class="code" href="group___t_m___i2_c___typedefs.html#gga147eaedbc759821741191431f2d3cc1da2fcabed73c1f7a1d5e9766cf3c83c5da">TM_I2C_PinsPack_Custom</a>  </div>
 <div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;} <a class="code" href="group___t_m___i2_c___typedefs.html#ga147eaedbc759821741191431f2d3cc1d">TM_I2C_PinsPack_t</a>;</div>
 <div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___i2_c___functions.html#ga562ac4ee07b749003c6725d01de9b3fb">TM_I2C_Init</a>(I2C_TypeDef* I2Cx, <a class="code" href="group___t_m___i2_c___typedefs.html#ga147eaedbc759821741191431f2d3cc1d">TM_I2C_PinsPack_t</a> pinspack, uint32_t clockSpeed);</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;uint8_t <a class="code" href="group___t_m___i2_c___functions.html#ga6c2cfa206001c49571c0e1e33ae85b4d">TM_I2C_Read</a>(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg);</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___i2_c___functions.html#gafdabd1e3f871bc7afece84b988c71ee8">TM_I2C_ReadMulti</a>(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t *data, uint16_t count);</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;uint8_t <a class="code" href="group___t_m___i2_c___functions.html#gade17597b0fcb3cc5f37a1dc0067765c4">TM_I2C_ReadNoRegister</a>(I2C_TypeDef* I2Cx, uint8_t address);</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___i2_c___functions.html#ga5c0673b6755c8d640ba72efbbece8637">TM_I2C_ReadMultiNoRegister</a>(I2C_TypeDef* I2Cx, uint8_t address, uint8_t* data, uint16_t count);</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___i2_c___functions.html#ga49f5a49862ed21dd7a4691c27b5daffb">TM_I2C_Write</a>(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t data);</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___i2_c___functions.html#ga375b601d892cff3ed7c36b7202003f5a">TM_I2C_WriteMulti</a>(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t *data, uint16_t count);</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___i2_c___functions.html#gaacc4f71b1f038a1ffb283e79d4a0892d">TM_I2C_WriteNoRegister</a>(I2C_TypeDef* I2Cx, uint8_t address, uint8_t data);</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___i2_c___functions.html#ga6216bcc5c45a0992d17523c266622990">TM_I2C_WriteMultiNoRegister</a>(I2C_TypeDef* I2Cx, uint8_t address, uint8_t* data, uint16_t count);</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;</div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;uint8_t <a class="code" href="group___t_m___i2_c___functions.html#ga4ce64aa39e0efe9135f360913f86bfda">TM_I2C_IsDeviceConnected</a>(I2C_TypeDef* I2Cx, uint8_t address);</div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;</div>
-<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;int16_t <a class="code" href="group___t_m___i2_c___functions.html#ga5cf2e491d1aa251e6c153fded28426e6">TM_I2C_Start</a>(I2C_TypeDef* I2Cx, uint8_t address, uint8_t direction, uint8_t ack);</div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;</div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;uint8_t <a class="code" href="group___t_m___i2_c___functions.html#gab5f50d8aa7af3b6378c4a863d23bcb90">TM_I2C_Stop</a>(I2C_TypeDef* I2Cx);</div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;</div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;uint8_t <a class="code" href="group___t_m___i2_c___functions.html#gaa92a17936fd33523358a8f1544282399">TM_I2C_ReadNack</a>(I2C_TypeDef* I2Cx);</div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;</div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;uint8_t <a class="code" href="group___t_m___i2_c___functions.html#ga87f7ccb32114544aa27d41bccf67a4c0">TM_I2C_ReadAck</a>(I2C_TypeDef* I2Cx);</div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;</div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___i2_c___functions.html#ga39a9e30afb0a9a8a378b0c617aed45d8">TM_I2C_WriteData</a>(I2C_TypeDef* I2Cx, uint8_t data);</div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;</div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;__weak <span class="keywordtype">void</span> <a class="code" href="group___t_m___i2_c___functions.html#ga2209241b8bccb245c4a773948db8a8a2">TM_I2C_InitCustomPinsCallback</a>(I2C_TypeDef* I2Cx);</div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;</div>
-<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___i2_c___functions.html#ga562ac4ee07b749003c6725d01de9b3fb">TM_I2C_Init</a>(I2C_TypeDef* I2Cx, <a class="code" href="group___t_m___i2_c___typedefs.html#ga147eaedbc759821741191431f2d3cc1d">TM_I2C_PinsPack_t</a> pinspack, uint32_t clockSpeed);</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;uint8_t <a class="code" href="group___t_m___i2_c___functions.html#ga6c2cfa206001c49571c0e1e33ae85b4d">TM_I2C_Read</a>(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg);</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___i2_c___functions.html#gafdabd1e3f871bc7afece84b988c71ee8">TM_I2C_ReadMulti</a>(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t *data, uint16_t count);</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;uint8_t <a class="code" href="group___t_m___i2_c___functions.html#gade17597b0fcb3cc5f37a1dc0067765c4">TM_I2C_ReadNoRegister</a>(I2C_TypeDef* I2Cx, uint8_t address);</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___i2_c___functions.html#ga5c0673b6755c8d640ba72efbbece8637">TM_I2C_ReadMultiNoRegister</a>(I2C_TypeDef* I2Cx, uint8_t address, uint8_t* data, uint16_t count);</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___i2_c___functions.html#ga49f5a49862ed21dd7a4691c27b5daffb">TM_I2C_Write</a>(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t data);</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___i2_c___functions.html#ga375b601d892cff3ed7c36b7202003f5a">TM_I2C_WriteMulti</a>(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t *data, uint16_t count);</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___i2_c___functions.html#gaacc4f71b1f038a1ffb283e79d4a0892d">TM_I2C_WriteNoRegister</a>(I2C_TypeDef* I2Cx, uint8_t address, uint8_t data);</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___i2_c___functions.html#ga6216bcc5c45a0992d17523c266622990">TM_I2C_WriteMultiNoRegister</a>(I2C_TypeDef* I2Cx, uint8_t address, uint8_t* data, uint16_t count);</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;uint8_t <a class="code" href="group___t_m___i2_c___functions.html#ga4ce64aa39e0efe9135f360913f86bfda">TM_I2C_IsDeviceConnected</a>(I2C_TypeDef* I2Cx, uint8_t address);</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;int16_t <a class="code" href="group___t_m___i2_c___functions.html#ga5cf2e491d1aa251e6c153fded28426e6">TM_I2C_Start</a>(I2C_TypeDef* I2Cx, uint8_t address, uint8_t direction, uint8_t ack);</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;uint8_t <a class="code" href="group___t_m___i2_c___functions.html#gab5f50d8aa7af3b6378c4a863d23bcb90">TM_I2C_Stop</a>(I2C_TypeDef* I2Cx);</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;uint8_t <a class="code" href="group___t_m___i2_c___functions.html#gaa92a17936fd33523358a8f1544282399">TM_I2C_ReadNack</a>(I2C_TypeDef* I2Cx);</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;uint8_t <a class="code" href="group___t_m___i2_c___functions.html#ga87f7ccb32114544aa27d41bccf67a4c0">TM_I2C_ReadAck</a>(I2C_TypeDef* I2Cx);</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;</div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___i2_c___functions.html#ga39a9e30afb0a9a8a378b0c617aed45d8">TM_I2C_WriteData</a>(I2C_TypeDef* I2Cx, uint8_t data);</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;__weak <span class="keywordtype">void</span> <a class="code" href="group___t_m___i2_c___functions.html#ga2209241b8bccb245c4a773948db8a8a2">TM_I2C_InitCustomPinsCallback</a>(I2C_TypeDef* I2Cx);</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;</div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;</div>
 <div class="ttc" id="group___t_m___i2_c___functions_html_ga375b601d892cff3ed7c36b7202003f5a"><div class="ttname"><a href="group___t_m___i2_c___functions.html#ga375b601d892cff3ed7c36b7202003f5a">TM_I2C_WriteMulti</a></div><div class="ttdeci">void TM_I2C_WriteMulti(I2C_TypeDef *I2Cx, uint8_t address, uint8_t reg, uint8_t *data, uint16_t count)</div><div class="ttdoc">Writes multi bytes to slave. </div></div>
 <div class="ttc" id="group___t_m___i2_c___typedefs_html_gga147eaedbc759821741191431f2d3cc1dabf9b7250b807fea2d725b4a0d09f0609"><div class="ttname"><a href="group___t_m___i2_c___typedefs.html#gga147eaedbc759821741191431f2d3cc1dabf9b7250b807fea2d725b4a0d09f0609">TM_I2C_PinsPack_2</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_i2c.h:207</div></div>
 <div class="ttc" id="group___t_m___i2_c___functions_html_ga2209241b8bccb245c4a773948db8a8a2"><div class="ttname"><a href="group___t_m___i2_c___functions.html#ga2209241b8bccb245c4a773948db8a8a2">TM_I2C_InitCustomPinsCallback</a></div><div class="ttdeci">__weak void TM_I2C_InitCustomPinsCallback(I2C_TypeDef *I2Cx)</div><div class="ttdoc">Callback for custom pins initialization. </div></div>
@@ -240,7 +240,7 @@ $(document).ready(function(){initNavTree('tm__stm32f4__i2c_8h_source.html','');}
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>tm_stm32f4_i2c.h</b></li>
-    <li class="footer">Generated on Wed Mar 18 2015 23:36:12 for TM STM32F4xx Libraries by
+    <li class="footer">Generated on Thu Mar 19 2015 21:26:57 for TM STM32F4xx Libraries by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

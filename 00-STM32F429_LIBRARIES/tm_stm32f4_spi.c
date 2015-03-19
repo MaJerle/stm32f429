@@ -193,25 +193,29 @@ void TM_SPI_SendMulti(SPI_TypeDef* SPIx, uint8_t* dataOut, uint8_t* dataIn, uint
 void TM_SPI_WriteMulti(SPI_TypeDef* SPIx, uint8_t* dataOut, uint16_t count) {
 	uint16_t i;
 	for (i = 0; i < count; i++) {
-		TM_SPI_Send(SPIx, dataOut[i]);
+		/* Fill output buffer with data */
+		SPIx->DR = dataOut[i];
+		/* Wait for SPI to end everything */
+		while (SPIx->SR & SPI_SR_BSY);
 	}
 }
 
 void TM_SPI_ReadMulti(SPI_TypeDef* SPIx, uint8_t* dataIn, uint8_t dummy, uint16_t count) {
 	uint16_t i;
 	for (i = 0; i < count; i++) {
-		dataIn[i] = TM_SPI_Send(SPIx, dummy);
+		/* Fill output buffer with data */
+		SPIx->DR = dummy;
+		/* Wait for SPI to end everything */
+		while (SPIx->SR & SPI_SR_BSY);
+		/* Save data to buffer */
+		dataIn[i] = SPIx->DR;
 	}
 }
 
 uint16_t TM_SPI_Send16(SPI_TypeDef* SPIx, uint16_t data) {
 	/* Fill output buffer with data */
 	SPIx->DR = data;
-	/* Wait for transmission to complete */
-	while ((SPIx->SR & SPI_SR_TXE) == 0);
-	/* Wait for received data to complete */
-	while ((SPIx->SR & SPI_SR_RXNE) == 0);
-	/* Wait for SPI to be ready */
+	/* Wait for SPI to end everything */
 	while (SPIx->SR & SPI_SR_BSY);
 	/* Return data from buffer */
 	return SPIx->DR;

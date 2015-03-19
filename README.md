@@ -13,6 +13,7 @@ Each project includes 4 targets:
 5. Nucleo F411-RE (STM32F411RE, 100MHz)
 6. Nucleo F401-RE (STM32F401RE, 84MHz)
 7. STM32F446xx (180MHz)
+8. STM32439-Eval (STM32F439NI, 180MHz)
 
 When you download repository and open project, you have to set correct your target, for device you use.
 If you use other device in your project, then set your project and copy settings there from target options.

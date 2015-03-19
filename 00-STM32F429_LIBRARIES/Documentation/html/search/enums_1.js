@@ -10,6 +10,7 @@ var searchData=
   ['tm_5fgps_5fresult_5ft',['TM_GPS_Result_t',['../group___t_m___g_p_s___typedefs.html#gaf3a9184315a145cb8288691c9c529427',1,'tm_stm32f4_gps.h']]],
   ['tm_5fgps_5fspeed_5ft',['TM_GPS_Speed_t',['../group___t_m___g_p_s___typedefs.html#ga287710c2af22ad207c305aeb2e6ea69c',1,'tm_stm32f4_gps.h']]],
   ['tm_5fi2c_5fpinspack_5ft',['TM_I2C_PinsPack_t',['../group___t_m___i2_c___typedefs.html#ga147eaedbc759821741191431f2d3cc1d',1,'tm_stm32f4_i2c.h']]],
+  ['tm_5fotp_5fresult_5ft',['TM_OTP_Result_t',['../group___t_m___o_t_p___typedefs.html#ga78c460aebb9990e39752dbac94551461',1,'tm_stm32f4_otp.h']]],
   ['tm_5frtc_5falarm_5ft',['TM_RTC_Alarm_t',['../group___t_m___r_t_c___typedefs.html#ga3c4d1d5831bf262f1994e8cc45007e7b',1,'tm_stm32f4_rtc.h']]],
   ['tm_5frtc_5falarmtype_5ft',['TM_RTC_AlarmType_t',['../group___t_m___r_t_c___typedefs.html#gaf7ce20d46cd105428f15c7f45b3b0882',1,'tm_stm32f4_rtc.h']]],
   ['tm_5frtc_5fclocksource_5ft',['TM_RTC_ClockSource_t',['../group___t_m___r_t_c___typedefs.html#ga944a179f7f7042272040b3464ab89eb5',1,'tm_stm32f4_rtc.h']]],
