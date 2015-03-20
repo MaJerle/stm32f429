@@ -54,7 +54,14 @@ TM_PWMIN_Result_t TM_PWMIN_InitTimer(
 	TM_PWMIN_Result_t res;
 	
 	/* Check timer */
-	if (TIMx == TIM6 || TIMx == TIM7) {
+	if (0
+#ifdef TIM6
+		|| TIMx == TIM6
+#endif
+#ifdef TIM7
+		|| TIMx == TIM7
+#endif
+	) {
 		/* Invalid timer */
 		return TM_PWMIN_Result_TimerNotValid;
 	}
@@ -220,56 +227,90 @@ TM_PWMIN_Result_t TM_PWMIN_InterruptHandler(TM_PWMIN_t* PWMIN_Data) {
 	return TM_PWMIN_Result_Ok;
 }
 
+/* Private functions */
 TM_PWMIN_Result_t TM_PWMIN_INT_InitChannel(TM_PWMIN_t* TIM_Data, TM_PWMIN_Channel_t Channel, TM_PWMIN_PinsPack_t PinsPack) {
+#ifdef TIM1
 	if (TIM_Data->__TIM == TIM1) {
 		return TM_PWMIN_INT_InitTIM1Pins(Channel, PinsPack);
-	} else if (TIM_Data->__TIM == TIM2) {
+	}
+#endif
+#ifdef TIM2
+	if (TIM_Data->__TIM == TIM2) {
 		return TM_PWMIN_INT_InitTIM2Pins(Channel, PinsPack);
-	} else if (TIM_Data->__TIM == TIM3) {
+	} 
+#endif
+#ifdef TIM3
+	if (TIM_Data->__TIM == TIM3) {
 		return TM_PWMIN_INT_InitTIM3Pins(Channel, PinsPack);
-	} else if (TIM_Data->__TIM == TIM4) {
+	} 
+#endif
+#ifdef TIM4
+	if (TIM_Data->__TIM == TIM4) {
 		return TM_PWMIN_INT_InitTIM4Pins(Channel, PinsPack);
-	} else if (TIM_Data->__TIM == TIM5) {
+	} 
+#endif
+#ifdef TIM5
+	if (TIM_Data->__TIM == TIM5) {
 		return TM_PWMIN_INT_InitTIM5Pins(Channel, PinsPack);
-	} else if (TIM_Data->__TIM == TIM8) {
+	} 
+#endif
+#ifdef TIM8
+	if (TIM_Data->__TIM == TIM8) {
 		return TM_PWMIN_INT_InitTIM8Pins(Channel, PinsPack);
-	} else if (TIM_Data->__TIM == TIM9) {
+	} 
+#endif
+#ifdef TIM9
+	if (TIM_Data->__TIM == TIM9) {
 		return TM_PWMIN_INT_InitTIM9Pins(Channel, PinsPack);
-	} else if (TIM_Data->__TIM == TIM10) {
+	} 
+#endif
+#ifdef TIM10
+	if (TIM_Data->__TIM == TIM10) {
 		return TM_PWMIN_INT_InitTIM10Pins(Channel, PinsPack);
-	} else if (TIM_Data->__TIM == TIM11) {
+	} 
+#endif
+#ifdef TIM11
+	if (TIM_Data->__TIM == TIM11) {
 		return TM_PWMIN_INT_InitTIM11Pins(Channel, PinsPack);
-	} else if (TIM_Data->__TIM == TIM12) {
+	} 
+#endif
+#ifdef TIM12
+	if (TIM_Data->__TIM == TIM12) {
 		return TM_PWMIN_INT_InitTIM12Pins(Channel, PinsPack);
-	} else if (TIM_Data->__TIM == TIM13) {
+	} 
+#endif
+#ifdef TIM13
+	if (TIM_Data->__TIM == TIM13) {
 		return TM_PWMIN_INT_InitTIM13Pins(Channel, PinsPack);
-	} else if (TIM_Data->__TIM == TIM14) {
+	} 
+#endif
+#ifdef TIM14
+	if (TIM_Data->__TIM == TIM14) {
 		return TM_PWMIN_INT_InitTIM14Pins(Channel, PinsPack);
 	}
+#endif
 	
 	/* Timer is not valid */
 	return TM_PWMIN_Result_TimerNotValid;
 }
 
 TM_PWMIN_Result_t TM_PWMIN_INT_InitTIM1Pins(TM_PWMIN_Channel_t Channel, TM_PWMIN_PinsPack_t PinsPack) {
-	TM_PWMIN_Result_t result;
+	TM_PWMIN_Result_t result = TM_PWMIN_Result_PinNotValid;
 	
 	switch (Channel) {
 		case TM_PWMIN_Channel_1:
 			switch (PinsPack) {
 				case TM_PWMIN_PinsPack_1:
-					RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);	/* Enable clock */
-					GPIO_PinAFConfig(GPIOA, GPIO_PinSource8, GPIO_AF_TIM1);	/* Alternate function */
-					PWMIN_GPIO_InitStruct.GPIO_Pin = GPIO_Pin_8;					/* Set pin */
-					GPIO_Init(GPIOA, &PWMIN_GPIO_InitStruct);						/* Initialize pin */
-					result = TM_PWMIN_Result_Ok;								/* Result OK */
+#ifdef GPIOA
+					TM_GPIO_InitAlternate(GPIOA, GPIO_PIN_8, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_TIM1);
+					result = TM_PWMIN_Result_Ok;
+#endif
 					break;
 				case TM_PWMIN_PinsPack_2:
-					RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOE, ENABLE);	/* Enable clock */
-					GPIO_PinAFConfig(GPIOE, GPIO_PinSource9, GPIO_AF_TIM1);	/* Alternate function */
-					PWMIN_GPIO_InitStruct.GPIO_Pin = GPIO_Pin_9;					/* Set pin */
-					GPIO_Init(GPIOE, &PWMIN_GPIO_InitStruct);						/* Initialize pin */
-					result = TM_PWMIN_Result_Ok;								/* Result OK */
+#ifdef GPIOE
+					TM_GPIO_InitAlternate(GPIOE, GPIO_PIN_9, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_TIM1);
+					result = TM_PWMIN_Result_Ok;
+#endif
 					break;
 				default:
 					result = TM_PWMIN_Result_PinNotValid;
@@ -279,18 +320,16 @@ TM_PWMIN_Result_t TM_PWMIN_INT_InitTIM1Pins(TM_PWMIN_Channel_t Channel, TM_PWMIN
 		case TM_PWMIN_Channel_2:
 			switch (PinsPack) {
 				case TM_PWMIN_PinsPack_1:
-					RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);	/* Enable clock */
-					GPIO_PinAFConfig(GPIOA, GPIO_PinSource9, GPIO_AF_TIM1);	/* Alternate function */
-					PWMIN_GPIO_InitStruct.GPIO_Pin = GPIO_Pin_9;					/* Set pin */
-					GPIO_Init(GPIOA, &PWMIN_GPIO_InitStruct);						/* Initialize pin */
-					result = TM_PWMIN_Result_Ok;								/* Result OK */
+#ifdef GPIOA
+					TM_GPIO_InitAlternate(GPIOA, GPIO_PIN_9, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_TIM1);
+					result = TM_PWMIN_Result_Ok;
+#endif
 					break;
 				case TM_PWMIN_PinsPack_2:
-					RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOE, ENABLE);	/* Enable clock */
-					GPIO_PinAFConfig(GPIOE, GPIO_PinSource10, GPIO_AF_TIM1);	/* Alternate function */
-					PWMIN_GPIO_InitStruct.GPIO_Pin = GPIO_Pin_10;					/* Set pin */
-					GPIO_Init(GPIOE, &PWMIN_GPIO_InitStruct);						/* Initialize pin */
-					result = TM_PWMIN_Result_Ok;								/* Result OK */
+#ifdef GPIOE
+					TM_GPIO_InitAlternate(GPIOE, GPIO_PIN_10, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_TIM1);
+					result = TM_PWMIN_Result_Ok;
+#endif
 					break;
 				default:
 					result = TM_PWMIN_Result_PinNotValid;
@@ -306,31 +345,28 @@ TM_PWMIN_Result_t TM_PWMIN_INT_InitTIM1Pins(TM_PWMIN_Channel_t Channel, TM_PWMIN
 }
 
 TM_PWMIN_Result_t TM_PWMIN_INT_InitTIM2Pins(TM_PWMIN_Channel_t Channel, TM_PWMIN_PinsPack_t PinsPack) {
-	TM_PWMIN_Result_t result;
+	TM_PWMIN_Result_t result = TM_PWMIN_Result_PinNotValid;
 	
 	switch (Channel) {
 		case TM_PWMIN_Channel_1:
 			switch (PinsPack) {
 				case TM_PWMIN_PinsPack_1:
-					RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);	/* Enable clock */
-					GPIO_PinAFConfig(GPIOA, GPIO_PinSource0, GPIO_AF_TIM2);	/* Alternate function */
-					PWMIN_GPIO_InitStruct.GPIO_Pin = GPIO_Pin_0;					/* Set pin */
-					GPIO_Init(GPIOA, &PWMIN_GPIO_InitStruct);						/* Initialize pin */
-					result = TM_PWMIN_Result_Ok;								/* Result OK */
+#ifdef GPIOA
+					TM_GPIO_InitAlternate(GPIOA, GPIO_PIN_0, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_TIM2);
+					result = TM_PWMIN_Result_Ok;
+#endif
 					break;
 				case TM_PWMIN_PinsPack_2:
-					RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);	/* Enable clock */
-					GPIO_PinAFConfig(GPIOA, GPIO_PinSource5, GPIO_AF_TIM2);	/* Alternate function */
-					PWMIN_GPIO_InitStruct.GPIO_Pin = GPIO_Pin_5;					/* Set pin */
-					GPIO_Init(GPIOA, &PWMIN_GPIO_InitStruct);						/* Initialize pin */
-					result = TM_PWMIN_Result_Ok;								/* Result OK */
+#ifdef GPIOA
+					TM_GPIO_InitAlternate(GPIOA, GPIO_PIN_5, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_TIM2);
+					result = TM_PWMIN_Result_Ok;
+#endif
 					break;
 				case TM_PWMIN_PinsPack_3:
-					RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);	/* Enable clock */
-					GPIO_PinAFConfig(GPIOA, GPIO_PinSource15, GPIO_AF_TIM2);/* Alternate function */
-					PWMIN_GPIO_InitStruct.GPIO_Pin = GPIO_Pin_15;					/* Set pin */
-					GPIO_Init(GPIOA, &PWMIN_GPIO_InitStruct);						/* Initialize pin */
-					result = TM_PWMIN_Result_Ok;								/* Result OK */
+#ifdef GPIOA
+					TM_GPIO_InitAlternate(GPIOA, GPIO_PIN_15, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_TIM2);
+					result = TM_PWMIN_Result_Ok;
+#endif
 					break;
 				default:
 					result = TM_PWMIN_Result_PinNotValid;
@@ -340,18 +376,16 @@ TM_PWMIN_Result_t TM_PWMIN_INT_InitTIM2Pins(TM_PWMIN_Channel_t Channel, TM_PWMIN
 		case TM_PWMIN_Channel_2:
 			switch (PinsPack) {
 				case TM_PWMIN_PinsPack_1:
-					RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);	/* Enable clock */
-					GPIO_PinAFConfig(GPIOA, GPIO_PinSource1, GPIO_AF_TIM2);	/* Alternate function */
-					PWMIN_GPIO_InitStruct.GPIO_Pin = GPIO_Pin_1;					/* Set pin */
-					GPIO_Init(GPIOA, &PWMIN_GPIO_InitStruct);						/* Initialize pin */
-					result = TM_PWMIN_Result_Ok;								/* Result OK */
+#ifdef GPIOA
+					TM_GPIO_InitAlternate(GPIOA, GPIO_PIN_1, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_TIM2);
+					result = TM_PWMIN_Result_Ok;
+#endif
 					break;
 				case TM_PWMIN_PinsPack_2:
-					RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);	/* Enable clock */
-					GPIO_PinAFConfig(GPIOB, GPIO_PinSource3, GPIO_AF_TIM2);	/* Alternate function */
-					PWMIN_GPIO_InitStruct.GPIO_Pin = GPIO_Pin_3;					/* Set pin */
-					GPIO_Init(GPIOB, &PWMIN_GPIO_InitStruct);						/* Initialize pin */
-					result = TM_PWMIN_Result_Ok;								/* Result OK */
+#ifdef GPIOB
+					TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_3, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_TIM2);
+					result = TM_PWMIN_Result_Ok;
+#endif
 					break;
 				default:
 					result = TM_PWMIN_Result_PinNotValid;
@@ -367,31 +401,28 @@ TM_PWMIN_Result_t TM_PWMIN_INT_InitTIM2Pins(TM_PWMIN_Channel_t Channel, TM_PWMIN
 }
 
 TM_PWMIN_Result_t TM_PWMIN_INT_InitTIM3Pins(TM_PWMIN_Channel_t Channel, TM_PWMIN_PinsPack_t PinsPack) {
-	TM_PWMIN_Result_t result;
+	TM_PWMIN_Result_t result = TM_PWMIN_Result_PinNotValid;
 	
 	switch (Channel) {
 		case TM_PWMIN_Channel_1:
 			switch (PinsPack) {
 				case TM_PWMIN_PinsPack_1:
-					RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);	/* Enable clock */
-					GPIO_PinAFConfig(GPIOA, GPIO_PinSource6, GPIO_AF_TIM3);	/* Alternate function */
-					PWMIN_GPIO_InitStruct.GPIO_Pin = GPIO_Pin_6;					/* Set pin */
-					GPIO_Init(GPIOA, &PWMIN_GPIO_InitStruct);						/* Initialize pin */
-					result = TM_PWMIN_Result_Ok;								/* Result OK */
+#ifdef GPIOA
+					TM_GPIO_InitAlternate(GPIOA, GPIO_PIN_6, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_TIM3);
+					result = TM_PWMIN_Result_Ok;
+#endif
 					break;
 				case TM_PWMIN_PinsPack_2:
-					RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);	/* Enable clock */
-					GPIO_PinAFConfig(GPIOB, GPIO_PinSource4, GPIO_AF_TIM3);	/* Alternate function */
-					PWMIN_GPIO_InitStruct.GPIO_Pin = GPIO_Pin_4;					/* Set pin */
-					GPIO_Init(GPIOB, &PWMIN_GPIO_InitStruct);						/* Initialize pin */
-					result = TM_PWMIN_Result_Ok;								/* Result OK */
+#ifdef GPIOB
+					TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_4, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_TIM3);
+					result = TM_PWMIN_Result_Ok;
+#endif
 					break;
 				case TM_PWMIN_PinsPack_3:
-					RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);	/* Enable clock */
-					GPIO_PinAFConfig(GPIOC, GPIO_PinSource6, GPIO_AF_TIM3);	/* Alternate function */
-					PWMIN_GPIO_InitStruct.GPIO_Pin = GPIO_Pin_6;					/* Set pin */
-					GPIO_Init(GPIOC, &PWMIN_GPIO_InitStruct);						/* Initialize pin */
-					result = TM_PWMIN_Result_Ok;								/* Result OK */
+#ifdef GPIOC
+					TM_GPIO_InitAlternate(GPIOC, GPIO_PIN_10, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_TIM3);
+					result = TM_PWMIN_Result_Ok;
+#endif
 					break;
 				default:
 					result = TM_PWMIN_Result_PinNotValid;
@@ -401,25 +432,22 @@ TM_PWMIN_Result_t TM_PWMIN_INT_InitTIM3Pins(TM_PWMIN_Channel_t Channel, TM_PWMIN
 		case TM_PWMIN_Channel_2:
 			switch (PinsPack) {
 				case TM_PWMIN_PinsPack_1:
-					RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);	/* Enable clock */
-					GPIO_PinAFConfig(GPIOA, GPIO_PinSource7, GPIO_AF_TIM3);	/* Alternate function */
-					PWMIN_GPIO_InitStruct.GPIO_Pin = GPIO_Pin_7;					/* Set pin */
-					GPIO_Init(GPIOA, &PWMIN_GPIO_InitStruct);						/* Initialize pin */
-					result = TM_PWMIN_Result_Ok;								/* Result OK */
+#ifdef GPIOA
+					TM_GPIO_InitAlternate(GPIOA, GPIO_PIN_7, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_TIM3);
+					result = TM_PWMIN_Result_Ok;
+#endif
 					break;
 				case TM_PWMIN_PinsPack_2:
-					RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);	/* Enable clock */
-					GPIO_PinAFConfig(GPIOB, GPIO_PinSource5, GPIO_AF_TIM3);	/* Alternate function */
-					PWMIN_GPIO_InitStruct.GPIO_Pin = GPIO_Pin_5;					/* Set pin */
-					GPIO_Init(GPIOB, &PWMIN_GPIO_InitStruct);						/* Initialize pin */
-					result = TM_PWMIN_Result_Ok;								/* Result OK */
+#ifdef GPIOB
+					TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_5, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_TIM3);
+					result = TM_PWMIN_Result_Ok;
+#endif
 					break;
 				case TM_PWMIN_PinsPack_3:
-					RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);	/* Enable clock */
-					GPIO_PinAFConfig(GPIOC, GPIO_PinSource7, GPIO_AF_TIM3);	/* Alternate function */
-					PWMIN_GPIO_InitStruct.GPIO_Pin = GPIO_Pin_7;					/* Set pin */
-					GPIO_Init(GPIOC, &PWMIN_GPIO_InitStruct);						/* Initialize pin */
-					result = TM_PWMIN_Result_Ok;								/* Result OK */
+#ifdef GPIOC
+					TM_GPIO_InitAlternate(GPIOC, GPIO_PIN_7, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_TIM3);
+					result = TM_PWMIN_Result_Ok;
+#endif
 					break;
 				default:
 					result = TM_PWMIN_Result_PinNotValid;
@@ -435,24 +463,22 @@ TM_PWMIN_Result_t TM_PWMIN_INT_InitTIM3Pins(TM_PWMIN_Channel_t Channel, TM_PWMIN
 }
 
 TM_PWMIN_Result_t TM_PWMIN_INT_InitTIM4Pins(TM_PWMIN_Channel_t Channel, TM_PWMIN_PinsPack_t PinsPack) {
-	TM_PWMIN_Result_t result;
+	TM_PWMIN_Result_t result = TM_PWMIN_Result_PinNotValid;
 
 	switch (Channel) {
 		case TM_PWMIN_Channel_1:
 			switch (PinsPack) {
 				case TM_PWMIN_PinsPack_1:
-					RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);	/* Enable clock */
-					GPIO_PinAFConfig(GPIOB, GPIO_PinSource6, GPIO_AF_TIM4);	/* Alternate function */
-					PWMIN_GPIO_InitStruct.GPIO_Pin = GPIO_Pin_6;					/* Set pin */
-					GPIO_Init(GPIOB, &PWMIN_GPIO_InitStruct);						/* Initialize pin */
-					result = TM_PWMIN_Result_Ok;								/* Result OK */
+#ifdef GPIOB
+					TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_6, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_TIM4);
+					result = TM_PWMIN_Result_Ok;
+#endif
 					break;
 				case TM_PWMIN_PinsPack_2:
-					RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);	/* Enable clock */
-					GPIO_PinAFConfig(GPIOD, GPIO_PinSource12, GPIO_AF_TIM4);	/* Alternate function */
-					PWMIN_GPIO_InitStruct.GPIO_Pin = GPIO_Pin_12;					/* Set pin */
-					GPIO_Init(GPIOD, &PWMIN_GPIO_InitStruct);						/* Initialize pin */
-					result = TM_PWMIN_Result_Ok;								/* Result OK */
+#ifdef GPIOD
+					TM_GPIO_InitAlternate(GPIOD, GPIO_PIN_12, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_TIM4);
+					result = TM_PWMIN_Result_Ok;
+#endif
 					break;
 				default:
 					result = TM_PWMIN_Result_PinNotValid;
@@ -462,18 +488,16 @@ TM_PWMIN_Result_t TM_PWMIN_INT_InitTIM4Pins(TM_PWMIN_Channel_t Channel, TM_PWMIN
 		case TM_PWMIN_Channel_2:
 			switch (PinsPack) {
 				case TM_PWMIN_PinsPack_1:
-					RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);	/* Enable clock */
-					GPIO_PinAFConfig(GPIOB, GPIO_PinSource7, GPIO_AF_TIM4);	/* Alternate function */
-					PWMIN_GPIO_InitStruct.GPIO_Pin = GPIO_Pin_7;					/* Set pin */
-					GPIO_Init(GPIOB, &PWMIN_GPIO_InitStruct);						/* Initialize pin */
-					result = TM_PWMIN_Result_Ok;								/* Result OK */
+#ifdef GPIOB
+					TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_7, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_TIM4);
+					result = TM_PWMIN_Result_Ok;
+#endif
 					break;
 				case TM_PWMIN_PinsPack_2:
-					RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);	/* Enable clock */
-					GPIO_PinAFConfig(GPIOD, GPIO_PinSource13, GPIO_AF_TIM4);	/* Alternate function */
-					PWMIN_GPIO_InitStruct.GPIO_Pin = GPIO_Pin_13;					/* Set pin */
-					GPIO_Init(GPIOD, &PWMIN_GPIO_InitStruct);						/* Initialize pin */
-					result = TM_PWMIN_Result_Ok;								/* Result OK */
+#ifdef GPIOD
+					TM_GPIO_InitAlternate(GPIOD, GPIO_PIN_13, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_TIM4);
+					result = TM_PWMIN_Result_Ok;
+#endif
 					break;
 				default:
 					result = TM_PWMIN_Result_PinNotValid;
@@ -489,24 +513,22 @@ TM_PWMIN_Result_t TM_PWMIN_INT_InitTIM4Pins(TM_PWMIN_Channel_t Channel, TM_PWMIN
 }
 
 TM_PWMIN_Result_t TM_PWMIN_INT_InitTIM5Pins(TM_PWMIN_Channel_t Channel, TM_PWMIN_PinsPack_t PinsPack) {
-	TM_PWMIN_Result_t result;
+	TM_PWMIN_Result_t result = TM_PWMIN_Result_PinNotValid;
 
 	switch (Channel) {
 		case TM_PWMIN_Channel_1:
 			switch (PinsPack) {
 				case TM_PWMIN_PinsPack_1:
-					RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);	/* Enable clock */
-					GPIO_PinAFConfig(GPIOA, GPIO_PinSource0, GPIO_AF_TIM5);	/* Alternate function */
-					PWMIN_GPIO_InitStruct.GPIO_Pin = GPIO_Pin_0;					/* Set pin */
-					GPIO_Init(GPIOA, &PWMIN_GPIO_InitStruct);						/* Initialize pin */
-					result = TM_PWMIN_Result_Ok;								/* Result OK */
+#ifdef GPIOA
+					TM_GPIO_InitAlternate(GPIOA, GPIO_PIN_0, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_TIM5);
+					result = TM_PWMIN_Result_Ok;
+#endif
 					break;
 				case TM_PWMIN_PinsPack_2:
-					RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOH, ENABLE);	/* Enable clock */
-					GPIO_PinAFConfig(GPIOH, GPIO_PinSource10, GPIO_AF_TIM5);	/* Alternate function */
-					PWMIN_GPIO_InitStruct.GPIO_Pin = GPIO_Pin_10;					/* Set pin */
-					GPIO_Init(GPIOH, &PWMIN_GPIO_InitStruct);						/* Initialize pin */
-					result = TM_PWMIN_Result_Ok;								/* Result OK */
+#ifdef GPIOH
+					TM_GPIO_InitAlternate(GPIOH, GPIO_PIN_10, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_TIM5);
+					result = TM_PWMIN_Result_Ok;
+#endif
 					break;
 				default:
 					result = TM_PWMIN_Result_PinNotValid;
@@ -516,18 +538,16 @@ TM_PWMIN_Result_t TM_PWMIN_INT_InitTIM5Pins(TM_PWMIN_Channel_t Channel, TM_PWMIN
 		case TM_PWMIN_Channel_2:
 			switch (PinsPack) {
 				case TM_PWMIN_PinsPack_1:
-					RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);	/* Enable clock */
-					GPIO_PinAFConfig(GPIOA, GPIO_PinSource1, GPIO_AF_TIM5);	/* Alternate function */
-					PWMIN_GPIO_InitStruct.GPIO_Pin = GPIO_Pin_1;					/* Set pin */
-					GPIO_Init(GPIOA, &PWMIN_GPIO_InitStruct);						/* Initialize pin */
-					result = TM_PWMIN_Result_Ok;								/* Result OK */
+#ifdef GPIOA
+					TM_GPIO_InitAlternate(GPIOA, GPIO_PIN_1, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_TIM5);
+					result = TM_PWMIN_Result_Ok;
+#endif
 					break;
 				case TM_PWMIN_PinsPack_2:
-					RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOH, ENABLE);	/* Enable clock */
-					GPIO_PinAFConfig(GPIOH, GPIO_PinSource11, GPIO_AF_TIM5);	/* Alternate function */
-					PWMIN_GPIO_InitStruct.GPIO_Pin = GPIO_Pin_11;					/* Set pin */
-					GPIO_Init(GPIOH, &PWMIN_GPIO_InitStruct);						/* Initialize pin */
-					result = TM_PWMIN_Result_Ok;								/* Result OK */
+#ifdef GPIOH
+					TM_GPIO_InitAlternate(GPIOH, GPIO_PIN_11, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_TIM5);
+					result = TM_PWMIN_Result_Ok;
+#endif
 					break;
 				default:
 					result = TM_PWMIN_Result_PinNotValid;
@@ -543,24 +563,22 @@ TM_PWMIN_Result_t TM_PWMIN_INT_InitTIM5Pins(TM_PWMIN_Channel_t Channel, TM_PWMIN
 }
 
 TM_PWMIN_Result_t TM_PWMIN_INT_InitTIM8Pins(TM_PWMIN_Channel_t Channel, TM_PWMIN_PinsPack_t PinsPack) {
-	TM_PWMIN_Result_t result;
+	TM_PWMIN_Result_t result = TM_PWMIN_Result_PinNotValid;
 
 	switch (Channel) {
 		case TM_PWMIN_Channel_1:
 			switch (PinsPack) {
 				case TM_PWMIN_PinsPack_1:
-					RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);	/* Enable clock */
-					GPIO_PinAFConfig(GPIOC, GPIO_PinSource6, GPIO_AF_TIM8);	/* Alternate function */
-					PWMIN_GPIO_InitStruct.GPIO_Pin = GPIO_Pin_6;					/* Set pin */
-					GPIO_Init(GPIOC, &PWMIN_GPIO_InitStruct);						/* Initialize pin */
-					result = TM_PWMIN_Result_Ok;								/* Result OK */
+#ifdef GPIOC
+					TM_GPIO_InitAlternate(GPIOC, GPIO_PIN_6, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_TIM8);
+					result = TM_PWMIN_Result_Ok;
+#endif
 					break;
 				case TM_PWMIN_PinsPack_2:
-					RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOI, ENABLE);	/* Enable clock */
-					GPIO_PinAFConfig(GPIOI, GPIO_PinSource5, GPIO_AF_TIM8);	/* Alternate function */
-					PWMIN_GPIO_InitStruct.GPIO_Pin = GPIO_Pin_5;					/* Set pin */
-					GPIO_Init(GPIOI, &PWMIN_GPIO_InitStruct);						/* Initialize pin */
-					result = TM_PWMIN_Result_Ok;								/* Result OK */
+#ifdef GPIOI
+					TM_GPIO_InitAlternate(GPIOI, GPIO_PIN_5, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_TIM8);
+					result = TM_PWMIN_Result_Ok;
+#endif
 					break;
 				default:
 					result = TM_PWMIN_Result_PinNotValid;
@@ -570,18 +588,16 @@ TM_PWMIN_Result_t TM_PWMIN_INT_InitTIM8Pins(TM_PWMIN_Channel_t Channel, TM_PWMIN
 		case TM_PWMIN_Channel_2:
 			switch (PinsPack) {
 				case TM_PWMIN_PinsPack_1:
-					RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);	/* Enable clock */
-					GPIO_PinAFConfig(GPIOC, GPIO_PinSource7, GPIO_AF_TIM8);	/* Alternate function */
-					PWMIN_GPIO_InitStruct.GPIO_Pin = GPIO_Pin_7;					/* Set pin */
-					GPIO_Init(GPIOC, &PWMIN_GPIO_InitStruct);						/* Initialize pin */
-					result = TM_PWMIN_Result_Ok;								/* Result OK */
+#ifdef GPIOC
+					TM_GPIO_InitAlternate(GPIOC, GPIO_PIN_7, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_TIM8);
+					result = TM_PWMIN_Result_Ok;
+#endif
 					break;
 				case TM_PWMIN_PinsPack_2:
-					RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOI, ENABLE);	/* Enable clock */
-					GPIO_PinAFConfig(GPIOI, GPIO_PinSource6, GPIO_AF_TIM8);	/* Alternate function */
-					PWMIN_GPIO_InitStruct.GPIO_Pin = GPIO_Pin_6;					/* Set pin */
-					GPIO_Init(GPIOI, &PWMIN_GPIO_InitStruct);						/* Initialize pin */
-					result = TM_PWMIN_Result_Ok;								/* Result OK */
+#ifdef GPIOI
+					TM_GPIO_InitAlternate(GPIOI, GPIO_PIN_6, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_TIM8);
+					result = TM_PWMIN_Result_Ok;
+#endif
 					break;
 				default:
 					result = TM_PWMIN_Result_PinNotValid;
@@ -597,24 +613,22 @@ TM_PWMIN_Result_t TM_PWMIN_INT_InitTIM8Pins(TM_PWMIN_Channel_t Channel, TM_PWMIN
 }
 
 TM_PWMIN_Result_t TM_PWMIN_INT_InitTIM9Pins(TM_PWMIN_Channel_t Channel, TM_PWMIN_PinsPack_t PinsPack) {
-	TM_PWMIN_Result_t result;
+	TM_PWMIN_Result_t result = TM_PWMIN_Result_PinNotValid;
 
 	switch (Channel) {
 		case TM_PWMIN_Channel_1:
 			switch (PinsPack) {
 				case TM_PWMIN_PinsPack_1:
-					RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);	/* Enable clock */
-					GPIO_PinAFConfig(GPIOA, GPIO_PinSource2, GPIO_AF_TIM9);	/* Alternate function */
-					PWMIN_GPIO_InitStruct.GPIO_Pin = GPIO_Pin_2;					/* Set pin */
-					GPIO_Init(GPIOA, &PWMIN_GPIO_InitStruct);						/* Initialize pin */
-					result = TM_PWMIN_Result_Ok;								/* Result OK */
+#ifdef GPIOA
+					TM_GPIO_InitAlternate(GPIOA, GPIO_PIN_2, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_TIM9);
+					result = TM_PWMIN_Result_Ok;
+#endif
 					break;
 				case TM_PWMIN_PinsPack_2:
-					RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOE, ENABLE);	/* Enable clock */
-					GPIO_PinAFConfig(GPIOE, GPIO_PinSource5, GPIO_AF_TIM9);	/* Alternate function */
-					PWMIN_GPIO_InitStruct.GPIO_Pin = GPIO_Pin_5;					/* Set pin */
-					GPIO_Init(GPIOE, &PWMIN_GPIO_InitStruct);						/* Initialize pin */
-					result = TM_PWMIN_Result_Ok;								/* Result OK */
+#ifdef GPIOE
+					TM_GPIO_InitAlternate(GPIOE, GPIO_PIN_5, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_TIM9);
+					result = TM_PWMIN_Result_Ok;
+#endif
 					break;
 				default:
 					result = TM_PWMIN_Result_PinNotValid;
@@ -624,18 +638,16 @@ TM_PWMIN_Result_t TM_PWMIN_INT_InitTIM9Pins(TM_PWMIN_Channel_t Channel, TM_PWMIN
 		case TM_PWMIN_Channel_2:
 			switch (PinsPack) {
 				case TM_PWMIN_PinsPack_1:
-					RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);	/* Enable clock */
-					GPIO_PinAFConfig(GPIOA, GPIO_PinSource3, GPIO_AF_TIM9);	/* Alternate function */
-					PWMIN_GPIO_InitStruct.GPIO_Pin = GPIO_Pin_3;					/* Set pin */
-					GPIO_Init(GPIOA, &PWMIN_GPIO_InitStruct);						/* Initialize pin */
-					result = TM_PWMIN_Result_Ok;								/* Result OK */
+#ifdef GPIOA
+					TM_GPIO_InitAlternate(GPIOA, GPIO_PIN_3, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_TIM9);
+					result = TM_PWMIN_Result_Ok;
+#endif
 					break;
 				case TM_PWMIN_PinsPack_2:
-					RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOE, ENABLE);	/* Enable clock */
-					GPIO_PinAFConfig(GPIOE, GPIO_PinSource6, GPIO_AF_TIM9);	/* Alternate function */
-					PWMIN_GPIO_InitStruct.GPIO_Pin = GPIO_Pin_6;					/* Set pin */
-					GPIO_Init(GPIOE, &PWMIN_GPIO_InitStruct);						/* Initialize pin */
-					result = TM_PWMIN_Result_Ok;								/* Result OK */
+#ifdef GPIOE
+					TM_GPIO_InitAlternate(GPIOE, GPIO_PIN_6, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_TIM9);
+					result = TM_PWMIN_Result_Ok;
+#endif
 					break;
 				default:
 					result = TM_PWMIN_Result_PinNotValid;
@@ -651,24 +663,22 @@ TM_PWMIN_Result_t TM_PWMIN_INT_InitTIM9Pins(TM_PWMIN_Channel_t Channel, TM_PWMIN
 }
 
 TM_PWMIN_Result_t TM_PWMIN_INT_InitTIM10Pins(TM_PWMIN_Channel_t Channel, TM_PWMIN_PinsPack_t PinsPack) {
-	TM_PWMIN_Result_t result;
+	TM_PWMIN_Result_t result = TM_PWMIN_Result_PinNotValid;
 
 	switch (Channel) {
 		case TM_PWMIN_Channel_1:
 			switch (PinsPack) {
 				case TM_PWMIN_PinsPack_1:
-					RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);	/* Enable clock */
-					GPIO_PinAFConfig(GPIOB, GPIO_PinSource8, GPIO_AF_TIM10);	/* Alternate function */
-					PWMIN_GPIO_InitStruct.GPIO_Pin = GPIO_Pin_8;					/* Set pin */
-					GPIO_Init(GPIOB, &PWMIN_GPIO_InitStruct);						/* Initialize pin */
-					result = TM_PWMIN_Result_Ok;								/* Result OK */
+#ifdef GPIOB
+					TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_8, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_TIM10);
+					result = TM_PWMIN_Result_Ok;
+#endif
 					break;
 				case TM_PWMIN_PinsPack_2:
-					RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOF, ENABLE);	/* Enable clock */
-					GPIO_PinAFConfig(GPIOF, GPIO_PinSource6, GPIO_AF_TIM10);	/* Alternate function */
-					PWMIN_GPIO_InitStruct.GPIO_Pin = GPIO_Pin_6;					/* Set pin */
-					GPIO_Init(GPIOF, &PWMIN_GPIO_InitStruct);						/* Initialize pin */
-					result = TM_PWMIN_Result_Ok;								/* Result OK */
+#ifdef GPIOF
+					TM_GPIO_InitAlternate(GPIOF, GPIO_PIN_6, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_TIM10);
+					result = TM_PWMIN_Result_Ok;
+#endif
 					break;
 				default:
 					result = TM_PWMIN_Result_PinNotValid;
@@ -684,24 +694,22 @@ TM_PWMIN_Result_t TM_PWMIN_INT_InitTIM10Pins(TM_PWMIN_Channel_t Channel, TM_PWMI
 }
 
 TM_PWMIN_Result_t TM_PWMIN_INT_InitTIM11Pins(TM_PWMIN_Channel_t Channel, TM_PWMIN_PinsPack_t PinsPack) {
-	TM_PWMIN_Result_t result;
+	TM_PWMIN_Result_t result = TM_PWMIN_Result_PinNotValid;
 
 	switch (Channel) {
 		case TM_PWMIN_Channel_1:
 			switch (PinsPack) {
 				case TM_PWMIN_PinsPack_1:
-					RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);	/* Enable clock */
-					GPIO_PinAFConfig(GPIOB, GPIO_PinSource9, GPIO_AF_TIM11);	/* Alternate function */
-					PWMIN_GPIO_InitStruct.GPIO_Pin = GPIO_Pin_9;					/* Set pin */
-					GPIO_Init(GPIOB, &PWMIN_GPIO_InitStruct);						/* Initialize pin */
-					result = TM_PWMIN_Result_Ok;								/* Result OK */
+#ifdef GPIOB
+					TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_9, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_TIM11);
+					result = TM_PWMIN_Result_Ok;
+#endif
 					break;
 				case TM_PWMIN_PinsPack_2:
-					RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOF, ENABLE);	/* Enable clock */
-					GPIO_PinAFConfig(GPIOF, GPIO_PinSource7, GPIO_AF_TIM11);	/* Alternate function */
-					PWMIN_GPIO_InitStruct.GPIO_Pin = GPIO_Pin_7;					/* Set pin */
-					GPIO_Init(GPIOF, &PWMIN_GPIO_InitStruct);						/* Initialize pin */
-					result = TM_PWMIN_Result_Ok;								/* Result OK */
+#ifdef GPIOF
+					TM_GPIO_InitAlternate(GPIOF, GPIO_PIN_7, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_TIM11);
+					result = TM_PWMIN_Result_Ok;
+#endif
 					break;
 				default:
 					result = TM_PWMIN_Result_PinNotValid;
@@ -717,24 +725,22 @@ TM_PWMIN_Result_t TM_PWMIN_INT_InitTIM11Pins(TM_PWMIN_Channel_t Channel, TM_PWMI
 }
 
 TM_PWMIN_Result_t TM_PWMIN_INT_InitTIM12Pins(TM_PWMIN_Channel_t Channel, TM_PWMIN_PinsPack_t PinsPack) {
-	TM_PWMIN_Result_t result;
+	TM_PWMIN_Result_t result = TM_PWMIN_Result_PinNotValid;
 
 	switch (Channel) {
 		case TM_PWMIN_Channel_1:
 			switch (PinsPack) {
 				case TM_PWMIN_PinsPack_1:
-					RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);	/* Enable clock */
-					GPIO_PinAFConfig(GPIOB, GPIO_PinSource14, GPIO_AF_TIM12);	/* Alternate function */
-					PWMIN_GPIO_InitStruct.GPIO_Pin = GPIO_Pin_14;					/* Set pin */
-					GPIO_Init(GPIOB, &PWMIN_GPIO_InitStruct);						/* Initialize pin */
-					result = TM_PWMIN_Result_Ok;								/* Result OK */
+#ifdef GPIOB
+					TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_14, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_TIM12);
+					result = TM_PWMIN_Result_Ok;
+#endif
 					break;
 				case TM_PWMIN_PinsPack_2:
-					RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOH, ENABLE);	/* Enable clock */
-					GPIO_PinAFConfig(GPIOH, GPIO_PinSource6, GPIO_AF_TIM12);	/* Alternate function */
-					PWMIN_GPIO_InitStruct.GPIO_Pin = GPIO_Pin_6;					/* Set pin */
-					GPIO_Init(GPIOH, &PWMIN_GPIO_InitStruct);						/* Initialize pin */
-					result = TM_PWMIN_Result_Ok;								/* Result OK */
+#ifdef GPIOH
+					TM_GPIO_InitAlternate(GPIOH, GPIO_PIN_6, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_TIM12);
+					result = TM_PWMIN_Result_Ok;
+#endif
 					break;
 				default:
 					result = TM_PWMIN_Result_PinNotValid;
@@ -744,18 +750,16 @@ TM_PWMIN_Result_t TM_PWMIN_INT_InitTIM12Pins(TM_PWMIN_Channel_t Channel, TM_PWMI
 		case TM_PWMIN_Channel_2:
 			switch (PinsPack) {
 				case TM_PWMIN_PinsPack_1:
-					RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOB, ENABLE);	/* Enable clock */
-					GPIO_PinAFConfig(GPIOB, GPIO_PinSource15, GPIO_AF_TIM12);	/* Alternate function */
-					PWMIN_GPIO_InitStruct.GPIO_Pin = GPIO_Pin_15;					/* Set pin */
-					GPIO_Init(GPIOB, &PWMIN_GPIO_InitStruct);						/* Initialize pin */
-					result = TM_PWMIN_Result_Ok;								/* Result OK */
+#ifdef GPIOB
+					TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_15, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_TIM12);
+					result = TM_PWMIN_Result_Ok;
+#endif
 					break;
 				case TM_PWMIN_PinsPack_2:
-					RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOH, ENABLE);	/* Enable clock */
-					GPIO_PinAFConfig(GPIOH, GPIO_PinSource9, GPIO_AF_TIM12);	/* Alternate function */
-					PWMIN_GPIO_InitStruct.GPIO_Pin = GPIO_Pin_9;					/* Set pin */
-					GPIO_Init(GPIOH, &PWMIN_GPIO_InitStruct);						/* Initialize pin */
-					result = TM_PWMIN_Result_Ok;								/* Result OK */
+#ifdef GPIOH
+					TM_GPIO_InitAlternate(GPIOH, GPIO_PIN_9, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_TIM12);
+					result = TM_PWMIN_Result_Ok;
+#endif
 					break;
 				default:
 					result = TM_PWMIN_Result_PinNotValid;
@@ -771,24 +775,22 @@ TM_PWMIN_Result_t TM_PWMIN_INT_InitTIM12Pins(TM_PWMIN_Channel_t Channel, TM_PWMI
 }
 
 TM_PWMIN_Result_t TM_PWMIN_INT_InitTIM13Pins(TM_PWMIN_Channel_t Channel, TM_PWMIN_PinsPack_t PinsPack) {
-	TM_PWMIN_Result_t result;
+	TM_PWMIN_Result_t result = TM_PWMIN_Result_PinNotValid;
 
 	switch (Channel) {
 		case TM_PWMIN_Channel_1:
 			switch (PinsPack) {
 				case TM_PWMIN_PinsPack_1:
-					RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);	/* Enable clock */
-					GPIO_PinAFConfig(GPIOA, GPIO_PinSource6, GPIO_AF_TIM13);	/* Alternate function */
-					PWMIN_GPIO_InitStruct.GPIO_Pin = GPIO_Pin_6;					/* Set pin */
-					GPIO_Init(GPIOA, &PWMIN_GPIO_InitStruct);						/* Initialize pin */
-					result = TM_PWMIN_Result_Ok;								/* Result OK */
+#ifdef GPIOA
+					TM_GPIO_InitAlternate(GPIOA, GPIO_PIN_1, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_TIM13);
+					result = TM_PWMIN_Result_Ok;
+#endif
 					break;
 				case TM_PWMIN_PinsPack_2:
-					RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOF, ENABLE);	/* Enable clock */
-					GPIO_PinAFConfig(GPIOF, GPIO_PinSource8, GPIO_AF_TIM13);	/* Alternate function */
-					PWMIN_GPIO_InitStruct.GPIO_Pin = GPIO_Pin_8;					/* Set pin */
-					GPIO_Init(GPIOF, &PWMIN_GPIO_InitStruct);						/* Initialize pin */
-					result = TM_PWMIN_Result_Ok;								/* Result OK */
+#ifdef GPIOF
+					TM_GPIO_InitAlternate(GPIOF, GPIO_PIN_8, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_TIM13);
+					result = TM_PWMIN_Result_Ok;
+#endif
 					break;
 				default:
 					result = TM_PWMIN_Result_PinNotValid;
@@ -804,24 +806,22 @@ TM_PWMIN_Result_t TM_PWMIN_INT_InitTIM13Pins(TM_PWMIN_Channel_t Channel, TM_PWMI
 }
 
 TM_PWMIN_Result_t TM_PWMIN_INT_InitTIM14Pins(TM_PWMIN_Channel_t Channel, TM_PWMIN_PinsPack_t PinsPack) {
-	TM_PWMIN_Result_t result;
+	TM_PWMIN_Result_t result = TM_PWMIN_Result_PinNotValid;
 
 	switch (Channel) {
 		case TM_PWMIN_Channel_1:
 			switch (PinsPack) {
 				case TM_PWMIN_PinsPack_1:
-					RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);	/* Enable clock */
-					GPIO_PinAFConfig(GPIOA, GPIO_PinSource7, GPIO_AF_TIM14);	/* Alternate function */
-					PWMIN_GPIO_InitStruct.GPIO_Pin = GPIO_Pin_7;					/* Set pin */
-					GPIO_Init(GPIOA, &PWMIN_GPIO_InitStruct);						/* Initialize pin */
-					result = TM_PWMIN_Result_Ok;								/* Result OK */
+#ifdef GPIOA
+					TM_GPIO_InitAlternate(GPIOA, GPIO_PIN_7, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_TIM14);
+					result = TM_PWMIN_Result_Ok;
+#endif
 					break;
 				case TM_PWMIN_PinsPack_2:
-					RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOF, ENABLE);	/* Enable clock */
-					GPIO_PinAFConfig(GPIOF, GPIO_PinSource9, GPIO_AF_TIM14);	/* Alternate function */
-					PWMIN_GPIO_InitStruct.GPIO_Pin = GPIO_Pin_9;					/* Set pin */
-					GPIO_Init(GPIOF, &PWMIN_GPIO_InitStruct);						/* Initialize pin */
-					result = TM_PWMIN_Result_Ok;								/* Result OK */
+#ifdef GPIOF
+					TM_GPIO_InitAlternate(GPIOF, GPIO_PIN_9, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_TIM14);
+					result = TM_PWMIN_Result_Ok;
+#endif
 					break;
 				default:
 					result = TM_PWMIN_Result_PinNotValid;
@@ -835,4 +835,3 @@ TM_PWMIN_Result_t TM_PWMIN_INT_InitTIM14Pins(TM_PWMIN_Channel_t Channel, TM_PWMI
 	
 	return result;
 }
-

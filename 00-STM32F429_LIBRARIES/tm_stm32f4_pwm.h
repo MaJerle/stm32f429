@@ -27,76 +27,6 @@
    ----------------------------------------------------------------------
 @endverbatim
  */
-/**
- *	PWM library for STM32F4xx devices, supporting all possible timers with PWM feature
- *
- *	@author 	Tilen Majerle
- *	@email		tilen@majerle.eu
- *	@website	http://stm32f4-discovery.com
- *	@link		http://stm32f4-discovery.com/2014/09/library-33-pwm-for-stm32f4xx/
- *	@version 	v2.1
- *	@ide		Keil uVision
- *	@license	GNU GPL v3
- *	
- * |----------------------------------------------------------------------
- * | Copyright (C) Tilen Majerle, 2014
- * | 
- * | This program is free software: you can redistribute it and/or modify
- * | it under the terms of the GNU General Public License as published by
- * | the Free Software Foundation, either version 3 of the License, or
- * | any later version.
- * |  
- * | This program is distributed in the hope that it will be useful,
- * | but WITHOUT ANY WARRANTY; without even the implied warranty of
- * | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * | GNU General Public License for more details.
- * | 
- * | You should have received a copy of the GNU General Public License
- * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * |----------------------------------------------------------------------
- *
- * Version 2.1
- *	- March 15, 2015
- *	- Added support for new GPIO library
- *
- * Version 2.0
- *	- January 03, 2015
- *	- Changed parameters for functions
- *
- * Version 1.1
- * 	- August 15, 2014
- * 	- Split timer properties with enable/disable clocks into new library. This library will be used 
- * 	  in each project where timers are included.
- *
- * PWM pins are connected to fixed possible pins
- *
- * 	TIMER	|CHANNEL 1				|CHANNEL 2				|CHANNEL 3				|CHANNEL 4
- * 			|PP1	PP2		PP3		|PP1	PP2		PP3		|PP1	PP2		PP3		|PP1	PP2		PP3
- *
- *	TIM 1	|PA8	PE9		-		|PA9	PE10	-		|PA10	PE13	-		|PA11	PE14	-
- * 	TIM 2	|PA0	PA5		PA15	|PA1	PB3		-		|PA2	PB10	-		|PA3	PB11	-
- * 	TIM 3	|PA6	PB4		PC6		|PA7	PB5		PC7		|PB0	PC8		-		|PB1	PC9		-
- * 	TIM 4	|PB6	PD12	-		|PB7	PD13	-		|PB8	PD14	-		|PB9	PD15	-
- * 	TIM 5	|PA0	PH10	-		|PA1	PH11	-		|PA2	PH12	-		|PA3	PI0		-
- * 	TIM 8	|PC6	PI5		-		|PC7	PI6		-		|PC8	PI7		-		|PC9	PI2		-
- * 	TIM 9	|PA2	PE5		-		|PA3	PE6		-		|-		-		-		|-		-		-
- * 	TIM 10	|PB8	PF6		-		|-		-		-		|-		-		-		|-		-		-
- * 	TIM 11	|PB9	PF7		-		|-		-		-		|-		-		-		|-		-		-
- * 	TIM 12	|PB14	PH6		-		|PB15	PH9		-		|-		-		-		|-		-		-
- * 	TIM 13	|PA6	PF8		-		|-		-		-		|-		-		-		|-		-		-
- * 	TIM 14	|PA7	PF9		-		|-		-		-		|-		-		-		|-		-		-
- *
- * 	- PPx: Pins Pack 1 to 3, for 3 possible channel outputs on timer.
- *
- * Notes on table above:
- * 	- Not all timers are available on all STM32F4xx devices
- * 	- All timers have 16bit prescaler
- * 	- TIM6 and TIM7 don’t have PWM feature, they are only basic timers
- * 	- TIM2 and TIM5 are 32bit timers
- * 	- TIM9 and TIM12 have two PWM channels
- * 	- TIM10, TIM11, TIM13 and TIM14 have only one PWM channel
- * 	- All channels at one timer have the same PWM frequency!
- */
 #ifndef TM_PWM_H
 #define TM_PWM_H 210
 /**
@@ -108,6 +38,10 @@
  * @defgroup TM_PWM
  * @brief    PWM library for STM32F4xx devices, supporting all possible timers with PWM feature - http://stm32f4-discovery.com/2014/09/library-33-pwm-for-stm32f4xx/
  * @{
+ *
+ * This library allows you to use PWM feature on any timer with supported PWM output
+ *
+ * \par Pinout
  *
  * PWM pins are connected to fixed possible pins
  *
@@ -143,6 +77,19 @@ TIM 14  |PA7    PF9    -      |-      -      -		|-      -      -      |-      - 
  * \par Changelog
  *
 @verbatim
+ Version 2.1
+  - March 15, 2015
+  - Added support for new GPIO library
+
+ Version 2.0
+  - January 03, 2015
+  - Changed parameters for functions
+
+ Version 1.1
+  - August 15, 2014
+  - Split timer properties with enable/disable clocks into new library. This library will be used 
+ 	   in each project where timers are included.
+
  Version 1.0
   - First release
 @endverbatim

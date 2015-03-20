@@ -104,62 +104,83 @@ $(document).ready(function(){initNavTree('tm__stm32f4__mco__output_8h_source.htm
 </div><!--header-->
 <div class="contents">
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#ifndef TM_MCOOUTPUT_H</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">#define TM_MCOOUTPUT_H 110</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">/* C++ detection */</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">extern</span> C {</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx.h&quot;</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx_rcc.h&quot;</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">#include &quot;defines.h&quot;</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="preprocessor">#include &quot;tm_stm32f4_gpio.h&quot;</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    TM_MCOOUTPUT_Prescaler_1,</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    TM_MCOOUTPUT_Prescaler_2,</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    TM_MCOOUTPUT_Prescaler_3,</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    TM_MCOOUTPUT_Prescaler_4,</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    TM_MCOOUTPUT_Prescaler_5</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;} TM_MCOOUTPUT_Prescaler_t;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    TM_MCOOUTPUT1_Source_HSI,</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    TM_MCOOUTPUT1_Source_HSE,</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    TM_MCOOUTPUT1_Source_LSE,</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    TM_MCOOUTPUT1_Source_PLLCLK</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;} TM_MCOOUTPUT1_Source_t;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    TM_MCOOUTPUT2_Source_SYSCLK,</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    TM_MCOOUTPUT2_Source_PLLI2SCLK,</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    TM_MCOOUTPUT2_Source_HSE,</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    TM_MCOOUTPUT2_Source_PLLCLK</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;} TM_MCOOUTPUT2_Source_t;</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> TM_MCOOUTPUT_InitMCO1(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> TM_MCOOUTPUT_SetOutput1(TM_MCOOUTPUT1_Source_t Source, TM_MCOOUTPUT_Prescaler_t Prescaler);</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> TM_MCOOUTPUT_InitMCO2(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160; </div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> TM_MCOOUTPUT_SetOutput2(TM_MCOOUTPUT2_Source_t Source, TM_MCOOUTPUT_Prescaler_t Prescaler);</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="comment">/* C++ detection */</span></div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;}</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#ifndef TM_MCOOUTPUT_H</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#define TM_MCOOUTPUT_H 110</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">/* C++ detection */</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">extern</span> C {</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx.h&quot;</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx_rcc.h&quot;</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="preprocessor">#include &quot;defines.h&quot;</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor">#include &quot;tm_stm32f4_gpio.h&quot;</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
+<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="group___t_m___m_c_o___typedefs.html#gae120076d44e0469e4225c92b9cdeda66">  103</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="group___t_m___m_c_o___typedefs.html#ggae120076d44e0469e4225c92b9cdeda66a954ce2ef63cd9ca4d8b2af737869a012">  104</a></span>&#160;    <a class="code" href="group___t_m___m_c_o___typedefs.html#ggae120076d44e0469e4225c92b9cdeda66a954ce2ef63cd9ca4d8b2af737869a012">TM_MCOOUTPUT_Prescaler_1</a>, </div>
+<div class="line"><a name="l00105"></a><span class="lineno"><a class="line" href="group___t_m___m_c_o___typedefs.html#ggae120076d44e0469e4225c92b9cdeda66a4133a48a82b4fa48a825698851a28316">  105</a></span>&#160;    <a class="code" href="group___t_m___m_c_o___typedefs.html#ggae120076d44e0469e4225c92b9cdeda66a4133a48a82b4fa48a825698851a28316">TM_MCOOUTPUT_Prescaler_2</a>, </div>
+<div class="line"><a name="l00106"></a><span class="lineno"><a class="line" href="group___t_m___m_c_o___typedefs.html#ggae120076d44e0469e4225c92b9cdeda66a6a18a8deefa029d6d44c1e28c76320e1">  106</a></span>&#160;    <a class="code" href="group___t_m___m_c_o___typedefs.html#ggae120076d44e0469e4225c92b9cdeda66a6a18a8deefa029d6d44c1e28c76320e1">TM_MCOOUTPUT_Prescaler_3</a>, </div>
+<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="group___t_m___m_c_o___typedefs.html#ggae120076d44e0469e4225c92b9cdeda66a7683f459c908164c3da4785bd600115f">  107</a></span>&#160;    <a class="code" href="group___t_m___m_c_o___typedefs.html#ggae120076d44e0469e4225c92b9cdeda66a7683f459c908164c3da4785bd600115f">TM_MCOOUTPUT_Prescaler_4</a>, </div>
+<div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="group___t_m___m_c_o___typedefs.html#ggae120076d44e0469e4225c92b9cdeda66ac1da86cd6c4d7cc1edd26751e4b668d9">  108</a></span>&#160;    <a class="code" href="group___t_m___m_c_o___typedefs.html#ggae120076d44e0469e4225c92b9cdeda66ac1da86cd6c4d7cc1edd26751e4b668d9">TM_MCOOUTPUT_Prescaler_5</a>  </div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;} <a class="code" href="group___t_m___m_c_o___typedefs.html#gae120076d44e0469e4225c92b9cdeda66">TM_MCOOUTPUT_Prescaler_t</a>;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
+<div class="line"><a name="l00114"></a><span class="lineno"><a class="line" href="group___t_m___m_c_o___typedefs.html#ga666708bcae08f8b7741c36c1007a329e">  114</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="group___t_m___m_c_o___typedefs.html#gga666708bcae08f8b7741c36c1007a329eaa6e2c47c418de6647538da95266fb741">  115</a></span>&#160;    <a class="code" href="group___t_m___m_c_o___typedefs.html#gga666708bcae08f8b7741c36c1007a329eaa6e2c47c418de6647538da95266fb741">TM_MCOOUTPUT1_Source_HSI</a>,   </div>
+<div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="group___t_m___m_c_o___typedefs.html#gga666708bcae08f8b7741c36c1007a329ead94b13cf5757b90c5d6da15e8392f689">  116</a></span>&#160;    <a class="code" href="group___t_m___m_c_o___typedefs.html#gga666708bcae08f8b7741c36c1007a329ead94b13cf5757b90c5d6da15e8392f689">TM_MCOOUTPUT1_Source_HSE</a>,   </div>
+<div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="group___t_m___m_c_o___typedefs.html#gga666708bcae08f8b7741c36c1007a329ea1d7714da12f0d052201227889fe92d4d">  117</a></span>&#160;    <a class="code" href="group___t_m___m_c_o___typedefs.html#gga666708bcae08f8b7741c36c1007a329ea1d7714da12f0d052201227889fe92d4d">TM_MCOOUTPUT1_Source_LSE</a>,   </div>
+<div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="group___t_m___m_c_o___typedefs.html#gga666708bcae08f8b7741c36c1007a329ea370e343d8d588e9deb4e041593276c16">  118</a></span>&#160;    <a class="code" href="group___t_m___m_c_o___typedefs.html#gga666708bcae08f8b7741c36c1007a329ea370e343d8d588e9deb4e041593276c16">TM_MCOOUTPUT1_Source_PLLCLK</a> </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;} <a class="code" href="group___t_m___m_c_o___typedefs.html#ga666708bcae08f8b7741c36c1007a329e">TM_MCOOUTPUT1_Source_t</a>;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;</div>
+<div class="line"><a name="l00124"></a><span class="lineno"><a class="line" href="group___t_m___m_c_o___typedefs.html#ga88ddc6124ef8f20cf853ae5d446997f9">  124</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00125"></a><span class="lineno"><a class="line" href="group___t_m___m_c_o___typedefs.html#gga88ddc6124ef8f20cf853ae5d446997f9a7921f5f28e3f7a2b5fc89e570b45582c">  125</a></span>&#160;    <a class="code" href="group___t_m___m_c_o___typedefs.html#gga88ddc6124ef8f20cf853ae5d446997f9a7921f5f28e3f7a2b5fc89e570b45582c">TM_MCOOUTPUT2_Source_SYSCLK</a>,    </div>
+<div class="line"><a name="l00126"></a><span class="lineno"><a class="line" href="group___t_m___m_c_o___typedefs.html#gga88ddc6124ef8f20cf853ae5d446997f9af228d000db89a508f1b31e8e7c3ff652">  126</a></span>&#160;    <a class="code" href="group___t_m___m_c_o___typedefs.html#gga88ddc6124ef8f20cf853ae5d446997f9af228d000db89a508f1b31e8e7c3ff652">TM_MCOOUTPUT2_Source_PLLI2SCLK</a>, </div>
+<div class="line"><a name="l00127"></a><span class="lineno"><a class="line" href="group___t_m___m_c_o___typedefs.html#gga88ddc6124ef8f20cf853ae5d446997f9ad08863809da86dd6909cf282845f1258">  127</a></span>&#160;    <a class="code" href="group___t_m___m_c_o___typedefs.html#gga88ddc6124ef8f20cf853ae5d446997f9ad08863809da86dd6909cf282845f1258">TM_MCOOUTPUT2_Source_HSE</a>,       </div>
+<div class="line"><a name="l00128"></a><span class="lineno"><a class="line" href="group___t_m___m_c_o___typedefs.html#gga88ddc6124ef8f20cf853ae5d446997f9a05a5ae271cb61e312beab56cc67f66df">  128</a></span>&#160;    <a class="code" href="group___t_m___m_c_o___typedefs.html#gga88ddc6124ef8f20cf853ae5d446997f9a05a5ae271cb61e312beab56cc67f66df">TM_MCOOUTPUT2_Source_PLLCLK</a>     </div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;} <a class="code" href="group___t_m___m_c_o___typedefs.html#ga88ddc6124ef8f20cf853ae5d446997f9">TM_MCOOUTPUT2_Source_t</a>;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___m_c_o___functions.html#ga9d564e5796d61f09103bd24576496637">TM_MCOOUTPUT_InitMCO1</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___m_c_o___functions.html#ga5b8e20dd8e61300271d3c568f1836bd0">TM_MCOOUTPUT_SetOutput1</a>(<a class="code" href="group___t_m___m_c_o___typedefs.html#ga666708bcae08f8b7741c36c1007a329e">TM_MCOOUTPUT1_Source_t</a> Source, <a class="code" href="group___t_m___m_c_o___typedefs.html#gae120076d44e0469e4225c92b9cdeda66">TM_MCOOUTPUT_Prescaler_t</a> Prescaler);</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___m_c_o___functions.html#ga413e6f7cec1b4c48c41c26ea39a395d7">TM_MCOOUTPUT_InitMCO2</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___m_c_o___functions.html#ga0146d1289256556cef57f9d2e8df7cb3">TM_MCOOUTPUT_SetOutput2</a>(<a class="code" href="group___t_m___m_c_o___typedefs.html#ga88ddc6124ef8f20cf853ae5d446997f9">TM_MCOOUTPUT2_Source_t</a> Source, <a class="code" href="group___t_m___m_c_o___typedefs.html#gae120076d44e0469e4225c92b9cdeda66">TM_MCOOUTPUT_Prescaler_t</a> Prescaler);</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;<span class="comment">/* C++ detection */</span></div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;}</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="group___t_m___m_c_o___typedefs_html_ggae120076d44e0469e4225c92b9cdeda66ac1da86cd6c4d7cc1edd26751e4b668d9"><div class="ttname"><a href="group___t_m___m_c_o___typedefs.html#ggae120076d44e0469e4225c92b9cdeda66ac1da86cd6c4d7cc1edd26751e4b668d9">TM_MCOOUTPUT_Prescaler_5</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_mco_output.h:108</div></div>
+<div class="ttc" id="group___t_m___m_c_o___typedefs_html_gga666708bcae08f8b7741c36c1007a329ea1d7714da12f0d052201227889fe92d4d"><div class="ttname"><a href="group___t_m___m_c_o___typedefs.html#gga666708bcae08f8b7741c36c1007a329ea1d7714da12f0d052201227889fe92d4d">TM_MCOOUTPUT1_Source_LSE</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_mco_output.h:117</div></div>
+<div class="ttc" id="group___t_m___m_c_o___functions_html_ga9d564e5796d61f09103bd24576496637"><div class="ttname"><a href="group___t_m___m_c_o___functions.html#ga9d564e5796d61f09103bd24576496637">TM_MCOOUTPUT_InitMCO1</a></div><div class="ttdeci">void TM_MCOOUTPUT_InitMCO1(void)</div><div class="ttdoc">Initializes and prepares MCO1 pin to output clock. </div></div>
+<div class="ttc" id="group___t_m___m_c_o___typedefs_html_gga666708bcae08f8b7741c36c1007a329ea370e343d8d588e9deb4e041593276c16"><div class="ttname"><a href="group___t_m___m_c_o___typedefs.html#gga666708bcae08f8b7741c36c1007a329ea370e343d8d588e9deb4e041593276c16">TM_MCOOUTPUT1_Source_PLLCLK</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_mco_output.h:118</div></div>
+<div class="ttc" id="group___t_m___m_c_o___typedefs_html_gga88ddc6124ef8f20cf853ae5d446997f9af228d000db89a508f1b31e8e7c3ff652"><div class="ttname"><a href="group___t_m___m_c_o___typedefs.html#gga88ddc6124ef8f20cf853ae5d446997f9af228d000db89a508f1b31e8e7c3ff652">TM_MCOOUTPUT2_Source_PLLI2SCLK</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_mco_output.h:126</div></div>
+<div class="ttc" id="group___t_m___m_c_o___functions_html_ga5b8e20dd8e61300271d3c568f1836bd0"><div class="ttname"><a href="group___t_m___m_c_o___functions.html#ga5b8e20dd8e61300271d3c568f1836bd0">TM_MCOOUTPUT_SetOutput1</a></div><div class="ttdeci">void TM_MCOOUTPUT_SetOutput1(TM_MCOOUTPUT1_Source_t Source, TM_MCOOUTPUT_Prescaler_t Prescaler)</div><div class="ttdoc">Sets output for MCO1 pin. </div></div>
+<div class="ttc" id="group___t_m___m_c_o___typedefs_html_gga666708bcae08f8b7741c36c1007a329ead94b13cf5757b90c5d6da15e8392f689"><div class="ttname"><a href="group___t_m___m_c_o___typedefs.html#gga666708bcae08f8b7741c36c1007a329ead94b13cf5757b90c5d6da15e8392f689">TM_MCOOUTPUT1_Source_HSE</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_mco_output.h:116</div></div>
+<div class="ttc" id="group___t_m___m_c_o___typedefs_html_ggae120076d44e0469e4225c92b9cdeda66a7683f459c908164c3da4785bd600115f"><div class="ttname"><a href="group___t_m___m_c_o___typedefs.html#ggae120076d44e0469e4225c92b9cdeda66a7683f459c908164c3da4785bd600115f">TM_MCOOUTPUT_Prescaler_4</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_mco_output.h:107</div></div>
+<div class="ttc" id="group___t_m___m_c_o___functions_html_ga0146d1289256556cef57f9d2e8df7cb3"><div class="ttname"><a href="group___t_m___m_c_o___functions.html#ga0146d1289256556cef57f9d2e8df7cb3">TM_MCOOUTPUT_SetOutput2</a></div><div class="ttdeci">void TM_MCOOUTPUT_SetOutput2(TM_MCOOUTPUT2_Source_t Source, TM_MCOOUTPUT_Prescaler_t Prescaler)</div><div class="ttdoc">Sets output for MCO2 pin. </div></div>
+<div class="ttc" id="group___t_m___m_c_o___typedefs_html_gga88ddc6124ef8f20cf853ae5d446997f9ad08863809da86dd6909cf282845f1258"><div class="ttname"><a href="group___t_m___m_c_o___typedefs.html#gga88ddc6124ef8f20cf853ae5d446997f9ad08863809da86dd6909cf282845f1258">TM_MCOOUTPUT2_Source_HSE</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_mco_output.h:127</div></div>
+<div class="ttc" id="group___t_m___m_c_o___typedefs_html_gae120076d44e0469e4225c92b9cdeda66"><div class="ttname"><a href="group___t_m___m_c_o___typedefs.html#gae120076d44e0469e4225c92b9cdeda66">TM_MCOOUTPUT_Prescaler_t</a></div><div class="ttdeci">TM_MCOOUTPUT_Prescaler_t</div><div class="ttdoc">Prescaler values for output clock. </div><div class="ttdef"><b>Definition:</b> tm_stm32f4_mco_output.h:103</div></div>
+<div class="ttc" id="group___t_m___m_c_o___typedefs_html_gga88ddc6124ef8f20cf853ae5d446997f9a05a5ae271cb61e312beab56cc67f66df"><div class="ttname"><a href="group___t_m___m_c_o___typedefs.html#gga88ddc6124ef8f20cf853ae5d446997f9a05a5ae271cb61e312beab56cc67f66df">TM_MCOOUTPUT2_Source_PLLCLK</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_mco_output.h:128</div></div>
+<div class="ttc" id="group___t_m___m_c_o___typedefs_html_ga88ddc6124ef8f20cf853ae5d446997f9"><div class="ttname"><a href="group___t_m___m_c_o___typedefs.html#ga88ddc6124ef8f20cf853ae5d446997f9">TM_MCOOUTPUT2_Source_t</a></div><div class="ttdeci">TM_MCOOUTPUT2_Source_t</div><div class="ttdoc">Possible output clocks on MCO2 pin. </div><div class="ttdef"><b>Definition:</b> tm_stm32f4_mco_output.h:124</div></div>
+<div class="ttc" id="group___t_m___m_c_o___typedefs_html_ggae120076d44e0469e4225c92b9cdeda66a954ce2ef63cd9ca4d8b2af737869a012"><div class="ttname"><a href="group___t_m___m_c_o___typedefs.html#ggae120076d44e0469e4225c92b9cdeda66a954ce2ef63cd9ca4d8b2af737869a012">TM_MCOOUTPUT_Prescaler_1</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_mco_output.h:104</div></div>
+<div class="ttc" id="group___t_m___m_c_o___functions_html_ga413e6f7cec1b4c48c41c26ea39a395d7"><div class="ttname"><a href="group___t_m___m_c_o___functions.html#ga413e6f7cec1b4c48c41c26ea39a395d7">TM_MCOOUTPUT_InitMCO2</a></div><div class="ttdeci">void TM_MCOOUTPUT_InitMCO2(void)</div><div class="ttdoc">Initializes and prepares MCO2 pin to output clock. </div></div>
+<div class="ttc" id="group___t_m___m_c_o___typedefs_html_ggae120076d44e0469e4225c92b9cdeda66a6a18a8deefa029d6d44c1e28c76320e1"><div class="ttname"><a href="group___t_m___m_c_o___typedefs.html#ggae120076d44e0469e4225c92b9cdeda66a6a18a8deefa029d6d44c1e28c76320e1">TM_MCOOUTPUT_Prescaler_3</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_mco_output.h:106</div></div>
+<div class="ttc" id="group___t_m___m_c_o___typedefs_html_ga666708bcae08f8b7741c36c1007a329e"><div class="ttname"><a href="group___t_m___m_c_o___typedefs.html#ga666708bcae08f8b7741c36c1007a329e">TM_MCOOUTPUT1_Source_t</a></div><div class="ttdeci">TM_MCOOUTPUT1_Source_t</div><div class="ttdoc">Possible output clocks on MCO1 pin. </div><div class="ttdef"><b>Definition:</b> tm_stm32f4_mco_output.h:114</div></div>
+<div class="ttc" id="group___t_m___m_c_o___typedefs_html_gga88ddc6124ef8f20cf853ae5d446997f9a7921f5f28e3f7a2b5fc89e570b45582c"><div class="ttname"><a href="group___t_m___m_c_o___typedefs.html#gga88ddc6124ef8f20cf853ae5d446997f9a7921f5f28e3f7a2b5fc89e570b45582c">TM_MCOOUTPUT2_Source_SYSCLK</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_mco_output.h:125</div></div>
+<div class="ttc" id="group___t_m___m_c_o___typedefs_html_ggae120076d44e0469e4225c92b9cdeda66a4133a48a82b4fa48a825698851a28316"><div class="ttname"><a href="group___t_m___m_c_o___typedefs.html#ggae120076d44e0469e4225c92b9cdeda66a4133a48a82b4fa48a825698851a28316">TM_MCOOUTPUT_Prescaler_2</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_mco_output.h:105</div></div>
+<div class="ttc" id="group___t_m___m_c_o___typedefs_html_gga666708bcae08f8b7741c36c1007a329eaa6e2c47c418de6647538da95266fb741"><div class="ttname"><a href="group___t_m___m_c_o___typedefs.html#gga666708bcae08f8b7741c36c1007a329eaa6e2c47c418de6647538da95266fb741">TM_MCOOUTPUT1_Source_HSI</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_mco_output.h:115</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>tm_stm32f4_mco_output.h</b></li>
-    <li class="footer">Generated on Thu Mar 19 2015 22:33:36 for TM STM32F4xx Libraries by
+    <li class="footer">Generated on Fri Mar 20 2015 17:15:33 for TM STM32F4xx Libraries by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

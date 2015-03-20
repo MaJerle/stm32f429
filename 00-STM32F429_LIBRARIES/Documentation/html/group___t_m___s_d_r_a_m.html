@@ -137,6 +137,30 @@ Modules</h2></td></tr>
 <p>If you are working with STM324x9-EVAL board, you can add define in defines.h file and enable configuration for SDRAM on this board.</p>
 <pre class="fragment">//Use SDRAM on STM324x9-EVAL board
 #define SDRAM_USE_STM324x9_EVAL
+</pre><dl class="section user"><dt>STM32F429-Discovery pinout</dt><dd></dd></dl>
+<pre class="fragment">PB5  &lt;-&gt; FMC_SDCKE | PC0  &lt;-&gt; FMC_SDNWE | PD0  &lt;-&gt; FMC_D2   | PE0  &lt;-&gt; FMC_NBL0  | PF0  &lt;-&gt; FMC_A0    | PG0  &lt;-&gt; FMC_A10
+PB6  &lt;-&gt; FMC_SDNE1 |                    | PD1  &lt;-&gt; FMC_D3   | PE1  &lt;-&gt; FMC_NBL1  | PF1  &lt;-&gt; FMC_A1    | PG1  &lt;-&gt; FMC_A11
+                   |                    | PD8  &lt;-&gt; FMC_D13  | PE7  &lt;-&gt; FMC_D4    | PF2  &lt;-&gt; FMC_A2    | PG8  &lt;-&gt; FMC_SDCLK
+                   |                    | PD9  &lt;-&gt; FMC_D14  | PE8  &lt;-&gt; FMC_D5    | PF3  &lt;-&gt; FMC_A3    | PG15 &lt;-&gt; FMC_NCAS
+                   |                    | PD10 &lt;-&gt; FMC_D15  | PE9  &lt;-&gt; FMC_D6    | PF4  &lt;-&gt; FMC_A4    |
+                   |                    | PD14 &lt;-&gt; FMC_D0   | PE10 &lt;-&gt; FMC_D7    | PF5  &lt;-&gt; FMC_A5    |   
+                   |                    | PD15 &lt;-&gt; FMC_D1   | PE11 &lt;-&gt; FMC_D8    | PF11 &lt;-&gt; FMC_NRAS  | 
+                   |                    |                   | PE12 &lt;-&gt; FMC_D9    | PF12 &lt;-&gt; FMC_A6    | 
+                   |                    |                   | PE13 &lt;-&gt; FMC_D10   | PF13 &lt;-&gt; FMC_A7    |    
+                   |                    |                   | PE14 &lt;-&gt; FMC_D11   | PF14 &lt;-&gt; FMC_A8    |
+                   |                    |                   | PE15 &lt;-&gt; FMC_D12   | PF15 &lt;-&gt; FMC_A9    |
+</pre><dl class="section user"><dt>STM324x9-EVAL pinout</dt><dd></dd></dl>
+<pre class="fragment">PD0  &lt;-&gt; FMC_D2   | PE0  &lt;-&gt; FMC_NBL0  | PF0  &lt;-&gt; FMC_A0    | PG0  &lt;-&gt; FMC_A10   | PH2  &lt;-&gt; FMC_SDCKE0| PI4  &lt;-&gt; FMC_NBL2 
+PD1  &lt;-&gt; FMC_D3   | PE1  &lt;-&gt; FMC_NBL1  | PF1  &lt;-&gt; FMC_A1    | PG1  &lt;-&gt; FMC_A11   | PH3  &lt;-&gt; FMC_SDNE0 | PI5  &lt;-&gt; FMC_NBL3 
+PD8  &lt;-&gt; FMC_D13  | PE7  &lt;-&gt; FMC_D4    | PF2  &lt;-&gt; FMC_A2    | PG4  &lt;-&gt; FMC_A14   | PH5  &lt;-&gt; FMC_SDNW  | PI0  &lt;-&gt; FMC_D24 
+PD9  &lt;-&gt; FMC_D14  | PE8  &lt;-&gt; FMC_D5    | PF3  &lt;-&gt; FMC_A3    | PG5  &lt;-&gt; FMC_A15   | PH8  &lt;-&gt; FMC_D16   | PI1  &lt;-&gt; FMC_D25  
+PD10 &lt;-&gt; FMC_D15  | PE9  &lt;-&gt; FMC_D6    | PF4  &lt;-&gt; FMC_A4    | PG8  &lt;-&gt; FC_SDCLK  | PH9  &lt;-&gt; FMC_D17   | PI2  &lt;-&gt; FMC_D26  
+PD14 &lt;-&gt; FMC_D0   | PE10 &lt;-&gt; FMC_D7    | PF5  &lt;-&gt; FMC_A5    | PG15 &lt;-&gt; FMC_NCAS  | PH10 &lt;-&gt; FMC_D18   | PI3  &lt;-&gt; FMC_D27  
+PD15 &lt;-&gt; FMC_D1   | PE11 &lt;-&gt; FMC_D8    | PF11 &lt;-&gt; FC_NRAS   | PH11 &lt;-&gt; FMC_D19   | PI6 &lt;-&gt; FMC_D28    | PI7  &lt;-&gt; FMC_D29 
+                  | PE12 &lt;-&gt; FMC_D9    | PF12 &lt;-&gt; FMC_A6    |                    | PH12 &lt;-&gt; FMC_D20   | PI9  &lt;-&gt; FMC_D30     
+                  | PE13 &lt;-&gt; FMC_D10   | PF13 &lt;-&gt; FMC_A7    |                    | PH13 &lt;-&gt; FMC_D21   | PI10 &lt;-&gt; FMC_D31    
+                  | PE14 &lt;-&gt; FMC_D11   | PF14 &lt;-&gt; FMC_A8    |                    | PH14 &lt;-&gt; FMC_D22   |
+                  | PE15 &lt;-&gt; FMC_D12   | PF15 &lt;-&gt; FMC_A9    |                    | PH15 &lt;-&gt; FMC_D23   |
 </pre><dl class="section user"><dt>Changelog</dt><dd></dd></dl>
 <pre class="fragment"> Version 1.3
   - March 19, 2015
@@ -158,13 +182,14 @@ Modules</h2></td></tr>
  - STM32F4xx RCC
  - STM32F4xx FMC
  - defines.h
+ - attributes.h
  - TM GPIO
 </pre> </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu Mar 19 2015 22:33:37 for TM STM32F4xx Libraries by
+    <li class="footer">Generated on Fri Mar 20 2015 17:15:33 for TM STM32F4xx Libraries by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

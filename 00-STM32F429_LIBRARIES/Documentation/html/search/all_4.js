@@ -4,5 +4,6 @@ var searchData=
   ['day',['day',['../struct_t_m___r_t_c__t.html#a72369a1087b2aeffe374bb054cb97c12',1,'TM_RTC_t::day()'],['../struct_t_m___r_t_c___alarm_time__t.html#a72369a1087b2aeffe374bb054cb97c12',1,'TM_RTC_AlarmTime_t::day()']]],
   ['decimal',['Decimal',['../struct_t_m___g_p_s___float__t.html#a1f1a4005542eb36b6420473d24d99a42',1,'TM_GPS_Float_t']]],
   ['direction',['Direction',['../struct_t_m___g_p_s___data__t.html#ae2fdd834ad7e266ee87728da45d6da23',1,'TM_GPS_Data_t']]],
-  ['distance',['Distance',['../struct_t_m___g_p_s___distance__t.html#ad387fb71b61baf6ce35cb7c4d5c16b17',1,'TM_GPS_Distance_t']]]
+  ['distance',['Distance',['../struct_t_m___g_p_s___distance__t.html#ad387fb71b61baf6ce35cb7c4d5c16b17',1,'TM_GPS_Distance_t']]],
+  ['dutycycle',['DutyCycle',['../struct_t_m___p_w_m_i_n__t.html#a3f8f40802b67665aaafbdf1fb4c6c4c4',1,'TM_PWMIN_t']]]
 ];

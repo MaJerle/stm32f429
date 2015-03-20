@@ -25,7 +25,14 @@ uint8_t TM_SDRAM_Init(void) {
 	FMC_SDRAMInitTypeDef FMC_SDRAMInitStruct;
 	FMC_SDRAMTimingInitTypeDef FMC_SDRAMTimingInitStruct;
 	FMC_SDRAMCommandTypeDef FMC_SDRAMCommandStructure;
-	uint32_t timeout = SDRAM_TIMEOUT;
+	__IO uint32_t timeout = SDRAM_TIMEOUT;
+	static uint8_t initialized = 0;
+	
+	/* Already initialized */
+	if (initialized) {
+		return 1;
+	}
+	
 	
 	/* Initialize FMC pins */
 	TM_SDRAM_InitPins();
@@ -82,6 +89,9 @@ uint8_t TM_SDRAM_Init(void) {
 	while (FMC_GetFlagStatus(SDRAM_BANK, FMC_FLAG_Busy) != RESET && timeout--) {
 	
 	}
+	
+	timeout = SDRAM_TIMEOUT * 0xFF;
+	while (timeout--);
 	
 	/* Send the command */
 	FMC_SDRAMCmdConfig(&FMC_SDRAMCommandStructure);
@@ -143,9 +153,11 @@ uint8_t TM_SDRAM_Init(void) {
 	}
 	
 	/* Check if everything goes right */
-	/* Write 0x10 at location 0x50 and check if result is the same on read operation */
-	TM_SDRAM_Write8(0x50, 0x10);
-	if (TM_SDRAM_Read8(0x50) == 0x10) {
+	/* Write 0x45 at location 0x50 and check if result is the same on read operation */
+	TM_SDRAM_Write8(0x50, 0x45);
+	if (TM_SDRAM_Read8(0x50) == 0x45) {
+		/* Initialized OK */
+		initialized = 1;
 		/* Initialized OK */
 		return 1;
 	}
@@ -155,6 +167,11 @@ uint8_t TM_SDRAM_Init(void) {
 }
 
 static void TM_SDRAM_InitPins(void) {
+	/* Try to init from user */
+	if (TM_SDRAM_InitCustomPinsCallback()) {
+		/* User has initialized pins by itself */
+		return;
+	}
 #ifdef SDRAM_USE_STM324x9_EVAL
 	/* GPIOD pins */
 	TM_GPIO_InitAlternate(GPIOD, GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_8 | GPIO_PIN_9 | GPIO_PIN_10 | GPIO_PIN_14 | GPIO_PIN_15, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_FMC);
@@ -167,7 +184,7 @@ static void TM_SDRAM_InitPins(void) {
 	/* GPIOH pins */
 	TM_GPIO_InitAlternate(GPIOH, GPIO_PIN_2 | GPIO_PIN_3 | GPIO_PIN_5 | GPIO_PIN_8 | GPIO_PIN_9 | GPIO_PIN_10 | GPIO_PIN_11 | GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_FMC);
 	/* GPIOI pins */
-	TM_GPIO_InitAlternate(GPIOI, GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7 | GPIO_PIN_8 | GPIO_PIN_9 | GPIO_PIN_10, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_FMC);
+	TM_GPIO_InitAlternate(GPIOI, GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7 | GPIO_PIN_9 | GPIO_PIN_10, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_FMC);
 #else
 	/* GPIOB pins */
 	TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_5 | GPIO_PIN_6, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_FMC);
@@ -182,4 +199,8 @@ static void TM_SDRAM_InitPins(void) {
 	/* GPIOG pins */
 	TM_GPIO_InitAlternate(GPIOG, GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_8 | GPIO_PIN_15, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_FMC);
 #endif
+}
+
+__weak uint8_t TM_SDRAM_InitCustomPinsCallback(void) {
+	return 0;
 }

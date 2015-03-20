@@ -9,5 +9,6 @@ var group___t_m___s_d_r_a_m___functions =
     [ "TM_SDRAM_Write32", "group___t_m___s_d_r_a_m___functions.html#ga96421e85f76331794ee161bad6b8a496", null ],
     [ "TM_SDRAM_Write8", "group___t_m___s_d_r_a_m___functions.html#ga7e0fc92d5fc1fb26a04f3d6f01d5ad2c", null ],
     [ "TM_SDRAM_WriteFloat", "group___t_m___s_d_r_a_m___functions.html#gace4d837e60a0b0d922f94c2ab68cc76e", null ],
-    [ "TM_SDRAM_Init", "group___t_m___s_d_r_a_m___functions.html#gaf25413498fc044afca11364bc48389d2", null ]
+    [ "TM_SDRAM_Init", "group___t_m___s_d_r_a_m___functions.html#gaf25413498fc044afca11364bc48389d2", null ],
+    [ "TM_SDRAM_InitCustomPinsCallback", "group___t_m___s_d_r_a_m___functions.html#ga1d43e842fa1c7e939ec45b012a9bfbc1", null ]
 ];

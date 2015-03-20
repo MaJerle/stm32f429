@@ -120,6 +120,8 @@ Modules</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>PWM library for STM32F4xx devices, supporting all possible timers with PWM feature - <a href="http://stm32f4-discovery.com/2014/09/library-33-pwm-for-stm32f4xx/">http://stm32f4-discovery.com/2014/09/library-33-pwm-for-stm32f4xx/</a>. </p>
+<p>This library allows you to use PWM feature on any timer with supported PWM output</p>
+<dl class="section user"><dt>Pinout</dt><dd></dd></dl>
 <p>PWM pins are connected to fixed possible pins</p>
 <pre class="fragment">TIMER   |CHANNEL 1            |CHANNEL 2            |CHANNEL 3            |CHANNEL 4
         |PP1    PP2    PP3    |PP1    PP2    PP3    |PP1    PP2    PP3    |PP1    PP2    PP3
@@ -147,7 +149,20 @@ TIM 14  |PA7    PF9    -      |-      -      -      |-      -      -      |-    
 <li>All channels at one timer have the same PWM frequency!</li>
 </ul>
 <dl class="section user"><dt>Changelog</dt><dd></dd></dl>
-<pre class="fragment"> Version 1.0
+<pre class="fragment"> Version 2.1
+  - March 15, 2015
+  - Added support for new GPIO library
+
+ Version 2.0
+  - January 03, 2015
+  - Changed parameters for functions
+
+ Version 1.1
+  - August 15, 2014
+  - Split timer properties with enable/disable clocks into new library. This library will be used 
+       in each project where timers are included.
+
+ Version 1.0
   - First release
 </pre><dl class="section user"><dt>Dependencies</dt><dd></dd></dl>
 <pre class="fragment"> - STM32F4xx
@@ -162,7 +177,7 @@ TIM 14  |PA7    PF9    -      |-      -      -      |-      -      -      |-    
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu Mar 19 2015 22:33:37 for TM STM32F4xx Libraries by
+    <li class="footer">Generated on Fri Mar 20 2015 17:15:33 for TM STM32F4xx Libraries by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

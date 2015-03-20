@@ -59,6 +59,38 @@
 #define SDRAM_USE_STM324x9_EVAL
 @endverbatim
  *
+ * \par STM32F429-Discovery pinout
+ *
+@verbatim
+PB5  <-> FMC_SDCKE | PC0  <-> FMC_SDNWE | PD0  <-> FMC_D2   | PE0  <-> FMC_NBL0  | PF0  <-> FMC_A0    | PG0  <-> FMC_A10
+PB6  <-> FMC_SDNE1 |                    | PD1  <-> FMC_D3   | PE1  <-> FMC_NBL1  | PF1  <-> FMC_A1    | PG1  <-> FMC_A11
+                   |                    | PD8  <-> FMC_D13  | PE7  <-> FMC_D4    | PF2  <-> FMC_A2    | PG8  <-> FMC_SDCLK
+                   |                    | PD9  <-> FMC_D14  | PE8  <-> FMC_D5    | PF3  <-> FMC_A3    | PG15 <-> FMC_NCAS
+                   |                    | PD10 <-> FMC_D15  | PE9  <-> FMC_D6    | PF4  <-> FMC_A4    |
+                   |                    | PD14 <-> FMC_D0   | PE10 <-> FMC_D7    | PF5  <-> FMC_A5    |   
+                   |                    | PD15 <-> FMC_D1   | PE11 <-> FMC_D8    | PF11 <-> FMC_NRAS  | 
+                   |                    |                   | PE12 <-> FMC_D9    | PF12 <-> FMC_A6    | 
+                   |                    |                   | PE13 <-> FMC_D10   | PF13 <-> FMC_A7    |    
+                   |                    |                   | PE14 <-> FMC_D11   | PF14 <-> FMC_A8    |
+                   |                    |                   | PE15 <-> FMC_D12   | PF15 <-> FMC_A9    |
+@endverbatim
+ *
+ * \par STM324x9-EVAL pinout
+ * 
+@verbatim
+PD0  <-> FMC_D2   | PE0  <-> FMC_NBL0  | PF0  <-> FMC_A0    | PG0  <-> FMC_A10   | PH2  <-> FMC_SDCKE0| PI4  <-> FMC_NBL2 
+PD1  <-> FMC_D3   | PE1  <-> FMC_NBL1  | PF1  <-> FMC_A1    | PG1  <-> FMC_A11   | PH3  <-> FMC_SDNE0 | PI5  <-> FMC_NBL3 
+PD8  <-> FMC_D13  | PE7  <-> FMC_D4    | PF2  <-> FMC_A2    | PG4  <-> FMC_A14   | PH5  <-> FMC_SDNW  | PI0  <-> FMC_D24 
+PD9  <-> FMC_D14  | PE8  <-> FMC_D5    | PF3  <-> FMC_A3    | PG5  <-> FMC_A15   | PH8  <-> FMC_D16   | PI1  <-> FMC_D25  
+PD10 <-> FMC_D15  | PE9  <-> FMC_D6    | PF4  <-> FMC_A4    | PG8  <-> FC_SDCLK  | PH9  <-> FMC_D17   | PI2  <-> FMC_D26  
+PD14 <-> FMC_D0   | PE10 <-> FMC_D7    | PF5  <-> FMC_A5    | PG15 <-> FMC_NCAS  | PH10 <-> FMC_D18   | PI3  <-> FMC_D27  
+PD15 <-> FMC_D1   | PE11 <-> FMC_D8    | PF11 <-> FC_NRAS   | PH11 <-> FMC_D19   | PI6 <-> FMC_D28    | PI7  <-> FMC_D29 
+                  | PE12 <-> FMC_D9    | PF12 <-> FMC_A6    |                    | PH12 <-> FMC_D20   | PI9  <-> FMC_D30     
+                  | PE13 <-> FMC_D10   | PF13 <-> FMC_A7    |                    | PH13 <-> FMC_D21   | PI10 <-> FMC_D31    
+                  | PE14 <-> FMC_D11   | PF14 <-> FMC_A8    |                    | PH14 <-> FMC_D22   |
+                  | PE15 <-> FMC_D12   | PF15 <-> FMC_A9    |                    | PH15 <-> FMC_D23   |
+@endverbatim
+ *
  * \par Changelog
  *
 @verbatim
@@ -86,6 +118,7 @@
  - STM32F4xx RCC
  - STM32F4xx FMC
  - defines.h
+ - attributes.h
  - TM GPIO
 @endverbatim
  */
@@ -93,6 +126,7 @@
 #include "stm32f4xx_rcc.h"
 #include "stm32f4xx_fmc.h"
 #include "defines.h"
+#include "attributes.h"
 #include "tm_stm32f4_gpio.h"
 
 /* Library supports STM324x9_Eval board too */
@@ -142,7 +176,7 @@
 	/* SDRAM max memory size = 8MB */
 	#define SDRAM_MEMORY_WIDTH          (uint32_t)0x800000
 	/* SDRAM bank */
-	#define SDRAM_BANK                  FMC_Bank1_SDRAM
+	#define SDRAM_BANK                  FMC_Bank2_SDRAM
 	/* Refresh count */
 	#define SDRAM_REFRESH_COUNT         680
 	/* Number of rows */
@@ -256,6 +290,17 @@ uint8_t TM_SDRAM_Init(void);
  * @note   Defined as macro for faster execution
  */
 #define TM_SDRAM_ReadFloat(address)			(*(__IO float *) (SDRAM_START_ADR + (address)))
+
+/**
+ * @brief  Init custom pins callback
+ *         It can be used by user to implement custom pins for application if needed.
+ * @param  None
+ * @retval Initialization status:
+ *            - 0: User did not init custom pins, default will be used, depending on already supported boards
+ *            - > 0: User has initializated custom pins, default pins will be ignored
+ * @note   With __weak parameter to prevent link errors if not defined by user
+ */
+uint8_t TM_SDRAM_InitCustomPinsCallback(void);
 
 /**
  * @}

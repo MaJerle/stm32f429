@@ -35,10 +35,10 @@
 #include "tm_stm32f4_pwm.h"
 #include "tm_stm32f4_swo.h"
 
-TM_PWMIN_t PWMIN_TIM1;
+/* PWM IN structures */
 TM_PWMIN_t PWMIN_TIM2;
 TM_PWMIN_t PWMIN_TIM3;
-TM_PWMIN_t PWMIN_TIM5;
+/* PWM structures */
 TM_PWM_TIM_t PWM_Data;
 
 int main(void) {
