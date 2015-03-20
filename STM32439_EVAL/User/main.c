@@ -22,6 +22,7 @@
 
 int main(void) {
 	uint32_t i;
+	uint16_t *index;
 	/* Initialize system */
 	SystemInit();
 	
@@ -30,33 +31,21 @@ int main(void) {
 	
 	/* Initialize leds on board */
 	TM_DISCO_LedInit();
-	
-	if (TM_SDRAM_Init()) {
-		TM_DISCO_LedOn(LED_GREEN);
-	} else {
-		TM_DISCO_LedOn(LED_RED);
-	}
+	TM_DISCO_ButtonInit();
 	
 	TM_LCD_Init();
-	
-	TM_SDRAM_Write32(1, 0x12345678);
-	
-	for (i = 0; i < (640 * 480 * 2); i += 1) {
-		TM_SDRAM_Write16(i, 0x1234);
-		TM_SDRAM_Write16(LCD_FRAME_OFFSET + i, 0x1234);
-	}
 	
 	/* Turn on all leds */
 	TM_DISCO_LedOn(LED_ALL);
 	
-	/* Delay 2 seconds */
-	Delayms(2000);
-	
 	while (1) {
-		/* Toggle leds */
-		TM_DISCO_LedToggle(LED_ALL);
-		
-		/* Wait 500ms */
-		Delayms(500);
+		if (TM_DISCO_ButtonPressed()) {		
+			uint16_t *index ;
+
+			/* erase memory */
+			for (index = (uint16_t *)LCD_FRAME_BUFFER; index < (uint16_t *)(LCD_FRAME_BUFFER+(LCD_FRAME_OFFSET)); index++) {
+				*index = 0x1234;
+			}
+		}
 	}
 }

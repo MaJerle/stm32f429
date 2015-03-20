@@ -137,6 +137,11 @@ void TM_LCD_InitLayers(void) {
     LTDC_LayerInit(LTDC_Layer2, &LTDC_Layer_InitStruct);
 
 	LTDC_ReloadConfig(LTDC_IMReload);
+  
+	/* Enable foreground & background Layers */
+	LTDC_LayerCmd(LTDC_Layer1, ENABLE);
+	LTDC_LayerCmd(LTDC_Layer2, ENABLE);
+	LTDC_ReloadConfig(LTDC_IMReload);
 }
 
 void TM_LCD_InitPins(void) {
@@ -157,6 +162,7 @@ void TM_LCD_Init(void) {
 	/* Initialize pins used */
 	TM_LCD_InitPins();
 	/* Init SDRAM */
+	//TM_SDRAM_Init();
 	TM_SDRAM_Init();
 	/* Initialize LTDC */
 	TM_LCD9341_InitLTDC();

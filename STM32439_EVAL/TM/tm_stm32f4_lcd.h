@@ -64,10 +64,12 @@ extern C {
 #include "stm32f4xx.h"
 #include "stm32f4xx_rcc.h"
 #include "stm32f4xx_ltdc.h"
-#include "tm_stm32f4_sdram.h"
 #include "defines.h"
+#include "tm_stm32f4_sdram.h"
+//#include "stm324x9i_eval_fmc_sdram.h"
+#include "tm_stm32f4_gpio.h"
 
-#define LCD_FRAME_BUFFER	SDRAM_START_ADR
+#define LCD_FRAME_BUFFER	0xC0000000
 #define LCD_FRAME_OFFSET	(0x12C000)
 
 #define LCD_PIXEL_WIDTH     640

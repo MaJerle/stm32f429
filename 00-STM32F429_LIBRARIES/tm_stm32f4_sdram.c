@@ -22,17 +22,16 @@
 static void TM_SDRAM_InitPins(void);
 
 uint8_t TM_SDRAM_Init(void) {
-	FMC_SDRAMInitTypeDef FMC_SDRAMInitStruct;
-	FMC_SDRAMTimingInitTypeDef FMC_SDRAMTimingInitStruct;
+	FMC_SDRAMInitTypeDef FMC_SDRAMInitStructure;
+	FMC_SDRAMTimingInitTypeDef FMC_SDRAMTimingInitStructure;
 	FMC_SDRAMCommandTypeDef FMC_SDRAMCommandStructure;
-	__IO uint32_t timeout = SDRAM_TIMEOUT;
+	uint32_t timeout = SDRAM_TIMEOUT;
 	static uint8_t initialized = 0;
 	
 	/* Already initialized */
 	if (initialized) {
 		return 1;
 	}
-	
 	
 	/* Initialize FMC pins */
 	TM_SDRAM_InitPins();
@@ -45,38 +44,41 @@ uint8_t TM_SDRAM_Init(void) {
 	/* Timing configuration for 90 Mhz of SD clock frequency (180Mhz/2) */
 	/* TMRD: 2 Clock cycles */
 	/* 1 clock cycle = 1 / 90MHz = 11.1ns */
-	FMC_SDRAMTimingInitStruct.FMC_LoadToActiveDelay    = 2;      
+	FMC_SDRAMTimingInitStructure.FMC_LoadToActiveDelay		= 2;      
 	/* TXSR: min=70ns (7x11.10ns) */
-	FMC_SDRAMTimingInitStruct.FMC_ExitSelfRefreshDelay = 7;
+	FMC_SDRAMTimingInitStructure.FMC_ExitSelfRefreshDelay	= 7;
 	/* TRAS: min=42ns (4x11.10ns) max=120k (ns) */
-	FMC_SDRAMTimingInitStruct.FMC_SelfRefreshTime      = 4;
+	FMC_SDRAMTimingInitStructure.FMC_SelfRefreshTime		= 4;
 	/* TRC:  min=70 (7x11.10ns) */        
-	FMC_SDRAMTimingInitStruct.FMC_RowCycleDelay        = 7;         
+	FMC_SDRAMTimingInitStructure.FMC_RowCycleDelay			= 7;         
 	/* TWR:  min=1+ 7ns (1+1x11.10ns) */
-	FMC_SDRAMTimingInitStruct.FMC_WriteRecoveryTime    = 2;      
+	FMC_SDRAMTimingInitStructure.FMC_WriteRecoveryTime		= 2;      
 	/* TRP:  20ns => 2x11.10ns */
-	FMC_SDRAMTimingInitStruct.FMC_RPDelay              = 2;                
+	FMC_SDRAMTimingInitStructure.FMC_RPDelay				= 2;                
 	/* TRCD: 20ns => 2x11.10ns */
-	FMC_SDRAMTimingInitStruct.FMC_RCDDelay             = 2;
+	FMC_SDRAMTimingInitStructure.FMC_RCDDelay				= 2;
 	
 	
 	/* FMC SDRAM control configuration */
-	FMC_SDRAMInitStruct.FMC_Bank 						= SDRAM_BANK;
+	FMC_SDRAMInitStructure.FMC_Bank 						= SDRAM_BANK;
 	/* Row addressing: [7:0] */
-	FMC_SDRAMInitStruct.FMC_ColumnBitsNumber 			= FMC_ColumnBits_Number_8b;
+	FMC_SDRAMInitStructure.FMC_ColumnBitsNumber 			= FMC_ColumnBits_Number_8b;
 	/* Column addressing: [11:0] */
-	FMC_SDRAMInitStruct.FMC_RowBitsNumber 				= SDRAM_ROWBITS_NUMBER;
-	FMC_SDRAMInitStruct.FMC_SDMemoryDataWidth           = SDRAM_MEMORYDATAWIDTH;
-	FMC_SDRAMInitStruct.FMC_InternalBankNumber          = FMC_InternalBank_Number_4;
+	FMC_SDRAMInitStructure.FMC_RowBitsNumber      			= FMC_RowBits_Number_11b;
+	FMC_SDRAMInitStructure.FMC_SDMemoryDataWidth  			= SDRAM_MEMORYDATAWIDTH;
+	FMC_SDRAMInitStructure.FMC_InternalBankNumber 			= FMC_InternalBank_Number_4;
 	/* CL: Cas Latency = 3 clock cycles */
-	FMC_SDRAMInitStruct.FMC_CASLatency                  = FMC_CAS_Latency_3;
-	FMC_SDRAMInitStruct.FMC_WriteProtection 			= FMC_Write_Protection_Disable;
-	FMC_SDRAMInitStruct.FMC_SDClockPeriod 				= FMC_SDClock_Period_2;
-	FMC_SDRAMInitStruct.FMC_ReadBurst 					= SDRAM_READ_BURST_STATE;
-	FMC_SDRAMInitStruct.FMC_ReadPipeDelay 				= FMC_ReadPipe_Delay_1;
-	FMC_SDRAMInitStruct.FMC_SDRAMTimingStruct 			= &FMC_SDRAMTimingInitStruct;
+	FMC_SDRAMInitStructure.FMC_CASLatency              	    = FMC_CAS_Latency_3;
+	FMC_SDRAMInitStructure.FMC_WriteProtection 				= FMC_Write_Protection_Disable;
+	FMC_SDRAMInitStructure.FMC_SDClockPeriod 				= FMC_SDClock_Period_2;
+	FMC_SDRAMInitStructure.FMC_ReadBurst 					= SDRAM_READ_BURST_STATE;
+	FMC_SDRAMInitStructure.FMC_ReadPipeDelay 				= FMC_ReadPipe_Delay_1;
+	FMC_SDRAMInitStructure.FMC_SDRAMTimingStruct 			= &FMC_SDRAMTimingInitStructure;
+	
 	/* FMC SDRAM bank initialization */
-	FMC_SDRAMInit(&FMC_SDRAMInitStruct);
+	FMC_SDRAMInit(&FMC_SDRAMInitStructure);
+	
+	/* Init sequence */
 	
 	/* Configure a clock configuration enable command */
 	FMC_SDRAMCommandStructure.FMC_CommandMode				= FMC_Command_Mode_CLK_Enabled;
@@ -90,17 +92,17 @@ uint8_t TM_SDRAM_Init(void) {
 	
 	}
 	
-	timeout = SDRAM_TIMEOUT * 0xFF;
-	while (timeout--);
-	
 	/* Send the command */
 	FMC_SDRAMCmdConfig(&FMC_SDRAMCommandStructure);
 	
+	timeout = SDRAM_TIMEOUT * 0x1FF;
+	while (timeout--);
+	
 	/* Configure a PALL (precharge all) command */ 
-	FMC_SDRAMCommandStructure.FMC_CommandMode            = FMC_Command_Mode_PALL;
-	FMC_SDRAMCommandStructure.FMC_CommandTarget          = SDRAM_COMMAND_TARGET_BANK; //FMC_Command_Target_bank2;
-	FMC_SDRAMCommandStructure.FMC_AutoRefreshNumber      = 1;
-	FMC_SDRAMCommandStructure.FMC_ModeRegisterDefinition = 0;
+	FMC_SDRAMCommandStructure.FMC_CommandMode          		= FMC_Command_Mode_PALL;
+	FMC_SDRAMCommandStructure.FMC_CommandTarget          	= SDRAM_COMMAND_TARGET_BANK;
+	FMC_SDRAMCommandStructure.FMC_AutoRefreshNumber      	= 1;
+	FMC_SDRAMCommandStructure.FMC_ModeRegisterDefinition 	= 0;
 	
 	/* Wait until the SDRAM controller is ready */  
 	timeout = SDRAM_TIMEOUT;
@@ -112,10 +114,10 @@ uint8_t TM_SDRAM_Init(void) {
 	FMC_SDRAMCmdConfig(&FMC_SDRAMCommandStructure);
 
 	/* Configure a Auto-Refresh command */ 
-	FMC_SDRAMCommandStructure.FMC_CommandMode            = FMC_Command_Mode_AutoRefresh;
-	FMC_SDRAMCommandStructure.FMC_CommandTarget          = SDRAM_COMMAND_TARGET_BANK; //FMC_Command_Target_bank2
-	FMC_SDRAMCommandStructure.FMC_AutoRefreshNumber      = 8;
-	FMC_SDRAMCommandStructure.FMC_ModeRegisterDefinition = 0;
+	FMC_SDRAMCommandStructure.FMC_CommandMode            	= FMC_Command_Mode_AutoRefresh;
+	FMC_SDRAMCommandStructure.FMC_CommandTarget          	= SDRAM_COMMAND_TARGET_BANK;
+	FMC_SDRAMCommandStructure.FMC_AutoRefreshNumber      	= 8;
+	FMC_SDRAMCommandStructure.FMC_ModeRegisterDefinition 	= 0;
 	
 	/* Wait until the SDRAM controller is ready */
 	timeout = SDRAM_TIMEOUT;
@@ -127,10 +129,10 @@ uint8_t TM_SDRAM_Init(void) {
 	FMC_SDRAMCmdConfig(&FMC_SDRAMCommandStructure);
 	
 	/* Configure a load Mode register command */
-	FMC_SDRAMCommandStructure.FMC_CommandMode            = FMC_Command_Mode_LoadMode;
-	FMC_SDRAMCommandStructure.FMC_CommandTarget          = SDRAM_COMMAND_TARGET_BANK; //FMC_Command_Target_bank2
-	FMC_SDRAMCommandStructure.FMC_AutoRefreshNumber      = 1;
-	FMC_SDRAMCommandStructure.FMC_ModeRegisterDefinition = SDRAM_REG_VALUE;
+	FMC_SDRAMCommandStructure.FMC_CommandMode            	= FMC_Command_Mode_LoadMode;
+	FMC_SDRAMCommandStructure.FMC_CommandTarget          	= SDRAM_COMMAND_TARGET_BANK;
+	FMC_SDRAMCommandStructure.FMC_AutoRefreshNumber      	= 1;
+	FMC_SDRAMCommandStructure.FMC_ModeRegisterDefinition 	= (uint32_t)SDRAM_REG_VALUE;
 	
 	/* Wait until the SDRAM controller is ready */
 	timeout = SDRAM_TIMEOUT;
@@ -155,12 +157,16 @@ uint8_t TM_SDRAM_Init(void) {
 	/* Check if everything goes right */
 	/* Write 0x45 at location 0x50 and check if result is the same on read operation */
 	TM_SDRAM_Write8(0x50, 0x45);
+	/* Read and check */
 	if (TM_SDRAM_Read8(0x50) == 0x45) {
 		/* Initialized OK */
 		initialized = 1;
 		/* Initialized OK */
 		return 1;
 	}
+	
+	/* Not initialized OK */
+	initialized = 0;
 	
 	/* Not ok */
 	return 0;
