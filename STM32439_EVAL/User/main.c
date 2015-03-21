@@ -17,12 +17,12 @@
 #include "defines.h"
 #include "tm_stm32f4_delay.h"
 #include "tm_stm32f4_disco.h"
-#include "tm_stm32f4_lcd.h"
 #include "tm_stm32f4_sdram.h"
+#include "stm324x9i_eval_lcd.h"
 
 int main(void) {
 	uint32_t i;
-	uint16_t *index;
+	__IO uint16_t *index;
 	/* Initialize system */
 	SystemInit();
 	
@@ -33,19 +33,14 @@ int main(void) {
 	TM_DISCO_LedInit();
 	TM_DISCO_ButtonInit();
 	
-	TM_LCD_Init();
+	LCD_Init();
 	
 	/* Turn on all leds */
 	TM_DISCO_LedOn(LED_ALL);
 	
 	while (1) {
-		if (TM_DISCO_ButtonPressed()) {		
-			uint16_t *index ;
-
-			/* erase memory */
-			for (index = (uint16_t *)LCD_FRAME_BUFFER; index < (uint16_t *)(LCD_FRAME_BUFFER+(LCD_FRAME_OFFSET)); index++) {
-				*index = 0x1234;
-			}
+		if (TM_DISCO_ButtonPressed()) {
+			LCD_Clear(0xF888);
 		}
 	}
 }

@@ -131,7 +131,6 @@ SPI6    |PG14   PG12    PG13    |
  - STM32F4xx GPIO
  - STM32F4xx SPI
  - defines.h
- - attributes.h
  - TM GPIO
 @endverbatim
  */
@@ -141,7 +140,6 @@ SPI6    |PG14   PG12    PG13    |
 #include "stm32f4xx_gpio.h"
 #include "stm32f4xx_spi.h"
 #include "defines.h"
-#include "attributes.h"
 #include "tm_stm32f4_gpio.h"
 
 /**

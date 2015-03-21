@@ -65,7 +65,7 @@ uint8_t TM_SDRAM_Init(void) {
 	FMC_SDRAMInitStructure.FMC_ColumnBitsNumber 			= FMC_ColumnBits_Number_8b;
 	/* Column addressing: [11:0] */
 	FMC_SDRAMInitStructure.FMC_RowBitsNumber      			= FMC_RowBits_Number_11b;
-	FMC_SDRAMInitStructure.FMC_SDMemoryDataWidth  			= SDRAM_MEMORYDATAWIDTH;
+	FMC_SDRAMInitStructure.FMC_SDMemoryDataWidth  			= SDRAM_MEMORY_WIDTH;
 	FMC_SDRAMInitStructure.FMC_InternalBankNumber 			= FMC_InternalBank_Number_4;
 	/* CL: Cas Latency = 3 clock cycles */
 	FMC_SDRAMInitStructure.FMC_CASLatency              	    = FMC_CAS_Latency_3;
@@ -78,7 +78,7 @@ uint8_t TM_SDRAM_Init(void) {
 	/* FMC SDRAM bank initialization */
 	FMC_SDRAMInit(&FMC_SDRAMInitStructure);
 	
-	/* Init sequence */
+	/* SDRAM Init sequence */
 	
 	/* Configure a clock configuration enable command */
 	FMC_SDRAMCommandStructure.FMC_CommandMode				= FMC_Command_Mode_CLK_Enabled;
@@ -95,7 +95,8 @@ uint8_t TM_SDRAM_Init(void) {
 	/* Send the command */
 	FMC_SDRAMCmdConfig(&FMC_SDRAMCommandStructure);
 	
-	timeout = SDRAM_TIMEOUT * 0x1FF;
+	/* Little delay */
+	timeout = SDRAM_TIMEOUT * 0x3FF;
 	while (timeout--);
 	
 	/* Configure a PALL (precharge all) command */ 
@@ -208,5 +209,9 @@ static void TM_SDRAM_InitPins(void) {
 }
 
 __weak uint8_t TM_SDRAM_InitCustomPinsCallback(void) {
+	/* If you need custom implementation, then create this function externally. */
+	/* This function here should not be modified */
+	
+	/* Return 0, lib will use default pins */
 	return 0;
 }

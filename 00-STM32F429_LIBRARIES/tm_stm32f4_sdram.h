@@ -147,7 +147,7 @@ PD15 <-> FMC_D1   | PE11 <-> FMC_D8    | PF11 <-> FC_NRAS   | PH11 <-> FMC_D19  
 	/* SDRAM start address = FMC peripheral start address */
 	#define SDRAM_START_ADR             (uint32_t)0xC0000000
 	/* SDRAM max memory size = 8MB */
-	#define SDRAM_MEMORY_WIDTH          (uint32_t)0x800000
+	#define SDRAM_MEMORY_SIZE           (uint32_t)0x800000
 	/* SDRAM bank */
 	#define SDRAM_BANK                  FMC_Bank1_SDRAM
 	/* Refresh count */
@@ -155,7 +155,7 @@ PD15 <-> FMC_D1   | PE11 <-> FMC_D8    | PF11 <-> FC_NRAS   | PH11 <-> FMC_D19  
 	/* Number of rows */
 	#define SDRAM_ROWBITS_NUMBER        FMC_RowBits_Number_11b
 	/* Data witdh */
-	#define SDRAM_MEMORYDATAWIDTH       FMC_SDMemory_Width_32b
+	#define SDRAM_MEMORY_WIDTH          FMC_SDMemory_Width_32b
 	/* Read burst */
 	#define SDRAM_READ_BURST_STATE      FMC_Read_Burst_Enable
 	/* Bank target command */
@@ -174,7 +174,7 @@ PD15 <-> FMC_D1   | PE11 <-> FMC_D8    | PF11 <-> FC_NRAS   | PH11 <-> FMC_D19  
 	/* SDRAM start address = FMC peripheral start address */
 	#define SDRAM_START_ADR             (uint32_t)0xD0000000
 	/* SDRAM max memory size = 8MB */
-	#define SDRAM_MEMORY_WIDTH          (uint32_t)0x800000
+	#define SDRAM_MEMORY_SIZE           (uint32_t)0x800000
 	/* SDRAM bank */
 	#define SDRAM_BANK                  FMC_Bank2_SDRAM
 	/* Refresh count */
@@ -182,7 +182,7 @@ PD15 <-> FMC_D1   | PE11 <-> FMC_D8    | PF11 <-> FC_NRAS   | PH11 <-> FMC_D19  
 	/* Number of rows */
 	#define SDRAM_ROWBITS_NUMBER        FMC_RowBits_Number_12b
 	/* Data witdh */
-	#define SDRAM_MEMORYDATAWIDTH       FMC_SDMemory_Width_16b
+	#define SDRAM_MEMORY_WIDTH          FMC_SDMemory_Width_16b
 	/* Read burst */
 	#define SDRAM_READ_BURST_STATE      FMC_Read_Burst_Disable
 	/* Bank target command */
@@ -195,7 +195,7 @@ PD15 <-> FMC_D1   | PE11 <-> FMC_D8    | PF11 <-> FC_NRAS   | PH11 <-> FMC_D19  
 #endif /* SDRAM_USE_STM324x9_EVAL */
 
 /* Timeout for SDRAM initialization */
-#define SDRAM_TIMEOUT			((uint32_t)0xFFFF) 
+#define SDRAM_TIMEOUT                   ((uint32_t)0xFFFF) 
 
 /**
  * @}
@@ -221,7 +221,7 @@ uint8_t TM_SDRAM_Init(void);
  * @param  None
  * @retval SDRAM memory size in bytes
  */
-#define TM_SDRAM_GetSize()                  (SDRAM_MEMORY_WIDTH)
+#define TM_SDRAM_GetSize()                  (SDRAM_MEMORY_SIZE)
 
 /**
  * @brief  Writes 8-bit value to SDRAM
@@ -230,7 +230,7 @@ uint8_t TM_SDRAM_Init(void);
  * @retval None
  * @note   Defined as macro for faster execution
  */
-#define TM_SDRAM_Write8(address, value)		(*(__IO uint8_t *) (SDRAM_START_ADR + (address)) = value)
+#define TM_SDRAM_Write8(address, value)		(*(__IO uint8_t *) (SDRAM_START_ADR + (address)) = (value))
 
 /**
  * @brief  Reads 8-bit value from SDRAM
@@ -247,7 +247,7 @@ uint8_t TM_SDRAM_Init(void);
  * @retval None
  * @note   Defined as macro for faster execution
  */
-#define TM_SDRAM_Write16(address, value)	(*(__IO uint16_t *) (SDRAM_START_ADR + (address)) = value)
+#define TM_SDRAM_Write16(address, value)	(*(__IO uint16_t *) (SDRAM_START_ADR + (address)) = (value))
 
 /**
  * @brief  Reads 16-bit value from SDRAM
@@ -264,7 +264,7 @@ uint8_t TM_SDRAM_Init(void);
  * @retval None
  * @note   Defined as macro for faster execution
  */
-#define TM_SDRAM_Write32(address, value)	(*(__IO uint32_t *) (SDRAM_START_ADR + (address)) = value)
+#define TM_SDRAM_Write32(address, value)	(*(__IO uint32_t *) (SDRAM_START_ADR + (address)) = (value))
 
 /**
  * @brief  Reads 32-bit value from SDRAM
@@ -281,7 +281,7 @@ uint8_t TM_SDRAM_Init(void);
  * @retval None
  * @note   Defined as macro for faster execution
  */
-#define TM_SDRAM_WriteFloat(address, value)	(*(__IO float *) (SDRAM_START_ADR + (address)) = value)
+#define TM_SDRAM_WriteFloat(address, value)	(*(__IO float *) (SDRAM_START_ADR + (address)) = (value))
 
 /**
  * @brief  Reads float value from SDRAM

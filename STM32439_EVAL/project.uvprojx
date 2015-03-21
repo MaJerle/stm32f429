@@ -754,14 +754,24 @@
               <FilePath>.\User\system_stm32f4xx.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_lcd.c</FileName>
+              <FileName>stm324x9i_eval_lcd.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\TM\tm_stm32f4_lcd.c</FilePath>
+              <FilePath>.\TM\stm324x9i_eval_lcd.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_lcd.h</FileName>
+              <FileName>stm324x9i_eval_lcd.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\TM\tm_stm32f4_lcd.h</FilePath>
+              <FilePath>.\TM\stm324x9i_eval_lcd.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm324x9i_eval_fmc_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\TM\stm324x9i_eval_fmc_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm324x9i_eval_fmc_sdram.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\TM\stm324x9i_eval_fmc_sdram.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1515,14 +1525,24 @@
               <FilePath>.\User\system_stm32f4xx.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_lcd.c</FileName>
+              <FileName>stm324x9i_eval_lcd.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\TM\tm_stm32f4_lcd.c</FilePath>
+              <FilePath>.\TM\stm324x9i_eval_lcd.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_lcd.h</FileName>
+              <FileName>stm324x9i_eval_lcd.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\TM\tm_stm32f4_lcd.h</FilePath>
+              <FilePath>.\TM\stm324x9i_eval_lcd.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm324x9i_eval_fmc_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\TM\stm324x9i_eval_fmc_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm324x9i_eval_fmc_sdram.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\TM\stm324x9i_eval_fmc_sdram.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -2276,14 +2296,24 @@
               <FilePath>.\User\system_stm32f4xx.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_lcd.c</FileName>
+              <FileName>stm324x9i_eval_lcd.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\TM\tm_stm32f4_lcd.c</FilePath>
+              <FilePath>.\TM\stm324x9i_eval_lcd.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_lcd.h</FileName>
+              <FileName>stm324x9i_eval_lcd.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\TM\tm_stm32f4_lcd.h</FilePath>
+              <FilePath>.\TM\stm324x9i_eval_lcd.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm324x9i_eval_fmc_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\TM\stm324x9i_eval_fmc_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm324x9i_eval_fmc_sdram.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\TM\stm324x9i_eval_fmc_sdram.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -3037,14 +3067,24 @@
               <FilePath>.\User\system_stm32f4xx.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_lcd.c</FileName>
+              <FileName>stm324x9i_eval_lcd.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\TM\tm_stm32f4_lcd.c</FilePath>
+              <FilePath>.\TM\stm324x9i_eval_lcd.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_lcd.h</FileName>
+              <FileName>stm324x9i_eval_lcd.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\TM\tm_stm32f4_lcd.h</FilePath>
+              <FilePath>.\TM\stm324x9i_eval_lcd.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm324x9i_eval_fmc_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\TM\stm324x9i_eval_fmc_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm324x9i_eval_fmc_sdram.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\TM\stm324x9i_eval_fmc_sdram.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -3798,14 +3838,24 @@
               <FilePath>.\User\system_stm32f4xx.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_lcd.c</FileName>
+              <FileName>stm324x9i_eval_lcd.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\TM\tm_stm32f4_lcd.c</FilePath>
+              <FilePath>.\TM\stm324x9i_eval_lcd.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_lcd.h</FileName>
+              <FileName>stm324x9i_eval_lcd.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\TM\tm_stm32f4_lcd.h</FilePath>
+              <FilePath>.\TM\stm324x9i_eval_lcd.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm324x9i_eval_fmc_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\TM\stm324x9i_eval_fmc_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm324x9i_eval_fmc_sdram.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\TM\stm324x9i_eval_fmc_sdram.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -4559,14 +4609,24 @@
               <FilePath>.\User\system_stm32f4xx.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_lcd.c</FileName>
+              <FileName>stm324x9i_eval_lcd.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\TM\tm_stm32f4_lcd.c</FilePath>
+              <FilePath>.\TM\stm324x9i_eval_lcd.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_lcd.h</FileName>
+              <FileName>stm324x9i_eval_lcd.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\TM\tm_stm32f4_lcd.h</FilePath>
+              <FilePath>.\TM\stm324x9i_eval_lcd.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm324x9i_eval_fmc_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\TM\stm324x9i_eval_fmc_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm324x9i_eval_fmc_sdram.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\TM\stm324x9i_eval_fmc_sdram.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -5320,14 +5380,24 @@
               <FilePath>.\User\system_stm32f4xx.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_lcd.c</FileName>
+              <FileName>stm324x9i_eval_lcd.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\TM\tm_stm32f4_lcd.c</FilePath>
+              <FilePath>.\TM\stm324x9i_eval_lcd.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_lcd.h</FileName>
+              <FileName>stm324x9i_eval_lcd.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\TM\tm_stm32f4_lcd.h</FilePath>
+              <FilePath>.\TM\stm324x9i_eval_lcd.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm324x9i_eval_fmc_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\TM\stm324x9i_eval_fmc_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm324x9i_eval_fmc_sdram.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\TM\stm324x9i_eval_fmc_sdram.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -6081,14 +6151,24 @@
               <FilePath>.\User\system_stm32f4xx.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_lcd.c</FileName>
+              <FileName>stm324x9i_eval_lcd.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\TM\tm_stm32f4_lcd.c</FilePath>
+              <FilePath>.\TM\stm324x9i_eval_lcd.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_lcd.h</FileName>
+              <FileName>stm324x9i_eval_lcd.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\TM\tm_stm32f4_lcd.h</FilePath>
+              <FilePath>.\TM\stm324x9i_eval_lcd.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm324x9i_eval_fmc_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\TM\stm324x9i_eval_fmc_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm324x9i_eval_fmc_sdram.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\TM\stm324x9i_eval_fmc_sdram.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -6842,14 +6922,24 @@
               <FilePath>.\User\system_stm32f4xx.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_lcd.c</FileName>
+              <FileName>stm324x9i_eval_lcd.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\TM\tm_stm32f4_lcd.c</FilePath>
+              <FilePath>.\TM\stm324x9i_eval_lcd.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_lcd.h</FileName>
+              <FileName>stm324x9i_eval_lcd.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\TM\tm_stm32f4_lcd.h</FilePath>
+              <FilePath>.\TM\stm324x9i_eval_lcd.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm324x9i_eval_fmc_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\TM\stm324x9i_eval_fmc_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm324x9i_eval_fmc_sdram.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\TM\stm324x9i_eval_fmc_sdram.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -7603,14 +7693,24 @@
               <FilePath>.\User\system_stm32f4xx.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_lcd.c</FileName>
+              <FileName>stm324x9i_eval_lcd.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\TM\tm_stm32f4_lcd.c</FilePath>
+              <FilePath>.\TM\stm324x9i_eval_lcd.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_lcd.h</FileName>
+              <FileName>stm324x9i_eval_lcd.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\TM\tm_stm32f4_lcd.h</FilePath>
+              <FilePath>.\TM\stm324x9i_eval_lcd.h</FilePath>
+            </File>
+            <File>
+              <FileName>stm324x9i_eval_fmc_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\TM\stm324x9i_eval_fmc_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm324x9i_eval_fmc_sdram.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\TM\stm324x9i_eval_fmc_sdram.h</FilePath>
             </File>
           </Files>
         </Group>
