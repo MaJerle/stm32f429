@@ -38,18 +38,47 @@ uint8_t TM_OneWire_Reset(TM_OneWire_t* OneWireStruct) {
 	ONEWIRE_OUTPUT(OneWireStruct);
 	ONEWIRE_DELAY(480);
 	
-	/* Release line and wait for 80us */
+	/* Release line and wait for 70us */
 	ONEWIRE_INPUT(OneWireStruct);
-	ONEWIRE_DELAY(60);
+	ONEWIRE_DELAY(70);
 	
 	/* Check bit value */
 	i = TM_GPIO_GetInputPinValue(OneWireStruct->GPIOx, OneWireStruct->GPIO_Pin);
 	
-	/* Delay for 420 us */
-	ONEWIRE_DELAY(420);
+	/* Delay for 410 us */
+	ONEWIRE_DELAY(410);
 	
 	/* Return value of presence pulse, 0 = OK, 1 = ERROR */
 	return i;
+}
+
+void TM_OneWire_WriteBit(TM_OneWire_t* OneWireStruct, uint8_t bit) {
+	if (bit) {
+		/* Set line low */
+		ONEWIRE_LOW(OneWireStruct);
+		ONEWIRE_OUTPUT(OneWireStruct);
+		ONEWIRE_DELAY(10);
+		
+		/* Bit high */
+		ONEWIRE_INPUT(OneWireStruct);
+		
+		/* Wait for 55 us and release the line */
+		ONEWIRE_DELAY(55);
+		ONEWIRE_INPUT(OneWireStruct);
+	} else {
+		/* Set line low */
+		ONEWIRE_LOW(OneWireStruct);
+		ONEWIRE_OUTPUT(OneWireStruct);
+		ONEWIRE_DELAY(65);
+		
+		/* Bit high */
+		ONEWIRE_INPUT(OneWireStruct);
+		
+		/* Wait for 5 us and release the line */
+		ONEWIRE_DELAY(5);
+		ONEWIRE_INPUT(OneWireStruct);
+	}
+
 }
 
 uint8_t TM_OneWire_ReadBit(TM_OneWire_t* OneWireStruct) {
@@ -58,11 +87,11 @@ uint8_t TM_OneWire_ReadBit(TM_OneWire_t* OneWireStruct) {
 	/* Line low */
 	ONEWIRE_LOW(OneWireStruct);
 	ONEWIRE_OUTPUT(OneWireStruct);
-	ONEWIRE_DELAY(1);
+	ONEWIRE_DELAY(3);
 	
 	/* Release line */
 	ONEWIRE_INPUT(OneWireStruct);
-	ONEWIRE_DELAY(14);
+	ONEWIRE_DELAY(10);
 	
 	/* Read line value */
 	if (TM_GPIO_GetInputPinValue(OneWireStruct->GPIOx, OneWireStruct->GPIO_Pin)) {
@@ -70,37 +99,11 @@ uint8_t TM_OneWire_ReadBit(TM_OneWire_t* OneWireStruct) {
 		bit = 1;
 	}
 	
-	/* Wait 45us to complete 60us period */
-	ONEWIRE_DELAY(45);
+	/* Wait 50us to complete 60us period */
+	ONEWIRE_DELAY(50);
 	
 	/* Return bit value */
 	return bit;
-}
-
-uint8_t TM_OneWire_ReadByte(TM_OneWire_t* OneWireStruct) {
-	uint8_t i = 8, byte = 0;
-	while (i--) {
-		byte >>= 1;
-		byte |= (TM_OneWire_ReadBit(OneWireStruct) << 7);
-	}
-	
-	return byte;
-}
-
-void TM_OneWire_WriteBit(TM_OneWire_t* OneWireStruct, uint8_t bit) {
-	/* Set line low */
-	ONEWIRE_LOW(OneWireStruct);
-	ONEWIRE_OUTPUT(OneWireStruct);
-	ONEWIRE_DELAY(1);
-	
-	/* If we want high bit */
-	if (bit) {
-		ONEWIRE_INPUT(OneWireStruct);
-	}
-	
-	/* Wait for 59 us and release the line */
-	ONEWIRE_DELAY(59);
-	ONEWIRE_INPUT(OneWireStruct);
 }
 
 void TM_OneWire_WriteByte(TM_OneWire_t* OneWireStruct, uint8_t byte) {
@@ -113,6 +116,15 @@ void TM_OneWire_WriteByte(TM_OneWire_t* OneWireStruct, uint8_t byte) {
 	}
 }
 
+uint8_t TM_OneWire_ReadByte(TM_OneWire_t* OneWireStruct) {
+	uint8_t i = 8, byte = 0;
+	while (i--) {
+		byte >>= 1;
+		byte |= (TM_OneWire_ReadBit(OneWireStruct) << 7);
+	}
+	
+	return byte;
+}
 
 uint8_t TM_OneWire_First(TM_OneWire_t* OneWireStruct) {
 	/* Reset search values */
@@ -121,7 +133,6 @@ uint8_t TM_OneWire_First(TM_OneWire_t* OneWireStruct) {
 	/* Start with searching */
 	return TM_OneWire_Search(OneWireStruct, ONEWIRE_CMD_SEARCHROM);
 }
-
 
 uint8_t TM_OneWire_Next(TM_OneWire_t* OneWireStruct) {
    /* Leave the search state alone */

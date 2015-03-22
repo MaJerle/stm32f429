@@ -35,12 +35,16 @@ int main(void) {
 	
 	LCD_Init();
 	
-	/* Turn on all leds */
-	TM_DISCO_LedOn(LED_ALL);
+	TM_SDRAM_Write16(0x1234, 0x321);
+	if (TM_SDRAM_Read16(0x1234) == 0x321) {	
+		TM_DISCO_LedOn(LED_GREEN);
+	} else  {	
+		TM_DISCO_LedOn(LED_RED);
+	}
 	
 	while (1) {
 		if (TM_DISCO_ButtonPressed()) {
-			LCD_Clear(0xF888);
+			LCD_Clear(0x6541);
 		}
 	}
 }

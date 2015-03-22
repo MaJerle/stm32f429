@@ -18,9 +18,9 @@
  */
 #include "tm_stm32f4_usb_hid_host.h"
 
+/* Private variables */
 extern USB_OTG_CORE_HANDLE				USB_OTG_Core;
 extern USBH_HOST						USB_Host;
-
 extern TM_USB_HIDHOST_Result_t 			TM_USB_HIDHOST_INT_Result;
 extern TM_USB_HIDHOST_Keyboard_t 		TM_USB_HIDHOST_INT_Keyboard;
 extern TM_USB_HIDHOST_Mouse_t 			TM_USB_HIDHOST_INT_Mouse;
@@ -89,19 +89,20 @@ TM_USB_HIDHOST_Result_t TM_USB_HIDHOST_ReadMouse(TM_USB_HIDHOST_Mouse_t* Mouse) 
 	}
 
 	/* Fill data */
-	Mouse->AbsoluteX = 		TM_USB_HIDHOST_INT_Mouse.AbsoluteX;
-	Mouse->AbsoluteY = 		TM_USB_HIDHOST_INT_Mouse.AbsoluteY;
-	Mouse->DiffX = 			TM_USB_HIDHOST_INT_Mouse.DiffX;
-	Mouse->DiffY = 			TM_USB_HIDHOST_INT_Mouse.DiffY;
-	Mouse->LeftButton = 	TM_USB_HIDHOST_INT_Mouse.LeftButton;
-	Mouse->MiddleButton = 	TM_USB_HIDHOST_INT_Mouse.MiddleButton;
-	Mouse->RightButton = 	TM_USB_HIDHOST_INT_Mouse.RightButton;
+	Mouse->AbsoluteX =    TM_USB_HIDHOST_INT_Mouse.AbsoluteX;
+	Mouse->AbsoluteY =    TM_USB_HIDHOST_INT_Mouse.AbsoluteY;
+	Mouse->DiffX =        TM_USB_HIDHOST_INT_Mouse.DiffX;
+	Mouse->DiffY =        TM_USB_HIDHOST_INT_Mouse.DiffY;
+	Mouse->LeftButton =   TM_USB_HIDHOST_INT_Mouse.LeftButton;
+	Mouse->MiddleButton = TM_USB_HIDHOST_INT_Mouse.MiddleButton;
+	Mouse->RightButton =  TM_USB_HIDHOST_INT_Mouse.RightButton;
 	
 	/* Reset internal data */
 	/* Difference from last call is 0 */
 	TM_USB_HIDHOST_INT_Mouse.DiffX = 0;
 	TM_USB_HIDHOST_INT_Mouse.DiffY = 0;
-	/* Buttons are not pressed anymore */
+	
+	/* Buttons are not pressed any more */
 #if USB_HIDHOST_REINITIALIZE_MOUSE_AFTER_READ > 0
 	TM_USB_HIDHOST_INT_Mouse.LeftButton = TM_USB_HIDHOST_Button_Released;
 	TM_USB_HIDHOST_INT_Mouse.MiddleButton = TM_USB_HIDHOST_Button_Released;

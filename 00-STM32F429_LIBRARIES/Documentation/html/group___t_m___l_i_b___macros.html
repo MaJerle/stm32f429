@@ -99,20 +99,193 @@ $(document).ready(function(){initNavTree('group___t_m___l_i_b___macros.html','')
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a>  </div>
   <div class="headertitle">
-<div class="title">TM_LIB_Macros<div class="ingroups"><a class="el" href="group___t_m___s_t_m32_f4xx___libraries.html">TM_STM32F4xx_Libraries</a> &raquo; <a class="el" href="group___t_m___l_i_b_n_a_m_e.html">TM_LIBNAME</a></div></div>  </div>
+<div class="title">TM_LIB_Macros<div class="ingroups"><a class="el" href="group___t_m___s_t_m32_f4xx___libraries.html">TM_STM32F4xx_Libraries</a> &raquo; <a class="el" href="group___t_m___h_c_s_r04.html">TM_HCSR04</a><a class="el" href="group___t_m___s_t_m32_f4xx___libraries.html">TM_STM32F4xx_Libraries</a> &raquo;  &#124; <a class="el" href="group___t_m___l_i_b_n_a_m_e.html">TM_LIBNAME</a><a class="el" href="group___t_m___s_t_m32_f4xx___libraries.html">TM_STM32F4xx_Libraries</a> &raquo;  &#124; <a class="el" href="group___t_m___m_p_u6050.html">TM_MPU6050</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>Library defines.  
+<p>Measure distance with HC-SR04 Ultrasonic distance sensor on STM32F4xx devices - <a href="http://stm32f4-discovery.com/2014/08/library-30-measure-distance-with-hc-sr04-and-stm32f4xx">http://stm32f4-discovery.com/2014/08/library-30-measure-distance-with-hc-sr04-and-stm32f4xx</a>.  
 <a href="#details">More...</a></p>
-<p>Library defines. </p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ga29cb25c98146ee4e84926c6217708634"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga29cb25c98146ee4e84926c6217708634"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HCSR04_TRIGGER_PORT</b>&#160;&#160;&#160;GPIOB</td></tr>
+<tr class="separator:ga29cb25c98146ee4e84926c6217708634"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga528ed4bcf450db7b92e45fd2c69706ad"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga528ed4bcf450db7b92e45fd2c69706ad"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HCSR04_TRIGGER_PIN</b>&#160;&#160;&#160;GPIO_PIN_2</td></tr>
+<tr class="separator:ga528ed4bcf450db7b92e45fd2c69706ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaadfc165d2c4fb9b39f33d763ea599ff4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gaadfc165d2c4fb9b39f33d763ea599ff4"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HCSR04_ECHO_PORT</b>&#160;&#160;&#160;GPIOB</td></tr>
+<tr class="separator:gaadfc165d2c4fb9b39f33d763ea599ff4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5cd0a01008b3aec2301a56bc1ad7f231"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga5cd0a01008b3aec2301a56bc1ad7f231"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HCSR04_ECHO_PIN</b>&#160;&#160;&#160;GPIO_PIN_3</td></tr>
+<tr class="separator:ga5cd0a01008b3aec2301a56bc1ad7f231"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4267e79d5a56d3227b3ca2d89aa985d7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga4267e79d5a56d3227b3ca2d89aa985d7"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HCSR04_TIMEOUT</b>&#160;&#160;&#160;1000000</td></tr>
+<tr class="separator:ga4267e79d5a56d3227b3ca2d89aa985d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae33eac1ef9fdb3b742391f8b1349ff6c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gae33eac1ef9fdb3b742391f8b1349ff6c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HCSR04_TRIGGER_LOW</b>&#160;&#160;&#160;<a class="el" href="group___t_m___g_p_i_o___functions.html#gaccceda87ce348c73b43780fdfed048d3">TM_GPIO_SetPinLow</a>(HCSR04_TRIGGER_PORT, HCSR04_TRIGGER_PIN)</td></tr>
+<tr class="separator:gae33eac1ef9fdb3b742391f8b1349ff6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3965afe61549ca0f8863badccacc358c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga3965afe61549ca0f8863badccacc358c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HCSR04_TRIGGER_HIGH</b>&#160;&#160;&#160;<a class="el" href="group___t_m___g_p_i_o___functions.html#gac5aa8fbc39ed67f47972097fb7c8d69d">TM_GPIO_SetPinHigh</a>(HCSR04_TRIGGER_PORT, HCSR04_TRIGGER_PIN)</td></tr>
+<tr class="separator:ga3965afe61549ca0f8863badccacc358c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacd89c8c81e5ca767396974b8ab863b50"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gacd89c8c81e5ca767396974b8ab863b50"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HCSR04_ECHO_CHECK</b>&#160;&#160;&#160;<a class="el" href="group___t_m___g_p_i_o___functions.html#gacd91a02149d1f1bc648a3fe06648460d">TM_GPIO_GetInputPinValue</a>(HCSR04_ECHO_PORT, HCSR04_ECHO_PIN)</td></tr>
+<tr class="separator:gacd89c8c81e5ca767396974b8ab863b50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac2f3c3d79b4b58c1c0685d55c8226725"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gac2f3c3d79b4b58c1c0685d55c8226725"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>HCSR04_NUMBER</b>&#160;&#160;&#160;((float)0.0171821)</td></tr>
+<tr class="separator:gac2f3c3d79b4b58c1c0685d55c8226725"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4b83084285385161eebf81f2de3b4c96"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga4b83084285385161eebf81f2de3b4c96"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_I2C</b>&#160;&#160;&#160;I2C3</td></tr>
+<tr class="separator:ga4b83084285385161eebf81f2de3b4c96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga548dad73028e499c64d699c0833893e2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga548dad73028e499c64d699c0833893e2"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_I2C_PINSPACK</b>&#160;&#160;&#160;<a class="el" href="group___t_m___i2_c___typedefs.html#gga147eaedbc759821741191431f2d3cc1daa21b1fc3f936f1b309d67a2c5df6930f">TM_I2C_PinsPack_1</a></td></tr>
+<tr class="separator:ga548dad73028e499c64d699c0833893e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga66d788e971bd1019c3e1a39961974e41"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga66d788e971bd1019c3e1a39961974e41"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_I2C_CLOCK</b>&#160;&#160;&#160;400000</td></tr>
+<tr class="separator:ga66d788e971bd1019c3e1a39961974e41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga385c3cd85a9888c6c01c1cc1c4ec88ed"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga385c3cd85a9888c6c01c1cc1c4ec88ed"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_I2C_ADDR</b>&#160;&#160;&#160;0xD0</td></tr>
+<tr class="separator:ga385c3cd85a9888c6c01c1cc1c4ec88ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1de390da371b9193740d43bf523b9791"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga1de390da371b9193740d43bf523b9791"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_I_AM</b>&#160;&#160;&#160;0x68</td></tr>
+<tr class="separator:ga1de390da371b9193740d43bf523b9791"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8dee0f8b06ed77c3cf936bcfee7b0c4f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga8dee0f8b06ed77c3cf936bcfee7b0c4f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_AUX_VDDIO</b>&#160;&#160;&#160;0x01</td></tr>
+<tr class="separator:ga8dee0f8b06ed77c3cf936bcfee7b0c4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0933054fd5f61db997c798162dbab13a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga0933054fd5f61db997c798162dbab13a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_SMPLRT_DIV</b>&#160;&#160;&#160;0x19</td></tr>
+<tr class="separator:ga0933054fd5f61db997c798162dbab13a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafe7e388f8ddcfca4d987a53939fd93a8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gafe7e388f8ddcfca4d987a53939fd93a8"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_CONFIG</b>&#160;&#160;&#160;0x1A</td></tr>
+<tr class="separator:gafe7e388f8ddcfca4d987a53939fd93a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga463dbedb5bf492ce318b1f9fdac355fc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga463dbedb5bf492ce318b1f9fdac355fc"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_GYRO_CONFIG</b>&#160;&#160;&#160;0x1B</td></tr>
+<tr class="separator:ga463dbedb5bf492ce318b1f9fdac355fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5647db07cb598d0c61f1a60bfa941496"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga5647db07cb598d0c61f1a60bfa941496"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_ACCEL_CONFIG</b>&#160;&#160;&#160;0x1C</td></tr>
+<tr class="separator:ga5647db07cb598d0c61f1a60bfa941496"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7d1d6df31e611a43d5f50fd15a52934b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga7d1d6df31e611a43d5f50fd15a52934b"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_MOTION_THRESH</b>&#160;&#160;&#160;0x1F</td></tr>
+<tr class="separator:ga7d1d6df31e611a43d5f50fd15a52934b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga390f56a2945c75412b28196c8c9469eb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga390f56a2945c75412b28196c8c9469eb"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_INT_PIN_CFG</b>&#160;&#160;&#160;0x37</td></tr>
+<tr class="separator:ga390f56a2945c75412b28196c8c9469eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaeb572cbf13320bb37483e564752f3207"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gaeb572cbf13320bb37483e564752f3207"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_INT_ENABLE</b>&#160;&#160;&#160;0x38</td></tr>
+<tr class="separator:gaeb572cbf13320bb37483e564752f3207"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1395da6be5bae31415587ad993925b87"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga1395da6be5bae31415587ad993925b87"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_INT_STATUS</b>&#160;&#160;&#160;0x3A</td></tr>
+<tr class="separator:ga1395da6be5bae31415587ad993925b87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga444ee693cac934a19d2cd4821f4dd7ea"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga444ee693cac934a19d2cd4821f4dd7ea"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_ACCEL_XOUT_H</b>&#160;&#160;&#160;0x3B</td></tr>
+<tr class="separator:ga444ee693cac934a19d2cd4821f4dd7ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab4c170bf5bf1235c2f8d91795135fa26"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gab4c170bf5bf1235c2f8d91795135fa26"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_ACCEL_XOUT_L</b>&#160;&#160;&#160;0x3C</td></tr>
+<tr class="separator:gab4c170bf5bf1235c2f8d91795135fa26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac57018ea8f33158221301dec773649b9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gac57018ea8f33158221301dec773649b9"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_ACCEL_YOUT_H</b>&#160;&#160;&#160;0x3D</td></tr>
+<tr class="separator:gac57018ea8f33158221301dec773649b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga77999681843f45f47c04808954a07f78"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga77999681843f45f47c04808954a07f78"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_ACCEL_YOUT_L</b>&#160;&#160;&#160;0x3E</td></tr>
+<tr class="separator:ga77999681843f45f47c04808954a07f78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabc99b5b4c6852f2c15f62813f346f7a8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gabc99b5b4c6852f2c15f62813f346f7a8"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_ACCEL_ZOUT_H</b>&#160;&#160;&#160;0x3F</td></tr>
+<tr class="separator:gabc99b5b4c6852f2c15f62813f346f7a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac1ecf5b8bfabd6cdfdd4a5e71c80cb1b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gac1ecf5b8bfabd6cdfdd4a5e71c80cb1b"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_ACCEL_ZOUT_L</b>&#160;&#160;&#160;0x40</td></tr>
+<tr class="separator:gac1ecf5b8bfabd6cdfdd4a5e71c80cb1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7d1feb7c396a53aaa60d5fca9f268b44"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga7d1feb7c396a53aaa60d5fca9f268b44"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_TEMP_OUT_H</b>&#160;&#160;&#160;0x41</td></tr>
+<tr class="separator:ga7d1feb7c396a53aaa60d5fca9f268b44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab50010b1ce73fdd66fac4d3e1cf00f3a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gab50010b1ce73fdd66fac4d3e1cf00f3a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_TEMP_OUT_L</b>&#160;&#160;&#160;0x42</td></tr>
+<tr class="separator:gab50010b1ce73fdd66fac4d3e1cf00f3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa5ec6d5e98fd95dc2053f47c23beb8f9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gaa5ec6d5e98fd95dc2053f47c23beb8f9"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_GYRO_XOUT_H</b>&#160;&#160;&#160;0x43</td></tr>
+<tr class="separator:gaa5ec6d5e98fd95dc2053f47c23beb8f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga71f26118f980e7fb5cce8cf91e0e7b6e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga71f26118f980e7fb5cce8cf91e0e7b6e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_GYRO_XOUT_L</b>&#160;&#160;&#160;0x44</td></tr>
+<tr class="separator:ga71f26118f980e7fb5cce8cf91e0e7b6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac5ecff3bc01019b64e7edadcb308c69b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gac5ecff3bc01019b64e7edadcb308c69b"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_GYRO_YOUT_H</b>&#160;&#160;&#160;0x45</td></tr>
+<tr class="separator:gac5ecff3bc01019b64e7edadcb308c69b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga94f3fc9cdce6526b4075c42db2598c92"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga94f3fc9cdce6526b4075c42db2598c92"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_GYRO_YOUT_L</b>&#160;&#160;&#160;0x46</td></tr>
+<tr class="separator:ga94f3fc9cdce6526b4075c42db2598c92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab63cef7bb790f67fc89791523d69d7be"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gab63cef7bb790f67fc89791523d69d7be"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_GYRO_ZOUT_H</b>&#160;&#160;&#160;0x47</td></tr>
+<tr class="separator:gab63cef7bb790f67fc89791523d69d7be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga58c2edbdf40f964cf6cdb0c699e88d78"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga58c2edbdf40f964cf6cdb0c699e88d78"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_GYRO_ZOUT_L</b>&#160;&#160;&#160;0x48</td></tr>
+<tr class="separator:ga58c2edbdf40f964cf6cdb0c699e88d78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaecb9567a756da57e1be0721718c9a998"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gaecb9567a756da57e1be0721718c9a998"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_MOT_DETECT_STATUS</b>&#160;&#160;&#160;0x61</td></tr>
+<tr class="separator:gaecb9567a756da57e1be0721718c9a998"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga35c0049749b3fca73ed11aac4182b0e7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga35c0049749b3fca73ed11aac4182b0e7"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_SIGNAL_PATH_RESET</b>&#160;&#160;&#160;0x68</td></tr>
+<tr class="separator:ga35c0049749b3fca73ed11aac4182b0e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7e0cd5576108f061107bd57572f79820"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga7e0cd5576108f061107bd57572f79820"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_MOT_DETECT_CTRL</b>&#160;&#160;&#160;0x69</td></tr>
+<tr class="separator:ga7e0cd5576108f061107bd57572f79820"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga939eb8339d63a2e6dc64b356c5198153"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga939eb8339d63a2e6dc64b356c5198153"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_USER_CTRL</b>&#160;&#160;&#160;0x6A</td></tr>
+<tr class="separator:ga939eb8339d63a2e6dc64b356c5198153"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1308d38ea177e0f08f6f4bc7280b42b8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga1308d38ea177e0f08f6f4bc7280b42b8"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_PWR_MGMT_1</b>&#160;&#160;&#160;0x6B</td></tr>
+<tr class="separator:ga1308d38ea177e0f08f6f4bc7280b42b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga56c229bfee1c52bde4a3b3f3efcb5678"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga56c229bfee1c52bde4a3b3f3efcb5678"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_PWR_MGMT_2</b>&#160;&#160;&#160;0x6C</td></tr>
+<tr class="separator:ga56c229bfee1c52bde4a3b3f3efcb5678"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2d284d65ae86ed654da874612e0fd104"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga2d284d65ae86ed654da874612e0fd104"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_FIFO_COUNTH</b>&#160;&#160;&#160;0x72</td></tr>
+<tr class="separator:ga2d284d65ae86ed654da874612e0fd104"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacdbaecaa52e4949170ecda10beb27d75"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gacdbaecaa52e4949170ecda10beb27d75"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_FIFO_COUNTL</b>&#160;&#160;&#160;0x73</td></tr>
+<tr class="separator:gacdbaecaa52e4949170ecda10beb27d75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4f16e585937f6cd4875610942c7865e9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga4f16e585937f6cd4875610942c7865e9"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_FIFO_R_W</b>&#160;&#160;&#160;0x74</td></tr>
+<tr class="separator:ga4f16e585937f6cd4875610942c7865e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaaec612b81685da5fe63800de760c618e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gaaec612b81685da5fe63800de760c618e"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_WHO_AM_I</b>&#160;&#160;&#160;0x75</td></tr>
+<tr class="separator:gaaec612b81685da5fe63800de760c618e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0c37fc112539bcdbe9faa322935b02d7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga0c37fc112539bcdbe9faa322935b02d7"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_GYRO_SENS_250</b>&#160;&#160;&#160;((float) 131)</td></tr>
+<tr class="separator:ga0c37fc112539bcdbe9faa322935b02d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6ff225c6496521a87d4be6b4bdb9793a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga6ff225c6496521a87d4be6b4bdb9793a"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_GYRO_SENS_500</b>&#160;&#160;&#160;((float) 65.5)</td></tr>
+<tr class="separator:ga6ff225c6496521a87d4be6b4bdb9793a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2d961248a2df52bea565360c831a35df"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga2d961248a2df52bea565360c831a35df"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_GYRO_SENS_1000</b>&#160;&#160;&#160;((float) 32.8)</td></tr>
+<tr class="separator:ga2d961248a2df52bea565360c831a35df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0ab0b77e3a746aba5fe0c2184fd3e061"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga0ab0b77e3a746aba5fe0c2184fd3e061"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_GYRO_SENS_2000</b>&#160;&#160;&#160;((float) 16.4)</td></tr>
+<tr class="separator:ga0ab0b77e3a746aba5fe0c2184fd3e061"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf674d4688f5ebf099e47b84bfca1228f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gaf674d4688f5ebf099e47b84bfca1228f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_ACCE_SENS_2</b>&#160;&#160;&#160;((float) 16384)</td></tr>
+<tr class="separator:gaf674d4688f5ebf099e47b84bfca1228f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad8635e352384e786450525729b6758ad"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gad8635e352384e786450525729b6758ad"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_ACCE_SENS_4</b>&#160;&#160;&#160;((float) 8192)</td></tr>
+<tr class="separator:gad8635e352384e786450525729b6758ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga419c317a6808751d45d89849186f382f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga419c317a6808751d45d89849186f382f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_ACCE_SENS_8</b>&#160;&#160;&#160;((float) 4096)</td></tr>
+<tr class="separator:ga419c317a6808751d45d89849186f382f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab62524235cb126f05b65a17320bd2693"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gab62524235cb126f05b65a17320bd2693"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>MPU6050_ACCE_SENS_16</b>&#160;&#160;&#160;((float) 2048)</td></tr>
+<tr class="separator:gab62524235cb126f05b65a17320bd2693"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<p>Measure distance with HC-SR04 Ultrasonic distance sensor on STM32F4xx devices - <a href="http://stm32f4-discovery.com/2014/08/library-30-measure-distance-with-hc-sr04-and-stm32f4xx">http://stm32f4-discovery.com/2014/08/library-30-measure-distance-with-hc-sr04-and-stm32f4xx</a>. </p>
+<p>Library defines.</p>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sun Mar 22 2015 12:13:40 for TM STM32F4xx Libraries by
+    <li class="footer">Generated on Sun Mar 22 2015 23:28:05 for TM STM32F4xx Libraries by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

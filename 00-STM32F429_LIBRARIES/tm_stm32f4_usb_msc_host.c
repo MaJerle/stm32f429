@@ -18,11 +18,11 @@
  */
 #include "tm_stm32f4_usb_msc_host.h"
 
-USB_OTG_CORE_HANDLE			USB_OTG_Core;
-USBH_HOST					USB_Host;
-
-uint8_t						TM_USB_MSCHOST_INT_Initialized = 0;
-TM_USB_MSCHOST_Result_t 	TM_USB_MSCHOST_INT_Result;
+/* Private variables */
+USB_OTG_CORE_HANDLE     USB_OTG_Core;
+USBH_HOST               USB_Host;
+uint8_t                 TM_USB_MSCHOST_INT_Initialized = 0;
+TM_USB_MSCHOST_Result_t TM_USB_MSCHOST_INT_Result;
 
 TM_USB_MSCHOST_Result_t TM_USB_MSCHOST_Init() {
 	/* Set default */

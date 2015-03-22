@@ -1,40 +1,31 @@
 /**
- * 	MPU6050 library for STM32F4xx
- *
- *	@author 	Tilen Majerle
- *	@email		tilen@majerle.eu
- *	@website	http://stm32f4-discovery.com
- *	@link		http://stm32f4-discovery.com/2014/10/library-43-mpu-6050-6-axes-gyro-accelerometer-stm32f4/
- *	@version 	v1.0
- *	@ide		Keil uVision
- *	@license	GNU GPL v3
+ * @author  Tilen Majerle
+ * @email   tilen@majerle.eu
+ * @website http://stm32f4-discovery.com
+ * @link    http://stm32f4-discovery.com/2014/10/library-43-mpu-6050-6-axes-gyro-accelerometer-stm32f4/
+ * @version v1.0
+ * @ide     Keil uVision
+ * @license GNU GPL v3
+ * @brief   MPU6050 library for STM32F4xx
  *	
- * |----------------------------------------------------------------------
- * | Copyright (C) Tilen Majerle, 2014
- * | 
- * | This program is free software: you can redistribute it and/or modify
- * | it under the terms of the GNU General Public License as published by
- * | the Free Software Foundation, either version 3 of the License, or
- * | any later version.
- * |  
- * | This program is distributed in the hope that it will be useful,
- * | but WITHOUT ANY WARRANTY; without even the implied warranty of
- * | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * | GNU General Public License for more details.
- * | 
- * | You should have received a copy of the GNU General Public License
- * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * |----------------------------------------------------------------------
- *
- * Default pinout
- * 
- * MPU6050		STM32F4xx	Descrption
- * 
- *  SCL			PA8			Clock line for I2C
- *  SDA			PC9			Data line for I2C
- *	VCC			3.3V
- *	GND			GND
- *	AD0			-			If pin is low, address is 0xD0, if pin is high, the address is 0xD2
+@verbatim
+   ----------------------------------------------------------------------
+    Copyright (C) Tilen Majerle, 2015
+    
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    any later version.
+     
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+   ----------------------------------------------------------------------
+@endverbatim
  */
 #ifndef TM_MPU6050_H
 #define TM_MPU6050_H 100
@@ -45,23 +36,58 @@ extern C {
 #endif
 
 /**
- * Library dependencies
- * - STM32F4xx
- * - STM32F4xx RCC
- * - STM32F4xx GPIO
- * - STM32F4xx I2C
- * - defines.h
- * - TM I2C
+ * @addtogroup TM_STM32F4xx_Libraries
+ * @{
  */
+
 /**
- * Includes
+ * @defgroup TM_MPU6050
+ * @brief    MPU6050 library for STM32F4xx - http://stm32f4-discovery.com/2014/10/library-43-mpu-6050-6-axes-gyro-accelerometer-stm32f4/
+ * @{
+ *
+ * \par Default pinout
+ * 
+@verbatim
+MPU6050		STM32F4xx	Descrption
+ 
+SCL			PA8			Clock line for I2C
+SDA			PC9			Data line for I2C
+VCC			3.3V
+GND			GND
+AD0			-			If pin is low, I2C address is 0xD0, if pin is high, the address is 0xD2
+@endverbatim
+ *
+ * \par Changelog
+ *
+@verbatim
+ Version 1.0
+  - First release
+@endverbatim
+ *
+ * \par Dependencies
+ *
+@verbatim
+ - STM32F4xx
+ - STM32F4xx RCC
+ - STM32F4xx GPIO
+ - STM32F4xx I2C
+ - defines.h
+ - TM I2C
+@endverbatim
  */
+
 #include "stm32f4xx.h"
 #include "stm32f4xx_rcc.h"
 #include "stm32f4xx_gpio.h"
 #include "stm32f4xx_i2c.h"
 #include "defines.h"
 #include "tm_stm32f4_i2c.h"
+
+/**
+ * @defgroup TM_LIB_Macros
+ * @brief    Library defines
+ * @{
+ */
 
 /* Default I2C used */
 #ifndef MPU6050_I2C
@@ -128,185 +154,145 @@ extern C {
 #define MPU6050_ACCE_SENS_16		((float) 2048)
 
 /**
- * MPU6050 can have 2 different slave addresses, depends on it's input AD0 pin
- * This feature allows you to use 2 different sensors with this library at the same time
- * 
- * Parameters:
- * 	- TM_MPU6050_Device_0:
- * 		AD0 pin is set to low
- * 	- TM_MPU6050_Device_1:
- * 		AD0 pin is set to high
+ * @}
+ */
+ 
+/**
+ * @defgroup TM_MPU6050_Typedefs
+ * @brief    Library Typedefs
+ * @{
+ */
+
+/**
+ * @brief  MPU6050 can have 2 different slave addresses, depends on it's input AD0 pin
+ *         This feature allows you to use 2 different sensors with this library at the same time
  */
 typedef enum {
-	TM_MPU6050_Device_0 = 0,
-	TM_MPU6050_Device_1 = 0x02
+	TM_MPU6050_Device_0 = 0,   /*!< AD0 pin is set to low */
+	TM_MPU6050_Device_1 = 0x02 /*!< AD0 pin is set to high */
 } TM_MPU6050_Device_t;
 
 /**
- * Result enumeration
- * 
- * ParameterS:
- * 	- TM_MPU6050_Result_Ok:
- * 		Everything OK
- * 	- TM_MPU6050_Result_DeviceNotConnected:
- * 		There is no device with valid slave address
- * 	- TM_MPU6050_Result_DeviceInvalid:
- * 		Connected device with address is not MPU6050
+ * @brief  MPU6050 result enumeration	
  */
 typedef enum {
-	TM_MPU6050_Result_Ok = 0x00,
-	TM_MPU6050_Result_DeviceNotConnected,
-	TM_MPU6050_Result_DeviceInvalid
+	TM_MPU6050_Result_Ok = 0x00,          /*!< Everything OK */
+	TM_MPU6050_Result_DeviceNotConnected, /*!< There is no device with valid slave address */
+	TM_MPU6050_Result_DeviceInvalid       /*!< Connected device with address is not MPU6050 */
 } TM_MPU6050_Result_t;
 
 /**
- * Set parameters for accelerometer range
- * 
- * Parameters:
- * 	- TM_MPU6050_Accelerometer_2G:
- * 		Range is +- 2G
- * 	- TM_MPU6050_Accelerometer_4G:
- * 		Range is +- 4G
- * 	- TM_MPU6050_Accelerometer_8G:
- * 		Range is +- 8G
- * 	- TM_MPU6050_Accelerometer_16G:
- * 		Range is +- 16G
+ * @brief  Parameters for accelerometer range
  */
 typedef enum {
-	TM_MPU6050_Accelerometer_2G = 0x00,
-	TM_MPU6050_Accelerometer_4G = 0x01,
-	TM_MPU6050_Accelerometer_8G = 0x02,
-	TM_MPU6050_Accelerometer_16G = 0x03
+	TM_MPU6050_Accelerometer_2G = 0x00, /*!< Range is +- 2G */
+	TM_MPU6050_Accelerometer_4G = 0x01, /*!< Range is +- 4G */
+	TM_MPU6050_Accelerometer_8G = 0x02, /*!< Range is +- 8G */
+	TM_MPU6050_Accelerometer_16G = 0x03 /*!< Range is +- 16G */
 } TM_MPU6050_Accelerometer_t;
 
 /**
- * Set parameters for gyroscope range
- * 
- * Parameters:
- * 	- TM_MPU6050_Gyroscope_250s:
- * 		Range is +- 250°/s
- * 	- TM_MPU6050_Gyroscope_500s:
- * 		Range is +- 500°/s
- * 	- TM_MPU6050_Gyroscope_1000s:
- * 		Range is +- 1000°/s
- * 	- TM_MPU6050_Gyroscope_2000s:
- * 		Range is +- 20000°/s
+ * @brief  Parameters for gyroscope range
  */
 typedef enum {
-	TM_MPU6050_Gyroscope_250s = 0x00,
-	TM_MPU6050_Gyroscope_500s = 0x01,
-	TM_MPU6050_Gyroscope_1000s = 0x02,
-	TM_MPU6050_Gyroscope_2000s = 0x03
+	TM_MPU6050_Gyroscope_250s = 0x00,  /*!< Range is +- 250 degrees/s */
+	TM_MPU6050_Gyroscope_500s = 0x01,  /*!< Range is +- 500 degrees/s */
+	TM_MPU6050_Gyroscope_1000s = 0x02, /*!< Range is +- 1000 degrees/s */
+	TM_MPU6050_Gyroscope_2000s = 0x03  /*!< Range is +- 2000 degrees/s */
 } TM_MPU6050_Gyroscope_t;
 
 /**
- * Main MPU6050 struct
- * 
- * Parameters:
- * 	- uint8_t Address:
- * 		I2C address of device
- * 		Only for private use
- * 	- float Gyro_Mult:
- * 		Gyroscope corrector from raw data to "degrees/s"
- *		Only for private use
- * 	- float Acce_Mult:
- * 		Accelerometer corrector from raw data to "g"
- *		Only for private use
- *
- * 	- int16_t Accelerometer_X:
- * 		Accelerometer value X axis
- * 	- int16_t Accelerometer_Y:
- * 		Accelerometer value Y axis
- * 	- int16_t Accelerometer_Z:
- * 		Accelerometer value Z axis
- * 	- int16_t Gyroscope_X:
- * 		Gyroscope value X axis
- * 	- int16_t Gyroscope_Y:
- * 		Gyroscope value Y axis
- * 	- int16_t Gyroscope_Z:
- * 		Gyroscope value Z axis
- * 	- float Temperature:
- * 		Temperature in degrees
+ * @brief  Main MPU6050 structure
  */
 typedef struct {
 	/* Private */
-	uint8_t Address;
-	float Gyro_Mult;
-	float Acce_Mult;
+	uint8_t Address;         /*!< I2C address of device. Only for private use */
+	float Gyro_Mult;         /*!< Gyroscope corrector from raw data to "degrees/s". Only for private use */
+	float Acce_Mult;         /*!< Accelerometer corrector from raw data to "g". Only for private use */
 	/* Public */
-	int16_t Accelerometer_X;
-	int16_t Accelerometer_Y;
-	int16_t Accelerometer_Z;
-	int16_t Gyroscope_X;
-	int16_t Gyroscope_Y;
-	int16_t Gyroscope_Z;
-	float Temperature;
+	int16_t Accelerometer_X; /*!< Accelerometer value X axis */
+	int16_t Accelerometer_Y; /*!< Accelerometer value Y axis */
+	int16_t Accelerometer_Z; /*!< Accelerometer value Z axis */
+	int16_t Gyroscope_X;     /*!< Gyroscope value X axis */
+	int16_t Gyroscope_Y;     /*!< Gyroscope value Y axis */
+	int16_t Gyroscope_Z;     /*!< Gyroscope value Z axis */
+	float Temperature;       /*!< Temperature in degrees */
 } TM_MPU6050_t;
 
+/**
+ * @}
+ */
 
 /**
- * Initialize MPU6050
- * 
- * Parameters:
- * 	- TM_MPU6050_t* DataStruct:
- * 		Pointer to TM_MPU6050_t empty working struct
- * 	- TM_MPU6050_Device_t DeviceNumber:
- * 		Device number. MPU6050 has one pin, AD0 which can be used to set address of device.
- * 		This feature allows you to use 2 different sensors on the same board with same library.
- * 		If you set AD0 pin to low, then this parameter should be TM_MPU6050_Device_0,
- * 		but if AD0 pin is high, then you should use TM_MPU6050_Device_1
- * 	- TM_MPU6050_Accelerometer_t AccelerometerSensitivity:
- * 		Set accelerometer sensitivity
- * 	- TM_MPU6050_Gyroscope_t GyroscopeSensitivity:
- * 		Set gyroscope sensitivity
- * 
- * Returns TM_MPU6050_Result_Ok if everything is OK
+ * @defgroup TM_MPU6050_Functions
+ * @brief    Library Functions
+ * @{
  */
-extern TM_MPU6050_Result_t TM_MPU6050_Init(TM_MPU6050_t* DataStruct, TM_MPU6050_Device_t DeviceNumber, TM_MPU6050_Accelerometer_t AccelerometerSensitivity, TM_MPU6050_Gyroscope_t GyroscopeSensitivity);
 
 /**
- * Read accelerometer data from sensor
- * 
- * Parameters:
- * 	- TM_MPU6050_t* DataStruct:
- * 		Pointer to TM_MPU6050_t struct to store accelerometer data
- * 
- * Returns TM_MPU6050_Result_Ok if everything is OK
+ * @brief  Initializes MPU6050 and I2C peripheral
+ * @param  *DataStruct: Pointer to empty @ref TM_MPU6050_t structure
+ * @param   DeviceNumber: MPU6050 has one pin, AD0 which can be used to set address of device.
+ *          This feature allows you to use 2 different sensors on the same board with same library.
+ *          If you set AD0 pin to low, then this parameter should be TM_MPU6050_Device_0,
+ *          but if AD0 pin is high, then you should use TM_MPU6050_Device_1
+ *          
+ *          Parameter can be a value of @ref TM_MPU6050_Device_t enumeration
+ * @param  AccelerometerSensitivity: Set accelerometer sensitivity. This parameter can be a value of @ref TM_MPU6050_Accelerometer_t enumeration
+ * @param  GyroscopeSensitivity: Set gyroscope sensitivity. This parameter can be a value of @ref TM_MPU6050_Gyroscope_t enumeration
+ * @retval Status:
+ *            - TM_MPU6050_Result_t: Everything OK
+ *            - Other member: in other cases
  */
-extern TM_MPU6050_Result_t TM_MPU6050_ReadAccelerometer(TM_MPU6050_t* DataStruct);
+TM_MPU6050_Result_t TM_MPU6050_Init(TM_MPU6050_t* DataStruct, TM_MPU6050_Device_t DeviceNumber, TM_MPU6050_Accelerometer_t AccelerometerSensitivity, TM_MPU6050_Gyroscope_t GyroscopeSensitivity);
 
 /**
- * Read gyroscope data from sensor
- * 
- * Parameters:
- * 	- TM_MPU6050_t* DataStruct:
- * 		Pointer to TM_MPU6050_t struct to store gyroscope data
- * 
- * Returns TM_MPU6050_Result_Ok if everything is OK
+ * @brief  Reads accelerometer data from sensor
+ * @param  *DataStruct: Pointer to @ref TM_MPU6050_t structure to store data to
+ * @retval Member of @ref TM_MPU6050_Result_t:
+ *            - TM_MPU6050_Result_Ok: everything is OK
+ *            - Other: in other cases
  */
-extern TM_MPU6050_Result_t TM_MPU6050_ReadGyroscope(TM_MPU6050_t* DataStruct);
+TM_MPU6050_Result_t TM_MPU6050_ReadAccelerometer(TM_MPU6050_t* DataStruct);
 
 /**
- * Read temperature data from sensor
- * 
- * Parameters:
- * 	- TM_MPU6050_t* DataStruct:
- * 		Pointer to TM_MPU6050_t struct to store temperature data
- * 
- * Returns TM_MPU6050_Result_Ok if everything is OK
+ * @brief  Reads gyroscope data from sensor
+ * @param  *DataStruct: Pointer to @ref TM_MPU6050_t structure to store data to
+ * @retval Member of @ref TM_MPU6050_Result_t:
+ *            - TM_MPU6050_Result_Ok: everything is OK
+ *            - Other: in other cases
  */
-extern TM_MPU6050_Result_t TM_MPU6050_ReadTemperature(TM_MPU6050_t* DataStruct);
+TM_MPU6050_Result_t TM_MPU6050_ReadGyroscope(TM_MPU6050_t* DataStruct);
 
 /**
- * Read accelerometer, gyrscope and temperature data from sensor
- * 
- * Parameters:
- * 	- TM_MPU6050_t* DataStruct:
- * 		Pointer to TM_MPU6050_t struct to store data
- * 
- * Returns TM_MPU6050_Result_Ok if everything is OK
+ * @brief  Reads temperature data from sensor
+ * @param  *DataStruct: Pointer to @ref TM_MPU6050_t structure to store data to
+ * @retval Member of @ref TM_MPU6050_Result_t:
+ *            - TM_MPU6050_Result_Ok: everything is OK
+ *            - Other: in other cases
  */
-extern TM_MPU6050_Result_t TM_MPU6050_ReadAll(TM_MPU6050_t* DataStruct);
+TM_MPU6050_Result_t TM_MPU6050_ReadTemperature(TM_MPU6050_t* DataStruct);
+
+/**
+ * @brief  Reads accelerometer, gyroscope and temperature data from sensor
+ * @param  *DataStruct: Pointer to @ref TM_MPU6050_t structure to store data to
+ * @retval Member of @ref TM_MPU6050_Result_t:
+ *            - TM_MPU6050_Result_Ok: everything is OK
+ *            - Other: in other cases
+ */
+TM_MPU6050_Result_t TM_MPU6050_ReadAll(TM_MPU6050_t* DataStruct);
+
+/**
+ * @}
+ */
+ 
+/**
+ * @}
+ */
+ 
+/**
+ * @}
+ */
 
 /* C++ detection */
 #ifdef __cplusplus

@@ -36,7 +36,7 @@
 
 /**
  * @defgroup TM_HD44780
- * @brief    HD44780 LCD driver library for STM32F4xx
+ * @brief    HD44780 LCD driver library for STM32F4xx - http://stm32f4-discovery.com/2014/06/library-16-interfacing-hd44780-lcd-controller-with-stm32f4/
  * @{
  *
  *	It also supports all HD44780 compatible LCD drivers.
