@@ -127,7 +127,7 @@ Modules</h2></td></tr>
 <dl class="section user"><dt>USART receive interrupt handlers</dt><dd></dd></dl>
 <p>Every USART channel has it's own receive interrupt which stores incoming data into cyclic buffer. If you want to use your own receive handler, then you have to open defines.h files and set a define. </p><pre class="fragment">//Use custom IRQ Receive handler
 //Change X with possible U(S)ARTs: USART1, USART2, USART3, UART4, UART5, USART6, UART7, UART8
-//#define TM_X_USE_CUSTOM_IRQ
+#define TM_X_USE_CUSTOM_IRQ
 </pre><p> After you set define, you have to create a function, which will handle custom request </p><pre class="fragment">//Change X with possible U(S)ARTs: USART1, USART2, USART3, UART4, UART5, USART6, UART7, UART8
 //Parameter c is a received character
 void TM_X_ReceiveHandler(uint8_t c) {
@@ -176,7 +176,11 @@ UART8        |PE1    PE0     |-      -       |-      -
 //Set USART datasize
 #define TM_X_WORD_LENGTH                USART_WordLength_8b
 </pre><dl class="section user"><dt>Changelog</dt><dd></dd></dl>
-<pre class="fragment"> Version 2.3.1
+<pre class="fragment"> Version 2.3.2
+   - March 21, 2015
+   - Code optimizations
+   
+ Version 2.3.2
    - March 17, 2015
    - Added support for Doxygen
    
@@ -217,7 +221,7 @@ UART8        |PE1    PE0     |-      -       |-      -
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Fri Mar 20 2015 17:15:33 for TM STM32F4xx Libraries by
+    <li class="footer">Generated on Sun Mar 22 2015 10:43:55 for TM STM32F4xx Libraries by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

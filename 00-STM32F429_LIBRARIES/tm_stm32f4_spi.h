@@ -3,7 +3,7 @@
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
  * @link    http://stm32f4-discovery.com/2014/04/library-05-spi-for-stm32f4xx/
- * @version v1.8
+ * @version v1.9
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   SPI library for STM32F4xx
@@ -27,7 +27,7 @@
 @endverbatim
  */
 #ifndef TM_SPI_H
-#define TM_SPI_H 180
+#define TM_SPI_H 190
 
 /* C++ detection */
 #ifdef __cplusplus
@@ -41,7 +41,7 @@ extern C {
 
 /**
  * @defgroup TM_SPI
- * @brief    SPI library for STM32F4xx
+ * @brief    SPI library for STM32F4xx - http://stm32f4-discovery.com/2014/04/library-05-spi-for-stm32f4xx/
  * @{
  *
  * It supports all 6 SPIs in master with 3 Lines Full Duplex mode
@@ -95,6 +95,10 @@ SPI6    |PG14   PG12    PG13    |
  * \par Changelog
  *
 @verbatim
+ Version 1.9
+  - March 21, 2015
+  - SPI Send BUG fixed
+  
  Version 1.8
   - March 10, 2015
   - Updated to be mode independent of STD/HAL drivers
@@ -317,6 +321,11 @@ typedef enum {
 #define TM_SPI6_MODE		TM_SPI_Mode_0
 #endif
 //----- SPI6 options end -------
+
+/**
+ * @brief  SPI wait till end
+ */
+#define SPI_WAIT(SPix)      while (((SPIx)->SR & (SPI_SR_TXE | SPI_SR_RXNE)) == 0 || ((SPIx)->SR & SPI_SR_BSY))
 
 /**
  * @}

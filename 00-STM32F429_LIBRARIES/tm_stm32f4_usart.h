@@ -3,7 +3,7 @@
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
  * @link    http://stm32f4-discovery.com/2014/04/library-04-connect-stm32f429-discovery-to-computer-with-usart/
- * @version v2.3
+ * @version v2.3.2
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   USART Library for STM32F4 with receive interrupt
@@ -28,7 +28,7 @@
 @endverbatim
  */
 #ifndef TM_USART_H
-#define TM_USART_H 230
+#define TM_USART_H 232
 /**
  * @addtogroup TM_STM32F4xx_Libraries
  * @{
@@ -48,7 +48,7 @@
 @verbatim
 //Use custom IRQ Receive handler
 //Change X with possible U(S)ARTs: USART1, USART2, USART3, UART4, UART5, USART6, UART7, UART8
-//#define TM_X_USE_CUSTOM_IRQ
+#define TM_X_USE_CUSTOM_IRQ
 @endverbatim
  * After you set define, you have to create a function, which will handle custom request
 @verbatim
@@ -132,7 +132,11 @@ UART8        |PE1    PE0     |-      -       |-      -
  * \par Changelog
  *
 @verbatim
- Version 2.3.1
+ Version 2.3.2
+   - March 21, 2015
+   - Code optimizations
+   
+ Version 2.3.2
    - March 17, 2015
    - Added support for Doxygen
    
@@ -392,6 +396,11 @@ UART8        |PE1    PE0     |-      -       |-      -
 #ifndef TM_UART8_WORD_LENGTH
 #define TM_UART8_WORD_LENGTH				USART_WordLength_8b
 #endif
+
+/**
+ * @brief  Wait till USART finishes transmission
+ */
+#define USART_WAIT(USARTx)                  while (!((USARTx)->SR & USART_FLAG_TXE))
 
  /**
  * @}

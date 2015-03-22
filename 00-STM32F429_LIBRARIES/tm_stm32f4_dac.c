@@ -58,7 +58,7 @@ void TM_DAC_SetValue(TM_DAC_Channel_t DACx, uint16_t value) {
 		value = 4095;
 	}
 	
-	/* Set 12bit value, right aligned */
+	/* Set 12-bit value, right aligned */
 	if (DACx == TM_DAC1) {
 		DAC->DHR12R1 = value;
 	} else {

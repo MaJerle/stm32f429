@@ -121,7 +121,7 @@ $(document).ready(function(){initNavTree('tm__stm32f4__sdram_8h_source.html','')
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    <span class="comment">/* SDRAM start address = FMC peripheral start address */</span></div>
 <div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="preprocessor">    #define SDRAM_START_ADR             (uint32_t)0xC0000000</span></div>
 <div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <span class="comment">/* SDRAM max memory size = 8MB */</span></div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="preprocessor">    #define SDRAM_MEMORY_WIDTH          (uint32_t)0x800000</span></div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="preprocessor">    #define SDRAM_MEMORY_SIZE           (uint32_t)0x800000</span></div>
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    <span class="comment">/* SDRAM bank */</span></div>
 <div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="preprocessor">    #define SDRAM_BANK                  FMC_Bank1_SDRAM</span></div>
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    <span class="comment">/* Refresh count */</span></div>
@@ -129,7 +129,7 @@ $(document).ready(function(){initNavTree('tm__stm32f4__sdram_8h_source.html','')
 <div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <span class="comment">/* Number of rows */</span></div>
 <div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;<span class="preprocessor">    #define SDRAM_ROWBITS_NUMBER        FMC_RowBits_Number_11b</span></div>
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    <span class="comment">/* Data witdh */</span></div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="preprocessor">    #define SDRAM_MEMORYDATAWIDTH       FMC_SDMemory_Width_32b</span></div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="preprocessor">    #define SDRAM_MEMORY_WIDTH          FMC_SDMemory_Width_32b</span></div>
 <div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    <span class="comment">/* Read burst */</span></div>
 <div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="preprocessor">    #define SDRAM_READ_BURST_STATE      FMC_Read_Burst_Enable</span></div>
 <div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    <span class="comment">/* Bank target command */</span></div>
@@ -142,15 +142,15 @@ $(document).ready(function(){initNavTree('tm__stm32f4__sdram_8h_source.html','')
 <div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    <span class="comment">/* SDRAM start address = FMC peripheral start address */</span></div>
 <div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;<span class="preprocessor">    #define SDRAM_START_ADR             (uint32_t)0xD0000000</span></div>
 <div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    <span class="comment">/* SDRAM max memory size = 8MB */</span></div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="preprocessor">    #define SDRAM_MEMORY_WIDTH          (uint32_t)0x800000</span></div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="preprocessor">    #define SDRAM_MEMORY_SIZE           (uint32_t)0x800000</span></div>
 <div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    <span class="comment">/* SDRAM bank */</span></div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="preprocessor">    #define SDRAM_BANK                  FMC_Bank1_SDRAM</span></div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="preprocessor">    #define SDRAM_BANK                  FMC_Bank2_SDRAM</span></div>
 <div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    <span class="comment">/* Refresh count */</span></div>
 <div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<span class="preprocessor">    #define SDRAM_REFRESH_COUNT         680</span></div>
 <div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    <span class="comment">/* Number of rows */</span></div>
 <div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;<span class="preprocessor">    #define SDRAM_ROWBITS_NUMBER        FMC_RowBits_Number_12b</span></div>
 <div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    <span class="comment">/* Data witdh */</span></div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;<span class="preprocessor">    #define SDRAM_MEMORYDATAWIDTH       FMC_SDMemory_Width_16b</span></div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;<span class="preprocessor">    #define SDRAM_MEMORY_WIDTH          FMC_SDMemory_Width_16b</span></div>
 <div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    <span class="comment">/* Read burst */</span></div>
 <div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;<span class="preprocessor">    #define SDRAM_READ_BURST_STATE      FMC_Read_Burst_Disable</span></div>
 <div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    <span class="comment">/* Bank target command */</span></div>
@@ -161,40 +161,40 @@ $(document).ready(function(){initNavTree('tm__stm32f4__sdram_8h_source.html','')
 <div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* SDRAM_USE_STM324x9_EVAL */</span><span class="preprocessor"></span></div>
 <div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;</div>
 <div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="comment">/* Timeout for SDRAM initialization */</span></div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;<span class="preprocessor">#define SDRAM_TIMEOUT           ((uint32_t)0xFFFF) </span></div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;<span class="preprocessor">#define SDRAM_TIMEOUT                   ((uint32_t)0xFFFF) </span></div>
 <div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;</div>
 <div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;uint8_t <a class="code" href="group___t_m___s_d_r_a_m___functions.html#gaf25413498fc044afca11364bc48389d2">TM_SDRAM_Init</a>(<span class="keywordtype">void</span>);</div>
 <div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;</div>
-<div class="line"><a name="l00224"></a><span class="lineno"><a class="line" href="group___t_m___s_d_r_a_m___functions.html#gac997659eab17b3b363d1288e76dd833d">  224</a></span>&#160;<span class="preprocessor">#define TM_SDRAM_GetSize()                  (SDRAM_MEMORY_WIDTH)</span></div>
+<div class="line"><a name="l00224"></a><span class="lineno"><a class="line" href="group___t_m___s_d_r_a_m___functions.html#gac997659eab17b3b363d1288e76dd833d">  224</a></span>&#160;<span class="preprocessor">#define TM_SDRAM_GetSize()                  (SDRAM_MEMORY_SIZE)</span></div>
 <div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;</div>
-<div class="line"><a name="l00233"></a><span class="lineno"><a class="line" href="group___t_m___s_d_r_a_m___functions.html#ga7e0fc92d5fc1fb26a04f3d6f01d5ad2c">  233</a></span>&#160;<span class="preprocessor">#define TM_SDRAM_Write8(address, value)     (*(__IO uint8_t *) (SDRAM_START_ADR + (address)) = value)</span></div>
+<div class="line"><a name="l00233"></a><span class="lineno"><a class="line" href="group___t_m___s_d_r_a_m___functions.html#ga7e0fc92d5fc1fb26a04f3d6f01d5ad2c">  233</a></span>&#160;<span class="preprocessor">#define TM_SDRAM_Write8(address, value)     (*(__IO uint8_t *) (SDRAM_START_ADR + (address)) = (value))</span></div>
 <div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;</div>
 <div class="line"><a name="l00241"></a><span class="lineno"><a class="line" href="group___t_m___s_d_r_a_m___functions.html#ga49b199bd8f9c5693ad85db2157777593">  241</a></span>&#160;<span class="preprocessor">#define TM_SDRAM_Read8(address)             (*(__IO uint8_t *) (SDRAM_START_ADR + (address)))</span></div>
 <div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;</div>
-<div class="line"><a name="l00250"></a><span class="lineno"><a class="line" href="group___t_m___s_d_r_a_m___functions.html#gaad7511bd739351ce0f4b9d7e28ff5e79">  250</a></span>&#160;<span class="preprocessor">#define TM_SDRAM_Write16(address, value)    (*(__IO uint16_t *) (SDRAM_START_ADR + (address)) = value)</span></div>
+<div class="line"><a name="l00250"></a><span class="lineno"><a class="line" href="group___t_m___s_d_r_a_m___functions.html#gaad7511bd739351ce0f4b9d7e28ff5e79">  250</a></span>&#160;<span class="preprocessor">#define TM_SDRAM_Write16(address, value)    (*(__IO uint16_t *) (SDRAM_START_ADR + (address)) = (value))</span></div>
 <div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;</div>
 <div class="line"><a name="l00258"></a><span class="lineno"><a class="line" href="group___t_m___s_d_r_a_m___functions.html#ga5b6285c74b56d6634863de5b4f2e99e5">  258</a></span>&#160;<span class="preprocessor">#define TM_SDRAM_Read16(address)            (*(__IO uint16_t *) (SDRAM_START_ADR + (address)))</span></div>
 <div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;</div>
-<div class="line"><a name="l00267"></a><span class="lineno"><a class="line" href="group___t_m___s_d_r_a_m___functions.html#ga96421e85f76331794ee161bad6b8a496">  267</a></span>&#160;<span class="preprocessor">#define TM_SDRAM_Write32(address, value)    (*(__IO uint32_t *) (SDRAM_START_ADR + (address)) = value)</span></div>
+<div class="line"><a name="l00267"></a><span class="lineno"><a class="line" href="group___t_m___s_d_r_a_m___functions.html#ga96421e85f76331794ee161bad6b8a496">  267</a></span>&#160;<span class="preprocessor">#define TM_SDRAM_Write32(address, value)    (*(__IO uint32_t *) (SDRAM_START_ADR + (address)) = (value))</span></div>
 <div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;</div>
 <div class="line"><a name="l00275"></a><span class="lineno"><a class="line" href="group___t_m___s_d_r_a_m___functions.html#gab65aad5cae17ab0c1bb133dbf038c7fa">  275</a></span>&#160;<span class="preprocessor">#define TM_SDRAM_Read32(address)            (*(__IO uint32_t *) (SDRAM_START_ADR + (address)))</span></div>
 <div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;</div>
-<div class="line"><a name="l00284"></a><span class="lineno"><a class="line" href="group___t_m___s_d_r_a_m___functions.html#gace4d837e60a0b0d922f94c2ab68cc76e">  284</a></span>&#160;<span class="preprocessor">#define TM_SDRAM_WriteFloat(address, value) (*(__IO float *) (SDRAM_START_ADR + (address)) = value)</span></div>
+<div class="line"><a name="l00284"></a><span class="lineno"><a class="line" href="group___t_m___s_d_r_a_m___functions.html#gace4d837e60a0b0d922f94c2ab68cc76e">  284</a></span>&#160;<span class="preprocessor">#define TM_SDRAM_WriteFloat(address, value) (*(__IO float *) (SDRAM_START_ADR + (address)) = (value))</span></div>
 <div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;</div>
 <div class="line"><a name="l00292"></a><span class="lineno"><a class="line" href="group___t_m___s_d_r_a_m___functions.html#ga21c7c80cfb94b6e68238170c833afc75">  292</a></span>&#160;<span class="preprocessor">#define TM_SDRAM_ReadFloat(address)         (*(__IO float *) (SDRAM_START_ADR + (address)))</span></div>
 <div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;__weak uint8_t <a class="code" href="group___t_m___s_d_r_a_m___functions.html#ga1d43e842fa1c7e939ec45b012a9bfbc1">TM_SDRAM_InitCustomPinsCallback</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;uint8_t <a class="code" href="group___t_m___s_d_r_a_m___functions.html#ga1f317bf09e01ff6fe45419dbf5211c70">TM_SDRAM_InitCustomPinsCallback</a>(<span class="keywordtype">void</span>);</div>
 <div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;</div>
 <div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="group___t_m___s_d_r_a_m___functions_html_gaf25413498fc044afca11364bc48389d2"><div class="ttname"><a href="group___t_m___s_d_r_a_m___functions.html#gaf25413498fc044afca11364bc48389d2">TM_SDRAM_Init</a></div><div class="ttdeci">uint8_t TM_SDRAM_Init(void)</div><div class="ttdoc">Initializes SDRAM. </div></div>
-<div class="ttc" id="group___t_m___s_d_r_a_m___functions_html_ga1d43e842fa1c7e939ec45b012a9bfbc1"><div class="ttname"><a href="group___t_m___s_d_r_a_m___functions.html#ga1d43e842fa1c7e939ec45b012a9bfbc1">TM_SDRAM_InitCustomPinsCallback</a></div><div class="ttdeci">__weak uint8_t TM_SDRAM_InitCustomPinsCallback(void)</div><div class="ttdoc">Init custom pins callback It can be used by user to implement custom pins for application if needed...</div></div>
+<div class="ttc" id="group___t_m___s_d_r_a_m___functions_html_ga1f317bf09e01ff6fe45419dbf5211c70"><div class="ttname"><a href="group___t_m___s_d_r_a_m___functions.html#ga1f317bf09e01ff6fe45419dbf5211c70">TM_SDRAM_InitCustomPinsCallback</a></div><div class="ttdeci">uint8_t TM_SDRAM_InitCustomPinsCallback(void)</div><div class="ttdoc">Init custom pins callback It can be used by user to implement custom pins for application if needed...</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>tm_stm32f4_sdram.h</b></li>
-    <li class="footer">Generated on Fri Mar 20 2015 17:15:33 for TM STM32F4xx Libraries by
+    <li class="footer">Generated on Sun Mar 22 2015 10:43:55 for TM STM32F4xx Libraries by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

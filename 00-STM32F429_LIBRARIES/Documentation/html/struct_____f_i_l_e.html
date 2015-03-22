@@ -109,39 +109,58 @@ $(document).ready(function(){initNavTree('struct_____f_i_l_e.html','');});
   <div class="summary">
 <a href="#pub-attribs">Data Fields</a>  </div>
   <div class="headertitle">
-<div class="title">__FILE Struct Reference</div>  </div>
+<div class="title">__FILE Struct Reference<div class="ingroups"><a class="el" href="group___t_m___s_t_m32_f4xx___libraries.html">TM_STM32F4xx_Libraries</a> &raquo; <a class="el" href="group___t_m___s_t_d_i_o.html">TM_STDIO</a> &raquo; <a class="el" href="group___t_m___s_t_d_i_o___typedefs.html">TM_STDIO_Typedefs</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>File structure for stdio stream output.  
+ <a href="struct_____f_i_l_e.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="tm__stm32f4__stdio_8h_source.html">tm_stm32f4_stdio.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:ad81c0fb83d2aa881bb1113e5841eb852"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad81c0fb83d2aa881bb1113e5841eb852"></a>
-int(*&#160;</td><td class="memItemRight" valign="bottom"><b>outputFuncPointer</b> )(int, FILE *)</td></tr>
+<tr class="memitem:ad81c0fb83d2aa881bb1113e5841eb852"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_____f_i_l_e.html#ad81c0fb83d2aa881bb1113e5841eb852">outputFuncPointer</a> )(int, FILE *)</td></tr>
 <tr class="separator:ad81c0fb83d2aa881bb1113e5841eb852"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2941f6b5a0f2cd5172de8c462fd970f6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2941f6b5a0f2cd5172de8c462fd970f6"></a>
-int(*&#160;</td><td class="memItemRight" valign="bottom"><b>inputFuncPointer</b> )(FILE *)</td></tr>
+<tr class="memitem:a2941f6b5a0f2cd5172de8c462fd970f6"><td class="memItemLeft" align="right" valign="top">int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_____f_i_l_e.html#a2941f6b5a0f2cd5172de8c462fd970f6">inputFuncPointer</a> )(FILE *)</td></tr>
 <tr class="separator:a2941f6b5a0f2cd5172de8c462fd970f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Library dependencies</p><ul>
-<li>STM32F4xx</li>
-<li>defines.h</li>
-<li><a class="el" href="attributes_8h_source.html">attributes.h</a></li>
-<li>stdio.h Includes File structure for stdio stream output</li>
-</ul>
-<p>Parameters:</p><ul>
-<li>int (*outputFuncPointer)(int, FILE *): Pointer to function to call when need to output data to stream</li>
-<li>int (*inputFuncPointer)(FILE *): Pointer to function to call when trying to get data from stream </li>
-</ul>
-</div></div><!-- contents -->
+<div class="textblock"><p>File structure for stdio stream output. </p>
+</div><h2 class="groupheader">Field Documentation</h2>
+<a class="anchor" id="a2941f6b5a0f2cd5172de8c462fd970f6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int(* inputFuncPointer) (FILE *)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Pointer to function to call when trying to get data from stream </p>
+
+</div>
+</div>
+<a class="anchor" id="ad81c0fb83d2aa881bb1113e5841eb852"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int(* outputFuncPointer) (int, FILE *)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Pointer to function to call when need to output data to stream </p>
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="struct_____f_i_l_e.html">__FILE</a></li>
-    <li class="footer">Generated on Fri Mar 20 2015 17:15:33 for TM STM32F4xx Libraries by
+    <li class="footer">Generated on Sun Mar 22 2015 10:43:56 for TM STM32F4xx Libraries by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

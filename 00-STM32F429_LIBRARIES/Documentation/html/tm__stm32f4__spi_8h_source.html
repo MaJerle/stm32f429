@@ -105,235 +105,238 @@ $(document).ready(function(){initNavTree('tm__stm32f4__spi_8h_source.html','');}
 <div class="contents">
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#ifndef TM_SPI_H</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#define TM_SPI_H 180</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#define TM_SPI_H 190</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">/* C++ detection */</span></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">extern</span> C {</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx.h&quot;</span></div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx_rcc.h&quot;</span></div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx_gpio.h&quot;</span></div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx_spi.h&quot;</span></div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="preprocessor">#include &quot;defines.h&quot;</span></div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="preprocessor">#include &quot;tm_stm32f4_gpio.h&quot;</span></div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;</div>
-<div class="line"><a name="l00154"></a><span class="lineno"><a class="line" href="group___t_m___s_p_i___typedefs.html#gab43ae1eb8a7cf9ba1d9d48441fc99e51">  154</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a name="l00155"></a><span class="lineno"><a class="line" href="group___t_m___s_p_i___typedefs.html#ggab43ae1eb8a7cf9ba1d9d48441fc99e51a2749ef50fa4dcc97e2561f211d59b8f8">  155</a></span>&#160;    <a class="code" href="group___t_m___s_p_i___typedefs.html#ggab43ae1eb8a7cf9ba1d9d48441fc99e51a2749ef50fa4dcc97e2561f211d59b8f8">TM_SPI_Mode_0</a>, </div>
-<div class="line"><a name="l00156"></a><span class="lineno"><a class="line" href="group___t_m___s_p_i___typedefs.html#ggab43ae1eb8a7cf9ba1d9d48441fc99e51a2bf644ad9c29ca6722ab02414452a9d1">  156</a></span>&#160;    <a class="code" href="group___t_m___s_p_i___typedefs.html#ggab43ae1eb8a7cf9ba1d9d48441fc99e51a2bf644ad9c29ca6722ab02414452a9d1">TM_SPI_Mode_1</a>, </div>
-<div class="line"><a name="l00157"></a><span class="lineno"><a class="line" href="group___t_m___s_p_i___typedefs.html#ggab43ae1eb8a7cf9ba1d9d48441fc99e51a63fef1f9fe11bd70aeedf8109d22f671">  157</a></span>&#160;    <a class="code" href="group___t_m___s_p_i___typedefs.html#ggab43ae1eb8a7cf9ba1d9d48441fc99e51a63fef1f9fe11bd70aeedf8109d22f671">TM_SPI_Mode_2</a>, </div>
-<div class="line"><a name="l00158"></a><span class="lineno"><a class="line" href="group___t_m___s_p_i___typedefs.html#ggab43ae1eb8a7cf9ba1d9d48441fc99e51afda7659519f9d20de5b9f93f830dc6e5">  158</a></span>&#160;    <a class="code" href="group___t_m___s_p_i___typedefs.html#ggab43ae1eb8a7cf9ba1d9d48441fc99e51afda7659519f9d20de5b9f93f830dc6e5">TM_SPI_Mode_3</a>  </div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;} <a class="code" href="group___t_m___s_p_i___typedefs.html#gab43ae1eb8a7cf9ba1d9d48441fc99e51">TM_SPI_Mode_t</a>;</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;</div>
-<div class="line"><a name="l00164"></a><span class="lineno"><a class="line" href="group___t_m___s_p_i___typedefs.html#gaaea351a7377ef8de4249cd4608c52d7b">  164</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a name="l00165"></a><span class="lineno"><a class="line" href="group___t_m___s_p_i___typedefs.html#ggaaea351a7377ef8de4249cd4608c52d7ba0bbe4fded3a917b6cadc74a1bacf4656">  165</a></span>&#160;    <a class="code" href="group___t_m___s_p_i___typedefs.html#ggaaea351a7377ef8de4249cd4608c52d7ba0bbe4fded3a917b6cadc74a1bacf4656">TM_SPI_PinsPack_1</a>,       </div>
-<div class="line"><a name="l00166"></a><span class="lineno"><a class="line" href="group___t_m___s_p_i___typedefs.html#ggaaea351a7377ef8de4249cd4608c52d7bafdf20e5257085edeb8e5ff3cf79fbc4a">  166</a></span>&#160;    <a class="code" href="group___t_m___s_p_i___typedefs.html#ggaaea351a7377ef8de4249cd4608c52d7bafdf20e5257085edeb8e5ff3cf79fbc4a">TM_SPI_PinsPack_2</a>,       </div>
-<div class="line"><a name="l00167"></a><span class="lineno"><a class="line" href="group___t_m___s_p_i___typedefs.html#ggaaea351a7377ef8de4249cd4608c52d7baeaa01f95c9aea8b5de370342e866b973">  167</a></span>&#160;    <a class="code" href="group___t_m___s_p_i___typedefs.html#ggaaea351a7377ef8de4249cd4608c52d7baeaa01f95c9aea8b5de370342e866b973">TM_SPI_PinsPack_3</a>,       </div>
-<div class="line"><a name="l00168"></a><span class="lineno"><a class="line" href="group___t_m___s_p_i___typedefs.html#ggaaea351a7377ef8de4249cd4608c52d7ba1d2eb19386be1fb6e1f2f43a75bbed3c">  168</a></span>&#160;    <a class="code" href="group___t_m___s_p_i___typedefs.html#ggaaea351a7377ef8de4249cd4608c52d7ba1d2eb19386be1fb6e1f2f43a75bbed3c">TM_SPI_PinsPack_Custom</a>   </div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;} <a class="code" href="group___t_m___s_p_i___typedefs.html#gaaea351a7377ef8de4249cd4608c52d7b">TM_SPI_PinsPack_t</a>;</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;<span class="comment">//----- SPI1 options start -------</span></div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<span class="comment">//Options can be overwriten in defines.h file</span></div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;<span class="preprocessor">#ifndef TM_SPI1_PRESCALER</span></div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;<span class="preprocessor">#define TM_SPI1_PRESCALER   SPI_BaudRatePrescaler_32</span></div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;<span class="comment">//Specify datasize</span></div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;<span class="preprocessor">#ifndef TM_SPI1_DATASIZE</span></div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;<span class="preprocessor">#define TM_SPI1_DATASIZE    SPI_DataSize_8b</span></div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;<span class="comment">//Specify which bit is first</span></div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;<span class="preprocessor">#ifndef TM_SPI1_FIRSTBIT</span></div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;<span class="preprocessor">#define TM_SPI1_FIRSTBIT    SPI_FirstBit_MSB</span></div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;<span class="comment">//Mode, master or slave</span></div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="preprocessor">#ifndef TM_SPI1_MASTERSLAVE</span></div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="preprocessor">#define TM_SPI1_MASTERSLAVE SPI_Mode_Master</span></div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;<span class="comment">//Specify mode of operation, clock polarity and clock phase</span></div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="preprocessor">#ifndef TM_SPI1_MODE</span></div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;<span class="preprocessor">#define TM_SPI1_MODE        TM_SPI_Mode_0</span></div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;<span class="comment">//----- SPI1 options end -------</span></div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;</div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;<span class="comment">//----- SPI2 options start -------</span></div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<span class="comment">//Options can be overwriten in defines.h file</span></div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;<span class="preprocessor">#ifndef TM_SPI2_PRESCALER</span></div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;<span class="preprocessor">#define TM_SPI2_PRESCALER   SPI_BaudRatePrescaler_32</span></div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;<span class="comment">//Specify datasize</span></div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;<span class="preprocessor">#ifndef TM_SPI2_DATASIZE</span></div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;<span class="preprocessor">#define TM_SPI2_DATASIZE    SPI_DataSize_8b</span></div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;<span class="comment">//Specify which bit is first</span></div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;<span class="preprocessor">#ifndef TM_SPI2_FIRSTBIT</span></div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;<span class="preprocessor">#define TM_SPI2_FIRSTBIT    SPI_FirstBit_MSB</span></div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;<span class="comment">//Mode, master or slave</span></div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;<span class="preprocessor">#ifndef TM_SPI2_MASTERSLAVE</span></div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;<span class="preprocessor">#define TM_SPI2_MASTERSLAVE SPI_Mode_Master</span></div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;<span class="comment">//Specify mode of operation, clock polarity and clock phase</span></div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;<span class="preprocessor">#ifndef TM_SPI2_MODE</span></div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;<span class="preprocessor">#define TM_SPI2_MODE        TM_SPI_Mode_0</span></div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;<span class="comment">//----- SPI2 options end -------</span></div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;<span class="comment">//----- SPI3 options start -------</span></div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;<span class="comment">//Options can be overwriten in defines.h file</span></div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;<span class="preprocessor">#ifndef TM_SPI3_PRESCALER</span></div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;<span class="preprocessor">#define TM_SPI3_PRESCALER   SPI_BaudRatePrescaler_32</span></div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;<span class="comment">//Specify datasize</span></div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;<span class="preprocessor">#ifndef TM_SPI3_DATASIZE</span></div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;<span class="preprocessor">#define TM_SPI3_DATASIZE    SPI_DataSize_8b</span></div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;<span class="comment">//Specify which bit is first</span></div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;<span class="preprocessor">#ifndef TM_SPI3_FIRSTBIT</span></div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;<span class="preprocessor">#define TM_SPI3_FIRSTBIT    SPI_FirstBit_MSB</span></div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;<span class="comment">//Mode, master or slave</span></div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;<span class="preprocessor">#ifndef TM_SPI3_MASTERSLAVE</span></div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;<span class="preprocessor">#define TM_SPI3_MASTERSLAVE SPI_Mode_Master</span></div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;<span class="comment">//Specify mode of operation, clock polarity and clock phase</span></div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;<span class="preprocessor">#ifndef TM_SPI3_MODE</span></div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;<span class="preprocessor">#define TM_SPI3_MODE        TM_SPI_Mode_0</span></div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;<span class="comment">//----- SPI3 options end -------</span></div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;<span class="comment">//----- SPI4 options start -------</span></div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;<span class="comment">//Options can be overwriten in defines.h file</span></div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;<span class="preprocessor">#ifndef TM_SPI4_PRESCALER</span></div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;<span class="preprocessor">#define TM_SPI4_PRESCALER   SPI_BaudRatePrescaler_32</span></div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;<span class="comment">//Specify datasize</span></div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;<span class="preprocessor">#ifndef TM_SPI4_DATASIZE</span></div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;<span class="preprocessor">#define TM_SPI4_DATASIZE    SPI_DataSize_8b</span></div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;<span class="comment">//Specify which bit is first</span></div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;<span class="preprocessor">#ifndef TM_SPI4_FIRSTBIT</span></div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;<span class="preprocessor">#define TM_SPI4_FIRSTBIT    SPI_FirstBit_MSB</span></div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;<span class="comment">//Mode, master or slave</span></div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;<span class="preprocessor">#ifndef TM_SPI4_MASTERSLAVE</span></div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;<span class="preprocessor">#define TM_SPI4_MASTERSLAVE SPI_Mode_Master</span></div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;<span class="comment">//Specify mode of operation, clock polarity and clock phase</span></div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;<span class="preprocessor">#ifndef TM_SPI4_MODE</span></div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;<span class="preprocessor">#define TM_SPI4_MODE        TM_SPI_Mode_0</span></div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;<span class="comment">//----- SPI4 options end -------</span></div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;<span class="comment">//----- SPI5 options start -------</span></div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;<span class="comment">//Options can be overwriten in defines.h file</span></div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;<span class="preprocessor">#ifndef TM_SPI5_PRESCALER</span></div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;<span class="preprocessor">#define TM_SPI5_PRESCALER   SPI_BaudRatePrescaler_32</span></div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;<span class="comment">//Specify datasize</span></div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;<span class="preprocessor">#ifndef TM_SPI5_DATASIZE</span></div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;<span class="preprocessor">#define TM_SPI5_DATASIZE    SPI_DataSize_8b</span></div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;<span class="comment">//Specify which bit is first</span></div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;<span class="preprocessor">#ifndef TM_SPI5_FIRSTBIT</span></div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;<span class="preprocessor">#define TM_SPI5_FIRSTBIT    SPI_FirstBit_MSB</span></div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;<span class="comment">//Mode, master or slave</span></div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;<span class="preprocessor">#ifndef TM_SPI5_MASTERSLAVE</span></div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;<span class="preprocessor">#define TM_SPI5_MASTERSLAVE SPI_Mode_Master</span></div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;<span class="comment">//Specify mode of operation, clock polarity and clock phase</span></div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;<span class="preprocessor">#ifndef TM_SPI5_MODE</span></div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;<span class="preprocessor">#define TM_SPI5_MODE        TM_SPI_Mode_0</span></div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;<span class="comment">//----- SPI5 options end -------</span></div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;</div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;<span class="comment">//----- SPI6 options start -------</span></div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;<span class="comment">//Options can be overwriten in defines.h file</span></div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;<span class="preprocessor">#ifndef TM_SPI6_PRESCALER</span></div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;<span class="preprocessor">#define TM_SPI6_PRESCALER   SPI_BaudRatePrescaler_32</span></div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;<span class="comment">//Specify datasize</span></div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;<span class="preprocessor">#ifndef TM_SPI6_DATASIZE</span></div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;<span class="preprocessor">#define TM_SPI6_DATASIZE    SPI_DataSize_8b</span></div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;<span class="comment">//Specify which bit is first</span></div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;<span class="preprocessor">#ifndef TM_SPI6_FIRSTBIT</span></div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;<span class="preprocessor">#define TM_SPI6_FIRSTBIT    SPI_FirstBit_MSB</span></div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;<span class="comment">//Mode, master or slave</span></div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;<span class="preprocessor">#ifndef TM_SPI6_MASTERSLAVE</span></div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;<span class="preprocessor">#define TM_SPI6_MASTERSLAVE SPI_Mode_Master</span></div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;<span class="comment">//Specify mode of operation, clock polarity and clock phase</span></div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;<span class="preprocessor">#ifndef TM_SPI6_MODE</span></div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;<span class="preprocessor">#define TM_SPI6_MODE        TM_SPI_Mode_0</span></div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;<span class="comment">//----- SPI6 options end -------</span></div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;</div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___s_p_i___functions.html#ga3648e7ca6e9d02e22a65723e658b5afa">TM_SPI_Init</a>(SPI_TypeDef* SPIx, <a class="code" href="group___t_m___s_p_i___typedefs.html#gaaea351a7377ef8de4249cd4608c52d7b">TM_SPI_PinsPack_t</a> pinspack);</div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;</div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___s_p_i___functions.html#ga0d5a3470176d78a8306d9400de03ccae">TM_SPI_InitWithMode</a>(SPI_TypeDef* SPIx, <a class="code" href="group___t_m___s_p_i___typedefs.html#gaaea351a7377ef8de4249cd4608c52d7b">TM_SPI_PinsPack_t</a> pinspack, <a class="code" href="group___t_m___s_p_i___typedefs.html#gab43ae1eb8a7cf9ba1d9d48441fc99e51">TM_SPI_Mode_t</a> SPI_Mode);</div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;</div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___s_p_i___functions.html#ga1204e453b6efb989c105d4e5b4a3eded">TM_SPI_InitFull</a>(SPI_TypeDef* SPIx, <a class="code" href="group___t_m___s_p_i___typedefs.html#gaaea351a7377ef8de4249cd4608c52d7b">TM_SPI_PinsPack_t</a> pinspack, uint16_t SPI_BaudRatePrescaler, <a class="code" href="group___t_m___s_p_i___typedefs.html#gab43ae1eb8a7cf9ba1d9d48441fc99e51">TM_SPI_Mode_t</a> SPI_Mode_t, uint16_t SPI_Mode, uint16_t SPI_FirstBit);</div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;</div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;uint16_t <a class="code" href="group___t_m___s_p_i___functions.html#ga4589a7f712c54f27dd0d0e8811bcb354">TM_SPI_GetPrescalerFromMaxFrequency</a>(SPI_TypeDef* SPIx, uint32_t MAX_SPI_Frequency);</div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;</div>
-<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;uint8_t <a class="code" href="group___t_m___s_p_i___functions.html#ga2ab935461ffb47dae4e077efc26a5aec">TM_SPI_Send</a>(SPI_TypeDef* SPIx, uint8_t data);</div>
-<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;</div>
-<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___s_p_i___functions.html#ga8f64079c7f59bd1c4830dd79a6ed9197">TM_SPI_SendMulti</a>(SPI_TypeDef* SPIx, uint8_t* dataOut, uint8_t* dataIn, uint16_t count);</div>
-<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;</div>
-<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___s_p_i___functions.html#gaa589d60226b56b20b5e61169bbe92672">TM_SPI_WriteMulti</a>(SPI_TypeDef* SPIx, uint8_t* dataOut, uint16_t count);</div>
-<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;</div>
-<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___s_p_i___functions.html#ga6ccd9d1f67058ea160537eaf4ec77b86">TM_SPI_ReadMulti</a>(SPI_TypeDef* SPIx, uint8_t *dataIn, uint8_t dummy, uint16_t count);</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx.h&quot;</span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx_rcc.h&quot;</span></div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx_gpio.h&quot;</span></div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx_spi.h&quot;</span></div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="preprocessor">#include &quot;defines.h&quot;</span></div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="preprocessor">#include &quot;attributes.h&quot;</span></div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="preprocessor">#include &quot;tm_stm32f4_gpio.h&quot;</span></div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;</div>
+<div class="line"><a name="l00160"></a><span class="lineno"><a class="line" href="group___t_m___s_p_i___typedefs.html#gab43ae1eb8a7cf9ba1d9d48441fc99e51">  160</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00161"></a><span class="lineno"><a class="line" href="group___t_m___s_p_i___typedefs.html#ggab43ae1eb8a7cf9ba1d9d48441fc99e51a2749ef50fa4dcc97e2561f211d59b8f8">  161</a></span>&#160;    <a class="code" href="group___t_m___s_p_i___typedefs.html#ggab43ae1eb8a7cf9ba1d9d48441fc99e51a2749ef50fa4dcc97e2561f211d59b8f8">TM_SPI_Mode_0</a>, </div>
+<div class="line"><a name="l00162"></a><span class="lineno"><a class="line" href="group___t_m___s_p_i___typedefs.html#ggab43ae1eb8a7cf9ba1d9d48441fc99e51a2bf644ad9c29ca6722ab02414452a9d1">  162</a></span>&#160;    <a class="code" href="group___t_m___s_p_i___typedefs.html#ggab43ae1eb8a7cf9ba1d9d48441fc99e51a2bf644ad9c29ca6722ab02414452a9d1">TM_SPI_Mode_1</a>, </div>
+<div class="line"><a name="l00163"></a><span class="lineno"><a class="line" href="group___t_m___s_p_i___typedefs.html#ggab43ae1eb8a7cf9ba1d9d48441fc99e51a63fef1f9fe11bd70aeedf8109d22f671">  163</a></span>&#160;    <a class="code" href="group___t_m___s_p_i___typedefs.html#ggab43ae1eb8a7cf9ba1d9d48441fc99e51a63fef1f9fe11bd70aeedf8109d22f671">TM_SPI_Mode_2</a>, </div>
+<div class="line"><a name="l00164"></a><span class="lineno"><a class="line" href="group___t_m___s_p_i___typedefs.html#ggab43ae1eb8a7cf9ba1d9d48441fc99e51afda7659519f9d20de5b9f93f830dc6e5">  164</a></span>&#160;    <a class="code" href="group___t_m___s_p_i___typedefs.html#ggab43ae1eb8a7cf9ba1d9d48441fc99e51afda7659519f9d20de5b9f93f830dc6e5">TM_SPI_Mode_3</a>  </div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;} <a class="code" href="group___t_m___s_p_i___typedefs.html#gab43ae1eb8a7cf9ba1d9d48441fc99e51">TM_SPI_Mode_t</a>;</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;</div>
+<div class="line"><a name="l00170"></a><span class="lineno"><a class="line" href="group___t_m___s_p_i___typedefs.html#gaaea351a7377ef8de4249cd4608c52d7b">  170</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00171"></a><span class="lineno"><a class="line" href="group___t_m___s_p_i___typedefs.html#ggaaea351a7377ef8de4249cd4608c52d7ba0bbe4fded3a917b6cadc74a1bacf4656">  171</a></span>&#160;    <a class="code" href="group___t_m___s_p_i___typedefs.html#ggaaea351a7377ef8de4249cd4608c52d7ba0bbe4fded3a917b6cadc74a1bacf4656">TM_SPI_PinsPack_1</a>,       </div>
+<div class="line"><a name="l00172"></a><span class="lineno"><a class="line" href="group___t_m___s_p_i___typedefs.html#ggaaea351a7377ef8de4249cd4608c52d7bafdf20e5257085edeb8e5ff3cf79fbc4a">  172</a></span>&#160;    <a class="code" href="group___t_m___s_p_i___typedefs.html#ggaaea351a7377ef8de4249cd4608c52d7bafdf20e5257085edeb8e5ff3cf79fbc4a">TM_SPI_PinsPack_2</a>,       </div>
+<div class="line"><a name="l00173"></a><span class="lineno"><a class="line" href="group___t_m___s_p_i___typedefs.html#ggaaea351a7377ef8de4249cd4608c52d7baeaa01f95c9aea8b5de370342e866b973">  173</a></span>&#160;    <a class="code" href="group___t_m___s_p_i___typedefs.html#ggaaea351a7377ef8de4249cd4608c52d7baeaa01f95c9aea8b5de370342e866b973">TM_SPI_PinsPack_3</a>,       </div>
+<div class="line"><a name="l00174"></a><span class="lineno"><a class="line" href="group___t_m___s_p_i___typedefs.html#ggaaea351a7377ef8de4249cd4608c52d7ba1d2eb19386be1fb6e1f2f43a75bbed3c">  174</a></span>&#160;    <a class="code" href="group___t_m___s_p_i___typedefs.html#ggaaea351a7377ef8de4249cd4608c52d7ba1d2eb19386be1fb6e1f2f43a75bbed3c">TM_SPI_PinsPack_Custom</a>   </div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;} <a class="code" href="group___t_m___s_p_i___typedefs.html#gaaea351a7377ef8de4249cd4608c52d7b">TM_SPI_PinsPack_t</a>;</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;<span class="comment">//----- SPI1 options start -------</span></div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;<span class="comment">//Options can be overwriten in defines.h file</span></div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;<span class="preprocessor">#ifndef TM_SPI1_PRESCALER</span></div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;<span class="preprocessor">#define TM_SPI1_PRESCALER   SPI_BaudRatePrescaler_32</span></div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;<span class="comment">//Specify datasize</span></div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;<span class="preprocessor">#ifndef TM_SPI1_DATASIZE</span></div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;<span class="preprocessor">#define TM_SPI1_DATASIZE    SPI_DataSize_8b</span></div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="comment">//Specify which bit is first</span></div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="preprocessor">#ifndef TM_SPI1_FIRSTBIT</span></div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;<span class="preprocessor">#define TM_SPI1_FIRSTBIT    SPI_FirstBit_MSB</span></div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;<span class="comment">//Mode, master or slave</span></div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="preprocessor">#ifndef TM_SPI1_MASTERSLAVE</span></div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;<span class="preprocessor">#define TM_SPI1_MASTERSLAVE SPI_Mode_Master</span></div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;<span class="comment">//Specify mode of operation, clock polarity and clock phase</span></div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<span class="preprocessor">#ifndef TM_SPI1_MODE</span></div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;<span class="preprocessor">#define TM_SPI1_MODE        TM_SPI_Mode_0</span></div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;<span class="comment">//----- SPI1 options end -------</span></div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;<span class="comment">//----- SPI2 options start -------</span></div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;<span class="comment">//Options can be overwriten in defines.h file</span></div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;<span class="preprocessor">#ifndef TM_SPI2_PRESCALER</span></div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;<span class="preprocessor">#define TM_SPI2_PRESCALER   SPI_BaudRatePrescaler_32</span></div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;<span class="comment">//Specify datasize</span></div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;<span class="preprocessor">#ifndef TM_SPI2_DATASIZE</span></div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;<span class="preprocessor">#define TM_SPI2_DATASIZE    SPI_DataSize_8b</span></div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;<span class="comment">//Specify which bit is first</span></div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;<span class="preprocessor">#ifndef TM_SPI2_FIRSTBIT</span></div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;<span class="preprocessor">#define TM_SPI2_FIRSTBIT    SPI_FirstBit_MSB</span></div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;<span class="comment">//Mode, master or slave</span></div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;<span class="preprocessor">#ifndef TM_SPI2_MASTERSLAVE</span></div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;<span class="preprocessor">#define TM_SPI2_MASTERSLAVE SPI_Mode_Master</span></div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;<span class="comment">//Specify mode of operation, clock polarity and clock phase</span></div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;<span class="preprocessor">#ifndef TM_SPI2_MODE</span></div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;<span class="preprocessor">#define TM_SPI2_MODE        TM_SPI_Mode_0</span></div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;<span class="comment">//----- SPI2 options end -------</span></div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;<span class="comment">//----- SPI3 options start -------</span></div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;<span class="comment">//Options can be overwriten in defines.h file</span></div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;<span class="preprocessor">#ifndef TM_SPI3_PRESCALER</span></div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;<span class="preprocessor">#define TM_SPI3_PRESCALER   SPI_BaudRatePrescaler_32</span></div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;<span class="comment">//Specify datasize</span></div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;<span class="preprocessor">#ifndef TM_SPI3_DATASIZE</span></div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;<span class="preprocessor">#define TM_SPI3_DATASIZE    SPI_DataSize_8b</span></div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;<span class="comment">//Specify which bit is first</span></div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;<span class="preprocessor">#ifndef TM_SPI3_FIRSTBIT</span></div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;<span class="preprocessor">#define TM_SPI3_FIRSTBIT    SPI_FirstBit_MSB</span></div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;<span class="comment">//Mode, master or slave</span></div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;<span class="preprocessor">#ifndef TM_SPI3_MASTERSLAVE</span></div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;<span class="preprocessor">#define TM_SPI3_MASTERSLAVE SPI_Mode_Master</span></div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;<span class="comment">//Specify mode of operation, clock polarity and clock phase</span></div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;<span class="preprocessor">#ifndef TM_SPI3_MODE</span></div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;<span class="preprocessor">#define TM_SPI3_MODE        TM_SPI_Mode_0</span></div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;<span class="comment">//----- SPI3 options end -------</span></div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;<span class="comment">//----- SPI4 options start -------</span></div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;<span class="comment">//Options can be overwriten in defines.h file</span></div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;<span class="preprocessor">#ifndef TM_SPI4_PRESCALER</span></div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;<span class="preprocessor">#define TM_SPI4_PRESCALER   SPI_BaudRatePrescaler_32</span></div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;<span class="comment">//Specify datasize</span></div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;<span class="preprocessor">#ifndef TM_SPI4_DATASIZE</span></div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;<span class="preprocessor">#define TM_SPI4_DATASIZE    SPI_DataSize_8b</span></div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;<span class="comment">//Specify which bit is first</span></div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;<span class="preprocessor">#ifndef TM_SPI4_FIRSTBIT</span></div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;<span class="preprocessor">#define TM_SPI4_FIRSTBIT    SPI_FirstBit_MSB</span></div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;<span class="comment">//Mode, master or slave</span></div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;<span class="preprocessor">#ifndef TM_SPI4_MASTERSLAVE</span></div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;<span class="preprocessor">#define TM_SPI4_MASTERSLAVE SPI_Mode_Master</span></div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;<span class="comment">//Specify mode of operation, clock polarity and clock phase</span></div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;<span class="preprocessor">#ifndef TM_SPI4_MODE</span></div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;<span class="preprocessor">#define TM_SPI4_MODE        TM_SPI_Mode_0</span></div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;<span class="comment">//----- SPI4 options end -------</span></div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;<span class="comment">//----- SPI5 options start -------</span></div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;<span class="comment">//Options can be overwriten in defines.h file</span></div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;<span class="preprocessor">#ifndef TM_SPI5_PRESCALER</span></div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;<span class="preprocessor">#define TM_SPI5_PRESCALER   SPI_BaudRatePrescaler_32</span></div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;<span class="comment">//Specify datasize</span></div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;<span class="preprocessor">#ifndef TM_SPI5_DATASIZE</span></div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;<span class="preprocessor">#define TM_SPI5_DATASIZE    SPI_DataSize_8b</span></div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;<span class="comment">//Specify which bit is first</span></div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;<span class="preprocessor">#ifndef TM_SPI5_FIRSTBIT</span></div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;<span class="preprocessor">#define TM_SPI5_FIRSTBIT    SPI_FirstBit_MSB</span></div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;<span class="comment">//Mode, master or slave</span></div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;<span class="preprocessor">#ifndef TM_SPI5_MASTERSLAVE</span></div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;<span class="preprocessor">#define TM_SPI5_MASTERSLAVE SPI_Mode_Master</span></div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;<span class="comment">//Specify mode of operation, clock polarity and clock phase</span></div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;<span class="preprocessor">#ifndef TM_SPI5_MODE</span></div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;<span class="preprocessor">#define TM_SPI5_MODE        TM_SPI_Mode_0</span></div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;<span class="comment">//----- SPI5 options end -------</span></div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;<span class="comment">//----- SPI6 options start -------</span></div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;<span class="comment">//Options can be overwriten in defines.h file</span></div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;<span class="preprocessor">#ifndef TM_SPI6_PRESCALER</span></div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;<span class="preprocessor">#define TM_SPI6_PRESCALER   SPI_BaudRatePrescaler_32</span></div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;<span class="comment">//Specify datasize</span></div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;<span class="preprocessor">#ifndef TM_SPI6_DATASIZE</span></div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;<span class="preprocessor">#define TM_SPI6_DATASIZE    SPI_DataSize_8b</span></div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;<span class="comment">//Specify which bit is first</span></div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;<span class="preprocessor">#ifndef TM_SPI6_FIRSTBIT</span></div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;<span class="preprocessor">#define TM_SPI6_FIRSTBIT    SPI_FirstBit_MSB</span></div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;<span class="comment">//Mode, master or slave</span></div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;<span class="preprocessor">#ifndef TM_SPI6_MASTERSLAVE</span></div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;<span class="preprocessor">#define TM_SPI6_MASTERSLAVE SPI_Mode_Master</span></div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;<span class="comment">//Specify mode of operation, clock polarity and clock phase</span></div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;<span class="preprocessor">#ifndef TM_SPI6_MODE</span></div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;<span class="preprocessor">#define TM_SPI6_MODE        TM_SPI_Mode_0</span></div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;<span class="comment">//----- SPI6 options end -------</span></div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;</div>
+<div class="line"><a name="l00328"></a><span class="lineno"><a class="line" href="group___t_m___s_p_i___macros.html#gada2ba0b11ec7568409ee76fe765e9a87">  328</a></span>&#160;<span class="preprocessor">#define SPI_WAIT(SPix)      while (((SPIx)-&gt;SR &amp; (SPI_SR_TXE | SPI_SR_RXNE)) == 0 || ((SPIx)-&gt;SR &amp; SPI_SR_BSY))</span></div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___s_p_i___functions.html#ga3648e7ca6e9d02e22a65723e658b5afa">TM_SPI_Init</a>(SPI_TypeDef* SPIx, <a class="code" href="group___t_m___s_p_i___typedefs.html#gaaea351a7377ef8de4249cd4608c52d7b">TM_SPI_PinsPack_t</a> pinspack);</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___s_p_i___functions.html#ga0d5a3470176d78a8306d9400de03ccae">TM_SPI_InitWithMode</a>(SPI_TypeDef* SPIx, <a class="code" href="group___t_m___s_p_i___typedefs.html#gaaea351a7377ef8de4249cd4608c52d7b">TM_SPI_PinsPack_t</a> pinspack, <a class="code" href="group___t_m___s_p_i___typedefs.html#gab43ae1eb8a7cf9ba1d9d48441fc99e51">TM_SPI_Mode_t</a> SPI_Mode);</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;</div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___s_p_i___functions.html#ga1204e453b6efb989c105d4e5b4a3eded">TM_SPI_InitFull</a>(SPI_TypeDef* SPIx, <a class="code" href="group___t_m___s_p_i___typedefs.html#gaaea351a7377ef8de4249cd4608c52d7b">TM_SPI_PinsPack_t</a> pinspack, uint16_t SPI_BaudRatePrescaler, <a class="code" href="group___t_m___s_p_i___typedefs.html#gab43ae1eb8a7cf9ba1d9d48441fc99e51">TM_SPI_Mode_t</a> SPI_Mode_t, uint16_t SPI_Mode, uint16_t SPI_FirstBit);</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;</div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;uint16_t <a class="code" href="group___t_m___s_p_i___functions.html#ga4589a7f712c54f27dd0d0e8811bcb354">TM_SPI_GetPrescalerFromMaxFrequency</a>(SPI_TypeDef* SPIx, uint32_t MAX_SPI_Frequency);</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;</div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;uint8_t <a class="code" href="group___t_m___s_p_i___functions.html#ga2ab935461ffb47dae4e077efc26a5aec">TM_SPI_Send</a>(SPI_TypeDef* SPIx, uint8_t data);</div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;</div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___s_p_i___functions.html#ga8f64079c7f59bd1c4830dd79a6ed9197">TM_SPI_SendMulti</a>(SPI_TypeDef* SPIx, uint8_t* dataOut, uint8_t* dataIn, uint16_t count);</div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;</div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___s_p_i___functions.html#gaa589d60226b56b20b5e61169bbe92672">TM_SPI_WriteMulti</a>(SPI_TypeDef* SPIx, uint8_t* dataOut, uint16_t count);</div>
 <div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;</div>
-<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;uint16_t <a class="code" href="group___t_m___s_p_i___functions.html#ga36a979cac19089edfbc3f3700ad8fd85">TM_SPI_Send16</a>(SPI_TypeDef* SPIx, uint16_t data);</div>
-<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;</div>
-<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___s_p_i___functions.html#ga5565c1db3cf2532069fa0b8cb2eeb1c0">TM_SPI_SendMulti16</a>(SPI_TypeDef* SPIx, uint16_t* dataOut, uint16_t* dataIn, uint16_t count);</div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___s_p_i___functions.html#ga6ccd9d1f67058ea160537eaf4ec77b86">TM_SPI_ReadMulti</a>(SPI_TypeDef* SPIx, uint8_t *dataIn, uint8_t dummy, uint16_t count);</div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;</div>
+<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;uint16_t <a class="code" href="group___t_m___s_p_i___functions.html#ga36a979cac19089edfbc3f3700ad8fd85">TM_SPI_Send16</a>(SPI_TypeDef* SPIx, uint16_t data);</div>
 <div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;</div>
-<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___s_p_i___functions.html#ga05f51bb9f016851e6366239f5beb72c2">TM_SPI_WriteMulti16</a>(SPI_TypeDef* SPIx, uint16_t* dataOut, uint16_t count);</div>
-<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;</div>
-<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___s_p_i___functions.html#gaab62813fe2733e176111cf93c05dc095">TM_SPI_ReadMulti16</a>(SPI_TypeDef* SPIx, uint16_t* dataIn, uint16_t dummy, uint16_t count);</div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___s_p_i___functions.html#ga5565c1db3cf2532069fa0b8cb2eeb1c0">TM_SPI_SendMulti16</a>(SPI_TypeDef* SPIx, uint16_t* dataOut, uint16_t* dataIn, uint16_t count);</div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;</div>
+<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___s_p_i___functions.html#ga05f51bb9f016851e6366239f5beb72c2">TM_SPI_WriteMulti16</a>(SPI_TypeDef* SPIx, uint16_t* dataOut, uint16_t count);</div>
 <div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;</div>
-<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;__weak <span class="keywordtype">void</span> <a class="code" href="group___t_m___s_p_i___functions.html#ga9b59dc93791950c6eb94c467c3932ae5">TM_SPI_InitCustomPinsCallback</a>(SPI_TypeDef* SPIx);</div>
-<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;</div>
-<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;<span class="comment">/* C++ detection */</span></div>
-<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;}</div>
-<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;</div>
-<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;</div>
+<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___s_p_i___functions.html#gaab62813fe2733e176111cf93c05dc095">TM_SPI_ReadMulti16</a>(SPI_TypeDef* SPIx, uint16_t* dataIn, uint16_t dummy, uint16_t count);</div>
+<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;</div>
+<div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;__weak <span class="keywordtype">void</span> <a class="code" href="group___t_m___s_p_i___functions.html#ga9b59dc93791950c6eb94c467c3932ae5">TM_SPI_InitCustomPinsCallback</a>(SPI_TypeDef* SPIx);</div>
+<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;</div>
+<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;<span class="comment">/* C++ detection */</span></div>
+<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;}</div>
+<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;</div>
+<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;</div>
 <div class="ttc" id="group___t_m___s_p_i___functions_html_ga05f51bb9f016851e6366239f5beb72c2"><div class="ttname"><a href="group___t_m___s_p_i___functions.html#ga05f51bb9f016851e6366239f5beb72c2">TM_SPI_WriteMulti16</a></div><div class="ttdeci">void TM_SPI_WriteMulti16(SPI_TypeDef *SPIx, uint16_t *dataOut, uint16_t count)</div><div class="ttdoc">Write multiple data via SPI in 16-bit SPI mode. </div></div>
 <div class="ttc" id="group___t_m___s_p_i___functions_html_ga5565c1db3cf2532069fa0b8cb2eeb1c0"><div class="ttname"><a href="group___t_m___s_p_i___functions.html#ga5565c1db3cf2532069fa0b8cb2eeb1c0">TM_SPI_SendMulti16</a></div><div class="ttdeci">void TM_SPI_SendMulti16(SPI_TypeDef *SPIx, uint16_t *dataOut, uint16_t *dataIn, uint16_t count)</div><div class="ttdoc">Send and receive multiple bytes over SPIx in 16-bit SPI mode. </div></div>
 <div class="ttc" id="group___t_m___s_p_i___functions_html_ga2ab935461ffb47dae4e077efc26a5aec"><div class="ttname"><a href="group___t_m___s_p_i___functions.html#ga2ab935461ffb47dae4e077efc26a5aec">TM_SPI_Send</a></div><div class="ttdeci">uint8_t TM_SPI_Send(SPI_TypeDef *SPIx, uint8_t data)</div><div class="ttdoc">Send single byte over SPI. </div></div>
-<div class="ttc" id="group___t_m___s_p_i___typedefs_html_ggab43ae1eb8a7cf9ba1d9d48441fc99e51a2bf644ad9c29ca6722ab02414452a9d1"><div class="ttname"><a href="group___t_m___s_p_i___typedefs.html#ggab43ae1eb8a7cf9ba1d9d48441fc99e51a2bf644ad9c29ca6722ab02414452a9d1">TM_SPI_Mode_1</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_spi.h:156</div></div>
-<div class="ttc" id="group___t_m___s_p_i___typedefs_html_ggab43ae1eb8a7cf9ba1d9d48441fc99e51afda7659519f9d20de5b9f93f830dc6e5"><div class="ttname"><a href="group___t_m___s_p_i___typedefs.html#ggab43ae1eb8a7cf9ba1d9d48441fc99e51afda7659519f9d20de5b9f93f830dc6e5">TM_SPI_Mode_3</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_spi.h:158</div></div>
-<div class="ttc" id="group___t_m___s_p_i___typedefs_html_ggaaea351a7377ef8de4249cd4608c52d7ba0bbe4fded3a917b6cadc74a1bacf4656"><div class="ttname"><a href="group___t_m___s_p_i___typedefs.html#ggaaea351a7377ef8de4249cd4608c52d7ba0bbe4fded3a917b6cadc74a1bacf4656">TM_SPI_PinsPack_1</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_spi.h:165</div></div>
-<div class="ttc" id="group___t_m___s_p_i___typedefs_html_gab43ae1eb8a7cf9ba1d9d48441fc99e51"><div class="ttname"><a href="group___t_m___s_p_i___typedefs.html#gab43ae1eb8a7cf9ba1d9d48441fc99e51">TM_SPI_Mode_t</a></div><div class="ttdeci">TM_SPI_Mode_t</div><div class="ttdoc">SPI modes selection. </div><div class="ttdef"><b>Definition:</b> tm_stm32f4_spi.h:154</div></div>
+<div class="ttc" id="group___t_m___s_p_i___typedefs_html_ggab43ae1eb8a7cf9ba1d9d48441fc99e51a2bf644ad9c29ca6722ab02414452a9d1"><div class="ttname"><a href="group___t_m___s_p_i___typedefs.html#ggab43ae1eb8a7cf9ba1d9d48441fc99e51a2bf644ad9c29ca6722ab02414452a9d1">TM_SPI_Mode_1</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_spi.h:162</div></div>
+<div class="ttc" id="group___t_m___s_p_i___typedefs_html_ggab43ae1eb8a7cf9ba1d9d48441fc99e51afda7659519f9d20de5b9f93f830dc6e5"><div class="ttname"><a href="group___t_m___s_p_i___typedefs.html#ggab43ae1eb8a7cf9ba1d9d48441fc99e51afda7659519f9d20de5b9f93f830dc6e5">TM_SPI_Mode_3</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_spi.h:164</div></div>
+<div class="ttc" id="group___t_m___s_p_i___typedefs_html_ggaaea351a7377ef8de4249cd4608c52d7ba0bbe4fded3a917b6cadc74a1bacf4656"><div class="ttname"><a href="group___t_m___s_p_i___typedefs.html#ggaaea351a7377ef8de4249cd4608c52d7ba0bbe4fded3a917b6cadc74a1bacf4656">TM_SPI_PinsPack_1</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_spi.h:171</div></div>
+<div class="ttc" id="group___t_m___s_p_i___typedefs_html_gab43ae1eb8a7cf9ba1d9d48441fc99e51"><div class="ttname"><a href="group___t_m___s_p_i___typedefs.html#gab43ae1eb8a7cf9ba1d9d48441fc99e51">TM_SPI_Mode_t</a></div><div class="ttdeci">TM_SPI_Mode_t</div><div class="ttdoc">SPI modes selection. </div><div class="ttdef"><b>Definition:</b> tm_stm32f4_spi.h:160</div></div>
 <div class="ttc" id="group___t_m___s_p_i___functions_html_ga0d5a3470176d78a8306d9400de03ccae"><div class="ttname"><a href="group___t_m___s_p_i___functions.html#ga0d5a3470176d78a8306d9400de03ccae">TM_SPI_InitWithMode</a></div><div class="ttdeci">void TM_SPI_InitWithMode(SPI_TypeDef *SPIx, TM_SPI_PinsPack_t pinspack, TM_SPI_Mode_t SPI_Mode)</div><div class="ttdoc">Initializes SPIx peripheral with custom pinspack and SPI mode and default other settings. </div></div>
-<div class="ttc" id="group___t_m___s_p_i___typedefs_html_ggab43ae1eb8a7cf9ba1d9d48441fc99e51a2749ef50fa4dcc97e2561f211d59b8f8"><div class="ttname"><a href="group___t_m___s_p_i___typedefs.html#ggab43ae1eb8a7cf9ba1d9d48441fc99e51a2749ef50fa4dcc97e2561f211d59b8f8">TM_SPI_Mode_0</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_spi.h:155</div></div>
+<div class="ttc" id="group___t_m___s_p_i___typedefs_html_ggab43ae1eb8a7cf9ba1d9d48441fc99e51a2749ef50fa4dcc97e2561f211d59b8f8"><div class="ttname"><a href="group___t_m___s_p_i___typedefs.html#ggab43ae1eb8a7cf9ba1d9d48441fc99e51a2749ef50fa4dcc97e2561f211d59b8f8">TM_SPI_Mode_0</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_spi.h:161</div></div>
 <div class="ttc" id="group___t_m___s_p_i___functions_html_gaa589d60226b56b20b5e61169bbe92672"><div class="ttname"><a href="group___t_m___s_p_i___functions.html#gaa589d60226b56b20b5e61169bbe92672">TM_SPI_WriteMulti</a></div><div class="ttdeci">void TM_SPI_WriteMulti(SPI_TypeDef *SPIx, uint8_t *dataOut, uint16_t count)</div><div class="ttdoc">Write multiple bytes over SPI. </div></div>
 <div class="ttc" id="group___t_m___s_p_i___functions_html_ga8f64079c7f59bd1c4830dd79a6ed9197"><div class="ttname"><a href="group___t_m___s_p_i___functions.html#ga8f64079c7f59bd1c4830dd79a6ed9197">TM_SPI_SendMulti</a></div><div class="ttdeci">void TM_SPI_SendMulti(SPI_TypeDef *SPIx, uint8_t *dataOut, uint8_t *dataIn, uint16_t count)</div><div class="ttdoc">Send and receive multiple bytes over SPIx. </div></div>
 <div class="ttc" id="group___t_m___s_p_i___functions_html_ga1204e453b6efb989c105d4e5b4a3eded"><div class="ttname"><a href="group___t_m___s_p_i___functions.html#ga1204e453b6efb989c105d4e5b4a3eded">TM_SPI_InitFull</a></div><div class="ttdeci">void TM_SPI_InitFull(SPI_TypeDef *SPIx, TM_SPI_PinsPack_t pinspack, uint16_t SPI_BaudRatePrescaler, TM_SPI_Mode_t SPI_Mode_t, uint16_t SPI_Mode, uint16_t SPI_FirstBit)</div><div class="ttdoc">Initializes SPIx peripheral with custom settings. </div></div>
-<div class="ttc" id="group___t_m___s_p_i___typedefs_html_ggaaea351a7377ef8de4249cd4608c52d7ba1d2eb19386be1fb6e1f2f43a75bbed3c"><div class="ttname"><a href="group___t_m___s_p_i___typedefs.html#ggaaea351a7377ef8de4249cd4608c52d7ba1d2eb19386be1fb6e1f2f43a75bbed3c">TM_SPI_PinsPack_Custom</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_spi.h:168</div></div>
-<div class="ttc" id="group___t_m___s_p_i___typedefs_html_ggaaea351a7377ef8de4249cd4608c52d7bafdf20e5257085edeb8e5ff3cf79fbc4a"><div class="ttname"><a href="group___t_m___s_p_i___typedefs.html#ggaaea351a7377ef8de4249cd4608c52d7bafdf20e5257085edeb8e5ff3cf79fbc4a">TM_SPI_PinsPack_2</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_spi.h:166</div></div>
+<div class="ttc" id="group___t_m___s_p_i___typedefs_html_ggaaea351a7377ef8de4249cd4608c52d7ba1d2eb19386be1fb6e1f2f43a75bbed3c"><div class="ttname"><a href="group___t_m___s_p_i___typedefs.html#ggaaea351a7377ef8de4249cd4608c52d7ba1d2eb19386be1fb6e1f2f43a75bbed3c">TM_SPI_PinsPack_Custom</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_spi.h:174</div></div>
+<div class="ttc" id="group___t_m___s_p_i___typedefs_html_ggaaea351a7377ef8de4249cd4608c52d7bafdf20e5257085edeb8e5ff3cf79fbc4a"><div class="ttname"><a href="group___t_m___s_p_i___typedefs.html#ggaaea351a7377ef8de4249cd4608c52d7bafdf20e5257085edeb8e5ff3cf79fbc4a">TM_SPI_PinsPack_2</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_spi.h:172</div></div>
 <div class="ttc" id="group___t_m___s_p_i___functions_html_ga4589a7f712c54f27dd0d0e8811bcb354"><div class="ttname"><a href="group___t_m___s_p_i___functions.html#ga4589a7f712c54f27dd0d0e8811bcb354">TM_SPI_GetPrescalerFromMaxFrequency</a></div><div class="ttdeci">uint16_t TM_SPI_GetPrescalerFromMaxFrequency(SPI_TypeDef *SPIx, uint32_t MAX_SPI_Frequency)</div><div class="ttdoc">Calculate bits for SPI prescaler register to get minimal prescaler value for SPI peripheral. </div></div>
 <div class="ttc" id="group___t_m___s_p_i___functions_html_ga9b59dc93791950c6eb94c467c3932ae5"><div class="ttname"><a href="group___t_m___s_p_i___functions.html#ga9b59dc93791950c6eb94c467c3932ae5">TM_SPI_InitCustomPinsCallback</a></div><div class="ttdeci">__weak void TM_SPI_InitCustomPinsCallback(SPI_TypeDef *SPIx)</div><div class="ttdoc">Init custom SPI pins for your SPIx. This is callback function and will be called from my library if n...</div></div>
 <div class="ttc" id="group___t_m___s_p_i___functions_html_ga3648e7ca6e9d02e22a65723e658b5afa"><div class="ttname"><a href="group___t_m___s_p_i___functions.html#ga3648e7ca6e9d02e22a65723e658b5afa">TM_SPI_Init</a></div><div class="ttdeci">void TM_SPI_Init(SPI_TypeDef *SPIx, TM_SPI_PinsPack_t pinspack)</div><div class="ttdoc">Initializes SPIx peripheral with custom pinspack and default other settings. </div></div>
 <div class="ttc" id="group___t_m___s_p_i___functions_html_ga36a979cac19089edfbc3f3700ad8fd85"><div class="ttname"><a href="group___t_m___s_p_i___functions.html#ga36a979cac19089edfbc3f3700ad8fd85">TM_SPI_Send16</a></div><div class="ttdeci">uint16_t TM_SPI_Send16(SPI_TypeDef *SPIx, uint16_t data)</div><div class="ttdoc">Send single byte over SPI. </div></div>
-<div class="ttc" id="group___t_m___s_p_i___typedefs_html_ggaaea351a7377ef8de4249cd4608c52d7baeaa01f95c9aea8b5de370342e866b973"><div class="ttname"><a href="group___t_m___s_p_i___typedefs.html#ggaaea351a7377ef8de4249cd4608c52d7baeaa01f95c9aea8b5de370342e866b973">TM_SPI_PinsPack_3</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_spi.h:167</div></div>
+<div class="ttc" id="group___t_m___s_p_i___typedefs_html_ggaaea351a7377ef8de4249cd4608c52d7baeaa01f95c9aea8b5de370342e866b973"><div class="ttname"><a href="group___t_m___s_p_i___typedefs.html#ggaaea351a7377ef8de4249cd4608c52d7baeaa01f95c9aea8b5de370342e866b973">TM_SPI_PinsPack_3</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_spi.h:173</div></div>
 <div class="ttc" id="group___t_m___s_p_i___functions_html_ga6ccd9d1f67058ea160537eaf4ec77b86"><div class="ttname"><a href="group___t_m___s_p_i___functions.html#ga6ccd9d1f67058ea160537eaf4ec77b86">TM_SPI_ReadMulti</a></div><div class="ttdeci">void TM_SPI_ReadMulti(SPI_TypeDef *SPIx, uint8_t *dataIn, uint8_t dummy, uint16_t count)</div><div class="ttdoc">Receive multiple data bytes over SPI. </div></div>
 <div class="ttc" id="group___t_m___s_p_i___functions_html_gaab62813fe2733e176111cf93c05dc095"><div class="ttname"><a href="group___t_m___s_p_i___functions.html#gaab62813fe2733e176111cf93c05dc095">TM_SPI_ReadMulti16</a></div><div class="ttdeci">void TM_SPI_ReadMulti16(SPI_TypeDef *SPIx, uint16_t *dataIn, uint16_t dummy, uint16_t count)</div><div class="ttdoc">Receive multiple data bytes over SPI in 16-bit SPI mode. </div></div>
-<div class="ttc" id="group___t_m___s_p_i___typedefs_html_ggab43ae1eb8a7cf9ba1d9d48441fc99e51a63fef1f9fe11bd70aeedf8109d22f671"><div class="ttname"><a href="group___t_m___s_p_i___typedefs.html#ggab43ae1eb8a7cf9ba1d9d48441fc99e51a63fef1f9fe11bd70aeedf8109d22f671">TM_SPI_Mode_2</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_spi.h:157</div></div>
-<div class="ttc" id="group___t_m___s_p_i___typedefs_html_gaaea351a7377ef8de4249cd4608c52d7b"><div class="ttname"><a href="group___t_m___s_p_i___typedefs.html#gaaea351a7377ef8de4249cd4608c52d7b">TM_SPI_PinsPack_t</a></div><div class="ttdeci">TM_SPI_PinsPack_t</div><div class="ttdoc">USART PinsPack enumeration to select pins combination for USART. </div><div class="ttdef"><b>Definition:</b> tm_stm32f4_spi.h:164</div></div>
+<div class="ttc" id="group___t_m___s_p_i___typedefs_html_ggab43ae1eb8a7cf9ba1d9d48441fc99e51a63fef1f9fe11bd70aeedf8109d22f671"><div class="ttname"><a href="group___t_m___s_p_i___typedefs.html#ggab43ae1eb8a7cf9ba1d9d48441fc99e51a63fef1f9fe11bd70aeedf8109d22f671">TM_SPI_Mode_2</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_spi.h:163</div></div>
+<div class="ttc" id="group___t_m___s_p_i___typedefs_html_gaaea351a7377ef8de4249cd4608c52d7b"><div class="ttname"><a href="group___t_m___s_p_i___typedefs.html#gaaea351a7377ef8de4249cd4608c52d7b">TM_SPI_PinsPack_t</a></div><div class="ttdeci">TM_SPI_PinsPack_t</div><div class="ttdoc">USART PinsPack enumeration to select pins combination for USART. </div><div class="ttdef"><b>Definition:</b> tm_stm32f4_spi.h:170</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>tm_stm32f4_spi.h</b></li>
-    <li class="footer">Generated on Fri Mar 20 2015 17:15:33 for TM STM32F4xx Libraries by
+    <li class="footer">Generated on Sun Mar 22 2015 10:43:55 for TM STM32F4xx Libraries by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

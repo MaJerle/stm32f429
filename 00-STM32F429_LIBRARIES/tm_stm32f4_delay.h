@@ -151,6 +151,12 @@ Or use ARM compiler!
 #endif
 
 /**
+ * @defgroup TM_DELAY_Variables
+ * @brief    Library Variables
+ * @{
+ */
+
+/**
  * This variable can be used in main
  * It is automatically increased every time systick make an interrupt
  */
@@ -159,7 +165,11 @@ extern __IO uint32_t TM_Time2;
 extern __IO uint32_t mult;
 
 /**
- * @defgroup TM_LIB_Functions
+ * @}
+ */
+
+/**
+ * @defgroup TM_DELAY_Functions
  * @brief    Library Functions
  * @{
  */

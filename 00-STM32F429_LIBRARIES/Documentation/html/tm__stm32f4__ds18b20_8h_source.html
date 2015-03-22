@@ -104,80 +104,96 @@ $(document).ready(function(){initNavTree('tm__stm32f4__ds18b20_8h_source.html','
 </div><!--header-->
 <div class="contents">
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#ifndef TM_DS18B20_H</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#define TM_DS18B20_H 200</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx.h&quot;</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">#include &quot;tm_stm32f4_onewire.h&quot;</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">#include &quot;defines.h&quot;</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">/* OneWire version check */</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">#if TM_ONEWIRE_H &lt; 200</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">#error &quot;Please update TM ONEWIRE LIB, minimum required version is 2.0.0&quot;</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">/* Every onewire chip has different ROM code, but all the same chips has same family code */</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">/* in case of DS18B20 this is 0x28 and this is first byte of ROM address */</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor">#define DS18B20_FAMILY_CODE             0x28</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor">#define DS18B20_CMD_ALARMSEARCH         0xEC</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">/* DS18B20 read temperature command */</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">#define DS18B20_CMD_CONVERTTEMP         0x44    </span><span class="comment">/* Convert temperature */</span><span class="preprocessor"></span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">#define DS18B20_DECIMAL_STEPS_12BIT     0.0625</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="preprocessor">#define DS18B20_DECIMAL_STEPS_11BIT     0.125</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">#define DS18B20_DECIMAL_STEPS_10BIT     0.25</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor">#define DS18B20_DECIMAL_STEPS_9BIT      0.5</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">#ifndef TM_DS18B20_H</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor">#define TM_DS18B20_H 200</span></div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">/* Bits locations for resolution */</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">#define DS18B20_RESOLUTION_R1           6</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="preprocessor">#define DS18B20_RESOLUTION_R0           5</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">#ifdef DS18B20_USE_CRC  </span></div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">#define DS18B20_DATA_LEN                9</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">#define DS18B20_DATA_LEN                2</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    TM_DS18B20_Resolution_9bits = 9,</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    TM_DS18B20_Resolution_10bits = 10,</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    TM_DS18B20_Resolution_11bits = 11,</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    TM_DS18B20_Resolution_12bits = 12</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;} TM_DS18B20_Resolution_t;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="keyword">extern</span> uint8_t TM_DS18B20_Start(<a class="code" href="struct_t_m___one_wire__t.html">TM_OneWire_t</a>* OneWireStruct, uint8_t* ROM);</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> TM_DS18B20_StartAll(<a class="code" href="struct_t_m___one_wire__t.html">TM_OneWire_t</a>* OneWireStruct);</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="keyword">extern</span> uint8_t TM_DS18B20_Read(<a class="code" href="struct_t_m___one_wire__t.html">TM_OneWire_t</a>* OneWireStruct, uint8_t* ROM, <span class="keywordtype">float</span>* destination);</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;<span class="keyword">extern</span> uint8_t TM_DS18B20_GetResolution(<a class="code" href="struct_t_m___one_wire__t.html">TM_OneWire_t</a>* OneWireStruct, uint8_t* ROM);</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="keyword">extern</span> uint8_t TM_DS18B20_SetResolution(<a class="code" href="struct_t_m___one_wire__t.html">TM_OneWire_t</a>* OneWireStruct, uint8_t* ROM, TM_DS18B20_Resolution_t resolution);</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;<span class="keyword">extern</span> uint8_t TM_DS18B20_Is(uint8_t* ROM);</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;<span class="keyword">extern</span> uint8_t TM_DS18B20_SetAlarmHighTemperature(<a class="code" href="struct_t_m___one_wire__t.html">TM_OneWire_t</a>* OneWireStruct, uint8_t* ROM, int8_t temp);</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;<span class="keyword">extern</span> uint8_t TM_DS18B20_SetAlarmLowTemperature(<a class="code" href="struct_t_m___one_wire__t.html">TM_OneWire_t</a>* OneWireStruct, uint8_t* ROM, int8_t temp);</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;<span class="keyword">extern</span> uint8_t TM_DS18B20_DisableAlarmTemperature(<a class="code" href="struct_t_m___one_wire__t.html">TM_OneWire_t</a>* OneWireStruct, uint8_t* ROM);</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;<span class="keyword">extern</span> uint8_t TM_DS18B20_AlarmSearch(<a class="code" href="struct_t_m___one_wire__t.html">TM_OneWire_t</a>* OneWireStruct);</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;<span class="keyword">extern</span> uint8_t TM_DS18B20_AllDone(<a class="code" href="struct_t_m___one_wire__t.html">TM_OneWire_t</a>* OneWireStruct);</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;</div>
-<div class="ttc" id="struct_t_m___one_wire__t_html"><div class="ttname"><a href="struct_t_m___one_wire__t.html">TM_OneWire_t</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_onewire.h:105</div></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx.h&quot;</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="preprocessor">#include &quot;tm_stm32f4_onewire.h&quot;</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="preprocessor">#include &quot;defines.h&quot;</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="comment">/* OneWire version check */</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="preprocessor">#if TM_ONEWIRE_H &lt; 200</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="preprocessor">#error &quot;Please update TM ONEWIRE LIB, minimum required version is 2.0.0. Download available on stm32f4-discovery.com website&quot;</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="comment">/* Every onewire chip has different ROM code, but all the same chips has same family code */</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="comment">/* in case of DS18B20 this is 0x28 and this is first byte of ROM address */</span></div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="preprocessor">#define DS18B20_FAMILY_CODE             0x28</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="preprocessor">#define DS18B20_CMD_ALARMSEARCH         0xEC</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="comment">/* DS18B20 read temperature command */</span></div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="preprocessor">#define DS18B20_CMD_CONVERTTEMP         0x44    </span><span class="comment">/* Convert temperature */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="preprocessor">#define DS18B20_DECIMAL_STEPS_12BIT     0.0625</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="preprocessor">#define DS18B20_DECIMAL_STEPS_11BIT     0.125</span></div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="preprocessor">#define DS18B20_DECIMAL_STEPS_10BIT     0.25</span></div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="preprocessor">#define DS18B20_DECIMAL_STEPS_9BIT      0.5</span></div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="comment">/* Bits locations for resolution */</span></div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="preprocessor">#define DS18B20_RESOLUTION_R1           6</span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="preprocessor">#define DS18B20_RESOLUTION_R0           5</span></div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="comment">/* CRC enabled */</span></div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="preprocessor">#ifdef DS18B20_USE_CRC  </span></div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="preprocessor">#define DS18B20_DATA_LEN                9</span></div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="preprocessor">#define DS18B20_DATA_LEN                2</span></div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;</div>
+<div class="line"><a name="l00166"></a><span class="lineno"><a class="line" href="group___t_m___d_s18_b20___typedefs.html#gaf7c48f8299dee22330c7daec1cc08da6">  166</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00167"></a><span class="lineno"><a class="line" href="group___t_m___d_s18_b20___typedefs.html#ggaf7c48f8299dee22330c7daec1cc08da6a10067f1841e174797275752726606e06">  167</a></span>&#160;    <a class="code" href="group___t_m___d_s18_b20___typedefs.html#ggaf7c48f8299dee22330c7daec1cc08da6a10067f1841e174797275752726606e06">TM_DS18B20_Resolution_9bits</a> = 9,   </div>
+<div class="line"><a name="l00168"></a><span class="lineno"><a class="line" href="group___t_m___d_s18_b20___typedefs.html#ggaf7c48f8299dee22330c7daec1cc08da6a0017ee3e32019c7d8a71d225de46b065">  168</a></span>&#160;    <a class="code" href="group___t_m___d_s18_b20___typedefs.html#ggaf7c48f8299dee22330c7daec1cc08da6a0017ee3e32019c7d8a71d225de46b065">TM_DS18B20_Resolution_10bits</a> = 10, </div>
+<div class="line"><a name="l00169"></a><span class="lineno"><a class="line" href="group___t_m___d_s18_b20___typedefs.html#ggaf7c48f8299dee22330c7daec1cc08da6ab09996de3c6bc8e8a20688b305979b7d">  169</a></span>&#160;    <a class="code" href="group___t_m___d_s18_b20___typedefs.html#ggaf7c48f8299dee22330c7daec1cc08da6ab09996de3c6bc8e8a20688b305979b7d">TM_DS18B20_Resolution_11bits</a> = 11, </div>
+<div class="line"><a name="l00170"></a><span class="lineno"><a class="line" href="group___t_m___d_s18_b20___typedefs.html#ggaf7c48f8299dee22330c7daec1cc08da6a6b604cf69310bea9d5277448f916abe9">  170</a></span>&#160;    <a class="code" href="group___t_m___d_s18_b20___typedefs.html#ggaf7c48f8299dee22330c7daec1cc08da6a6b604cf69310bea9d5277448f916abe9">TM_DS18B20_Resolution_12bits</a> = 12  </div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;} <a class="code" href="group___t_m___d_s18_b20___typedefs.html#gaf7c48f8299dee22330c7daec1cc08da6">TM_DS18B20_Resolution_t</a>;</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;uint8_t <a class="code" href="group___t_m___d_s18_b20___functions.html#ga15561c2d5d36a0b3a560d4c42ce46bc7">TM_DS18B20_Start</a>(<a class="code" href="struct_t_m___one_wire__t.html">TM_OneWire_t</a>* OneWireStruct, uint8_t* ROM);</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;<span class="keywordtype">void</span> <a class="code" href="group___t_m___d_s18_b20___functions.html#gaeba43a8d41c64dd87347692724537961">TM_DS18B20_StartAll</a>(<a class="code" href="struct_t_m___one_wire__t.html">TM_OneWire_t</a>* OneWireStruct);</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;uint8_t <a class="code" href="group___t_m___d_s18_b20___functions.html#ga81646be752fc49db405d5139de6c74c0">TM_DS18B20_Read</a>(<a class="code" href="struct_t_m___one_wire__t.html">TM_OneWire_t</a>* OneWireStruct, uint8_t* ROM, <span class="keywordtype">float</span>* destination);</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;uint8_t <a class="code" href="group___t_m___d_s18_b20___functions.html#ga1f89290be3efd7f06ff023bdd948e311">TM_DS18B20_GetResolution</a>(<a class="code" href="struct_t_m___one_wire__t.html">TM_OneWire_t</a>* OneWireStruct, uint8_t* ROM);</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;uint8_t <a class="code" href="group___t_m___d_s18_b20___functions.html#ga5f8790e70238765720d0e67f5c7c8a42">TM_DS18B20_SetResolution</a>(<a class="code" href="struct_t_m___one_wire__t.html">TM_OneWire_t</a>* OneWireStruct, uint8_t* ROM, <a class="code" href="group___t_m___d_s18_b20___typedefs.html#gaf7c48f8299dee22330c7daec1cc08da6">TM_DS18B20_Resolution_t</a> resolution);</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;uint8_t <a class="code" href="group___t_m___d_s18_b20___functions.html#gab83ff9a95ab7b3af57901abf23b89ee3">TM_DS18B20_Is</a>(uint8_t* ROM);</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;uint8_t <a class="code" href="group___t_m___d_s18_b20___functions.html#ga0e53e327800b3fa8f3b4e377e87f72f6">TM_DS18B20_SetAlarmHighTemperature</a>(<a class="code" href="struct_t_m___one_wire__t.html">TM_OneWire_t</a>* OneWireStruct, uint8_t* ROM, int8_t temp);</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;uint8_t <a class="code" href="group___t_m___d_s18_b20___functions.html#ga5b5f8511c60cf71f6c9c12e24c283b38">TM_DS18B20_SetAlarmLowTemperature</a>(<a class="code" href="struct_t_m___one_wire__t.html">TM_OneWire_t</a>* OneWireStruct, uint8_t* ROM, int8_t temp);</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;uint8_t <a class="code" href="group___t_m___d_s18_b20___functions.html#gab2547c5289b87a90cd85c7445a3d4957">TM_DS18B20_DisableAlarmTemperature</a>(<a class="code" href="struct_t_m___one_wire__t.html">TM_OneWire_t</a>* OneWireStruct, uint8_t* ROM);</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;uint8_t <a class="code" href="group___t_m___d_s18_b20___functions.html#ga97146d61f2e0cd1438e35184ac9f44b9">TM_DS18B20_AlarmSearch</a>(<a class="code" href="struct_t_m___one_wire__t.html">TM_OneWire_t</a>* OneWireStruct);</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;uint8_t <a class="code" href="group___t_m___d_s18_b20___functions.html#ga6d3c2c98bc62776b0f9dc200536c6cee">TM_DS18B20_AllDone</a>(<a class="code" href="struct_t_m___one_wire__t.html">TM_OneWire_t</a>* OneWireStruct);</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;</div>
+<div class="ttc" id="group___t_m___d_s18_b20___typedefs_html_ggaf7c48f8299dee22330c7daec1cc08da6a0017ee3e32019c7d8a71d225de46b065"><div class="ttname"><a href="group___t_m___d_s18_b20___typedefs.html#ggaf7c48f8299dee22330c7daec1cc08da6a0017ee3e32019c7d8a71d225de46b065">TM_DS18B20_Resolution_10bits</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_ds18b20.h:168</div></div>
+<div class="ttc" id="group___t_m___d_s18_b20___functions_html_ga5f8790e70238765720d0e67f5c7c8a42"><div class="ttname"><a href="group___t_m___d_s18_b20___functions.html#ga5f8790e70238765720d0e67f5c7c8a42">TM_DS18B20_SetResolution</a></div><div class="ttdeci">uint8_t TM_DS18B20_SetResolution(TM_OneWire_t *OneWireStruct, uint8_t *ROM, TM_DS18B20_Resolution_t resolution)</div><div class="ttdoc">Sets resolution for specific DS18B20 device. </div></div>
+<div class="ttc" id="struct_t_m___one_wire__t_html"><div class="ttname"><a href="struct_t_m___one_wire__t.html">TM_OneWire_t</a></div><div class="ttdoc">OneWire working struct. </div><div class="ttdef"><b>Definition:</b> tm_stm32f4_onewire.h:132</div></div>
+<div class="ttc" id="group___t_m___d_s18_b20___typedefs_html_gaf7c48f8299dee22330c7daec1cc08da6"><div class="ttname"><a href="group___t_m___d_s18_b20___typedefs.html#gaf7c48f8299dee22330c7daec1cc08da6">TM_DS18B20_Resolution_t</a></div><div class="ttdeci">TM_DS18B20_Resolution_t</div><div class="ttdoc">DS18B0 Resolutions available. </div><div class="ttdef"><b>Definition:</b> tm_stm32f4_ds18b20.h:166</div></div>
+<div class="ttc" id="group___t_m___d_s18_b20___functions_html_ga1f89290be3efd7f06ff023bdd948e311"><div class="ttname"><a href="group___t_m___d_s18_b20___functions.html#ga1f89290be3efd7f06ff023bdd948e311">TM_DS18B20_GetResolution</a></div><div class="ttdeci">uint8_t TM_DS18B20_GetResolution(TM_OneWire_t *OneWireStruct, uint8_t *ROM)</div><div class="ttdoc">Gets resolution for temperature conversion from DS18B20 device. </div></div>
+<div class="ttc" id="group___t_m___d_s18_b20___functions_html_ga81646be752fc49db405d5139de6c74c0"><div class="ttname"><a href="group___t_m___d_s18_b20___functions.html#ga81646be752fc49db405d5139de6c74c0">TM_DS18B20_Read</a></div><div class="ttdeci">uint8_t TM_DS18B20_Read(TM_OneWire_t *OneWireStruct, uint8_t *ROM, float *destination)</div><div class="ttdoc">Reads temperature from DS18B20. </div></div>
+<div class="ttc" id="group___t_m___d_s18_b20___functions_html_gaeba43a8d41c64dd87347692724537961"><div class="ttname"><a href="group___t_m___d_s18_b20___functions.html#gaeba43a8d41c64dd87347692724537961">TM_DS18B20_StartAll</a></div><div class="ttdeci">void TM_DS18B20_StartAll(TM_OneWire_t *OneWireStruct)</div><div class="ttdoc">Starts temperature conversion for all DS18B20 devices on specific onewire channel. </div></div>
+<div class="ttc" id="group___t_m___d_s18_b20___functions_html_gab83ff9a95ab7b3af57901abf23b89ee3"><div class="ttname"><a href="group___t_m___d_s18_b20___functions.html#gab83ff9a95ab7b3af57901abf23b89ee3">TM_DS18B20_Is</a></div><div class="ttdeci">uint8_t TM_DS18B20_Is(uint8_t *ROM)</div><div class="ttdoc">Checks if device with specific ROM number is DS18B20. </div></div>
+<div class="ttc" id="group___t_m___d_s18_b20___typedefs_html_ggaf7c48f8299dee22330c7daec1cc08da6a10067f1841e174797275752726606e06"><div class="ttname"><a href="group___t_m___d_s18_b20___typedefs.html#ggaf7c48f8299dee22330c7daec1cc08da6a10067f1841e174797275752726606e06">TM_DS18B20_Resolution_9bits</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_ds18b20.h:167</div></div>
+<div class="ttc" id="group___t_m___d_s18_b20___typedefs_html_ggaf7c48f8299dee22330c7daec1cc08da6a6b604cf69310bea9d5277448f916abe9"><div class="ttname"><a href="group___t_m___d_s18_b20___typedefs.html#ggaf7c48f8299dee22330c7daec1cc08da6a6b604cf69310bea9d5277448f916abe9">TM_DS18B20_Resolution_12bits</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_ds18b20.h:170</div></div>
+<div class="ttc" id="group___t_m___d_s18_b20___functions_html_gab2547c5289b87a90cd85c7445a3d4957"><div class="ttname"><a href="group___t_m___d_s18_b20___functions.html#gab2547c5289b87a90cd85c7445a3d4957">TM_DS18B20_DisableAlarmTemperature</a></div><div class="ttdeci">uint8_t TM_DS18B20_DisableAlarmTemperature(TM_OneWire_t *OneWireStruct, uint8_t *ROM)</div><div class="ttdoc">Disables alarm temperature for specific DS18B20 sensor. </div></div>
+<div class="ttc" id="group___t_m___d_s18_b20___typedefs_html_ggaf7c48f8299dee22330c7daec1cc08da6ab09996de3c6bc8e8a20688b305979b7d"><div class="ttname"><a href="group___t_m___d_s18_b20___typedefs.html#ggaf7c48f8299dee22330c7daec1cc08da6ab09996de3c6bc8e8a20688b305979b7d">TM_DS18B20_Resolution_11bits</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_ds18b20.h:169</div></div>
+<div class="ttc" id="group___t_m___d_s18_b20___functions_html_ga5b5f8511c60cf71f6c9c12e24c283b38"><div class="ttname"><a href="group___t_m___d_s18_b20___functions.html#ga5b5f8511c60cf71f6c9c12e24c283b38">TM_DS18B20_SetAlarmLowTemperature</a></div><div class="ttdeci">uint8_t TM_DS18B20_SetAlarmLowTemperature(TM_OneWire_t *OneWireStruct, uint8_t *ROM, int8_t temp)</div><div class="ttdoc">Sets low alarm temperature to specific DS18B20 sensor. </div></div>
+<div class="ttc" id="group___t_m___d_s18_b20___functions_html_ga0e53e327800b3fa8f3b4e377e87f72f6"><div class="ttname"><a href="group___t_m___d_s18_b20___functions.html#ga0e53e327800b3fa8f3b4e377e87f72f6">TM_DS18B20_SetAlarmHighTemperature</a></div><div class="ttdeci">uint8_t TM_DS18B20_SetAlarmHighTemperature(TM_OneWire_t *OneWireStruct, uint8_t *ROM, int8_t temp)</div><div class="ttdoc">Sets high alarm temperature to specific DS18B20 sensor. </div></div>
+<div class="ttc" id="group___t_m___d_s18_b20___functions_html_ga15561c2d5d36a0b3a560d4c42ce46bc7"><div class="ttname"><a href="group___t_m___d_s18_b20___functions.html#ga15561c2d5d36a0b3a560d4c42ce46bc7">TM_DS18B20_Start</a></div><div class="ttdeci">uint8_t TM_DS18B20_Start(TM_OneWire_t *OneWireStruct, uint8_t *ROM)</div><div class="ttdoc">Starts temperature conversion for specific DS18B20 on specific onewire channel. </div></div>
+<div class="ttc" id="group___t_m___d_s18_b20___functions_html_ga97146d61f2e0cd1438e35184ac9f44b9"><div class="ttname"><a href="group___t_m___d_s18_b20___functions.html#ga97146d61f2e0cd1438e35184ac9f44b9">TM_DS18B20_AlarmSearch</a></div><div class="ttdeci">uint8_t TM_DS18B20_AlarmSearch(TM_OneWire_t *OneWireStruct)</div><div class="ttdoc">Searches for devices with alarm flag set. </div></div>
+<div class="ttc" id="group___t_m___d_s18_b20___functions_html_ga6d3c2c98bc62776b0f9dc200536c6cee"><div class="ttname"><a href="group___t_m___d_s18_b20___functions.html#ga6d3c2c98bc62776b0f9dc200536c6cee">TM_DS18B20_AllDone</a></div><div class="ttdeci">uint8_t TM_DS18B20_AllDone(TM_OneWire_t *OneWireStruct)</div><div class="ttdoc">Checks if all DS18B20 sensors are done with temperature conversion. </div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>tm_stm32f4_ds18b20.h</b></li>
-    <li class="footer">Generated on Fri Mar 20 2015 17:15:33 for TM STM32F4xx Libraries by
+    <li class="footer">Generated on Sun Mar 22 2015 10:43:55 for TM STM32F4xx Libraries by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

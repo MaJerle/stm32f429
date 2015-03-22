@@ -107,25 +107,25 @@ $(document).ready(function(){initNavTree('tm__stm32f4__fatfs_8h_source.html','')
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#ifndef TM_FATFS_H</span></div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#define TM_FATFS_H 160</span></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx.h&quot;</span></div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx_rcc.h&quot;</span></div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx_gpio.h&quot;</span></div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;<span class="preprocessor">#include &quot;defines.h&quot;</span></div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;<span class="preprocessor">#include &quot;tm_stm32f4_gpio.h&quot;</span></div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;<span class="preprocessor">#include &quot;ff.h&quot;</span></div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;</div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;<span class="preprocessor">#ifndef FATFS_TRUNCATE_BUFFER_SIZE</span></div>
-<div class="line"><a name="l00337"></a><span class="lineno"><a class="line" href="group___t_m___f_a_t_f_s___macros.html#ga3d721434784b08f1bf0050832b7ab271">  337</a></span>&#160;<span class="preprocessor">#define FATFS_TRUNCATE_BUFFER_SIZE  256</span></div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;</div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;FRESULT <a class="code" href="group___t_m___f_a_t_f_s___functions.html#ga04307b7b5aca0134f2553eb3c717339e">TM_FATFS_DriveSize</a>(uint32_t* total, uint32_t* free);</div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;</div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;FRESULT <a class="code" href="group___t_m___f_a_t_f_s___functions.html#ga6b3b9d4d339c19a0e6e6a87ec346418e">TM_FATFS_USBDriveSize</a>(uint32_t* total, uint32_t* free);</div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;</div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;FRESULT <a class="code" href="group___t_m___f_a_t_f_s___functions.html#gafcebc9ad313ab561e3be1c58b1f09835">TM_FATFS_TruncateBeginning</a>(FIL* fil, uint32_t index);</div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;</div>
-<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx.h&quot;</span></div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx_rcc.h&quot;</span></div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx_gpio.h&quot;</span></div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;<span class="preprocessor">#include &quot;defines.h&quot;</span></div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;<span class="preprocessor">#include &quot;tm_stm32f4_gpio.h&quot;</span></div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;<span class="preprocessor">#include &quot;ff.h&quot;</span></div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;<span class="preprocessor">#ifndef FATFS_TRUNCATE_BUFFER_SIZE</span></div>
+<div class="line"><a name="l00335"></a><span class="lineno"><a class="line" href="group___t_m___f_a_t_f_s___macros.html#ga3d721434784b08f1bf0050832b7ab271">  335</a></span>&#160;<span class="preprocessor">#define FATFS_TRUNCATE_BUFFER_SIZE  256</span></div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;FRESULT <a class="code" href="group___t_m___f_a_t_f_s___functions.html#ga04307b7b5aca0134f2553eb3c717339e">TM_FATFS_DriveSize</a>(uint32_t* total, uint32_t* free);</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;</div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;FRESULT <a class="code" href="group___t_m___f_a_t_f_s___functions.html#ga6b3b9d4d339c19a0e6e6a87ec346418e">TM_FATFS_USBDriveSize</a>(uint32_t* total, uint32_t* free);</div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;</div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;FRESULT <a class="code" href="group___t_m___f_a_t_f_s___functions.html#gafcebc9ad313ab561e3be1c58b1f09835">TM_FATFS_TruncateBeginning</a>(FIL* fil, uint32_t index);</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;</div>
 <div class="ttc" id="group___t_m___f_a_t_f_s___functions_html_gafcebc9ad313ab561e3be1c58b1f09835"><div class="ttname"><a href="group___t_m___f_a_t_f_s___functions.html#gafcebc9ad313ab561e3be1c58b1f09835">TM_FATFS_TruncateBeginning</a></div><div class="ttdeci">FRESULT TM_FATFS_TruncateBeginning(FIL *fil, uint32_t index)</div><div class="ttdoc">Truncates beginning of file. </div></div>
 <div class="ttc" id="group___t_m___f_a_t_f_s___functions_html_ga04307b7b5aca0134f2553eb3c717339e"><div class="ttname"><a href="group___t_m___f_a_t_f_s___functions.html#ga04307b7b5aca0134f2553eb3c717339e">TM_FATFS_DriveSize</a></div><div class="ttdeci">FRESULT TM_FATFS_DriveSize(uint32_t *total, uint32_t *free)</div><div class="ttdoc">Gets SDCARD drive size and free space. </div></div>
 <div class="ttc" id="group___t_m___f_a_t_f_s___functions_html_ga6b3b9d4d339c19a0e6e6a87ec346418e"><div class="ttname"><a href="group___t_m___f_a_t_f_s___functions.html#ga6b3b9d4d339c19a0e6e6a87ec346418e">TM_FATFS_USBDriveSize</a></div><div class="ttdeci">FRESULT TM_FATFS_USBDriveSize(uint32_t *total, uint32_t *free)</div><div class="ttdoc">Gets USB drive size and free space. </div></div>
@@ -135,7 +135,7 @@ $(document).ready(function(){initNavTree('tm__stm32f4__fatfs_8h_source.html','')
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>tm_stm32f4_fatfs.h</b></li>
-    <li class="footer">Generated on Fri Mar 20 2015 17:15:33 for TM STM32F4xx Libraries by
+    <li class="footer">Generated on Sun Mar 22 2015 10:43:55 for TM STM32F4xx Libraries by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

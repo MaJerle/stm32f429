@@ -1,30 +1,31 @@
 /**
- *	STemWin implementation for STM32F429-Discovery
- *
- *	@author 	Tilen Majerle
- *	@email		tilen@majerle.eu
- *	@website	http://stm32f4-discovery.com
- *	@link		http://stm32f4-discovery.com/2015/01/library-50-stemwin-for-stm32f429-discovery
- *	@version 	v1.0
- *	@ide		Keil uVision
- *	@license	GNU GPL v3
+ * @author  Tilen Majerle
+ * @email   tilen@majerle.eu
+ * @website http://stm32f4-discovery.com
+ * @link    http://stm32f4-discovery.com/2015/01/library-50-stemwin-for-stm32f429-discovery
+ * @version v1.0
+ * @ide     Keil uVision
+ * @license GNU GPL v3
+ * @brief   STemWin implementation for STM32F429-Discovery
  *	
- * |----------------------------------------------------------------------
- * | Copyright (C) Tilen Majerle, 2014
- * | 
- * | This program is free software: you can redistribute it and/or modify
- * | it under the terms of the GNU General Public License as published by
- * | the Free Software Foundation, either version 3 of the License, or
- * | any later version.
- * |  
- * | This program is distributed in the hope that it will be useful,
- * | but WITHOUT ANY WARRANTY; without even the implied warranty of
- * | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * | GNU General Public License for more details.
- * | 
- * | You should have received a copy of the GNU General Public License
- * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * |----------------------------------------------------------------------
+@verbatim
+   ----------------------------------------------------------------------
+    Copyright (C) Tilen Majerle, 2015
+    
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    any later version.
+     
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+   ----------------------------------------------------------------------
+@endverbatim
  */
 #ifndef TM_EMWIN_H
 #define TM_EMWIN_H 100
@@ -35,24 +36,44 @@ extern C {
 #endif
 
 /**
- * Library dependencies
- * - STM32F4xx
- * - STM32F4xx RCC
- * - STM32F4xx GPIO
- * - STM32F4xx DMA2D
- * - STM32F4xx LTDC
- * - STM32F4xx FMC
- * - STM32F4xx I2C
- * - STM32F4xx SPI
- * - defines.h
- * - TM ILI9341 LTDC
- * - TM FONTS
- * - TM I2C
- * - TM SDRAM
- * - TM SPI
+ * @addtogroup TM_STM32F4xx_Libraries
+ * @{
  */
+
 /**
- * Includes
+ * @defgroup TM_EMWIN
+ * @brief    STemWin implementation for STM32F429-Discovery - http://stm32f4-discovery.com/2015/01/library-50-stemwin-stm32f429-discovery/
+ * @{
+ *
+ * Library is only low-layer implementation between STemWin GUI and STM32F429-Discovery board.
+ *
+ * To know how to write text and other stuff, you should take a look at emwin manual from segger.
+ *
+ * \par Changelog
+ *
+@verbatim
+ Version 1.0
+  - First release
+@endverbatim
+ *
+ * \par Dependencies
+ *
+@verbatim
+ - STM32F4xx
+ - STM32F4xx RCC
+ - STM32F4xx GPIO
+ - STM32F4xx DMA2D
+ - STM32F4xx LTDC
+ - STM32F4xx FMC
+ - STM32F4xx I2C
+ - STM32F4xx SPI
+ - defines.h
+ - TM ILI9341 LTDC
+ - TM FONTS
+ - TM I2C
+ - TM SDRAM
+ - TM SPI
+@endverbatim
  */
 #include "stm32f4xx.h"
 #include "stm32f4xx_rcc.h"
@@ -62,88 +83,106 @@ extern C {
 #include "tm_stm32f4_stmpe811.h"
 #include "GUI.h"
 
-/* If you want to rotate feature for LCD, set this define to 1 */
+/**
+ * @defgroup TM_EMWIN_Macros
+ * @brief    Library defines
+ * @{
+ */
+
+/**
+ * @brief If you want to rotate feature for LCD, set this define to 1
+ */
 #ifndef TM_EMWIN_ROTATE_LCD
 #define TM_EMWIN_ROTATE_LCD				0
 #endif
 
-/* Update touch every 50ms */
+/**
+ * @brief Number of milliseconds between 2 touch checks
+ */
 #ifndef EMWIN_UPDATE_TOUCH_MILLIS
 #define EMWIN_UPDATE_TOUCH_MILLIS		50
 #endif
 
 /**
- * Result enumeration
- *
- * Parameters:
- * 	- TM_EMWIN_Result_Ok:
- * 		Everything OK
- * 	- TM_EMWIN_Result_Error:
- * 		An error occured
- * 	- TM_EMWIN_Result_TouchError:
- * 		Error with touch controller
- * 	- TM_EMWIN_Result_GUIError:
- * 		Error with emWin GUI
+ * @}
+ */
+ 
+/**
+ * @defgroup TM_EMWIN_Typedefs
+ * @brief    Library Typedefs
+ * @{
+ */
+
+/**
+ * @brief  EMWIN Result enumeration	
  */
 typedef enum {
-	TM_EMWIN_Result_Ok = 0,
-	TM_EMWIN_Result_Error,
-	TM_EMWIN_Result_TouchError,
-	TM_EMWIN_Result_GUIError
+	TM_EMWIN_Result_Ok = 0,     /*!< Everything OK */
+	TM_EMWIN_Result_Error,      /*!< An error occurred */
+	TM_EMWIN_Result_TouchError, /*!< Error with touch controller */
+	TM_EMWIN_Result_GUIError    /*!< Error with emWin GUI */
 } TM_EMWIN_Result_t;
 
 /**
- * Rotation enumeration
- *
- * Parameters:
- * 	- TM_EMWIN_Rotate_0:
- * 		Rotate LCD for 0 degrees, default state
- * 	- TM_EMWIN_Rotate_90:
- * 		Rotate LCD 90 degrees
- * 	- TM_EMWIN_Rotate_180:
- * 		Rotate LCD 180 degrees
- * 	- TM_EMWIN_Rotate_270:
- * 		Rotate LCD 170 degrees
+ * @brief  EMWIN Rotation enumeration
  */
 typedef enum {
-	TM_EMWIN_Rotate_0 = 0,
-	TM_EMWIN_Rotate_90,
-	TM_EMWIN_Rotate_180,
-	TM_EMWIN_Rotate_270,
+	TM_EMWIN_Rotate_0 = 0, /*!< Rotate LCD for 0 degrees, default state*/
+	TM_EMWIN_Rotate_90,    /*!< Rotate LCD 90 degrees */
+	TM_EMWIN_Rotate_180,   /*!< Rotate LCD 180 degrees */
+	TM_EMWIN_Rotate_270,   /*!< Rotate LCD 170 degrees */
 } TM_EMWIN_Rotate_t;
 
 /**
- * Initialize emWin peripheral
- * This function initialize LCD, SDRAM, STMPE811 touch and GUI
- *
- * Member of TM_EMWIN_Result_t is returned
+ * @}
  */
-extern TM_EMWIN_Result_t TM_EMWIN_Init(void);
 
 /**
- * This function is used to rotate LCD
- * It does not have any sense, if you have disabled define TM_EMWIN_ROTATE_LCD.
+ * @defgroup TM_EMWIN_Functions
+ * @brief    Library Functions
+ * @{
+ */
+
+/**
+ * @brief  Initializes emWin peripheral
+ * @note   This function initialize LCD, SDRAM, STMPE811 touch and GUI for STM32F429-Discovery board
+ * @retval Member of @ref TM_EMWIN_Result_t
+ */
+TM_EMWIN_Result_t TM_EMWIN_Init(void);
+
+/**
+ * @brief  Rotates LCD
+ * @note   It does not have any sense, if you have disabled define TM_EMWIN_ROTATE_LCD.
+ * 
  * By default, rotation is disabled for memory purpose.
  *
  * To rotate LCD you need additional RAM, but it is available on F429-Discovery board
- *
- * Parameters:
- *	- TM_EMWIN_Rotate_t rotation:
- *		Rotate direction
- *
- * Member of TM_EMWIN_Result_t is returned
+ * @param  rotation: Rotate direction. This parameter can be a value of @ref TM_EMWIN_Result_t enumeration
+ * @retval Member of @ref TM_EMWIN_Result_t
  */
-extern TM_EMWIN_Result_t TM_EMWIN_Rotate(TM_EMWIN_Rotate_t rotation);
+TM_EMWIN_Result_t TM_EMWIN_Rotate(TM_EMWIN_Rotate_t rotation);
 
 /**
- * This function is used to update touch for emWin
- * It must be called periodically every 1ms.
+ * @brief  Updates touch
+ * @brief  It must be called periodically every 1ms.
  *
  * It makes touch controller check every number of ms as defined in EMWIN_UPDATE_TOUCH_MILLIS define
- *
- * Member of TM_EMWIN_Result_t is returned
+ * @param None
+ * @retval Member of @ref TM_EMWIN_Result_t
  */
-extern TM_EMWIN_Result_t TM_EMWIN_UpdateTouch(void);
+TM_EMWIN_Result_t TM_EMWIN_UpdateTouch(void);
+
+/**
+ * @}
+ */
+ 
+/**
+ * @}
+ */
+ 
+/**
+ * @}
+ */
 
 /* C++ detection */
 #ifdef __cplusplus

@@ -104,65 +104,76 @@ $(document).ready(function(){initNavTree('tm__stm32f4__emwin_8h_source.html','')
 </div><!--header-->
 <div class="contents">
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#ifndef TM_EMWIN_H</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#define TM_EMWIN_H 100</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment">/* C++ detection */</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">extern</span> C {</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx.h&quot;</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx_rcc.h&quot;</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">#include &quot;defines.h&quot;</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">#include &quot;tm_stm32f4_sdram.h&quot;</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor">#include &quot;tm_stm32f4_ili9341_ltdc.h&quot;</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">#include &quot;tm_stm32f4_stmpe811.h&quot;</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">#include &quot;GUI.h&quot;</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">/* If you want to rotate feature for LCD, set this define to 1 */</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor">#ifndef TM_EMWIN_ROTATE_LCD</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor">#define TM_EMWIN_ROTATE_LCD             0</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">/* Update touch every 50ms */</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="preprocessor">#ifndef EMWIN_UPDATE_TOUCH_MILLIS</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">#define EMWIN_UPDATE_TOUCH_MILLIS       50</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    TM_EMWIN_Result_Ok = 0,</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    TM_EMWIN_Result_Error,</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    TM_EMWIN_Result_TouchError,</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    TM_EMWIN_Result_GUIError</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;} TM_EMWIN_Result_t;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    TM_EMWIN_Rotate_0 = 0,</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    TM_EMWIN_Rotate_90,</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    TM_EMWIN_Rotate_180,</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    TM_EMWIN_Rotate_270,</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;} TM_EMWIN_Rotate_t;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="keyword">extern</span> TM_EMWIN_Result_t TM_EMWIN_Init(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;<span class="keyword">extern</span> TM_EMWIN_Result_t TM_EMWIN_Rotate(TM_EMWIN_Rotate_t rotation);</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="keyword">extern</span> TM_EMWIN_Result_t TM_EMWIN_UpdateTouch(<span class="keywordtype">void</span>);</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="comment">/* C++ detection */</span></div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;}</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#ifndef TM_EMWIN_H</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#define TM_EMWIN_H 100</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">/* C++ detection */</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">extern</span> C {</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx.h&quot;</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx_rcc.h&quot;</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">#include &quot;defines.h&quot;</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#include &quot;tm_stm32f4_sdram.h&quot;</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">#include &quot;tm_stm32f4_ili9341_ltdc.h&quot;</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">#include &quot;tm_stm32f4_stmpe811.h&quot;</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#include &quot;GUI.h&quot;</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="preprocessor">#ifndef TM_EMWIN_ROTATE_LCD</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="group___t_m___e_m_w_i_n___macros.html#ga18cf33d793f26cdd14c6e3cba98aebc8">   96</a></span>&#160;<span class="preprocessor">#define TM_EMWIN_ROTATE_LCD             0</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="preprocessor">#ifndef EMWIN_UPDATE_TOUCH_MILLIS</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="group___t_m___e_m_w_i_n___macros.html#gafc1774461ce40efaa13abbbf7576039e">  103</a></span>&#160;<span class="preprocessor">#define EMWIN_UPDATE_TOUCH_MILLIS       50</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
+<div class="line"><a name="l00119"></a><span class="lineno"><a class="line" href="group___t_m___e_m_w_i_n___typedefs.html#gad64d47b6de505a1d1817f2cae5cad149">  119</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="group___t_m___e_m_w_i_n___typedefs.html#ggad64d47b6de505a1d1817f2cae5cad149a469d0b5a904d2b736c2cc8f977a39d0d">  120</a></span>&#160;    <a class="code" href="group___t_m___e_m_w_i_n___typedefs.html#ggad64d47b6de505a1d1817f2cae5cad149a469d0b5a904d2b736c2cc8f977a39d0d">TM_EMWIN_Result_Ok</a> = 0,     </div>
+<div class="line"><a name="l00121"></a><span class="lineno"><a class="line" href="group___t_m___e_m_w_i_n___typedefs.html#ggad64d47b6de505a1d1817f2cae5cad149ae1eec1ae19364404a9161435c88f8fe7">  121</a></span>&#160;    <a class="code" href="group___t_m___e_m_w_i_n___typedefs.html#ggad64d47b6de505a1d1817f2cae5cad149ae1eec1ae19364404a9161435c88f8fe7">TM_EMWIN_Result_Error</a>,      </div>
+<div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="group___t_m___e_m_w_i_n___typedefs.html#ggad64d47b6de505a1d1817f2cae5cad149a6448d3b336fa1cabf88c40c8f974d262">  122</a></span>&#160;    <a class="code" href="group___t_m___e_m_w_i_n___typedefs.html#ggad64d47b6de505a1d1817f2cae5cad149a6448d3b336fa1cabf88c40c8f974d262">TM_EMWIN_Result_TouchError</a>, </div>
+<div class="line"><a name="l00123"></a><span class="lineno"><a class="line" href="group___t_m___e_m_w_i_n___typedefs.html#ggad64d47b6de505a1d1817f2cae5cad149a8b8ecd3323e5c47c897fdfec6a5e0e32">  123</a></span>&#160;    <a class="code" href="group___t_m___e_m_w_i_n___typedefs.html#ggad64d47b6de505a1d1817f2cae5cad149a8b8ecd3323e5c47c897fdfec6a5e0e32">TM_EMWIN_Result_GUIError</a>    </div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;} <a class="code" href="group___t_m___e_m_w_i_n___typedefs.html#gad64d47b6de505a1d1817f2cae5cad149">TM_EMWIN_Result_t</a>;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;</div>
+<div class="line"><a name="l00129"></a><span class="lineno"><a class="line" href="group___t_m___e_m_w_i_n___typedefs.html#ga1cb97f1b554f1468a06ec6de2613a0ac">  129</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00130"></a><span class="lineno"><a class="line" href="group___t_m___e_m_w_i_n___typedefs.html#gga1cb97f1b554f1468a06ec6de2613a0acab1ab5d3ed3ad452bdd21f70521688011">  130</a></span>&#160;    <a class="code" href="group___t_m___e_m_w_i_n___typedefs.html#gga1cb97f1b554f1468a06ec6de2613a0acab1ab5d3ed3ad452bdd21f70521688011">TM_EMWIN_Rotate_0</a> = 0, </div>
+<div class="line"><a name="l00131"></a><span class="lineno"><a class="line" href="group___t_m___e_m_w_i_n___typedefs.html#gga1cb97f1b554f1468a06ec6de2613a0aca5d3767663f50bdc035de24ab3e5fcbb9">  131</a></span>&#160;    <a class="code" href="group___t_m___e_m_w_i_n___typedefs.html#gga1cb97f1b554f1468a06ec6de2613a0aca5d3767663f50bdc035de24ab3e5fcbb9">TM_EMWIN_Rotate_90</a>,    </div>
+<div class="line"><a name="l00132"></a><span class="lineno"><a class="line" href="group___t_m___e_m_w_i_n___typedefs.html#gga1cb97f1b554f1468a06ec6de2613a0acab40e7a503bf1132b24eb35cec9c20749">  132</a></span>&#160;    <a class="code" href="group___t_m___e_m_w_i_n___typedefs.html#gga1cb97f1b554f1468a06ec6de2613a0acab40e7a503bf1132b24eb35cec9c20749">TM_EMWIN_Rotate_180</a>,   </div>
+<div class="line"><a name="l00133"></a><span class="lineno"><a class="line" href="group___t_m___e_m_w_i_n___typedefs.html#gga1cb97f1b554f1468a06ec6de2613a0aca76fed69507fea9b58cacd32a396902e6">  133</a></span>&#160;    <a class="code" href="group___t_m___e_m_w_i_n___typedefs.html#gga1cb97f1b554f1468a06ec6de2613a0aca76fed69507fea9b58cacd32a396902e6">TM_EMWIN_Rotate_270</a>,   </div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;} <a class="code" href="group___t_m___e_m_w_i_n___typedefs.html#ga1cb97f1b554f1468a06ec6de2613a0ac">TM_EMWIN_Rotate_t</a>;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;<a class="code" href="group___t_m___e_m_w_i_n___typedefs.html#gad64d47b6de505a1d1817f2cae5cad149">TM_EMWIN_Result_t</a> <a class="code" href="group___t_m___e_m_w_i_n___functions.html#ga36388e2dbd461b0bbc88c7a1db8ffe95">TM_EMWIN_Init</a>(<span class="keywordtype">void</span>);</div>
 <div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<a class="code" href="group___t_m___e_m_w_i_n___typedefs.html#gad64d47b6de505a1d1817f2cae5cad149">TM_EMWIN_Result_t</a> <a class="code" href="group___t_m___e_m_w_i_n___functions.html#ga13f81e60e6e5dd7da9103891e1cc7a66">TM_EMWIN_Rotate</a>(<a class="code" href="group___t_m___e_m_w_i_n___typedefs.html#ga1cb97f1b554f1468a06ec6de2613a0ac">TM_EMWIN_Rotate_t</a> rotation);</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<a class="code" href="group___t_m___e_m_w_i_n___typedefs.html#gad64d47b6de505a1d1817f2cae5cad149">TM_EMWIN_Result_t</a> <a class="code" href="group___t_m___e_m_w_i_n___functions.html#gaf4bcdf6a38cdc4fa125caecb1439ccd9">TM_EMWIN_UpdateTouch</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;<span class="comment">/* C++ detection */</span></div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;}</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="group___t_m___e_m_w_i_n___typedefs_html_ggad64d47b6de505a1d1817f2cae5cad149a6448d3b336fa1cabf88c40c8f974d262"><div class="ttname"><a href="group___t_m___e_m_w_i_n___typedefs.html#ggad64d47b6de505a1d1817f2cae5cad149a6448d3b336fa1cabf88c40c8f974d262">TM_EMWIN_Result_TouchError</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_emwin.h:122</div></div>
+<div class="ttc" id="group___t_m___e_m_w_i_n___typedefs_html_ggad64d47b6de505a1d1817f2cae5cad149a469d0b5a904d2b736c2cc8f977a39d0d"><div class="ttname"><a href="group___t_m___e_m_w_i_n___typedefs.html#ggad64d47b6de505a1d1817f2cae5cad149a469d0b5a904d2b736c2cc8f977a39d0d">TM_EMWIN_Result_Ok</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_emwin.h:120</div></div>
+<div class="ttc" id="group___t_m___e_m_w_i_n___typedefs_html_ga1cb97f1b554f1468a06ec6de2613a0ac"><div class="ttname"><a href="group___t_m___e_m_w_i_n___typedefs.html#ga1cb97f1b554f1468a06ec6de2613a0ac">TM_EMWIN_Rotate_t</a></div><div class="ttdeci">TM_EMWIN_Rotate_t</div><div class="ttdoc">EMWIN Rotation enumeration. </div><div class="ttdef"><b>Definition:</b> tm_stm32f4_emwin.h:129</div></div>
+<div class="ttc" id="group___t_m___e_m_w_i_n___typedefs_html_ggad64d47b6de505a1d1817f2cae5cad149ae1eec1ae19364404a9161435c88f8fe7"><div class="ttname"><a href="group___t_m___e_m_w_i_n___typedefs.html#ggad64d47b6de505a1d1817f2cae5cad149ae1eec1ae19364404a9161435c88f8fe7">TM_EMWIN_Result_Error</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_emwin.h:121</div></div>
+<div class="ttc" id="group___t_m___e_m_w_i_n___functions_html_gaf4bcdf6a38cdc4fa125caecb1439ccd9"><div class="ttname"><a href="group___t_m___e_m_w_i_n___functions.html#gaf4bcdf6a38cdc4fa125caecb1439ccd9">TM_EMWIN_UpdateTouch</a></div><div class="ttdeci">TM_EMWIN_Result_t TM_EMWIN_UpdateTouch(void)</div><div class="ttdoc">Updates touch. </div></div>
+<div class="ttc" id="group___t_m___e_m_w_i_n___typedefs_html_gad64d47b6de505a1d1817f2cae5cad149"><div class="ttname"><a href="group___t_m___e_m_w_i_n___typedefs.html#gad64d47b6de505a1d1817f2cae5cad149">TM_EMWIN_Result_t</a></div><div class="ttdeci">TM_EMWIN_Result_t</div><div class="ttdoc">EMWIN Result enumeration. </div><div class="ttdef"><b>Definition:</b> tm_stm32f4_emwin.h:119</div></div>
+<div class="ttc" id="group___t_m___e_m_w_i_n___functions_html_ga36388e2dbd461b0bbc88c7a1db8ffe95"><div class="ttname"><a href="group___t_m___e_m_w_i_n___functions.html#ga36388e2dbd461b0bbc88c7a1db8ffe95">TM_EMWIN_Init</a></div><div class="ttdeci">TM_EMWIN_Result_t TM_EMWIN_Init(void)</div><div class="ttdoc">Initializes emWin peripheral. </div></div>
+<div class="ttc" id="group___t_m___e_m_w_i_n___typedefs_html_ggad64d47b6de505a1d1817f2cae5cad149a8b8ecd3323e5c47c897fdfec6a5e0e32"><div class="ttname"><a href="group___t_m___e_m_w_i_n___typedefs.html#ggad64d47b6de505a1d1817f2cae5cad149a8b8ecd3323e5c47c897fdfec6a5e0e32">TM_EMWIN_Result_GUIError</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_emwin.h:123</div></div>
+<div class="ttc" id="group___t_m___e_m_w_i_n___functions_html_ga13f81e60e6e5dd7da9103891e1cc7a66"><div class="ttname"><a href="group___t_m___e_m_w_i_n___functions.html#ga13f81e60e6e5dd7da9103891e1cc7a66">TM_EMWIN_Rotate</a></div><div class="ttdeci">TM_EMWIN_Result_t TM_EMWIN_Rotate(TM_EMWIN_Rotate_t rotation)</div><div class="ttdoc">Rotates LCD. </div></div>
+<div class="ttc" id="group___t_m___e_m_w_i_n___typedefs_html_gga1cb97f1b554f1468a06ec6de2613a0acab40e7a503bf1132b24eb35cec9c20749"><div class="ttname"><a href="group___t_m___e_m_w_i_n___typedefs.html#gga1cb97f1b554f1468a06ec6de2613a0acab40e7a503bf1132b24eb35cec9c20749">TM_EMWIN_Rotate_180</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_emwin.h:132</div></div>
+<div class="ttc" id="group___t_m___e_m_w_i_n___typedefs_html_gga1cb97f1b554f1468a06ec6de2613a0aca5d3767663f50bdc035de24ab3e5fcbb9"><div class="ttname"><a href="group___t_m___e_m_w_i_n___typedefs.html#gga1cb97f1b554f1468a06ec6de2613a0aca5d3767663f50bdc035de24ab3e5fcbb9">TM_EMWIN_Rotate_90</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_emwin.h:131</div></div>
+<div class="ttc" id="group___t_m___e_m_w_i_n___typedefs_html_gga1cb97f1b554f1468a06ec6de2613a0acab1ab5d3ed3ad452bdd21f70521688011"><div class="ttname"><a href="group___t_m___e_m_w_i_n___typedefs.html#gga1cb97f1b554f1468a06ec6de2613a0acab1ab5d3ed3ad452bdd21f70521688011">TM_EMWIN_Rotate_0</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_emwin.h:130</div></div>
+<div class="ttc" id="group___t_m___e_m_w_i_n___typedefs_html_gga1cb97f1b554f1468a06ec6de2613a0aca76fed69507fea9b58cacd32a396902e6"><div class="ttname"><a href="group___t_m___e_m_w_i_n___typedefs.html#gga1cb97f1b554f1468a06ec6de2613a0aca76fed69507fea9b58cacd32a396902e6">TM_EMWIN_Rotate_270</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_emwin.h:133</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>tm_stm32f4_emwin.h</b></li>
-    <li class="footer">Generated on Fri Mar 20 2015 17:15:33 for TM STM32F4xx Libraries by
+    <li class="footer">Generated on Sun Mar 22 2015 10:43:55 for TM STM32F4xx Libraries by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

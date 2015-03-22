@@ -18,9 +18,11 @@
  */
 #include "tm_stm32f4_emwin.h"
 
+/* Private variables */
 TM_STMPE811_TouchData TS_Data;
 GUI_PID_STATE TS_State;
 
+/* External ISR handlers */
 extern void LTDC_ISR_Handler(void);
 extern void DMA2D_ISR_Handler(void);
 

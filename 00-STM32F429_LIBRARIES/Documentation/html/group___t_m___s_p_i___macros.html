@@ -201,6 +201,10 @@ Macros</h2></td></tr>
 <tr class="memitem:ga92bcfc02fc86f34ed2a266f00fbbabe7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ga92bcfc02fc86f34ed2a266f00fbbabe7"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>TM_SPI6_MODE</b>&#160;&#160;&#160;<a class="el" href="group___t_m___s_p_i___typedefs.html#ggab43ae1eb8a7cf9ba1d9d48441fc99e51a2749ef50fa4dcc97e2561f211d59b8f8">TM_SPI_Mode_0</a></td></tr>
 <tr class="separator:ga92bcfc02fc86f34ed2a266f00fbbabe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gada2ba0b11ec7568409ee76fe765e9a87"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="gada2ba0b11ec7568409ee76fe765e9a87"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_m___s_p_i___macros.html#gada2ba0b11ec7568409ee76fe765e9a87">SPI_WAIT</a>(SPix)&#160;&#160;&#160;while (((SPIx)-&gt;SR &amp; (SPI_SR_TXE | SPI_SR_RXNE)) == 0 || ((SPIx)-&gt;SR &amp; SPI_SR_BSY))</td></tr>
+<tr class="memdesc:gada2ba0b11ec7568409ee76fe765e9a87"><td class="mdescLeft">&#160;</td><td class="mdescRight">SPI wait till end. <br /></td></tr>
+<tr class="separator:gada2ba0b11ec7568409ee76fe765e9a87"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Library defines. </p>
@@ -209,7 +213,7 @@ Macros</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Fri Mar 20 2015 17:15:33 for TM STM32F4xx Libraries by
+    <li class="footer">Generated on Sun Mar 22 2015 10:43:55 for TM STM32F4xx Libraries by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

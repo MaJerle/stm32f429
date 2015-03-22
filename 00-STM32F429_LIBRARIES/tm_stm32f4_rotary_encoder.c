@@ -18,106 +18,80 @@
  */
 #include "tm_stm32f4_rotary_encoder.h"
 
-int32_t TM_INT_RE_Count;
+/* Return with status macro */
+#define RETURN_WITH_STATUS(p, s)    (p)->Rotation = s; return s
 
-void TM_RE_Init(TM_RE_t* data) {
-	GPIO_InitTypeDef GPIO_InitStruct;
-	EXTI_InitTypeDef EXTI_InitStruct;
-	NVIC_InitTypeDef NVIC_InitStruct;
+void TM_RE_Init(TM_RE_t* data, GPIO_TypeDef* GPIO_A_Port, uint16_t GPIO_A_Pin, GPIO_TypeDef* GPIO_B_Port, uint16_t GPIO_B_Pin) {
+	/* Save parameters */
+	data->GPIO_A = GPIO_A_Port;
+	data->GPIO_B = GPIO_B_Port;
+	data->GPIO_PIN_A = GPIO_A_Pin;
+	data->GPIO_PIN_B = GPIO_B_Pin;
 	
-	/* Pins as inputs */
-	RCC_AHB1PeriphClockCmd(TM_RE_A_RCC | TM_RE_B_RCC, ENABLE);
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG, ENABLE);
+	/* Set pin A as exti interrupt */
+	TM_EXTI_Attach(data->GPIO_A, data->GPIO_PIN_A, TM_EXTI_Trigger_Rising_Falling);
 	
-	/* Pin common settings */
-	GPIO_InitStruct.GPIO_Mode = GPIO_Mode_IN;
-	GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
-	GPIO_InitStruct.GPIO_Speed = GPIO_Speed_100MHz;
+	/* Set pin B as input */
+	TM_GPIO_Init(data->GPIO_B, data->GPIO_PIN_B, TM_GPIO_Mode_IN, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Low);
 	
-	/* A pin */
-	GPIO_InitStruct.GPIO_Pin = TM_RE_A_PIN;
-	GPIO_Init(TM_RE_A_PORT, &GPIO_InitStruct);
-	/* B pin */
-	GPIO_InitStruct.GPIO_Pin = TM_RE_B_PIN;
-	GPIO_Init(TM_RE_B_PORT, &GPIO_InitStruct);
-	
-	/* Connect pin to interrupt */
-	SYSCFG_EXTILineConfig(TM_RE_A_EXTIPORTSOURCE, TM_RE_A_EXTIPINSOURCE);
-	
-	/* Configure external interrupt */
-	EXTI_InitStruct.EXTI_Line = TM_RE_A_EXTI_LINE;	
-	EXTI_InitStruct.EXTI_LineCmd = ENABLE;
-	EXTI_InitStruct.EXTI_Mode = EXTI_Mode_Interrupt;
-	EXTI_InitStruct.EXTI_Trigger = EXTI_Trigger_Rising_Falling;
-	EXTI_Init(&EXTI_InitStruct);
-
-	/* Add interrupt to NVIC */
-	NVIC_InitStruct.NVIC_IRQChannel = TM_RE_A_NVIC;
-	NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority = RE_NVIC_PRIORITY;
-	NVIC_InitStruct.NVIC_IRQChannelSubPriority = RE_NVIC_SUBPRIORITY;
-	NVIC_InitStruct.NVIC_IRQChannelCmd = ENABLE;
-	NVIC_Init(&NVIC_InitStruct);
+	/* Set default mode */
+	data->Mode = TM_RE_Mode_Zero;
 	
 	/* Set default */
-	TM_INT_RE_Count = 0;
+	data->RE_Count = 0;
 	data->Diff = 0;
 	data->Absolute = 0;
+	data->LastA = 1;
 }
 
 TM_RE_Rotate_t TM_RE_Get(TM_RE_t* data) {
-	data->Diff = TM_INT_RE_Count - data->Absolute;
-	data->Absolute = TM_INT_RE_Count;
+	/* Calculate everything */
+	data->Diff = data->RE_Count - data->Absolute;
+	data->Absolute = data->RE_Count;
 	
-	if (TM_INT_RE_Count < 0) {
-		data->Rotation = TM_RE_Rotate_Decrement;
-		return TM_RE_Rotate_Decrement;
-	} else if (TM_INT_RE_Count > 0) {
-		data->Rotation = TM_RE_Rotate_Increment;
-		return TM_RE_Rotate_Increment;
+	/* Check */
+	if (data->RE_Count < 0) {
+		RETURN_WITH_STATUS(data, TM_RE_Rotate_Decrement);
+	} else if (data->RE_Count > 0) {
+		RETURN_WITH_STATUS(data, TM_RE_Rotate_Increment);
 	}
-	data->Rotation = TM_RE_Rotate_Nothing;
-	return TM_RE_Rotate_Nothing;
+	
+	RETURN_WITH_STATUS(data, TM_RE_Rotate_Nothing);
 }
 
-void TM_RE_Process(void) {
-	static uint8_t last_a = 1;
+void TM_RE_SetMode(TM_RE_t* data, TM_RE_Mode_t mode) {
+	/* Set mode */
+	data->Mode = mode;
+}
+
+void TM_RE_Process(TM_RE_t* data) {
 	uint8_t now_a;
 	uint8_t now_b;
 	
-	now_a = GPIO_ReadInputDataBit(TM_RE_A_PORT, TM_RE_A_PIN);
-	now_b = GPIO_ReadInputDataBit(TM_RE_B_PORT, TM_RE_B_PIN);
-	if (now_a != last_a) {
-		last_a = now_a;
+	/* Read inputs */
+	now_a = TM_GPIO_GetInputPinValue(data->GPIO_A, data->GPIO_PIN_A);
+	now_b = TM_GPIO_GetInputPinValue(data->GPIO_B, data->GPIO_PIN_B);
+	
+	/* Check difference */
+	if (now_a != data->LastA) {
+		data->LastA = now_a;
 		
-		if (last_a == 0) {
-#ifdef TM_RE_CHANGE_ROTATION
-			if (now_b == 1) {
-				TM_INT_RE_Count--;
+		if (data->LastA == 0) {
+			/* Check mode */
+			if (data->Mode == TM_RE_Mode_Zero) {
+				if (now_b == 1) {
+					data->RE_Count--;
+				} else {
+					data->RE_Count++;
+				}
 			} else {
-				TM_INT_RE_Count++;
+				if (now_b == 1) {
+					data->RE_Count++;
+				} else {
+					data->RE_Count--;
+				}
 			}
-#else
-			if (now_b == 1) {
-				TM_INT_RE_Count++;
-			} else {
-				TM_INT_RE_Count--;
-			}
-#endif
 		}
 	}
 }
-
-#ifdef TM_RE_A_DEFAULT
-/* Default configuration is in use */
-void EXTI0_IRQHandler(void) {
-	if (EXTI_GetITStatus(TM_RE_A_EXTI_LINE) != RESET) {
-		/* Process rotary encoder */
-		TM_RE_Process();
-		
-		/* Clear interrupt bit */
-		EXTI_ClearITPendingBit(TM_RE_A_EXTI_LINE);
-	}
-}
-#endif
 

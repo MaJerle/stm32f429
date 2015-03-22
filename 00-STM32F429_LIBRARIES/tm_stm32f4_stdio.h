@@ -1,44 +1,31 @@
 /**
- *	Simple STDIO output & input stream implementation for STM32F4
- *
- *	@author 	Tilen Majerle
- *	@email		tilen@majerle.eu
- *	@website	http://stm32f4-discovery.com
- *	@link		http://stm32f4-discovery.com/2014/10/library-41-stdio-implementation-for-stm32f4
- *	@version 	v1.1
- *	@ide		Keil uVision
- *	@license	GNU GPL v3
+ * @author  Tilen Majerle
+ * @email   tilen@majerle.eu
+ * @website http://stm32f4-discovery.com
+ * @link    http://stm32f4-discovery.com/2014/10/library-41-stdio-implementation-for-stm32f4
+ * @version v1.1
+ * @ide     Keil uVision
+ * @license GNU GPL v3
+ * @brief   Simple STDIO output & input stream implementation for STM32F4
  *	
- * |----------------------------------------------------------------------
- * | Copyright (C) Tilen Majerle, 2014
- * | 
- * | This program is free software: you can redistribute it and/or modify
- * | it under the terms of the GNU General Public License as published by
- * | the Free Software Foundation, either version 3 of the License, or
- * | any later version.
- * |  
- * | This program is distributed in the hope that it will be useful,
- * | but WITHOUT ANY WARRANTY; without even the implied warranty of
- * | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * | GNU General Public License for more details.
- * | 
- * | You should have received a copy of the GNU General Public License
- * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * |----------------------------------------------------------------------
- *
- * Version 1.1
- * 	- October 19, 2014
- * 	- Added input options
- *
- * Version 1.0
- * 	- October 18, 2014
- * 	- Initial release
- *
- * This library allows you to use printf (stdout) and fprintf functions on STM32F4
- * to output data to the stream.
- *
- * As of version 1.1, you are now able to handle input (stdin) data from standard
- * stream or user defined.
+@verbatim
+   ----------------------------------------------------------------------
+    Copyright (C) Tilen Majerle, 2015
+    
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    any later version.
+     
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+   ----------------------------------------------------------------------
+@endverbatim
  */
 #ifndef TM_STDIO_H
 #define TM_STDIO_H 100
@@ -47,6 +34,44 @@
 #ifdef __cplusplus
 extern C {
 #endif
+
+/**
+ * @addtogroup TM_STM32F4xx_Libraries
+ * @{
+ */
+
+/**
+ * @defgroup TM_STDIO
+ * @brief    Simple STDIO output & input stream implementation for STM32F4 - http://stm32f4-discovery.com/2014/10/library-41-stdio-implementation-for-stm32f4
+ * @{
+ *
+ * This library allows you to use printf (stdout) and fprintf functions on STM32F4
+ * to output data to the stream.
+ *
+ * As of version 1.1, you are now able to handle input (stdin) data from standard
+ * stream or user defined input.
+ *
+ * \par Changelog
+ *
+@verbatim
+ Version 1.1
+  - October 19, 2014
+  - Added input options
+
+ Version 1.0
+  - First release
+@endverbatim
+ *
+ * \par Dependencies
+ *
+@verbatim
+ - STM32F4xx
+ - STM32F4xx RCC
+ - defines.h
+ - attributes.h
+ - stdio.h
+@endverbatim
+ */
 
 /**
  * Library dependencies
@@ -64,74 +89,80 @@ extern C {
 #include "stdio.h"
 
 /**
- * File structure for stdio stream output
- *
- * Parameters:
- * 	- int (*outputFuncPointer)(int, FILE *):
- * 		Pointer to function to call when need to output data to stream
- * 	- int (*inputFuncPointer)(FILE *):
- * 		Pointer to function to call when trying to get data from stream
+ * @defgroup TM_STDIO_Typedefs
+ * @brief    Library Typedefs
+ * @{
+ */
+
+/**
+ * @brief  File structure for stdio stream output	
  */
 struct __FILE {
-	int (*outputFuncPointer)(int, FILE *);
-	int (*inputFuncPointer)(FILE *);
+	int (*outputFuncPointer)(int, FILE *); /*!< Pointer to function to call when need to output data to stream */
+	int (*inputFuncPointer)(FILE *);       /*!< Pointer to function to call when trying to get data from stream */
 };
 
 /**
- * Link file output stream with output put character function
- *
- * Parameters:
- * 	- FILE* f
- * 		Pointer to file stream
- * 	- int (*outputFuncPointer)(int, FILE *)
- * 		Pointer to function that will be used to output data to stream
- *
- * No return
+ * @}
  */
-extern void TM_STDIO_SetOutputFunction(FILE* f, int (*outputFuncPointer)(int, FILE *));
 
 /**
- * Link file input stream with input get character function
- *
- * Parameters:
- * 	- FILE* f:
- * 		Pointer to file stream
- * 	- int (*inputFuncPointer)(FILE *):
- * 		Pointer to function that will be used to input data from stream
- *
- * No return
+ * @defgroup TM_STDIO_Functions
+ * @brief    Library Functions
+ * @{
  */
-extern void TM_STDIO_SetInputFunction(FILE* f, int (*inputFuncPointer)(FILE *));
 
 /**
- * Default output handler for standard output (stdout)
- * Needs to be implemented by user if you want to use printf function.
- * This function has __weak parameters to prevent link errors if it is not implemented by user
- *
- * Parameters:
- * 	- int c:
- * 		Character for output to the stream
- * 	- FILE* f:
- * 		Pointer to file stream
- *
- * Returns character value if write is OK
- * Returns -1 if you want to stop write at any time
+ * @brief  Links file output stream with output put character function
+ * @param  *f: Pointer to file stream
+ * @param  *outputFuncPointer: Pointer to function that will be used to output data to stream
+ * @retval None
+ */
+void TM_STDIO_SetOutputFunction(FILE* f, int (*outputFuncPointer)(int, FILE *));
+
+/**
+ * @brief  Links file input stream with input get character function
+ * @param  *f: Pointer to file stream
+ * @param  *inputFuncPointer: Pointer to function that will be used for input data from stream
+ * @retval None
+ */
+void TM_STDIO_SetInputFunction(FILE* f, int (*inputFuncPointer)(FILE *));
+
+/**
+ * @brief  Default output handler for standard output (stdout)
+ * @note   Needs to be implemented by user if you want to use printf function
+ * @param  c: character to output to stream
+ * @param  *f: Pointer to file stream
+ * @retval Success status:
+ *            - -1: Stop writing any data
+ *            - character: Return back the same character as was passed as parameter
+ *                 to continue with more characters if needed
+ * @note   With __weak parameter to prevent link errors if not defined by user
  */
 __weak int TM_STDIO_StdoutHandler(int c, FILE* f);
 
 /**
- * Default input handler for standard input (stdin)
- * Needs to be implemented by user if you want to get data from standard input.
- * This function has __weak parameter to prevent link errors if it is not implemented by user
- *
- * Parameters:
- * 	- FILE* f:
- * 		Pointer to file stream
- *
- * Returns character value if exists
- * Returns -1 if at the end of string or no data available
+ * @brief  Default input handler for standard input (stdin)
+ * @note   Needs to be implemented by user if you want to use getc or gets functions
+ * @param  *f: Pointer to file stream
+ * @retval Success status:
+ *            - -1: No data available
+ *            - character: Return character value
+ * @note   With __weak parameter to prevent link errors if not defined by user
  */
 __weak int TM_STDIO_StdinHandler(FILE* f);
+
+/**
+ * @}
+ */
+ 
+/**
+ * @}
+ */
+ 
+/**
+ * @}
+ */
 
 /* C++ detection */
 #ifdef __cplusplus

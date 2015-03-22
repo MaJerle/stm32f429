@@ -296,6 +296,8 @@ uint8_t TM_USART_Getc(USART_TypeDef* USARTx) {
 		u->Out++;
 		u->Num--;
 	}
+	
+	/* Return character */
 	return c;
 }
 
@@ -324,22 +326,28 @@ uint16_t TM_USART_Gets(USART_TypeDef* USARTx, char* buffer, uint16_t bufsize) {
 	/* Add zero to the end of string */
 	buffer[i] = 0;               
 
-	return (i);
+	/* Return number of characters in buffer */
+	return i;
 }
 
 uint8_t TM_USART_BufferEmpty(USART_TypeDef* USARTx) {
 	TM_USART_t* u = TM_USART_INT_GetUsart(USARTx);
+	
+	/* Check if number of characters is zero in buffer */
 	return (u->Num == 0);
 }
 
 uint8_t TM_USART_BufferFull(USART_TypeDef* USARTx) {
 	TM_USART_t* u = TM_USART_INT_GetUsart(USARTx);
+	
+	/* Check if number of characters is the same as buffer size */
 	return (u->Num == u->Size);
 }
 
 void TM_USART_ClearBuffer(USART_TypeDef* USARTx) {
 	TM_USART_t* u = TM_USART_INT_GetUsart(USARTx);
 	
+	/* Reset variables */
 	u->Num = 0;
 	u->In = 0;
 	u->Out = 0;
@@ -379,7 +387,7 @@ void TM_USART_Puts(USART_TypeDef* USARTx, char* str) {
 	
 	while (*str) {
 		/* Wait to be ready, buffer empty */
-		while (!(USARTx->SR & USART_FLAG_TXE));
+		USART_WAIT(USARTx);
 		/* Send data */
 		USARTx->DR = (uint16_t)(*str++ & 0x01FF);
 	}
@@ -393,7 +401,7 @@ void TM_USART_Putc(USART_TypeDef* USARTx, volatile char c) {
 	}
 	
 	/* Wait to be ready, buffer empty */
-	while (!(USARTx->SR & USART_FLAG_TXE));
+	USART_WAIT(USARTx);
 	/* Send data */
 	USARTx->DR = (uint16_t)(c & 0x01FF);
 }

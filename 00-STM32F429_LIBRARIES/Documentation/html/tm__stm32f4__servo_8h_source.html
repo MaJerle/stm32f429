@@ -104,69 +104,79 @@ $(document).ready(function(){initNavTree('tm__stm32f4__servo_8h_source.html','')
 </div><!--header-->
 <div class="contents">
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#ifndef TM_SERVO_H</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#define TM_SERVO_H 110</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">/* C++ detection */</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keyword">extern</span> C {</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx.h&quot;</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx_rcc.h&quot;</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx_gpio.h&quot;</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx_tim.h&quot;</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">#include &quot;defines.h&quot;</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">#include &quot;tm_stm32f4_pwm.h&quot;</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor">#include &quot;tm_stm32f4_timer_properties.h&quot;</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">/* Minimal pulse length */</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">#ifndef SERVO_MICROS_MIN</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">#define SERVO_MICROS_MIN    1000</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">/* Maximal pulse length */</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor">#ifndef SERVO_MICROS_MAX</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor">#define SERVO_MICROS_MAX    2000</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    </div>
-<div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="struct_t_m___s_e_r_v_o__t.html">   94</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <a class="code" href="struct_t_m___p_w_m___t_i_m__t.html">TM_PWM_TIM_t</a> PWM;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    TIM_TypeDef* TIM;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <a class="code" href="group___t_m___p_w_m___typedefs.html#ga7f3166fc83034930a1d7435933b93410">TM_PWM_Channel_t</a> Channel;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <a class="code" href="group___t_m___p_w_m___typedefs.html#gab417cacda7ec02bf7a44543f23f9307c">TM_PWM_PinsPack_t</a> Pinspack;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordtype">float</span> Degrees;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    uint16_t Micros;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;} <a class="code" href="struct_t_m___s_e_r_v_o__t.html">TM_SERVO_t</a>;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    TM_SERVO_Result_Ok = 0,</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    TM_SERVO_Result_Error</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;} TM_SERVO_Result_t;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="keyword">extern</span> TM_SERVO_Result_t TM_SERVO_Init(<a class="code" href="struct_t_m___s_e_r_v_o__t.html">TM_SERVO_t</a>* ServoStruct, TIM_TypeDef* TIMx, <a class="code" href="group___t_m___p_w_m___typedefs.html#ga7f3166fc83034930a1d7435933b93410">TM_PWM_Channel_t</a> PWMChannel, <a class="code" href="group___t_m___p_w_m___typedefs.html#gab417cacda7ec02bf7a44543f23f9307c">TM_PWM_PinsPack_t</a> Pinspack);</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="keyword">extern</span> TM_SERVO_Result_t TM_SERVO_SetDegrees(<a class="code" href="struct_t_m___s_e_r_v_o__t.html">TM_SERVO_t</a>* ServoStruct, <span class="keywordtype">float</span> degrees);</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="keyword">extern</span> TM_SERVO_Result_t TM_SERVO_SetMicros(<a class="code" href="struct_t_m___s_e_r_v_o__t.html">TM_SERVO_t</a>* ServoStruct, uint16_t micros);</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="comment">/* C++ detection */</span></div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;}</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor">#ifndef TM_SERVO_H</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">#define TM_SERVO_H 110</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">/* C++ detection */</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="keyword">extern</span> C {</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx.h&quot;</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx_rcc.h&quot;</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx_gpio.h&quot;</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="preprocessor">#include &quot;stm32f4xx_tim.h&quot;</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="preprocessor">#include &quot;defines.h&quot;</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="preprocessor">#include &quot;tm_stm32f4_pwm.h&quot;</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="preprocessor">#include &quot;tm_stm32f4_timer_properties.h&quot;</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="preprocessor">#ifndef SERVO_MICROS_MIN</span></div>
+<div class="line"><a name="l00132"></a><span class="lineno"><a class="line" href="group___t_m___s_e_r_v_o___macros.html#gab551125691910a7d353e50d42b4bcadc">  132</a></span>&#160;<span class="preprocessor">#define SERVO_MICROS_MIN    1000</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="preprocessor">#ifndef SERVO_MICROS_MAX</span></div>
+<div class="line"><a name="l00139"></a><span class="lineno"><a class="line" href="group___t_m___s_e_r_v_o___macros.html#ga6515e7f75c54f10c65522a293cdeb4cd">  139</a></span>&#160;<span class="preprocessor">#define SERVO_MICROS_MAX    2000</span></div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    </div>
+<div class="line"><a name="l00155"></a><span class="lineno"><a class="line" href="struct_t_m___s_e_r_v_o__t.html">  155</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00156"></a><span class="lineno"><a class="line" href="struct_t_m___s_e_r_v_o__t.html#a55b538859ff0348d5166029f1580ab3b">  156</a></span>&#160;    <a class="code" href="struct_t_m___p_w_m___t_i_m__t.html">TM_PWM_TIM_t</a> <a class="code" href="struct_t_m___s_e_r_v_o__t.html#a55b538859ff0348d5166029f1580ab3b">PWM</a>;           </div>
+<div class="line"><a name="l00157"></a><span class="lineno"><a class="line" href="struct_t_m___s_e_r_v_o__t.html#ae84f988a5d19bcf60544a3d0934ccf02">  157</a></span>&#160;    TIM_TypeDef* <a class="code" href="struct_t_m___s_e_r_v_o__t.html#ae84f988a5d19bcf60544a3d0934ccf02">TIM</a>;           </div>
+<div class="line"><a name="l00158"></a><span class="lineno"><a class="line" href="struct_t_m___s_e_r_v_o__t.html#aed442bcdf7640475d8988e0d0ce0a8e1">  158</a></span>&#160;    <a class="code" href="group___t_m___p_w_m___typedefs.html#ga7f3166fc83034930a1d7435933b93410">TM_PWM_Channel_t</a> <a class="code" href="struct_t_m___s_e_r_v_o__t.html#aed442bcdf7640475d8988e0d0ce0a8e1">Channel</a>;   </div>
+<div class="line"><a name="l00159"></a><span class="lineno"><a class="line" href="struct_t_m___s_e_r_v_o__t.html#a596fbed3442104f025484da2cb62a489">  159</a></span>&#160;    <a class="code" href="group___t_m___p_w_m___typedefs.html#gab417cacda7ec02bf7a44543f23f9307c">TM_PWM_PinsPack_t</a> <a class="code" href="struct_t_m___s_e_r_v_o__t.html#a596fbed3442104f025484da2cb62a489">Pinspack</a>; </div>
+<div class="line"><a name="l00160"></a><span class="lineno"><a class="line" href="struct_t_m___s_e_r_v_o__t.html#ac2d64e2d56da07161e18228b0d523bcb">  160</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="struct_t_m___s_e_r_v_o__t.html#ac2d64e2d56da07161e18228b0d523bcb">Degrees</a>;              </div>
+<div class="line"><a name="l00161"></a><span class="lineno"><a class="line" href="struct_t_m___s_e_r_v_o__t.html#af04a8448bbcff72983abc7d9be5b4c81">  161</a></span>&#160;    uint16_t <a class="code" href="struct_t_m___s_e_r_v_o__t.html#af04a8448bbcff72983abc7d9be5b4c81">Micros</a>;            </div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;} <a class="code" href="struct_t_m___s_e_r_v_o__t.html">TM_SERVO_t</a>;</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;</div>
+<div class="line"><a name="l00167"></a><span class="lineno"><a class="line" href="group___t_m___s_e_r_v_o___typedefs.html#gaf583b19338ec303f1d35412ef5d6ad64">  167</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00168"></a><span class="lineno"><a class="line" href="group___t_m___s_e_r_v_o___typedefs.html#ggaf583b19338ec303f1d35412ef5d6ad64a8021831413a163a6b6b12fc0e37f2b87">  168</a></span>&#160;    <a class="code" href="group___t_m___s_e_r_v_o___typedefs.html#ggaf583b19338ec303f1d35412ef5d6ad64a8021831413a163a6b6b12fc0e37f2b87">TM_SERVO_Result_Ok</a> = 0, </div>
+<div class="line"><a name="l00169"></a><span class="lineno"><a class="line" href="group___t_m___s_e_r_v_o___typedefs.html#ggaf583b19338ec303f1d35412ef5d6ad64a7635037c249c3fab6318e29df7798a2a">  169</a></span>&#160;    <a class="code" href="group___t_m___s_e_r_v_o___typedefs.html#ggaf583b19338ec303f1d35412ef5d6ad64a7635037c249c3fab6318e29df7798a2a">TM_SERVO_Result_Error</a>   </div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;} <a class="code" href="group___t_m___s_e_r_v_o___typedefs.html#gaf583b19338ec303f1d35412ef5d6ad64">TM_SERVO_Result_t</a>;</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;<a class="code" href="group___t_m___s_e_r_v_o___typedefs.html#gaf583b19338ec303f1d35412ef5d6ad64">TM_SERVO_Result_t</a> <a class="code" href="group___t_m___s_e_r_v_o___functions.html#ga2370adf6108b07b6d4c4cfe8d56be59b">TM_SERVO_Init</a>(<a class="code" href="struct_t_m___s_e_r_v_o__t.html">TM_SERVO_t</a>* ServoStruct, TIM_TypeDef* TIMx, <a class="code" href="group___t_m___p_w_m___typedefs.html#ga7f3166fc83034930a1d7435933b93410">TM_PWM_Channel_t</a> PWMChannel, <a class="code" href="group___t_m___p_w_m___typedefs.html#gab417cacda7ec02bf7a44543f23f9307c">TM_PWM_PinsPack_t</a> Pinspack);</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<a class="code" href="group___t_m___s_e_r_v_o___typedefs.html#gaf583b19338ec303f1d35412ef5d6ad64">TM_SERVO_Result_t</a> <a class="code" href="group___t_m___s_e_r_v_o___functions.html#ga13c7d9a2705a86b737df29738701dad1">TM_SERVO_SetDegrees</a>(<a class="code" href="struct_t_m___s_e_r_v_o__t.html">TM_SERVO_t</a>* ServoStruct, <span class="keywordtype">float</span> degrees);</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;<a class="code" href="group___t_m___s_e_r_v_o___typedefs.html#gaf583b19338ec303f1d35412ef5d6ad64">TM_SERVO_Result_t</a> <a class="code" href="group___t_m___s_e_r_v_o___functions.html#ga0cd304012a252a9241e0d26f6ef0c78c">TM_SERVO_SetMicros</a>(<a class="code" href="struct_t_m___s_e_r_v_o__t.html">TM_SERVO_t</a>* ServoStruct, uint16_t micros);</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;<span class="comment">/* C++ detection */</span></div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;}</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="struct_t_m___p_w_m___t_i_m__t_html"><div class="ttname"><a href="struct_t_m___p_w_m___t_i_m__t.html">TM_PWM_TIM_t</a></div><div class="ttdoc">PWM Timer data. </div><div class="ttdef"><b>Definition:</b> tm_stm32f4_pwm.h:142</div></div>
-<div class="ttc" id="struct_t_m___s_e_r_v_o__t_html"><div class="ttname"><a href="struct_t_m___s_e_r_v_o__t.html">TM_SERVO_t</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_servo.h:94</div></div>
+<div class="ttc" id="struct_t_m___s_e_r_v_o__t_html"><div class="ttname"><a href="struct_t_m___s_e_r_v_o__t.html">TM_SERVO_t</a></div><div class="ttdoc">Servo structure. </div><div class="ttdef"><b>Definition:</b> tm_stm32f4_servo.h:155</div></div>
+<div class="ttc" id="group___t_m___s_e_r_v_o___functions_html_ga13c7d9a2705a86b737df29738701dad1"><div class="ttname"><a href="group___t_m___s_e_r_v_o___functions.html#ga13c7d9a2705a86b737df29738701dad1">TM_SERVO_SetDegrees</a></div><div class="ttdeci">TM_SERVO_Result_t TM_SERVO_SetDegrees(TM_SERVO_t *ServoStruct, float degrees)</div><div class="ttdoc">Set rotation degrees for servo. </div></div>
+<div class="ttc" id="group___t_m___s_e_r_v_o___typedefs_html_ggaf583b19338ec303f1d35412ef5d6ad64a8021831413a163a6b6b12fc0e37f2b87"><div class="ttname"><a href="group___t_m___s_e_r_v_o___typedefs.html#ggaf583b19338ec303f1d35412ef5d6ad64a8021831413a163a6b6b12fc0e37f2b87">TM_SERVO_Result_Ok</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_servo.h:168</div></div>
+<div class="ttc" id="group___t_m___s_e_r_v_o___functions_html_ga2370adf6108b07b6d4c4cfe8d56be59b"><div class="ttname"><a href="group___t_m___s_e_r_v_o___functions.html#ga2370adf6108b07b6d4c4cfe8d56be59b">TM_SERVO_Init</a></div><div class="ttdeci">TM_SERVO_Result_t TM_SERVO_Init(TM_SERVO_t *ServoStruct, TIM_TypeDef *TIMx, TM_PWM_Channel_t PWMChannel, TM_PWM_PinsPack_t Pinspack)</div><div class="ttdoc">Initializes TIM and PWM for servo motor purpose. </div></div>
+<div class="ttc" id="struct_t_m___s_e_r_v_o__t_html_a596fbed3442104f025484da2cb62a489"><div class="ttname"><a href="struct_t_m___s_e_r_v_o__t.html#a596fbed3442104f025484da2cb62a489">TM_SERVO_t::Pinspack</a></div><div class="ttdeci">TM_PWM_PinsPack_t Pinspack</div><div class="ttdef"><b>Definition:</b> tm_stm32f4_servo.h:159</div></div>
 <div class="ttc" id="group___t_m___p_w_m___typedefs_html_gab417cacda7ec02bf7a44543f23f9307c"><div class="ttname"><a href="group___t_m___p_w_m___typedefs.html#gab417cacda7ec02bf7a44543f23f9307c">TM_PWM_PinsPack_t</a></div><div class="ttdeci">TM_PWM_PinsPack_t</div><div class="ttdoc">Pin selected for corresponding channel on specific channel. </div><div class="ttdef"><b>Definition:</b> tm_stm32f4_pwm.h:165</div></div>
+<div class="ttc" id="struct_t_m___s_e_r_v_o__t_html_aed442bcdf7640475d8988e0d0ce0a8e1"><div class="ttname"><a href="struct_t_m___s_e_r_v_o__t.html#aed442bcdf7640475d8988e0d0ce0a8e1">TM_SERVO_t::Channel</a></div><div class="ttdeci">TM_PWM_Channel_t Channel</div><div class="ttdef"><b>Definition:</b> tm_stm32f4_servo.h:158</div></div>
+<div class="ttc" id="group___t_m___s_e_r_v_o___typedefs_html_ggaf583b19338ec303f1d35412ef5d6ad64a7635037c249c3fab6318e29df7798a2a"><div class="ttname"><a href="group___t_m___s_e_r_v_o___typedefs.html#ggaf583b19338ec303f1d35412ef5d6ad64a7635037c249c3fab6318e29df7798a2a">TM_SERVO_Result_Error</a></div><div class="ttdef"><b>Definition:</b> tm_stm32f4_servo.h:169</div></div>
+<div class="ttc" id="struct_t_m___s_e_r_v_o__t_html_a55b538859ff0348d5166029f1580ab3b"><div class="ttname"><a href="struct_t_m___s_e_r_v_o__t.html#a55b538859ff0348d5166029f1580ab3b">TM_SERVO_t::PWM</a></div><div class="ttdeci">TM_PWM_TIM_t PWM</div><div class="ttdef"><b>Definition:</b> tm_stm32f4_servo.h:156</div></div>
+<div class="ttc" id="struct_t_m___s_e_r_v_o__t_html_af04a8448bbcff72983abc7d9be5b4c81"><div class="ttname"><a href="struct_t_m___s_e_r_v_o__t.html#af04a8448bbcff72983abc7d9be5b4c81">TM_SERVO_t::Micros</a></div><div class="ttdeci">uint16_t Micros</div><div class="ttdef"><b>Definition:</b> tm_stm32f4_servo.h:161</div></div>
+<div class="ttc" id="struct_t_m___s_e_r_v_o__t_html_ac2d64e2d56da07161e18228b0d523bcb"><div class="ttname"><a href="struct_t_m___s_e_r_v_o__t.html#ac2d64e2d56da07161e18228b0d523bcb">TM_SERVO_t::Degrees</a></div><div class="ttdeci">float Degrees</div><div class="ttdef"><b>Definition:</b> tm_stm32f4_servo.h:160</div></div>
+<div class="ttc" id="group___t_m___s_e_r_v_o___typedefs_html_gaf583b19338ec303f1d35412ef5d6ad64"><div class="ttname"><a href="group___t_m___s_e_r_v_o___typedefs.html#gaf583b19338ec303f1d35412ef5d6ad64">TM_SERVO_Result_t</a></div><div class="ttdeci">TM_SERVO_Result_t</div><div class="ttdoc">Results enumeration. </div><div class="ttdef"><b>Definition:</b> tm_stm32f4_servo.h:167</div></div>
+<div class="ttc" id="group___t_m___s_e_r_v_o___functions_html_ga0cd304012a252a9241e0d26f6ef0c78c"><div class="ttname"><a href="group___t_m___s_e_r_v_o___functions.html#ga0cd304012a252a9241e0d26f6ef0c78c">TM_SERVO_SetMicros</a></div><div class="ttdeci">TM_SERVO_Result_t TM_SERVO_SetMicros(TM_SERVO_t *ServoStruct, uint16_t micros)</div><div class="ttdoc">Sets pulse length in microseconds. </div></div>
 <div class="ttc" id="group___t_m___p_w_m___typedefs_html_ga7f3166fc83034930a1d7435933b93410"><div class="ttname"><a href="group___t_m___p_w_m___typedefs.html#ga7f3166fc83034930a1d7435933b93410">TM_PWM_Channel_t</a></div><div class="ttdeci">TM_PWM_Channel_t</div><div class="ttdoc">Channel selection for PWM on specific timer. </div><div class="ttdef"><b>Definition:</b> tm_stm32f4_pwm.h:155</div></div>
+<div class="ttc" id="struct_t_m___s_e_r_v_o__t_html_ae84f988a5d19bcf60544a3d0934ccf02"><div class="ttname"><a href="struct_t_m___s_e_r_v_o__t.html#ae84f988a5d19bcf60544a3d0934ccf02">TM_SERVO_t::TIM</a></div><div class="ttdeci">TIM_TypeDef * TIM</div><div class="ttdef"><b>Definition:</b> tm_stm32f4_servo.h:157</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>tm_stm32f4_servo.h</b></li>
-    <li class="footer">Generated on Fri Mar 20 2015 17:15:33 for TM STM32F4xx Libraries by
+    <li class="footer">Generated on Sun Mar 22 2015 10:43:55 for TM STM32F4xx Libraries by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

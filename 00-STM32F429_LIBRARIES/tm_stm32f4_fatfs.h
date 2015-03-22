@@ -38,9 +38,7 @@
 
 /**
  * @defgroup TM_FATFS
- * @brief    FATFS implementation for STM32F4xx devices
- *              - http://stm32f4-discovery.com/2014/07/library-21-read-sd-card-fatfs-stm32f4xx-devices/
- *              - http://stm32f4-discovery.com/2014/08/library-29-usb-msc-host-usb-flash-drive-stm32f4xx-devices
+ * @brief    FATFS implementation for STM32F4xx devices - http://stm32f4-discovery.com/2014/07/library-21-read-sd-card-fatfs-stm32f4xx-devices/ - http://stm32f4-discovery.com/2014/08/library-29-usb-msc-host-usb-flash-drive-stm32f4xx-devices
  *
  * @{
  *
