@@ -40,5 +40,6 @@ var searchData=
   ['tm_5fspi_5fmode_5ft',['TM_SPI_Mode_t',['../group___t_m___s_p_i___typedefs.html#gab43ae1eb8a7cf9ba1d9d48441fc99e51',1,'tm_stm32f4_spi.h']]],
   ['tm_5fspi_5fpinspack_5ft',['TM_SPI_PinsPack_t',['../group___t_m___s_p_i___typedefs.html#gaaea351a7377ef8de4249cd4608c52d7b',1,'tm_stm32f4_spi.h']]],
   ['tm_5fusart_5fpinspack_5ft',['TM_USART_PinsPack_t',['../group___t_m___u_s_a_r_t___typedefs.html#gafa8a506eb27c93db067bb06039ae210f',1,'tm_stm32f4_usart.h']]],
+  ['tm_5fusb_5fvcp_5fresult',['TM_USB_VCP_Result',['../group___t_m___u_s_b___v_c_p___typedefs.html#gaf651fd0defe233bb4f8b42123fdb8b6f',1,'tm_stm32f4_usb_vcp.h']]],
   ['tm_5fwatchdog_5ftimeout_5ft',['TM_WATCHDOG_Timeout_t',['../group___t_m___w_a_t_c_h_d_o_g___typedefs.html#ga3c9514e409e8cc70048b868ca9a64671',1,'tm_stm32f4_watchdog.h']]]
 ];

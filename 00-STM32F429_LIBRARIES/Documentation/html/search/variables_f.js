@@ -7,5 +7,6 @@ var searchData=
   ['speed',['Speed',['../struct_t_m___g_p_s___data__t.html#a61efabcca15cccefe7d85ea6da6af5e3',1,'TM_GPS_Data_t']]],
   ['state',['state',['../struct_t_m___t_c_p_c_l_i_e_n_t__t.html#a698f457b284f988a16a150e7e2e08ed4',1,'TM_TCPCLIENT_t']]],
   ['status',['Status',['../struct_t_m___g_p_s___data__t.html#a605069be4b6e2a728b2528036f127f22',1,'TM_GPS_Data_t']]],
+  ['stopbits',['Stopbits',['../struct_t_m___u_s_b___v_c_p___settings__t.html#a5cc284a76ce5888fbd57ff1dc73f0a58',1,'TM_USB_VCP_Settings_t']]],
   ['subseconds',['subseconds',['../struct_t_m___r_t_c__t.html#a077301f5916fde6c214879726fec4bc3',1,'TM_RTC_t']]]
 ];

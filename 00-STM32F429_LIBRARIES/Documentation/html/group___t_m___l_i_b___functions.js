@@ -1,11 +1,13 @@
 var group___t_m___l_i_b___functions =
 [
-    [ "TM_DELAY_SetTime", "group___t_m___l_i_b___functions.html#ga72caa68e7ce61cb2dcb4ed9e219f58ce", null ],
-    [ "TM_DELAY_SetTime2", "group___t_m___l_i_b___functions.html#ga6b725c20fcbea9c3f3e549d86434d030", null ],
-    [ "TM_DELAY_Time", "group___t_m___l_i_b___functions.html#gaaf46291b088791f6b2025d327a810c16", null ],
-    [ "TM_DELAY_Time2", "group___t_m___l_i_b___functions.html#ga5781218a9887f4883a311b52c11a7a59", null ],
-    [ "TM_DELAY_1msHandler", "group___t_m___l_i_b___functions.html#ga14312d8ada241797b8d34ce56d060273", null ],
-    [ "TM_DELAY_DisableDelayTimer", "group___t_m___l_i_b___functions.html#gad2d750c9aa93771cf71e3c7a8f48931f", null ],
-    [ "TM_DELAY_EnableDelayTimer", "group___t_m___l_i_b___functions.html#gabd5794c32a31780844f8c83ef5d6162c", null ],
-    [ "TM_DELAY_Init", "group___t_m___l_i_b___functions.html#ga16d6653998938f4fc10c4f806db6784d", null ]
+    [ "TM_USB_VCP_BufferEmpty", "group___t_m___l_i_b___functions.html#ga29a32baee4d8addbcb6e3af99066f788", null ],
+    [ "TM_USB_VCP_BufferFull", "group___t_m___l_i_b___functions.html#ga79c1db2c3dbcc821623dce9a1d08675d", null ],
+    [ "TM_USB_VCP_FindCharacter", "group___t_m___l_i_b___functions.html#ga9a907b3f72257808969c53ac7d08e1b4", null ],
+    [ "TM_USB_VCP_Getc", "group___t_m___l_i_b___functions.html#ga49f81efbb11a5b14ee676f78af32a6e6", null ],
+    [ "TM_USB_VCP_Gets", "group___t_m___l_i_b___functions.html#ga8768321a4bba2498e2d918cb2070b3b0", null ],
+    [ "TM_USB_VCP_GetSettings", "group___t_m___l_i_b___functions.html#gadabd07bf060e05e13f8d0e3dcdf3a526", null ],
+    [ "TM_USB_VCP_GetStatus", "group___t_m___l_i_b___functions.html#ga14cf072beb518a1a4315f77b56a3ecb1", null ],
+    [ "TM_USB_VCP_Init", "group___t_m___l_i_b___functions.html#ga3c2c76d5480e524c6c6489fe1a500b8b", null ],
+    [ "TM_USB_VCP_Putc", "group___t_m___l_i_b___functions.html#ga06aceab10a70c0846527e2376d8060af", null ],
+    [ "TM_USB_VCP_Puts", "group___t_m___l_i_b___functions.html#gada1730ef3bb661a54c36b8bf82a0f203", null ]
 ];

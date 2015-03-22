@@ -133,7 +133,7 @@ extern C {
 #include "tm_stm32f4_gpio.h"
 
 /**
- * @defgroup TM_LIB_Macros
+ * @defgroup TM_EXTI_Macros
  * @brief    Library defines
  * @{
  */

@@ -33,5 +33,6 @@ var group___t_m___s_t_m32_f4xx___libraries =
     [ "TM_STDIO", "group___t_m___s_t_d_i_o.html", "group___t_m___s_t_d_i_o" ],
     [ "TM_SWO", "group___t_m___s_w_o.html", "group___t_m___s_w_o" ],
     [ "TM_USART", "group___t_m___u_s_a_r_t.html", "group___t_m___u_s_a_r_t" ],
+    [ "TM_USB_VCP", "group___t_m___u_s_b___v_c_p.html", "group___t_m___u_s_b___v_c_p" ],
     [ "TM_WATCHDOG", "group___t_m___w_a_t_c_h_d_o_g.html", "group___t_m___w_a_t_c_h_d_o_g" ]
 ];

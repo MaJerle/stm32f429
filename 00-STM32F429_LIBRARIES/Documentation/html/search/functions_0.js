@@ -221,6 +221,16 @@ var searchData=
   ['tm_5fusart_5finitcustompinscallback',['TM_USART_InitCustomPinsCallback',['../group___t_m___u_s_a_r_t___functions.html#ga299f46d68e55bc8e5054ac3eef9e39ee',1,'tm_stm32f4_usart.h']]],
   ['tm_5fusart_5fputc',['TM_USART_Putc',['../group___t_m___u_s_a_r_t___functions.html#gadea35f4eaffbeb65ac900fe32710aeb8',1,'tm_stm32f4_usart.h']]],
   ['tm_5fusart_5fputs',['TM_USART_Puts',['../group___t_m___u_s_a_r_t___functions.html#ga453aeaa886278333403ff4937c01dcf3',1,'tm_stm32f4_usart.h']]],
+  ['tm_5fusb_5fvcp_5fbufferempty',['TM_USB_VCP_BufferEmpty',['../group___t_m___u_s_b___v_c_p___functions.html#ga29a32baee4d8addbcb6e3af99066f788',1,'tm_stm32f4_usb_vcp.h']]],
+  ['tm_5fusb_5fvcp_5fbufferfull',['TM_USB_VCP_BufferFull',['../group___t_m___u_s_b___v_c_p___functions.html#ga79c1db2c3dbcc821623dce9a1d08675d',1,'tm_stm32f4_usb_vcp.h']]],
+  ['tm_5fusb_5fvcp_5ffindcharacter',['TM_USB_VCP_FindCharacter',['../group___t_m___u_s_b___v_c_p___functions.html#ga9a907b3f72257808969c53ac7d08e1b4',1,'tm_stm32f4_usb_vcp.h']]],
+  ['tm_5fusb_5fvcp_5fgetc',['TM_USB_VCP_Getc',['../group___t_m___u_s_b___v_c_p___functions.html#ga49f81efbb11a5b14ee676f78af32a6e6',1,'tm_stm32f4_usb_vcp.h']]],
+  ['tm_5fusb_5fvcp_5fgets',['TM_USB_VCP_Gets',['../group___t_m___u_s_b___v_c_p___functions.html#ga8768321a4bba2498e2d918cb2070b3b0',1,'tm_stm32f4_usb_vcp.h']]],
+  ['tm_5fusb_5fvcp_5fgetsettings',['TM_USB_VCP_GetSettings',['../group___t_m___u_s_b___v_c_p___functions.html#gadabd07bf060e05e13f8d0e3dcdf3a526',1,'tm_stm32f4_usb_vcp.h']]],
+  ['tm_5fusb_5fvcp_5fgetstatus',['TM_USB_VCP_GetStatus',['../group___t_m___u_s_b___v_c_p___functions.html#ga14cf072beb518a1a4315f77b56a3ecb1',1,'tm_stm32f4_usb_vcp.h']]],
+  ['tm_5fusb_5fvcp_5finit',['TM_USB_VCP_Init',['../group___t_m___u_s_b___v_c_p___functions.html#ga3c2c76d5480e524c6c6489fe1a500b8b',1,'tm_stm32f4_usb_vcp.h']]],
+  ['tm_5fusb_5fvcp_5fputc',['TM_USB_VCP_Putc',['../group___t_m___u_s_b___v_c_p___functions.html#ga06aceab10a70c0846527e2376d8060af',1,'tm_stm32f4_usb_vcp.h']]],
+  ['tm_5fusb_5fvcp_5fputs',['TM_USB_VCP_Puts',['../group___t_m___u_s_b___v_c_p___functions.html#gada1730ef3bb661a54c36b8bf82a0f203',1,'tm_stm32f4_usb_vcp.h']]],
   ['tm_5fwatchdog_5finit',['TM_WATCHDOG_Init',['../group___t_m___w_a_t_c_h_d_o_g___functions.html#gafd88c97066851c92fe25c1b5c2cd74cf',1,'tm_stm32f4_watchdog.h']]],
   ['tm_5fwatchdog_5freset',['TM_WATCHDOG_Reset',['../group___t_m___w_a_t_c_h_d_o_g___functions.html#ga73a095378efd3426d63a1879f582220b',1,'tm_stm32f4_watchdog.h']]]
 ];
