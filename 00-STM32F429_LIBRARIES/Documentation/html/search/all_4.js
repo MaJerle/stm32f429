@@ -5,6 +5,8 @@ var searchData=
   ['day',['day',['../struct_t_m___r_t_c__t.html#a72369a1087b2aeffe374bb054cb97c12',1,'TM_RTC_t::day()'],['../struct_t_m___r_t_c___alarm_time__t.html#a72369a1087b2aeffe374bb054cb97c12',1,'TM_RTC_AlarmTime_t::day()']]],
   ['decimal',['Decimal',['../struct_t_m___g_p_s___float__t.html#a1f1a4005542eb36b6420473d24d99a42',1,'TM_GPS_Float_t']]],
   ['degrees',['Degrees',['../struct_t_m___s_e_r_v_o__t.html#ac2d64e2d56da07161e18228b0d523bcb',1,'TM_SERVO_t']]],
+  ['delay',['Delay',['../group___t_m___d_e_l_a_y___functions.html#ga0e25f1268ff6cce4768fedcf6cb974e0',1,'tm_stm32f4_delay.h']]],
+  ['delayms',['Delayms',['../group___t_m___d_e_l_a_y___functions.html#ga7a288db2b0a709b06a36ec92f2179848',1,'tm_stm32f4_delay.h']]],
   ['diff',['Diff',['../struct_t_m___r_e__t.html#a68bacec042a4bcd6f4024c669bb2266e',1,'TM_RE_t']]],
   ['diffx',['DiffX',['../struct_t_m___u_s_b___h_i_d_h_o_s_t___mouse__t.html#aa4fc7b9fbbe2a14ce4b84f9cc59ba20d',1,'TM_USB_HIDHOST_Mouse_t']]],
   ['diffy',['DiffY',['../struct_t_m___u_s_b___h_i_d_h_o_s_t___mouse__t.html#a32d848feb1432d3b201b9b9e4203c5a5',1,'TM_USB_HIDHOST_Mouse_t']]],

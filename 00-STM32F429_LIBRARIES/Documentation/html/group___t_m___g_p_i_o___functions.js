@@ -14,6 +14,7 @@ var group___t_m___g_p_i_o___functions =
     [ "TM_GPIO_GetPortSource", "group___t_m___g_p_i_o___functions.html#gaa5a2f30f33cc19408daeb5db3b7cb59c", null ],
     [ "TM_GPIO_Init", "group___t_m___g_p_i_o___functions.html#ga7ea61719f45c8d46e56f636d7ffdf0d0", null ],
     [ "TM_GPIO_InitAlternate", "group___t_m___g_p_i_o___functions.html#gac91349d1bf42b50463ebc2716130eb89", null ],
+    [ "TM_GPIO_SetPinAsAnalog", "group___t_m___g_p_i_o___functions.html#gaeaa3015995a3d1947d63a63240b38433", null ],
     [ "TM_GPIO_SetPinAsInput", "group___t_m___g_p_i_o___functions.html#ga9c5ca4f894b1f46d413d2bfc692fcf43", null ],
     [ "TM_GPIO_SetPinAsOutput", "group___t_m___g_p_i_o___functions.html#gabfa399cb17386714bd9c395a81b43035", null ]
 ];

@@ -2,8 +2,8 @@
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
- * @link    External interrupts library for STM32F4 devices
- * @version v1.2
+ * @link    http://stm32f4-discovery.com/2014/10/library-38-external-interrupts-for-stm32f4
+ * @version v1.3
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   External interrupts library for STM32F4 devices
@@ -28,7 +28,7 @@
 @endverbatim
  */
 #ifndef TM_EXTI_H
-#define TM_EXTI_H 120
+#define TM_EXTI_H 130
 
 /* C++ detection */
 #ifdef __cplusplus
@@ -57,7 +57,9 @@ extern C {
  * 
  * You can still use more lines at the same time. So let's say PA0 is line0 and PC13 is line13.
  * This 2 interrupts can be used simultaneouly without problems.
- * 
+ *
+ * \par Handling interrupts
+ *
  * Next step is handling interrupts.
  * There are 16 interrupt lines, but only 7 interrupt handlers.
  * Lines0 to 4 have each own handler, then lines 5 to 9 have one common
@@ -92,9 +94,15 @@ extern C {
 //Set custom NVIC priority
 #define TM_EXTI_PRIORITY	0x0A
 @endverbatim
+ *
  * \par Changelog
  *
 @verbatim
+ Version 1.3
+  - March 23 2015  - Totally independent from HAL / SPD drivers
+  - Library can be used with any drivers or totally itself
+  - Now only one function handler TM_EXTI_Handler for all lines. No separate handlers anymore.
+  
  Version 1.2
   - March 10, 2015
   - TM GPIO Library supported
@@ -112,10 +120,6 @@ extern C {
  *
 @verbatim
  - STM32F4xx
- - STM32F4xx RCC
- - STM32F4xx GPIO
- - STM32F4xx SYSCFG
- - STM32F4xx EXTI
  - MISC
  - defines.h
  - attributes.h
@@ -123,10 +127,6 @@ extern C {
 @endverbatim
  */
 #include "stm32f4xx.h"
-#include "stm32f4xx_rcc.h"
-#include "stm32f4xx_gpio.h"
-#include "stm32f4xx_exti.h"
-#include "stm32f4xx_syscfg.h"
 #include "misc.h"
 #include "defines.h"
 #include "attributes.h"
@@ -139,10 +139,10 @@ extern C {
  */
 
 /**
- * @brief  default EXTI preemption priority for EXTI lines 
+ * @brief  default EXTI preemption priority for EXTI lines used in NVIC
  */
 #ifndef TM_EXTI_PRIORITY
-#define TM_EXTI_PRIORITY	0x0A
+#define TM_EXTI_PRIORITY   0x0A
 #endif
 
  /**
@@ -159,17 +159,17 @@ extern C {
  * @brief  Result enumeration
  */
 typedef enum {
-	TM_EXTI_Result_Ok = 0, /*!< Everything ok */
-	TM_EXTI_Result_Error   /*!< An error has occured */
+	TM_EXTI_Result_Ok = 0x00, /*!< Everything ok */
+	TM_EXTI_Result_Error      /*!< An error has occured */
 } TM_EXTI_Result_t;
 
 /**
  * @brief  Interrupt trigger enumeration	
  */
 typedef enum {
-	TM_EXTI_Trigger_Rising = 0x08,        /*!< Trigger interrupt on rising edge on line */
-	TM_EXTI_Trigger_Falling = 0x0C,       /*!< Trigger interrupt on falling edge on line */
-	TM_EXTI_Trigger_Rising_Falling = 0x10 /*!< Trigger interrupt on any edge on line */
+	TM_EXTI_Trigger_Rising = 0x00, /*!< Trigger interrupt on rising edge on line, pull down resistor active */
+	TM_EXTI_Trigger_Falling,       /*!< Trigger interrupt on falling edge on line, pull up resistor active */
+	TM_EXTI_Trigger_Rising_Falling /*!< Trigger interrupt on any edge on line, no pull resistor active */
 } TM_EXTI_Trigger_t;
 
 /**
@@ -189,16 +189,17 @@ typedef enum {
  * 	          - Rising edge: pull down is enabled
  * 	          - Any edge: no pull activated
  * 
+ *
  * @note   Also, you can attach only one GPIOx to specific GPIO_PIN.
  *         In other words, GPIO_PIN_5 can not be attached to GPIOA and GPIOB at the same time.
  *         If you will try that, my function will return error to you, because you have to detach GPIO_Line first and attach back on other GPIO port.
  *
  * @param  *GPIOx: GPIO port where you want EXTI interrupt line
  * @param  GPIO_Line: GPIO pin where you want EXTI interrupt line
- * @param  trigger: Pin trigger source. This parameter can be a value of @ref TM_EXTI_Trigger_t
- * @retval result:
- *            - TM_EXTI_Result_Ok: Everything ok, interrupt attached
- *            - TM_EXTI_Result_Error: An error occured, interrupt was not attached
+ * @param  trigger: Pin trigger source. This parameter can be a value of @ref TM_EXTI_Trigger_t enumeration
+ * @retval Attach result:
+ *            - @arg TM_EXTI_Result_Ok: Everything ok, interrupt attached
+ *            - @arg TM_EXTI_Result_Error: An error occured, interrupt was not attached
  */
 TM_EXTI_Result_t TM_EXTI_Attach(GPIO_TypeDef* GPIOx, uint16_t GPIO_Line, TM_EXTI_Trigger_t trigger);
 
@@ -206,8 +207,8 @@ TM_EXTI_Result_t TM_EXTI_Attach(GPIO_TypeDef* GPIOx, uint16_t GPIO_Line, TM_EXTI
  * @brief  Detach GPIO pin from interrupt lines
  * @param  GPIO_Line: GPIO line you want to disable. Valid GPIO is GPIO_Pin_0 to GPIO_Pin_15
  * @retval result:
- *            - TM_EXTI_Result_Ok: Everything ok
- *            - TM_EXTI_Result_Error: An error occured
+ *            - @arg TM_EXTI_Result_Ok: Everything ok
+ *            - @arg TM_EXTI_Result_Error: An error occured
  */
 TM_EXTI_Result_t TM_EXTI_Detach(uint16_t GPIO_Line);
 
@@ -219,25 +220,6 @@ TM_EXTI_Result_t TM_EXTI_Detach(uint16_t GPIO_Line);
  * @retval None
  */
 #define TM_EXTI_SoftwareInterrupt(GPIO_Line)	(EXTI->SWIER |= (GPIO_Line))
-
-/* Handler functions */
-/* __weak parameter is added to prevent link errors if function is not implemented */
-__weak void TM_EXTI_Handler_0(void);	/* Handle lines 0 */
-__weak void TM_EXTI_Handler_1(void);	/* Handle lines 1 */
-__weak void TM_EXTI_Handler_2(void);	/* Handle lines 2 */
-__weak void TM_EXTI_Handler_3(void);	/* Handle lines 3 */
-__weak void TM_EXTI_Handler_4(void);	/* Handle lines 4 */
-__weak void TM_EXTI_Handler_5(void);	/* Handle lines 5 */
-__weak void TM_EXTI_Handler_6(void);	/* Handle lines 6 */
-__weak void TM_EXTI_Handler_7(void);	/* Handle lines 7 */
-__weak void TM_EXTI_Handler_8(void);	/* Handle lines 8 */
-__weak void TM_EXTI_Handler_9(void);	/* Handle lines 9 */
-__weak void TM_EXTI_Handler_10(void);	/* Handle lines 10 */
-__weak void TM_EXTI_Handler_11(void);	/* Handle lines 11 */
-__weak void TM_EXTI_Handler_12(void);	/* Handle lines 12 */
-__weak void TM_EXTI_Handler_13(void);	/* Handle lines 13 */
-__weak void TM_EXTI_Handler_14(void);	/* Handle lines 14 */
-__weak void TM_EXTI_Handler_15(void);	/* Handle lines 15 */
 
 /**
  * @brief  EXTI Global handler

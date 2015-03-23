@@ -3,7 +3,7 @@
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
  * @link    http://stm32f4-discovery.com/2015/03/library-53-gpio-for-stm32f4
- * @version v1.2
+ * @version v1.3
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   GPIO Library for STM32F4xx devices
@@ -28,7 +28,7 @@
 @endverbatim
  */
 #ifndef TM_GPIO_H
-#define TM_GPIO_H 120
+#define TM_GPIO_H 130
 
 /* C++ detection */
 #ifdef __cplusplus
@@ -50,28 +50,35 @@ extern C {
  * \par Changelog
  *
 @verbatim
-  Version 1.2
-    - March 10, 2015
-    - Added functions TM_GPIO_SetPinAsInput and TM_GPIO_SetPinAsOutput
-    - Added functions TM_GPIO_GetPortSource and TM_GPIO_GetPinSource
+ Version 1.3
+  - March 23, 2015
+  - Totally independent from HAL / SPD drivers
+  - Library can be used with any drivers or totally itself
+  
+ Version 1.2
+  - March 10, 2015
+  - Added functions TM_GPIO_SetPinAsInput and TM_GPIO_SetPinAsOutput
+  - Added functions TM_GPIO_GetPortSource and TM_GPIO_GetPinSource
 
-  Version 1.1
-    - March 09, 2015
-    - Added function to deinit pin. Pin is set to analog input which allows lowest current consumption
+ Version 1.1
+  - March 09, 2015
+  - Added function to deinit pin. Pin is set to analog input which allows lowest current consumption
+  
+ Version 1.0
+  - March 08, 2015
+  - Initial release
 @endverbatim
  *
  * \par Dependencies
  *
 @verbatim
  - STM32F4xx
- - STM32F4xx RCC
  - STM32F4xx GPIO
  - defines.h
 @endverbatim
  */
 
 #include "stm32f4xx.h"
-#include "stm32f4xx_rcc.h"
 #include "stm32f4xx_gpio.h"
 #include "defines.h"
 
@@ -193,7 +200,7 @@ typedef enum {
  */
  
 /**
- * @brief  Initialize GPIO pins(s)
+ * @brief  Initializes GPIO pins(s)
  * @note   This function also enables clock for GPIO port
  * @param  GPIOx: Pointer to GPIOx port you will use for initialization
  * @param  GPIO_Pin: GPIO pin(s) you will use for initialization
@@ -207,7 +214,7 @@ void TM_GPIO_Init(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_GPIO_Mode_t GPIO_Mo
 
 
 /**
- * @brief  Initialize GPIO pins(s) as alternate function
+ * @brief  Initializes GPIO pins(s) as alternate function
  * @note   This function also enables clock for GPIO port
  * @param  GPIOx: Pointer to GPIOx port you will use for initialization
  * @param  GPIO_Pin: GPIO pin(s) you will use for initialization
@@ -220,7 +227,7 @@ void TM_GPIO_Init(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_GPIO_Mode_t GPIO_Mo
 void TM_GPIO_InitAlternate(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_GPIO_OType_t GPIO_OType, TM_GPIO_PuPd_t GPIO_PuPd, TM_GPIO_Speed_t GPIO_Speed, uint8_t Alternate);
 
 /**
- * @brief  Deinitialize pin(s)
+ * @brief  Deinitializes pin(s)
  * @note   Pins(s) will be set as analog mode to get low power consumption
  * @param  GPIOx: GPIOx PORT where you want to set pin as input
  * @param  GPIO_Pin: Select GPIO pin(s). You can select more pins with | (OR) operator to set them as input
@@ -229,9 +236,9 @@ void TM_GPIO_InitAlternate(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_GPIO_OType
 void TM_GPIO_DeInit(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
 
 /**
- * @brief  Set pin as input
- * @note   Pins HAVE to be initialized first using init function
- * @note   This is just an option for fast input mode 
+ * @brief  Sets pin(s) as input 
+ * @note   Pins HAVE to be initialized first using @ref TM_GPIO_Init() or @ref TM_GPIO_InitAlternate() function
+ * @note   This is just an option for fast input mode
  * @param  GPIOx: GPIOx PORT where you want to set pin as input
  * @param  GPIO_Pin: Select GPIO pin(s). You can select more pins with | (OR) operator to set them as input
  * @retval None
@@ -239,8 +246,8 @@ void TM_GPIO_DeInit(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
 void TM_GPIO_SetPinAsInput(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
 
 /**
- * @brief  Set pin as output
- * @note   Pins HAVE to be initialized first using init function
+ * @brief  Sets pin(s) as output
+ * @note   Pins HAVE to be initialized first using @ref TM_GPIO_Init() or @ref TM_GPIO_InitAlternate() function
  * @note   This is just an option for fast output mode 
  * @param  GPIOx: GPIOx PORT where you want to set pin as output
  * @param  GPIO_Pin: Select GPIO pin(s). You can select more pins with | (OR) operator to set them as output
@@ -249,7 +256,17 @@ void TM_GPIO_SetPinAsInput(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
 void TM_GPIO_SetPinAsOutput(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
 
 /**
- * @brief  Set pin low
+ * @brief  Sets pin(s) as analog
+ * @note   Pins HAVE to be initialized first using @ref TM_GPIO_Init() or @ref TM_GPIO_InitAlternate() function
+ * @note   This is just an option for fast analog mode 
+ * @param  GPIOx: GPIOx PORT where you want to set pin as output
+ * @param  GPIO_Pin: Select GPIO pin(s). You can select more pins with | (OR) operator to set them as output
+ * @retval None
+ */
+void TM_GPIO_SetPinAsAnalog(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
+
+/**
+ * @brief  Sets pin(s) low
  * @note   Defined as macro to get maximum speed using register access
  * @param  GPIOx: GPIOx PORT where you want to set pin low
  * @param  GPIO_Pin: Select GPIO pin(s). You can select more pins with | (OR) operator to set them low
@@ -258,7 +275,7 @@ void TM_GPIO_SetPinAsOutput(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
 #define TM_GPIO_SetPinLow(GPIOx, GPIO_Pin)			((GPIOx)->BSRRH = (GPIO_Pin))
 
 /**
- * @brief  Set pin high
+ * @brief  Sets pin(s) high
  * @note   Defined as macro to get maximum speed using register access
  * @param  GPIOx: GPIOx PORT where you want to set pin high
  * @param  GPIO_Pin: Select GPIO pin(s). You can select more pins with | (OR) operator to set them high
@@ -267,7 +284,7 @@ void TM_GPIO_SetPinAsOutput(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
 #define TM_GPIO_SetPinHigh(GPIOx, GPIO_Pin) 		((GPIOx)->BSRRL = (GPIO_Pin))
 
 /**
- * @brief  Set pin value
+ * @brief  Sets pin(s) value
  * @note   Defined as macro to get maximum speed using register access
  * @param  GPIOx: GPIOx PORT where you want to set pin value
  * @param  GPIO_Pin: Select GPIO pin(s). You can select more pins with | (OR) operator to set them value
@@ -277,7 +294,7 @@ void TM_GPIO_SetPinAsOutput(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
 #define TM_GPIO_SetPinValue(GPIOx, GPIO_Pin, val)	((val) ? TM_GPIO_SetPinHigh(GPIOx, GPIO_Pin) : TM_GPIO_SetPinLow(GPIOx, GPIO_Pin))
 
 /**
- * @brief  Toggle pin
+ * @brief  Toggles pin(s)
  * @note   Defined as macro to get maximum speed using register access
  * @param  GPIOx: GPIOx PORT where you want to toggle pin value
  * @param  GPIO_Pin: Select GPIO pin(s). You can select more pins with | (OR) operator to toggle them all at a time
@@ -286,7 +303,7 @@ void TM_GPIO_SetPinAsOutput(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
 #define TM_GPIO_TogglePinValue(GPIOx, GPIO_Pin)		((GPIOx)->ODR ^= (GPIO_Pin))
 
 /**
- * @brief  Set value to entire GPIO PORT
+ * @brief  Sets value to entire GPIO PORT
  * @note   Defined as macro to get maximum speed using register access
  * @param  GPIOx: GPIOx PORT where you want to set value
  * @param  value: Value for GPIO OUTPUT data
@@ -295,7 +312,7 @@ void TM_GPIO_SetPinAsOutput(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
 #define TM_GPIO_SetPortValue(GPIOx, value)			((GPIOx)->ODR = (value))
 
 /**
- * @brief  Get input data bit
+ * @brief  Gets input data bit
  * @note   Defined as macro to get maximum speed using register access
  * @param  GPIOx: GPIOx PORT where you want to read input bit value
  * @param  GPIO_Pin: GPIO pin where you want to read value
@@ -304,7 +321,7 @@ void TM_GPIO_SetPinAsOutput(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
 #define TM_GPIO_GetInputPinValue(GPIOx, GPIO_Pin)	(((GPIOx)->IDR & (GPIO_Pin)) == 0 ? 0 : 1)
 
 /**
- * @brief  Get output data bit
+ * @brief  Gets output data bit
  * @note   Defined as macro to get maximum speed using register access
  * @param  GPIOx: GPIOx PORT where you want to read output bit value
  * @param  GPIO_Pin: GPIO pin where you want to read value
@@ -313,7 +330,7 @@ void TM_GPIO_SetPinAsOutput(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
 #define TM_GPIO_GetOutputPinValue(GPIOx, GPIO_Pin)	(((GPIOx)->ODR & (GPIO_Pin)) == 0 ? 0 : 1)
 
 /**
- * @brief  Get input value from entire GPIO PORT
+ * @brief  Gets input value from entire GPIO PORT
  * @note   Defined as macro to get maximum speed using register access
  * @param  GPIOx: GPIOx PORT where you want to read input data value
  * @retval Entire PORT INPUT register
@@ -321,7 +338,7 @@ void TM_GPIO_SetPinAsOutput(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
 #define TM_GPIO_GetPortInputValue(GPIOx)			((GPIOx)->IDR)
 
 /**
- * @brief  Get output value from entire GPIO PORT
+ * @brief  Gets output value from entire GPIO PORT
  * @note   Defined as macro to get maximum speed using register access
  * @param  GPIOx: GPIOx PORT where you want to read output data value
  * @retval Entire PORT OUTPUT register
@@ -329,7 +346,7 @@ void TM_GPIO_SetPinAsOutput(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
 #define TM_GPIO_GetPortOutputValue(GPIOx)			((GPIOx)->ODR)
 
 /**
- * @brief  Get port source from desired GPIOx PORT
+ * @brief  Gets port source from desired GPIOx PORT
  * @note   Meant for private use, unless you know what are you doing
  * @param  GPIOx: GPIO PORT for calculating port source
  * @retval Calculated port source for GPIO
@@ -337,10 +354,10 @@ void TM_GPIO_SetPinAsOutput(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
 uint16_t TM_GPIO_GetPortSource(GPIO_TypeDef* GPIOx);
 
 /**
- * @brief  Get pin source from desired GPIO pin
+ * @brief  Gets pin source from desired GPIO pin
  * @note   Meant for private use, unless you know what are you doing
  * @param  GPIO_Pin: GPIO pin for calculating port source
- * @retval Calculated pin source for GPIO
+ * @retval Calculated pin source for GPIO pin
  */
 uint16_t TM_GPIO_GetPinSource(uint16_t GPIO_Pin);
 

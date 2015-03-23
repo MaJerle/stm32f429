@@ -127,6 +127,7 @@ Modules</h2></td></tr>
 <p>You only need to specify GPIOx, pin and interrupt trigger you want to use and you are ready to use. There are predefined function names that you use to handle this interrupts.</p>
 <p>There are 16 external interrupts possible, GPIO lines 0 to 15. Each GPIO_PIN_x from all GPIOx is connected to one line. In other words, PC0, PA0, PB0, PJ0,... are all connected to line 0, and so on. But you can use only one pin for one line at a time. So only PA0 at one time, or PD0 or PC0, but one a time.</p>
 <p>You can still use more lines at the same time. So let's say PA0 is line0 and PC13 is line13. This 2 interrupts can be used simultaneouly without problems.</p>
+<dl class="section user"><dt>Handling interrupts</dt><dd></dd></dl>
 <p>Next step is handling interrupts. There are 16 interrupt lines, but only 7 interrupt handlers. Lines0 to 4 have each own handler, then lines 5 to 9 have one common and lines 10 to 15 have one common.</p>
 <p>I write these functions in my library and use my own to handle specific line for you for easly. Sometimes there is need for use default handler names in your own, but 2 functions with same name can not be used, so I made some settings.</p>
 <p>If you open defines.h file and add any of lines below, you will disable handler line for interrupts. By default, all handlers for lines are enabled. Disabled then with adding lines below in defines.h file:</p>
@@ -146,8 +147,13 @@ Modules</h2></td></tr>
 #define TM_EXTI_DISABLE_DEFAULT_HANDLER_15_10
 </pre><p>If you need higher priority for external interrupts in NVIC, add lines below in defines.h file and edit them </p><pre class="fragment">//Set custom NVIC priority
 #define TM_EXTI_PRIORITY    0x0A
-</pre> <dl class="section user"><dt>Changelog</dt><dd></dd></dl>
-<pre class="fragment"> Version 1.2
+</pre><dl class="section user"><dt>Changelog</dt><dd></dd></dl>
+<pre class="fragment"> Version 1.3
+  - March 23 2015  - Totally independent from HAL / SPD drivers
+  - Library can be used with any drivers or totally itself
+  - Now only one function handler TM_EXTI_Handler for all lines. No separate handlers anymore.
+  
+ Version 1.2
   - March 10, 2015
   - TM GPIO Library supported
 
@@ -160,10 +166,6 @@ Modules</h2></td></tr>
   - First release
 </pre><dl class="section user"><dt>Dependencies</dt><dd></dd></dl>
 <pre class="fragment"> - STM32F4xx
- - STM32F4xx RCC
- - STM32F4xx GPIO
- - STM32F4xx SYSCFG
- - STM32F4xx EXTI
  - MISC
  - defines.h
  - attributes.h
@@ -173,7 +175,7 @@ Modules</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sun Mar 22 2015 23:28:05 for TM STM32F4xx Libraries by
+    <li class="footer">Generated on Mon Mar 23 2015 19:44:00 for TM STM32F4xx Libraries by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

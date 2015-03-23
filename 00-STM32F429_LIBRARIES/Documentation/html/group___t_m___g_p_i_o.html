@@ -125,17 +125,25 @@ Modules</h2></td></tr>
 <p>TM GPIO Library for STM32F4xx - <a href="http://stm32f4-discovery.com/2015/03/library-53-gpio-for-stm32f4">http://stm32f4-discovery.com/2015/03/library-53-gpio-for-stm32f4</a>. </p>
 <p>GPIO library can be used for GPIO pins. It features fast initialization methods as well pin input/output methods.</p>
 <dl class="section user"><dt>Changelog</dt><dd></dd></dl>
-<pre class="fragment">  Version 1.2
-    - March 10, 2015
-    - Added functions TM_GPIO_SetPinAsInput and TM_GPIO_SetPinAsOutput
-    - Added functions TM_GPIO_GetPortSource and TM_GPIO_GetPinSource
+<pre class="fragment"> Version 1.3
+  - March 23, 2015
+  - Totally independent from HAL / SPD drivers
+  - Library can be used with any drivers or totally itself
+  
+ Version 1.2
+  - March 10, 2015
+  - Added functions TM_GPIO_SetPinAsInput and TM_GPIO_SetPinAsOutput
+  - Added functions TM_GPIO_GetPortSource and TM_GPIO_GetPinSource
 
-  Version 1.1
-    - March 09, 2015
-    - Added function to deinit pin. Pin is set to analog input which allows lowest current consumption
+ Version 1.1
+  - March 09, 2015
+  - Added function to deinit pin. Pin is set to analog input which allows lowest current consumption
+  
+ Version 1.0
+  - March 08, 2015
+  - Initial release
 </pre><dl class="section user"><dt>Dependencies</dt><dd></dd></dl>
 <pre class="fragment"> - STM32F4xx
- - STM32F4xx RCC
  - STM32F4xx GPIO
  - defines.h
 </pre> </div><!-- contents -->
@@ -143,7 +151,7 @@ Modules</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sun Mar 22 2015 23:28:05 for TM STM32F4xx Libraries by
+    <li class="footer">Generated on Mon Mar 23 2015 19:44:00 for TM STM32F4xx Libraries by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

@@ -111,14 +111,14 @@ $(document).ready(function(){initNavTree('group___t_m___e_x_t_i___typedefs.html'
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:gadb012a72344d790c82de4cd595208781"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_m___e_x_t_i___typedefs.html#gadb012a72344d790c82de4cd595208781">TM_EXTI_Result_t</a> { <a class="el" href="group___t_m___e_x_t_i___typedefs.html#ggadb012a72344d790c82de4cd595208781acf2bd95d7fb1c1904da4db9911bb079b">TM_EXTI_Result_Ok</a> = 0, 
+<tr class="memitem:gadb012a72344d790c82de4cd595208781"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_m___e_x_t_i___typedefs.html#gadb012a72344d790c82de4cd595208781">TM_EXTI_Result_t</a> { <a class="el" href="group___t_m___e_x_t_i___typedefs.html#ggadb012a72344d790c82de4cd595208781acf2bd95d7fb1c1904da4db9911bb079b">TM_EXTI_Result_Ok</a> = 0x00, 
 <a class="el" href="group___t_m___e_x_t_i___typedefs.html#ggadb012a72344d790c82de4cd595208781a63f5a38d2defcfbda94e3c24b2f5cde6">TM_EXTI_Result_Error</a>
  }</td></tr>
 <tr class="memdesc:gadb012a72344d790c82de4cd595208781"><td class="mdescLeft">&#160;</td><td class="mdescRight">Result enumeration.  <a href="group___t_m___e_x_t_i___typedefs.html#gadb012a72344d790c82de4cd595208781">More...</a><br /></td></tr>
 <tr class="separator:gadb012a72344d790c82de4cd595208781"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaeb403ab27383f3f96e6f194f9fc89b02"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_m___e_x_t_i___typedefs.html#gaeb403ab27383f3f96e6f194f9fc89b02">TM_EXTI_Trigger_t</a> { <a class="el" href="group___t_m___e_x_t_i___typedefs.html#ggaeb403ab27383f3f96e6f194f9fc89b02af62fdb9491a6545161c6873e946513d8">TM_EXTI_Trigger_Rising</a> = 0x08, 
-<a class="el" href="group___t_m___e_x_t_i___typedefs.html#ggaeb403ab27383f3f96e6f194f9fc89b02a103793507bf339672c2e566b45c3d142">TM_EXTI_Trigger_Falling</a> = 0x0C, 
-<a class="el" href="group___t_m___e_x_t_i___typedefs.html#ggaeb403ab27383f3f96e6f194f9fc89b02aafca55e542ac4cd5ff837fd967b10f3a">TM_EXTI_Trigger_Rising_Falling</a> = 0x10
+<tr class="memitem:gaeb403ab27383f3f96e6f194f9fc89b02"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_m___e_x_t_i___typedefs.html#gaeb403ab27383f3f96e6f194f9fc89b02">TM_EXTI_Trigger_t</a> { <a class="el" href="group___t_m___e_x_t_i___typedefs.html#ggaeb403ab27383f3f96e6f194f9fc89b02af62fdb9491a6545161c6873e946513d8">TM_EXTI_Trigger_Rising</a> = 0x00, 
+<a class="el" href="group___t_m___e_x_t_i___typedefs.html#ggaeb403ab27383f3f96e6f194f9fc89b02a103793507bf339672c2e566b45c3d142">TM_EXTI_Trigger_Falling</a>, 
+<a class="el" href="group___t_m___e_x_t_i___typedefs.html#ggaeb403ab27383f3f96e6f194f9fc89b02aafca55e542ac4cd5ff837fd967b10f3a">TM_EXTI_Trigger_Rising_Falling</a>
  }</td></tr>
 <tr class="memdesc:gaeb403ab27383f3f96e6f194f9fc89b02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interrupt trigger enumeration.  <a href="group___t_m___e_x_t_i___typedefs.html#gaeb403ab27383f3f96e6f194f9fc89b02">More...</a><br /></td></tr>
 <tr class="separator:gaeb403ab27383f3f96e6f194f9fc89b02"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -161,13 +161,13 @@ Enumerations</h2></td></tr>
 <p>Interrupt trigger enumeration. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="ggaeb403ab27383f3f96e6f194f9fc89b02af62fdb9491a6545161c6873e946513d8"></a>TM_EXTI_Trigger_Rising&#160;</td><td class="fielddoc">
-<p>Trigger interrupt on rising edge on line </p>
+<p>Trigger interrupt on rising edge on line, pull down resistor active </p>
 </td></tr>
 <tr><td class="fieldname"><a class="anchor" id="ggaeb403ab27383f3f96e6f194f9fc89b02a103793507bf339672c2e566b45c3d142"></a>TM_EXTI_Trigger_Falling&#160;</td><td class="fielddoc">
-<p>Trigger interrupt on falling edge on line </p>
+<p>Trigger interrupt on falling edge on line, pull up resistor active </p>
 </td></tr>
 <tr><td class="fieldname"><a class="anchor" id="ggaeb403ab27383f3f96e6f194f9fc89b02aafca55e542ac4cd5ff837fd967b10f3a"></a>TM_EXTI_Trigger_Rising_Falling&#160;</td><td class="fielddoc">
-<p>Trigger interrupt on any edge on line </p>
+<p>Trigger interrupt on any edge on line, no pull resistor active </p>
 </td></tr>
 </table>
 
@@ -178,7 +178,7 @@ Enumerations</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sun Mar 22 2015 23:28:05 for TM STM32F4xx Libraries by
+    <li class="footer">Generated on Mon Mar 23 2015 19:44:00 for TM STM32F4xx Libraries by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

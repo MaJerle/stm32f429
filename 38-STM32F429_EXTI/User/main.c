@@ -43,24 +43,26 @@ int main(void) {
 	}
 }
 
-/* Handle external line 0 interrupts */
-void TM_EXTI_Handler_0(void) {
-	/* Toggle RED led */
-	TM_DISCO_LedToggle(LED_RED);
-	/* Check counter */
-	if (++counter >= 10) {
-		/* Detach external interrupt for GPIO_Pin_0 no matter on which GPIOx is connected */
-		TM_EXTI_Detach(GPIO_Pin_0);
+void TM_EXTI_Handler(uint16_t GPIO_Pin) {
+	/* Handle external line 0 interrupts */
+	if (GPIO_Pin == GPIO_Pin_0) {
+		/* Toggle RED led */
+		TM_DISCO_LedToggle(LED_RED);
+		/* Check counter */
+		if (++counter >= 10) {
+			/* Detach external interrupt for GPIO_Pin_0 no matter on which GPIOx is connected */
+			TM_EXTI_Detach(GPIO_Pin_0);
+		}
 	}
-}
-
-/* Handle external line 13 interrupts */
-void TM_EXTI_Handler_13(void) {
-	/* Toggle GREEN led */
-	TM_DISCO_LedToggle(LED_GREEN);
-	/* Check counter */
-	if (++counter >= 10) {
-		/* Detach external interrupt for GPIO_Pin_0 no matter on which GPIOx is connected */
-		TM_EXTI_Detach(GPIO_Pin_13);
+	
+	/* Handle external line 13 interrupts */
+	if (GPIO_Pin == GPIO_Pin_13) {
+		/* Toggle GREEN led */
+		TM_DISCO_LedToggle(LED_GREEN);
+		/* Check counter */
+		if (++counter >= 10) {
+			/* Detach external interrupt for GPIO_Pin_0 no matter on which GPIOx is connected */
+			TM_EXTI_Detach(GPIO_Pin_13);
+		}
 	}
 }

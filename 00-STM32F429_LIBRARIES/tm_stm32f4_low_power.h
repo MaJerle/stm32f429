@@ -3,7 +3,7 @@
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
  * @link    http://stm32f4-discovery.com/2014/10/library-39-power-consumption-modes-for-stm32f4
- * @version v1.1
+ * @version v1.2
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   STM32F4xx low power modes library 
@@ -28,7 +28,7 @@
 @endverbatim
  */
 #ifndef TM_LOWPOWER_H
-#define TM_LOWPOWER_H 110
+#define TM_LOWPOWER_H 120
 
 /* C++ detection */
 #ifdef __cplusplus
@@ -88,12 +88,16 @@ extern C {
  * \par Changelog
  *
 @verbatim
+ Version 1.2
+  - March 23, 2015
+  - Fixed problems with entering to standby mode
+  
  Version 1.1
-   - October 18, 2014
-   - Added TM_LOWPOWER_StandbyReset(). This allows you to check if system was reset from standby wakeup
+  - October 18, 2014
+  - Added TM_LOWPOWER_StandbyReset(). This allows you to check if system was reset from standby wakeup
 
  Version 1.0
-   - First release
+  - First release
 @endverbatim
  *
  * \par Dependencies

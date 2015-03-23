@@ -122,7 +122,7 @@ $(document).ready(function(){initNavTree('tm__stm32f4__delay_8h_source.html','')
 <div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="keyword">extern</span> __IO uint32_t TM_Time2;</div>
 <div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;<span class="keyword">extern</span> __IO uint32_t mult;</div>
 <div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;<span class="keyword">static</span> __INLINE <span class="keywordtype">void</span> Delay(uint32_t micros) {</div>
+<div class="line"><a name="l00183"></a><span class="lineno"><a class="line" href="group___t_m___d_e_l_a_y___functions.html#ga0e25f1268ff6cce4768fedcf6cb974e0">  183</a></span>&#160;<span class="keyword">static</span> __INLINE <span class="keywordtype">void</span> <a class="code" href="group___t_m___d_e_l_a_y___functions.html#ga0e25f1268ff6cce4768fedcf6cb974e0">Delay</a>(uint32_t micros) {</div>
 <div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;<span class="preprocessor">#if defined(TM_DELAY_TIM)</span></div>
 <div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    <span class="keyword">volatile</span> uint32_t timer = TM_DELAY_TIM-&gt;CNT;</div>
 <div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;</div>
@@ -158,7 +158,7 @@ $(document).ready(function(){initNavTree('tm__stm32f4__delay_8h_source.html','')
 <div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* TM_DELAY_TIM */</span><span class="preprocessor"></span></div>
 <div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;}</div>
 <div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;<span class="keyword">static</span> __INLINE <span class="keywordtype">void</span> Delayms(uint32_t millis) {</div>
+<div class="line"><a name="l00225"></a><span class="lineno"><a class="line" href="group___t_m___d_e_l_a_y___functions.html#ga7a288db2b0a709b06a36ec92f2179848">  225</a></span>&#160;<span class="keyword">static</span> __INLINE <span class="keywordtype">void</span> <a class="code" href="group___t_m___d_e_l_a_y___functions.html#ga7a288db2b0a709b06a36ec92f2179848">Delayms</a>(uint32_t millis) {</div>
 <div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    <span class="keyword">volatile</span> uint32_t timer = <a class="code" href="group___t_m___d_e_l_a_y___variables.html#ga7c995255b1d6e58256f1b6e1db969000">TM_Time</a>;</div>
 <div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;</div>
 <div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    <span class="comment">/* Wait for timer to count milliseconds */</span></div>
@@ -184,16 +184,18 @@ $(document).ready(function(){initNavTree('tm__stm32f4__delay_8h_source.html','')
 <div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="group___t_m___d_e_l_a_y___functions_html_ga16d6653998938f4fc10c4f806db6784d"><div class="ttname"><a href="group___t_m___d_e_l_a_y___functions.html#ga16d6653998938f4fc10c4f806db6784d">TM_DELAY_Init</a></div><div class="ttdeci">void TM_DELAY_Init(void)</div><div class="ttdoc">Initializes timer settings for delay. </div></div>
 <div class="ttc" id="group___t_m___d_e_l_a_y___functions_html_ga14312d8ada241797b8d34ce56d060273"><div class="ttname"><a href="group___t_m___d_e_l_a_y___functions.html#ga14312d8ada241797b8d34ce56d060273">TM_DELAY_1msHandler</a></div><div class="ttdeci">__weak void TM_DELAY_1msHandler(void)</div><div class="ttdoc">User function, called each 1ms when interrupt from timer happen. </div></div>
+<div class="ttc" id="group___t_m___d_e_l_a_y___functions_html_ga0e25f1268ff6cce4768fedcf6cb974e0"><div class="ttname"><a href="group___t_m___d_e_l_a_y___functions.html#ga0e25f1268ff6cce4768fedcf6cb974e0">Delay</a></div><div class="ttdeci">static __INLINE void Delay(uint32_t micros)</div><div class="ttdef"><b>Definition:</b> tm_stm32f4_delay.h:183</div></div>
 <div class="ttc" id="group___t_m___d_e_l_a_y___functions_html_gad2d750c9aa93771cf71e3c7a8f48931f"><div class="ttname"><a href="group___t_m___d_e_l_a_y___functions.html#gad2d750c9aa93771cf71e3c7a8f48931f">TM_DELAY_DisableDelayTimer</a></div><div class="ttdeci">void TM_DELAY_DisableDelayTimer(void)</div><div class="ttdoc">Disables delay timer. </div></div>
 <div class="ttc" id="group___t_m___d_e_l_a_y___functions_html_gabd5794c32a31780844f8c83ef5d6162c"><div class="ttname"><a href="group___t_m___d_e_l_a_y___functions.html#gabd5794c32a31780844f8c83ef5d6162c">TM_DELAY_EnableDelayTimer</a></div><div class="ttdeci">void TM_DELAY_EnableDelayTimer(void)</div><div class="ttdoc">Re-enables delay timer It has to be configured before with TM_DELAY_Init() </div></div>
 <div class="ttc" id="group___t_m___d_e_l_a_y___variables_html_ga7c995255b1d6e58256f1b6e1db969000"><div class="ttname"><a href="group___t_m___d_e_l_a_y___variables.html#ga7c995255b1d6e58256f1b6e1db969000">TM_Time</a></div><div class="ttdeci">__IO uint32_t TM_Time</div></div>
+<div class="ttc" id="group___t_m___d_e_l_a_y___functions_html_ga7a288db2b0a709b06a36ec92f2179848"><div class="ttname"><a href="group___t_m___d_e_l_a_y___functions.html#ga7a288db2b0a709b06a36ec92f2179848">Delayms</a></div><div class="ttdeci">static __INLINE void Delayms(uint32_t millis)</div><div class="ttdef"><b>Definition:</b> tm_stm32f4_delay.h:225</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>tm_stm32f4_delay.h</b></li>
-    <li class="footer">Generated on Sun Mar 22 2015 23:28:04 for TM STM32F4xx Libraries by
+    <li class="footer">Generated on Mon Mar 23 2015 19:43:59 for TM STM32F4xx Libraries by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

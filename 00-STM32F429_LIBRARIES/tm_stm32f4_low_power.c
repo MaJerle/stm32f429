@@ -39,27 +39,28 @@ void TM_LOWPOWER_SleepUntilInterrupt(uint8_t delay_timer) {
 void TM_LOWPOWER_SleepUntilEvent(void) {
 	/* We don't need delay timer disable, because delay timer does not make an event */
 	
-	/* Wait for interrupt */
+	/* Wait for event */
 	__WFE();
 }
 
 void TM_LOWPOWER_Standby(void) {
-	/* Clear StandBy flag */
-    PWR_ClearFlag(PWR_FLAG_SB);
+	/* Clear Standby and wakeup flag */
+    PWR_ClearFlag(PWR_FLAG_SB | PWR_FLAG_WU);
 	
-	/* Go to standy mode */
+	/* Go to standby mode */
 	PWR_EnterSTANDBYMode();
 }
 
 uint8_t TM_LOWPOWER_StandbyReset(void) {
 	/* Check Standby Flag */
 	if (PWR_GetFlagStatus(PWR_FLAG_SB) != RESET) {
-		/* Clear StandBy flag */
-		PWR_ClearFlag(PWR_FLAG_SB);
+		/* Clear Standby and wakeup flag */
+		PWR_ClearFlag(PWR_FLAG_SB | PWR_FLAG_WU);
 		
 		/* Reset was from wakeup from standy */
 		return 1;
 	}
+	
 	/* Reset was not from standby */
 	return 0;
 }
@@ -91,6 +92,10 @@ extern void TM_LOWPOWER_EnableWakeUpPin(void) {
 
 extern void TM_LOWPOWER_DisableWakeUpPin(void) {
 	/* Disable Wakeup pin, PA0 */
+#if defined(STM32F446xx)
+	PWR_WakeUpPinCmd(PWR_WakeUp_Pin1, DISABLE);
+#else
 	PWR_WakeUpPinCmd(DISABLE);
+#endif
 }
 

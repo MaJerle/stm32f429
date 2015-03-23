@@ -18,12 +18,10 @@
  */
 #include "tm_stm32f4_gpio.h"
 
-/* Private */
-static GPIO_InitTypeDef GPIO_InitStruct;
-
 /* Private functions */
-static void TM_GPIO_INT_EnableClock(GPIO_TypeDef* GPIOx);
+void TM_GPIO_INT_EnableClock(GPIO_TypeDef* GPIOx);
 void TM_GPIO_INT_DisableClock(GPIO_TypeDef* GPIOx);
+void TM_GPIO_INT_Init(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_GPIO_Mode_t GPIO_Mode, TM_GPIO_OType_t GPIO_OType, TM_GPIO_PuPd_t GPIO_PuPd, TM_GPIO_Speed_t GPIO_Speed);
 
 void TM_GPIO_Init(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_GPIO_Mode_t GPIO_Mode, TM_GPIO_OType_t GPIO_OType, TM_GPIO_PuPd_t GPIO_PuPd, TM_GPIO_Speed_t GPIO_Speed) {	
 	/* Check input */
@@ -34,15 +32,8 @@ void TM_GPIO_Init(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_GPIO_Mode_t GPIO_Mo
 	/* Enable clock for GPIO */
 	TM_GPIO_INT_EnableClock(GPIOx);
 	
-	/* Fill settings */
-	GPIO_InitStruct.GPIO_Mode = (GPIOMode_TypeDef) GPIO_Mode;
-	GPIO_InitStruct.GPIO_OType = (GPIOOType_TypeDef) GPIO_OType;
-	GPIO_InitStruct.GPIO_Pin = GPIO_Pin;
-	GPIO_InitStruct.GPIO_PuPd = (GPIOPuPd_TypeDef) GPIO_PuPd;
-	GPIO_InitStruct.GPIO_Speed = (GPIOSpeed_TypeDef) GPIO_Speed;
-	
-	/* Init */
-	GPIO_Init(GPIOx, &GPIO_InitStruct);
+	/* Do initialization */
+	TM_GPIO_INT_Init(GPIOx, GPIO_Pin, GPIO_Mode, GPIO_OType, GPIO_PuPd, GPIO_Speed);
 }
 
 void TM_GPIO_InitAlternate(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_GPIO_OType_t GPIO_OType, TM_GPIO_PuPd_t GPIO_PuPd, TM_GPIO_Speed_t GPIO_Speed, uint8_t Alternate) {
@@ -69,19 +60,15 @@ void TM_GPIO_InitAlternate(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_GPIO_OType
 			pinsource++;
 		}
 		
+		/* Get register number, high or low */
+		pin = pinpos >> 0x03;
+		
 		/* Set alternate function */
-		GPIO_PinAFConfig(GPIOx, pinsource, Alternate);
+		GPIOx->AFR[pin] = (GPIOx->AFR[pin] & ~(0x0F << (4 * pinpos))) | (Alternate << (4 * pinpos));
 	}
 	
-	/* Fill settings */
-	GPIO_InitStruct.GPIO_Mode = (GPIOMode_TypeDef) TM_GPIO_Mode_AF;
-	GPIO_InitStruct.GPIO_OType = (GPIOOType_TypeDef) GPIO_OType;
-	GPIO_InitStruct.GPIO_Pin = GPIO_Pin;
-	GPIO_InitStruct.GPIO_PuPd = (GPIOPuPd_TypeDef) GPIO_PuPd;
-	GPIO_InitStruct.GPIO_Speed = (GPIOSpeed_TypeDef) GPIO_Speed;
-	
-	/* Init pins */
-	GPIO_Init(GPIOx, &GPIO_InitStruct);
+	/* Do initialization */
+	TM_GPIO_INT_Init(GPIOx, GPIO_Pin, TM_GPIO_Mode_AF, GPIO_OType, GPIO_PuPd, GPIO_Speed);
 }
 
 void TM_GPIO_DeInit(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin) {
@@ -101,7 +88,7 @@ void TM_GPIO_SetPinAsInput(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin) {
 	/* Go through all pins */
 	for (i = 0x00; i < 0x10; i++) {
 		/* Pin is set */
-		if (GPIO_Pin & (1 << i)) {		
+		if (GPIO_Pin & (1 << i)) {
 			/* Set 00 bits combination for input */
 			GPIOx->MODER &= ~(0x03 << (2 * i));
 		}
@@ -116,6 +103,18 @@ void TM_GPIO_SetPinAsOutput(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin) {
 		if (GPIO_Pin & (1 << i)) {
 			/* Set 00 bits combination for output */
 			GPIOx->MODER = (GPIOx->MODER & ~(0x03 << (2 * i))) | (0x01 << (2 * i));
+		}
+	}
+}
+
+void TM_GPIO_SetPinAsAnalog(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin) {
+	uint8_t i;
+	/* Go through all pins */
+	for (i = 0x00; i < 0x10; i++) {
+		/* Pin is set */
+		if (GPIO_Pin & (1 << i)) {
+			/* Set 11 bits combination for analog mode */
+			GPIOx->MODER |= (0x03 << (2 * i));
 		}
 	}
 }
@@ -198,7 +197,7 @@ uint16_t TM_GPIO_GetPinSource(uint16_t GPIO_Pin) {
 }
 
 /* Private functions */
-static void TM_GPIO_INT_EnableClock(GPIO_TypeDef* GPIOx) {
+void TM_GPIO_INT_EnableClock(GPIO_TypeDef* GPIOx) {
 #ifdef GPIOA
 	if (GPIOx == GPIOA) {
 		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
@@ -314,3 +313,26 @@ void TM_GPIO_INT_DisableClock(GPIO_TypeDef* GPIOx) {
 #endif
 }
 
+void TM_GPIO_INT_Init(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_GPIO_Mode_t GPIO_Mode, TM_GPIO_OType_t GPIO_OType, TM_GPIO_PuPd_t GPIO_PuPd, TM_GPIO_Speed_t GPIO_Speed) {
+	uint8_t pinpos;
+	
+	/* Go through all pins */
+	for (pinpos = 0; pinpos < 0x10; pinpos++) {
+		/* Check if pin available */
+		if (!(GPIO_Pin & (1 << pinpos))) {
+			continue;
+		}
+		
+		/* Set GPIO MODE register */
+		GPIOx->MODER = (GPIOx->MODER & ~((uint32_t)0x0003 << (2 * pinpos))) | ((uint32_t)GPIO_Mode << (2 * pinpos));
+		
+		/* Set GPIO OTYPE register */
+		GPIOx->OTYPER = (GPIOx->OTYPER & ~(0x01 << pinpos)) | ((uint16_t)GPIO_OType << pinpos);
+		
+		/* Set GPIO PUPD register */
+		GPIOx->PUPDR = (GPIOx->PUPDR & ~(0x0003 << (2 * pinpos))) | ((uint32_t)GPIO_PuPd << (2 * pinpos));
+		
+		/* Set GPIO OSPEED register */
+		GPIOx->OSPEEDR = (GPIOx->OSPEEDR & ~((uint32_t)0x0003 << (2 * pinpos))) | ((uint32_t)GPIO_Speed << (2 * pinpos));
+	}
+}
