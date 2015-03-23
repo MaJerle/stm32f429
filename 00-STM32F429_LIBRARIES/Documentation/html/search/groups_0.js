@@ -55,6 +55,7 @@ var searchData=
   ['tm_5fgps_5ftypedefs',['TM_GPS_Typedefs',['../group___t_m___g_p_s___typedefs.html',1,'']]],
   ['tm_5fhcsr04',['TM_HCSR04',['../group___t_m___h_c_s_r04.html',1,'']]],
   ['tm_5fhcsr04_5ffunctions',['TM_HCSR04_Functions',['../group___t_m___h_c_s_r04___functions.html',1,'']]],
+  ['tm_5fhcsr04_5fmacros',['TM_HCSR04_Macros',['../group___t_m___h_c_s_r04___macros.html',1,'']]],
   ['tm_5fhd44780',['TM_HD44780',['../group___t_m___h_d44780.html',1,'']]],
   ['tm_5fhd44780_5ffunctions',['TM_HD44780_Functions',['../group___t_m___h_d44780___functions.html',1,'']]],
   ['tm_5fhd44780_5fmacros',['TM_HD44780_Macros',['../group___t_m___h_d44780___macros.html',1,'']]],

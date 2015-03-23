@@ -78,8 +78,8 @@ int main(void) {
 	/* New line */
 	TM_USART_Puts(USART1, "\n");
 	
-	/* Check PD3 OneWire2 instance */
-	/* Check for any device on 1-wire port OneWire2 = PD3 */
+	/* Check PD0 OneWire2 instance */
+	/* Check for any device on 1-wire port OneWire2 = PD0 */
 	devices = TM_OneWire_First(&OneWire2);
 	count = 0;
 	while (devices) {

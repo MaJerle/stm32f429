@@ -36,7 +36,7 @@
 
 /**
  * @defgroup TM_HCSR04
- * @brief    Library description here
+ * @brief    Measure distance with HC-SR04 Ultrasonic distance sensor on STM32F4xx devices - http://stm32f4-discovery.com/2014/08/library-30-measure-distance-with-hc-sr04-and-stm32f4xx
  * @{
  *
  * \par Default pinout
@@ -93,8 +93,8 @@ GND				-				Ground
 #include "tm_stm32f4_gpio.h"
 
 /**
- * @defgroup TM_LIB_Macros
- * @brief    Measure distance with HC-SR04 Ultrasonic distance sensor on STM32F4xx devices - http://stm32f4-discovery.com/2014/08/library-30-measure-distance-with-hc-sr04-and-stm32f4xx
+ * @defgroup TM_HCSR04_Macros
+ * @brief    Library macros
  * @{
  */
 
