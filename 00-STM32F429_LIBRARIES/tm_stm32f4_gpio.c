@@ -37,7 +37,7 @@ void TM_GPIO_Init(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_GPIO_Mode_t GPIO_Mo
 }
 
 void TM_GPIO_InitAlternate(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_GPIO_OType_t GPIO_OType, TM_GPIO_PuPd_t GPIO_PuPd, TM_GPIO_Speed_t GPIO_Speed, uint8_t Alternate) {
-	uint32_t pinsource = 0, pinpos, pin;
+	uint32_t pinpos, pin;
 
 	/* Check input */
 	if (GPIO_Pin == 0x00) {
@@ -54,17 +54,11 @@ void TM_GPIO_InitAlternate(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_GPIO_OType
 			continue;
 		}
 		
-		/* Calculate pinsource from GPIO pin */
-		pinsource = 0;
-		for (pin = 1 << pinpos; pin > 1; pin >>= 1) {
-			pinsource++;
-		}
-		
 		/* Get register number, high or low */
 		pin = pinpos >> 0x03;
 		
 		/* Set alternate function */
-		GPIOx->AFR[pin] = (GPIOx->AFR[pin] & ~(0x0F << (4 * pinpos))) | (Alternate << (4 * pinpos));
+		GPIOx->AFR[pin] = (GPIOx->AFR[pin] & ~(0x0F << (4 * (pinpos & 0x07)))) | (Alternate << (4 * (pinpos & 0x07)));
 	}
 	
 	/* Do initialization */
@@ -326,13 +320,16 @@ void TM_GPIO_INT_Init(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_GPIO_Mode_t GPI
 		/* Set GPIO MODE register */
 		GPIOx->MODER = (GPIOx->MODER & ~((uint32_t)0x0003 << (2 * pinpos))) | ((uint32_t)GPIO_Mode << (2 * pinpos));
 		
-		/* Set GPIO OTYPE register */
-		GPIOx->OTYPER = (GPIOx->OTYPER & ~(0x01 << pinpos)) | ((uint16_t)GPIO_OType << pinpos);
+		/* Set only if output or alternate functions */
+		if (GPIO_Mode == TM_GPIO_Mode_OUT || GPIO_Mode == TM_GPIO_Mode_AF) {		
+			/* Set GPIO OTYPE register */
+			GPIOx->OTYPER = (GPIOx->OTYPER & ~(0x01 << pinpos)) | ((uint16_t)GPIO_OType << pinpos);
+			
+			/* Set GPIO OSPEED register */
+			GPIOx->OSPEEDR = (GPIOx->OSPEEDR & ~((uint32_t)0x0003 << (2 * pinpos))) | ((uint32_t)GPIO_Speed << (2 * pinpos));
+		}
 		
 		/* Set GPIO PUPD register */
 		GPIOx->PUPDR = (GPIOx->PUPDR & ~(0x0003 << (2 * pinpos))) | ((uint32_t)GPIO_PuPd << (2 * pinpos));
-		
-		/* Set GPIO OSPEED register */
-		GPIOx->OSPEEDR = (GPIOx->OSPEEDR & ~((uint32_t)0x0003 << (2 * pinpos))) | ((uint32_t)GPIO_Speed << (2 * pinpos));
 	}
 }

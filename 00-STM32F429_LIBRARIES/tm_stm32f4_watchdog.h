@@ -101,7 +101,6 @@ typedef enum {
  * @retval Value if system was reset because of watchdog timer
  *            - 1: Reset happen because of watchdog
  *            - 0: Otherwise
- *
  */
 uint8_t TM_WATCHDOG_Init(TM_WATCHDOG_Timeout_t timeout);
 

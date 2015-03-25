@@ -25,9 +25,10 @@
 #include "tm_stm32f4_delay.h"
 #include "tm_stm32f4_lis302dl_lis3dsh.h"
 
-int main(void) {
-	TM_LIS302DL_LIS3DSH_t Axes_Data;
-	
+/* Accelerometer data structure */
+TM_LIS302DL_LIS3DSH_t Axes_Data;
+
+int main(void) {	
 	/* Initialize system */
 	SystemInit();
 	
