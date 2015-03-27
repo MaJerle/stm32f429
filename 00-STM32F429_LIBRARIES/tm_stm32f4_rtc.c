@@ -364,29 +364,28 @@ void TM_RTC_Interrupts(TM_RTC_Int_t int_value) {
 	/* Clear pending bit */
 	EXTI_ClearITPendingBit(EXTI_Line22);
 
+	
+	/* Disable wakeup interrupt */
+	RTC_WakeUpCmd(DISABLE);
+	
+	/* Disable RTC interrupt flag */
+	RTC_ITConfig(RTC_IT_WUT, DISABLE);
+	
 	/* NVIC init for RTC */
 	NVIC_InitStruct.NVIC_IRQChannel = RTC_WKUP_IRQn;
 	NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority = RTC_PRIORITY;
 	NVIC_InitStruct.NVIC_IRQChannelSubPriority = RTC_WAKEUP_SUBPRIORITY;
+	NVIC_InitStruct.NVIC_IRQChannelCmd = DISABLE;
+	NVIC_Init(&NVIC_InitStruct); 
 	
 	/* RTC connected to EXTI_Line22 */
 	EXTI_InitStruct.EXTI_Line = EXTI_Line22;
 	EXTI_InitStruct.EXTI_Mode = EXTI_Mode_Interrupt;
 	EXTI_InitStruct.EXTI_Trigger = EXTI_Trigger_Rising;
+	EXTI_InitStruct.EXTI_LineCmd = DISABLE;
+	EXTI_Init(&EXTI_InitStruct);
 	
-	if (int_value == TM_RTC_Int_Disable) {
-		/* Disable wakeup interrupt */
-		RTC_WakeUpCmd(DISABLE);
-		/* Disable RTC interrupt flag */
-		RTC_ITConfig(RTC_IT_WUT, DISABLE);
-		
-		/* Disable NVIC */
-		NVIC_InitStruct.NVIC_IRQChannelCmd = DISABLE;
-		NVIC_Init(&NVIC_InitStruct); 
-		/* Disable EXT1 interrupt */
-		EXTI_InitStruct.EXTI_LineCmd = DISABLE;
-		EXTI_Init(&EXTI_InitStruct);
-	} else {
+	if (int_value != TM_RTC_Int_Disable) {
 		/* Enable NVIC */
 		NVIC_InitStruct.NVIC_IRQChannelCmd = ENABLE;
 		NVIC_Init(&NVIC_InitStruct); 

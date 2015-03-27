@@ -3,7 +3,7 @@
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
  * @link    http://stm32f4-discovery.com/2014/07/library-19-use-internal-rtc-on-stm32f4xx-devices/
- * @version 1.7
+ * @version 1.7.1
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   Internal RTC library for STM32F4xx devices
@@ -28,7 +28,7 @@
 @endverbatim
  */
 #ifndef TM_RTC_H
-#define TM_RTC_H 170
+#define TM_RTC_H 171
 /**
  * @addtogroup TM_STM32F4xx_Libraries
  * @{
@@ -51,6 +51,10 @@
  * \par Changelog
  *
 @verbatim
+ Version 1.7.1
+   - March 25, 2015
+   - Fixed issue with RTC wakeup interrupts
+
  Version 1.7
    - March 15, 2015
    - Added support for read/write data to/from RTC backup registers

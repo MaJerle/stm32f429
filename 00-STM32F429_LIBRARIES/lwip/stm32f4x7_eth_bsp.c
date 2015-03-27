@@ -34,6 +34,7 @@
 #include "lwip/dhcp.h"
 
 #include "tm_stm32f4_ethernet.h"
+#include "defines.h"
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/

@@ -11,6 +11,9 @@ var group___t_m___w_a_t_c_h_d_o_g___typedefs =
       [ "TM_WATCHDOG_Timeout_500ms", "group___t_m___w_a_t_c_h_d_o_g___typedefs.html#gga3c9514e409e8cc70048b868ca9a64671afd9f485930deba69e725472106491094", null ],
       [ "TM_WATCHDOG_Timeout_1s", "group___t_m___w_a_t_c_h_d_o_g___typedefs.html#gga3c9514e409e8cc70048b868ca9a64671a46d9f4e33c28c9e182bbbf48019b48a2", null ],
       [ "TM_WATCHDOG_Timeout_2s", "group___t_m___w_a_t_c_h_d_o_g___typedefs.html#gga3c9514e409e8cc70048b868ca9a64671ae8bcb0df93e0eeb1ee862a7a053ada58", null ],
-      [ "TM_WATCHDOG_Timeout_4s", "group___t_m___w_a_t_c_h_d_o_g___typedefs.html#gga3c9514e409e8cc70048b868ca9a64671a578a86c87af4d8dcbad89e1e10e0f1c4", null ]
+      [ "TM_WATCHDOG_Timeout_4s", "group___t_m___w_a_t_c_h_d_o_g___typedefs.html#gga3c9514e409e8cc70048b868ca9a64671a578a86c87af4d8dcbad89e1e10e0f1c4", null ],
+      [ "TM_WATCHDOG_Timeout_8s", "group___t_m___w_a_t_c_h_d_o_g___typedefs.html#gga3c9514e409e8cc70048b868ca9a64671adefd44155b8f3b7c8008f36fcfd775b4", null ],
+      [ "TM_WATCHDOG_Timeout_16s", "group___t_m___w_a_t_c_h_d_o_g___typedefs.html#gga3c9514e409e8cc70048b868ca9a64671ad2d6a709599f1ca6d456b7badf3dc9d1", null ],
+      [ "TM_WATCHDOG_Timeout_32s", "group___t_m___w_a_t_c_h_d_o_g___typedefs.html#gga3c9514e409e8cc70048b868ca9a64671ab7b51993d1bd470edf580e9a0a3736cb", null ]
     ] ]
 ];
