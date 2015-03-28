@@ -145,8 +145,8 @@ void TM_LCD_InitLayers(void) {
 }
 
 void TM_LCD_InitPins(void) {
-	TM_GPIO_InitAlternate(GPIOI, GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_LTDC);
-	TM_GPIO_InitAlternate(GPIOJ, GPIO_PIN_ALL, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_LTDC);
+	TM_GPIO_InitAlternate(GPIOI, 0xF000, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_LTDC);
+	TM_GPIO_InitAlternate(GPIOJ, 0xFFFF, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_LTDC);
 	TM_GPIO_InitAlternate(GPIOK, 0x00FF, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_LTDC);
 }
 
@@ -163,7 +163,7 @@ void TM_LCD_Init(void) {
 	TM_LCD_InitPins();
 	/* Init SDRAM */
 	//TM_SDRAM_Init();
-	TM_SDRAM_Init();
+	//TM_SDRAM_Init();
 	/* Initialize LTDC */
 	TM_LCD9341_InitLTDC();
 	/* Initialize LTDC layers */

@@ -21,8 +21,9 @@
 #include "tm_stm32f4_hcsr04.h"
 #include <stdio.h>
 
-int main(void) {
-	float distance;
+int main(void) {	
+	/* HCSR04 Instance */
+	TM_HCSR04_t HCSR04;
 	
 	/* Initialize system */
 	SystemInit();
@@ -36,8 +37,8 @@ int main(void) {
 	/* Turn on LED red */
 	TM_DISCO_LedOn(LED_RED);
 	
-	/* Initialize distance sensor */
-	if (!TM_HCSR04_Init()) {
+	/* Initialize distance sensor1 on pins; TRIGGER: PD0, ECHO: PC1 */
+	if (!TM_HCSR04_Init(&HCSR04, GPIOD, GPIO_PIN_0, GPIOC, GPIO_PIN_1)) {
 		/* Sensor is not ready to use */
 		/* Maybe wiring is incorrect */
 		while (1) {
@@ -47,15 +48,16 @@ int main(void) {
 	}
 
 	while (1) {
-		/* Read distance */
-		/* Distance is returned in cm */
-		distance = TM_HCSR04_Read();
+		/* Read distance from sensor 1 */
+		/* Distance is returned in cm and also stored in structure */
+		/* You can use both ways */
+		TM_HCSR04_Read(&HCSR04);
 		
 		/* Something is going wrong, maybe incorrect pinout */
-		if (distance < 0) {
+		if (HCSR04.Distance < 0) {
 			TM_DISCO_LedOn(LED_RED);
 			TM_DISCO_LedOff(LED_GREEN);
-		} else if (distance > 50) {
+		} else if (HCSR04.Distance > 50) {
 			/* Distance more than 50cm */
 			TM_DISCO_LedOn(LED_GREEN);
 			TM_DISCO_LedOff(LED_RED);

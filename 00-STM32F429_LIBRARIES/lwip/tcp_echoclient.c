@@ -184,8 +184,11 @@ err_t tcp_echoclient_connect(char* conn_name, uint8_t ip1, uint8_t ip2, uint8_t 
   * @brief Function called when TCP connection established
   */
 static err_t tcp_echoclient_connected(void *arg, struct tcp_pcb *tpcb, err_t err) {
-	TM_TCPCLIENT_t* client = (TM_TCPCLIENT_t *)arg;
 	uint16_t length;
+	TM_TCPCLIENT_t* client;
+
+	/* Client is passed as arguments */
+	client = (TM_TCPCLIENT_t *)arg;
 	
 	if (err == ERR_OK) {
 		/* We are connected */
@@ -243,12 +246,12 @@ static err_t tcp_echoclient_connected(void *arg, struct tcp_pcb *tpcb, err_t err
   * @brief tcp_receiv callback
   */
 static err_t tcp_echoclient_recv(void *arg, struct tcp_pcb *tpcb, struct pbuf *p, err_t err) { 
-	struct pbuf *point_pbuf;
-	TM_TCPCLIENT_t* client;
+	struct pbuf* point_pbuf;
 	err_t ret_err;
+	TM_TCPCLIENT_t* client;
 
-	/* Set client structure */
-	client = (TM_TCPCLIENT_t *) arg;
+	/* Client is passed as arguments */
+	client = (TM_TCPCLIENT_t *)arg;
 
 	/* Check all next buffers and pointers */
 	if (p != NULL && p->tot_len <= 1460) {
@@ -344,7 +347,10 @@ static void tcp_echoclient_send(TM_TCPCLIENT_t* client) {
   */
 static err_t tcp_echoclient_poll(void *arg, struct tcp_pcb *tpcb) {
 	err_t ret_err;
-	TM_TCPCLIENT_t* client = (TM_TCPCLIENT_t *)arg;
+	TM_TCPCLIENT_t* client;
+
+	/* Client is passed as arguments */
+	client = (TM_TCPCLIENT_t *)arg;
 	
 	/* Valid client */
 	if (client != NULL) {
@@ -373,8 +379,9 @@ static err_t tcp_echoclient_poll(void *arg, struct tcp_pcb *tpcb) {
   */
 static err_t tcp_echoclient_sent(void *arg, struct tcp_pcb *tpcb, u16_t len) {
 	TM_TCPCLIENT_t* client;
-	
-	client = (TM_TCPCLIENT_t *) arg;
+
+	/* Client is passed as arguments */
+	client = (TM_TCPCLIENT_t *)arg;
 
 	if (client->p_tx != NULL) {
 		/* still got pbufs to send */
@@ -412,7 +419,9 @@ static void tcp_echoclient_connection_close(TM_TCPCLIENT_t* client, uint8_t succ
 		TM_ETHERNET.ClientSuccessfullConnections++;
 	}
 	
-	/* Free client */
+	/* Free client, it's not real free, only free flag is set */
+	/* Called before connection callback, so user can make a new connection */
+	/* inside connection closed callback */
 	tcp_client_free(client);
 	
 	/* Call user function if defined */
@@ -426,7 +435,7 @@ static void tcp_echoclient_error(void *arg, err_t err) {
 	TM_TCPCLIENT_t* client;
 
 	/* Client is passed as arguments */
-	client = (TM_TCPCLIENT_t *)client;
+	client = (TM_TCPCLIENT_t *)arg;
 	
 	/* Call user function */
 	TM_ETHERNETCLIENT_ErrorCallback(client);

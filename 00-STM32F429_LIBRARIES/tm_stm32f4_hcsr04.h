@@ -3,7 +3,7 @@
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
  * @link    http://stm32f4-discovery.com/2014/08/library-30-measure-distance-with-hc-sr04-and-stm32f4xx
- * @version v1.2
+ * @version v2.0
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   Measure distance with HC-SR04 Ultrasonic distance sensor on STM32F4xx devices
@@ -28,7 +28,7 @@
 @endverbatim
  */
 #ifndef TM_HCSR04_H
-#define TM_HCSR04_H 120
+#define TM_HCSR04_H 200
 /**
  * @addtogroup TM_STM32F4xx_Libraries
  * @{
@@ -41,30 +41,26 @@
  *
  * \par Default pinout
  * 
+ * There is not default pinout anymore.
+ * As of version 2.0, you can use unlimited HC-SR sensors connected to STM32F4xx device.
+ *
+ * You just make sure that you use different pins for different sensors.
+ *
+ * Pins are passed on @ref TM_HCSR04_Init function.
+ *
 @verbatim
-HC-SR04			STM32F4xx		Description
-
-TRIGGER			PB2				Trigger pin, to start sensor measurement
-ECHO			PB3				Echo pin, read sensor signal
-VCC				-				5V
-GND				-				Ground
+I didn't tested that, but you might use the same ECHO pin for all sensors if you read sensor by sensor at a time. Do that by own risk!
 @endverbatim
  * 
- * If you want to change TRIGGER and ECHO pin, add lines below in defines.h file and edit them
- * 
-@verbatim
-//Trigger PIN
-#define HCSR04_TRIGGER_PORT		GPIOB
-#define HCSR04_TRIGGER_PIN		GPIO_PIN_2
-
-//Echo PIN
-#define HCSR04_ECHO_PORT		GPIOB
-#define HCSR04_ECHO_PIN			GPIO_PIN_3
-@endverbatim
  *
  * \par Changelog
  *
 @verbatim
+ Version 2.0
+  - March 29, 2015
+  - Library has been rewritten. Now supports unlimited number of HCSR04 devices
+  - Only limit is number of GPIO pins available in your MCU package
+
  Version 1.2
   - March 11, 2015
   - Added support for my new GPIO library
@@ -98,30 +94,36 @@ GND				-				Ground
  * @{
  */
 
-/* Trigger PIN */
-#ifndef HCSR04_TRIGGER_PIN
-#define HCSR04_TRIGGER_PORT		GPIOB
-#define HCSR04_TRIGGER_PIN		GPIO_PIN_2
-#endif
-
-/* Echo PIN */
-#ifndef HCSR04_ECHO_PIN
-#define HCSR04_ECHO_PORT		GPIOB
-#define HCSR04_ECHO_PIN			GPIO_PIN_3
-#endif
-
 /* Default timeout pulses */
 #ifndef HCSR04_TIMEOUT
 #define HCSR04_TIMEOUT			1000000
 #endif
 
-/* Pin operations */
-#define HCSR04_TRIGGER_LOW		TM_GPIO_SetPinLow(HCSR04_TRIGGER_PORT, HCSR04_TRIGGER_PIN)
-#define HCSR04_TRIGGER_HIGH		TM_GPIO_SetPinHigh(HCSR04_TRIGGER_PORT, HCSR04_TRIGGER_PIN)
-#define HCSR04_ECHO_CHECK		TM_GPIO_GetInputPinValue(HCSR04_ECHO_PORT, HCSR04_ECHO_PIN)
-
-/* Time to cm */
+/**
+ * @brief  Time in microseconds to centimeters conversion
+ */
 #define HCSR04_NUMBER			((float)0.0171821)
+
+/**
+ * @}
+ */
+
+/**
+ * @defgroup TM_HCSR04_Typedefs
+ * @brief    Library Typedefs
+ * @{
+ */
+
+/**
+ * @brief  HC-SR04 working structure
+ */
+typedef struct {
+	float Distance;              /*!< Distance measured from sensor in centimeters */
+	GPIO_TypeDef* ECHO_GPIOx;    /*!< Pointer to GPIOx PORT for ECHO pin. Meant for private use only */
+	uint16_t ECHO_GPIO_Pin;      /*!< GPIO Pin for ECHO pin. Meant for private use only */
+	GPIO_TypeDef* TRIGGER_GPIOx; /*!< Pointer to GPIOx PORT for TRIGGER pin. Meant for private use only */
+	uint16_t TRIGGER_GPIO_Pin;   /*!< GPIO Pin for ECHO pin. Meant for private use only */
+} TM_HCSR04_t;
 
 /**
  * @}
@@ -135,19 +137,25 @@ GND				-				Ground
 
 /**
  * @brief  Initializes HC-SR04 sensor
- * @param  None
+ * @param  *HCSR04: Pointer to empty @ref TM_HCSR04_t structure to save initialization data
+ * @param  *ECHO_GPIOx: Pointer to GPIOx PORT for ECHO pin
+ * @param  ECHO_GPIO_Pin: GPIO Pin for ECHO pin
+ * @param  *TRIGGER_GPIOx: Pointer to GPIOx PORT for TRIGGER pin
+ * @param  TRIGGER_GPIO_Pin: GPIO Pin for ECHO pin
  * @retval HC-SR04 status:
  *            - 0: Device not detected
  *            - > 0: Device is ready to use
  */
-uint8_t TM_HCSR04_Init(void);
+uint8_t TM_HCSR04_Init(TM_HCSR04_t* HCSR04, GPIO_TypeDef* ECHO_GPIOx, uint16_t ECHO_GPIO_Pin, GPIO_TypeDef* TRIGGER_GPIOx, uint16_t TRIGGER_GPIO_Pin);
 
 /**
  * @brief  Starts sensor measurement and read it's data
- * @param  None
- * @retval Distance in cm (centi metery) or -1 on error
+ * @param  *HCSR04: Pointer to @ref TM_HCSR04_t structure to save initialization data
+ * @retval Distance in float:
+ *            - > 0: Valid distance in cm (centimeters)
+ *            -  -1: Error
  */
-float TM_HCSR04_Read(void);
+float TM_HCSR04_Read(TM_HCSR04_t* HCSR04);
 
 /**
  * @}

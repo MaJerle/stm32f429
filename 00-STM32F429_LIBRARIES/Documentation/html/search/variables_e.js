@@ -1,9 +1,12 @@
 var searchData=
 [
-  ['re_5fcount',['RE_Count',['../struct_t_m___r_e__t.html#a28ea67c9dd05d950e2697ae99550f630',1,'TM_RE_t']]],
-  ['response_5furi',['response_uri',['../struct_t_m___e_t_h_e_r_n_e_t_p_o_s_t__t.html#adb5fd3ee3a0c3434d5fbd6306d11789b',1,'TM_ETHERNETPOST_t']]],
-  ['response_5furi_5flen',['response_uri_len',['../struct_t_m___e_t_h_e_r_n_e_t_p_o_s_t__t.html#aa363003c2485ce585b755115c9248db8',1,'TM_ETHERNETPOST_t']]],
-  ['rightbutton',['RightButton',['../struct_t_m___u_s_b___h_i_d_h_o_s_t___mouse__t.html#a8afa89a70914c3df4cdc339d026cab05',1,'TM_USB_HIDHOST_Mouse_t']]],
-  ['rom_5fno',['ROM_NO',['../struct_t_m___one_wire__t.html#a9d063996b61210a9b7bc6d91c881bb1d',1,'TM_OneWire_t']]],
-  ['rotation',['Rotation',['../struct_t_m___r_e__t.html#aff5ba57fddc27e06b2a46669b3df8b9c',1,'TM_RE_t']]]
+  ['p_5ftx',['p_tx',['../struct_t_m___t_c_p_c_l_i_e_n_t__t.html#a464574d4b7ed1ccdf0bfb551858c930c',1,'TM_TCPCLIENT_t']]],
+  ['parity',['Parity',['../struct_t_m___u_s_b___v_c_p___settings__t.html#a9423654bdf9e9df7c82c71a571b24f13',1,'TM_USB_VCP_Settings_t']]],
+  ['pcb',['pcb',['../struct_t_m___t_c_p_c_l_i_e_n_t__t.html#a7d8c5f5eed3154f7848c3a2ac9a9863a',1,'TM_TCPCLIENT_t']]],
+  ['pdop',['PDOP',['../struct_t_m___g_p_s___data__t.html#a6dd866c20bf7ae6fed7f62afc4470c89',1,'TM_GPS_Data_t']]],
+  ['period',['Period',['../struct_t_m___p_w_m___t_i_m__t.html#a49500eef6a2354eeee4adc005bf9cef6',1,'TM_PWM_TIM_t::Period()'],['../struct_t_m___t_i_m_e_r___p_r_o_p_e_r_t_i_e_s__t.html#a49500eef6a2354eeee4adc005bf9cef6',1,'TM_TIMER_PROPERTIES_t::Period()']]],
+  ['pinspack',['Pinspack',['../struct_t_m___s_e_r_v_o__t.html#a596fbed3442104f025484da2cb62a489',1,'TM_SERVO_t']]],
+  ['port',['port',['../struct_t_m___t_c_p_c_l_i_e_n_t__t.html#a8e0798404bf2cf5dabb84c5ba9a4f236',1,'TM_TCPCLIENT_t']]],
+  ['prescaler',['Prescaler',['../struct_t_m___p_w_m___t_i_m__t.html#affb82025da5b8d4a06e61f1690460f4d',1,'TM_PWM_TIM_t::Prescaler()'],['../struct_t_m___t_i_m_e_r___p_r_o_p_e_r_t_i_e_s__t.html#affb82025da5b8d4a06e61f1690460f4d',1,'TM_TIMER_PROPERTIES_t::Prescaler()']]],
+  ['pwm',['PWM',['../struct_t_m___s_e_r_v_o__t.html#a55b538859ff0348d5166029f1580ab3b',1,'TM_SERVO_t']]]
 ];

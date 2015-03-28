@@ -344,8 +344,8 @@ DRESULT TM_FATFS_SD_SDIO_disk_read(BYTE *buff, DWORD sector, UINT count) {
 	SD_ReadMultiBlocks(buff, sector << 9, 512, count);
 
 	//Check if the Transfer is finished
-	Status =  SD_WaitReadOperation();
-	while(SD_GetStatus() != SD_TRANSFER_OK);
+	Status = SD_WaitReadOperation();
+	while (SD_GetStatus() != SD_TRANSFER_OK);
 
 	if (Status == SD_OK) {
 		return RES_OK;
@@ -406,7 +406,7 @@ DRESULT TM_FATFS_SD_SDIO_disk_write(BYTE *buff, DWORD sector, UINT count) {
 
 	//Check if the Transfer is finished
 	Status = SD_WaitWriteOperation();
-	while(SD_GetStatus() != SD_TRANSFER_OK);     
+	while (SD_GetStatus() != SD_TRANSFER_OK);     
 
 	if (Status == SD_OK) {
 		return RES_OK;
@@ -881,9 +881,7 @@ SD_Error SD_InitializeCards (void)
                 CSD_Tab[3] = SDIO_GetResponse (SDIO_RESP4);
         }
 
-        errorstatus = SD_OK; /*!< All cards get intialized */
-
-        return (errorstatus);
+        return SD_OK;
 }
 
 /**

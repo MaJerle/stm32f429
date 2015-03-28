@@ -1,5 +1,7 @@
 var searchData=
 [
+  ['echo_5fgpio_5fpin',['ECHO_GPIO_Pin',['../struct_t_m___h_c_s_r04__t.html#a308dd974da9a9d601a9d3ef34ca42e9e',1,'TM_HCSR04_t']]],
+  ['echo_5fgpiox',['ECHO_GPIOx',['../struct_t_m___h_c_s_r04__t.html#a2b9707762e15b64644e6e59e85a3fa73',1,'TM_HCSR04_t']]],
   ['emwin_5fupdate_5ftouch_5fmillis',['EMWIN_UPDATE_TOUCH_MILLIS',['../group___t_m___e_m_w_i_n___macros.html#gafc1774461ce40efaa13abbbf7576039e',1,'tm_stm32f4_emwin.h']]],
   ['ethernet_5fhostname_5fdhcp',['ETHERNET_HOSTNAME_DHCP',['../group___t_m___e_t_h_e_r_n_e_t___macros.html#gaf230d3b5f5bbc3905a111f1ae9d7b14a',1,'tm_stm32f4_ethernet.h']]],
   ['ethernet_5fmax_5fconnection_5fname',['ETHERNET_MAX_CONNECTION_NAME',['../group___t_m___e_t_h_e_r_n_e_t___macros.html#gabc39d8d143cdd369a58eb108b390016d',1,'tm_stm32f4_ethernet.h']]],

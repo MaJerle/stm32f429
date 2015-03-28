@@ -150,6 +150,8 @@ PD15 <-> FMC_D1   | PE11 <-> FMC_D8    | PF11 <-> FC_NRAS   | PH11 <-> FMC_D19  
 	#define SDRAM_MEMORY_SIZE           (uint32_t)0x800000
 	/* SDRAM bank */
 	#define SDRAM_BANK                  FMC_Bank1_SDRAM
+	/* Bank target command */
+	#define SDRAM_COMMAND_TARGET_BANK   FMC_Command_Target_bank1
 	/* Refresh count */
 	#define SDRAM_REFRESH_COUNT         1385
 	/* Number of rows */
@@ -158,8 +160,6 @@ PD15 <-> FMC_D1   | PE11 <-> FMC_D8    | PF11 <-> FC_NRAS   | PH11 <-> FMC_D19  
 	#define SDRAM_MEMORY_WIDTH          FMC_SDMemory_Width_32b
 	/* Read burst */
 	#define SDRAM_READ_BURST_STATE      FMC_Read_Burst_Enable
-	/* Bank target command */
-	#define SDRAM_COMMAND_TARGET_BANK   FMC_Command_Target_bank1
 	/* Register value */
 	#define SDRAM_REG_VALUE             0x0230
 /**
@@ -177,6 +177,8 @@ PD15 <-> FMC_D1   | PE11 <-> FMC_D8    | PF11 <-> FC_NRAS   | PH11 <-> FMC_D19  
 	#define SDRAM_MEMORY_SIZE           (uint32_t)0x800000
 	/* SDRAM bank */
 	#define SDRAM_BANK                  FMC_Bank2_SDRAM
+	/* Bank target command */
+	#define SDRAM_COMMAND_TARGET_BANK   FMC_Command_Target_bank2
 	/* Refresh count */
 	#define SDRAM_REFRESH_COUNT         680
 	/* Number of rows */
@@ -185,8 +187,6 @@ PD15 <-> FMC_D1   | PE11 <-> FMC_D8    | PF11 <-> FC_NRAS   | PH11 <-> FMC_D19  
 	#define SDRAM_MEMORY_WIDTH          FMC_SDMemory_Width_16b
 	/* Read burst */
 	#define SDRAM_READ_BURST_STATE      FMC_Read_Burst_Disable
-	/* Bank target command */
-	#define SDRAM_COMMAND_TARGET_BANK   FMC_Command_Target_bank2
 	/* Register value */
 	#define SDRAM_REG_VALUE             0x0231
 /**

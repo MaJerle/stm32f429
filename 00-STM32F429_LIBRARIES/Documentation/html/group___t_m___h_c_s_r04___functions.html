@@ -111,26 +111,54 @@ $(document).ready(function(){initNavTree('group___t_m___h_c_s_r04___functions.ht
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga6043bc25101dbebeca8027a1b1f2024d"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_m___h_c_s_r04___functions.html#ga6043bc25101dbebeca8027a1b1f2024d">TM_HCSR04_Init</a> (void)</td></tr>
-<tr class="memdesc:ga6043bc25101dbebeca8027a1b1f2024d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes HC-SR04 sensor.  <a href="#ga6043bc25101dbebeca8027a1b1f2024d">More...</a><br /></td></tr>
-<tr class="separator:ga6043bc25101dbebeca8027a1b1f2024d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga906952a11ac3b33654c9859c4f1e9982"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_m___h_c_s_r04___functions.html#ga906952a11ac3b33654c9859c4f1e9982">TM_HCSR04_Read</a> (void)</td></tr>
-<tr class="memdesc:ga906952a11ac3b33654c9859c4f1e9982"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts sensor measurement and read it's data.  <a href="#ga906952a11ac3b33654c9859c4f1e9982">More...</a><br /></td></tr>
-<tr class="separator:ga906952a11ac3b33654c9859c4f1e9982"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabfd1f8eb3dc804e88460fffe09a7a9f0"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_m___h_c_s_r04___functions.html#gabfd1f8eb3dc804e88460fffe09a7a9f0">TM_HCSR04_Init</a> (<a class="el" href="struct_t_m___h_c_s_r04__t.html">TM_HCSR04_t</a> *HCSR04, GPIO_TypeDef *ECHO_GPIOx, uint16_t ECHO_GPIO_Pin, GPIO_TypeDef *TRIGGER_GPIOx, uint16_t TRIGGER_GPIO_Pin)</td></tr>
+<tr class="memdesc:gabfd1f8eb3dc804e88460fffe09a7a9f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes HC-SR04 sensor.  <a href="#gabfd1f8eb3dc804e88460fffe09a7a9f0">More...</a><br /></td></tr>
+<tr class="separator:gabfd1f8eb3dc804e88460fffe09a7a9f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga774523c8095636213bfa628196ccb09e"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_m___h_c_s_r04___functions.html#ga774523c8095636213bfa628196ccb09e">TM_HCSR04_Read</a> (<a class="el" href="struct_t_m___h_c_s_r04__t.html">TM_HCSR04_t</a> *HCSR04)</td></tr>
+<tr class="memdesc:ga774523c8095636213bfa628196ccb09e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts sensor measurement and read it's data.  <a href="#ga774523c8095636213bfa628196ccb09e">More...</a><br /></td></tr>
+<tr class="separator:ga774523c8095636213bfa628196ccb09e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Library Functions. </p>
 <h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="ga6043bc25101dbebeca8027a1b1f2024d"></a>
+<a class="anchor" id="gabfd1f8eb3dc804e88460fffe09a7a9f0"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">uint8_t TM_HCSR04_Init </td>
           <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="struct_t_m___h_c_s_r04__t.html">TM_HCSR04_t</a> *&#160;</td>
+          <td class="paramname"><em>HCSR04</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">GPIO_TypeDef *&#160;</td>
+          <td class="paramname"><em>ECHO_GPIOx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>ECHO_GPIO_Pin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">GPIO_TypeDef *&#160;</td>
+          <td class="paramname"><em>TRIGGER_GPIOx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>TRIGGER_GPIO_Pin</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -138,7 +166,11 @@ Functions</h2></td></tr>
 <p>Initializes HC-SR04 sensor. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">None</td><td></td></tr>
+    <tr><td class="paramname">*HCSR04</td><td>Pointer to empty <a class="el" href="struct_t_m___h_c_s_r04__t.html">TM_HCSR04_t</a> structure to save initialization data </td></tr>
+    <tr><td class="paramname">*ECHO_GPIOx</td><td>Pointer to GPIOx PORT for ECHO pin </td></tr>
+    <tr><td class="paramname">ECHO_GPIO_Pin</td><td>GPIO Pin for ECHO pin </td></tr>
+    <tr><td class="paramname">*TRIGGER_GPIOx</td><td>Pointer to GPIOx PORT for TRIGGER pin </td></tr>
+    <tr><td class="paramname">TRIGGER_GPIO_Pin</td><td>GPIO Pin for ECHO pin </td></tr>
   </table>
   </dd>
 </dl>
@@ -155,15 +187,15 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ga906952a11ac3b33654c9859c4f1e9982"></a>
+<a class="anchor" id="ga774523c8095636213bfa628196ccb09e"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">float TM_HCSR04_Read </td>
           <td>(</td>
-          <td class="paramtype">void&#160;</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="struct_t_m___h_c_s_r04__t.html">TM_HCSR04_t</a> *&#160;</td>
+          <td class="paramname"><em>HCSR04</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -172,13 +204,17 @@ Functions</h2></td></tr>
 <p>Starts sensor measurement and read it's data. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">None</td><td></td></tr>
+    <tr><td class="paramname">*HCSR04</td><td>Pointer to <a class="el" href="struct_t_m___h_c_s_r04__t.html">TM_HCSR04_t</a> structure to save initialization data </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
-    <tr><td class="paramname">Distance</td><td>in cm (centi metery) or -1 on error </td></tr>
+    <tr><td class="paramname">Distance</td><td>in float:<ul>
+<li>&gt; 0: Valid distance in cm (centimeters)</li>
+<li>-1: Error </li>
+</ul>
+</td></tr>
   </table>
   </dd>
 </dl>
@@ -190,7 +226,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed Mar 25 2015 22:01:43 for TM STM32F4xx Libraries by
+    <li class="footer">Generated on Sat Mar 28 2015 23:50:21 for TM STM32F4xx Libraries by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

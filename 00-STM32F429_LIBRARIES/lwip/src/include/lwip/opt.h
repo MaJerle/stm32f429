@@ -1707,7 +1707,7 @@
 #endif
 
 #ifndef FSM_DEFMAXTERMREQS
-#define FSM_DEFMAXTERMREQS              2       /* Maximum Terminate-Request transmissions */
+#define FSM_DEFMAXTERMREQS              4       /* Maximum Terminate-Request transmissions */
 #endif
 
 #ifndef FSM_DEFMAXCONFREQS

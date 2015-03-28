@@ -114,6 +114,9 @@ Modules</h2></td></tr>
 <tr class="memitem:group___t_m___h_c_s_r04___macros"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_m___h_c_s_r04___macros.html">TM_HCSR04_Macros</a></td></tr>
 <tr class="memdesc:group___t_m___h_c_s_r04___macros"><td class="mdescLeft">&#160;</td><td class="mdescRight">Library macros. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:group___t_m___h_c_s_r04___typedefs"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_m___h_c_s_r04___typedefs.html">TM_HCSR04_Typedefs</a></td></tr>
+<tr class="memdesc:group___t_m___h_c_s_r04___typedefs"><td class="mdescLeft">&#160;</td><td class="mdescRight">Library Typedefs. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:group___t_m___h_c_s_r04___functions"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_m___h_c_s_r04___functions.html">TM_HCSR04_Functions</a></td></tr>
 <tr class="memdesc:group___t_m___h_c_s_r04___functions"><td class="mdescLeft">&#160;</td><td class="mdescRight">Library Functions. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -121,22 +124,17 @@ Modules</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Measure distance with HC-SR04 Ultrasonic distance sensor on STM32F4xx devices - <a href="http://stm32f4-discovery.com/2014/08/library-30-measure-distance-with-hc-sr04-and-stm32f4xx">http://stm32f4-discovery.com/2014/08/library-30-measure-distance-with-hc-sr04-and-stm32f4xx</a>. </p>
 <dl class="section user"><dt>Default pinout</dt><dd></dd></dl>
-<pre class="fragment">HC-SR04         STM32F4xx       Description
-
-TRIGGER         PB2             Trigger pin, to start sensor measurement
-ECHO            PB3             Echo pin, read sensor signal
-VCC             -               5V
-GND             -               Ground
-</pre><p>If you want to change TRIGGER and ECHO pin, add lines below in defines.h file and edit them</p>
-<pre class="fragment">//Trigger PIN
-#define HCSR04_TRIGGER_PORT     GPIOB
-#define HCSR04_TRIGGER_PIN      GPIO_PIN_2
-
-//Echo PIN
-#define HCSR04_ECHO_PORT        GPIOB
-#define HCSR04_ECHO_PIN         GPIO_PIN_3
+<p>There is not default pinout anymore. As of version 2.0, you can use unlimited HC-SR sensors connected to STM32F4xx device.</p>
+<p>You just make sure that you use different pins for different sensors.</p>
+<p>Pins are passed on <a class="el" href="group___t_m___h_c_s_r04___functions.html#gabfd1f8eb3dc804e88460fffe09a7a9f0">TM_HCSR04_Init</a> function.</p>
+<pre class="fragment">I didn't tested that, but you might use the same ECHO pin for all sensors if you read sensor by sensor at a time. Do that by own risk!
 </pre><dl class="section user"><dt>Changelog</dt><dd></dd></dl>
-<pre class="fragment"> Version 1.2
+<pre class="fragment"> Version 2.0
+  - March 29, 2015
+  - Library has been rewritten. Now supports unlimited number of HCSR04 devices
+  - Only limit is number of GPIO pins available in your MCU package
+
+ Version 1.2
   - March 11, 2015
   - Added support for my new GPIO library
 
@@ -157,7 +155,7 @@ GND             -               Ground
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed Mar 25 2015 22:01:43 for TM STM32F4xx Libraries by
+    <li class="footer">Generated on Sat Mar 28 2015 23:50:21 for TM STM32F4xx Libraries by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

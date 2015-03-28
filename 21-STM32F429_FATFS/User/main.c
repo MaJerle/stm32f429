@@ -20,11 +20,12 @@
 #include <stdio.h>
 #include <string.h>
 
+/* Fatfs object */
+FATFS FatFs;
+/* File object */
+FIL fil;
+
 int main(void) {
-	/* Fatfs object */
-	FATFS FatFs;
-	/* File object */
-	FIL fil;
 	/* Free and total space */
 	uint32_t total, free;
 	

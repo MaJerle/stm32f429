@@ -30,6 +30,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_it.h"
 #include "main.h"
+#include "stdio.h"
 
 /** @addtogroup Template_Project
   * @{
@@ -56,18 +57,24 @@ void NMI_Handler(void)
 }
 
 /**
-  * @brief  This function handles Hard Fault exception.
-  * @param  None
-  * @retval None
-  */
-void HardFault_Handler(void)
-{
-  /* Go to infinite loop when Hard Fault exception occurs */
-  while (1)
-  {
-  }
-}
+ * HardFault_HandlerAsm:
+ * Alternative Hard Fault handler to help debug the reason for a fault.
+ * To use, edit the vector table to reference this function in the HardFault vector
+ * This code is suitable for Cortex-M3 and Cortex-M0 cores
+ */
 
+void HardFault_Handler(void) {
+	printf("SCB->HFSR = 0x%08x\n", SCB->HFSR);
+	if ((SCB->HFSR & (1 << 30)) != 0) {
+		printf("Forced Hard Fault\n");
+		printf("SCB->CFSR = 0x%08x\n", SCB->CFSR );
+		if ((SCB->CFSR & 0xFFFF0000) != 0) {
+			printf("USAGE ERROR %d\n", SCB->CFSR);
+		}
+	}
+	__ASM volatile("BKPT #01");
+	while(1);
+}
 /**
   * @brief  This function handles Memory Manage exception.
   * @param  None

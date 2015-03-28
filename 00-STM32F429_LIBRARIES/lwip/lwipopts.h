@@ -30,6 +30,10 @@
 #ifndef __LWIPOPTS_H__
 #define __LWIPOPTS_H__
 
+/* Include defines.h */
+#include "stm32f4xx.h"
+#include "defines.h"
+
 /**
  * SYS_LIGHTWEIGHT_PROT==1: if you want inter-task protection for certain
  * critical regions during buffer allocation, deallocation and memory
