@@ -5,5 +5,6 @@ var searchData=
   ['otp_5flock_5faddr',['OTP_LOCK_ADDR',['../group___t_m___o_t_p___macros.html#gabdcf973184c83b0e89f8a376bc260126',1,'tm_stm32f4_otp.h']]],
   ['otp_5fsize',['OTP_SIZE',['../group___t_m___o_t_p___macros.html#gaab2fdc1272f7a40b80289798cc281687',1,'tm_stm32f4_otp.h']]],
   ['otp_5fstart_5faddr',['OTP_START_ADDR',['../group___t_m___o_t_p___macros.html#gaa8807dbefed227a08d03fefc23bc14e5',1,'tm_stm32f4_otp.h']]],
-  ['outputfuncpointer',['outputFuncPointer',['../struct_____f_i_l_e.html#ad81c0fb83d2aa881bb1113e5841eb852',1,'__FILE']]]
+  ['outputfuncpointer',['outputFuncPointer',['../struct_____f_i_l_e.html#ad81c0fb83d2aa881bb1113e5841eb852',1,'__FILE']]],
+  ['oversampling',['Oversampling',['../struct_t_m___b_m_p180__t.html#a0430e515cec185f2521694979067b452',1,'TM_BMP180_t']]]
 ];

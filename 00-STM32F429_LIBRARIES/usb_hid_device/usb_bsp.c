@@ -37,12 +37,12 @@
 
 #include "usb_dcd_int.h"
 
-#ifndef USB_HIDDEVICE_NVIC_PRIORITY
-#define USB_HIDDEVICE_NVIC_PRIORITY			0x01
+#ifndef USB_HID_DEVICE_NVIC_PRIORITY
+#define USB_HID_DEVICE_NVIC_PRIORITY			0x01
 #endif
 
-#ifndef USB_HIDDEVICE_NVIC_SUBPRIORITY
-#define USB_HIDDEVICE_NVIC_SUBPRIORITY		0x01
+#ifndef USB_HID_DEVICE_NVIC_SUBPRIORITY
+#define USB_HID_DEVICE_NVIC_SUBPRIORITY		0x01
 #endif
 
 extern USB_OTG_CORE_HANDLE USB_OTG_dev;
@@ -75,7 +75,7 @@ void USB_OTG_BSP_Init(USB_OTG_CORE_HANDLE *pdev) {
 	GPIO_PinAFConfig(GPIOA,GPIO_PinSource11,GPIO_AF_OTG1_FS); 
 	GPIO_PinAFConfig(GPIOA,GPIO_PinSource12,GPIO_AF_OTG1_FS);
 
-#ifndef USB_HIDDEVICE_DISABLE_VBUS
+#ifndef USB_HID_DEVICE_DISABLE_VBUS
 	/* Configure  VBUS Pin */
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9;
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
@@ -85,7 +85,7 @@ void USB_OTG_BSP_Init(USB_OTG_CORE_HANDLE *pdev) {
 	GPIO_Init(GPIOA, &GPIO_InitStructure);    
 #endif
 
-#ifndef USB_HIDDEVICE_DISABLE_ID
+#ifndef USB_HID_DEVICE_DISABLE_ID
 	/* Configure ID pin */
 	GPIO_InitStructure.GPIO_Pin =  GPIO_Pin_10;
 	GPIO_InitStructure.GPIO_OType = GPIO_OType_OD;
@@ -149,8 +149,8 @@ void USB_OTG_BSP_Init(USB_OTG_CORE_HANDLE *pdev) {
 	EXTI_ClearITPendingBit(EXTI_Line18);   
 
 	NVIC_InitStructure.NVIC_IRQChannel = OTG_FS_WKUP_IRQn;
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = USB_HIDDEVICE_NVIC_PRIORITY;
-	NVIC_InitStructure.NVIC_IRQChannelSubPriority = USB_HIDDEVICE_NVIC_SUBPRIORITY + 3;
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = USB_HID_DEVICE_NVIC_PRIORITY;
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = USB_HID_DEVICE_NVIC_SUBPRIORITY + 3;
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
 	NVIC_Init(&NVIC_InitStructure);
 
@@ -169,8 +169,8 @@ void USB_OTG_BSP_Init(USB_OTG_CORE_HANDLE *pdev) {
 	EXTI_ClearITPendingBit(EXTI_Line20);   
 
 	NVIC_InitStructure.NVIC_IRQChannel = OTG_HS_WKUP_IRQn;
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = USB_HIDDEVICE_NVIC_PRIORITY;
-	NVIC_InitStructure.NVIC_IRQChannelSubPriority = USB_HIDDEVICE_NVIC_SUBPRIORITY + 3;
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = USB_HID_DEVICE_NVIC_PRIORITY;
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = USB_HID_DEVICE_NVIC_SUBPRIORITY + 3;
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
 	NVIC_Init(&NVIC_InitStructure);
 
@@ -193,22 +193,22 @@ void USB_OTG_BSP_EnableInterrupt(USB_OTG_CORE_HANDLE *pdev)
 #else
   NVIC_InitStructure.NVIC_IRQChannel = OTG_FS_IRQn;  
 #endif
-  NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = USB_HIDDEVICE_NVIC_PRIORITY;
-  NVIC_InitStructure.NVIC_IRQChannelSubPriority = USB_HIDDEVICE_NVIC_SUBPRIORITY + 2;
+  NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = USB_HID_DEVICE_NVIC_PRIORITY;
+  NVIC_InitStructure.NVIC_IRQChannelSubPriority = USB_HID_DEVICE_NVIC_SUBPRIORITY + 2;
   NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
   NVIC_Init(&NVIC_InitStructure);  
 #ifdef USB_OTG_HS_DEDICATED_EP1_ENABLED
   NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);
   NVIC_InitStructure.NVIC_IRQChannel = OTG_HS_EP1_OUT_IRQn;
-  NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = USB_HIDDEVICE_NVIC_PRIORITY;
-  NVIC_InitStructure.NVIC_IRQChannelSubPriority = USB_HIDDEVICE_NVIC_SUBPRIORITY + 1;
+  NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = USB_HID_DEVICE_NVIC_PRIORITY;
+  NVIC_InitStructure.NVIC_IRQChannelSubPriority = USB_HID_DEVICE_NVIC_SUBPRIORITY + 1;
   NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
   NVIC_Init(&NVIC_InitStructure);  
   
   NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);
   NVIC_InitStructure.NVIC_IRQChannel = OTG_HS_EP1_IN_IRQn;
-  NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = USB_HIDDEVICE_NVIC_PRIORITY;
-  NVIC_InitStructure.NVIC_IRQChannelSubPriority = USB_HIDDEVICE_NVIC_SUBPRIORITY;
+  NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = USB_HID_DEVICE_NVIC_PRIORITY;
+  NVIC_InitStructure.NVIC_IRQChannelSubPriority = USB_HID_DEVICE_NVIC_SUBPRIORITY;
   NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
   NVIC_Init(&NVIC_InitStructure);   
 #endif

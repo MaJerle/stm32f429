@@ -18,7 +18,6 @@ var searchData=
   ['tm_5fl3gd20_5ft',['TM_L3GD20_t',['../struct_t_m___l3_g_d20__t.html',1,'']]],
   ['tm_5flis302dl_5flis3dsh_5ft',['TM_LIS302DL_LIS3DSH_t',['../struct_t_m___l_i_s302_d_l___l_i_s3_d_s_h__t.html',1,'']]],
   ['tm_5fmpu6050_5ft',['TM_MPU6050_t',['../struct_t_m___m_p_u6050__t.html',1,'']]],
-  ['tm_5fnrf24l01_5ft',['TM_NRF24L01_t',['../struct_t_m___n_r_f24_l01__t.html',1,'']]],
   ['tm_5fonewire_5ft',['TM_OneWire_t',['../struct_t_m___one_wire__t.html',1,'']]],
   ['tm_5fpwm_5ftim_5ft',['TM_PWM_TIM_t',['../struct_t_m___p_w_m___t_i_m__t.html',1,'']]],
   ['tm_5fpwmin_5ft',['TM_PWMIN_t',['../struct_t_m___p_w_m_i_n__t.html',1,'']]],

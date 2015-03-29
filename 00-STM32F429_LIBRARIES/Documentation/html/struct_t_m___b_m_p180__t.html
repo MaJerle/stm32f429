@@ -109,46 +109,103 @@ $(document).ready(function(){initNavTree('struct_t_m___b_m_p180__t.html','');});
   <div class="summary">
 <a href="#pub-attribs">Data Fields</a>  </div>
   <div class="headertitle">
-<div class="title">TM_BMP180_t Struct Reference</div>  </div>
+<div class="title">TM_BMP180_t Struct Reference<div class="ingroups"><a class="el" href="group___t_m___s_t_m32_f4xx___libraries.html">TM_STM32F4xx_Libraries</a> &raquo; <a class="el" href="group___t_m___b_m_p180.html">TM_BMP180</a> &raquo; <a class="el" href="group___t_m___b_m_p180___typedefs.html">TM_BMP180_Typedefs</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>BMP180 main structure.  
+ <a href="struct_t_m___b_m_p180__t.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="tm__stm32f4__bmp180_8h_source.html">tm_stm32f4_bmp180.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:acc81deedbd68806fa549c2b92a3d21e0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acc81deedbd68806fa549c2b92a3d21e0"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>Altitude</b></td></tr>
+<tr class="memitem:acc81deedbd68806fa549c2b92a3d21e0"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_t_m___b_m_p180__t.html#acc81deedbd68806fa549c2b92a3d21e0">Altitude</a></td></tr>
 <tr class="separator:acc81deedbd68806fa549c2b92a3d21e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab91169cc86c5a56fe7def7cebd4fba6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aab91169cc86c5a56fe7def7cebd4fba6"></a>
-uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>Pressure</b></td></tr>
+<tr class="memitem:aab91169cc86c5a56fe7def7cebd4fba6"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_t_m___b_m_p180__t.html#aab91169cc86c5a56fe7def7cebd4fba6">Pressure</a></td></tr>
 <tr class="separator:aab91169cc86c5a56fe7def7cebd4fba6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa66fac91ab948980be979b768e67c5a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afa66fac91ab948980be979b768e67c5a"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>Temperature</b></td></tr>
+<tr class="memitem:afa66fac91ab948980be979b768e67c5a"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_t_m___b_m_p180__t.html#afa66fac91ab948980be979b768e67c5a">Temperature</a></td></tr>
 <tr class="separator:afa66fac91ab948980be979b768e67c5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a16a366f1914db6923e6f49ba15572ea2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a16a366f1914db6923e6f49ba15572ea2"></a>
-uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>Delay</b></td></tr>
+<tr class="memitem:a16a366f1914db6923e6f49ba15572ea2"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_t_m___b_m_p180__t.html#a16a366f1914db6923e6f49ba15572ea2">Delay</a></td></tr>
 <tr class="separator:a16a366f1914db6923e6f49ba15572ea2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0430e515cec185f2521694979067b452"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0430e515cec185f2521694979067b452"></a>
-TM_BMP180_Oversampling_t&#160;</td><td class="memItemRight" valign="bottom"><b>Oversampling</b></td></tr>
+<tr class="memitem:a0430e515cec185f2521694979067b452"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group___t_m___b_m_p180___typedefs.html#gaccc75a391b34d1167ff3c6e947bcc38b">TM_BMP180_Oversampling_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_t_m___b_m_p180__t.html#a0430e515cec185f2521694979067b452">Oversampling</a></td></tr>
 <tr class="separator:a0430e515cec185f2521694979067b452"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>BMP180 working struct</p>
-<p>Parameters:</p><ul>
-<li>float Altitude: Calculated altitude at given read pressure</li>
-<li>uint32_t Pressure: Pressure in pascals</li>
-<li>float Temperature: Temperature in degrees</li>
-<li>uint16_t Delay: Number of microseconds, that sensor needs to calculate data that you request to</li>
-<li>TM_BMP180_Oversampling_t Oversampling: Oversampling for pressure calculation </li>
-</ul>
-</div></div><!-- contents -->
+<div class="textblock"><p>BMP180 main structure. </p>
+</div><h2 class="groupheader">Field Documentation</h2>
+<a class="anchor" id="acc81deedbd68806fa549c2b92a3d21e0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Altitude</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Calculated altitude at given read pressure </p>
+
+</div>
+</div>
+<a class="anchor" id="a16a366f1914db6923e6f49ba15572ea2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t Delay</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Number of microseconds, that sensor needs to calculate data that you request to </p>
+
+</div>
+</div>
+<a class="anchor" id="a0430e515cec185f2521694979067b452"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group___t_m___b_m_p180___typedefs.html#gaccc75a391b34d1167ff3c6e947bcc38b">TM_BMP180_Oversampling_t</a> Oversampling</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Oversampling for pressure calculation </p>
+
+</div>
+</div>
+<a class="anchor" id="aab91169cc86c5a56fe7def7cebd4fba6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t Pressure</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Pressure in pascals </p>
+
+</div>
+</div>
+<a class="anchor" id="afa66fac91ab948980be979b768e67c5a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Temperature</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Temperature in degrees </p>
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="struct_t_m___b_m_p180__t.html">TM_BMP180_t</a></li>
-    <li class="footer">Generated on Sat Mar 28 2015 23:50:22 for TM STM32F4xx Libraries by
+    <li class="footer">Generated on Sun Mar 29 2015 01:58:21 for TM STM32F4xx Libraries by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

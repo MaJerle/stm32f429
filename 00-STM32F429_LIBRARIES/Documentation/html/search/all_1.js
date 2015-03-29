@@ -12,5 +12,5 @@ var searchData=
   ['adc_5fsupply_5fvoltage',['ADC_SUPPLY_VOLTAGE',['../group___t_m___a_d_c___macros.html#gae5774d10d218c11578b7e1f03c538646',1,'tm_stm32f4_adc.h']]],
   ['address',['Address',['../struct_t_m___m_p_u6050__t.html#ae2bbeaf207df18992544fd4193b34112',1,'TM_MPU6050_t']]],
   ['alarmtype',['alarmtype',['../struct_t_m___r_t_c___alarm_time__t.html#a47319bdd7ad0d444587eaf62803a0335',1,'TM_RTC_AlarmTime_t']]],
-  ['altitude',['Altitude',['../struct_t_m___g_p_s___data__t.html#acc81deedbd68806fa549c2b92a3d21e0',1,'TM_GPS_Data_t']]]
+  ['altitude',['Altitude',['../struct_t_m___b_m_p180__t.html#acc81deedbd68806fa549c2b92a3d21e0',1,'TM_BMP180_t::Altitude()'],['../struct_t_m___g_p_s___data__t.html#acc81deedbd68806fa549c2b92a3d21e0',1,'TM_GPS_Data_t::Altitude()']]]
 ];

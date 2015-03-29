@@ -2,6 +2,7 @@ var group___t_m___s_t_m32_f4xx___libraries =
 [
     [ "TM_ADC", "group___t_m___a_d_c.html", "group___t_m___a_d_c" ],
     [ "TM_BKPSRAM", "group___t_m___b_k_p_s_r_a_m.html", "group___t_m___b_k_p_s_r_a_m" ],
+    [ "TM_BMP180", "group___t_m___b_m_p180.html", "group___t_m___b_m_p180" ],
     [ "TM_CRC", "group___t_m___c_r_c.html", "group___t_m___c_r_c" ],
     [ "TM_DAC", "group___t_m___d_a_c.html", "group___t_m___d_a_c" ],
     [ "TM_DAC_SIGNAL", "group___t_m___d_a_c___s_i_g_n_a_l.html", "group___t_m___d_a_c___s_i_g_n_a_l" ],
@@ -23,6 +24,7 @@ var group___t_m___s_t_m32_f4xx___libraries =
     [ "TM_LOWPOWER", "group___t_m___l_o_w_p_o_w_e_r.html", "group___t_m___l_o_w_p_o_w_e_r" ],
     [ "TM_MCO", "group___t_m___m_c_o.html", "group___t_m___m_c_o" ],
     [ "TM_MPU6050", "group___t_m___m_p_u6050.html", "group___t_m___m_p_u6050" ],
+    [ "TM_NRF24L01P", "group___t_m___n_r_f24_l01_p.html", "group___t_m___n_r_f24_l01_p" ],
     [ "TM_ONEWIRE", "group___t_m___o_n_e_w_i_r_e.html", "group___t_m___o_n_e_w_i_r_e" ],
     [ "TM_OTP", "group___t_m___o_t_p.html", "group___t_m___o_t_p" ],
     [ "TM_PWM", "group___t_m___p_w_m.html", "group___t_m___p_w_m" ],

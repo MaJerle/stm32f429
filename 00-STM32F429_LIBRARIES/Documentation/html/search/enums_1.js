@@ -1,6 +1,8 @@
 var searchData=
 [
   ['tm_5fadc_5fchannel_5ft',['TM_ADC_Channel_t',['../group___t_m___a_d_c___typedefs.html#ga0adf77c463b299c8ba7a4cf63d60f727',1,'tm_stm32f4_adc.h']]],
+  ['tm_5fbmp180_5foversampling_5ft',['TM_BMP180_Oversampling_t',['../group___t_m___b_m_p180___typedefs.html#gaccc75a391b34d1167ff3c6e947bcc38b',1,'tm_stm32f4_bmp180.h']]],
+  ['tm_5fbmp180_5fresult_5ft',['TM_BMP180_Result_t',['../group___t_m___b_m_p180___typedefs.html#ga9cb4398f58dd51026edaaf8a0ea349d2',1,'tm_stm32f4_bmp180.h']]],
   ['tm_5fdac_5fchannel_5ft',['TM_DAC_Channel_t',['../group___t_m___d_a_c___typedefs.html#ga2d908fe8720e30b16bbe1f000d2b63bc',1,'tm_stm32f4_dac.h']]],
   ['tm_5fdac_5fsignal_5fchannel_5ft',['TM_DAC_SIGNAL_Channel_t',['../group___t_m___d_a_c___s_i_g_n_a_l___typedefs.html#ga138da0ce824f681204aa1bc4e7f3e7fd',1,'tm_stm32f4_dac_signal.h']]],
   ['tm_5fdac_5fsignal_5fresult_5ft',['TM_DAC_SIGNAL_Result_t',['../group___t_m___d_a_c___s_i_g_n_a_l___typedefs.html#ga64be495e4288369d18452bdcf006bb15',1,'tm_stm32f4_dac_signal.h']]],
@@ -27,6 +29,9 @@ var searchData=
   ['tm_5fmpu6050_5fdevice_5ft',['TM_MPU6050_Device_t',['../group___t_m___m_p_u6050___typedefs.html#gab1cc306af5e40c07cffa8fe1ad428f7a',1,'tm_stm32f4_mpu6050.h']]],
   ['tm_5fmpu6050_5fgyroscope_5ft',['TM_MPU6050_Gyroscope_t',['../group___t_m___m_p_u6050___typedefs.html#ga670a642e5f284adff66b49d1fd9aaef2',1,'tm_stm32f4_mpu6050.h']]],
   ['tm_5fmpu6050_5fresult_5ft',['TM_MPU6050_Result_t',['../group___t_m___m_p_u6050___typedefs.html#ga0ea6a4a4179f7016e43ab4dbf99165d5',1,'tm_stm32f4_mpu6050.h']]],
+  ['tm_5fnrf24l01_5fdatarate_5ft',['TM_NRF24L01_DataRate_t',['../group___t_m___n_r_f24_l01_p___typedefs.html#gaa138be2daa357add9d7231245da492b0',1,'tm_stm32f4_nrf24l01.h']]],
+  ['tm_5fnrf24l01_5foutputpower_5ft',['TM_NRF24L01_OutputPower_t',['../group___t_m___n_r_f24_l01_p___typedefs.html#gac17ff809cee95f753e20d2d4c20efc6d',1,'tm_stm32f4_nrf24l01.h']]],
+  ['tm_5fnrf24l01_5ftransmit_5fstatus_5ft',['TM_NRF24L01_Transmit_Status_t',['../group___t_m___n_r_f24_l01_p___typedefs.html#ga72f54c4296ac6f3e148f99ab4476d391',1,'tm_stm32f4_nrf24l01.h']]],
   ['tm_5fotp_5fresult_5ft',['TM_OTP_Result_t',['../group___t_m___o_t_p___typedefs.html#ga78c460aebb9990e39752dbac94551461',1,'tm_stm32f4_otp.h']]],
   ['tm_5fpwm_5fchannel_5ft',['TM_PWM_Channel_t',['../group___t_m___p_w_m___typedefs.html#ga7f3166fc83034930a1d7435933b93410',1,'tm_stm32f4_pwm.h']]],
   ['tm_5fpwm_5fpinspack_5ft',['TM_PWM_PinsPack_t',['../group___t_m___p_w_m___typedefs.html#gab417cacda7ec02bf7a44543f23f9307c',1,'tm_stm32f4_pwm.h']]],

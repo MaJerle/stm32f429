@@ -20,9 +20,7 @@
 
 #include <stdio.h>
 
-int main(void) {
-	char buffer[50];
-	
+int main(void) {	
 	/* Working structure */
 	TM_BMP180_t BMP180_Data;
 	
@@ -32,26 +30,24 @@ int main(void) {
 	/* Initialize delay */
 	TM_DELAY_Init();
 	
-	/* Initialize USART1, 11500baud, TX: PB6 */
+	/* Initialize USART1, 11500baud, TX: PB6, used for printf operations */
 	TM_USART_Init(USART1, TM_USART_PinsPack_2, 115200);
 	
 	/* Initialize BMP180 pressure sensor */
 	if (TM_BMP180_Init(&BMP180_Data) == TM_BMP180_Result_Ok) {
 		/* Init OK */
-		TM_USART_Puts(USART1, "BMP180 configured and ready to use\n\n");
+		printf("BMP180 configured and ready to use\n\n");
 	} else {
 		/* Device error */
-		TM_USART_Puts(USART1, "BMP180 error\n\n");
+		printf("BMP180 error\n\n");
 		while (1);
 	}
 	
 	/* Imagine, we are at 1000 meters above the sea */
 	/* And we read pressure of 95000 pascals */
 	/* Pressure right on the sea is */
-	sprintf(buffer, "Pressure right above the sea: %d pascals\n", TM_BMP180_GetPressureAtSeaLevel(95000, 1000));
-	TM_USART_Puts(USART1, buffer);
-	sprintf(buffer, "Data were calculated from pressure %d pascals at know altitude %d meters\n\n\n", 95000, 1000);
-	TM_USART_Puts(USART1, buffer);
+	printf("Pressure right above the sea: %d pascals\n", TM_BMP180_GetPressureAtSeaLevel(95000, 1000));
+	printf("Data were calculated from pressure %d pascals at know altitude %d meters\n\n\n", 95000, 1000);
 
 	while (1) {
 		/* Start temperature conversion */
@@ -75,15 +71,21 @@ int main(void) {
 		TM_BMP180_ReadPressure(&BMP180_Data);
 		
 		/* Format data and print to USART */
-		sprintf(buffer, "Temp: %2.3f degrees\nPressure: %6d Pascals\nAltitude at current pressure: %3.2f meters\n\n",
+		printf("Temp: %2.3f degrees\nPressure: %6d Pascals\nAltitude at current pressure: %3.2f meters\n\n",
 			BMP180_Data.Temperature,
 			BMP180_Data.Pressure,
 			BMP180_Data.Altitude
 		);
-		/* Send to USART */
-		TM_USART_Puts(USART1, buffer);
 		
 		/* Some delay */
 		Delayms(1000);
 	}
+}
+
+int fputc(int ch, FILE* f) {
+	/* Sent data over USART */
+	TM_USART_Putc(USART1, ch);
+	
+	/* Return the same character back */
+	return ch;
 }

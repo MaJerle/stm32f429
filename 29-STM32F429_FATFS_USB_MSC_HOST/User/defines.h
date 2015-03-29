@@ -56,5 +56,6 @@
 /* If you want SPI communication instead of SDIO, enable with */
 //#define FATFS_USE_SDIO	0
 
+
 #endif
 
