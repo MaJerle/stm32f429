@@ -400,10 +400,10 @@ void TM_USART_Putc(USART_TypeDef* USARTx, volatile char c) {
 		return;
 	}
 	
-	/* Wait to be ready, buffer empty */
-	USART_WAIT(USARTx);
 	/* Send data */
 	USARTx->DR = (uint16_t)(c & 0x01FF);
+	/* Wait to be ready, buffer empty */
+	USART_WAIT(USARTx);
 }
 
 /* Private functions */

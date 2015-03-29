@@ -738,6 +738,16 @@
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.h</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32f4_general.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_general.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1534,6 +1544,16 @@
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.h</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32f4_general.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_general.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -2329,6 +2349,16 @@
               <FileName>tm_stm32f4_sdram.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_general.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_general.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -3127,6 +3157,16 @@
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.h</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32f4_general.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_general.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -3922,6 +3962,16 @@
               <FileName>tm_stm32f4_sdram.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_general.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_general.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -4719,6 +4769,16 @@
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.h</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32f4_general.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_general.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -5514,6 +5574,16 @@
               <FileName>tm_stm32f4_sdram.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_general.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_general.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -6311,6 +6381,16 @@
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.h</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32f4_general.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_general.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -7107,6 +7187,16 @@
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.h</FilePath>
             </File>
+            <File>
+              <FileName>tm_stm32f4_general.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_general.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -7902,6 +7992,16 @@
               <FileName>tm_stm32f4_sdram.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_general.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_general.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.h</FilePath>
             </File>
           </Files>
         </Group>

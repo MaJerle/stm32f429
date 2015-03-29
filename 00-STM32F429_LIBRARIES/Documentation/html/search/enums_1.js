@@ -13,6 +13,8 @@ var searchData=
   ['tm_5fethernet_5fresult_5ft',['TM_ETHERNET_Result_t',['../group___t_m___e_t_h_e_r_n_e_t___typedefs.html#gacb3ccf45d6927338b4ff75262a2fb5ad',1,'tm_stm32f4_ethernet.h']]],
   ['tm_5fexti_5fresult_5ft',['TM_EXTI_Result_t',['../group___t_m___e_x_t_i___typedefs.html#gadb012a72344d790c82de4cd595208781',1,'tm_stm32f4_exti.h']]],
   ['tm_5fexti_5ftrigger_5ft',['TM_EXTI_Trigger_t',['../group___t_m___e_x_t_i___typedefs.html#gaeb403ab27383f3f96e6f194f9fc89b02',1,'tm_stm32f4_exti.h']]],
+  ['tm_5fgeneral_5fclock_5ft',['TM_GENERAL_Clock_t',['../group___t_m___g_e_n_e_r_a_l___typedefs.html#ga880f448a9ea7dbb9dba796d41fa32358',1,'tm_stm32f4_general.h']]],
+  ['tm_5fgeneral_5fresetsource_5ft',['TM_GENERAL_ResetSource_t',['../group___t_m___g_e_n_e_r_a_l___typedefs.html#ga9489fc9889224c03845782609eedc35e',1,'tm_stm32f4_general.h']]],
   ['tm_5fgpio_5fmode_5ft',['TM_GPIO_Mode_t',['../group___t_m___g_p_i_o___typedefs.html#gacbb363a57d0e70ea563e494eff1db3ca',1,'tm_stm32f4_gpio.h']]],
   ['tm_5fgpio_5fotype_5ft',['TM_GPIO_OType_t',['../group___t_m___g_p_i_o___typedefs.html#ga1d443fe266a4073f40ea271ae7b8df9f',1,'tm_stm32f4_gpio.h']]],
   ['tm_5fgpio_5fpupd_5ft',['TM_GPIO_PuPd_t',['../group___t_m___g_p_i_o___typedefs.html#ga50ddb0da56d8a388dee368c55e968602',1,'tm_stm32f4_gpio.h']]],

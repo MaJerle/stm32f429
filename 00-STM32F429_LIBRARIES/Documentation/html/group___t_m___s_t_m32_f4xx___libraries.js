@@ -13,6 +13,7 @@ var group___t_m___s_t_m32_f4xx___libraries =
     [ "TM_ETHERNET", "group___t_m___e_t_h_e_r_n_e_t.html", "group___t_m___e_t_h_e_r_n_e_t" ],
     [ "TM_EXTI", "group___t_m___e_x_t_i.html", "group___t_m___e_x_t_i" ],
     [ "TM_FATFS", "group___t_m___f_a_t_f_s.html", "group___t_m___f_a_t_f_s" ],
+    [ "TM_GENERAL", "group___t_m___g_e_n_e_r_a_l.html", "group___t_m___g_e_n_e_r_a_l" ],
     [ "TM_GPIO", "group___t_m___g_p_i_o.html", "group___t_m___g_p_i_o" ],
     [ "TM_GPS", "group___t_m___g_p_s.html", "group___t_m___g_p_s" ],
     [ "TM_HCSR04", "group___t_m___h_c_s_r04.html", "group___t_m___h_c_s_r04" ],
