@@ -659,11 +659,6 @@
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma2d.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_fmc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_fmc.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f4xx_ltdc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_ltdc.c</FilePath>
@@ -729,16 +724,6 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_sdram.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_sdram.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.h</FilePath>
-            </File>
-            <File>
               <FileName>tm_stm32f4_general.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.c</FilePath>
@@ -787,26 +772,6 @@
               <FileName>system_stm32f4xx.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\system_stm32f4xx.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_lcd.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\TM\tm_stm32f4_lcd.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_lcd.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\TM\tm_stm32f4_lcd.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm324x9i_eval_fmc_sdram.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\TM\stm324x9i_eval_fmc_sdram.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm324x9i_eval_fmc_sdram.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\TM\stm324x9i_eval_fmc_sdram.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1465,11 +1430,6 @@
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma2d.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_fmc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_fmc.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f4xx_ltdc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_ltdc.c</FilePath>
@@ -1535,16 +1495,6 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_sdram.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_sdram.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.h</FilePath>
-            </File>
-            <File>
               <FileName>tm_stm32f4_general.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.c</FilePath>
@@ -1593,26 +1543,6 @@
               <FileName>system_stm32f4xx.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\system_stm32f4xx.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_lcd.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\TM\tm_stm32f4_lcd.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_lcd.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\TM\tm_stm32f4_lcd.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm324x9i_eval_fmc_sdram.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\TM\stm324x9i_eval_fmc_sdram.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm324x9i_eval_fmc_sdram.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\TM\stm324x9i_eval_fmc_sdram.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -2271,11 +2201,6 @@
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma2d.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_fmc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_fmc.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f4xx_ltdc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_ltdc.c</FilePath>
@@ -2341,16 +2266,6 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_sdram.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_sdram.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.h</FilePath>
-            </File>
-            <File>
               <FileName>tm_stm32f4_general.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.c</FilePath>
@@ -2399,26 +2314,6 @@
               <FileName>system_stm32f4xx.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\system_stm32f4xx.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_lcd.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\TM\tm_stm32f4_lcd.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_lcd.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\TM\tm_stm32f4_lcd.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm324x9i_eval_fmc_sdram.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\TM\stm324x9i_eval_fmc_sdram.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm324x9i_eval_fmc_sdram.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\TM\stm324x9i_eval_fmc_sdram.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -3078,11 +2973,6 @@
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma2d.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_fmc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_fmc.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f4xx_ltdc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_ltdc.c</FilePath>
@@ -3148,16 +3038,6 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_sdram.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_sdram.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.h</FilePath>
-            </File>
-            <File>
               <FileName>tm_stm32f4_general.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.c</FilePath>
@@ -3206,26 +3086,6 @@
               <FileName>system_stm32f4xx.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\system_stm32f4xx.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_lcd.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\TM\tm_stm32f4_lcd.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_lcd.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\TM\tm_stm32f4_lcd.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm324x9i_eval_fmc_sdram.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\TM\stm324x9i_eval_fmc_sdram.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm324x9i_eval_fmc_sdram.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\TM\stm324x9i_eval_fmc_sdram.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -3884,11 +3744,6 @@
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma2d.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_fmc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_fmc.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f4xx_ltdc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_ltdc.c</FilePath>
@@ -3954,16 +3809,6 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_sdram.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_sdram.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.h</FilePath>
-            </File>
-            <File>
               <FileName>tm_stm32f4_general.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.c</FilePath>
@@ -4012,26 +3857,6 @@
               <FileName>system_stm32f4xx.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\system_stm32f4xx.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_lcd.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\TM\tm_stm32f4_lcd.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_lcd.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\TM\tm_stm32f4_lcd.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm324x9i_eval_fmc_sdram.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\TM\stm324x9i_eval_fmc_sdram.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm324x9i_eval_fmc_sdram.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\TM\stm324x9i_eval_fmc_sdram.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -4690,11 +4515,6 @@
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma2d.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_fmc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_fmc.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f4xx_ltdc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_ltdc.c</FilePath>
@@ -4760,16 +4580,6 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_sdram.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_sdram.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.h</FilePath>
-            </File>
-            <File>
               <FileName>tm_stm32f4_general.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.c</FilePath>
@@ -4818,26 +4628,6 @@
               <FileName>system_stm32f4xx.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\system_stm32f4xx.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_lcd.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\TM\tm_stm32f4_lcd.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_lcd.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\TM\tm_stm32f4_lcd.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm324x9i_eval_fmc_sdram.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\TM\stm324x9i_eval_fmc_sdram.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm324x9i_eval_fmc_sdram.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\TM\stm324x9i_eval_fmc_sdram.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -5496,11 +5286,6 @@
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma2d.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_fmc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_fmc.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f4xx_ltdc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_ltdc.c</FilePath>
@@ -5566,16 +5351,6 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_sdram.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_sdram.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.h</FilePath>
-            </File>
-            <File>
               <FileName>tm_stm32f4_general.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.c</FilePath>
@@ -5624,26 +5399,6 @@
               <FileName>system_stm32f4xx.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\system_stm32f4xx.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_lcd.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\TM\tm_stm32f4_lcd.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_lcd.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\TM\tm_stm32f4_lcd.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm324x9i_eval_fmc_sdram.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\TM\stm324x9i_eval_fmc_sdram.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm324x9i_eval_fmc_sdram.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\TM\stm324x9i_eval_fmc_sdram.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -6302,11 +6057,6 @@
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma2d.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_fmc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_fmc.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f4xx_ltdc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_ltdc.c</FilePath>
@@ -6372,16 +6122,6 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_sdram.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_sdram.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.h</FilePath>
-            </File>
-            <File>
               <FileName>tm_stm32f4_general.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.c</FilePath>
@@ -6430,26 +6170,6 @@
               <FileName>system_stm32f4xx.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\system_stm32f4xx.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_lcd.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\TM\tm_stm32f4_lcd.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_lcd.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\TM\tm_stm32f4_lcd.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm324x9i_eval_fmc_sdram.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\TM\stm324x9i_eval_fmc_sdram.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm324x9i_eval_fmc_sdram.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\TM\stm324x9i_eval_fmc_sdram.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -7108,11 +6828,6 @@
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma2d.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_fmc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_fmc.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f4xx_ltdc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_ltdc.c</FilePath>
@@ -7178,16 +6893,6 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_sdram.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_sdram.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.h</FilePath>
-            </File>
-            <File>
               <FileName>tm_stm32f4_general.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.c</FilePath>
@@ -7236,26 +6941,6 @@
               <FileName>system_stm32f4xx.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\system_stm32f4xx.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_lcd.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\TM\tm_stm32f4_lcd.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_lcd.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\TM\tm_stm32f4_lcd.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm324x9i_eval_fmc_sdram.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\TM\stm324x9i_eval_fmc_sdram.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm324x9i_eval_fmc_sdram.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\TM\stm324x9i_eval_fmc_sdram.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -7914,11 +7599,6 @@
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma2d.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_fmc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_fmc.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f4xx_ltdc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_ltdc.c</FilePath>
@@ -7984,16 +7664,6 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_sdram.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_sdram.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.h</FilePath>
-            </File>
-            <File>
               <FileName>tm_stm32f4_general.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.c</FilePath>
@@ -8042,26 +7712,6 @@
               <FileName>system_stm32f4xx.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\system_stm32f4xx.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_lcd.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\TM\tm_stm32f4_lcd.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_lcd.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\TM\tm_stm32f4_lcd.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm324x9i_eval_fmc_sdram.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\TM\stm324x9i_eval_fmc_sdram.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm324x9i_eval_fmc_sdram.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\TM\stm324x9i_eval_fmc_sdram.h</FilePath>
             </File>
           </Files>
         </Group>
