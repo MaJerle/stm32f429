@@ -3,7 +3,7 @@
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
  * @link    http://stm32f4-discovery.com/2014/05/library-09-i2c-for-stm32f4xx/
- * @version v1.6
+ * @version v1.6.1
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   I2C library for STM32F4xx
@@ -28,7 +28,7 @@
 @endverbatim
  */
 #ifndef TM_I2C_H
-#define TM_I2C_H 160
+#define TM_I2C_H 161
 /**
  * @addtogroup TM_STM32F4xx_Libraries
  * @{
@@ -75,6 +75,10 @@ I2C3   |PA8   PC9    |PH7   PH8    |-     -
  * \par Changelog
  *
 @verbatim
+ Version 1.6.1
+  - March 31, 2015
+  - Fixed I2C issue when sometime it didn't send data
+  
  Version 1.6
   - March 13, 2015
   - Added new function to write multi bytes to device without specify register address

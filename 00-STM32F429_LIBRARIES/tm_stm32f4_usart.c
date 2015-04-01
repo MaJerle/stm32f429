@@ -386,10 +386,10 @@ void TM_USART_Puts(USART_TypeDef* USARTx, char* str) {
 	}
 	
 	while (*str) {
-		/* Wait to be ready, buffer empty */
-		USART_WAIT(USARTx);
 		/* Send data */
 		USARTx->DR = (uint16_t)(*str++ & 0x01FF);
+		/* Wait to be ready, buffer empty */
+		USART_WAIT(USARTx);
 	}
 }
 

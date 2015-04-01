@@ -69,7 +69,7 @@ int main(void) {
 	TM_USART_Init(USART6, TM_USART_PinsPack_1, 115200);
 	
 	/* Enable watchdog, 4 seconds before timeout */
-	if (TM_WATCHDOG_Init(TM_WATCHDOG_Timeout_4s)) {
+	if (TM_WATCHDOG_Init(TM_WATCHDOG_Timeout_16s)) {
 		/* Report to user */
 		printf("Reset occured because of Watchdog\n");
 	}
@@ -394,7 +394,7 @@ void TM_ETHERNET_LinkIsDownCallback(void) {
 	/* It will also be called on initialization if connection is not detected */
 	
 	/* Print to user */
-	printf("Link is down, do you have connected to your modem/router?");
+	printf("Link is down, do you have connected to your modem/router?\n");
 }
 void TM_ETHERNET_LinkIsUpCallback(void) {
 	/* Cable has been plugged in back, link is detected */

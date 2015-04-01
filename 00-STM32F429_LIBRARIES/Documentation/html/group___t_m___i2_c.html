@@ -144,7 +144,11 @@ I2C3   |PA8   PC9    |PH7   PH8    |-     -
 //Duty cycle 2, 50%
 #define TM_I2Cx_DUTY_CYCLE             I2C_DutyCycle_2
 </pre><dl class="section user"><dt>Changelog</dt><dd></dd></dl>
-<pre class="fragment"> Version 1.6
+<pre class="fragment"> Version 1.6.1
+  - March 31, 2015
+  - Fixed I2C issue when sometime it didn't send data
+  
+ Version 1.6
   - March 13, 2015
   - Added new function to write multi bytes to device without specify register address
 
@@ -182,7 +186,7 @@ I2C3   |PA8   PC9    |PH7   PH8    |-     -
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sun Mar 29 2015 22:23:46 for TM STM32F4xx Libraries by
+    <li class="footer">Generated on Tue Mar 31 2015 14:43:34 for TM STM32F4xx Libraries by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

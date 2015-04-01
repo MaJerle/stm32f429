@@ -199,7 +199,7 @@ typedef enum {
  * @param  trigger: Pin trigger source. This parameter can be a value of @ref TM_EXTI_Trigger_t enumeration
  * @retval Attach result:
  *            - @arg TM_EXTI_Result_Ok: Everything ok, interrupt attached
- *            - @arg TM_EXTI_Result_Error: An error occured, interrupt was not attached
+ *            - @arg TM_EXTI_Result_Error: An error occurred, interrupt was not attached
  */
 TM_EXTI_Result_t TM_EXTI_Attach(GPIO_TypeDef* GPIOx, uint16_t GPIO_Line, TM_EXTI_Trigger_t trigger);
 
@@ -208,7 +208,7 @@ TM_EXTI_Result_t TM_EXTI_Attach(GPIO_TypeDef* GPIOx, uint16_t GPIO_Line, TM_EXTI
  * @param  GPIO_Line: GPIO line you want to disable. Valid GPIO is GPIO_Pin_0 to GPIO_Pin_15
  * @retval result:
  *            - @arg TM_EXTI_Result_Ok: Everything ok
- *            - @arg TM_EXTI_Result_Error: An error occured
+ *            - @arg TM_EXTI_Result_Error: An error occurred
  */
 TM_EXTI_Result_t TM_EXTI_Detach(uint16_t GPIO_Line);
 
@@ -223,9 +223,9 @@ TM_EXTI_Result_t TM_EXTI_Detach(uint16_t GPIO_Line);
 
 /**
  * @brief  EXTI Global handler
- * @note   This function is called from TM RTC library each time any interrupt occured on EXTI line.
+ * @note   This function is called from TM EXTI library each time any interrupt occurs on EXTI line.
  * @note   With __weak parameter to prevent link errors if not defined by user.
- * @param  GPIO_Pin: GPIO Line where interrupt occured so you can identify what to do
+ * @param  GPIO_Pin: GPIO Line where interrupt occurred so you can identify what to do
  * @retval None
  */
 __weak void TM_EXTI_Handler(uint16_t GPIO_Pin);
