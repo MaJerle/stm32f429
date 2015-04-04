@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['data',['data',['../struct_t_m___font_def__t.html#a83a3ec7b6a8a7512fe92002a4663ccc4',1,'TM_FontDef_t']]],
   ['databits',['DataBits',['../struct_t_m___u_s_b___v_c_p___settings__t.html#aa6b79ada9acb03c5272a9a2cca188e94',1,'TM_USB_VCP_Settings_t']]],
   ['date',['date',['../struct_t_m___r_t_c__t.html#a30ca8635d0267ef5190a408d7a134f7e',1,'TM_RTC_t::date()'],['../struct_t_m___g_p_s___date__t.html#a784bb90289154f1c4b6724fed7265645',1,'TM_GPS_Date_t::Date()'],['../struct_t_m___g_p_s___data__t.html#a2835529eed7641976b4df1b460174b14',1,'TM_GPS_Data_t::Date()']]],
   ['day',['day',['../struct_t_m___r_t_c__t.html#a72369a1087b2aeffe374bb054cb97c12',1,'TM_RTC_t::day()'],['../struct_t_m___r_t_c___alarm_time__t.html#a72369a1087b2aeffe374bb054cb97c12',1,'TM_RTC_AlarmTime_t::day()']]],
@@ -12,5 +13,10 @@ var searchData=
   ['diffy',['DiffY',['../struct_t_m___u_s_b___h_i_d_h_o_s_t___mouse__t.html#a32d848feb1432d3b201b9b9e4203c5a5',1,'TM_USB_HIDHOST_Mouse_t']]],
   ['direction',['Direction',['../struct_t_m___g_p_s___data__t.html#ae2fdd834ad7e266ee87728da45d6da23',1,'TM_GPS_Data_t']]],
   ['distance',['Distance',['../struct_t_m___g_p_s___distance__t.html#ad387fb71b61baf6ce35cb7c4d5c16b17',1,'TM_GPS_Distance_t::Distance()'],['../struct_t_m___h_c_s_r04__t.html#ad387fb71b61baf6ce35cb7c4d5c16b17',1,'TM_HCSR04_t::Distance()']]],
+  ['dma2d_5fgraphic_5flcd_5fheight',['DMA2D_GRAPHIC_LCD_HEIGHT',['../group___t_m___d_m_a2_d___g_r_a_p_h_i_c___macros.html#gad12343e07a064a6b29aa2139fc97b566',1,'tm_stm32f4_dma2d_graphic.h']]],
+  ['dma2d_5fgraphic_5flcd_5fwidth',['DMA2D_GRAPHIC_LCD_WIDTH',['../group___t_m___d_m_a2_d___g_r_a_p_h_i_c___macros.html#ga9650abf0e911dd600b15213030b5d473',1,'tm_stm32f4_dma2d_graphic.h']]],
+  ['dma2d_5fgraphic_5fpixels',['DMA2D_GRAPHIC_PIXELS',['../group___t_m___d_m_a2_d___g_r_a_p_h_i_c___macros.html#gaedde34d37141771dc897b691912e7273',1,'tm_stm32f4_dma2d_graphic.h']]],
+  ['dma2d_5fgraphic_5fram_5faddr',['DMA2D_GRAPHIC_RAM_ADDR',['../group___t_m___d_m_a2_d___g_r_a_p_h_i_c___macros.html#ga5bbedc3712091f8c8ab462594035cd21',1,'tm_stm32f4_dma2d_graphic.h']]],
+  ['dma2d_5fgraphic_5ftimeout',['DMA2D_GRAPHIC_TIMEOUT',['../group___t_m___d_m_a2_d___g_r_a_p_h_i_c___macros.html#ga8951b5f5aa747103e863c2b6a6f99f47',1,'tm_stm32f4_dma2d_graphic.h']]],
   ['dutycycle',['DutyCycle',['../struct_t_m___p_w_m_i_n__t.html#a3f8f40802b67665aaafbdf1fb4c6c4c4',1,'TM_PWMIN_t']]]
 ];

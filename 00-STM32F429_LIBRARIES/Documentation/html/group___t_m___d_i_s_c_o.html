@@ -144,9 +144,9 @@ Modules</h2></td></tr>
 </li>
 </ul>
 </li>
-<li>STM32F401 Discovery: (STM32F401VC) - <code>TM_DISCO_STM32F401_DISCOVERY</code></li>
-<li>STM32F411 Discovery: (STM32F411VE) - <code>TM_DISCO_STM32F4_DISCOVERY</code></li>
-<li>STM32F4 Discovery: (STM32F407VG) - <code>TM_DISCO_STM32F4_DISCOVERY</code><ul>
+<li>STM32F401-Discovery: (STM32F401VC) - <code>TM_DISCO_STM32F401_DISCOVERY</code></li>
+<li>STM32F411-Discovery: (STM32F411VE) - <code>TM_DISCO_STM32F411_DISCOVERY</code></li>
+<li>STM32F4-Discovery: (STM32F407VG) - <code>TM_DISCO_STM32F4_DISCOVERY</code><ul>
 <li>Leds:<ul>
 <li>LED_GREEN on PD12</li>
 <li>LED_ORANGE on PD13</li>
@@ -175,15 +175,16 @@ Modules</h2></td></tr>
 </ul>
 </li>
 </ul>
-<dl class="section user"><dt>Select your board</dt><dd>To select your board, you have several options:<ul>
+<dl class="section user"><dt>Select your board</dt><dd></dd></dl>
+<p>To select your board, you have several options:</p><ul>
 <li>Add define for your board in defines.h file or</li>
 <li>Add define for your board in compiler's global settings<ul>
 <li>For Keil uVision you have "Options for Target" and "C/C++" tab where you can set this.</li>
 </ul>
 </li>
 </ul>
-</dd></dl>
-<p>Imagine, we want to work with STM324x9-Eval board. Then, you can open <code>defines.h</code> file and add define: </p><pre class="fragment">//Select STM324x9-Eval for DISCO library
+<p>Imagine, we want to work with STM324x9-Eval board. Then, you can open <code>defines.h</code> file and add define:</p>
+<pre class="fragment">//Select STM324x9-Eval for DISCO library
 #define TM_DISCO_STM324x9_EVAL
 </pre><p> Or if you want STM32F429-Discovery, do this: </p><pre class="fragment">//Select STM32F429-Discovery for DISCO library
 #define TM_DISCO_STM32F429_DISCOVERY
@@ -240,7 +241,7 @@ Modules</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Mar 31 2015 14:43:34 for TM STM32F4xx Libraries by
+    <li class="footer">Generated on Sat Apr 4 2015 19:14:43 for TM STM32F4xx Libraries by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

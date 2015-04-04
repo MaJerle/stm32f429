@@ -67,7 +67,7 @@
  */
 
 /**
- * @brief  Initializes RNG peripheral and disables clock
+ * @brief  Initializes RNG peripheral and enables clock
  * @param  None
  * @retval None
  */
@@ -81,7 +81,7 @@ void TM_RNG_Init(void);
 void TM_RNG_DeInit(void);
 
 /**
- * @brief  Get 32bit random number
+ * @brief  Gets 32-bit random number
  * @param  None
  * @retval 32-bit random number
  */

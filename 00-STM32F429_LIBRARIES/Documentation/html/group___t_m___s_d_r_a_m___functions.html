@@ -146,7 +146,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:gaf25413498fc044afca11364bc48389d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes SDRAM.  <a href="#gaf25413498fc044afca11364bc48389d2">More...</a><br /></td></tr>
 <tr class="separator:gaf25413498fc044afca11364bc48389d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga1f317bf09e01ff6fe45419dbf5211c70"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group___t_m___s_d_r_a_m___functions.html#ga1f317bf09e01ff6fe45419dbf5211c70">TM_SDRAM_InitCustomPinsCallback</a> (void)</td></tr>
-<tr class="memdesc:ga1f317bf09e01ff6fe45419dbf5211c70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Init custom pins callback It can be used by user to implement custom pins for application if needed.  <a href="#ga1f317bf09e01ff6fe45419dbf5211c70">More...</a><br /></td></tr>
+<tr class="memdesc:ga1f317bf09e01ff6fe45419dbf5211c70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize custom pins callback. It can be used by user to implement custom pins for application if needed.  <a href="#ga1f317bf09e01ff6fe45419dbf5211c70">More...</a><br /></td></tr>
 <tr class="separator:ga1f317bf09e01ff6fe45419dbf5211c70"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -522,7 +522,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Init custom pins callback It can be used by user to implement custom pins for application if needed. </p>
+<p>Initialize custom pins callback. It can be used by user to implement custom pins for application if needed. </p>
+<dl class="section note"><dt>Note</dt><dd>This function is called every time <a class="el" href="group___t_m___s_d_r_a_m___functions.html#gaf25413498fc044afca11364bc48389d2">TM_SDRAM_Init()</a> function is called </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">None</td><td></td></tr>
@@ -532,8 +533,8 @@ Functions</h2></td></tr>
 <dl class="retval"><dt>Return values</dt><dd>
   <table class="retval">
     <tr><td class="paramname">Initialization</td><td>status:<ul>
-<li>0: User did not init custom pins, default will be used, depending on already supported boards</li>
-<li>&gt; 0: User has initializated custom pins, default pins will be ignored </li>
+<li>0: User did not initialize custom pins, default will be used, depending on already supported boards</li>
+<li>&gt; 0: User has initialized custom pins, default pins will be ignored </li>
 </ul>
 </td></tr>
   </table>
@@ -548,7 +549,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Mar 31 2015 14:43:35 for TM STM32F4xx Libraries by
+    <li class="footer">Generated on Sat Apr 4 2015 19:14:43 for TM STM32F4xx Libraries by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

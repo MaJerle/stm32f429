@@ -18,6 +18,7 @@
  */
 #include "tm_stm32f4_dma2d_graphic.h"
 
+/* Absolute number */
 #define ABS(X)	((X) > 0 ? (X) : -(X))    
 
 /* Internal structure */
@@ -60,7 +61,7 @@ void TM_DMA2DGRAPHIC_Init(void) {
 	DIS.Orientation = 0;
 	
 	/* Enable DMA2D clock */
-	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA2D, ENABLE);
+	RCC->AHB1ENR |= RCC_AHB1ENR_DMA2DEN;
 	
 	/* Initialized */
 	DIS.Initialized = 1;
@@ -173,11 +174,14 @@ void TM_DMA2DGRAPHIC_DrawFilledRectangle(uint16_t x, uint16_t y, uint16_t width,
 	/* Set memory settings */
 	if (DIS.Orientation == 1) { /* Normal */
 		TM_INT_DMA2DGRAPHIC_SetMemory(2 * (y * DIS.Width + x), DIS.Width - width, height, width);
-	} else if (DIS.Orientation == 0) { /* 180 */
+	} 
+	if (DIS.Orientation == 0) { /* 180 */
 		TM_INT_DMA2DGRAPHIC_SetMemory(2 * ((DIS.Height - height - y) * DIS.Width + DIS.Width - x - width), DIS.Width - width, height, width);
-	} else if (DIS.Orientation == 3) { /* 90 */
+	} 
+	if (DIS.Orientation == 3) { /* 90 */
 		TM_INT_DMA2DGRAPHIC_SetMemory(2 * (DIS.Width - y - height + DIS.Width * x), DIS.Width - height, width, height);
-	} else if (DIS.Orientation == 2) { /* 270 */
+	} 
+	if (DIS.Orientation == 2) { /* 270 */
 		TM_INT_DMA2DGRAPHIC_SetMemory(2 * (x + DIS.Width * (DIS.Height - width - x)), DIS.Width - height, width, height);
 	}
 	
@@ -314,11 +318,14 @@ void TM_DMA2DGRAPHIC_DrawVerticalLine(int16_t x, int16_t y, uint16_t length, uin
 	/* Set memory settings */
 	if (DIS.Orientation == 1) { /* Normal */
 		TM_INT_DMA2DGRAPHIC_SetMemory(2 * (y * DIS.Width + x), DIS.Width - 1, length, 1);
-	} else if (DIS.Orientation == 0) { /* 180 */
+	} 
+	if (DIS.Orientation == 0) { /* 180 */
 		TM_INT_DMA2DGRAPHIC_SetMemory(2 * ((DIS.Height - length - y) * DIS.Width + DIS.Width - x - 1), DIS.Width - 1, length, 1);
-	} else if (DIS.Orientation == 3) { /* 90 */
+	} 
+	if (DIS.Orientation == 3) { /* 90 */
 		TM_INT_DMA2DGRAPHIC_SetMemory(2 * (DIS.Width - y - length + DIS.Width * x), DIS.Width - length, 1, length);
-	} else if (DIS.Orientation == 2) { /* 270 */
+	} 
+	if (DIS.Orientation == 2) { /* 270 */
 		TM_INT_DMA2DGRAPHIC_SetMemory(2 * (y + DIS.Width * (DIS.Height - 1 - x)), DIS.Width - length, 1, length);
 	}
 	
@@ -368,11 +375,14 @@ void TM_DMA2DGRAPHIC_DrawHorizontalLine(int16_t x, int16_t y, uint16_t length, u
 	/* Set memory settings */
 	if (DIS.Orientation == 1) { /* Normal */
 		TM_INT_DMA2DGRAPHIC_SetMemory(2 * (y * DIS.Width + x), DIS.Width - length, 1, length);
-	} else if (DIS.Orientation == 0) { /* 180 */
+	} 
+	if (DIS.Orientation == 0) { /* 180 */
 		TM_INT_DMA2DGRAPHIC_SetMemory(2 * ((DIS.Height - 1 - y) * DIS.Width + DIS.Width - x - length), DIS.Width - length, 1, length);
-	} else if (DIS.Orientation == 3) { /* 90 */
+	} 
+	if (DIS.Orientation == 3) { /* 90 */
 		TM_INT_DMA2DGRAPHIC_SetMemory(2 * (DIS.Width - y - 1 + DIS.Width * x), DIS.Width - 1, length, 1);
-	} else if (DIS.Orientation == 2) { /* 270 */
+	} 
+	if (DIS.Orientation == 2) { /* 270 */
 		TM_INT_DMA2DGRAPHIC_SetMemory(2 * (y + DIS.Width * (DIS.Height - length - x)), DIS.Width - 1, length, 1);
 	}
 	

@@ -12,7 +12,8 @@
 
 #include "tm_stm32f4_ethernet.h"
 
-#define TCPCLIENT_MAX_CONNECTIONS	4
+/* Maximal number of active client connections at a time */
+#define TCPCLIENT_MAX_CONNECTIONS       4
 
 #if LWIP_TCP
 static uint8_t tcp_active_connections = 0;
@@ -134,7 +135,7 @@ err_t tcp_echoclient_connect(char* conn_name, uint8_t ip1, uint8_t ip2, uint8_t 
 	
 	/* create new tcp pcb */
 	client->pcb = tcp_new();
-
+	
 	if (client->pcb != NULL) {
 		/* Set IP address */
 		IP4_ADDR(&DestIPaddr, ip1, ip2, ip3, ip4);

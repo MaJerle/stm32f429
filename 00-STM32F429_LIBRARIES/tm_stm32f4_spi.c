@@ -373,6 +373,7 @@ static void TM_SPIx_Init(SPI_TypeDef* SPIx, TM_SPI_PinsPack_t pinspack, TM_SPI_M
 }
 
 /* Private functions */
+#ifdef SPI1
 void TM_SPI1_INT_InitPins(TM_SPI_PinsPack_t pinspack) {
 	/* Init SPI pins */
 #if defined(GPIOA)
@@ -390,7 +391,9 @@ void TM_SPI1_INT_InitPins(TM_SPI_PinsPack_t pinspack) {
 		TM_SPI_InitCustomPinsCallback(SPI1);
 	}
 }
+#endif
 
+#ifdef SPI2
 void TM_SPI2_INT_InitPins(TM_SPI_PinsPack_t pinspack) {
 	/* Init SPI pins */
 #if defined(GPIOB) && defined(GPIOC)
@@ -414,7 +417,9 @@ void TM_SPI2_INT_InitPins(TM_SPI_PinsPack_t pinspack) {
 		TM_SPI_InitCustomPinsCallback(SPI2);
 	}
 }
+#endif
 
+#ifdef SPI3
 void TM_SPI3_INT_InitPins(TM_SPI_PinsPack_t pinspack) {
 	/* Enable SPI pins */
 #if defined(GPIOB)
@@ -432,7 +437,9 @@ void TM_SPI3_INT_InitPins(TM_SPI_PinsPack_t pinspack) {
 		TM_SPI_InitCustomPinsCallback(SPI3);
 	}
 }
+#endif
 
+#ifdef SPI4
 void TM_SPI4_INT_InitPins(TM_SPI_PinsPack_t pinspack) {
 	/* Init SPI pins */
 #if defined(GPIOE)
@@ -450,7 +457,9 @@ void TM_SPI4_INT_InitPins(TM_SPI_PinsPack_t pinspack) {
 		TM_SPI_InitCustomPinsCallback(SPI4);
 	}
 }
+#endif
 
+#ifdef SPI5
 void TM_SPI5_INT_InitPins(TM_SPI_PinsPack_t pinspack) {
 	/* Init SPI pins */
 #if defined(GPIOF)
@@ -469,7 +478,9 @@ void TM_SPI5_INT_InitPins(TM_SPI_PinsPack_t pinspack) {
 		TM_SPI_InitCustomPinsCallback(SPI5);
 	}
 }
+#endif
 
+#ifdef SPI6
 void TM_SPI6_INT_InitPins(TM_SPI_PinsPack_t pinspack) {
 #if defined(GPIOG)
 	if (pinspack == TM_SPI_PinsPack_1) {
@@ -482,4 +493,5 @@ void TM_SPI6_INT_InitPins(TM_SPI_PinsPack_t pinspack) {
 		TM_SPI_InitCustomPinsCallback(SPI6);
 	}
 }
+#endif
 

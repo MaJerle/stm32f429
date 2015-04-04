@@ -111,9 +111,9 @@ extern C {
  */
 typedef enum {
     TM_OTP_Result_Ok = 0,  /*!< Everything OK */
-    TM_OTP_Result_Error    /*!< An error occured.
+    TM_OTP_Result_Error    /*!< An error occurred.
 	                            This is returned when you try to write data to location which does not exists,
-                                or if you try to write data to locked block*/
+                                or if you try to write data to locked block */
 } TM_OTP_Result_t;
 
 /**
@@ -157,7 +157,7 @@ TM_OTP_Result_t TM_OTP_BlockLock(uint8_t block);
 /**
  * @brief  Checks if block is locked or not
  * @param  block: OTP block number, 0 to 15 is allowed
- * @retval Block locked status
+ * @retval Block lock status
  *            - 0: Block is not locked
  *            - > 0: Block locked
  */

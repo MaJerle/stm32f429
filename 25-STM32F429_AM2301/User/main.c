@@ -56,6 +56,7 @@ int main(void) {
 				TM_ILI9341_Puts(10, 100, str, &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_ORANGE);
 			}
 		}
-		/* Do other stuff constantly */
+		
+		/* Do other stuff here constantly */
 	}
 }

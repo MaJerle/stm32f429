@@ -175,7 +175,7 @@ uint8_t TM_SDRAM_Init(void) {
 }
 
 static void TM_SDRAM_InitPins(void) {
-	/* Try to init from user */
+	/* Try to initialize from user */
 	if (TM_SDRAM_InitCustomPinsCallback()) {
 		/* User has initialized pins by itself */
 		return;

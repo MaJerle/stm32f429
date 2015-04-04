@@ -292,12 +292,13 @@ uint8_t TM_SDRAM_Init(void);
 #define TM_SDRAM_ReadFloat(address)			(*(__IO float *) (SDRAM_START_ADR + (address)))
 
 /**
- * @brief  Init custom pins callback
- *         It can be used by user to implement custom pins for application if needed.
+ * @brief  Initialize custom pins callback.
+ *         It can be used by user to implement custom pins for application if needed
+ * @note   This function is called every time @ref TM_SDRAM_Init() function is called
  * @param  None
  * @retval Initialization status:
- *            - 0: User did not init custom pins, default will be used, depending on already supported boards
- *            - > 0: User has initializated custom pins, default pins will be ignored
+ *            - 0: User did not initialize custom pins, default will be used, depending on already supported boards
+ *            - > 0: User has initialized custom pins, default pins will be ignored
  * @note   With __weak parameter to prevent link errors if not defined by user
  */
 uint8_t TM_SDRAM_InitCustomPinsCallback(void);

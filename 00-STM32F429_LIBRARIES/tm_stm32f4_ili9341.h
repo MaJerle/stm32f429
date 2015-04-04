@@ -1,95 +1,122 @@
 /**
- *	ILI9341 library for STM32F4xx with SPI communication, without LTDC hardware
- *
- *	@author 	Tilen Majerle
- *	@email		tilen@majerle.eu
- *	@website	http://stm32f4-discovery.com
- *	@link		http://stm32f4-discovery.com/2014/04/library-08-ili9341-lcd-on-stm32f429-discovery-board/
- *	@version 	v1.2
- *	@ide		Keil uVision
- *	@license	GNU GPL v3
+ * @author  Tilen Majerle
+ * @email   tilen@majerle.eu
+ * @website http://stm32f4-discovery.com
+ * @link    http://stm32f4-discovery.com/2014/04/library-08-ili9341-lcd-on-stm32f429-discovery-board/
+ * @version v1.2
+ * @ide     Keil uVision
+ * @license GNU GPL v3
+ * @brief   ILI9341 library for STM32F4xx with SPI communication, without LTDC hardware
  *	
- * |----------------------------------------------------------------------
- * | Copyright (C) Tilen Majerle, 2014
- * | 
- * | This program is free software: you can redistribute it and/or modify
- * | it under the terms of the GNU General Public License as published by
- * | the Free Software Foundation, either version 3 of the License, or
- * | any later version.
- * |  
- * | This program is distributed in the hope that it will be useful,
- * | but WITHOUT ANY WARRANTY; without even the implied warranty of
- * | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * | GNU General Public License for more details.
- * | 
- * | You should have received a copy of the GNU General Public License
- * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * |----------------------------------------------------------------------
- *	
- * Version 1.2
- *	- March 14, 2015
- *	- Added support for new GPIO system
- *	- Added functions TM_ILI9341_DisplayOff() and TM_ILI9341_DisplayOn()
- *
- *	This driver works for all STM32F4xx series with SPI built in.
- *	
- *	Default pinout
- *		ILI9341			STM32F4xx		DESCRIPTION
- *		
- *		SDO (MISO)		PF8				Output from LCD for SPI.	Not used, can be left
- *		LED				3.3V			Backlight
- *		SCK				PF7				SPI clock
- *		SDI (MOSI)		PF9				SPI master output
- *		WRX or D/C		PD13			Data/Command register
- *		RESET			PD12			Reset LCD
- *		CS				PC2				Chip select for SPI
- *		GND				GND				Ground
- *		VCC				3.3V			Positive power supply
- *		
- * All pins can be changed in your defines.h file
- *		
- *	//Default SPI used is SPI5. Check my SPI library for other pinouts
- *	#define ILI9341_SPI 				SPI5
- *	#define ILI9341_SPI_PINS			TM_SPI_PinsPack_1
- *		
- *	//Default CS pin. Edit this in your defines.h file
- *	#define ILI9341_CS_PORT				GPIOC
- *	#define ILI9341_CS_PIN				GPIO_PIN_2
- *		
- *	//Default D/C (or WRX) pin. Edit this in your defines.h file
- *	#define ILI9341_WRX_PORT			GPIOD
- *	#define ILI9341_WRX_PIN				GPIO_PIN_13
- *		
- * Reset pin can be disabled, if you need GPIOs for other purpose.
- * To disable RESET pin, add line below to defines.h file
- * If you disable pin, then set LCD's RESET pin to VCC
- *	
- *	//Disable RESET pin
- *	#define ILI9341_USE_RST_PIN			0
- *		
- * But if you want to use RESET pin, you can change its settings in defines.h file
- *	
- *	//Default RESET pin. Edit this in your defines.h file
- *	#define ILI9341_RST_PORT			GPIOD
- *	#define ILI9341_RST_PIN				GPIO_PIN_12
+@verbatim
+   ----------------------------------------------------------------------
+    Copyright (C) Tilen Majerle, 2015
+    
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    any later version.
+     
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+   ----------------------------------------------------------------------
+@endverbatim
  */
 #ifndef TM_ILI9341_H
 #define TM_ILI9341_H 120
+
 /**
- * Library dependencies
- * - STM32F4xx
- * - STM32F4xx RCC
- * - STM32F4xx GPIO
- * - STM32F4xx SPI
- * - defines.h
- * - TM SPI
- * - TM FONTS
- * - TM GPIO
+ * @addtogroup TM_STM32F4xx_Libraries
+ * @{
  */
 
 /**
- * Includes
+ * @defgroup TM_ILI9341
+ * @brief    ILI9341 library for STM32F4xx with SPI communication, without LTDC hardware - http://stm32f4-discovery.com/2014/04/library-08-ili9341-lcd-on-stm32f429-discovery-board/
+ * @{
+ *
+ * This driver works for all STM32F4xx series with built in SPI peripheral.
+ *	
+ * \par Default pinout
+ *
+@verbatim
+ILI9341			STM32F4xx		DESCRIPTION
+		
+SDO (MISO)		PF8				Output from LCD for SPI.	Not used, can be left
+LED				3.3V			Backlight
+SCK				PF7				SPI clock
+SDI (MOSI)		PF9				SPI master output
+WRX or D/C		PD13			Data/Command register
+RESET			PD12			Reset LCD
+CS				PC2				Chip select for SPI
+GND				GND				Ground
+VCC				3.3V			Positive power supply
+@endverbatim
+ *		
+ * All pins can be changed in your defines.h file
+ *		
+@verbatim
+//Default SPI used is SPI5. Check my SPI library for other pinouts
+#define ILI9341_SPI 				SPI5
+#define ILI9341_SPI_PINS			TM_SPI_PinsPack_1
+		
+//Default CS pin. Edit this in your defines.h file
+#define ILI9341_CS_PORT				GPIOC
+#define ILI9341_CS_PIN				GPIO_PIN_2
+		
+//Default D/C (or WRX) pin. Edit this in your defines.h file
+#define ILI9341_WRX_PORT			GPIOD
+#define ILI9341_WRX_PIN				GPIO_PIN_13
+@endverbatim
+ *
+ * Reset pin can be disabled, if you need GPIOs for other purpose.
+ * To disable RESET pin, add line below to defines.h file
+ * If you disable pin, then set LCD's RESET pin to VCC.
+ *	
+@verbatim
+//Disable RESET pin
+#define ILI9341_USE_RST_PIN			0
+@endverbatim
+ *		
+ * But if you want to use RESET pin, you can change its settings in defines.h file
+ *	
+@verbatim
+//Default RESET pin. Edit this in your defines.h file
+#define ILI9341_RST_PORT			GPIOD
+#define ILI9341_RST_PIN				GPIO_PIN_12
+@endverbatim
+ *
+ * \par Changelog
+ *
+@verbatim
+ Version 1.2
+  - March 14, 2015
+  - Added support for new GPIO system
+  - Added functions TM_ILI9341_DisplayOff() and TM_ILI9341_DisplayOn()
+ 
+ Version 1.0
+  - First release
+@endverbatim
+ *
+ * \par Dependencies
+ *
+@verbatim
+ - STM32F4xx
+ - STM32F4xx RCC
+ - STM32F4xx GPIO
+ - STM32F4xx SPI
+ - defines.h
+ - TM SPI
+ - TM FONTS
+ - TM GPIO
+@endverbatim
  */
+
 #include "stm32f4xx.h"
 #include "stm32f4xx_rcc.h"
 #include "stm32f4xx_gpio.h"
@@ -98,38 +125,43 @@
 #include "tm_stm32f4_fonts.h"
 #include "tm_stm32f4_gpio.h"
 
-//SPI used
-//This SPI pins are used on STM32F429 Discovery board
+/**
+ * @defgroup TM_ILI9341_Macros
+ * @brief    Library defines
+ * @{
+ */
+
+/**
+ * @brief  This SPI pins are used on STM32F429-Discovery board
+ */
 #ifndef ILI9341_SPI
 #define ILI9341_SPI 				SPI5
 #define ILI9341_SPI_PINS			TM_SPI_PinsPack_1
 #endif
 
-/* This pin is used on STM32F429 discovery board */
+/**
+ * @brief  CS PIN for SPI, used as on STM32F429-Discovery board
+ */
 #ifndef ILI9341_CS_PIN
 #define ILI9341_CS_PORT				GPIOC
 #define ILI9341_CS_PIN				GPIO_PIN_2
 #endif
 
-/* This pin is used on STM32F429 discovery board */
+/**
+ * @brief  WRX PIN for data/command, used as on STM32F429-Discovery board
+ */
 #ifndef ILI9341_WRX_PIN
 #define ILI9341_WRX_PORT			GPIOD
 #define ILI9341_WRX_PIN				GPIO_PIN_13
 #endif
 
-/* Reset pin */
+/**
+ * @brief  RESET for LCD
+ */
 #ifndef ILI9341_RST_PIN
 #define ILI9341_RST_PORT			GPIOD
 #define ILI9341_RST_PIN				GPIO_PIN_12
 #endif
-
-/* Pin definitions */
-#define ILI9341_RST_SET				GPIO_SetBits(ILI9341_RST_PORT, ILI9341_RST_PIN)
-#define ILI9341_RST_RESET			GPIO_ResetBits(ILI9341_RST_PORT, ILI9341_RST_PIN)
-#define ILI9341_CS_SET				GPIO_SetBits(ILI9341_CS_PORT, ILI9341_CS_PIN)
-#define ILI9341_CS_RESET			GPIO_ResetBits(ILI9341_CS_PORT, ILI9341_CS_PIN)
-#define ILI9341_WRX_SET				GPIO_SetBits(ILI9341_WRX_PORT, ILI9341_WRX_PIN)
-#define ILI9341_WRX_RESET			GPIO_ResetBits(ILI9341_WRX_PORT, ILI9341_WRX_PIN)
 
 /* LCD settings */
 #define ILI9341_WIDTH 				240
@@ -148,227 +180,192 @@
 #define ILI9341_COLOR_ORANGE		0xFBE4
 #define ILI9341_COLOR_CYAN			0x07FF
 #define ILI9341_COLOR_MAGENTA		0xA254
-#define ILI9341_COLOR_GRAY			0x7BEF //1111 0111 1101 1110
+#define ILI9341_COLOR_GRAY			0x7BEF
 #define ILI9341_COLOR_BROWN			0xBBCA
 
 /* Transparent background, only for strings and chars */
 #define ILI9341_TRANSPARENT			0x80000000
 
-/* Commands */
-#define ILI9341_RESET				0x01
-#define ILI9341_SLEEP_OUT			0x11
-#define ILI9341_GAMMA				0x26
-#define ILI9341_DISPLAY_OFF			0x28
-#define ILI9341_DISPLAY_ON			0x29
-#define ILI9341_COLUMN_ADDR			0x2A
-#define ILI9341_PAGE_ADDR			0x2B
-#define ILI9341_GRAM				0x2C
-#define ILI9341_MAC					0x36
-#define ILI9341_PIXEL_FORMAT		0x3A
-#define ILI9341_WDB					0x51
-#define ILI9341_WCD					0x53
-#define ILI9341_RGB_INTERFACE		0xB0
-#define ILI9341_FRC					0xB1
-#define ILI9341_BPC					0xB5
-#define ILI9341_DFC					0xB6
-#define ILI9341_POWER1				0xC0
-#define ILI9341_POWER2				0xC1
-#define ILI9341_VCOM1				0xC5
-#define ILI9341_VCOM2				0xC7
-#define ILI9341_POWERA				0xCB
-#define ILI9341_POWERB				0xCF
-#define ILI9341_PGAMMA				0xE0
-#define ILI9341_NGAMMA				0xE1
-#define ILI9341_DTCA				0xE8
-#define ILI9341_DTCB				0xEA
-#define ILI9341_POWER_SEQ			0xED
-#define ILI9341_3GAMMA_EN			0xF2
-#define ILI9341_INTERFACE			0xF6
-#define ILI9341_PRC					0xF7
+/**
+ * @}
+ */
+ 
+/**
+ * @defgroup TM_ILI9341_Typedefs
+ * @brief    Library Typedefs
+ * @{
+ */
+
 
 /**
- * Public enum
- *
- * Select orientation for LCD
+ * @brief  Possible orientations for LCD
  */
 typedef enum {
-	TM_ILI9341_Orientation_Portrait_1,
-	TM_ILI9341_Orientation_Portrait_2,
-	TM_ILI9341_Orientation_Landscape_1,
-	TM_ILI9341_Orientation_Landscape_2
+	TM_ILI9341_Orientation_Portrait_1,  /*!< Portrait orientation mode 1 */
+	TM_ILI9341_Orientation_Portrait_2,  /*!< Portrait orientation mode 2 */
+	TM_ILI9341_Orientation_Landscape_1, /*!< Landscape orientation mode 1 */
+	TM_ILI9341_Orientation_Landscape_2  /*!< Landscape orientation mode 2 */
 } TM_ILI9341_Orientation_t;
 
 /**
- * Orientation
- * Used private
+ * @}
  */
-typedef enum {
-	TM_ILI9341_Landscape,
-	TM_ILI9341_Portrait
-} TM_ILI9341_Orientation;
 
 /**
- * LCD options
- * Used private
+ * @defgroup TM_ILI9341_Functions
+ * @brief    Library Functions
+ * @{
  */
-typedef struct {
-	uint16_t width;
-	uint16_t height;
-	TM_ILI9341_Orientation orientation; // 1 = portrait; 0 = landscape
-} TM_ILI931_Options_t;
-
 
 /**
- * Select font
+ * @brief  Initializes ILI9341 LCD with LTDC peripheral
+ *         It also initializes external SDRAM
+ * @param  None
+ * @retval None
  */
-extern TM_FontDef_t TM_Font_7x10;
-extern TM_FontDef_t TM_Font_11x18;
-extern TM_FontDef_t TM_Font_16x26;
+void TM_ILI9341_Init(void);
 
 /**
- * Initialize ILI9341 LCD
- *
+ * @brief  Draws single pixel to LCD
+ * @param  x: X position for pixel
+ * @param  y: Y position for pixel
+ * @param  color: Color of pixel
+ * @retval None
  */
-extern void TM_ILI9341_Init(void);
+void TM_ILI9341_DrawPixel(uint16_t x, uint16_t y, uint32_t color);
 
 /**
- * Draw single pixel to LCD
- *
- * Parameters:
- * 	- uint16_t x: X position for pixel
- * 	- uint16_t y: Y position for pixel
- * 	- uint32_t color: color of pixel
+ * @brief  Fills entire LCD with color
+ * @param  color: Color to be used in fill
+ * @retval None
  */
-extern void TM_ILI9341_DrawPixel(uint16_t x, uint16_t y, uint32_t color);
+void TM_ILI9341_Fill(uint32_t color);
 
 /**
- * Fill entire LCD with color
- *
- * Parameters:
- * 	- uint32_t color: Color to be used in fill
+ * @brief  Rotates LCD to specific orientation
+ * @param  orientation: LCD orientation. This parameter can be a value of @ref TM_ILI9341_Orientation_t enumeration
+ * @retval None
  */
-extern void TM_ILI9341_Fill(uint32_t color);
+void TM_ILI9341_Rotate(TM_ILI9341_Orientation_t orientation);
 
 /**
- * Rotate LCD
- * Select orientation
- *
- * Parameters:
- * 	- TM_ILI9341_Orientation_t orientation
- *		- TM_ILI9341_Orientation_Portrait_1: no rotation
- *		- TM_ILI9341_Orientation_Portrait_2: rotate 180deg
- *		- TM_ILI9341_Orientation_Landscape_1: rotate 90deg
- *		- TM_ILI9341_Orientation_Landscape_2: rotate -90deg
+ * @brief  Puts single character to LCD
+ * @param  x: X position of top left corner
+ * @param  y: Y position of top left corner
+ * @param  c: Character to be displayed
+ * @param  *font: Pointer to @ref TM_FontDef_t used font
+ * @param  foreground: Color for char
+ * @param  background: Color for char background
+ * @retval None
  */
-extern void TM_ILI9341_Rotate(TM_ILI9341_Orientation_t orientation);
+void TM_ILI9341_Putc(uint16_t x, uint16_t y, char c, TM_FontDef_t* font, uint32_t foreground, uint32_t background);
 
 /**
- * Put single character to LCD
- *
- * Parameters:
- * 	- uint16_t x: X position of top left corner
- * 	- uint16_t y: Y position of top left corner
- * 	- char c: character to be displayed
- * 	- TM_FontDef_t *font: pointer to used font
- * 	- uint16_t foreground: color for char
- * 	- uint16_t background: color for char background
+ * @brief  Puts string to LCD
+ * @param  x: X position of top left corner of first character in string
+ * @param  y: Y position of top left corner of first character in string
+ * @param  *str: Pointer to first character
+ * @param  *font: Pointer to @ref TM_FontDef_t used font
+ * @param  foreground: Color for string
+ * @param  background: Color for string background
+ * @retval None
  */
-extern void TM_ILI9341_Putc(uint16_t x, uint16_t y, char c, TM_FontDef_t *font, uint32_t foreground, uint32_t background);
+void TM_ILI9341_Puts(uint16_t x, uint16_t y, char* str, TM_FontDef_t *font, uint32_t foreground, uint32_t background);
 
 /**
- * Put string to LCD
- *
- * Parameters:
- * 	- uint16_t x: X position of top left corner of first character in string
- * 	- uint16_t y: Y position of top left corner of first character in string
- * 	- char *str: pointer to first character
- * 	- TM_FontDef_t *font: pointer to used font
- * 	- uint16_t foreground: color for string
- * 	- uint16_t background: color for string background
+ * @brief  Gets width and height of box with text
+ * @param  *str: Pointer to first character
+ * @param  *font: Pointer to @ref TM_FontDef_t used font
+ * @param  *width: Pointer to variable to store width
+ * @param  *height: Pointer to variable to store height
+ * @retval None
  */
-extern void TM_ILI9341_Puts(uint16_t x, uint16_t y, char *str, TM_FontDef_t *font, uint32_t foreground, uint32_t background);
+void TM_ILI9341_GetStringSize(char* str, TM_FontDef_t* font, uint16_t* width, uint16_t* height);
 
 /**
- * Get width and height of box with text
- *
- * Parameters:
- * 	- char *str: pointer to first character
- * 	- TM_FontDef_t *font: pointer to used font
- * 	- uint16_t *width: Pointer to variable to store width
- * 	- uint16_t *height: ointer to variable to store height
+ * @brief  Draws line to LCD
+ * @param  x0: X coordinate of starting point
+ * @param  y0: Y coordinate of starting point
+ * @param  x1: X coordinate of ending point
+ * @param  y1: Y coordinate of ending point
+ * @param  color: Line color
+ * @retval None
  */
-extern void TM_ILI9341_GetStringSize(char *str, TM_FontDef_t *font, uint16_t *width, uint16_t *height);
+void TM_ILI9341_DrawLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint32_t color);
 
 /**
- * Draw line to LCD
- *
- * Parameters:
- * 	- uint16_t x0: X coordinate of starting point
- * 	- uint16_t y0: Y coordinate of starting point
- * 	- uint16_t x1: X coordinate of ending point
- * 	- uint16_t y1: Y coordinate of ending point
- * 	- uint32_t color: line color
+ * @brief  Draws rectangle on LCD
+ * @param  x0: X coordinate of top left point
+ * @param  y0: Y coordinate of top left point
+ * @param  x1: X coordinate of bottom right point
+ * @param  y1: Y coordinate of bottom right point
+ * @param  color: Rectangle color
+ * @retval None
  */
-extern void TM_ILI9341_DrawLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint32_t color);
+void TM_ILI9341_DrawRectangle(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint32_t color);
 
 /**
- * Draw rectangle on LCD
- *
- * Parameters:
- * - uint16_t x0: X coordinate of top left point
- * - uint16_t y0: Y coordinate of top left point
- * - uint16_t x1: X coordinate of bottom right point
- * - uint16_t y1: Y coordinate of bottom right point
- * - uint32_t color: rectangle color
+ * @brief  Draws filled rectangle on LCD
+ * @param  x0: X coordinate of top left point
+ * @param  y0: Y coordinate of top left point
+ * @param  x1: X coordinate of bottom right point
+ * @param  y1: Y coordinate of bottom right point
+ * @param  color: Rectangle color
+ * @retval None
  */
-extern void TM_ILI9341_DrawRectangle(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint32_t color);
+void TM_ILI9341_DrawFilledRectangle(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint32_t color);
 
 /**
- * Draw filled rectangle on LCD
- *
- * Parameters:
- * - uint16_t x0: X coordinate of top left point
- * - uint16_t y0: Y coordinate of top left point
- * - uint16_t x1: X coordinate of bottom right point
- * - uint16_t y1: Y coordinate of bottom right point
- * - uint32_t color: rectangle color
+ * @brief  Draws circle on LCD
+ * @param  x0: X coordinate of center circle point
+ * @param  y0: Y coordinate of center circle point
+ * @param  r: Circle radius
+ * @param  color: Circle color
+ * @retval None
  */
-extern void TM_ILI9341_DrawFilledRectangle(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint32_t color);
+void TM_ILI9341_DrawCircle(int16_t x0, int16_t y0, int16_t r, uint32_t color);
 
 /**
- * Draw circle on LCD
- *
- * Parameters:
- * - int16_t x0: X coordinate of center circle point
- * - int16_t y0: Y coordinate of center circle point
- * - int16_t r: circle radius
- * - uint32_t color: circle color
+ * @brief  Draws filled circle on LCD
+ * @param  x0: X coordinate of center circle point
+ * @param  y0: Y coordinate of center circle point
+ * @param  r: Circle radius
+ * @param  color: Circle color
+ * @retval None
  */
-extern void TM_ILI9341_DrawCircle(int16_t x0, int16_t y0, int16_t r, uint32_t color);
+void TM_ILI9341_DrawFilledCircle(int16_t x0, int16_t y0, int16_t r, uint32_t color);
 
 /**
- * Draw filled on LCD
- *
- * Parameters:
- * - int16_t x0: X coordinate of center circle point
- * - int16_t y0: Y coordinate of center circle point
- * - int16_t r: circle radius
- * - uint32_t color: circle color
- */
-extern void TM_ILI9341_DrawFilledCircle(int16_t x0, int16_t y0, int16_t r, uint32_t color);
-
-/**
- * @brief   Enable display
+ * @brief   Enables display
  * @note    After initialization, LCD is enabled and you don't need to call this function
+ * @param   None
  * @retval  None
  */
-extern void TM_ILI9341_DisplayOn(void);
+void TM_ILI9341_DisplayOn(void);
 
 /**
- * @brief   Disable display
+ * @brief   Disables display
+ * @param   None
  * @retval  None
  */
-extern void TM_ILI9341_DisplayOff(void);
+void TM_ILI9341_DisplayOff(void);
+
+/**
+ * @}
+ */
+ 
+/**
+ * @}
+ */
+ 
+/**
+ * @}
+ */
+
+/* C++ detection */
+#ifdef __cplusplus
+}
+#endif
 
 #endif
 

@@ -19,9 +19,86 @@
 #include "tm_stm32f4_ili9341_ltdc.h"
 #include "tm_stm32f4_fonts.h"
 
+/* Private structures */
+/**
+ * @brief  Orientation
+ * @note   Used private
+ */
+typedef enum {
+	TM_ILI9341_Landscape,
+	TM_ILI9341_Portrait
+} TM_ILI9341_Orientation;
+
+/**
+ * @brief  LCD options
+ * @note   For private use only
+ */
+typedef struct {
+	uint16_t Width;
+	uint16_t Height;
+	TM_ILI9341_Orientation Orientation; // 1 = portrait; 0 = landscape
+	uint8_t CurrentLayer;
+	uint32_t CurrentLayerOffset;
+	uint8_t Layer1Opacity;
+	uint8_t Layer2Opacity;
+	TM_ILI9341_Orientation_t Orient;
+} TM_ILI931_Options_t;
+
+/* Private defines */
+/* Pin functions */
+#define ILI9341_CS_SET				TM_GPIO_SetPinHigh(ILI9341_CS_PORT, ILI9341_CS_PIN)
+#define ILI9341_CS_RESET			TM_GPIO_SetPinLow(ILI9341_CS_PORT, ILI9341_CS_PIN)
+#define ILI9341_WRX_SET				TM_GPIO_SetPinHigh(ILI9341_WRX_PORT, ILI9341_WRX_PIN)
+#define ILI9341_WRX_RESET			TM_GPIO_SetPinLow(ILI9341_WRX_PORT, ILI9341_WRX_PIN)
+
+/* LCD settings */
+#define ILI9341_WIDTH 				240
+#define ILI9341_HEIGHT				320
+#define ILI9341_PIXEL				76800
+
+/* Starting buffer address in RAM */
+/* Offset for Layer 1 = SDRAM START ADDRESS + FRAME_BUFFER */
+#define ILI9341_FRAME_BUFFER		SDRAM_START_ADR
+/* Offset for Layer 2 */
+#define ILI9341_FRAME_OFFSET		(uint32_t)ILI9341_PIXEL * 2
+
+/* Commands */
+#define ILI9341_RESET				0x01
+#define ILI9341_SLEEP_OUT			0x11
+#define ILI9341_GAMMA				0x26
+#define ILI9341_DISPLAY_OFF			0x28
+#define ILI9341_DISPLAY_ON			0x29
+#define ILI9341_COLUMN_ADDR			0x2A
+#define ILI9341_PAGE_ADDR			0x2B
+#define ILI9341_GRAM				0x2C
+#define ILI9341_MAC					0x36
+#define ILI9341_PIXEL_FORMAT		0x3A
+#define ILI9341_WDB					0x51
+#define ILI9341_WCD					0x53
+#define ILI9341_RGB_INTERFACE		0xB0
+#define ILI9341_FRC					0xB1
+#define ILI9341_BPC					0xB5
+#define ILI9341_DFC					0xB6
+#define ILI9341_POWER1				0xC0
+#define ILI9341_POWER2				0xC1
+#define ILI9341_VCOM1				0xC5
+#define ILI9341_VCOM2				0xC7
+#define ILI9341_POWERA				0xCB
+#define ILI9341_POWERB				0xCF
+#define ILI9341_PGAMMA				0xE0
+#define ILI9341_NGAMMA				0xE1
+#define ILI9341_DTCA				0xE8
+#define ILI9341_DTCB				0xEA
+#define ILI9341_POWER_SEQ			0xED
+#define ILI9341_3GAMMA_EN			0xF2
+#define ILI9341_INTERFACE			0xF6
+#define ILI9341_PRC					0xF7
+
+/* Private variables */
 uint16_t ILI9341_x;
 uint16_t ILI9341_y;
 TM_ILI931_Options_t ILI9341_Opts;
+
 /* Private functions */
 void TM_INT_ILI9341_DrawCircleCorner(int16_t x0, int16_t y0, int16_t r, uint8_t corner, uint32_t color);
 void TM_INT_ILI9341_DrawFilledCircleCorner(int16_t x0, int16_t y0, int16_t r, uint8_t corner, uint32_t color);
@@ -33,6 +110,7 @@ void TM_ILI9341_SendData(uint8_t data);
 void TM_ILI9341_SendCommand(uint8_t data);
 void TM_ILI9341_Delay(volatile unsigned int delay);
 void TM_ILI9341_SetCursorPosition(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2);
+void TM_ILI9341_UpdateLayerOpacity(void);
 
 void TM_ILI9341_Init(void) {
 	/* Initialize pins used */
@@ -62,6 +140,7 @@ void TM_ILI9341_Init(void) {
 	ILI9341_Opts.Layer1Opacity = 255;
 	ILI9341_Opts.Layer2Opacity = 0;
 	
+	/* Fill both layers with default colors */
 	TM_ILI9341_SetLayer1();
 	TM_ILI9341_Fill(ILI9341_COLOR_WHITE);
 	TM_ILI9341_SetLayer2();
@@ -75,10 +154,7 @@ void TM_ILI9341_InitPins(void) {
 	
 	/* Init CS pin */
 	TM_GPIO_Init(ILI9341_CS_PORT, ILI9341_CS_PIN, TM_GPIO_Mode_OUT, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_Medium);
-	
-	/* Init RST pin */
-	TM_GPIO_Init(ILI9341_RST_PORT, ILI9341_RST_PIN, TM_GPIO_Mode_OUT, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Low);
-	
+
 	/* GPIOA                     Blue5        VSYNC        Green2       Red4          Red5 */
 	TM_GPIO_InitAlternate(GPIOA, GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_6 | GPIO_PIN_11 | GPIO_PIN_12, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_LTDC);
 	
@@ -88,7 +164,7 @@ void TM_ILI9341_InitPins(void) {
 	/* GPIOB                     Blue6		  Blue7        Green4        Green5 */
 	TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_8 | GPIO_PIN_9 | GPIO_PIN_10 | GPIO_PIN_11, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_LTDC);
 	
-	/* GPIOC                     HSYNC		Green6		 Red2 */
+	/* GPIOC                     HSYNC        Green6       Red2 */
 	TM_GPIO_InitAlternate(GPIOC, GPIO_PIN_6 | GPIO_PIN_7 | GPIO_PIN_10, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_LTDC);
 	
 	/* GPIOD                     Green7       Blue2 */
@@ -257,6 +333,7 @@ void TM_LCD9341_InitLTDC(void) {
 
 	/* Enable PLLSAI Clock */
     RCC_PLLSAICmd(ENABLE);
+	
     /* Wait for PLLSAI activation */
 	while (RCC_GetFlagStatus(RCC_FLAG_PLLSAIRDY) == RESET) {
 	
@@ -280,15 +357,22 @@ void TM_LCD9341_InitLTDC(void) {
     /* Configure total height */
     LTDC_InitStruct.LTDC_TotalHeigh = 327;
 
+	/* Init LTDC */
 	LTDC_Init(&LTDC_InitStruct);
 }
 
 void TM_ILI9341_DisplayOn(void) {
+	/* Send command to display on */
 	TM_ILI9341_SendCommand(0x29);
+	/* Enable LTDC */
+	LTDC_Cmd(ENABLE);
 }
 
 void TM_ILI9341_DisplayOff(void) {
+	/* Send command for display off */
 	TM_ILI9341_SendCommand(0x28);
+	/* Disable LTDC */
+	LTDC_Cmd(DISABLE);
 }
 
 void TM_ILI9341_InitLayers(void) {

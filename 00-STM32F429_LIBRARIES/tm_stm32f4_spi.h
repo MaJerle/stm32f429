@@ -51,11 +51,11 @@ extern C {
  * All six SPIs work the same principle by default:
  *	- Master mode
  *	- 8 data bits
- *	- data sampled at first edge, SPI mode 0
- *	- prescaler 32
- *	- firstbit MSB
- *	- software SS pin configure
- *	- direction is full duplex 3 wires
+ *	- Clock polarity low, data sampled at first edge, SPI mode 0
+ *	- Prescaler set to 32
+ *	- Firstbit MSB
+ *	- Software SS pin configure
+ *	- Direction is full duplex 3 wires
  *	
  *	\par Pinout
  *

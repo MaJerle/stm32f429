@@ -123,7 +123,22 @@ Modules</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>RTC Library for STM32F4xx devices - <a href="http://stm32f4-discovery.com/2014/07/library-19-use-internal-rtc-on-stm32f4xx-devices/">http://stm32f4-discovery.com/2014/07/library-19-use-internal-rtc-on-stm32f4xx-devices/</a>. </p>
-<dl class="section user"><dt>Pinout for RTC external 32768Hz crystal</dt><dd></dd></dl>
+<dl class="section user"><dt>Features</dt><dd></dd></dl>
+<pre class="fragment">- Support Internal or external clock source
+  - PC14 and PC15 pins are used for external crystal oscillator
+  - STM32F4/429 Discovery does not have RTC crystal onboard. Check board's manual on how to set it up
+- Support wakeup interrupt
+- Support to set 2 internal alarms to trigger interrupts
+  - They can also wake up STM32F4 from any low power mode
+- Get seconds from 01.01.1970 00:00:00
+- Get readable time from seconds from 01.01.1970 00:00:00
+- Support to save/get data in binary or BCD format
+- Support for read/write data to/from RTC backup registers
+- Support for subsecond
+- Support to write data in string format
+- Date and time are checked before saved for valid input data
+- Get days in month and year
+</pre><dl class="section user"><dt>Pinout for RTC external 32768Hz crystal</dt><dd></dd></dl>
 <pre class="fragment"> STM32F4XX  Oscillator   Description
     
  PC14       OSC1         Oscillator terminal 1
@@ -191,7 +206,7 @@ Modules</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Mar 31 2015 14:43:35 for TM STM32F4xx Libraries by
+    <li class="footer">Generated on Sat Apr 4 2015 19:14:43 for TM STM32F4xx Libraries by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

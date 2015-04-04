@@ -39,6 +39,25 @@
  * @brief    RTC Library for STM32F4xx devices - http://stm32f4-discovery.com/2014/07/library-19-use-internal-rtc-on-stm32f4xx-devices/
  * @{
  *
+ * \par Features
+ *
+@verbatim
+- Support Internal or external clock source
+  - PC14 and PC15 pins are used for external crystal oscillator
+  - STM32F4/429 Discovery does not have RTC crystal onboard. Check board's manual on how to set it up
+- Support wakeup interrupt
+- Support to set 2 internal alarms to trigger interrupts
+  - They can also wake up STM32F4 from any low power mode
+- Get seconds from 01.01.1970 00:00:00
+- Get readable time from seconds from 01.01.1970 00:00:00
+- Support to save/get data in binary or BCD format
+- Support for read/write data to/from RTC backup registers
+- Support for subsecond
+- Support to write data in string format
+- Date and time are checked before saved for valid input data
+- Get days in month and year
+@endverbatim
+ *
  * \par Pinout for RTC external 32768Hz crystal
  *
 @verbatim
@@ -126,6 +145,9 @@
 /**
  * @defgroup TM_RTC_Macros
  * @brief    Library defines
+ *
+ * All these settings can be overwritten in defines.h file if necessary
+ *
  * @{
  */
 
@@ -162,12 +184,12 @@
  */
 
 /**
- * @brief RTC Struct for date/time
+ * @brief  RTC Struct for date/time
  */
 typedef struct {
 	uint8_t seconds;     /*!< Seconds parameter, from 00 to 59 */
 	uint16_t subseconds; /*!< Subsecond downcounter. When it reaches zero, it's reload value is the same as
-                                 RTC_SYNC_PREDIV, so in our case 0x3FF = 1023, 1024 steps in one second */
+                                 @ref RTC_SYNC_PREDIV, so in our case 0x3FF = 1023, 1024 steps in one second */
 	uint8_t minutes;     /*!< Minutes parameter, from 00 to 59 */
 	uint8_t hours;       /*!< Hours parameter, 24Hour mode, 00 to 23 */
 	uint8_t day;         /*!< Day in a week, from 1 to 7 */

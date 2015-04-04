@@ -1,47 +1,31 @@
 /**
- *	Graphic library for LCD using DMA2D for transferring data to memory
- *
- *	@author 	Tilen Majerle
- *	@email		tilen@majerle.eu
- *	@website	http://stm32f4-discovery.com
- *	@link		http://stm32f4-discovery.com/2015/01/library-51-chrom-art-accelerator-dma2d-graphic-library-on-stm32f429-discovery
- *	@version 	v1.0
- *	@ide		Keil uVision
- *	@license	GNU GPL v3
+ * @author  Tilen Majerle
+ * @email   tilen@majerle.eu
+ * @website http://stm32f4-discovery.com
+ * @link    http://stm32f4-discovery.com/2015/01/library-51-chrom-art-accelerator-dma2d-graphic-library-on-stm32f429-discovery
+ * @version v1.0
+ * @ide     Keil uVision
+ * @license GNU GPL v3
+ * @brief   Graphic library for LCD using DMA2D for transferring graphic data to memory for LCD display
  *	
- * |----------------------------------------------------------------------
- * | Copyright (C) Tilen Majerle, 2015
- * | 
- * | This program is free software: you can redistribute it and/or modify
- * | it under the terms of the GNU General Public License as published by
- * | the Free Software Foundation, either version 3 of the License, or
- * | any later version.
- * |  
- * | This program is distributed in the hope that it will be useful,
- * | but WITHOUT ANY WARRANTY; without even the implied warranty of
- * | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * | GNU General Public License for more details.
- * | 
- * | You should have received a copy of the GNU General Public License
- * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * |----------------------------------------------------------------------
- *
- * This DMA2D graphic library is used only for graphic data transmission to memory.
- * You still need some peripheral (LTDC, SPI DMA, etc) to transmit data from memory
- * to LCD.
- * In case of STM32F429-Discovery, LTDC is in use and this peripheral just writes data
- * to external RAM address.
- *
- * If you want to make custom application, you can use this library for that.
- * Changes you need to make are:
- * 	- Set custom start address in memory where pixel 0,0 is for LCD
- * 	- Set LCD width and height
- *
- * With this library you can also rotate LCD.
- * This allows you to draw graphic in different LCD orientation.
- *
- * Also, this library should be used for moving elements on screen, like playing movies.
- * Transmissions between memory is very fast which allows you to make smooth transmissions
+@verbatim
+   ----------------------------------------------------------------------
+    Copyright (C) Tilen Majerle, 2015
+    
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    any later version.
+     
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+    
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+   ----------------------------------------------------------------------
+@endverbatim
  */
 #ifndef TM_DMA2DGRAPHIC_H
 #define TM_DMA2DGRAPHIC_H 100
@@ -52,43 +36,99 @@ extern C {
 #endif
 
 /**
- * Library dependencies
- * - STM32F4xx
- * - STM32F4xx RCC
- * - STM32F4xx DMA2D
- * - defines.h
+ * @addtogroup TM_STM32F4xx_Libraries
+ * @{
  */
+
 /**
- * Includes
+ * @defgroup TM_DMA2D_GRAPHIC
+ * @brief    Graphic library for LCD using DMA2D for transferring graphic data to memory for LCD display - http://stm32f4-discovery.com/2015/01/library-51-chrom-art-accelerator-dma2d-graphic-library-on-stm32f429-discovery
+ * @{
+ *
+ * This DMA2D graphic library is used only for graphic data transmission to memory.
+ * You still need some peripheral (LTDC, SPI DMA, etc) to transmit data from memory
+ * to LCD.
+ * @note  In case of STM32F429-Discovery, LTDC is in use and this peripheral just writes data to external RAM address.
+ *
+ * \par Customize default settings
+ *
+ * If you want to make custom application, you can use this library for that.
+ * Changes you need to make are:
+ * 	- Set custom start address in memory where pixel 0,0 is for LCD
+ * 	- Set LCD width and height
+ *
+ * With this library you can also rotate LCD.
+ * This allows you to draw graphic in different LCD orientation.
+ *
+ * Also, this library should be used for moving elements on screen, like playing movies.
+ * Transmissions between memory is very fast which allows you to make smooth transmissions.
+ *
+ *
+ * \par Changelog
+ *
+@verbatim
+ Version 1.0
+  - First release
+@endverbatim
+ *
+ * \par Dependencies
+ *
+@verbatim
+ - STM32F4xx
+ - STM32F4xx RCC
+ - STM32F4xx DMA2D
+ - defines.h
+@endverbatim
  */
+ 
 #include "stm32f4xx.h"
 #include "stm32f4xx_rcc.h"
 #include "stm32f4xx_dma2d.h"
 #include "defines.h"
 
-/* Default LCD width in pixels */
+/**
+ * @defgroup TM_DMA2D_GRAPHIC_Macros
+ * @brief    Library defines
+ * @{
+ */
+
+/**
+ * @brief  Default LCD width in pixels
+ */
 #ifndef DMA2D_GRAPHIC_LCD_WIDTH
 #define DMA2D_GRAPHIC_LCD_WIDTH		240
 #endif
-/* Default LCD height in pixels */
+/**
+ * @brief  Default LCD height in pixels
+ */
 #ifndef DMA2D_GRAPHIC_LCD_HEIGHT
 #define DMA2D_GRAPHIC_LCD_HEIGHT	320
 #endif
-/* Number of LCD pixels */
-#ifndef DMA2D_GRAPHIC_PIXELS
-#define DMA2D_GRAPHIC_PIXELS		DMA2D_GRAPHIC_LCD_WIDTH * DMA2D_GRAPHIC_LCD_HEIGHT
-#endif
-/* RAM Start address for LCD */
-/* On STM32F429-Discovery, this is address for SDRAM which operate with LCD and LTDC peripheral */
+/**
+ * @brief  RAM Start address for LCD
+ * @note   On STM32F429-Discovery, this is address for SDRAM which operate with LCD and LTDC peripheral
+ */
 #ifndef DMA2D_GRAPHIC_RAM_ADDR
 #define DMA2D_GRAPHIC_RAM_ADDR		0xD0000000
 #endif
-/* Timeout for DMA2D */
+/**
+ * @brief  Timeout for DMA2D
+ */
 #ifndef DMA2D_GRAPHIC_TIMEOUT
 #define DMA2D_GRAPHIC_TIMEOUT		(uint32_t)1000000
 #endif
+/**
+ * @brief  Number of LCD pixels
+ */
+#define DMA2D_GRAPHIC_PIXELS		DMA2D_GRAPHIC_LCD_WIDTH * DMA2D_GRAPHIC_LCD_HEIGHT
 
-/* Colors */
+/**
+ * @defgroup TM_DMA2D_GRAPHIC_COLORS
+ * @brief    Colors for DMA2D graphic library in RGB565 format
+ *
+ * @{
+ */
+ 
 #define GRAPHIC_COLOR_WHITE			0xFFFF
 #define GRAPHIC_COLOR_BLACK			0x0000
 #define GRAPHIC_COLOR_RED			0xF800
@@ -104,322 +144,238 @@ extern C {
 #define GRAPHIC_COLOR_BROWN			0xBBCA
 
 /**
- * Struct for polygon line
- *
- * Parameters:
- *	- uint16_t X:
- *		X coordinate for poly line
- *	- uint16_t Y:
- *		Y coordinate for poly line
+ * @}
+ */
+
+/**
+ * @}
+ */
+ 
+/**
+ * @defgroup TM_DMA2D_GRAPHIC_Typedefs
+ * @brief    Library Typedefs
+ * @{
+ */
+
+/**
+ * @brief  Structure for polygon line
+ * @note   If you have big poly line, you can use array of this structure for more coordinates
  */
 typedef struct {
-	uint16_t X;
-	uint16_t Y;
+	uint16_t X; /*!< X coordinate for poly line */
+	uint16_t Y; /*!< Y coordinate for poly line */
 } TM_DMA2DRAPHIC_Poly_t;
 
 /**
- * Initialize and prepare DMA2D for working.
- *
- * This function has to be called before anything can be used
+ * @}
+ */
+
+/**
+ * @defgroup TM_DMA2D_GRAPHIC_Functions
+ * @brief    Library Functions
+ * @{
+ */
+
+/**
+ * @brief  Initializes and prepare DMA2D for working.
+ * @note   This function has to be called before anything can be used
+ * @param  None
+ * @retval None
  */
 void TM_DMA2DGRAPHIC_Init(void);
 
 /**
- * Set layer for LCD
- *
- * This functions just works in memory, so when you set layer,
- * basically just address offset is used.
- * To show anything on LCD you need LTDC or anything else for transmission
- *
- * Parameters:
- * 	- uint8_t layer_number:
- * 		Layer number, starting from 1 to infinity.
- *
- * No return
+ * @brief  Sets layer for DMA2D working memory.
+ * @note   This functions just works in memory, so when you set layer,
+ *         basically just address offset is used and changed.
+ *         
+ * @note   To show anything on LCD you need LTDC or anything else for transmission
+ * @param  layer_number: Layer number, starting from 1 to infinity.
+ *            You are limited by your LCD size and available memory size
+ * @retval None
  */
 void TM_DMA2DGRAPHIC_SetLayer(uint8_t layer_number);
 
 /**
- * Set orientation for DMA2D peripheral
+ * @brief  Sets orientation for DMA2D peripheral
  *
- * You have to match DMA2D graphic library with your LCD orientation in order to display correct.
- *
- * Parameters:
- * 	- uint8_t orientation:
- * 		- 0: Normal, no orientation.
- * 		- 1: 180 Degrees orientation
- * 		- 2: 90 Degrees orientation
- * 		- 3: 270 Degrees orientation
+ * @note   You have to match DMA2D graphic library with your LCD orientation in order to display correct.
+ * @param  orientation: Memory orientation for your LCD
+ *            - 0: Normal, no orientation.
+ *            - 1: 180 Degrees orientation
+ *            - 2: 90 Degrees orientation
+ *            - 3: 270 Degrees orientation
+ * @retval None
  */
-/* 0: normal, 1: 180%, 2: 90 degrees, 3: 20 degrees */
 void TM_DMA2DGRAPHIC_SetOrientation(uint8_t orientation);
 
 /**
- * Fill entire LCD layer with custom color
- *
- * Parameters:
- * 	- uint32_t color:
- * 		Color in RGB565 format
- *
- * No return
+ * @brief  Fills entire LCD memory layer with custom color
+ * @param  color: Color in RGB565 format to use for LCD fill
+ * @retval None
  */
 void TM_DMA2DGRAPHIC_Fill(uint32_t color);
 
 /**
- * Draw single pixel on currently active layer
- *
- * Parameters:
- * 	- uint16_t x:
- * 		X coordinate on LCD
- * 	- uint16_t y:
- * 		Y coordinate on LCD
- * 	- uint32_t color:
- * 		Pixel color in RGB565 format
- *
- * No return
+ * @brief  Draws single pixel on currently active layer
+ * @param  x: X coordinate on LCD
+ * @param  y: Y coordinate on LCD
+ * @param  color: Pixel color in RGB565 format
+ * @retval None
  */
 void TM_DMA2DGRAPHIC_DrawPixel(uint16_t x, uint16_t y, uint32_t color);
 
 /**
- * Get single pixel on currently active layer
- *
- * Parameters:
- * 	- uint16_t x:
- * 		X coordinate on LCD
- * 	- uint16_t y:
- * 		Y coordinate on LCD
- *
- * RGB565 color format returned
+ * @brief  Gets single pixel on currently active layer
+ * @param  x: X coordinate on LCD
+ * @param  y: Y coordinate on LCD
+ * @retval Pixel color in RGB565 format
  */
 uint32_t TM_DMA2DGRAPHIC_GetPixel(uint16_t x, uint16_t y);
 
 /**
- * Draw vertical line on currently active layer
- *
- * Parameters:
- * 	- int16_t x:
- * 		X coordinate on LCD
- * 	- int16_t y:
- * 		Y coordinate on LCD
- * 	- uint16_t length:
- * 		Vertical line length in pixels
- * 	- uint32_t color:
- * 		Color in RGB565 format
- *
- * No return
+ * @brief  Draws vertical line on currently active layer
+ * @param  x: X coordinate on LCD
+ * @param  y: Y coordinate on LCD
+ * @param  length: Vertical line length in pixels
+ * @param  color: Color in RGB565 format
+ * @retval None
  */
 void TM_DMA2DGRAPHIC_DrawVerticalLine(int16_t x, int16_t y, uint16_t length, uint32_t color);
 
 /**
- * Draw Horizontal line on currently active layer
- *
- * Parameters:
- * 	- int16_t x:
- * 		X coordinate on LCD
- * 	- int16_t y:
- * 		Y coordinate on LCD
- * 	- uint16_t length:
- * 		Horizontal line length in pixels
- * 	- uint32_t color:
- * 		Color in RGB565 format
- *
- * No return
+ * @brief  Draws horizontal line on currently active layer
+ * @param  x: X coordinate on LCD
+ * @param  y: Y coordinate on LCD
+ * @param  length: Horizontal line length in pixels
+ * @param  color: Color in RGB565 format
+ * @retval None
  */
 void TM_DMA2DGRAPHIC_DrawHorizontalLine(int16_t x, int16_t y, uint16_t length, uint32_t color);
 
 /**
- * Draw line on currently active layer
- *
- * Parameters:
- * 	- int16_t x1:
- * 		X1 coordinate on LCD
- * 	- int16_t y1:
- * 		Y1 coordinate on LCD
- * 	- int16_t x2:
- * 		X1 coordinate on LCD
- * 	- int16_t y2:
- * 		Y1 coordinate on LCD
- * 	- uint32_t color:
- * 		Color in RGB565 format
- *
- * No return
+ * @brief  Draws line on currently active layer
+ * @param  x1: X1 coordinate on LCD
+ * @param  y1: Y1 coordinate on LCD
+ * @param  x2: X1 coordinate on LCD
+ * @param  y2: Y1 coordinate on LCD
+ * @param  color: Color in RGB565 format
+ * @retval None
  */
 void TM_DMA2DGRAPHIC_DrawLine(int16_t x1, int16_t y1, int16_t x2, int16_t y2, uint32_t color);
 
 /**
- * Draw polygon line on currently active layer
- *
- * Parameters:
- * 	- TM_DMA2DRAPHIC_Poly_t* Coordinates:
- * 		Pointer to TM_DMA2DRAPHIC_Poly_t array of coordinates
- * 	- uint16_t count:
- * 		Number of coordinates
- * 	- uint32_t color:
- * 		color in RGB565 format
- *
- * No return
+ * @brief  Draws polygon line on currently active layer
+ * @param  *Coordinates: Pointer to @ref TM_DMA2DRAPHIC_Poly_t array of coordinates
+ * @param  count: Number of coordinates
+ * @param  color: Color in RGB565 format
+ * @retval None
  */
 void TM_DMA2DGRAPHIC_DrawPolyLine(TM_DMA2DRAPHIC_Poly_t* Coordinates, uint16_t count, uint32_t color);
 
 /**
- * Draw rectangle on currently active layer
- *
- * Parameters:
- * 	- uint16_t x:
- * 		Top left X location for rectangle on LCD
- * 	- uint16_t y:
- * 		Top left Y location for rectangle on LCD
- * 	- uint16_t width:
- * 		Rectangle width in pixels
- * 	- uint16_t height:
- * 		Rectangle height in pixels
- * 	- uint32_t color:
- * 		Color in RGB565 format
- *
- * No return
+ * @brief  Draws rectangle on currently active layer
+ * @param  x: Top left X location for rectangle on LCD
+ * @param  y: Top left Y location for rectangle on LCD
+ * @param  width: Rectangle width in pixels
+ * @param  height: Rectangle height in pixels
+ * @param  color: Color in RGB565 format
+ * @retval None
  */
 void TM_DMA2DGRAPHIC_DrawRectangle(uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint32_t color);
 
 /**
- * Draw filled rectangle on currently active layer
- *
- * Parameters:
- * 	- uint16_t x:
- * 		Top left X location for rectangle on LCD
- * 	- uint16_t y:
- * 		Top left Y location for rectangle on LCD
- * 	- uint16_t width:
- * 		Rectangle width in pixels
- * 	- uint16_t height:
- * 		Rectangle height in pixels
- * 	- uint32_t color:
- * 		Color in RGB565 format
- *
- * No return
+ * @brief  Draws filled rectangle on currently active layer
+ * @param  x: Top left X location for rectangle on LCD
+ * @param  y: Top left Y location for rectangle on LCD
+ * @param  width: Rectangle width in pixels
+ * @param  height: Rectangle height in pixels
+ * @param  color: Color in RGB565 format
+ * @retval None
  */
 void TM_DMA2DGRAPHIC_DrawFilledRectangle(uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint32_t color);
 
 /**
- * Draw rounded rectangle on currently active layer
- *
- * Parameters:
- * 	- uint16_t x:
- * 		Top left X location for rectangle on LCD
- * 	- uint16_t y:
- * 		Top left Y location for rectangle on LCD
- * 	- uint16_t width:
- * 		Rectangle width in pixels
- * 	- uint16_t height:
- * 		Rectangle height in pixels
- *	- uint16_t r:
- *		Corner radius in pixels
- * 	- uint32_t color:
- * 		Color in RGB565 format
- *
- * No return
+ * @brief  Draws rounded rectangle on currently active layer
+ * @param  x: Top left X location for rectangle on LCD
+ * @param  y: Top left Y location for rectangle on LCD
+ * @param  width: Rectangle width in pixels
+ * @param  height: Rectangle height in pixels
+ * @param  r: Corner radius in pixels
+ * @param  color: Color in RGB565 format
+ * @retval None
  */
 void TM_DMA2DGRAPHIC_DrawRoundedRectangle(uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint16_t r, uint32_t color);
 
 /**
- * Draw filled rounded rectangle on currently active layer
- *
- * Parameters:
- * 	- uint16_t x:
- * 		Top left X location for rectangle on LCD
- * 	- uint16_t y:
- * 		Top left Y location for rectangle on LCD
- * 	- uint16_t width:
- * 		Rectangle width in pixels
- * 	- uint16_t height:
- * 		Rectangle height in pixels
- *	- uint16_t r:
- *		Corner radius in pixels
- * 	- uint32_t color:
- * 		Color in RGB565 format
- *
- * No return
+ * @brief  Draws filled rounded rectangle on currently active layer
+ * @param  x: Top left X location for rectangle on LCD
+ * @param  y: Top left Y location for rectangle on LCD
+ * @param  width: Rectangle width in pixels
+ * @param  height: Rectangle height in pixels
+ * @param  r: Corner radius in pixels
+ * @param  color: Color in RGB565 format
+ * @retval None
  */
 void TM_DMA2DGRAPHIC_DrawFilledRoundedRectangle(uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint16_t r, uint32_t color);
 
 /**
- * Draw circle on currently active layer
- *
- * Parameters:
- * 	- uint16_t x0:
- * 		X coordinate of circle center on LCD
- * 	- uint16_t y0:
- * 		Y coordinate of circle center on LCD
- * 	- uint16_t r:
- * 		Circle radius
- * 	- uint32_t color:
- * 		Color in RGB565 format
- *
- * No return
+ * @brief  Draws circle on currently active layer
+ * @param  x0: X coordinate of circle center on LCD
+ * @param  y0: Y coordinate of circle center on LCD
+ * @param  r: Circle radius in pixels
+ * @param  color: Color in RGB565 format
+ * @retval None
  */
 void TM_DMA2DGRAPHIC_DrawCircle(uint16_t x0, uint16_t y0, uint16_t r, uint32_t color);
 
 /**
- * Draw filed circle on currently active layer
- *
- * Parameters:
- * 	- uint16_t x0:
- * 		X coordinate of circle center on LCD
- * 	- uint16_t y0:
- * 		Y coordinate of circle center on LCD
- * 	- uint16_t r:
- * 		Circle radius
- * 	- uint32_t color:
- * 		Color in RGB565 format
- *
- * No return
+ * @brief  Draws filed circle on currently active layer
+ * @param  x0: X coordinate of circle center on LCD
+ * @param  y0: Y coordinate of circle center on LCD
+ * @param  r: Circle radius in pixels
+ * @param  color: Color in RGB565 format
+ * @retval None
  */
 void TM_DMA2DGRAPHIC_DrawFilledCircle(uint16_t x0, uint16_t y0, uint16_t r, uint32_t color);
 
 /**
- * Draw triangle on currently active layer
- *
- * Parameters:
- * 	- uint16_t x1:
- * 		First point, X coordinate
- * 	- uint16_t y1:
- * 		First point, Y coordinate
- * 	- uint16_t x2:
- * 		Second point, X coordinate
- * 	- uint16_t y2:
- * 		Second point, Y coordinate
- * 	- uint16_t x3:
- * 		Third point, X coordinate
- * 	- uint16_t y3:
- * 		Third point, Y coordinate
- * 	- uint32_t color:
- * 		Color in RGB565 format
- *
- * No return
+ * @brief  Draws triangle on currently active layer
+ * @param  x1: First point, X coordinate
+ * @param  y1: First point, Y coordinate
+ * @param  x2: Second point, X coordinate
+ * @param  y2: Second point, Y coordinate
+ * @param  x3: Third point, X coordinate
+ * @param  y3: Third point, Y coordinate
+ * @param  color: Color in RGB565 format
+ * @retval None
  */
 void TM_DMA2DGRAPHIC_DrawTriangle(uint16_t x1, uint16_t y1,  uint16_t x2, uint16_t y2, uint16_t x3, uint16_t y3, uint32_t color);
 
 /**
- * Draw filled triangle on currently active layer
- *
- * Parameters:
- * 	- uint16_t x1:
- * 		First point, X coordinate
- * 	- uint16_t y1:
- * 		First point, Y coordinate
- * 	- uint16_t x2:
- * 		Second point, X coordinate
- * 	- uint16_t y2:
- * 		Second point, Y coordinate
- * 	- uint16_t x3:
- * 		Third point, X coordinate
- * 	- uint16_t y3:
- * 		Third point, Y coordinate
- * 	- uint32_t color:
- * 		Color in RGB565 format
- *
- * No return
+ * @brief  Draws filled triangle on currently active layer
+ * @param  x1: First point, X coordinate
+ * @param  y1: First point, Y coordinate
+ * @param  x2: Second point, X coordinate
+ * @param  y2: Second point, Y coordinate
+ * @param  x3: Third point, X coordinate
+ * @param  y3: Third point, Y coordinate
+ * @param  color: Color in RGB565 format
+ * @retval None
  */
 void TM_DMA2DGRAPHIC_DrawFilledTriangle(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t x3, uint16_t y3, uint32_t color);
+
+/**
+ * @}
+ */
+ 
+/**
+ * @}
+ */
+ 
+/**
+ * @}
+ */
 
 /* C++ detection */
 #ifdef __cplusplus

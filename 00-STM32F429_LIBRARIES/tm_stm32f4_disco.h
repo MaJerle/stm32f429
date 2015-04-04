@@ -7,7 +7,7 @@
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   Leds and button library for STM32F401 - , STM32F4 -, STM32F411 - and STM32F429 Discovery boards.
- *          Also works with Nucleo F411 and Nucleo F401 boards
+ *          Also works with Nucleo F411 and Nucleo F401 boards and STM324x9-EVAL boards
  *	
 @verbatim
    ----------------------------------------------------------------------
@@ -45,43 +45,45 @@
  * \par Supported boards
  *			
  * - STM32F429 Discovery: (STM32F429ZI) - <code>TM_DISCO_STM32F429_DISCOVERY</code>
- *		- Leds:
- *		   - LED_GREEN   on PG13
- * 		   - LED_RED     on PG14
- *		- Button: (HIGH when pressed)
- *		   - Blue button on PA0	
+ *   - Leds:
+ *     - LED_GREEN   on PG13
+ *     - LED_RED     on PG14
+ *   - Button: (HIGH when pressed)
+ *     - Blue button on PA0	
  * - NUCLEO-F401: (STM32F401RE) - <code>TM_DISCO_NUCLEO_F401</code>
  * - NUCLEO-F411: (STM32F411RE) - <code>TM_DISCO_NUCLEO_F411</code>
- *		- Led:
- *			- LED_GREEN 	on PA5
- *		- Button: (LOW when pressed)
- *			- Blue button	on PC13
- * - STM32F401 Discovery: (STM32F401VC) - <code>TM_DISCO_STM32F401_DISCOVERY</code>
- * - STM32F411 Discovery: (STM32F411VE) - <code>TM_DISCO_STM32F4_DISCOVERY</code>
- * - STM32F4 Discovery: (STM32F407VG) - <code>TM_DISCO_STM32F4_DISCOVERY</code>
- *		- Leds:
- *			- LED_GREEN 	on PD12
- *			- LED_ORANGE	on PD13
- *			- LED_RED 		on PD14
- *			- LED_BLUE 		on PD15
- *		- Button: (HIGH when pressed)
- *			- Blue button	on PA0
+ *   - Led:
+ *     - LED_GREEN   on PA5
+ *   - Button: (LOW when pressed)
+ *     - Blue button on PC13
+ * - STM32F401-Discovery: (STM32F401VC) - <code>TM_DISCO_STM32F401_DISCOVERY</code>
+ * - STM32F411-Discovery: (STM32F411VE) - <code>TM_DISCO_STM32F411_DISCOVERY</code>
+ * - STM32F4-Discovery: (STM32F407VG) - <code>TM_DISCO_STM32F4_DISCOVERY</code>
+ *   - Leds:
+ *     - LED_GREEN   on PD12
+ *     - LED_ORANGE  on PD13
+ *     - LED_RED     on PD14
+ *     - LED_BLUE    on PD15
+ *   - Button: (HIGH when pressed)
+ *     - Blue button on PA0
  * - STM324x9-Eval (STM32F439NI) - <code>TM_DISCO_STM324x9_EVAL</code>
- *		- Leds:
- *			- LED_GREEN 	on PG6
- *			- LED_ORANGE	on PG7
- *			- LED_RED 		on PG10
- *			- LED_BLUE 		on PD12
- *		- Button: (HIGH when pressed)
- *			- Blue button	on PA0
+ *   - Leds:
+ *     - LED_GREEN   on PG6
+ *     - LED_ORANGE  on PG7
+ *     - LED_RED     on PG10
+ *     - LED_BLUE    on PD12
+ *   - Button: (HIGH when pressed)
+ *     - Blue button on PA0
  *
  * \par Select your board
+ *
  * To select your board, you have several options:
  *   - Add define for your board in defines.h file or
  *   - Add define for your board in compiler's global settings
- *      - For Keil uVision you have "Options for Target" and "C/C++" tab where you can set this.
+ *     - For Keil uVision you have "Options for Target" and "C/C++" tab where you can set this.
  *
  * Imagine, we want to work with STM324x9-Eval board. Then, you can open <code>defines.h</code> file and add define:
+ *
 @verbatim
 //Select STM324x9-Eval for DISCO library
 #define TM_DISCO_STM324x9_EVAL
@@ -253,7 +255,7 @@
  * @param  None
  * @retval None
  */
-extern void TM_DISCO_LedInit(void);
+void TM_DISCO_LedInit(void);
 
 /**
  * @brief  Configures Button pin as input
@@ -263,7 +265,7 @@ extern void TM_DISCO_LedInit(void);
 void TM_DISCO_ButtonInit(void);
 
 /**
- * @brief  Turn on LED on board
+ * @brief  Turns on LED on board
  * @note   STM32F4x9-Eval board uses inverse logic for leds
  * @param  led: LED you want to turn on
  *            - LED_RED: Red led
@@ -280,7 +282,7 @@ void TM_DISCO_ButtonInit(void);
 #endif
 
 /**
- * @brief  Turn off LED on board
+ * @brief  Turns off LED on board
  * @note   STM32F4x9-Eval board uses inverse logic for leds
  * @param  led: LED you want to turn off
  *            - LED_RED: Red led
@@ -297,7 +299,7 @@ void TM_DISCO_ButtonInit(void);
 #endif
 
 /**
- * @brief  Toggle LED on board
+ * @brief  Toggles LED on board
  * @param  led: LED you want to toggle
  *            - LED_RED: Red led
  *            - LED_GREEN: Green led
@@ -326,7 +328,7 @@ void TM_DISCO_ButtonInit(void);
 #endif
 
 /**
- * @brief  Set led value
+ * @brief  Sets led value
  * @param  led: LED you want to set value
  *            - LED_RED: Red led
  *            - LED_GREEN: Green led
@@ -350,7 +352,7 @@ void TM_DISCO_ButtonInit(void);
 #define TM_DISCO_ButtonPressed()       ((TM_GPIO_GetInputPinValue(TM_DISCO_BUTTON_PORT, TM_DISCO_BUTTON_PIN) == 0) != TM_DISCO_BUTTON_PRESSED)
 
 /**
- * @brief  Check if button was pressed now, but was not already pressed before
+ * @brief  Checks if button was pressed now, but was not already pressed before
  * @param  None
  * @retval Button on pressed value
  *           - 0: In case that button has been already pressed on last call or was not pressed at all yet
@@ -359,7 +361,7 @@ void TM_DISCO_ButtonInit(void);
 uint8_t TM_DISCO_ButtonOnPressed(void);
 
 /**
- * @brief  Check if button was released now, but was already pressed before
+ * @brief  Checks if button was released now, but was already pressed before
  * @param  None
  * @retval Button on released value
  *           - 0: In case that button has been already released on last call or was not released at all yet

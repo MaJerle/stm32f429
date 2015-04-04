@@ -18,7 +18,7 @@
  */
 #include "tm_stm32f4_am2301.h"
 
-/* Private functions ************************/
+/* Private functions */
 TM_AM2301_t TM_AM2301_INT_Read(TM_AM2301_Data_t* data);
 TM_AM2301_t TM_AM2301_INT_InitPins(void);
 
@@ -56,7 +56,7 @@ TM_AM2301_t TM_AM2301_INT_Read(TM_AM2301_Data_t* data) {
 	AM2301_PIN_IN;
 	
 	time = 0;
-	/* Wait 20us for acknowledgment, low signal */
+	/* Wait 20us for acknowledge, low signal */
 	while (AM2301_PIN_READ) {
 		if (time > 20) {
 			return TM_AM2301_CONNECTION_ERROR;

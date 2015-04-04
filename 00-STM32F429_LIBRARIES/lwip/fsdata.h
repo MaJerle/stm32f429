@@ -50,6 +50,8 @@ struct fsdata_file {
 extern const struct fsdata_file file__404_html[];
 extern const struct fsdata_file file__index_shtml[];
 
+extern const unsigned char data__index_html[];
+
 #define FS_ROOT file__index_shtml
 #define FS_NUMFILES 3
 

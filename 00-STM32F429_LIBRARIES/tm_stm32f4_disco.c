@@ -19,7 +19,7 @@
 #include "tm_stm32f4_disco.h"
 
 /* Button pressed status for onpressed/onreleased events */
-volatile uint8_t TM_INT_DISCO_ButtonPressed = 0;
+static volatile uint8_t TM_INT_DISCO_ButtonPressed = 0;
 
 void TM_DISCO_LedInit(void) {
 	/* Set pins as output */
@@ -64,7 +64,7 @@ uint8_t TM_DISCO_ButtonOnReleased(void) {
 			return 1;
 		}
 	} else {
-		/* Clear flag */
+		/* Set flag */
 		TM_INT_DISCO_ButtonPressed = 1;
 	}
 	
