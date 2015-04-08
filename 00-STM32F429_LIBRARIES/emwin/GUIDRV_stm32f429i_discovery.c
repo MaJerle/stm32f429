@@ -272,7 +272,7 @@ static void _Index2ColorBulk_##PFIX##_DMA2D(void * pIndex, LCD_COLOR * pColor, U
 **********************************************************************
 */
 static LTDC_Layer_TypeDef       * _apLayer[]        = { LTDC_Layer1, LTDC_Layer2 };
-static const U32                  _aAddr[]          = { LCD_FRAME_BUFFER, LCD_FRAME_BUFFER + XSIZE_PHYS * YSIZE_PHYS * sizeof(U32) * NUM_VSCREENS * NUM_BUFFERS };
+static const U32                  _aAddr[]          = { 0xD0000000, 0xD0000000 + XSIZE_PHYS * YSIZE_PHYS * sizeof(U32) * NUM_VSCREENS * NUM_BUFFERS };
 static int                        _aPendingBuffer[GUI_NUM_LAYERS];
 static int                        _aBufferIndex[GUI_NUM_LAYERS];
 static int                        _axSize[GUI_NUM_LAYERS];

@@ -35,9 +35,6 @@
   * @{
   */
 
-extern void DMA2D_ISR_Handler(void);
-extern void LTDC_ISR_Handler(void);
-
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
@@ -152,7 +149,8 @@ __weak void TimingDelay_Decrement(void) {
   * @param  None
   * @retval None
   */
-void SysTick_Handler(void) {
+void SysTick_Handler(void)
+{
 	TimingDelay_Decrement();
 }
 
@@ -168,9 +166,9 @@ void SysTick_Handler(void) {
   * @param  None
   * @retval None
   */
-void PPP_IRQHandler(void) {
-	
-}
+/*void PPP_IRQHandler(void)
+{
+}*/
 
 /**
   * @}

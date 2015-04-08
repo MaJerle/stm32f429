@@ -52,6 +52,39 @@ TM_MPU6050_Result_t TM_MPU6050_Init(TM_MPU6050_t* DataStruct, TM_MPU6050_Device_
 	temp = (temp & 0xE7) | (uint8_t)GyroscopeSensitivity << 3;
 	TM_I2C_Write(MPU6050_I2C, DataStruct->Address, MPU6050_GYRO_CONFIG, temp);
 	
+	/* Set sensitivities for multiplying gyro and accelerometer data */
+	switch (AccelerometerSensitivity) {
+		case TM_MPU6050_Accelerometer_2G:
+			DataStruct->Acce_Mult = (float)1 / MPU6050_ACCE_SENS_2; 
+			break;
+		case TM_MPU6050_Accelerometer_4G:
+			DataStruct->Acce_Mult = (float)1 / MPU6050_ACCE_SENS_4; 
+			break;
+		case TM_MPU6050_Accelerometer_8G:
+			DataStruct->Acce_Mult = (float)1 / MPU6050_ACCE_SENS_8; 
+			break;
+		case TM_MPU6050_Accelerometer_16G:
+			DataStruct->Acce_Mult = (float)1 / MPU6050_ACCE_SENS_16; 
+		default:
+			break;
+	}
+	
+	switch (GyroscopeSensitivity) {
+		case TM_MPU6050_Gyroscope_250s:
+			DataStruct->Gyro_Mult = (float)1 / MPU6050_GYRO_SENS_250; 
+			break;
+		case TM_MPU6050_Gyroscope_500s:
+			DataStruct->Gyro_Mult = (float)1 / MPU6050_GYRO_SENS_500; 
+			break;
+		case TM_MPU6050_Gyroscope_1000s:
+			DataStruct->Gyro_Mult = (float)1 / MPU6050_GYRO_SENS_1000; 
+			break;
+		case TM_MPU6050_Gyroscope_2000s:
+			DataStruct->Gyro_Mult = (float)1 / MPU6050_GYRO_SENS_2000; 
+		default:
+			break;
+	}
+	
 	/* Return OK */
 	return TM_MPU6050_Result_Ok;
 }
