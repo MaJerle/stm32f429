@@ -18,7 +18,7 @@
  */
 #include "tm_stm32f4_lcd.h"
 
-void TM_LCD9341_InitLTDC(void) {
+void TM_LCD_InitLTDC(void) {
 	LTDC_InitTypeDef LTDC_InitStruct;
 	
 	/* Enable the LTDC Clock */
@@ -29,24 +29,24 @@ void TM_LCD9341_InitLTDC(void) {
 	  
 	/* Polarity configuration */
 	/* Initialize the horizontal synchronization polarity as active low */
-	LTDC_InitStruct.LTDC_HSPolarity = LTDC_HSPolarity_AL;     
-	/* Initialize the vertical synchronization polarity as active low */  
-	LTDC_InitStruct.LTDC_VSPolarity = LTDC_VSPolarity_AL;     
+	LTDC_InitStruct.LTDC_HSPolarity = LTDC_HSPolarity_AL;
+	/* Initialize the vertical synchronization polarity as active low */
+	LTDC_InitStruct.LTDC_VSPolarity = LTDC_VSPolarity_AL;
 	/* Initialize the data enable polarity as active low */
-	LTDC_InitStruct.LTDC_DEPolarity = LTDC_DEPolarity_AL;     
+	LTDC_InitStruct.LTDC_DEPolarity = LTDC_DEPolarity_AL;
 	/* Initialize the pixel clock polarity as input pixel clock */ 
 	LTDC_InitStruct.LTDC_PCPolarity = LTDC_PCPolarity_IPC;
 
 	/* Configure R,G,B component values for LCD background color */                   
-	LTDC_InitStruct.LTDC_BackgroundRedValue = 0;            
-	LTDC_InitStruct.LTDC_BackgroundGreenValue = 0;          
-	LTDC_InitStruct.LTDC_BackgroundBlueValue = 0;  
+	LTDC_InitStruct.LTDC_BackgroundRedValue = 0;
+	LTDC_InitStruct.LTDC_BackgroundGreenValue = 0;
+	LTDC_InitStruct.LTDC_BackgroundBlueValue = 0;
 
 	/* Configure PLLSAI prescalers for LCD */
 	/* Enable Pixel Clock */
 	/* PLLSAI_VCO Input = HSE_VALUE/PLL_M = 1 Mhz */
 	/* PLLSAI_VCO Output = PLLSAI_VCO Input * PLLSAI_N = 192 Mhz */
-	/* PLLLCDCLK = PLLSAI_VCO Output/PLLSAI_R = 192/4 = 96 Mhz */
+	/* PLLLCDCLK = PLLSAI_VCO Output/PLLSAI_R = 192/2 = 96 Mhz */
 	/* LTDC clock frequency = PLLLCDCLK / RCC_PLLSAIDivR = 96/4 = 24 Mhz */
 	RCC_PLLSAIConfig(192, 7, 2);
 	RCC_LTDCCLKDivConfig(RCC_PLLSAIDivR_Div4);
@@ -59,23 +59,24 @@ void TM_LCD9341_InitLTDC(void) {
 	}
 	
     /* Timing configuration */  
-    /* Configure horizontal synchronization width */     
+    /* Configure horizontal synchronization width */
     LTDC_InitStruct.LTDC_HorizontalSync = 29;
     /* Configure vertical synchronization height */
     LTDC_InitStruct.LTDC_VerticalSync = 2;
     /* Configure accumulated horizontal back porch */
-    LTDC_InitStruct.LTDC_AccumulatedHBP = 143; 
+    LTDC_InitStruct.LTDC_AccumulatedHBP = 143;
     /* Configure accumulated vertical back porch */
-    LTDC_InitStruct.LTDC_AccumulatedVBP = 34;  
-    /* Configure accumulated active width */  
+    LTDC_InitStruct.LTDC_AccumulatedVBP = 34;
+    /* Configure accumulated active width */
     LTDC_InitStruct.LTDC_AccumulatedActiveW = 783;
     /* Configure accumulated active height */
     LTDC_InitStruct.LTDC_AccumulatedActiveH = 514;
     /* Configure total width */
-    LTDC_InitStruct.LTDC_TotalWidth = 799; 
+    LTDC_InitStruct.LTDC_TotalWidth = 799;
     /* Configure total height */
     LTDC_InitStruct.LTDC_TotalHeigh = 524;
 
+	/* Init LTDC */
 	LTDC_Init(&LTDC_InitStruct);
 }
 
@@ -124,6 +125,7 @@ void TM_LCD_InitLayers(void) {
     /* Start Address configuration : the LCD Frame buffer is defined on SDRAM */    
     LTDC_Layer_InitStruct.LTDC_CFBStartAdress = LCD_FRAME_BUFFER;
     
+	/* Init layer 1 */
     LTDC_LayerInit(LTDC_Layer1, &LTDC_Layer_InitStruct);
     
     /* Configure Layer2 */
@@ -134,14 +136,31 @@ void TM_LCD_InitLayers(void) {
     LTDC_Layer_InitStruct.LTDC_BlendingFactor_1 = LTDC_BlendingFactor1_PAxCA;    
     LTDC_Layer_InitStruct.LTDC_BlendingFactor_2 = LTDC_BlendingFactor2_PAxCA;  
     
+	/* Init layer 2 */
     LTDC_LayerInit(LTDC_Layer2, &LTDC_Layer_InitStruct);
 
+	/* Reload immediate */
 	LTDC_ReloadConfig(LTDC_IMReload);
   
 	/* Enable foreground & background Layers */
 	LTDC_LayerCmd(LTDC_Layer1, ENABLE);
-	LTDC_LayerCmd(LTDC_Layer2, ENABLE);
+	LTDC_LayerCmd(LTDC_Layer2, ENABLE);	
+	
+	/* Reload immediate */
 	LTDC_ReloadConfig(LTDC_IMReload);
+	
+	/* Set opacity */
+	LTDC_LayerAlpha(LTDC_Layer1, 255);
+	LTDC_LayerAlpha(LTDC_Layer2, 0);
+	
+	/* Enable dither */
+	LTDC_DitherCmd(ENABLE);
+	
+	/* Display On */
+	LTDC_Cmd(ENABLE);
+	
+	/* Immediate reload */
+	//LTDC_ReloadConfig(LTDC_IMReload);
 }
 
 void TM_LCD_InitPins(void) {
@@ -151,10 +170,12 @@ void TM_LCD_InitPins(void) {
 }
 
 void TM_LCD_DisplayOn(void) {
+	/* Enable LTDC peripheral */
 	LTDC_Cmd(ENABLE);
 }
 
 void TM_LCD_DisplayOff(void) {
+	/* Disable LTDC peripheral */
 	LTDC_Cmd(DISABLE);
 }
  
@@ -162,13 +183,12 @@ void TM_LCD_Init(void) {
 	/* Initialize pins used */
 	TM_LCD_InitPins();
 	/* Init SDRAM */
-	//TM_SDRAM_Init();
-	//TM_SDRAM_Init();
+	TM_SDRAM_Init();
 	/* Initialize LTDC */
-	TM_LCD9341_InitLTDC();
+	TM_LCD_InitLTDC();
 	/* Initialize LTDC layers */
 	TM_LCD_InitLayers();
-	/* Enable LTDC */
+	/* Enable LCD */
 	TM_LCD_DisplayOn();
 }
 

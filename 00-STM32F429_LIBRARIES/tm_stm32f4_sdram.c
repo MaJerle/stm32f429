@@ -64,7 +64,7 @@ uint8_t TM_SDRAM_Init(void) {
 	/* Row addressing: [7:0] */
 	FMC_SDRAMInitStructure.FMC_ColumnBitsNumber 			= FMC_ColumnBits_Number_8b;
 	/* Column addressing: [11:0] */
-	FMC_SDRAMInitStructure.FMC_RowBitsNumber      			= FMC_RowBits_Number_11b;
+	FMC_SDRAMInitStructure.FMC_RowBitsNumber      			= SDRAM_ROWBITS_NUMBER;
 	FMC_SDRAMInitStructure.FMC_SDMemoryDataWidth  			= SDRAM_MEMORY_WIDTH;
 	FMC_SDRAMInitStructure.FMC_InternalBankNumber 			= FMC_InternalBank_Number_4;
 	/* CL: Cas Latency = 3 clock cycles */
@@ -86,7 +86,7 @@ uint8_t TM_SDRAM_Init(void) {
 	FMC_SDRAMCommandStructure.FMC_AutoRefreshNumber 		= 1;
 	FMC_SDRAMCommandStructure.FMC_ModeRegisterDefinition 	= 0;
 	
-	/* Wait until the SDRAM controller is ready */ 
+	/* Wait until the SDRAM controller is ready */
 	timeout = SDRAM_TIMEOUT;
 	while (FMC_GetFlagStatus(SDRAM_BANK, FMC_FLAG_Busy) != RESET && timeout) {
 		timeout--;
@@ -96,7 +96,7 @@ uint8_t TM_SDRAM_Init(void) {
 	FMC_SDRAMCmdConfig(&FMC_SDRAMCommandStructure);
 	
 	/* Little delay */
-	timeout = SDRAM_TIMEOUT * 0x3FF;
+	timeout = SDRAM_TIMEOUT * 0x110;
 	while (timeout--);
 	
 	/* Configure a PALL (precharge all) command */ 
@@ -105,9 +105,9 @@ uint8_t TM_SDRAM_Init(void) {
 	FMC_SDRAMCommandStructure.FMC_AutoRefreshNumber      	= 1;
 	FMC_SDRAMCommandStructure.FMC_ModeRegisterDefinition 	= 0;
 	
-	/* Wait until the SDRAM controller is ready */  
+	/* Wait until the SDRAM controller is ready */
 	timeout = SDRAM_TIMEOUT;
-	while (FMC_GetFlagStatus(SDRAM_BANK, FMC_FLAG_Busy) && timeout) {
+	while (FMC_GetFlagStatus(SDRAM_BANK, FMC_FLAG_Busy) != RESET && timeout) {
 		timeout--;
 	}
 	
@@ -122,8 +122,8 @@ uint8_t TM_SDRAM_Init(void) {
 	
 	/* Wait until the SDRAM controller is ready */
 	timeout = SDRAM_TIMEOUT;
-	while (FMC_GetFlagStatus(SDRAM_BANK, FMC_FLAG_Busy) && timeout--) {
-	
+	while (FMC_GetFlagStatus(SDRAM_BANK, FMC_FLAG_Busy) != RESET && timeout) {
+		timeout--;
 	}
 	
 	/* Send the command */
@@ -137,7 +137,7 @@ uint8_t TM_SDRAM_Init(void) {
 	
 	/* Wait until the SDRAM controller is ready */
 	timeout = SDRAM_TIMEOUT;
-	while (FMC_GetFlagStatus(SDRAM_BANK, FMC_FLAG_Busy) && timeout) {
+	while (FMC_GetFlagStatus(SDRAM_BANK, FMC_FLAG_Busy) != RESET && timeout) {
 		timeout--;
 	}
 	
@@ -149,7 +149,7 @@ uint8_t TM_SDRAM_Init(void) {
 	/* Set the device refresh counter */
 	FMC_SetRefreshCount(SDRAM_REFRESH_COUNT);
 	
-	/* Wait until the SDRAM controller is ready */ 
+	/* Wait until the SDRAM controller is ready */
 	timeout = SDRAM_TIMEOUT;
 	while (FMC_GetFlagStatus(SDRAM_BANK, FMC_FLAG_Busy) != RESET && timeout) {
 		timeout--;
@@ -180,19 +180,19 @@ static void TM_SDRAM_InitPins(void) {
 		/* User has initialized pins by itself */
 		return;
 	}
-#ifdef SDRAM_USE_STM324x9_EVAL
+#if defined(SDRAM_USE_STM324x9_EVAL)
 	/* GPIOD pins */
-	TM_GPIO_InitAlternate(GPIOD, GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_8 | GPIO_PIN_9 | GPIO_PIN_10 | GPIO_PIN_14 | GPIO_PIN_15, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_Fast, GPIO_AF_FMC);
+	TM_GPIO_InitAlternate(GPIOD, GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_8 | GPIO_PIN_9 | GPIO_PIN_10 | GPIO_PIN_14 | GPIO_PIN_15, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_FMC);
 	/* GPIOE pins */
-	TM_GPIO_InitAlternate(GPIOE, GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_7 | GPIO_PIN_8 | GPIO_PIN_9 | GPIO_PIN_10 | GPIO_PIN_11 | GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_Fast, GPIO_AF_FMC);
+	TM_GPIO_InitAlternate(GPIOE, GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_7 | GPIO_PIN_8 | GPIO_PIN_9 | GPIO_PIN_10 | GPIO_PIN_11 | GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_FMC);
 	/* GPIOF pins */
-	TM_GPIO_InitAlternate(GPIOF, GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_11 | GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_Fast, GPIO_AF_FMC);
+	TM_GPIO_InitAlternate(GPIOF, GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_11 | GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_FMC);
 	/* GPIOG pins */
-	TM_GPIO_InitAlternate(GPIOG, GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_8 | GPIO_PIN_15, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_Fast, GPIO_AF_FMC);
+	TM_GPIO_InitAlternate(GPIOG, GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_8 | GPIO_PIN_15, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_FMC);
 	/* GPIOH pins */
-	TM_GPIO_InitAlternate(GPIOH, GPIO_PIN_2 | GPIO_PIN_3 | GPIO_PIN_5 | GPIO_PIN_8 | GPIO_PIN_9 | GPIO_PIN_10 | GPIO_PIN_11 | GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_Fast, GPIO_AF_FMC);
+	TM_GPIO_InitAlternate(GPIOH, GPIO_PIN_2 | GPIO_PIN_3 | GPIO_PIN_5 | GPIO_PIN_8 | GPIO_PIN_9 | GPIO_PIN_10 | GPIO_PIN_11 | GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_FMC);
 	/* GPIOI pins */
-	TM_GPIO_InitAlternate(GPIOI, GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7 | GPIO_PIN_9 | GPIO_PIN_10, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_Fast, GPIO_AF_FMC);
+	TM_GPIO_InitAlternate(GPIOI, GPIO_PIN_0 | GPIO_PIN_1 | GPIO_PIN_2 | GPIO_PIN_3 | GPIO_PIN_4 | GPIO_PIN_5 | GPIO_PIN_6 | GPIO_PIN_7 | GPIO_PIN_9 | GPIO_PIN_10, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_FMC);
 #else
 	/* GPIOB pins */
 	TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_5 | GPIO_PIN_6, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_FMC);

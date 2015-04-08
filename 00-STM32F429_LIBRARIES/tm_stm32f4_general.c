@@ -18,6 +18,9 @@
  */
 #include "tm_stm32f4_general.h"
 
+/* System speed in MHz */
+uint16_t GENERAL_SystemSpeedInMHz = 0;
+
 void TM_GENERAL_SystemReset(void) {
 	/* Call use function */
 	TM_GENERAL_SoftwareResetCallback();
@@ -91,4 +94,35 @@ TM_GENERAL_ResetSource_t TM_GENERAL_GetResetSource(uint8_t reset_flags) {
 	
 	/* Return source */
 	return source;
+}
+
+uint8_t TM_GENERAL_DWTCounterEnable(void) {
+	uint32_t c;
+	
+	/* Set clock speed if not already */
+	if (TM_GENERAL_GetClockSpeed == 0) {
+		/* Get clock speed in MHz */
+		GENERAL_SystemSpeedInMHz = TM_GENERAL_GetClockSpeed(TM_GENERAL_Clock_SYSCLK) / 1000000;
+	}
+	
+    /* Enable TRC */
+    CoreDebug->DEMCR &= ~0x01000000;
+    CoreDebug->DEMCR |= 0x01000000;
+	
+    /* Reset counter */
+    DWT->CYCCNT = 0;
+	
+    /* Enable counter */
+    DWT->CTRL &= ~0x00000001;
+    DWT->CTRL |= 0x00000001;
+	
+	/* Check if DWT has started */
+	c = DWT->CYCCNT;
+	
+	/* 2 dummys */
+	__ASM volatile ("NOP");
+	__ASM volatile ("NOP");
+	
+	/* Return difference */
+	return (DWT->CYCCNT - c);
 }

@@ -17,64 +17,39 @@
 #include "tm_stm32f4_delay.h"
 #include "tm_stm32f4_disco.h"
 #include "tm_stm32f4_usart.h"
-#include "tm_stm32f4_sdram.h"
+//#include "tm_stm32f4_sdram.h"
 #include "tm_stm32f4_general.h"
 #include "tm_stm32f4_lcd.h"
-#include "stm324x9i_eval_fmc_sdram.h"
+
 #include <stdio.h>
 #include <string.h>
 
-/* Clock speed in MHz */
-uint16_t SystemMHz = 180;
-
-/* Init function */
-static void TM_DELAY2_Init(void) {
-	/* Enable TRC */
-	CoreDebug->DEMCR &= ~0x01000000;
-	CoreDebug->DEMCR |= 0x01000000;
-	/* Reset counter */
-	DWT->CYCCNT = 0;
-	/* Enable counter */
-	DWT->CTRL &= ~0x00000001;
-	DWT->CTRL |= 0x00000001;
-}
-
-/* Delay function */
-void DelayMicros(uint32_t micros) {
-	__IO uint32_t c = DWT->CYCCNT;
+volatile uint32_t index2;
 	
-	/* Wait till done */
-	while ((DWT->CYCCNT - c) < (micros * SystemMHz));
-}
-
-int main(void) {	
+int main(void) {
 	/* Initialize system */
 	SystemInit();
-	
-	/* Initialize delays */
-	TM_DELAY2_Init();
-	
-	/* Init delay */
-	TM_DELAY_Init();
-	
+
 	/* Init button */
 	TM_DISCO_ButtonInit();
 	
-	/* Initialize LEDs */
+	/* Init leds */
 	TM_DISCO_LedInit();
 	
-	TM_GENERAL_GetResetSource(1);
-	//NVIC_SystemReset();
+	/* Init LCD */
+	TM_LCD_Init();
 	
+	/* Infinity loop */
 	while (1) {
-		/* Toggle all leds */
-		TM_DISCO_LedToggle(LED_ALL);
-		/* Delay some microseconds */
-		DelayMicros(100000);
-		
 		if (TM_DISCO_ButtonPressed()) {
-			Delayms(500);
-			NVIC_SystemReset();
+			TM_DISCO_LedOn(LED_ALL);
+		
+			index2 = (LCD_FRAME_BUFFER);
+			for (; index2 < (LCD_FRAME_BUFFER + LCD_FRAME_OFFSET); index2 += 2) {
+				*(__IO uint16_t *)(index2) = 0x789A;
+			}
+		} else {
+			TM_DISCO_LedOff(LED_ALL);
 		}
 	}
 }

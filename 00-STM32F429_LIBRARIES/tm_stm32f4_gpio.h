@@ -45,7 +45,10 @@ extern C {
  * @{
  *
  * GPIO library can be used for GPIO pins. 
+ *
  * It features fast initialization methods as well pin input/output methods.
+ *
+ * It can be used as replacement for STD/HAL drivers GPIO library.
  *
  * \par Changelog
  *
@@ -211,7 +214,6 @@ typedef enum {
  * @retval None
  */
 void TM_GPIO_Init(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_GPIO_Mode_t GPIO_Mode, TM_GPIO_OType_t GPIO_OType, TM_GPIO_PuPd_t GPIO_PuPd, TM_GPIO_Speed_t GPIO_Speed);
-
 
 /**
  * @brief  Initializes GPIO pins(s) as alternate function

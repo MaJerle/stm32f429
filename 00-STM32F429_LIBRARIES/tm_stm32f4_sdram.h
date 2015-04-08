@@ -139,6 +139,12 @@ PD15 <-> FMC_D1   | PE11 <-> FMC_D8    | PF11 <-> FC_NRAS   | PH11 <-> FMC_D19  
  * Library defines depends on board you use.
  */
 #if defined(SDRAM_USE_STM324x9_EVAL) || defined(TM_DISCO_STM324x9_EVAL)
+
+/* Make define */
+#ifndef SDRAM_USE_STM324x9_EVAL
+#define SDRAM_USE_STM324x9_EVAL
+#endif
+
 /**
  * @defgroup TM_SDRAM_STM324x9_EVAL_Macros
  * @brief    Macros for STM324x9-EVAL board
@@ -159,7 +165,7 @@ PD15 <-> FMC_D1   | PE11 <-> FMC_D8    | PF11 <-> FC_NRAS   | PH11 <-> FMC_D19  
 	/* Data witdh */
 	#define SDRAM_MEMORY_WIDTH          FMC_SDMemory_Width_32b
 	/* Read burst */
-	#define SDRAM_READ_BURST_STATE      FMC_Read_Burst_Enable
+	#define SDRAM_READ_BURST_STATE      FMC_Read_Burst_Disable
 	/* Register value */
 	#define SDRAM_REG_VALUE             0x0230
 /**

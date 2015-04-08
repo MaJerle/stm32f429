@@ -367,21 +367,6 @@ typedef struct {
 void TM_GPS_Init(TM_GPS_Data_t* GPS_Data, uint32_t baudrate);
 
 /**
- * Update GPS data.
- * This function must be called periodically, as fast as possible.
- * It basically checks if data is available on USART and parse it to useful value.
- *
- * Parameters:
- *	- TM_GPS_Data_t* GPS_Data:
- *		Pointer to TM_GPS_Data_t struct variable
- *
- * When you first call this function and there is not available data from GPS, this function will return @ref TM_GPS_Result_FirstTimeWaiting.
- * This will be returning all the time we don't have any useful data.
- * When first time useful data is received from GPS (everything parsed), TM_GPS_Result_NewData will be returned.
- * When we have already new data, next time we call this function, TM_GPS_Result_OldData will be returning until we don't receive new packet of useful data.
- */
-
-/**
  * @brief  Update GPS data.
  * @note   This function must be called periodically, as fast as possible. 
  *         It basically checks if data is available on GPS USART and parse it to useful data for user.
@@ -410,7 +395,7 @@ float TM_GPS_ConvertSpeed(float SpeedInKnots, TM_GPS_Speed_t toSpeed);
  * @param  decimals: Number of decimal places for conversion
  * @note   Example: You have number 15.002 in float format.
  *            - You want to split this to integer and decimal part with 6 decimal places.
- *            - Call TM_GPS_ConvertFloat(15.002, &Float_Struct, 6);
+ *            - Call @ref TM_GPS_ConvertFloat(15.002, &Float_Struct, 6);
  *            - Result will be: Integer: 15; Decimal: 2000 (0.002 * 10^6)
  * @retval None
  */

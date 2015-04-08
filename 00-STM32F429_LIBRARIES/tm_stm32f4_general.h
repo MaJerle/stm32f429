@@ -3,7 +3,7 @@
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
  * @link    http://stm32f4-discovery.com/2015/03/library-54-general-library-for-stm32f4xx-devices
- * @version v1.0
+ * @version v1.1
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   GENERAL library for STM32F4xx devices
@@ -28,7 +28,7 @@
 @endverbatim
  */
 #ifndef TM_GENERAL_H
-#define TM_GENERAL_H 100
+#define TM_GENERAL_H 110
 
 /* C++ detection */
 #ifdef __cplusplus
@@ -55,11 +55,16 @@ extern C {
 - Get reset source, what resets your MCU
 - Disable or enable global NVIC interrupts
 - Get different clock speeds in your system
+- Operate with Cortex-M4 DWT hardware counter
 @endverbatim
  *
  * \par Changelog
  *
 @verbatim
+ Version 1.1
+  - April 07, 2015
+  - Added support for DWT counter
+  
  Version 1.0
   - First release
 @endverbatim
@@ -82,6 +87,21 @@ extern C {
 /**
  * @defgroup TM_GENERAL_Macros
  * @brief    Library defines
+ * @{
+ */
+
+/**
+ * @brief  System speed in MHz
+ */
+extern uint16_t GENERAL_SystemSpeedInMHz;
+
+/**
+ * @}
+ */
+ 
+/**
+ * @defgroup TM_GENERAL_Variables
+ * @brief    Library variables
  * @{
  */
  
@@ -172,6 +192,89 @@ TM_GENERAL_ResetSource_t TM_GENERAL_GetResetSource(uint8_t reset_flags);
  * @retval Clock speed in units of hertz
  */
 uint32_t TM_GENERAL_GetClockSpeed(TM_GENERAL_Clock_t clock);
+
+/**
+ * @brief  Gets system clock speed in units of MHz
+ * @param  None
+ * @retval None
+ * @note   Defined as macro for faster execution
+ */
+#define TM_GENERAL_GetSystemClockMHz()    ((uint16_t)(SystemCoreClock * (float)0.000001))
+
+/**
+ * @brief  Enables DWT counter in Cortex-M4 core
+ * @param  None
+ * @retval DWT Status:
+ *            - 0: DWT has not started, hardware/software reset is required
+ *            - >0: DWT has started and is ready to use
+ * @note   It may happen, that DWT counter won't start after reprogramming device.
+ *         This happened to me when I use onboard ST-Link on Discovery or Nucleo boards.
+ *         When I used external debugger (J-Link or ULINK2) it worked always without problems.
+ *         If your DWT doesn't start, you should perform software/hardware reset by yourself.
+ */
+uint8_t TM_GENERAL_DWTCounterEnable(void);
+
+/**
+ * @brief  Disables DWT counter in Cortex-M4 core
+ * @param  None
+ * @retval None
+ * @note   Defined as macro for faster execution
+ */
+#define TM_GENERAL_DWTCounterDisable()    (DWT->CTRL &= ~0x00000001)
+
+/**
+ * @brief  Gets current DWT counter value
+ * @param  None
+ * @retval DWT counter value
+ * @note   Defined as macro for faster execution
+ */
+#define TM_GENERAL_DWTCounterGetValue()  (DWT->CYCCNT)
+
+/**
+ * @brief  Sets DWT counter value
+ * @param  x: Set value for DWT counter
+ * @retval None
+ * @note   Defined as macro for faster execution
+ */
+#define TM_GENERAL_DWTCounterSetValue(x)  (DWT->CYCCNT = (x))
+
+/**
+ * @brief  Delays for amount of microseconds using DWT counter
+ * @param  micros: Number of micro seconds for delay 
+ * @retval None
+ * @note   DWT Counter HAVE to be initialized first using @ref TM_GENERAL_EnableDWTCounter()
+ */
+static __INLINE void TM_GENERAL_DWTCounterDelayus(uint32_t micros) {
+	uint32_t c = TM_GENERAL_DWTCounterGetValue();
+	
+	/* Calculate clock cycles */
+	micros *= (SystemCoreClock / 1000000);
+	micros -= 12;
+	
+	/* Wait till done */
+	while ((TM_GENERAL_DWTCounterGetValue() - c) < micros) {
+		/* Do nothing */
+	}
+}
+
+/**
+ * @brief  Delays for amount of milliseconds using DWT counter
+ * @param  millis: Number of micro seconds for delay 
+ * @retval None
+ * @note   DWT Counter HAVE to be initialized first using @ref TM_GENERAL_EnableDWTCounter()
+ */
+static __INLINE void TM_GENERAL_DWTCounterDelayms(uint32_t millis) {
+	uint32_t c = TM_GENERAL_DWTCounterGetValue();
+	
+	/* Calculate clock cycles */
+	millis *= (SystemCoreClock / 1000);
+	millis -= 12;
+	
+	/* Wait till done */
+	while ((TM_GENERAL_DWTCounterGetValue() - c) < millis) {
+		/* Do nothing */
+	}
+}
 
 /**
  * @brief  Software reset callback.
