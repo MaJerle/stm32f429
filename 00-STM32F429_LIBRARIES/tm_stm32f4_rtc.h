@@ -29,6 +29,12 @@
  */
 #ifndef TM_RTC_H
 #define TM_RTC_H 171
+
+/* C++ detection */
+#ifdef __cplusplus
+extern C {
+#endif
+
 /**
  * @addtogroup TM_STM32F4xx_Libraries
  * @{
@@ -209,7 +215,7 @@ typedef TM_RTC_t TM_RTC_Time_t;
  */
 typedef enum {
 	TM_RTC_Result_Ok,   /*!< Everything OK */
-	TM_RTC_Result_Error /*!< An error occured */
+	TM_RTC_Result_Error /*!< An error occurred */
 } TM_RTC_Result_t;
 
 /**
@@ -310,6 +316,7 @@ uint32_t TM_RTC_GetUnixTimeStamp(TM_RTC_t* data);
  * @note   Valid if year is greater or equal (>=) than 2000
  * @param  *data: Pointer to @ref TM_RTC_Time_t struct to store formatted data in
  * @param  unix: Seconds from 01.01.1970 00:00:00 to calculate user friendly time
+ * @retval None
  */
 void TM_RTC_GetDateTimeFromUnix(TM_RTC_t* data, uint32_t unix);
 
@@ -324,7 +331,10 @@ void TM_RTC_Interrupts(TM_RTC_Int_t int_value);
 /**
  * @brief  Set date and time to internal RTC registers
  * @param  *data: Pointer to filled @ref TM_RTC_t structure with date and time
- * @param  format: Format of your structure. This parameter can be a value of @ref TM_RTC_Format_t enumeration.
+ * @param  format: Format of your structure. This parameter can be a value of @ref TM_RTC_Format_t enumeration
+ * @retval RTC datetime status @ref TM_RTC_Result_t:
+ *            - @ref TM_RTC_Result_Ok: Date and Time set OK
+ *            - @ref TM_RTC_Result_Error: Date and time is wrong
  */
 TM_RTC_Result_t TM_RTC_SetDateTime(TM_RTC_t* data, TM_RTC_Format_t format);
 
@@ -339,7 +349,7 @@ TM_RTC_Result_t TM_RTC_SetDateTime(TM_RTC_t* data, TM_RTC_Format_t format);
  *            - <b>ii</b>: minutes, 2 digits, decimal
  *            - <b>ss</b>: seconds, 2 digits, decimal
  * @param  *str: Pointer to string with datetime format
- * @retval RTC datetime status @ref TM_RTC_Result_t.
+ * @retval RTC datetime status @ref TM_RTC_Result_t:
  *            - @ref TM_RTC_Result_Ok: Date and Time set OK
  *            - @ref TM_RTC_Result_Error: Date and time is wrong
  */
@@ -349,6 +359,7 @@ TM_RTC_Result_t TM_RTC_SetDateTimeString(char* str);
  * @brief  Get date and time from internal RTC registers
  * @param  *data: Pointer to @ref TM_RTC_t structure to save data to
  * @param  format: Format of your structure. This parameter can be a value of @ref TM_RTC_Format_t enumeration
+ * @retval None
  */
 void TM_RTC_GetDateTime(TM_RTC_t* data, TM_RTC_Format_t format);
 
@@ -365,7 +376,7 @@ uint8_t TM_RTC_GetDaysInMonth(uint8_t month, uint8_t year);
  * @brief  Get number of days in specific year
  * @note   This function also detects if it is leap year
  * @param  year: Year number where you want to get days in month, last 2 digits
- * @retval Returns number of days in year
+ * @retval Number of days in year
  */
 uint16_t TM_RTC_GetDaysInYear(uint8_t year);
 
@@ -394,7 +405,7 @@ void TM_RTC_WriteBackupRegister(uint8_t location, uint32_t value);
  * @param  location: RTC backup register location. 0 to 18 are valid
  * @retval Value at specific RTC backup register location
  */
- uint32_t TM_RTC_ReadBackupRegister(uint8_t location);
+uint32_t TM_RTC_ReadBackupRegister(uint8_t location);
 
 /**
  * @brief  Enables alarm A or alarm B
@@ -413,29 +424,29 @@ void TM_RTC_SetAlarm(TM_RTC_Alarm_t Alarm, TM_RTC_AlarmTime_t* AlarmTime, TM_RTC
 void TM_RTC_DisableAlarm(TM_RTC_Alarm_t Alarm);
 
 /**
- * @brief  RTC Wakeup handler function. Called when wakeup interrupt is triggered.
+ * @brief  RTC Wakeup handler function. Called when wakeup interrupt is triggered
  * @note   Called from my RTC library
- * @note   With __weak parameter to prevent link errors if not defined by user
  * @param  None
  * @retval None
+ * @note   With __weak parameter to prevent link errors if not defined by user
  */
 void TM_RTC_RequestHandler(void);
 
 /**
- * @brief  RTC Alarm A handler function. Called when interrupt is triggered for alarm B.
+ * @brief  RTC Alarm A handler function. Called when interrupt is triggered for alarm A
  * @note   Called from my RTC library
- * @note   With __weak parameter to prevent link errors if not defined by user
  * @param  None
  * @retval None
+ * @note   With __weak parameter to prevent link errors if not defined by user
  */
 void TM_RTC_AlarmAHandler(void);
 
 /**
  * @brief  RTC Alarm B handler function. Called when interrupt is triggered for alarm B.
  * @note   Called from my RTC library
- * @note   With __weak parameter to prevent link errors if not defined by user
  * @param  None
  * @retval None
+ * @note   With __weak parameter to prevent link errors if not defined by user
  */
 void TM_RTC_AlarmBHandler(void);
 
@@ -450,6 +461,11 @@ void TM_RTC_AlarmBHandler(void);
 /**
  * @}
  */
+
+/* C++ detection */
+#ifdef __cplusplus
+}
+#endif
 
 #endif
 

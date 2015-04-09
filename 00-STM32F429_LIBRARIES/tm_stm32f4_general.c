@@ -100,21 +100,21 @@ uint8_t TM_GENERAL_DWTCounterEnable(void) {
 	uint32_t c;
 	
 	/* Set clock speed if not already */
-	if (TM_GENERAL_GetClockSpeed == 0) {
+	if (GENERAL_SystemSpeedInMHz == 0) {
 		/* Get clock speed in MHz */
 		GENERAL_SystemSpeedInMHz = TM_GENERAL_GetClockSpeed(TM_GENERAL_Clock_SYSCLK) / 1000000;
 	}
 	
     /* Enable TRC */
     CoreDebug->DEMCR &= ~0x01000000;
-    CoreDebug->DEMCR |= 0x01000000;
-	
-    /* Reset counter */
-    DWT->CYCCNT = 0;
+    CoreDebug->DEMCR |=  0x01000000;
 	
     /* Enable counter */
     DWT->CTRL &= ~0x00000001;
-    DWT->CTRL |= 0x00000001;
+    DWT->CTRL |=  0x00000001;
+	
+    /* Reset counter */
+    DWT->CYCCNT = 0;
 	
 	/* Check if DWT has started */
 	c = DWT->CYCCNT;
@@ -123,6 +123,6 @@ uint8_t TM_GENERAL_DWTCounterEnable(void) {
 	__ASM volatile ("NOP");
 	__ASM volatile ("NOP");
 	
-	/* Return difference */
+	/* Return difference, if result is zero, DWT has not started */
 	return (DWT->CYCCNT - c);
 }
