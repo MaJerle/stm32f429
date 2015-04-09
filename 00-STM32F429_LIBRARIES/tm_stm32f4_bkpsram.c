@@ -23,7 +23,7 @@ void TM_BKPSRAM_Init(void) {
 	RCC->APB1ENR |= RCC_APB1ENR_PWREN;
 	
 	/* Enable backup SRAM Clock */
-	RCC->AHB1ENR = RCC_AHB1ENR_BKPSRAMEN;
+	RCC->AHB1ENR |= RCC_AHB1ENR_BKPSRAMEN;
 	
 	/* Allow access to backup domain */
 	PWR_BackupAccessCmd(ENABLE);
