@@ -95,192 +95,102 @@ void TM_USART_INT_InsertToBuffer(TM_USART_t* u, uint8_t c);
 TM_USART_t* TM_USART_INT_GetUsart(USART_TypeDef* USARTx);
 uint8_t TM_USART_INT_GetSubPriority(USART_TypeDef* USARTx);
 uint8_t TM_USART_BufferFull(USART_TypeDef* USARTx);
+/* Private initializator */
+static void TM_USART_INT_Init(
+	USART_TypeDef* USARTx,
+	TM_USART_PinsPack_t pinspack,
+	uint32_t baudrate,
+	TM_USART_HardwareFlowControl_t FlowControl,
+	uint32_t Mode,
+	uint32_t Parity,
+	uint32_t StopBits,
+	uint32_t WordLength
+);
 
 void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t baudrate) {
-	USART_InitTypeDef USART_InitStruct;
-	NVIC_InitTypeDef NVIC_InitStruct;
-	TM_USART_t* u = TM_USART_INT_GetUsart(USARTx);
-
-	/* Set USART baudrate */
-	USART_InitStruct.USART_BaudRate = baudrate;
-	
-	/*
-	 * Initialize USARTx pins
-	 * Set channel for USARTx NVIC
-	 */
 #ifdef USE_USART1
 	if (USARTx == USART1) {
-		/* Enable USART clock */
-		RCC->APB2ENR |= RCC_APB2ENR_USART1EN;
-		
-		/* Init pins */
-		TM_USART1_InitPins(pinspack);
-		
-		/* Set IRQ channel */
-		NVIC_InitStruct.NVIC_IRQChannel = USART1_IRQn;
-		
-		/* Fill default settings */
-		USART_InitStruct.USART_HardwareFlowControl = TM_USART1_HARDWARE_FLOW_CONTROL;
-		USART_InitStruct.USART_Mode = TM_USART1_MODE;
-		USART_InitStruct.USART_Parity = TM_USART1_PARITY;
-		USART_InitStruct.USART_StopBits = TM_USART1_STOP_BITS;
-		USART_InitStruct.USART_WordLength = TM_USART1_WORD_LENGTH;
+		TM_USART_INT_Init(USART1, pinspack, baudrate, TM_USART1_HARDWARE_FLOW_CONTROL, TM_USART1_MODE, TM_USART1_PARITY, TM_USART1_STOP_BITS, TM_USART1_WORD_LENGTH);
 	}
 #endif
 #ifdef USE_USART2
 	if (USARTx == USART2) {
-		/* Enable USART clock */
-		RCC->APB1ENR |= RCC_APB1ENR_USART2EN;
-		
-		/* Init pins */
-		TM_USART2_InitPins(pinspack);
-		
-		/* Set IRQ channel */
-		NVIC_InitStruct.NVIC_IRQChannel = USART2_IRQn;
-		
-		/* Fill default settings */
-		USART_InitStruct.USART_HardwareFlowControl = TM_USART2_HARDWARE_FLOW_CONTROL;
-		USART_InitStruct.USART_Mode = TM_USART2_MODE;
-		USART_InitStruct.USART_Parity = TM_USART2_PARITY;
-		USART_InitStruct.USART_StopBits = TM_USART2_STOP_BITS;
-		USART_InitStruct.USART_WordLength = TM_USART2_WORD_LENGTH;
+		TM_USART_INT_Init(USART2, pinspack, baudrate, TM_USART2_HARDWARE_FLOW_CONTROL, TM_USART2_MODE, TM_USART2_PARITY, TM_USART2_STOP_BITS, TM_USART2_WORD_LENGTH);
 	}
 #endif
 #ifdef USE_USART3
 	if (USARTx == USART3) {
-		/* Enable USART clock */
-		RCC->APB1ENR |= RCC_APB1ENR_USART3EN;
-		
-		/* Init pins */
-		TM_USART3_InitPins(pinspack);
-		
-		/* Set IRQ channel */
-		NVIC_InitStruct.NVIC_IRQChannel = USART3_IRQn;
-		
-		/* Fill default settings */
-		USART_InitStruct.USART_HardwareFlowControl = TM_USART3_HARDWARE_FLOW_CONTROL;
-		USART_InitStruct.USART_Mode = TM_USART3_MODE;
-		USART_InitStruct.USART_Parity = TM_USART3_PARITY;
-		USART_InitStruct.USART_StopBits = TM_USART3_STOP_BITS;
-		USART_InitStruct.USART_WordLength = TM_USART3_WORD_LENGTH;
+		TM_USART_INT_Init(USART3, pinspack, baudrate, TM_USART3_HARDWARE_FLOW_CONTROL, TM_USART3_MODE, TM_USART3_PARITY, TM_USART3_STOP_BITS, TM_USART3_WORD_LENGTH);
 	}
 #endif
 #ifdef USE_UART4
 	if (USARTx == UART4) {
-		/* Enable UART clock */
-		RCC->APB1ENR |= RCC_APB1ENR_UART4EN;
-		
-		/* Init pins */
-		TM_UART4_InitPins(pinspack);
-		
-		/* Set IRQ channel */
-		NVIC_InitStruct.NVIC_IRQChannel = UART4_IRQn;
-		
-		/* Fill default settings */
-		USART_InitStruct.USART_HardwareFlowControl = TM_UART4_HARDWARE_FLOW_CONTROL;
-		USART_InitStruct.USART_Mode = TM_UART4_MODE;
-		USART_InitStruct.USART_Parity = TM_UART4_PARITY;
-		USART_InitStruct.USART_StopBits = TM_UART4_STOP_BITS;
-		USART_InitStruct.USART_WordLength = TM_UART4_WORD_LENGTH;
+		TM_USART_INT_Init(UART4, pinspack, baudrate, TM_UART4_HARDWARE_FLOW_CONTROL, TM_UART4_MODE, TM_UART4_PARITY, TM_UART4_STOP_BITS, TM_UART4_WORD_LENGTH);
 	}
 #endif
 #ifdef USE_UART5
 	if (USARTx == UART5) {
-		/* Enable UART clock */
-		RCC->APB1ENR |= RCC_APB1ENR_UART5EN;
-
-		/* Init pins */
-		TM_UART5_InitPins(pinspack);
-		
-		/* Set IRQ channel */
-		NVIC_InitStruct.NVIC_IRQChannel = UART5_IRQn;
-		
-		/* Fill default settings */
-		USART_InitStruct.USART_HardwareFlowControl = TM_UART5_HARDWARE_FLOW_CONTROL;
-		USART_InitStruct.USART_Mode = TM_UART5_MODE;
-		USART_InitStruct.USART_Parity = TM_UART5_PARITY;
-		USART_InitStruct.USART_StopBits = TM_UART5_STOP_BITS;
-		USART_InitStruct.USART_WordLength = TM_UART5_WORD_LENGTH;
+		TM_USART_INT_Init(UART5, pinspack, baudrate, TM_UART5_HARDWARE_FLOW_CONTROL, TM_UART5_MODE, TM_UART5_PARITY, TM_UART5_STOP_BITS, TM_UART5_WORD_LENGTH);
 	}
 #endif
 #ifdef USE_USART6
 	if (USARTx == USART6) {
-		/* Enable UART clock */
-		RCC->APB2ENR |= RCC_APB2ENR_USART6EN;
-		
-		/* Init pins */
-		TM_USART6_InitPins(pinspack);
-		
-		/* Set IRQ channel */
-		NVIC_InitStruct.NVIC_IRQChannel = USART6_IRQn;
-		
-		/* Fill default settings */
-		USART_InitStruct.USART_HardwareFlowControl = TM_USART6_HARDWARE_FLOW_CONTROL;
-		USART_InitStruct.USART_Mode = TM_USART6_MODE;
-		USART_InitStruct.USART_Parity = TM_USART6_PARITY;
-		USART_InitStruct.USART_StopBits = TM_USART6_STOP_BITS;
-		USART_InitStruct.USART_WordLength = TM_USART6_WORD_LENGTH;
+		TM_USART_INT_Init(USART6, pinspack, baudrate, TM_USART6_HARDWARE_FLOW_CONTROL, TM_USART6_MODE, TM_USART6_PARITY, TM_USART6_STOP_BITS, TM_USART6_WORD_LENGTH);
 	}
 #endif
 #ifdef USE_UART7
 	if (USARTx == UART7) {
-		/* Enable UART clock */
-		RCC->APB1ENR |= RCC_APB1ENR_UART7EN;
-		
-		/* Init pins */
-		TM_UART7_InitPins(pinspack);
-		
-		/* Set IRQ channel */
-		NVIC_InitStruct.NVIC_IRQChannel = UART7_IRQn;
-		
-		/* Fill default settings */
-		USART_InitStruct.USART_HardwareFlowControl = TM_UART7_HARDWARE_FLOW_CONTROL;
-		USART_InitStruct.USART_Mode = TM_UART7_MODE;
-		USART_InitStruct.USART_Parity = TM_UART7_PARITY;
-		USART_InitStruct.USART_StopBits = TM_UART7_STOP_BITS;
-		USART_InitStruct.USART_WordLength = TM_UART7_WORD_LENGTH;
+		TM_USART_INT_Init(UART7, pinspack, baudrate, TM_UART7_HARDWARE_FLOW_CONTROL, TM_UART7_MODE, TM_UART7_PARITY, TM_UART7_STOP_BITS, TM_UART7_WORD_LENGTH);
 	}
 #endif
 #ifdef USE_UART8
 	if (USARTx == UART8) {
-		/* Enable UART clock */
-		RCC->APB1ENR |= RCC_APB1ENR_UART8EN;
-
-		/* Init pins */
-		TM_UART8_InitPins(pinspack);
-		
-		/* Set IRQ channel */
-		NVIC_InitStruct.NVIC_IRQChannel = UART8_IRQn;
-		
-		/* Fill default settings */
-		USART_InitStruct.USART_HardwareFlowControl = TM_UART8_HARDWARE_FLOW_CONTROL;
-		USART_InitStruct.USART_Mode = TM_UART8_MODE;
-		USART_InitStruct.USART_Parity = TM_UART8_PARITY;
-		USART_InitStruct.USART_StopBits = TM_UART8_STOP_BITS;
-		USART_InitStruct.USART_WordLength = TM_UART8_WORD_LENGTH;
+		TM_USART_INT_Init(UART8, pinspack, baudrate, TM_UART8_HARDWARE_FLOW_CONTROL, TM_UART8_MODE, TM_UART8_PARITY, TM_UART8_STOP_BITS, TM_UART8_WORD_LENGTH);
 	}
 #endif
-	
-	/* We are initialized */
-	u->Initialized = 1;
-	
-	/* Disable if not already */
-	USARTx->CR1 &= ~USART_CR1_UE;
-	
-	/* Init */
-	USART_Init(USARTx, &USART_InitStruct);
-	
-	/* Enable RX interrupt */
-	USARTx->CR1 |= USART_CR1_RXNEIE;
+}
 
-	/* Fill NVIC settings */
-	NVIC_InitStruct.NVIC_IRQChannelCmd = ENABLE;
-	NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority = TM_USART_NVIC_PRIORITY;
-	NVIC_InitStruct.NVIC_IRQChannelSubPriority = TM_USART_INT_GetSubPriority(USARTx);
-	NVIC_Init(&NVIC_InitStruct);
-	
-	/* Enable USART peripheral */
-	USARTx->CR1 |= USART_CR1_UE;
+void TM_USART_InitWithFlowControl(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t baudrate, TM_USART_HardwareFlowControl_t FlowControl) {
+#ifdef USE_USART1
+	if (USARTx == USART1) {
+		TM_USART_INT_Init(USART1, pinspack, baudrate, FlowControl, TM_USART1_MODE, TM_USART1_PARITY, TM_USART1_STOP_BITS, TM_USART1_WORD_LENGTH);
+	}
+#endif
+#ifdef USE_USART2
+	if (USARTx == USART2) {
+		TM_USART_INT_Init(USART2, pinspack, baudrate, FlowControl, TM_USART2_MODE, TM_USART2_PARITY, TM_USART2_STOP_BITS, TM_USART2_WORD_LENGTH);
+	}
+#endif
+#ifdef USE_USART3
+	if (USARTx == USART3) {
+		TM_USART_INT_Init(USART3, pinspack, baudrate, FlowControl, TM_USART3_MODE, TM_USART3_PARITY, TM_USART3_STOP_BITS, TM_USART3_WORD_LENGTH);
+	}
+#endif
+#ifdef USE_UART4
+	if (USARTx == UART4) {
+		TM_USART_INT_Init(UART4, pinspack, baudrate, FlowControl, TM_UART4_MODE, TM_UART4_PARITY, TM_UART4_STOP_BITS, TM_UART4_WORD_LENGTH);
+	}
+#endif
+#ifdef USE_UART5
+	if (USARTx == UART5) {
+		TM_USART_INT_Init(UART5, pinspack, baudrate, FlowControl, TM_UART5_MODE, TM_UART5_PARITY, TM_UART5_STOP_BITS, TM_UART5_WORD_LENGTH);
+	}
+#endif
+#ifdef USE_USART6
+	if (USARTx == USART6) {
+		TM_USART_INT_Init(USART6, pinspack, baudrate, FlowControl, TM_USART6_MODE, TM_USART6_PARITY, TM_USART6_STOP_BITS, TM_USART6_WORD_LENGTH);
+	}
+#endif
+#ifdef USE_UART7
+	if (USARTx == UART7) {
+		TM_USART_INT_Init(UART7, pinspack, baudrate, FlowControl, TM_UART7_MODE, TM_UART7_PARITY, TM_UART7_STOP_BITS, TM_UART7_WORD_LENGTH);
+	}
+#endif
+#ifdef USE_UART8
+	if (USARTx == UART8) {
+		TM_USART_INT_Init(UART8, pinspack, baudrate, FlowControl, TM_UART8_MODE, TM_UART8_PARITY, TM_UART8_STOP_BITS, TM_UART8_WORD_LENGTH);
+	}
+#endif
 }
 
 uint8_t TM_USART_Getc(USART_TypeDef* USARTx) {
@@ -370,6 +280,8 @@ uint8_t TM_USART_FindCharacter(USART_TypeDef* USARTx, uint8_t c) {
 			/* Character found */
 			return 1;
 		}
+		
+		/* Set new variables */
 		out++;
 		num--;
 	}
@@ -385,6 +297,7 @@ void TM_USART_Puts(USART_TypeDef* USARTx, char* str) {
 		return;
 	}
 	
+	/* Go through entire string */
 	while (*str) {
 		/* Send data */
 		USARTx->DR = (uint16_t)(*str++ & 0x01FF);
@@ -414,6 +327,7 @@ void TM_USART_INT_InsertToBuffer(TM_USART_t* u, uint8_t c) {
 		if (u->In == u->Size) {
 			u->In = 0;
 		}
+		
 		/* Add to buffer */
 		u->Buffer[u->In] = c;
 		u->In++;
@@ -795,3 +709,154 @@ void UART8_IRQHandler(void) {
 	}
 }
 #endif
+
+static void TM_USART_INT_Init(
+	USART_TypeDef* USARTx,
+	TM_USART_PinsPack_t pinspack,
+	uint32_t baudrate,
+	TM_USART_HardwareFlowControl_t FlowControl,
+	uint32_t Mode,
+	uint32_t Parity,
+	uint32_t StopBits,
+	uint32_t WordLength
+) {
+	USART_InitTypeDef USART_InitStruct;
+	NVIC_InitTypeDef NVIC_InitStruct;
+	TM_USART_t* u = TM_USART_INT_GetUsart(USARTx);
+
+	/* Set USART baudrate */
+	USART_InitStruct.USART_BaudRate = baudrate;
+	
+	/*
+	 * Initialize USARTx pins
+	 * Set channel for USARTx NVIC
+	 */
+#ifdef USE_USART1
+	if (USARTx == USART1) {
+		/* Enable USART clock */
+		RCC->APB2ENR |= RCC_APB2ENR_USART1EN;
+		
+		/* Init pins */
+		TM_USART1_InitPins(pinspack);
+		
+		/* Set IRQ channel */
+		NVIC_InitStruct.NVIC_IRQChannel = USART1_IRQn;
+	}
+#endif
+#ifdef USE_USART2
+	if (USARTx == USART2) {
+		/* Enable USART clock */
+		RCC->APB1ENR |= RCC_APB1ENR_USART2EN;
+		
+		/* Init pins */
+		TM_USART2_InitPins(pinspack);
+		
+		/* Set IRQ channel */
+		NVIC_InitStruct.NVIC_IRQChannel = USART2_IRQn;
+	}
+#endif
+#ifdef USE_USART3
+	if (USARTx == USART3) {
+		/* Enable USART clock */
+		RCC->APB1ENR |= RCC_APB1ENR_USART3EN;
+		
+		/* Init pins */
+		TM_USART3_InitPins(pinspack);
+		
+		/* Set IRQ channel */
+		NVIC_InitStruct.NVIC_IRQChannel = USART3_IRQn;
+	}
+#endif
+#ifdef USE_UART4
+	if (USARTx == UART4) {
+		/* Enable UART clock */
+		RCC->APB1ENR |= RCC_APB1ENR_UART4EN;
+		
+		/* Init pins */
+		TM_UART4_InitPins(pinspack);
+		
+		/* Set IRQ channel */
+		NVIC_InitStruct.NVIC_IRQChannel = UART4_IRQn;
+	}
+#endif
+#ifdef USE_UART5
+	if (USARTx == UART5) {
+		/* Enable UART clock */
+		RCC->APB1ENR |= RCC_APB1ENR_UART5EN;
+
+		/* Init pins */
+		TM_UART5_InitPins(pinspack);
+		
+		/* Set IRQ channel */
+		NVIC_InitStruct.NVIC_IRQChannel = UART5_IRQn;
+	}
+#endif
+#ifdef USE_USART6
+	if (USARTx == USART6) {
+		/* Enable UART clock */
+		RCC->APB2ENR |= RCC_APB2ENR_USART6EN;
+		
+		/* Init pins */
+		TM_USART6_InitPins(pinspack);
+		
+		/* Set IRQ channel */
+		NVIC_InitStruct.NVIC_IRQChannel = USART6_IRQn;
+	}
+#endif
+#ifdef USE_UART7
+	if (USARTx == UART7) {
+		/* Enable UART clock */
+		RCC->APB1ENR |= RCC_APB1ENR_UART7EN;
+		
+		/* Init pins */
+		TM_UART7_InitPins(pinspack);
+		
+		/* Set IRQ channel */
+		NVIC_InitStruct.NVIC_IRQChannel = UART7_IRQn;
+	}
+#endif
+#ifdef USE_UART8
+	if (USARTx == UART8) {
+		/* Enable UART clock */
+		RCC->APB1ENR |= RCC_APB1ENR_UART8EN;
+
+		/* Init pins */
+		TM_UART8_InitPins(pinspack);
+		
+		/* Set IRQ channel */
+		NVIC_InitStruct.NVIC_IRQChannel = UART8_IRQn;
+	}
+#endif
+	
+	/* Fill default settings */
+	USART_InitStruct.USART_HardwareFlowControl = FlowControl;
+	USART_InitStruct.USART_Mode = Mode;
+	USART_InitStruct.USART_Parity = Parity;
+	USART_InitStruct.USART_StopBits = StopBits;
+	USART_InitStruct.USART_WordLength = WordLength;
+	
+	/* We are not initialized */
+	u->Initialized = 0;
+	
+	/* Disable if not already */
+	USARTx->CR1 &= ~USART_CR1_UE;
+	
+	/* Init */
+	USART_Init(USARTx, &USART_InitStruct);
+	
+	/* Enable RX interrupt */
+	USARTx->CR1 |= USART_CR1_RXNEIE;
+
+	/* Fill NVIC settings */
+	NVIC_InitStruct.NVIC_IRQChannelCmd = ENABLE;
+	NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority = TM_USART_NVIC_PRIORITY;
+	NVIC_InitStruct.NVIC_IRQChannelSubPriority = TM_USART_INT_GetSubPriority(USARTx);
+	NVIC_Init(&NVIC_InitStruct);
+	
+	/* We are initialized now */
+	u->Initialized = 1;
+	
+	/* Enable USART peripheral */
+	USARTx->CR1 |= USART_CR1_UE;
+}
+

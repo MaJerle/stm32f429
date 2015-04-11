@@ -60,6 +60,13 @@ void TM_DMA2DGRAPHIC_Init(void) {
 	DIS.CurrentWidth = DMA2D_GRAPHIC_LCD_HEIGHT;
 	DIS.Orientation = 0;
 	
+/* Set default orientation */
+#if defined(DMA2D_GRAPHIC_USE_STM324x9_EVAL) || defined(TM_DISCO_STM324x9_EVAL)
+	DIS.Orientation = 1;
+	DIS.CurrentHeight = DMA2D_GRAPHIC_LCD_HEIGHT;
+	DIS.CurrentWidth = DMA2D_GRAPHIC_LCD_WIDTH;
+#endif
+	
 	/* Enable DMA2D clock */
 	RCC->AHB1ENR |= RCC_AHB1ENR_DMA2DEN;
 	

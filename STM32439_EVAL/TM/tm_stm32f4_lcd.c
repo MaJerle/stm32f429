@@ -18,6 +18,17 @@
  */
 #include "tm_stm32f4_lcd.h"
 
+typedef struct {
+	uint16_t Width;
+	uint16_t Height;
+	uint32_t CurrentLayerOffset;
+	uint32_t Pixels;
+	uint16_t X;
+	uint16_t Y;
+} LCD_t;
+
+static LCD_t LCD;
+
 void TM_LCD_InitLTDC(void) {
 	LTDC_InitTypeDef LTDC_InitStruct;
 	
@@ -37,7 +48,7 @@ void TM_LCD_InitLTDC(void) {
 	/* Initialize the pixel clock polarity as input pixel clock */ 
 	LTDC_InitStruct.LTDC_PCPolarity = LTDC_PCPolarity_IPC;
 
-	/* Configure R,G,B component values for LCD background color */                   
+	/* Configure R,G,B component values for LCD background color */
 	LTDC_InitStruct.LTDC_BackgroundRedValue = 0;
 	LTDC_InitStruct.LTDC_BackgroundGreenValue = 0;
 	LTDC_InitStruct.LTDC_BackgroundBlueValue = 0;
@@ -98,10 +109,10 @@ void TM_LCD_InitLayers(void) {
     LTDC_Layer_InitStruct.LTDC_PixelFormat = LTDC_Pixelformat_RGB565;
     /* Alpha constant (255 totally opaque) */
     LTDC_Layer_InitStruct.LTDC_ConstantAlpha = 255; 
-    /* Default Color configuration (configure A,R,G,B component values) */          
-    LTDC_Layer_InitStruct.LTDC_DefaultColorBlue = 0;        
-    LTDC_Layer_InitStruct.LTDC_DefaultColorGreen = 0;       
-    LTDC_Layer_InitStruct.LTDC_DefaultColorRed = 0;         
+    /* Default Color configuration (configure A,R,G,B component values) */
+    LTDC_Layer_InitStruct.LTDC_DefaultColorBlue = 0;
+    LTDC_Layer_InitStruct.LTDC_DefaultColorGreen = 0;
+    LTDC_Layer_InitStruct.LTDC_DefaultColorRed = 0;
     LTDC_Layer_InitStruct.LTDC_DefaultColorAlpha = 0;
     /* Configure blending factors */       
     LTDC_Layer_InitStruct.LTDC_BlendingFactor_1 = LTDC_BlendingFactor1_CA;    
@@ -154,18 +165,18 @@ void TM_LCD_InitLayers(void) {
 	LTDC_LayerAlpha(LTDC_Layer2, 0);
 	
 	/* Enable dither */
-	LTDC_DitherCmd(ENABLE);
+	//LTDC_DitherCmd(ENABLE);
 	
 	/* Display On */
 	LTDC_Cmd(ENABLE);
 	
 	/* Immediate reload */
-	//LTDC_ReloadConfig(LTDC_IMReload);
+	LTDC_ReloadConfig(LTDC_IMReload);
 }
 
 void TM_LCD_InitPins(void) {
-	TM_GPIO_InitAlternate(GPIOI, 0xF000, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_LTDC);
-	TM_GPIO_InitAlternate(GPIOJ, 0xFFFF, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_LTDC);
+	TM_GPIO_InitAlternate(GPIOI, GPIO_PIN_12 | GPIO_PIN_13 | GPIO_PIN_14 | GPIO_PIN_15, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_LTDC);
+	TM_GPIO_InitAlternate(GPIOJ, GPIO_PIN_ALL, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_LTDC);
 	TM_GPIO_InitAlternate(GPIOK, 0x00FF, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_LTDC);
 }
 
@@ -180,15 +191,101 @@ void TM_LCD_DisplayOff(void) {
 }
  
 void TM_LCD_Init(void) {
-	/* Initialize pins used */
-	TM_LCD_InitPins();
+	/* Set LCD width and height */
+	LCD.Width = 640;
+	LCD.Height = 480;
+	LCD.CurrentLayerOffset = 0;
+	LCD.Pixels = LCD.Width * LCD.Height;
+	
+	
 	/* Init SDRAM */
 	TM_SDRAM_Init();
+	/* Initialize pins used */
+	TM_LCD_InitPins();
 	/* Initialize LTDC */
 	TM_LCD_InitLTDC();
 	/* Initialize LTDC layers */
 	TM_LCD_InitLayers();
 	/* Enable LCD */
 	TM_LCD_DisplayOn();
+}
+
+void TM_LCD_Puts(uint16_t x, uint16_t y, char *str, TM_FontDef_t *font, uint32_t foreground, uint32_t background) {
+	uint16_t startX = x;
+	
+	/* Set X and Y coordinates */
+	LCD.X = x;
+	LCD.Y = y;
+	
+	while (*str) {
+		/* New line */
+		if (*str == '\n') {
+			LCD.Y += font->FontHeight + 1;
+			/* if after \n is also \r, than go to the left of the screen */
+			if (*(str + 1) == '\r') {
+				LCD.X = 0;
+				str++;
+			} else {
+				LCD.X = startX;
+			}
+			str++;
+			continue;
+		} else if (*str == '\r') {
+			str++;
+			continue;
+		}
+		
+		/* Put character */
+		TM_LCD_Putc(LCD.X, LCD.Y, *str++, font, foreground, background);
+	}
+}
+
+void TM_LCD_GetStringSize(char *str, TM_FontDef_t *font, uint16_t *width, uint16_t *height) {
+	uint16_t w = 0;
+	/* Get height */
+	*height = font->FontHeight;
+	/* Get length */
+	while (*str++) {
+		w += font->FontWidth;
+	}
+	/* Width */
+	*width = w;
+}
+
+void TM_LCD_Putc(uint16_t x, uint16_t y, char c, TM_FontDef_t *font, uint32_t foreground, uint32_t background) {
+	uint32_t i, b, j;
+	/* Set coordinates */
+	LCD.X = x;
+	LCD.Y = y;
+	if ((LCD.X + font->FontWidth) > LCD.Width) {
+		/* If at the end of a line of display, go to new line and set x to 0 position */
+		LCD.Y += font->FontHeight;
+		LCD.X = 0;
+	}
+	for (i = 0; i < font->FontHeight; i++) {
+		b = font->data[(c - 32) * font->FontHeight + i];
+		for (j = 0; j < font->FontWidth; j++) {
+			if ((b << j) & 0x8000) {
+				TM_LCD_DrawPixel(LCD.X + j, (LCD.Y + i), foreground);
+			} else {
+				TM_LCD_DrawPixel(LCD.X + j, (LCD.Y + i), background);
+			}
+		}
+	}
+	/* Go to new X location */
+	LCD.X += font->FontWidth;
+}
+
+void TM_LCD_DrawPixel(uint16_t x, uint16_t y, uint32_t color) {
+	if (x >= LCD.Width) {
+		return;
+	}
+	if (y >= LCD.Height) {
+		return;
+	}
+	
+	*(uint16_t *) (LCD_FRAME_BUFFER + LCD.CurrentLayerOffset + 2 * (LCD.Width * y + x)) = color;
+
+	return;
 }
 

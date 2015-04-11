@@ -3,7 +3,7 @@
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
  * @link    http://stm32f4-discovery.com/2014/04/library-04-connect-stm32f429-discovery-to-computer-with-usart/
- * @version v2.3.2
+ * @version v2.4
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   USART Library for STM32F4 with receive interrupt
@@ -28,7 +28,7 @@
 @endverbatim
  */
 #ifndef TM_USART_H
-#define TM_USART_H 232
+#define TM_USART_H 240
 /**
  * @addtogroup TM_STM32F4xx_Libraries
  * @{
@@ -132,6 +132,10 @@ UART8        |PE1    PE0     |-      -       |-      -
  * \par Changelog
  *
 @verbatim
+ Version 2.4
+   - April 09, 2015
+   - Added support for new function TM_USART_InitWithFlowControl()
+   
  Version 2.3.2
    - March 21, 2015
    - Code optimizations
@@ -214,6 +218,38 @@ UART8        |PE1    PE0     |-      -       |-      -
 #define USE_USART6
 #endif
 
+
+ /**
+ * @defgroup TM_USART_Typedefs
+ * @brief    USART Typedefs
+ * @{
+ */
+ 
+/**
+ * @brief  USART PinsPack enumeration to select pins combination for USART
+ */
+typedef enum {
+	TM_USART_PinsPack_1,     /*!< Select PinsPack1 from Pinout table for specific USART */
+	TM_USART_PinsPack_2,     /*!< Select PinsPack2 from Pinout table for specific USART */
+	TM_USART_PinsPack_3,     /*!< Select PinsPack3 from Pinout table for specific USART */
+	TM_USART_PinsPack_Custom /*!< Select custom pins for specific USART, callback will be called, look @ref TM_USART_InitCustomPinsCallback */
+} TM_USART_PinsPack_t;
+
+/**
+ * @brief  USART Hardware flow control selection
+ * @note   Corresponsing pins must be initialized in case you don't use "None" options
+ */
+typedef enum {
+	TM_USART_HardwareFlowControl_None = 0x0000,   /*!< No flow control */
+	TM_USART_HardwareFlowControl_RTS = 0x0100,    /*!< RTS flow control */
+	TM_USART_HardwareFlowControl_CTS = 0x0200,    /*!< CTS flow control */
+	TM_USART_HardwareFlowControl_RTS_CTS = 0x0300 /*!< RTS and CTS flow control */
+} TM_USART_HardwareFlowControl_t;
+
+/**
+ * @}
+ */
+
 /**
  * @defgroup TM_USART_Macros
  * @brief    USART default values for defines
@@ -263,7 +299,7 @@ UART8        |PE1    PE0     |-      -       |-      -
 /* U(S)ART settings, can be changed in your defines.h project file */
 /* USART1 default settings */
 #ifndef TM_USART1_HARDWARE_FLOW_CONTROL
-#define TM_USART1_HARDWARE_FLOW_CONTROL		USART_HardwareFlowControl_None
+#define TM_USART1_HARDWARE_FLOW_CONTROL		TM_USART_HardwareFlowControl_None
 #endif
 #ifndef TM_USART1_MODE
 #define TM_USART1_MODE						USART_Mode_Tx | USART_Mode_Rx
@@ -280,7 +316,7 @@ UART8        |PE1    PE0     |-      -       |-      -
 
 /* USART2 default settings */
 #ifndef TM_USART2_HARDWARE_FLOW_CONTROL
-#define TM_USART2_HARDWARE_FLOW_CONTROL		USART_HardwareFlowControl_None
+#define TM_USART2_HARDWARE_FLOW_CONTROL		TM_USART_HardwareFlowControl_None
 #endif
 #ifndef TM_USART2_MODE
 #define TM_USART2_MODE						USART_Mode_Tx | USART_Mode_Rx
@@ -297,7 +333,7 @@ UART8        |PE1    PE0     |-      -       |-      -
 
 /* USART3 default settings */
 #ifndef TM_USART3_HARDWARE_FLOW_CONTROL
-#define TM_USART3_HARDWARE_FLOW_CONTROL		USART_HardwareFlowControl_None
+#define TM_USART3_HARDWARE_FLOW_CONTROL		TM_USART_HardwareFlowControl_None
 #endif
 #ifndef TM_USART3_MODE
 #define TM_USART3_MODE						USART_Mode_Tx | USART_Mode_Rx
@@ -314,7 +350,7 @@ UART8        |PE1    PE0     |-      -       |-      -
 
 /* UART4 default settings */
 #ifndef TM_UART4_HARDWARE_FLOW_CONTROL
-#define TM_UART4_HARDWARE_FLOW_CONTROL		USART_HardwareFlowControl_None
+#define TM_UART4_HARDWARE_FLOW_CONTROL		TM_USART_HardwareFlowControl_None
 #endif
 #ifndef TM_UART4_MODE
 #define TM_UART4_MODE						USART_Mode_Tx | USART_Mode_Rx
@@ -331,7 +367,7 @@ UART8        |PE1    PE0     |-      -       |-      -
 
 /* UART5 default settings */
 #ifndef TM_UART5_HARDWARE_FLOW_CONTROL
-#define TM_UART5_HARDWARE_FLOW_CONTROL		USART_HardwareFlowControl_None
+#define TM_UART5_HARDWARE_FLOW_CONTROL		TM_USART_HardwareFlowControl_None
 #endif
 #ifndef TM_UART5_MODE
 #define TM_UART5_MODE						USART_Mode_Tx | USART_Mode_Rx
@@ -348,7 +384,7 @@ UART8        |PE1    PE0     |-      -       |-      -
 
 /* USART6 default settings */
 #ifndef TM_USART6_HARDWARE_FLOW_CONTROL
-#define TM_USART6_HARDWARE_FLOW_CONTROL		USART_HardwareFlowControl_None
+#define TM_USART6_HARDWARE_FLOW_CONTROL		TM_USART_HardwareFlowControl_None
 #endif
 #ifndef TM_USART6_MODE
 #define TM_USART6_MODE						USART_Mode_Tx | USART_Mode_Rx
@@ -365,7 +401,7 @@ UART8        |PE1    PE0     |-      -       |-      -
 
 /* UART7 default settings */
 #ifndef TM_UART7_HARDWARE_FLOW_CONTROL
-#define TM_UART7_HARDWARE_FLOW_CONTROL		USART_HardwareFlowControl_None
+#define TM_UART7_HARDWARE_FLOW_CONTROL		TM_USART_HardwareFlowControl_None
 #endif
 #ifndef TM_UART7_MODE
 #define TM_UART7_MODE						USART_Mode_Tx | USART_Mode_Rx
@@ -382,7 +418,7 @@ UART8        |PE1    PE0     |-      -       |-      -
 
 /* UART8 default settings */
 #ifndef TM_UART8_HARDWARE_FLOW_CONTROL
-#define TM_UART8_HARDWARE_FLOW_CONTROL		USART_HardwareFlowControl_None
+#define TM_UART8_HARDWARE_FLOW_CONTROL		TM_USART_HardwareFlowControl_None
 #endif
 #ifndef TM_UART8_MODE
 #define TM_UART8_MODE						USART_Mode_Tx | USART_Mode_Rx
@@ -406,26 +442,6 @@ UART8        |PE1    PE0     |-      -       |-      -
  * @}
  */
 
- /**
- * @defgroup TM_USART_Typedefs
- * @brief    USART Typedefs
- * @{
- */
- 
-/**
- * @brief  USART PinsPack enumeration to select pins combination for USART
- */
-typedef enum {
-	TM_USART_PinsPack_1,     /*!< Select PinsPack1 from Pinout table for specific USART */
-	TM_USART_PinsPack_2,     /*!< Select PinsPack2 from Pinout table for specific USART */
-	TM_USART_PinsPack_3,     /*!< Select PinsPack3 from Pinout table for specific USART */
-	TM_USART_PinsPack_Custom /*!< Select custom pins for specific USART, callback will be called, look @ref TM_USART_InitCustomPinsCallback */
-} TM_USART_PinsPack_t;
-
-/**
- * @}
- */
-
 /**
  * @defgroup TM_USART_Functions
  * @brief    USART Functions
@@ -433,13 +449,24 @@ typedef enum {
  */
 
 /**
- * @brief  Initialize USARTx peripheral and corresponding pins
+ * @brief  Initializes USARTx peripheral and corresponding pins
  * @param  *USARTx: Pointer to USARTx peripheral you will use
- * @param  pinspack: This parameter can be a value of @ref TM_USART_PinsPack_t typedef
+ * @param  pinspack: This parameter can be a value of @ref TM_USART_PinsPack_t enumeration
  * @param  baudrate: Baudrate number for USART communication
  * @retval None
  */
 void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t baudrate);
+
+/**
+ * @brief  Initializes USARTx peripheral and corresponding pins with custom hardware flow control mode
+ * @note   Hardware flow control pins are not initialized. Easy solution is to you Custom pinspack option and initialize all USART pins at a time
+ * @param  *USARTx: Pointer to USARTx peripheral you will use
+ * @param  pinspack: This parameter can be a value of @ref TM_USART_PinsPack_t enumeration
+ * @param  baudrate: Baudrate number for USART communication
+ * @param  FlowControl: Flow control mode you will use. This parameter can be a value of @ref TM_USART_HardwareFlowControl_t enumeration
+ * @retval None
+ */
+void TM_USART_InitWithFlowControl(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t baudrate, TM_USART_HardwareFlowControl_t FlowControl);
 
 /**
  * @brief  Put character to USART port

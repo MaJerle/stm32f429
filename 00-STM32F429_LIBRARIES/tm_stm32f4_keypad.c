@@ -18,49 +18,27 @@
  */
 #include "tm_stm32f4_keypad.h"
 
+/* Pins configuration, columns are outputs */
+#define KEYPAD_COLUMN_1_HIGH		TM_GPIO_SetPinHigh(KEYPAD_COLUMN_1_PORT, KEYPAD_COLUMN_1_PIN)
+#define KEYPAD_COLUMN_1_LOW			TM_GPIO_SetPinLow(KEYPAD_COLUMN_1_PORT, KEYPAD_COLUMN_1_PIN)
+#define KEYPAD_COLUMN_2_HIGH		TM_GPIO_SetPinHigh(KEYPAD_COLUMN_2_PORT, KEYPAD_COLUMN_2_PIN)
+#define KEYPAD_COLUMN_2_LOW			TM_GPIO_SetPinLow(KEYPAD_COLUMN_2_PORT, KEYPAD_COLUMN_2_PIN)
+#define KEYPAD_COLUMN_3_HIGH		TM_GPIO_SetPinHigh(KEYPAD_COLUMN_3_PORT, KEYPAD_COLUMN_3_PIN)
+#define KEYPAD_COLUMN_3_LOW			TM_GPIO_SetPinLow(KEYPAD_COLUMN_3_PORT, KEYPAD_COLUMN_3_PIN)
+#define KEYPAD_COLUMN_4_HIGH		TM_GPIO_SetPinHigh(KEYPAD_COLUMN_4_PORT, KEYPAD_COLUMN_4_PIN)
+#define KEYPAD_COLUMN_4_LOW			TM_GPIO_SetPinLow(KEYPAD_COLUMN_4_PORT, KEYPAD_COLUMN_4_PIN)
+
+/* Read input pins */
+#define KEYPAD_ROW_1_CHECK			(!TM_GPIO_GetInputPinValue(KEYPAD_ROW_1_PORT, KEYPAD_ROW_1_PIN))
+#define KEYPAD_ROW_2_CHECK			(!TM_GPIO_GetInputPinValue(KEYPAD_ROW_2_PORT, KEYPAD_ROW_2_PIN))
+#define KEYPAD_ROW_3_CHECK			(!TM_GPIO_GetInputPinValue(KEYPAD_ROW_3_PORT, KEYPAD_ROW_3_PIN))
+#define KEYPAD_ROW_4_CHECK			(!TM_GPIO_GetInputPinValue(KEYPAD_ROW_4_PORT, KEYPAD_ROW_4_PIN))
+
 uint8_t KEYPAD_INT_Buttons[4][4] = {
 	{0x01, 0x02, 0x03, 0x0C},
 	{0x04, 0x05, 0x06, 0x0D},
 	{0x07, 0x08, 0x09, 0x0E},
 	{0x0A, 0x00, 0x0B, 0x0F},
-};
-
-uint32_t KEYPAD_INT_HoldDebounce[16] = {
-	KEYPAD_HOLD_DEBOUNCE_0 / KEYPAD_HOLD_DEBOUNCE_DIVIDER,
-	KEYPAD_HOLD_DEBOUNCE_1 / KEYPAD_HOLD_DEBOUNCE_DIVIDER,
-	KEYPAD_HOLD_DEBOUNCE_2 / KEYPAD_HOLD_DEBOUNCE_DIVIDER,
-	KEYPAD_HOLD_DEBOUNCE_3 / KEYPAD_HOLD_DEBOUNCE_DIVIDER,
-	KEYPAD_HOLD_DEBOUNCE_4 / KEYPAD_HOLD_DEBOUNCE_DIVIDER,
-	KEYPAD_HOLD_DEBOUNCE_5 / KEYPAD_HOLD_DEBOUNCE_DIVIDER,
-	KEYPAD_HOLD_DEBOUNCE_6 / KEYPAD_HOLD_DEBOUNCE_DIVIDER,
-	KEYPAD_HOLD_DEBOUNCE_7 / KEYPAD_HOLD_DEBOUNCE_DIVIDER,
-	KEYPAD_HOLD_DEBOUNCE_8 / KEYPAD_HOLD_DEBOUNCE_DIVIDER,
-	KEYPAD_HOLD_DEBOUNCE_9 / KEYPAD_HOLD_DEBOUNCE_DIVIDER,
-	KEYPAD_HOLD_DEBOUNCE_STAR / KEYPAD_HOLD_DEBOUNCE_DIVIDER,
-	KEYPAD_HOLD_DEBOUNCE_HASH / KEYPAD_HOLD_DEBOUNCE_DIVIDER,
-	KEYPAD_HOLD_DEBOUNCE_A / KEYPAD_HOLD_DEBOUNCE_DIVIDER,
-	KEYPAD_HOLD_DEBOUNCE_B / KEYPAD_HOLD_DEBOUNCE_DIVIDER,
-	KEYPAD_HOLD_DEBOUNCE_C / KEYPAD_HOLD_DEBOUNCE_DIVIDER,
-	KEYPAD_HOLD_DEBOUNCE_D / KEYPAD_HOLD_DEBOUNCE_DIVIDER,
-};
-
-uint32_t KEYPAD_INT_FirstDebounce[16] = {
-	KEYPAD_HOLD_DEBOUNCE_0 * KEYPAD_FIRST_HOLD_MULTIPLIER,
-	KEYPAD_HOLD_DEBOUNCE_1 * KEYPAD_FIRST_HOLD_MULTIPLIER,
-	KEYPAD_HOLD_DEBOUNCE_2 * KEYPAD_FIRST_HOLD_MULTIPLIER,
-	KEYPAD_HOLD_DEBOUNCE_3 * KEYPAD_FIRST_HOLD_MULTIPLIER,
-	KEYPAD_HOLD_DEBOUNCE_4 * KEYPAD_FIRST_HOLD_MULTIPLIER,
-	KEYPAD_HOLD_DEBOUNCE_5 * KEYPAD_FIRST_HOLD_MULTIPLIER,
-	KEYPAD_HOLD_DEBOUNCE_6 * KEYPAD_FIRST_HOLD_MULTIPLIER,
-	KEYPAD_HOLD_DEBOUNCE_7 * KEYPAD_FIRST_HOLD_MULTIPLIER,
-	KEYPAD_HOLD_DEBOUNCE_8 * KEYPAD_FIRST_HOLD_MULTIPLIER,
-	KEYPAD_HOLD_DEBOUNCE_9 * KEYPAD_FIRST_HOLD_MULTIPLIER,
-	KEYPAD_HOLD_DEBOUNCE_STAR * KEYPAD_FIRST_HOLD_MULTIPLIER,
-	KEYPAD_HOLD_DEBOUNCE_HASH * KEYPAD_FIRST_HOLD_MULTIPLIER,
-	KEYPAD_HOLD_DEBOUNCE_A * KEYPAD_FIRST_HOLD_MULTIPLIER,
-	KEYPAD_HOLD_DEBOUNCE_B * KEYPAD_FIRST_HOLD_MULTIPLIER,
-	KEYPAD_HOLD_DEBOUNCE_C * KEYPAD_FIRST_HOLD_MULTIPLIER,
-	KEYPAD_HOLD_DEBOUNCE_D * KEYPAD_FIRST_HOLD_MULTIPLIER,
 };
 
 /* Private functions */
@@ -70,8 +48,9 @@ uint8_t TM_KEYPAD_INT_Read(void);
 
 /* Private variables */
 TM_KEYPAD_Type_t TM_KEYPAD_INT_KeypadType;
+static TM_KEYPAD_Button_t KeypadStatus = TM_KEYPAD_Button_NOPRESSED;
 
-extern void TM_KEYPAD_Init(TM_KEYPAD_Type_t type) {
+void TM_KEYPAD_Init(TM_KEYPAD_Type_t type) {
 	/* Set keyboard type */
 	TM_KEYPAD_INT_KeypadType = type;
 	
@@ -101,56 +80,16 @@ extern void TM_KEYPAD_Init(TM_KEYPAD_Type_t type) {
 	TM_KEYPAD_INT_SetColumn(0);
 }
 
-extern TM_KEYPAD_Button_t TM_KEYPAD_Read(void) {
-	static uint8_t check, lastPressed = KEYPAD_NO_PRESSED;
-	static uint32_t debounce, hold_debounce;
-	static uint8_t firstHold = 1;
+TM_KEYPAD_Button_t TM_KEYPAD_Read(void) {
+	TM_KEYPAD_Button_t temp;
 	
-	/* Read keyboard */
-	check = TM_KEYPAD_INT_Read();
+	/* Get keypad status */
+	temp = KeypadStatus;
 	
-	/* Check pressed */
-	if (check == KEYPAD_NO_PRESSED) {					/* If no button pressed */
-		debounce = 0;									/* Reset debounce check */
-		hold_debounce = 0;								/* Reset debounce on hold */
-		lastPressed = KEYPAD_NO_PRESSED;				/* Last button is not pressed */
-		firstHold = 1;									/* Set flag for first hold time */
-		
-		return TM_KEYPAD_Button_NOPRESSED;				/* Keypad is not pressed */
-	} else {
-		/* Check previous state */
-		if (lastPressed == check) {						/* If button now is same than last */			
-			/* Button hold event */
-			if (firstHold == 1) {						/* First hold waiting */				
-				if (hold_debounce++ >= KEYPAD_INT_FirstDebounce[check]) {
-					hold_debounce = 0;					/* Reset hold debounce */
-					firstHold = 0;
-					
-					return (TM_KEYPAD_Button_t)check;	/* Return debounce */
-				}
-			} else {
-				if (hold_debounce++ >= KEYPAD_INT_HoldDebounce[check]) {
-					hold_debounce = 0;					/* Reset hold debounce */
-					
-					return (TM_KEYPAD_Button_t)check;	/* Return debounce */
-				}
-			}
-			/* Reset */
-			return TM_KEYPAD_Button_NOPRESSED;
-		}
-		/* New state */								/* Increase debounce counter */
-		if (debounce++ >= KEYPAD_DEBOUNCE) {		/* Check debounce counter */
-			debounce = 0;							/* Reset debounce */
-			firstHold = 1;							/* Reset first hold state */
-			lastPressed = check;					/* Save last valid state */
-			
-			/* Return check */
-			return (TM_KEYPAD_Button_t)check;
-		}
-	}
+	/* Reset keypad status */
+	KeypadStatus = TM_KEYPAD_Button_NOPRESSED;
 	
-	/* No pressed */
-	return TM_KEYPAD_Button_NOPRESSED;
+	return temp;
 }
 
 /* Private */
@@ -163,24 +102,18 @@ void TM_KEYPAD_INT_SetColumn(uint8_t column) {
 		KEYPAD_COLUMN_4_HIGH;
 	}
 	
-	if (column == 0) {
-		/* row = 0 means all rows high */
-		return;
+	/* Set column low */
+	if (column == 1) {
+		KEYPAD_COLUMN_1_LOW;
 	}
-	switch (column) {
-		case 1:
-			KEYPAD_COLUMN_1_LOW;
-			break;
-		case 2:
-			KEYPAD_COLUMN_2_LOW;
-			break;
-		case 3:
-			KEYPAD_COLUMN_3_LOW;
-			break;
-		case 4:
-			KEYPAD_COLUMN_4_LOW;
-		default:
-			break;
+	if (column == 2) {
+		KEYPAD_COLUMN_2_LOW;
+	}
+	if (column == 3) {
+		KEYPAD_COLUMN_3_LOW;
+	}
+	if (column == 4) {
+		KEYPAD_COLUMN_4_LOW;
 	}
 }
 
@@ -202,7 +135,8 @@ uint8_t TM_KEYPAD_INT_CheckRow(uint8_t column) {
 	/* Scan row 4 */
 	if (TM_KEYPAD_INT_KeypadType == TM_KEYPAD_Type_Large && KEYPAD_ROW_4_CHECK) {
 		return KEYPAD_INT_Buttons[3][column - 1];
-	}	
+	}
+	
 	/* Not pressed */
 	return KEYPAD_NO_PRESSED;
 }
@@ -245,5 +179,18 @@ uint8_t TM_KEYPAD_INT_Read(void) {
 	
 	/* Not pressed */
 	return KEYPAD_NO_PRESSED;
+}
+
+void TM_KEYPAD_Update(void) {
+	static uint16_t millis = 0;
+	
+	/* Every X ms read */
+	if (++millis >= KEYPAD_READ_INTERVAL && KeypadStatus == TM_KEYPAD_Button_NOPRESSED) {
+		/* Reset */
+		millis = 0;
+		
+		/* Read keyboard */
+		KeypadStatus = (TM_KEYPAD_Button_t) TM_KEYPAD_INT_Read();
+	}
 }
 

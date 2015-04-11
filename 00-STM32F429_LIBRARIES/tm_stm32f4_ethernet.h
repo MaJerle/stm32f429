@@ -380,6 +380,7 @@ typedef struct {
 	uint16_t server_port;
 	uint8_t speed_100m;
 	uint8_t full_duplex;
+	uint8_t timeout_detected;
 } TM_ETHERNET_t;
 extern TM_ETHERNET_t TM_ETHERNET;
 
@@ -583,6 +584,16 @@ TM_ETHERNET_Result_t TM_ETHERNET_TestReady(void);
  * @retval Netmask address is returned at x location of address
  */
 #define TM_ETHERNET_GetNetmask(x)			(((x) >= 0 && (x) < 4) ? TM_ETHERNET.netmask[(x)] : 0)
+
+/**
+ * @brief  Sets flag when timeout was detected by your software
+ * @note   When ethernet is not inside your network (not come to your router), you can call this function,
+ *            and it will disable any future ethernet client requests to other servers.
+ * @note   After you set this flag you will have to make software reset to get flag back
+ * @param  None
+ * @retval None
+ */
+#define TM_ETHERNET_SetTimeoutDetected()    (TM_ETHERNET.timeout_detected = 1)
 
 /**
  * @}

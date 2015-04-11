@@ -29,6 +29,9 @@ int main(void) {
 	/* Initialize system */
 	SystemInit();
 	
+	/* Init delay functions */
+	TM_DELAY_Init();
+	
 	/* Initialize leds */
 	TM_DISCO_LedInit();
 	
@@ -46,7 +49,7 @@ int main(void) {
 		if (Keypad_Button != TM_KEYPAD_Button_NOPRESSED) {/* Keypad is pressed */
 			switch (Keypad_Button) {
 				case TM_KEYPAD_Button_0:		/* Button 0 pressed */
-					TM_DISCO_LedToggle(LED_GREEN | LED_RED | LED_BLUE | LED_ORANGE);
+					TM_DISCO_LedToggle(LED_ALL);
 					break;
 				case TM_KEYPAD_Button_1:		/* Button 1 pressed */
 					TM_DISCO_LedOn(LED_GREEN);
@@ -76,10 +79,10 @@ int main(void) {
 					/* Do your stuff here */
 					break;
 				case TM_KEYPAD_Button_STAR:		/* Button STAR pressed */
-					TM_DISCO_LedOn(LED_GREEN | LED_RED | LED_BLUE | LED_ORANGE);
+					TM_DISCO_LedOn(LED_ALL);
 					break;
 				case TM_KEYPAD_Button_HASH:		/* Button HASH pressed */
-					TM_DISCO_LedOff(LED_GREEN | LED_RED | LED_BLUE | LED_ORANGE);
+					TM_DISCO_LedOff(LED_ALL);
 					break;
 				case TM_KEYPAD_Button_A:		/* Button A pressed, only on large keyboard */
 					/* Do your stuff here */
@@ -97,8 +100,15 @@ int main(void) {
 					break;
 			}
 			
+			/* Send to user */
 			sprintf(buff, "Pressed: %u us\n", (uint8_t)Keypad_Button);
 			TM_USART_Puts(USART1, buff);
 		}
 	}
+}
+
+/* 1ms handler */
+void TM_DELAY_1msHandler(void) {
+	/* Process keypad */
+	TM_KEYPAD_Update();
 }

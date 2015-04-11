@@ -3,7 +3,7 @@
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
  * @link    http://stm32f4-discovery.com/2015/03/library-54-general-library-for-stm32f4xx-devices
- * @version v1.1
+ * @version v1.2
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   GENERAL library for STM32F4xx devices
@@ -28,7 +28,7 @@
 @endverbatim
  */
 #ifndef TM_GENERAL_H
-#define TM_GENERAL_H 110
+#define TM_GENERAL_H 120
 
 /* C++ detection */
 #ifdef __cplusplus
@@ -56,11 +56,16 @@ extern C {
 - Disable or enable global NVIC interrupts
 - Get different clock speeds in your system
 - Operate with Cortex-M4 DWT hardware counter
+- Check if number is odd or even and if it is power of 2
 @endverbatim
  *
  * \par Changelog
  *
 @verbatim
+ Version 1.2
+  - April 10, 2015
+  - Added support for checking if number is odd or even and if it is power of 2
+  
  Version 1.1
   - April 07, 2015
   - Added support for DWT counter
@@ -275,6 +280,28 @@ static __INLINE void TM_GENERAL_DWTCounterDelayms(uint32_t millis) {
 		/* Do nothing */
 	}
 }
+
+/**
+ * @brief  Checks if number is power of 2
+ * @note   It can be used to determine if number has more than just one bit set
+ *         If only one bit is set, function will return > 0 because this is power of 2.
+ * @param  number: Number to check if it is power of 2
+ * @retval Is power of 2 status:
+ *            - 0: Number if not power of 2
+ *            - > 0: Number is power of 2
+ * @note   Defined as macro for faster execution
+ */
+#define TM_GENERAL_IsNumberPowerOfTwo(number)    (number && !(number & (number - 1)))
+
+/**
+ * @brief  Checks if number is odd or even
+ * @param  number: Number to check if it is odd or even
+ * @retval Is number even status:
+ *            - 0: Number is odd
+ *            - > 0: Number is even
+ * @note   Defined as macro for faster execution
+ */
+#define TM_GENERAL_IsNumberEven(number)    ((number & 1) == 0)
 
 /**
  * @brief  Software reset callback.

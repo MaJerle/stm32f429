@@ -113,6 +113,7 @@ TM_ETHERNET_Result_t TM_ETHERNET_Init(uint8_t* mac_addr, uint8_t* ip_addr, uint8
 	TM_ETHERNET.Server_TX_Bytes = 0;
 	TM_ETHERNET.Server_Connections = 0;
 	TM_ETHERNET.server_port = 0;
+	TM_ETHERNET.timeout_detected = 0;
 	
 	/* Configure ethernet (GPIOs, clocks, MAC, DMA) */
 	if (!ETH_BSP_Config()) {
@@ -227,6 +228,12 @@ TM_ETHERNET_Result_t TM_ETHERNETCLIENT_Connect(char* conn_name, uint8_t ip1, uin
 	/* If library is not initialized */
 	if (!Initialized) {
 		return TM_ETHERNET_Result_LibraryNotInitialized;
+	}
+	
+	/* If timeout detected flag is set */
+	if (TM_ETHERNET.timeout_detected) {
+		/* Return error */
+		return TM_ETHERNET_Result_Error;
 	}
 	
 	/* Check if link is up */

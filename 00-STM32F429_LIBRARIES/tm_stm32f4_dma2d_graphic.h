@@ -96,31 +96,46 @@ extern C {
  * @brief  Default LCD width in pixels
  */
 #ifndef DMA2D_GRAPHIC_LCD_WIDTH
-#define DMA2D_GRAPHIC_LCD_WIDTH		240
+	#if defined(DMA2D_GRAPHIC_USE_STM324x9_EVAL) || defined(TM_DISCO_STM324x9_EVAL)
+		#define DMA2D_GRAPHIC_LCD_WIDTH     640 /*!< STM32439-Eval board */
+	#else
+		#define DMA2D_GRAPHIC_LCD_WIDTH     240 /*!< STM32F429-Discovery board */
+	#endif
 #endif
+
 /**
  * @brief  Default LCD height in pixels
  */
 #ifndef DMA2D_GRAPHIC_LCD_HEIGHT
-#define DMA2D_GRAPHIC_LCD_HEIGHT	320
+	#if defined(DMA2D_GRAPHIC_USE_STM324x9_EVAL) || defined(TM_DISCO_STM324x9_EVAL)
+		#define DMA2D_GRAPHIC_LCD_HEIGHT    480 /*!< STM32439-Eval board */
+	#else
+		#define DMA2D_GRAPHIC_LCD_HEIGHT    320 /*!< STM32F429-Discovery board */
+	#endif
 #endif
+
 /**
  * @brief  RAM Start address for LCD
  * @note   On STM32F429-Discovery, this is address for SDRAM which operate with LCD and LTDC peripheral
  */
 #ifndef DMA2D_GRAPHIC_RAM_ADDR
-#define DMA2D_GRAPHIC_RAM_ADDR		0xD0000000
+	#if defined(DMA2D_GRAPHIC_USE_STM324x9_EVAL) || defined(TM_DISCO_STM324x9_EVAL)
+		#define DMA2D_GRAPHIC_RAM_ADDR      0xC0000000 /*!< STM32439-Eval board */
+	#else
+		#define DMA2D_GRAPHIC_RAM_ADDR      0xD0000000 /*!< STM32F429-Discovery board */
+	#endif
 #endif
+
 /**
  * @brief  Timeout for DMA2D
  */
 #ifndef DMA2D_GRAPHIC_TIMEOUT
-#define DMA2D_GRAPHIC_TIMEOUT		(uint32_t)1000000
+#define DMA2D_GRAPHIC_TIMEOUT       (uint32_t)10000000
 #endif
 /**
  * @brief  Number of LCD pixels
  */
-#define DMA2D_GRAPHIC_PIXELS		DMA2D_GRAPHIC_LCD_WIDTH * DMA2D_GRAPHIC_LCD_HEIGHT
+#define DMA2D_GRAPHIC_PIXELS        DMA2D_GRAPHIC_LCD_WIDTH * DMA2D_GRAPHIC_LCD_HEIGHT
 
 /**
  * @defgroup TM_DMA2D_GRAPHIC_COLORS

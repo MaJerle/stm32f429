@@ -19,7 +19,7 @@
 #include "tm_stm32f4_bootloader.h"
 
 /* New type for function call */
-typedef  void (*Bootloader_Function)(void);
+typedef void (*Bootloader_Function)(void);
 Bootloader_Function Jump_To_Application;
 
 uint8_t TM_BOOTLOADER_JumpToProgram(uint32_t program_address) {

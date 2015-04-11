@@ -27,7 +27,7 @@
 @endverbatim
  */
 #ifndef TM_GPS_H
-#define TM_GPS_H 110
+#define TM_GPS_H 120
 /**
  * @addtogroup TM_STM32F4xx_Libraries
  * @{
@@ -69,6 +69,7 @@
  *     - Id's of satellites in use
  *  - GPGSV: GPS Satellites in view
  *     - Satellites in view
+ *     - Description of all satellites in view
  *
  * By default, each of this data has to be detected in order to get "VALID" data.
  * If your GPS does not return any of this statement, you can disable option.
@@ -100,17 +101,31 @@
  *  STM32F4xx TX = PB6\n
  *  STM32F4xx RX = PB7
  *
- * @note Connect GPS's TX to STM32F4xx's RX and vice versa.
+ * @note Connect GPS's TX to STM32F4xx's RX and vice versa
+ *
+ * \par Increase USART internal buffer
+ *
+ * GPS library is based on USART library, which uses internal buffers to store data which are received but not read.
+ * 
+ * GPS receiver will send a lot of data at a time and if you are doing other stuff that time, it might happen that you
+ * will not so quickly update GPS data and buffer will overflow. Default buffer size is for my USART lib 32 bytes.
+ *
+ * I recommend that you increase that memory. 
+ * For further instructions how to do that, look at @ref TM_USART module.
  *
  * \par Changelog
  *
 @verbatim
+ Version 1.2
+  - April 11, 2015
+  - Added support for description to all satellites in view
+  
  Version 1.1
-   - August 22, 2014
-   - Added support for calculating distance between 2 coordinates and bearing in degrees
+  - August 22, 2014
+  - Added support for calculating distance between 2 coordinates and bearing in degrees
 
-  Version 1.0
-   - First release
+ Version 1.0
+  - First release
 @endverbatim
  *
  * \par Dependencies
@@ -179,6 +194,7 @@
 #define GPS_FLAG_SATS1_12		0x00020000	//GPGSA
 /* GPGSV Flags */
 #define GPS_FLAG_SATSINVIEW		0x00010000	//GPGSV
+#define GPS_FLAG_SATSDESC       0x00040000  //GPGSV
 
 /* GPGGA Positions */
 #define GPS_POS_LATITUDE		GPS_CONCAT(GPS_GPGGA, 2)	//
@@ -189,11 +205,13 @@
 #define GPS_POS_TIME			GPS_CONCAT(GPS_GPGGA, 1)	//
 #define GPS_POS_EW				GPS_CONCAT(GPS_GPGGA, 5)	//
 #define GPS_POS_NS				GPS_CONCAT(GPS_GPGGA, 3)	//
+
 /* GPRMC Positions */
 #define GPS_POS_SPEED			GPS_CONCAT(GPS_GPRMC, 7)	//
 #define GPS_POS_DATE			GPS_CONCAT(GPS_GPRMC, 9)	//
 #define GPS_POS_VALIDITY		GPS_CONCAT(GPS_GPRMC, 2)	//
 #define GPS_POS_DIRECTION		GPS_CONCAT(GPS_GPRMC, 8)	//
+
 /* GPGSA Positions */
 #define GPS_POS_PDOP			GPS_CONCAT(GPS_GPGSA, 15)	//
 #define GPS_POS_HDOP			GPS_CONCAT(GPS_GPGSA, 16)	//
@@ -223,6 +241,9 @@
 #define GPS_DEGREES2RADIANS(x)	((x) * (float)0.01745329251994)
 /* Radians to degrees */
 #define GPS_RADIANS2DEGREES(x)	((x) * (float)57.29577951308232)
+	
+/* Maximal number of satellites in view */
+#define GPS_MAX_SATS_IN_VIEW    24
 
  /**
  * @}
@@ -304,35 +325,46 @@ typedef struct {
 } TM_GPS_Time_t;
 
 /**
+ * @brief  Satellite in view description structure
+ */
+typedef struct {
+	uint8_t ID;        /*!< SV PRN number */
+	uint8_t Elevation; /*!< Elevation in degrees, 90 maximum */
+	uint16_t Azimuth;  /*!< Azimuth, degrees from true north, 000 to 359 */
+	uint8_t SNR;       /*!< SNR, 00-99 dB (0 when not tracking) */
+} TM_GPS_Satellite_t;
+
+/**
  * @brief  Main GPS data structure 
  */
 typedef struct {
 #ifndef GPS_DISABLE_GPGGA
-	float Latitude;           /*!< Latitude position from GPS, -90 to 90 degrees response. */
-	float Longitude;          /*!< Longitude position from GPS, -180 to 180 degrees response. */
-	uint8_t Satellites;       /*!< Number of satellites in use for GPS position. */
-	uint8_t Fix;              /*!< GPS fix; 0: Invalid; 1: GPS Fix; 2: DGPS Fix. */
-	float Altitude;           /*!< Altitude above the sea. */
-	TM_GPS_Time_t Time;       /*!< Current time from GPS. @ref TM_GPS_Time_t. */
+	float Latitude;                 /*!< Latitude position from GPS, -90 to 90 degrees response. */
+	float Longitude;                /*!< Longitude position from GPS, -180 to 180 degrees response. */
+	uint8_t Satellites;             /*!< Number of satellites in use for GPS position. */
+	uint8_t Fix;                    /*!< GPS fix; 0: Invalid; 1: GPS Fix; 2: DGPS Fix. */
+	float Altitude;                 /*!< Altitude above the sea. */
+	TM_GPS_Time_t Time;             /*!< Current time from GPS. @ref TM_GPS_Time_t. */
 #endif
 #ifndef GPS_DISABLE_GPRMC
-	TM_GPS_Date_t Date;       /*!< Current data from GPS. @ref TM_GPS_Date_t. */
-	float Speed;              /*!< Speed in knots from GPS. */
-	uint8_t Validity;         /*!< GPS validation; 1: valid; 0: invalid. */
-	float Direction;          /*!< Course on the ground in relation to North. */
+	TM_GPS_Date_t Date;             /*!< Current data from GPS. @ref TM_GPS_Date_t. */
+	float Speed;                    /*!< Speed in knots from GPS. */
+	uint8_t Validity;               /*!< GPS validation; 1: valid; 0: invalid. */
+	float Direction;                /*!< Course on the ground in relation to North. */
 #endif
 #ifndef GPS_DISABLE_GPGSA
-	float HDOP;               /*!< Horizontal dilution of precision. */
-	float PDOP;               /*!< Position dilution od precision. */
-	float VDOP;               /*!< Vertical dilution of precision. */
-	uint8_t FixMode;          /*!< Current fix mode in use:; 1: Fix not available; 2: 2D; 3: 3D. */
-	uint8_t SatelliteIDs[12]; /*!< Array with IDs of satellites in use. 
-	                               Only first data are valid, so if you have 5 satellites in use, only SatelliteIDs[4:0] are valid */
+	float HDOP;                     /*!< Horizontal dilution of precision. */
+	float PDOP;                     /*!< Position dilution od precision. */
+	float VDOP;                     /*!< Vertical dilution of precision. */
+	uint8_t FixMode;                /*!< Current fix mode in use:; 1: Fix not available; 2: 2D; 3: 3D. */
+	uint8_t SatelliteIDs[12];       /*!< Array with IDs of satellites in use. 
+	                                     Only first data are valid, so if you have 5 satellites in use, only SatelliteIDs[4:0] are valid */
 #endif
 #ifndef GPS_DISABLE_GPGSV	
-	uint8_t SatellitesInView; /*!< Number of satellites in view */
+	uint8_t SatellitesInView;       /*!< Number of satellites in view */
+	TM_GPS_Satellite_t SatDesc[30]; /*!< Description of each satellite in view */ 
 #endif
-	TM_GPS_Result_t Status;   /*!< GPS result. This parameter is value of @ref TM_GPS_Result_t */
+	TM_GPS_Result_t Status;         /*!< GPS result. This parameter is value of @ref TM_GPS_Result_t */
 } TM_GPS_Data_t;
 
 /**
@@ -403,8 +435,8 @@ void TM_GPS_ConvertFloat(float num, TM_GPS_Float_t* Float_Data, uint8_t decimals
 
 /**
  * @brief  Calculates distance between 2 coordinates on earth and bearing from start to end point in relation to the north
- * @param  *Distance_Data: Pointer to TM_GPS_Distance_t structure with latitude and longitude set values
- * @note   Calculation results will be saved in *Distance_Data TM_GPS_Distance_t structure
+ * @param  *Distance_Data: Pointer to @ref TM_GPS_Distance_t structure with latitude and longitude set values
+ * @note   Calculation results will be saved in *Distance_Data @ref TM_GPS_Distance_t structure
  * @retval None
  */
 void TM_GPS_DistanceBetween(TM_GPS_Distance_t* Distance_Data);
