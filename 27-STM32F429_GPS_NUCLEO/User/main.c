@@ -169,7 +169,7 @@ int main(void) {
 						GPS_Data.SatDesc[i].SNR
 					);
 				}
-#endif
+#endif				
 				printf("---------------------------------------\n");
 			} else {
 				/* GPS signal is not valid */

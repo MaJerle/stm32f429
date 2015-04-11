@@ -17,7 +17,6 @@
  * |----------------------------------------------------------------------
  */
 #include "tm_stm32f4_gps.h"
-#include "stdio.h"
 
 static char GPS_Term[15];
 static uint8_t GPS_Term_Number;
@@ -28,6 +27,7 @@ static uint8_t TM_GPS_Statement = GPS_ERR;
 static uint32_t GPS_Flags = 0, GPS_Flags_OK;
 static TM_GPS_Data_t TM_GPS_INT_Data;
 static uint8_t TM_GPS_FirstTime;
+static char GPS_Statement_Name[7];
 
 #ifndef GPS_DISABLE_GPGSV
 uint8_t GPGSV_StatementsCount = 0;
@@ -37,28 +37,28 @@ uint8_t GPGSV_Term_Mod = 0;
 #endif
 
 /* Private */
-TM_GPS_Result_t TM_GPS_INT_Do(TM_GPS_Data_t* GPS_Data, char c);
-void TM_GPS_INT_CheckTerm(TM_GPS_Data_t* GPS_Data);
-TM_GPS_Result_t TM_GPS_INT_Return(TM_GPS_Data_t* GPS_Data);
+TM_GPS_Result_t TM_GPS_INT_Do(TM_GPS_t* GPS_Data, char c);
+void TM_GPS_INT_CheckTerm(TM_GPS_t* GPS_Data);
+TM_GPS_Result_t TM_GPS_INT_Return(TM_GPS_t* GPS_Data);
 uint8_t TM_GPS_INT_StringStartsWith(char* string, const char* str);
 uint8_t TM_GPS_INT_Atoi(char* str, uint32_t* val);
 uint32_t TM_GPS_INT_Pow(uint8_t x, uint8_t y);
 void TM_GPS_INT_Add2CRC(char c);
 uint8_t TM_GPS_INT_Hex2Dec(char c);
-TM_GPS_Result_t TM_GPS_INT_ReturnWithStatus(TM_GPS_Data_t* GPS_Data, TM_GPS_Result_t status);
-uint8_t TM_GPS_INT_FlagsOk(void);
-void TM_GPS_INT_ClearFlags(void);
+TM_GPS_Result_t TM_GPS_INT_ReturnWithStatus(TM_GPS_t* GPS_Data, TM_GPS_Result_t status);
+uint8_t TM_GPS_INT_FlagsOk(TM_GPS_t* GPS_Data);
+void TM_GPS_INT_ClearFlags(TM_GPS_t* GPS_Data);
 void TM_GPS_INT_SetFlag(uint32_t flag);
-void TM_GPS_INT_CheckEmpty(TM_GPS_Data_t* GPS_Data);
+void TM_GPS_INT_CheckEmpty(TM_GPS_t* GPS_Data);
 
 /* Public */
-void TM_GPS_Init(TM_GPS_Data_t* GPS_Data, uint32_t baudrate) {
+void TM_GPS_Init(TM_GPS_t* GPS_Data, uint32_t baudrate) {
 	/* Initialize USART */
 	TM_USART_Init(GPS_USART, GPS_USART_PINSPACK, baudrate);
 	/* Set first-time variable */
 	TM_GPS_FirstTime = 1;
 	/* Clear all flags */
-	TM_GPS_INT_ClearFlags();
+	TM_GPS_INT_ClearFlags(GPS_Data);
 	
 	/* Set flags used */
 #ifndef GPS_DISABLE_GPGGA
@@ -90,7 +90,7 @@ void TM_GPS_Init(TM_GPS_Data_t* GPS_Data, uint32_t baudrate) {
 #endif
 }
 
-TM_GPS_Result_t TM_GPS_Update(TM_GPS_Data_t* GPS_Data) {
+TM_GPS_Result_t TM_GPS_Update(TM_GPS_t* GPS_Data) {
 	/* Check for data in USART */
 	if (!TM_USART_BufferEmpty(GPS_USART)) {
 		/* Go through all buffer */
@@ -112,6 +112,36 @@ TM_GPS_Result_t TM_GPS_Update(TM_GPS_Data_t* GPS_Data) {
 	
 	/* We have old data */
 	return TM_GPS_INT_ReturnWithStatus(GPS_Data, TM_GPS_Result_OldData);
+}
+
+TM_GPS_Custom_t * TM_GPS_AddCustom(TM_GPS_t* GPS_Data, char* GPG_Statement, uint8_t TermNumber) {
+	TM_GPS_Custom_t * temp;
+	
+	/* Check if available */
+	if (GPS_Data->CustomStatementsCount >= GPS_CUSTOM_NUMBER) {
+		/* Error */
+		return NULL;
+	}
+	
+	/* Allocate memory */
+	temp = (TM_GPS_Custom_t *) malloc(sizeof(TM_GPS_Custom_t));
+	/* Check malloc success */
+	if (temp == NULL) {
+		return NULL;
+	}
+	
+	/* Fill settings */
+	strcpy(temp->Statement, GPG_Statement);
+	temp->TermNumber = TermNumber;
+	
+	/* Add to array */
+	GPS_Data->CustomStatements[GPS_Data->CustomStatementsCount] = temp;
+	
+	/* Increase memory count */
+	GPS_Data->CustomStatementsCount++;
+	
+	/* Return pointer */
+	return temp;
 }
 
 float TM_GPS_ConvertSpeed(float SpeedInKnots, TM_GPS_Speed_t toSpeed) {
@@ -201,10 +231,10 @@ void TM_GPS_DistanceBetween(TM_GPS_Distance_t* Distance_Data) {
 }
 
 /* Private */
-TM_GPS_Result_t TM_GPS_INT_Do(TM_GPS_Data_t* GPS_Data, char c) {
-	if (TM_GPS_INT_FlagsOk()) {
+TM_GPS_Result_t TM_GPS_INT_Do(TM_GPS_t* GPS_Data, char c) {
+	if (TM_GPS_INT_FlagsOk(GPS_Data)) {
 		/* Data were valid before, new data are coming, not new anymore */
-		TM_GPS_INT_ClearFlags();
+		TM_GPS_INT_ClearFlags(GPS_Data);
 		/* Data were "new" on last call, now are only "Old data", no NEW data */
 		GPS_Data->Status = TM_GPS_Result_OldData;
 	}
@@ -255,7 +285,7 @@ TM_GPS_Result_t TM_GPS_INT_Do(TM_GPS_Data_t* GPS_Data, char c) {
 		if (TM_GPS_CRC_Received != TM_GPS_CRC) {
 			/* CRC is not OK, data failed somewhere */
 			/* Clear all flags */
-			TM_GPS_INT_ClearFlags();
+			TM_GPS_INT_ClearFlags(GPS_Data);
 		}
 		
 		/* Reset term number */
@@ -297,12 +327,12 @@ void TM_GPS_INT_Add2CRC(char c) {
 	TM_GPS_CRC ^= c;
 }
 
-void TM_GPS_INT_CheckTerm(TM_GPS_Data_t* GPS_Data) {
+void TM_GPS_INT_CheckTerm(TM_GPS_t* GPS_Data) {
 #ifndef GPS_DISABLE_GPGSA
 	static uint8_t ids_count = 0;
 #endif
 	uint32_t temp;
-	uint8_t count;
+	uint8_t count, i;
 	if (GPS_Term_Number == 0) {
 		/* Statement indicator */
 		if (TM_GPS_INT_StringStartsWith(GPS_Term, "$GPGGA")) {
@@ -317,14 +347,26 @@ void TM_GPS_INT_CheckTerm(TM_GPS_Data_t* GPS_Data) {
 			TM_GPS_Statement = GPS_ERR;
 		}
 		
+		/* Copy term to variable */
+		strcpy(GPS_Statement_Name, GPS_Term);
+		
 		/* Do nothing */
 		return;
 	}
 	
-	/* Check valid input */
-	if (TM_GPS_Statement == GPS_ERR) {
-		/* Not valid input data */
-		return;
+	/* Check custom terms one by one */
+	for (i = 0; i < GPS_Data->CustomStatementsCount; i++) {
+		/* Term is inside current statement */
+		if (TM_GPS_INT_StringStartsWith(GPS_Statement_Name, GPS_Data->CustomStatements[i]->Statement)) {
+			/* Term number is correct */
+			if (GPS_Term_Number == GPS_Data->CustomStatements[i]->TermNumber) {
+				/* Copy string value */
+				strcpy(GPS_Data->CustomStatements[i]->Value, GPS_Term);
+				
+				/* Set updated flag */
+				GPS_Data->CustomStatements[i]->Updated = 1;
+			}
+		}
 	}
 	
 	switch (GPS_CONCAT(TM_GPS_Statement, GPS_Term_Number)) {
@@ -591,9 +633,9 @@ void TM_GPS_INT_CheckTerm(TM_GPS_Data_t* GPS_Data) {
 #endif
 }
 
-TM_GPS_Result_t TM_GPS_INT_Return(TM_GPS_Data_t* GPS_Data) {
+TM_GPS_Result_t TM_GPS_INT_Return(TM_GPS_t* GPS_Data) {
 	uint8_t i;
-	if (TM_GPS_INT_FlagsOk()) {
+	if (TM_GPS_INT_FlagsOk(GPS_Data)) {
 		/* Clear first time */
 		TM_GPS_FirstTime = 0;
 		
@@ -680,21 +722,45 @@ uint8_t TM_GPS_INT_Hex2Dec(char c) {
 	return 0;
 }
 
-TM_GPS_Result_t TM_GPS_INT_ReturnWithStatus(TM_GPS_Data_t* GPS_Data, TM_GPS_Result_t status) {
+TM_GPS_Result_t TM_GPS_INT_ReturnWithStatus(TM_GPS_t* GPS_Data, TM_GPS_Result_t status) {
 	/* Set status and return status */
 	GPS_Data->Status = status;
 	/* Return status */
 	return status;
 }
 
-uint8_t TM_GPS_INT_FlagsOk(void) {
-	/* Check flags */
-	return GPS_Flags == GPS_Flags_OK;
+uint8_t TM_GPS_INT_FlagsOk(TM_GPS_t* GPS_Data) {
+	/* Check main flags */
+	if (GPS_Flags == GPS_Flags_OK) {
+		uint8_t i;
+		/* Check custom terms */
+		for (i = 0; i < GPS_Data->CustomStatementsCount; i++) {
+			/* If not flag set */
+			if (GPS_Data->CustomStatements[i]->Updated == 0) {
+				/* Return, flags not OK */
+				return 0;
+			}
+		}
+		
+		/* Flags valid */
+		return 1;
+	}
+	
+	/* Not valid */
+	return 0;
 }
 
-void TM_GPS_INT_ClearFlags(void) {
-	/* Reset flags */
+void TM_GPS_INT_ClearFlags(TM_GPS_t* GPS_Data) {
+	uint8_t i;
+	
+	/* Reset main flags */
 	GPS_Flags = 0;
+	
+	/* Clear custom terms */
+	for (i = 0; i < GPS_Data->CustomStatementsCount; i++) {
+		/* If not flag set */
+		GPS_Data->CustomStatements[i]->Updated = 0;
+	}
 }
 
 void TM_GPS_INT_SetFlag(uint32_t flag) {
@@ -702,7 +768,7 @@ void TM_GPS_INT_SetFlag(uint32_t flag) {
 	GPS_Flags |= flag;
 }
 
-void TM_GPS_INT_CheckEmpty(TM_GPS_Data_t* GPS_Data) {
+void TM_GPS_INT_CheckEmpty(TM_GPS_t* GPS_Data) {
 	if (GPS_Term_Pos == 1) {
 		switch (GPS_CONCAT(TM_GPS_Statement, GPS_Term_Number)) {
 #ifndef GPS_DISABLE_GPGGA

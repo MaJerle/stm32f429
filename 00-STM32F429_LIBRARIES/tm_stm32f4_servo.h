@@ -27,43 +27,6 @@
    ----------------------------------------------------------------------
 @endverbatim
  */
-/**
- *	Servo library for STM32F4xx
- *
- *	@author 	Tilen Majerle
- *	@email		tilen@majerle.eu
- *	@website	http://stm32f4-discovery.com
- *	@link		http://stm32f4-discovery.com/2014/10/library-42-control-rc-servo-stm32f4
- *	@version 	v1.1
- *	@ide		Keil uVision
- *	@license	GNU GPL v3
- *	
- * |----------------------------------------------------------------------
- * | Copyright (C) Tilen Majerle, 2014
- * | 
- * | This program is free software: you can redistribute it and/or modify
- * | it under the terms of the GNU General Public License as published by
- * | the Free Software Foundation, either version 3 of the License, or
- * | any later version.
- * |  
- * | This program is distributed in the hope that it will be useful,
- * | but WITHOUT ANY WARRANTY; without even the implied warranty of
- * | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * | GNU General Public License for more details.
- * | 
- * | You should have received a copy of the GNU General Public License
- * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * |----------------------------------------------------------------------
- *
- * Version 1.1
- *	- January 03, 2015
- *	- Added "micros" and "degrees" values to struct for user feedback where servo is
- *	- Supports TM PWM 2.0 version library
- *
- * This library allows you to control RC servo with STM32F4xx.
- * 
- * Basically, only limitation for number of servos is number of timers in MCU.
- */
 #ifndef TM_SERVO_H
 #define TM_SERVO_H 110
 

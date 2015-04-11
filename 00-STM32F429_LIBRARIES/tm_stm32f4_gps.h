@@ -3,7 +3,7 @@
  * @email  tilen@majerle.eu
  * @website http://stm32f4-discovery.com
  * @link    http://stm32f4-discovery.com/2014/08/library-27-gps-stm32f4-devices/
- * @version v1.1
+ * @version v1.3
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   GPS NMEA standard data parser for STM32F4xx devices
@@ -27,7 +27,7 @@
 @endverbatim
  */
 #ifndef TM_GPS_H
-#define TM_GPS_H 120
+#define TM_GPS_H 130
 /**
  * @addtogroup TM_STM32F4xx_Libraries
  * @{
@@ -70,6 +70,7 @@
  *  - GPGSV: GPS Satellites in view
  *     - Satellites in view
  *     - Description of all satellites in view
+ *  - Custom statements defined by user
  *
  * By default, each of this data has to be detected in order to get "VALID" data.
  * If your GPS does not return any of this statement, you can disable option.
@@ -116,6 +117,10 @@
  * \par Changelog
  *
 @verbatim
+ Version 1.3
+  - April 12, 2015
+  - Added support for custom statements defined by user 
+  
  Version 1.2
   - April 11, 2015
   - Added support for description to all satellites in view
@@ -144,11 +149,10 @@
 #include "tm_stm32f4_usart.h"
 #include "defines.h"
 #include "math.h"
+#include "stdio.h"
+#include "stdlib.h"
+#include "string.h"
 
-/* Default GPS USART used */
-#ifndef GPS_USART
-#define GPS_USART				USART1
-#define GPS_USART_PINSPACK		TM_USART_PinsPack_2
 #endif
 
 /**
@@ -156,6 +160,16 @@
  * @brief    Library private defines without any sense for USER
  * @{
  */
+
+/* Default GPS USART used */
+#ifndef GPS_USART
+#define GPS_USART               USART1
+#define GPS_USART_PINSPACK      TM_USART_PinsPack_2
+#endif
+
+/* Maximum number of custom GPGxx values */
+#ifndef GPS_CUSTOM_NUMBER
+#define GPS_CUSTOM_NUMBER       10
 
 /* Is character a digit */
 #define GPS_IS_DIGIT(x)			((x) >= '0' && (x) <= '9')
@@ -335,37 +349,54 @@ typedef struct {
 } TM_GPS_Satellite_t;
 
 /**
+ * @brief  Custom NMEA statement and term, selected by user 
+ */
+typedef struct {
+	char Statement[7];  /*!< Statement value, including "$" at beginning. For example, "$GPRMC" */
+	uint8_t TermNumber; /*!< Term number position inside statement */
+	char Value[15];     /*!< Value from GPS receiver at given statement and term number will be stored here.
+	                            @note Value will not be converted to number if needed, but will stay as a character */
+	uint8_t Updated;    /*!< Updated flag. If this parameter is set to 1, then new update has been made. Meant for private use */
+} TM_GPS_Custom_t;
+
+/**
  * @brief  Main GPS data structure 
  */
 typedef struct {
 #ifndef GPS_DISABLE_GPGGA
-	float Latitude;                 /*!< Latitude position from GPS, -90 to 90 degrees response. */
-	float Longitude;                /*!< Longitude position from GPS, -180 to 180 degrees response. */
-	uint8_t Satellites;             /*!< Number of satellites in use for GPS position. */
-	uint8_t Fix;                    /*!< GPS fix; 0: Invalid; 1: GPS Fix; 2: DGPS Fix. */
-	float Altitude;                 /*!< Altitude above the sea. */
-	TM_GPS_Time_t Time;             /*!< Current time from GPS. @ref TM_GPS_Time_t. */
+	float Latitude;                                       /*!< Latitude position from GPS, -90 to 90 degrees response. */
+	float Longitude;                                      /*!< Longitude position from GPS, -180 to 180 degrees response. */
+	uint8_t Satellites;                                   /*!< Number of satellites in use for GPS position. */
+	uint8_t Fix;                                          /*!< GPS fix; 0: Invalid; 1: GPS Fix; 2: DGPS Fix. */
+	float Altitude;                                       /*!< Altitude above the sea. */
+	TM_GPS_Time_t Time;                                   /*!< Current time from GPS. @ref TM_GPS_Time_t. */
 #endif
 #ifndef GPS_DISABLE_GPRMC
-	TM_GPS_Date_t Date;             /*!< Current data from GPS. @ref TM_GPS_Date_t. */
-	float Speed;                    /*!< Speed in knots from GPS. */
-	uint8_t Validity;               /*!< GPS validation; 1: valid; 0: invalid. */
-	float Direction;                /*!< Course on the ground in relation to North. */
+	TM_GPS_Date_t Date;                                   /*!< Current data from GPS. @ref TM_GPS_Date_t. */
+	float Speed;                                          /*!< Speed in knots from GPS. */
+	uint8_t Validity;                                     /*!< GPS validation; 1: valid; 0: invalid. */
+	float Direction;                                      /*!< Course on the ground in relation to North. */
 #endif
 #ifndef GPS_DISABLE_GPGSA
-	float HDOP;                     /*!< Horizontal dilution of precision. */
-	float PDOP;                     /*!< Position dilution od precision. */
-	float VDOP;                     /*!< Vertical dilution of precision. */
-	uint8_t FixMode;                /*!< Current fix mode in use:; 1: Fix not available; 2: 2D; 3: 3D. */
-	uint8_t SatelliteIDs[12];       /*!< Array with IDs of satellites in use. 
-	                                     Only first data are valid, so if you have 5 satellites in use, only SatelliteIDs[4:0] are valid */
+	float HDOP;                                           /*!< Horizontal dilution of precision. */
+	float PDOP;                                           /*!< Position dilution od precision. */
+	float VDOP;                                           /*!< Vertical dilution of precision. */
+	uint8_t FixMode;                                      /*!< Current fix mode in use:; 1: Fix not available; 2: 2D; 3: 3D. */
+	uint8_t SatelliteIDs[12];                             /*!< Array with IDs of satellites in use. 
+	                                                           Only first data are valid, so if you have 5 satellites in use, only SatelliteIDs[4:0] are valid */
 #endif
 #ifndef GPS_DISABLE_GPGSV	
-	uint8_t SatellitesInView;       /*!< Number of satellites in view */
-	TM_GPS_Satellite_t SatDesc[30]; /*!< Description of each satellite in view */ 
+	uint8_t SatellitesInView;                             /*!< Number of satellites in view */
+	TM_GPS_Satellite_t SatDesc[30];                       /*!< Description of each satellite in view */ 
 #endif
-	TM_GPS_Result_t Status;         /*!< GPS result. This parameter is value of @ref TM_GPS_Result_t */
-} TM_GPS_Data_t;
+	TM_GPS_Result_t Status;                               /*!< GPS result. This parameter is value of @ref TM_GPS_Result_t */
+	TM_GPS_Custom_t* CustomStatements[GPS_CUSTOM_NUMBER]; /*!< Array of pointers for custom GPS NMEA statements, selected by user.
+	                                                              You can use @ref GPS_CUSTOM_NUMBER number of custom statements */
+	uint8_t CustomStatementsCount;                        /*!< Number of custom GPS statements selected by user */
+} TM_GPS_t;
+
+/* Backward compatibility */
+typedef TM_GPS_t TM_GPS_Data_t;
 
 /**
  * @brief  GPS Distance and bearing struct
@@ -391,12 +422,12 @@ typedef struct {
 
 /**
  * @brief  Initializes GPS and USART peripheral
- * @param  *GPS_Data: Pointer to TM_GPS_Data_t structure to set default values
+ * @param  *GPS_Data: Pointer to @ref TM_GPS_t structure to set default values
  * @param  baudrate: Specify GPS baudrate for USART. Most common are 9600 or 115200 bauds
  * @note   GPS baudrate can have other values. Check GPS datasheet for proper info.
  * @retval None
  */
-void TM_GPS_Init(TM_GPS_Data_t* GPS_Data, uint32_t baudrate);
+void TM_GPS_Init(TM_GPS_t* GPS_Data, uint32_t baudrate);
 
 /**
  * @brief  Update GPS data.
@@ -407,10 +438,10 @@ void TM_GPS_Init(TM_GPS_Data_t* GPS_Data, uint32_t baudrate);
  *         - When first time useful data is received from GPS (everything parsed), @ref TM_GPS_Result_NewData will be returned.
  *         - When we have already new data, next time we call this function, @ref TM_GPS_Result_OldData will be returning until we don't receive new packet of useful data.
  * @note   If you are making GPS logger, then when you receive @ref TM_GPS_Result_NewData it is time to save your data.
- * @param  *GPS_Data: Pointer to working @ref TM_GPS_Data_t structure
+ * @param  *GPS_Data: Pointer to working @ref TM_GPS_t structure
  * @retval Returns value of @ref TM_GPS_Result_t structure
  */
-TM_GPS_Result_t TM_GPS_Update(TM_GPS_Data_t* GPS_Data);
+TM_GPS_Result_t TM_GPS_Update(TM_GPS_t* GPS_Data);
 
 /**
  * @brief  Converts speed in knots (from GPS) to user selectable speed
@@ -440,6 +471,21 @@ void TM_GPS_ConvertFloat(float num, TM_GPS_Float_t* Float_Data, uint8_t decimals
  * @retval None
  */
 void TM_GPS_DistanceBetween(TM_GPS_Distance_t* Distance_Data);
+
+/**
+ * @brief  Adds custom GPG statement to array of user selectable statements.
+ *            Array is available to user using @ref TM_GPS_t workign structure
+ * @note   Functions uses @ref malloc() function to allocate memory, so make sure you have enough heap memory available.
+ * @note   Also note, that your GPS receiver HAVE TO send statement type you use in this function, or 
+ *            @ref TM_GPS_Update() function will always return that there is not data available to read.
+ * @param  *GPS_Data: Pointer to working @ref TM_GPS_t structure
+ * @param  *GPG_Statement: String of NMEA starting line address, including "$" at beginning
+ * @param  TermNumber: Position in NMEA statement
+ * @retval Success status:
+ *            - NULL: Malloc() failed or you reached limit of user selectable custom statements:
+ *            - > NULL: Function succeded, pointer to @ref TM_GPS_Custom_t structure
+ */
+TM_GPS_Custom_t * TM_GPS_AddCustom(TM_GPS_t* GPS_Data, char* GPG_Statement, uint8_t TermNumber);
 
 /**
  * @}

@@ -22,18 +22,43 @@
 #include "tm_stm32f4_lcd.h"
 #include "tm_stm32f4_dma2d_graphic.h"
 #include "tm_stm32f4_i2c.h"
+#include "tm_stm32f4_gps.h"
 
 #include <stdio.h>
 #include <string.h>
+#include "math.h"
 
 volatile uint32_t index2;
-
 TM_FontDef_t * ActiveFont;
-	
 char Buffer[100];
+TM_GPS_Data_t GPS;
+
+#define CIRCLE_X   320
+#define CIRCLE_Y   240
+#define CIRCLE_R   238
+#define MULT_X     ((float) 0.707)
+#define MULT_Y     ((float) 0.707)
+#define DEGREE2RADIAN       0.0174532
+
+void DrawBackground(void) {
+	/* Background and circles */
+	TM_DMA2DGRAPHIC_DrawFilledCircle(CIRCLE_X, CIRCLE_Y, CIRCLE_R, 0x0000);
+/*	TM_DMA2DGRAPHIC_DrawCircle(CIRCLE_X, CIRCLE_Y, CIRCLE_R, 0xAAAA);
+	TM_DMA2DGRAPHIC_DrawCircle(CIRCLE_X, CIRCLE_Y, 3 * CIRCLE_R / 4, 0xAAAA);
+	TM_DMA2DGRAPHIC_DrawCircle(CIRCLE_X, CIRCLE_Y, CIRCLE_R / 2, 0xAAAA);
+	TM_DMA2DGRAPHIC_DrawCircle(CIRCLE_X, CIRCLE_Y, CIRCLE_R / 4, 0xAAAA);
+*/	
+	/* Draw lines */
+	TM_DMA2DGRAPHIC_DrawHorizontalLine(CIRCLE_X - CIRCLE_R, CIRCLE_Y, 2 * CIRCLE_R, 0xAAAA);
+/*	TM_DMA2DGRAPHIC_DrawLine(CIRCLE_X, CIRCLE_Y - CIRCLE_R, CIRCLE_X, CIRCLE_Y + CIRCLE_R, 0xAAAA);
+	TM_DMA2DGRAPHIC_DrawLine(CIRCLE_X - CIRCLE_R * MULT_X, CIRCLE_Y - CIRCLE_R * MULT_Y, CIRCLE_X + CIRCLE_R * MULT_X, CIRCLE_Y + CIRCLE_R * MULT_Y, 0xAAAA);
+	TM_DMA2DGRAPHIC_DrawLine(CIRCLE_X - CIRCLE_R * MULT_X, CIRCLE_Y + CIRCLE_R * MULT_Y, CIRCLE_X +	CIRCLE_R * MULT_X, CIRCLE_Y - CIRCLE_R * MULT_Y, 0xAAAA);
+*/
+}
 
 int main(void) {
 	uint16_t i;
+	uint16_t x, y;
 	uint8_t devices = 0;
 	
 	/* Initialize system */
@@ -48,33 +73,53 @@ int main(void) {
 	/* Init leds */
 	TM_DISCO_LedInit();
 	
+	/* Init delay */
+	TM_DELAY_Init();
+	
 	/* Init LCD */
 	TM_LCD_Init();
-	
-	/* Clear screen */
-	index2 = (LCD_FRAME_BUFFER);
-	for (; index2 < (LCD_FRAME_BUFFER + LCD_FRAME_OFFSET); index2 += 2) {
-		*(__IO uint16_t *)(index2) = 0x1234;
-	}
-	for (; index2 < (LCD_FRAME_BUFFER + LCD_FRAME_OFFSET * 2); index2 += 2) {
-		*(__IO uint16_t *)(index2) = 0x4321;
-	}
 	
 	/* Init DMA2D Graphic library */
 	TM_DMA2DGRAPHIC_Init();
 	
-	/* Init I2C peripheral */
-	TM_I2C_Init(I2C1, TM_I2C_PinsPack_3, 100000);
+	/* Set time to 0 */
+	TM_DELAY_SetTime(0);
 	
-	/* Go through all devices */
-	for (i = 0x02; i < 0xFF; i += 2) {
-		if (TM_I2C_IsDeviceConnected(I2C1, i)) {
-			sprintf(Buffer, "Device: 0x%02X", i);
-			TM_LCD_Puts(10, 10 + devices++ * (ActiveFont->FontHeight + 2), Buffer, &TM_Font_11x18, 0x1234, 0x0000);
-		}
-	}
+	/* Clear screen */
+	TM_DMA2DGRAPHIC_DrawFilledRectangle(0, 0, 640, 480, 0x1234);
 	
-	TM_LCD_Puts(10, 10 + devices++ * (ActiveFont->FontHeight + 2), "Test", &TM_Font_11x18, 0x1234, 0x0000);
+	sprintf(Buffer, "%u", TM_DELAY_Time());
+	TM_LCD_Puts(10, 10, Buffer, &TM_Font_11x18, 0x1234, 0x000);
+	
+	TM_DELAY_SetTime(0);
+	DrawBackground();
+	sprintf(Buffer, "%u", TM_DELAY_Time());
+	
+	TM_LCD_Puts(10, 30, Buffer, &TM_Font_11x18, 0x1234, 0x000);
+	
+	/* Fill fake GPS data */
+	GPS.SatellitesInView = 4;
+	
+	GPS.SatDesc[0].ID = 2;
+	GPS.SatDesc[0].Elevation = 45;
+	GPS.SatDesc[0].Azimuth = 45;
+	GPS.SatDesc[0].SNR = 31;
+	
+	GPS.SatDesc[1].ID = 6;
+	GPS.SatDesc[1].Elevation = 26;
+	GPS.SatDesc[1].Azimuth = 72;
+	GPS.SatDesc[1].SNR = 27;
+	
+	GPS.SatDesc[2].ID = 12;
+	GPS.SatDesc[2].Elevation = 76;
+	GPS.SatDesc[2].Azimuth = 341;
+	GPS.SatDesc[2].SNR = 10;
+	
+	GPS.SatDesc[3].ID = 14;
+	GPS.SatDesc[3].Elevation = 32;
+	GPS.SatDesc[3].Azimuth = 135;
+	GPS.SatDesc[3].SNR = 0;
+	
 	
 	/* Infinity loop */
 	while (1) {
@@ -82,6 +127,12 @@ int main(void) {
 			TM_DISCO_LedOn(LED_ALL);
 		} else {
 			TM_DISCO_LedOff(LED_ALL);
+		}
+		
+		if (TM_DELAY_Time() >= 200) {
+			TM_DELAY_SetTime(0);
+			
+			DrawBackground();
 		}
 	}
 }
