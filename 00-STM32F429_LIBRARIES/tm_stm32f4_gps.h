@@ -153,8 +153,6 @@
 #include "stdlib.h"
 #include "string.h"
 
-#endif
-
 /**
  * @defgroup TM_GPS_Macros
  * @brief    Library private defines without any sense for USER
@@ -163,13 +161,29 @@
 
 /* Default GPS USART used */
 #ifndef GPS_USART
-#define GPS_USART               USART1
-#define GPS_USART_PINSPACK      TM_USART_PinsPack_2
+#define GPS_USART                   USART1
+#define GPS_USART_PINSPACK          TM_USART_PinsPack_2
+#endif
+
+/* Checks if USART buffer for GPS is empty */
+#ifndef GPS_USART_BUFFER_EMPTY
+#define GPS_USART_BUFFER_EMPTY      TM_USART_BufferEmpty(GPS_USART)
+#endif
+
+/* Get character from USART buffer for GPS */
+#ifndef GPS_USART_BUFFER_GET_CHAR
+#define GPS_USART_BUFFER_GET_CHAR   TM_USART_Getc(GPS_USART)
+#endif
+
+/* Init function for GPS */
+#ifndef GPS_USART_INIT
+#define GPS_USART_INIT(baudrate)    TM_USART_Init(GPS_USART, GPS_USART_PINSPACK, baudrate)
 #endif
 
 /* Maximum number of custom GPGxx values */
 #ifndef GPS_CUSTOM_NUMBER
 #define GPS_CUSTOM_NUMBER       10
+#endif
 
 /* Is character a digit */
 #define GPS_IS_DIGIT(x)			((x) >= '0' && (x) <= '9')

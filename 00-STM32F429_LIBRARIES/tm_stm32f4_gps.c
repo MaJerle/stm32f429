@@ -43,7 +43,6 @@ TM_GPS_Result_t TM_GPS_INT_Return(TM_GPS_t* GPS_Data);
 uint8_t TM_GPS_INT_StringStartsWith(char* string, const char* str);
 uint8_t TM_GPS_INT_Atoi(char* str, uint32_t* val);
 uint32_t TM_GPS_INT_Pow(uint8_t x, uint8_t y);
-void TM_GPS_INT_Add2CRC(char c);
 uint8_t TM_GPS_INT_Hex2Dec(char c);
 TM_GPS_Result_t TM_GPS_INT_ReturnWithStatus(TM_GPS_t* GPS_Data, TM_GPS_Result_t status);
 uint8_t TM_GPS_INT_FlagsOk(TM_GPS_t* GPS_Data);
@@ -51,10 +50,12 @@ void TM_GPS_INT_ClearFlags(TM_GPS_t* GPS_Data);
 void TM_GPS_INT_SetFlag(uint32_t flag);
 void TM_GPS_INT_CheckEmpty(TM_GPS_t* GPS_Data);
 
+#define TM_GPS_INT_Add2CRC(c) (TM_GPS_CRC ^= c)
+
 /* Public */
 void TM_GPS_Init(TM_GPS_t* GPS_Data, uint32_t baudrate) {
 	/* Initialize USART */
-	TM_USART_Init(GPS_USART, GPS_USART_PINSPACK, baudrate);
+	GPS_USART_INIT(baudrate);
 	/* Set first-time variable */
 	TM_GPS_FirstTime = 1;
 	/* Clear all flags */
@@ -92,11 +93,11 @@ void TM_GPS_Init(TM_GPS_t* GPS_Data, uint32_t baudrate) {
 
 TM_GPS_Result_t TM_GPS_Update(TM_GPS_t* GPS_Data) {
 	/* Check for data in USART */
-	if (!TM_USART_BufferEmpty(GPS_USART)) {
+	if (!GPS_USART_BUFFER_EMPTY) {
 		/* Go through all buffer */
-		while (!TM_USART_BufferEmpty(GPS_USART)) {
+		while (!GPS_USART_BUFFER_EMPTY) {
 			/* Do character by character */
-			TM_GPS_INT_Do(GPS_Data, (char)TM_USART_Getc(GPS_USART));
+			TM_GPS_INT_Do(GPS_Data, (char)GPS_USART_BUFFER_GET_CHAR);
 			/* If new data available, return to user */
 			if (GPS_Data->Status == TM_GPS_Result_NewData) {
 				return GPS_Data->Status;
@@ -215,7 +216,7 @@ void TM_GPS_DistanceBetween(TM_GPS_Distance_t* Distance_Data) {
 	df = GPS_DEGREES2RADIANS(Distance_Data->Latitude2 - Distance_Data->Latitude1);
 	dfi = GPS_DEGREES2RADIANS(Distance_Data->Longitude2 - Distance_Data->Longitude1);
 
-	a = sin(df / 2) * sin(df / 2) + cos(f1) * cos(f2) * sin(dfi / 2) * sin(dfi / 2);
+	a = sin(df * (float)0.5) * sin(df * (float)0.5) + cos(f1) * cos(f2) * sin(dfi * (float)0.5) * sin(dfi * (float)0.5);
 	/* Get distance in meters */
 	Distance_Data->Distance = GPS_EARTH_RADIUS * 2 * atan2(sqrt(a), sqrt(1 - a)) * 1000;
 	
@@ -269,7 +270,7 @@ TM_GPS_Result_t TM_GPS_INT_Do(TM_GPS_t* GPS_Data, char c) {
 		/* Reset term number */
 		GPS_Term_Number = 0;
 
-#ifndef GPS_
+#ifndef GPS_DISABLE_GPGSV
 		/* Check for GPGSV statement */
 		if (TM_GPS_Statement == GPS_GPGSV && GPGSV_StatementsCount == GPSGV_StatementNumber) {
 			/* Set flag */
@@ -321,10 +322,6 @@ TM_GPS_Result_t TM_GPS_INT_Do(TM_GPS_t* GPS_Data, char c) {
 	
 	/* Return */
 	return TM_GPS_INT_Return(GPS_Data);
-}
-
-void TM_GPS_INT_Add2CRC(char c) {
-	TM_GPS_CRC ^= c;
 }
 
 void TM_GPS_INT_CheckTerm(TM_GPS_t* GPS_Data) {
