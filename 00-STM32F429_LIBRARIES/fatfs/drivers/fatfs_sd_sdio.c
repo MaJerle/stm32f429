@@ -340,7 +340,7 @@ DRESULT TM_FATFS_SD_SDIO_disk_read(BYTE *buff, DWORD sector, UINT count) {
 	if ((TM_FATFS_SD_SDIO_Stat & STA_NOINIT)) {
 		return RES_NOTRDY;
 	}
-
+/*
 	SD_ReadMultiBlocks(buff, sector << 9, 512, count);
 
 	//Check if the Transfer is finished
@@ -351,7 +351,8 @@ DRESULT TM_FATFS_SD_SDIO_disk_read(BYTE *buff, DWORD sector, UINT count) {
 		return RES_OK;
 	}
 	return RES_ERROR;
-/*
+*/
+
 	if ((DWORD)buff & 3) {
 		DRESULT res = RES_OK;
 		DWORD scratch[BLOCK_SIZE / 4];
@@ -371,7 +372,7 @@ DRESULT TM_FATFS_SD_SDIO_disk_read(BYTE *buff, DWORD sector, UINT count) {
 		return res;
 	}
 
-	Status = SD_ReadMultiBlocksFIXED(buff, sector, BLOCK_SIZE, count);
+	Status = SD_ReadMultiBlocks(buff, sector, BLOCK_SIZE, count);
 
 	if (Status == SD_OK) {
 		SDTransferState State;
@@ -388,7 +389,6 @@ DRESULT TM_FATFS_SD_SDIO_disk_read(BYTE *buff, DWORD sector, UINT count) {
 	} else {
 		return RES_ERROR;
 	}
-*/
 }
 
 DRESULT TM_FATFS_SD_SDIO_disk_write(BYTE *buff, DWORD sector, UINT count) {
@@ -401,7 +401,7 @@ DRESULT TM_FATFS_SD_SDIO_disk_write(BYTE *buff, DWORD sector, UINT count) {
 	if (SD_Detect() != SD_PRESENT) {
 		return RES_NOTRDY;
 	}
-	
+/*	
 	SD_WriteMultiBlocks((BYTE *)buff, sector << 9, 512, count);
 
 	//Check if the Transfer is finished
@@ -412,8 +412,8 @@ DRESULT TM_FATFS_SD_SDIO_disk_write(BYTE *buff, DWORD sector, UINT count) {
 		return RES_OK;
 	}
 	return RES_ERROR;
-	
-/*
+*/
+
 	if ((DWORD)buff & 3) {
 		DRESULT res = RES_OK;
 		DWORD scratch[BLOCK_SIZE / 4];
@@ -432,7 +432,7 @@ DRESULT TM_FATFS_SD_SDIO_disk_write(BYTE *buff, DWORD sector, UINT count) {
 		return(res);
 	}
 
-	Status = SD_WriteMultiBlocksFIXED((uint8_t *)buff, sector, BLOCK_SIZE, count); // 4GB Compliant
+	Status = SD_WriteMultiBlocks((uint8_t *)buff, sector, BLOCK_SIZE, count); // 4GB Compliant
 
 	if (Status == SD_OK) {
 		SDTransferState State;
@@ -449,7 +449,6 @@ DRESULT TM_FATFS_SD_SDIO_disk_write(BYTE *buff, DWORD sector, UINT count) {
 	} else {
 		return RES_ERROR;
 	}
-*/
 }
 
 DRESULT TM_FATFS_SD_SDIO_disk_ioctl(BYTE cmd, char *buff) {
@@ -482,17 +481,6 @@ void DMA2_Stream6_IRQHandler(void) {
 	SD_ProcessDMAIRQ();
 }
 #endif
-
-
-
-
-
-
-
-
-
-
-
 
 
 
