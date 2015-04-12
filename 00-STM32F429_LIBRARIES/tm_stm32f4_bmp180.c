@@ -19,6 +19,16 @@
 #include "tm_stm32f4_bmp180.h"
 #include <stdio.h>
 
+/* Multiple is faster than divide */
+#define BMP180_1_16     ((float) 0.0625)
+#define BMP180_1_256    ((float) 0.00390625)
+#define BMP180_1_2048   ((float) 0.00048828125)
+#define BMP180_1_4096   ((float) 0.000244140625)
+#define BMP180_1_8192   ((float) 0.0001220703125)
+#define BMP180_1_32768  ((float) 0.000030517578125)
+#define BMP180_1_65536  ((float) 0.0000152587890625)
+#define BMP180_1_101325 ((float) 0.00000986923266726)
+
 /* EEPROM values */
 int16_t AC1, AC2, AC3, B1, B2, MB, MC, MD;
 uint16_t AC4, AC5, AC6, UT;
@@ -91,7 +101,7 @@ TM_BMP180_Result_t TM_BMP180_ReadTemperature(TM_BMP180_t* BMP180_Data) {
 	UT = data[0] << 8 | data[1];
 	
 	/* Calculate true temperature */
-	X1 = (UT - AC6) * AC5 / (float)32768;
+	X1 = (UT - AC6) * AC5 * BMP180_1_32768;
 	X2 = MC * 2048 / (X1 + MD);
 	B5 = X1 + X2;
 	
@@ -156,30 +166,30 @@ TM_BMP180_Result_t TM_BMP180_ReadPressure(TM_BMP180_t* BMP180_Data) {
 
 	/* Calculate true pressure */
 	B6 = B5 - 4000;
-	X1 = (B2 * (B6 * B6 / (float)4096)) / (float)2048;
-	X2 = AC2 * B6 / (float)2048;
+	X1 = (B2 * (B6 * B6 * BMP180_1_4096)) * BMP180_1_2048;
+	X2 = AC2 * B6 * BMP180_1_2048;
 	X3 = X1 + X2;
-	B3 = (((AC1 * 4 + X3) << (uint8_t)BMP180_Data->Oversampling) + 2) / 4;
-	X1 = AC3 * B6 / (float)8192;
-	X2 = (B1 * (B6 * B6 / (float)4096)) / (float)65536;
-	X3 = ((X1 + X2) + 2) / 4;
-	B4 = AC4 * (uint32_t)(X3 + 32768) / (float)32768;
+	B3 = (((AC1 * 4 + X3) << (uint8_t)BMP180_Data->Oversampling) + 2) * 0.25;
+	X1 = AC3 * B6 * BMP180_1_8192;
+	X2 = (B1 * (B6 * B6 * BMP180_1_4096)) * BMP180_1_65536;
+	X3 = ((X1 + X2) + 2) * 0.25;
+	B4 = AC4 * (uint32_t)(X3 + 32768) * BMP180_1_32768;
 	B7 = ((uint32_t)UP - B3) * (50000 >> (uint8_t)BMP180_Data->Oversampling);
 	if (B7 < 0x80000000) {
 		p = (B7 * 2) / B4;
 	} else {
 		p = (B7 / B4) * 2;
 	}
-	X1 = ((float)p / (float)256) * ((float)p / (float)256);
-	X1 = (X1 * 3038) / (float)65536;
-	X2 = (-7357 * p) / (float)65536;
-	p = p + (X1 + X2 + 3791) / (float)16;
+	X1 = ((float)p * BMP180_1_256) * ((float)p * BMP180_1_256);
+	X1 = (X1 * 3038) * BMP180_1_65536;
+	X2 = (-7357 * p) * BMP180_1_65536;
+	p = p + (X1 + X2 + 3791) * BMP180_1_16;
 	
 	/* Save pressure */
 	BMP180_Data->Pressure = p;
 	
 	/* Calculate altitude */
-	BMP180_Data->Altitude = (float)44330.0 * (float)((float)1.0 - (float)pow((float)p / (float)101325.0, 0.19029495));
+	BMP180_Data->Altitude = (float)44330.0 * (float)((float)1.0 - (float)pow((float)p * BMP180_1_101325, 0.19029495));
 	
 	/* Return OK */
 	return TM_BMP180_Result_Ok;
