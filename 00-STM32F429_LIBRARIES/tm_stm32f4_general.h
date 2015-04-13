@@ -3,7 +3,7 @@
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
  * @link    http://stm32f4-discovery.com/2015/03/library-54-general-library-for-stm32f4xx-devices
- * @version v1.2
+ * @version v1.3
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   GENERAL library for STM32F4xx devices
@@ -28,7 +28,7 @@
 @endverbatim
  */
 #ifndef TM_GENERAL_H
-#define TM_GENERAL_H 120
+#define TM_GENERAL_H 130
 
 /* C++ detection */
 #ifdef __cplusplus
@@ -57,11 +57,17 @@ extern C {
 - Get different clock speeds in your system
 - Operate with Cortex-M4 DWT hardware counter
 - Check if number is odd or even and if it is power of 2
+- Round float number with selectable decimal places
+- Convert float number to integer and decimal part with selectable decimal places
 @endverbatim
  *
  * \par Changelog
  *
 @verbatim
+ Version 1.3
+  - April 13, 2015
+  - Added float number operations
+
  Version 1.2
   - April 10, 2015
   - Added support for checking if number is odd or even and if it is power of 2
@@ -145,6 +151,14 @@ typedef enum {
 	TM_GENERAL_ResetSource_PIN = 0x06,      /*!< NRST pin is set to low by hardware reset, hardware reset */
 	TM_GENERAL_ResetSource_BOR = 0x07,      /*!< BOR reset occurs */
 } TM_GENERAL_ResetSource_t;
+
+/**
+ * @brief  Float number operation structure
+ */
+typedef struct {
+	int32_t Integer;  /*!< Integer part of float number */
+	uint32_t Decimal; /*!< Decimal part of float number */
+} TM_GENERAL_Float_t;
 
 /**
  * @}
@@ -302,6 +316,27 @@ static __INLINE void TM_GENERAL_DWTCounterDelayms(uint32_t millis) {
  * @note   Defined as macro for faster execution
  */
 #define TM_GENERAL_IsNumberEven(number)    ((number & 1) == 0)
+
+/**
+ * @brief  Converts float coded number into integer and decimal part
+ * @param  *Float_Struct: Pointer to empty @ref TM_GENERAL_Float_t to store result into
+ * @param  Number: Float number to convert
+ * @param  decimals: Number of decimal places for conversion, maximum 9 decimal places
+ * @retval None
+ * @note   Example: You have number 15.002 in float format.
+ *            - You want to split this to integer and decimal part with 6 decimal places.
+ *            - Call @ref TM_GENERAL_ConvertFloat(&Float_Struct, 15.002, 6);
+ *            - Result will be: Integer: 15; Decimal: 2000 (0.002 * 10^6)
+ */
+void TM_GENERAL_ConvertFloat(TM_GENERAL_Float_t* Float_Struct, float Number, uint8_t decimals);
+
+/**
+ * @brief  Round float number to nearest number with custom number of decimal places
+ * @param  Number: Float number to round
+ * @param  decimals: Number of decimal places to round, maximum 9 decimal places
+ * @retval Rounded float number
+ */
+float TM_GENERAL_RoundFloat(float Number, uint8_t decimals);
 
 /**
  * @brief  Software reset callback.

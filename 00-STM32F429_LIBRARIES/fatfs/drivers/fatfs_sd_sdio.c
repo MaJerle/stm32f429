@@ -340,7 +340,7 @@ DRESULT TM_FATFS_SD_SDIO_disk_read(BYTE *buff, DWORD sector, UINT count) {
 	if ((TM_FATFS_SD_SDIO_Stat & STA_NOINIT)) {
 		return RES_NOTRDY;
 	}
-/*
+
 	SD_ReadMultiBlocks(buff, sector << 9, 512, count);
 
 	//Check if the Transfer is finished
@@ -351,8 +351,8 @@ DRESULT TM_FATFS_SD_SDIO_disk_read(BYTE *buff, DWORD sector, UINT count) {
 		return RES_OK;
 	}
 	return RES_ERROR;
-*/
 
+/*
 	if ((DWORD)buff & 3) {
 		DRESULT res = RES_OK;
 		DWORD scratch[BLOCK_SIZE / 4];
@@ -389,6 +389,7 @@ DRESULT TM_FATFS_SD_SDIO_disk_read(BYTE *buff, DWORD sector, UINT count) {
 	} else {
 		return RES_ERROR;
 	}
+*/
 }
 
 DRESULT TM_FATFS_SD_SDIO_disk_write(BYTE *buff, DWORD sector, UINT count) {
@@ -401,7 +402,7 @@ DRESULT TM_FATFS_SD_SDIO_disk_write(BYTE *buff, DWORD sector, UINT count) {
 	if (SD_Detect() != SD_PRESENT) {
 		return RES_NOTRDY;
 	}
-/*	
+	
 	SD_WriteMultiBlocks((BYTE *)buff, sector << 9, 512, count);
 
 	//Check if the Transfer is finished
@@ -412,8 +413,8 @@ DRESULT TM_FATFS_SD_SDIO_disk_write(BYTE *buff, DWORD sector, UINT count) {
 		return RES_OK;
 	}
 	return RES_ERROR;
-*/
 
+/*
 	if ((DWORD)buff & 3) {
 		DRESULT res = RES_OK;
 		DWORD scratch[BLOCK_SIZE / 4];
@@ -449,6 +450,7 @@ DRESULT TM_FATFS_SD_SDIO_disk_write(BYTE *buff, DWORD sector, UINT count) {
 	} else {
 		return RES_ERROR;
 	}
+*/
 }
 
 DRESULT TM_FATFS_SD_SDIO_disk_ioctl(BYTE cmd, char *buff) {
@@ -589,19 +591,17 @@ SD_Error SD_Init (void)
  */
 SDTransferState SD_GetStatus (void)
 {
-        SDCardState cardstate = SD_CARD_TRANSFER;
+	SDCardState cardstate = SD_CARD_TRANSFER;
 
-        cardstate = SD_GetState ();
+	cardstate = SD_GetState ();
 
-        if (cardstate == SD_CARD_TRANSFER) {
-                return (SD_TRANSFER_OK);
-        }
-        else if (cardstate == SD_CARD_ERROR) {
-                return (SD_TRANSFER_ERROR);
-        }
-        else {
-                return (SD_TRANSFER_BUSY);
-        }
+	if (cardstate == SD_CARD_TRANSFER) {
+		return (SD_TRANSFER_OK);
+	} else if (cardstate == SD_CARD_ERROR) {
+		return (SD_TRANSFER_ERROR);
+	} else {
+		return (SD_TRANSFER_BUSY);
+	}
 }
 
 /**
@@ -628,8 +628,7 @@ SDCardState SD_GetState(void) {
  * @param  None
  * @retval Return if SD is detected or not
  */
-uint8_t SD_Detect (void)
-{
+uint8_t SD_Detect(void) {
 	__IO uint8_t status = SD_PRESENT;
 
 #if FATFS_USE_DETECT_PIN > 0
@@ -706,8 +705,7 @@ SD_Error SD_PowerON (void)
         if (errorstatus == SD_OK) {
                 CardType = SDIO_STD_CAPACITY_SD_CARD_V2_0; /*!< SD Card 2.0 */
                 SDType = SD_HIGH_CAPACITY;
-        }
-        else {
+        } else {
                 /*!< CMD55 */
                 SDIO_CmdInitStructure.SDIO_Argument = 0x00;
                 SDIO_CmdInitStructure.SDIO_CmdIndex = SD_CMD_APP_CMD;

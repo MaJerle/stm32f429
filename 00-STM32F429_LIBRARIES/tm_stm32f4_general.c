@@ -21,6 +21,19 @@
 /* System speed in MHz */
 uint16_t GENERAL_SystemSpeedInMHz = 0;
 
+/* Private functions */
+static uint32_t x_na_y(uint32_t x, uint8_t y) {
+	uint32_t output = 1;
+	
+	/* Make a "power" multiply */
+	while (y--) {
+		output *= x;
+	}
+	
+	/* Return output value */
+	return output;
+}
+
 void TM_GENERAL_SystemReset(void) {
 	/* Call use function */
 	TM_GENERAL_SoftwareResetCallback();
@@ -125,4 +138,42 @@ uint8_t TM_GENERAL_DWTCounterEnable(void) {
 	
 	/* Return difference, if result is zero, DWT has not started */
 	return (DWT->CYCCNT - c);
+}
+
+void TM_GENERAL_ConvertFloat(TM_GENERAL_Float_t* Float_Struct, float Number, uint8_t decimals) {
+	/* Check decimals */
+	if (decimals > 9) {
+		decimals = 9;
+	}
+	
+	/* Get integer part */
+	Float_Struct->Integer = (int32_t)Number;
+	
+	/* Get decimal part */
+	if (Number < 0) {
+		Float_Struct->Decimal = (int32_t)((float)(Float_Struct->Integer - Number) * x_na_y(10, decimals));
+	} else {
+		Float_Struct->Decimal = (int32_t)((float)(Number - Float_Struct->Integer) * x_na_y(10, decimals));
+	}
+}
+
+float TM_GENERAL_RoundFloat(float Number, uint8_t decimals) {
+	float x;
+		
+	/* Check decimals */
+	if (decimals > 9) {
+		decimals = 9;
+	}
+	
+	x = x_na_y(10, decimals);
+	
+	/* Make truncating */
+	if (Number > 0) {
+		return (float)(Number * x + 0.5) / x;
+	} else if (Number < 0) {
+		return (float)(Number * x - 0.5) / x;
+	}
+	
+	/* Return number */
+	return 0;
 }

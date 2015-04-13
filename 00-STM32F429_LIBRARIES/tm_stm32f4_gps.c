@@ -371,8 +371,8 @@ void TM_GPS_INT_CheckTerm(TM_GPS_t* GPS_Data) {
 		case GPS_POS_LATITUDE:	/* GPGGA */
 			/* Convert latitude */
 			count = TM_GPS_INT_Atoi(GPS_Term, &temp);
-			TM_GPS_INT_Data.Latitude = (temp % 100) / 60.0;
-			TM_GPS_INT_Data.Latitude += temp / 100;
+			TM_GPS_INT_Data.Latitude = (temp % 100)  * (float)0.016666666667;
+			TM_GPS_INT_Data.Latitude += temp * (float)0.01;
 		
 			count = TM_GPS_INT_Atoi(&GPS_Term[++count], &temp);
 			TM_GPS_INT_Data.Latitude += temp / (TM_GPS_INT_Pow(10, count) * 60.0);
@@ -392,8 +392,8 @@ void TM_GPS_INT_CheckTerm(TM_GPS_t* GPS_Data) {
 		case GPS_POS_LONGITUDE: /* GPGGA */
 			/* Convert longitude */
 			count = TM_GPS_INT_Atoi(GPS_Term, &temp);
-			TM_GPS_INT_Data.Longitude = (temp % 100) / 60.0;
-			TM_GPS_INT_Data.Longitude += temp / 100;
+			TM_GPS_INT_Data.Longitude = (temp % 100) * (float)0.016666666667;
+			TM_GPS_INT_Data.Longitude += temp (float)0.01;
 		
 			count = TM_GPS_INT_Atoi(&GPS_Term[++count], &temp);
 			TM_GPS_INT_Data.Longitude += temp / (TM_GPS_INT_Pow(10, count) * 60.0);
@@ -452,8 +452,8 @@ void TM_GPS_INT_CheckTerm(TM_GPS_t* GPS_Data) {
 			/* Set time */
 			count = TM_GPS_INT_Atoi(GPS_Term, &temp);
 			TM_GPS_INT_Data.Time.Seconds = temp % 100;
-			TM_GPS_INT_Data.Time.Minutes = (temp / 100) % 100;
-			TM_GPS_INT_Data.Time.Hours = (temp / 10000) % 100;
+			TM_GPS_INT_Data.Time.Minutes = (temp * (float) 0.01) % 100;
+			TM_GPS_INT_Data.Time.Hours = (temp * (float)0.0001) % 100;
 			/* Hundredths */
 			TM_GPS_INT_Atoi(&GPS_Term[++count], &temp);
 			TM_GPS_INT_Data.Time.Hundredths = temp;
@@ -478,8 +478,8 @@ void TM_GPS_INT_CheckTerm(TM_GPS_t* GPS_Data) {
 			/* Set date */
 			TM_GPS_INT_Atoi(GPS_Term, &temp);
 			TM_GPS_INT_Data.Date.Year = temp % 100;
-			TM_GPS_INT_Data.Date.Month = (temp / 100) % 100;
-			TM_GPS_INT_Data.Date.Date = (temp / 10000) % 100;
+			TM_GPS_INT_Data.Date.Month = (temp * (float)0.01) % 100;
+			TM_GPS_INT_Data.Date.Date = (temp * (float) 0.0001) % 100;
 		
 			/* Set flag */
 			TM_GPS_INT_SetFlag(GPS_FLAG_DATE);

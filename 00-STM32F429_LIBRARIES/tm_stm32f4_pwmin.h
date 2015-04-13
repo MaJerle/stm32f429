@@ -235,7 +235,7 @@ TM_PWMIN_Result_t TM_PWMIN_Get(TM_PWMIN_t* PWMIN_Data);
  * @brief  Most important function. 
  *         This function handles TIMx interrupts to calculate PWM input data.
  * @note   You need to call it in your TIMx handler. 
-verbatim
+@verbatim
 //For TIM2, you will do:
 void TIM2_IRQHandler(void) {
     TM_PWMIN_InterruptHandler(&PWMIN_TIM2_Data);
