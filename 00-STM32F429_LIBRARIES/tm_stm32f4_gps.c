@@ -393,7 +393,7 @@ void TM_GPS_INT_CheckTerm(TM_GPS_t* GPS_Data) {
 			/* Convert longitude */
 			count = TM_GPS_INT_Atoi(GPS_Term, &temp);
 			TM_GPS_INT_Data.Longitude = (temp % 100) * (float)0.016666666667;
-			TM_GPS_INT_Data.Longitude += temp (float)0.01;
+			TM_GPS_INT_Data.Longitude += temp * (float)0.01;
 		
 			count = TM_GPS_INT_Atoi(&GPS_Term[++count], &temp);
 			TM_GPS_INT_Data.Longitude += temp / (TM_GPS_INT_Pow(10, count) * 60.0);
@@ -452,8 +452,8 @@ void TM_GPS_INT_CheckTerm(TM_GPS_t* GPS_Data) {
 			/* Set time */
 			count = TM_GPS_INT_Atoi(GPS_Term, &temp);
 			TM_GPS_INT_Data.Time.Seconds = temp % 100;
-			TM_GPS_INT_Data.Time.Minutes = (temp * (float) 0.01) % 100;
-			TM_GPS_INT_Data.Time.Hours = (temp * (float)0.0001) % 100;
+			TM_GPS_INT_Data.Time.Minutes = (int)(temp * (float) 0.01) % 100;
+			TM_GPS_INT_Data.Time.Hours = (int)(temp * (float)0.0001) % 100;
 			/* Hundredths */
 			TM_GPS_INT_Atoi(&GPS_Term[++count], &temp);
 			TM_GPS_INT_Data.Time.Hundredths = temp;
@@ -478,8 +478,8 @@ void TM_GPS_INT_CheckTerm(TM_GPS_t* GPS_Data) {
 			/* Set date */
 			TM_GPS_INT_Atoi(GPS_Term, &temp);
 			TM_GPS_INT_Data.Date.Year = temp % 100;
-			TM_GPS_INT_Data.Date.Month = (temp * (float)0.01) % 100;
-			TM_GPS_INT_Data.Date.Date = (temp * (float) 0.0001) % 100;
+			TM_GPS_INT_Data.Date.Month = (int)(temp * (float)0.01) % 100;
+			TM_GPS_INT_Data.Date.Date = (int)(temp * (float) 0.0001) % 100;
 		
 			/* Set flag */
 			TM_GPS_INT_SetFlag(GPS_FLAG_DATE);

@@ -169,9 +169,9 @@ float TM_GENERAL_RoundFloat(float Number, uint8_t decimals) {
 	
 	/* Make truncating */
 	if (Number > 0) {
-		return (float)(Number * x + 0.5) / x;
+		return (float)(Number * x + (float)0.5) / x;
 	} else if (Number < 0) {
-		return (float)(Number * x - 0.5) / x;
+		return (float)(Number * x - (float)0.5) / x;
 	}
 	
 	/* Return number */
