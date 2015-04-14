@@ -225,7 +225,7 @@ uint32_t TM_GENERAL_GetClockSpeed(TM_GENERAL_Clock_t clock);
  * @param  None
  * @retval DWT Status:
  *            - 0: DWT has not started, hardware/software reset is required
- *            - >0: DWT has started and is ready to use
+ *            - > 0: DWT has started and is ready to use
  * @note   It may happen, that DWT counter won't start after reprogramming device.
  *         This happened to me when I use onboard ST-Link on Discovery or Nucleo boards.
  *         When I used external debugger (J-Link or ULINK2) it worked always without problems.
@@ -251,7 +251,7 @@ uint8_t TM_GENERAL_DWTCounterEnable(void);
 
 /**
  * @brief  Sets DWT counter value
- * @param  x: Set value for DWT counter
+ * @param  x: Value to be set to DWT counter
  * @retval None
  * @note   Defined as macro for faster execution
  */
