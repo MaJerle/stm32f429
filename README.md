@@ -140,6 +140,8 @@ http://bit.ly/1wgnhkD
 http://bit.ly/1D8RPpX
 55. USART DMA - Extend USART with DMA TX functionality
 http://bit.ly/1HchE9L
+56. SPI DMA - Extend SPI with DMA functionality
+http://bit.ly/1CQPPyO
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB
