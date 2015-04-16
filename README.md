@@ -138,6 +138,8 @@ http://bit.ly/1EzX4z7
 http://bit.ly/1wgnhkD
 54. GENERAL - General library for STM32F4
 http://bit.ly/1D8RPpX
+55. USART DMA - Extend USART with DMA TX functionality
+http://bit.ly/1HchE9L
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB
