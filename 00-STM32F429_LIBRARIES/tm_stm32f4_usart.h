@@ -3,7 +3,7 @@
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
  * @link    http://stm32f4-discovery.com/2014/04/library-04-connect-stm32f429-discovery-to-computer-with-usart/
- * @version v2.4
+ * @version v2.5
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   USART Library for STM32F4 with receive interrupt
@@ -28,7 +28,13 @@
 @endverbatim
  */
 #ifndef TM_USART_H
-#define TM_USART_H 240
+#define TM_USART_H 250
+
+/* C++ detection */
+#ifdef __cplusplus
+extern C {
+#endif
+
 /**
  * @addtogroup TM_STM32F4xx_Libraries
  * @{
@@ -42,7 +48,7 @@
  * <b>Library works for all 8 U(S)ARTs which are supported on STM32F4xx devices.</b>
  * 
  * \par USART receive interrupt handlers
-
+ *
  * Every USART channel has it's own receive interrupt which stores incoming data into cyclic buffer.
  * If you want to use your own receive handler, then you have to open defines.h files and set a define.
 @verbatim
@@ -90,7 +96,13 @@ void TM_X_ReceiveHandler(uint8_t c) {
  *   - TM_UART7_BUFFER_SIZE
  *   - TM_UART8_BUFFER_SIZE
  *	
- * \b Pinout
+ * \par Custom string delimiter for @ref TM_USART_Gets() function
+ * 
+ * As of version 2.5, you can now set custom string delimiter for @ref TM_USART_Gets() function.
+ * By default, LF (Line Feed) character was used, but now you can select custom character using @ref TM_USART_SetCustomStringEndCharacter() function.
+ *
+ * \par Pinout
+ *
 @verbatim
              |PINSPACK 1     |PINSPACK 2     |PINSPACK 3	
 U(S)ARTX     |TX     RX      |TX     RX      |TX     RX
@@ -132,6 +144,10 @@ UART8        |PE1    PE0     |-      -       |-      -
  * \par Changelog
  *
 @verbatim
+ Version 2.5
+   - April 15, 2015
+   - Added support for custom character for string delimiter
+   
  Version 2.4
    - April 09, 2015
    - Added support for new function TM_USART_InitWithFlowControl()
@@ -438,6 +454,11 @@ typedef enum {
  */
 #define USART_WAIT(USARTx)                  while (!((USARTx)->SR & USART_FLAG_TXE))
 
+/**
+ * @brief  Default string delimiter for USART
+ */
+#define USART_STRING_DELIMITER              '\n'
+
  /**
  * @}
  */
@@ -469,19 +490,39 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 void TM_USART_InitWithFlowControl(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t baudrate, TM_USART_HardwareFlowControl_t FlowControl);
 
 /**
- * @brief  Put character to USART port
+ * @brief  Puts character to USART port
  * @param  *USARTx: Pointer to USARTx peripheral you will use
  * @param  c: character to be send over USART
  * @retval None
  */
-void TM_USART_Putc(USART_TypeDef* USARTx, volatile char c);
+static __INLINE void TM_USART_Putc(USART_TypeDef* USARTx, volatile char c) {
+	/* Check USART */
+	if ((USARTx->CR1 & USART_CR1_UE)) {	
+		/* Wait to be ready, buffer empty */
+		USART_WAIT(USARTx);
+		/* Send data */
+		USARTx->DR = (uint16_t)(c & 0x01FF);
+		/* Wait to be ready, buffer empty */
+		USART_WAIT(USARTx);
+	}
+}
 
 /**
- * @brief  Put string to USART port
+ * @brief  Puts string to USART port
  * @param  *USARTx: Pointer to USARTx peripheral you will use
  * @param  *str: Pointer to string to send over USART
+ * @retval None
  */
 void TM_USART_Puts(USART_TypeDef* USARTx, char* str);
+
+/**
+ * @brief  Sends data array to USART port
+ * @param  *USARTx: Pointer to USARTx peripheral you will use
+ * @param  *DataArray: Pointer to data array to be sent over USART
+ * @param  count: Number of elements in data array to be send over USART
+ * @retval None
+ */
+void TM_USART_Send(USART_TypeDef* USARTx, uint8_t* DataArray, uint16_t count);
 
 /**
  * @brief  Gets character from internal USART buffer
@@ -509,21 +550,27 @@ uint16_t TM_USART_Gets(USART_TypeDef* USARTx, char* buffer, uint16_t bufsize);
  * @brief  Check if character c is available in internal buffer
  * @param  *USARTx: Pointer to USARTx peripheral you will use
  * @param  c: character to check if it is in USARTx's buffer
- * @retval 1 in case character is, or 0 if not
+ * @retval Character status:
+ *            - 0: Character was not found
+ *            - > 0: Character has been found in buffer
  */
 uint8_t TM_USART_FindCharacter(USART_TypeDef* USARTx, uint8_t c);
 
 /**
  * @brief  Checks if internal USARTx buffer is empty
  * @param  *USARTx: Pointer to USARTx peripheral you will use
- * @retval 1 in case buffer is empty, or 0 if not
+ * @retval Buffer empty status:
+ *            - 0: Buffer is not empty
+ *            - > 0: Buffer is empty
  */
 uint8_t TM_USART_BufferEmpty(USART_TypeDef* USARTx);
 
 /**
  * @brief  Checks if internal USARTx buffer is full
  * @param  *USARTx: Pointer to USARTx peripheral you will use
- * @retval 1 in case buffer is full, or 0 if not
+ * @retval Buffer full status:
+ *            - 0: Buffer is not full
+ *            - > 0: Buffer is full
  */
 uint8_t TM_USART_BufferFull(USART_TypeDef* USARTx);
 
@@ -533,6 +580,15 @@ uint8_t TM_USART_BufferFull(USART_TypeDef* USARTx);
  * @retval None
  */
 void TM_USART_ClearBuffer(USART_TypeDef* USARTx);
+
+/**
+ * @brief  Sets custom character for @ref TM_USART_Gets() function to detect when string ends
+ * @param  *USARTx: Pointer to USARTx peripheral you will use
+ * @param  Character: Character value to be used as string end
+ * @note   Character will also be added at the end for your buffer when calling @ref TM_USART_Gets() function
+ * @retval None
+ */
+void TM_USART_SetCustomStringEndCharacter(USART_TypeDef* USARTx, uint8_t Character);
 
 /**
  * @brief  Callback for custom pins initialization for USARTx.
@@ -619,5 +675,10 @@ __weak void TM_UART8_ReceiveHandler(uint8_t c);
 /**
  * @}
  */
+
+/* C++ detection */
+#ifdef __cplusplus
+}
+#endif
 
 #endif

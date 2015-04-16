@@ -21,7 +21,6 @@
 /**
  * @brief Internal USART struct
  */
- 
 typedef struct {
 	uint8_t *Buffer;
 	uint16_t Size;
@@ -29,6 +28,7 @@ typedef struct {
 	uint16_t In;
 	uint16_t Out;
 	uint8_t Initialized;
+	uint8_t StringDelimiter;
 } TM_USART_t;
 
 /* Set variables for buffers */
@@ -58,28 +58,28 @@ uint8_t TM_UART8_Buffer[TM_UART8_BUFFER_SIZE];
 #endif
 
 #ifdef USE_USART1
-TM_USART_t TM_USART1 = {TM_USART1_Buffer, TM_USART1_BUFFER_SIZE, 0, 0, 0, 0};
+TM_USART_t TM_USART1 = {TM_USART1_Buffer, TM_USART1_BUFFER_SIZE, 0, 0, 0, 0, USART_STRING_DELIMITER};
 #endif
 #ifdef USE_USART2
-TM_USART_t TM_USART2 = {TM_USART2_Buffer, TM_USART2_BUFFER_SIZE, 0, 0, 0, 0};
+TM_USART_t TM_USART2 = {TM_USART2_Buffer, TM_USART2_BUFFER_SIZE, 0, 0, 0, 0, USART_STRING_DELIMITER};
 #endif
 #ifdef USE_USART3
-TM_USART_t TM_USART3 = {TM_USART3_Buffer, TM_USART3_BUFFER_SIZE, 0, 0, 0, 0};
+TM_USART_t TM_USART3 = {TM_USART3_Buffer, TM_USART3_BUFFER_SIZE, 0, 0, 0, 0, USART_STRING_DELIMITER};
 #endif
 #ifdef USE_UART4
-TM_USART_t TM_UART4 = {TM_UART4_Buffer, TM_UART4_BUFFER_SIZE, 0, 0, 0, 0};
+TM_USART_t TM_UART4 = {TM_UART4_Buffer, TM_UART4_BUFFER_SIZE, 0, 0, 0, 0, USART_STRING_DELIMITER};
 #endif
 #ifdef USE_UART5
-TM_USART_t TM_UART5 = {TM_UART5_Buffer, TM_UART5_BUFFER_SIZE, 0, 0, 0, 0};
+TM_USART_t TM_UART5 = {TM_UART5_Buffer, TM_UART5_BUFFER_SIZE, 0, 0, 0, 0, USART_STRING_DELIMITER};
 #endif
 #ifdef USE_USART6
-TM_USART_t TM_USART6 = {TM_USART6_Buffer, TM_USART6_BUFFER_SIZE, 0, 0, 0, 0};
+TM_USART_t TM_USART6 = {TM_USART6_Buffer, TM_USART6_BUFFER_SIZE, 0, 0, 0, 0, USART_STRING_DELIMITER};
 #endif
 #ifdef USE_UART7
-TM_USART_t TM_UART7 = {TM_UART7_Buffer, TM_UART7_BUFFER_SIZE, 0, 0, 0, 0};
+TM_USART_t TM_UART7 = {TM_UART7_Buffer, TM_UART7_BUFFER_SIZE, 0, 0, 0, 0, USART_STRING_DELIMITER};
 #endif
 #ifdef USE_UART8
-TM_USART_t TM_UART8 = {TM_UART8_Buffer, TM_UART8_BUFFER_SIZE, 0, 0, 0, 0};
+TM_USART_t TM_UART8 = {TM_UART8_Buffer, TM_UART8_BUFFER_SIZE, 0, 0, 0, 0, USART_STRING_DELIMITER};
 #endif
 
 /* Private functions */
@@ -95,7 +95,8 @@ void TM_USART_INT_InsertToBuffer(TM_USART_t* u, uint8_t c);
 TM_USART_t* TM_USART_INT_GetUsart(USART_TypeDef* USARTx);
 uint8_t TM_USART_INT_GetSubPriority(USART_TypeDef* USARTx);
 uint8_t TM_USART_BufferFull(USART_TypeDef* USARTx);
-/* Private initializator */
+
+/* Private initializator function */
 static void TM_USART_INT_Init(
 	USART_TypeDef* USARTx,
 	TM_USART_PinsPack_t pinspack,
@@ -214,8 +215,18 @@ uint8_t TM_USART_Getc(USART_TypeDef* USARTx) {
 uint16_t TM_USART_Gets(USART_TypeDef* USARTx, char* buffer, uint16_t bufsize) {
 	uint16_t i = 0;
 	
+	/* Get USART structure */
+	TM_USART_t* u = TM_USART_INT_GetUsart(USARTx);
+	
 	/* Check for any data on USART */
-	if (TM_USART_BufferEmpty(USARTx) || (!TM_USART_FindCharacter(USARTx, '\n') && !TM_USART_BufferFull(USARTx))) {
+	if (
+		u->Num == 0 ||                                             /*!< Buffer empty */
+		(
+			!TM_USART_FindCharacter(USARTx, u->StringDelimiter) && /*!< String delimiter not in buffer */
+			u->Num != u->Size                                      /*!< Buffer is not full */
+		)
+	) {
+		/* Return 0 */
 		return 0;
 	}
 	
@@ -224,17 +235,17 @@ uint16_t TM_USART_Gets(USART_TypeDef* USARTx, char* buffer, uint16_t bufsize) {
 		/* We have available data */
 		buffer[i] = (char) TM_USART_Getc(USARTx);
 		/* Check for end of string */
-		if (buffer[i] == '\n') {
-			i++;
+		if ((uint8_t)buffer[i] == (uint8_t)u->StringDelimiter) {
 			/* Done */
 			break;
-		} else {
-			i++;
 		}
+		
+		/* Increase */
+		i++;
 	}
 	
 	/* Add zero to the end of string */
-	buffer[i] = 0;               
+	buffer[++i] = 0;               
 
 	/* Return number of characters in buffer */
 	return i;
@@ -261,6 +272,14 @@ void TM_USART_ClearBuffer(USART_TypeDef* USARTx) {
 	u->Num = 0;
 	u->In = 0;
 	u->Out = 0;
+}
+
+void TM_USART_SetCustomStringEndCharacter(USART_TypeDef* USARTx, uint8_t Character) {
+	/* Get USART structure */
+	TM_USART_t* u = TM_USART_INT_GetUsart(USARTx);
+	
+	/* Set delimiter */
+	u->StringDelimiter = Character;
 }
 
 uint8_t TM_USART_FindCharacter(USART_TypeDef* USARTx, uint8_t c) {
@@ -299,6 +318,8 @@ void TM_USART_Puts(USART_TypeDef* USARTx, char* str) {
 	
 	/* Go through entire string */
 	while (*str) {
+		/* Wait to be ready, buffer empty */
+		USART_WAIT(USARTx);
 		/* Send data */
 		USARTx->DR = (uint16_t)(*str++ & 0x01FF);
 		/* Wait to be ready, buffer empty */
@@ -306,17 +327,23 @@ void TM_USART_Puts(USART_TypeDef* USARTx, char* str) {
 	}
 }
 
-void TM_USART_Putc(USART_TypeDef* USARTx, volatile char c) {
+void TM_USART_Send(USART_TypeDef* USARTx, uint8_t* DataArray, uint16_t count) {
+	uint16_t i;
 	TM_USART_t* u = TM_USART_INT_GetUsart(USARTx);
 	/* If we are not initialized */
 	if (u->Initialized == 0) {
 		return;
 	}
 	
-	/* Send data */
-	USARTx->DR = (uint16_t)(c & 0x01FF);
-	/* Wait to be ready, buffer empty */
-	USART_WAIT(USARTx);
+	/* Go through entire data array */
+	for (i = 0; i < count; i++) {
+		/* Wait to be ready, buffer empty */
+		USART_WAIT(USARTx);
+		/* Send data */
+		USARTx->DR = (uint16_t)(DataArray[i]);
+		/* Wait to be ready, buffer empty */
+		USART_WAIT(USARTx);
+	}
 }
 
 /* Private functions */

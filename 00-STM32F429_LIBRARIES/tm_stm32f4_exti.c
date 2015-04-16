@@ -113,10 +113,10 @@ TM_EXTI_Result_t TM_EXTI_Attach(GPIO_TypeDef* GPIOx, uint16_t GPIO_Line, TM_EXTI
 		EXTI->FTSR |= GPIO_Line;
 		EXTI->RTSR |= GPIO_Line;
 	}
-
+	
 	/* Add to NVIC */
 	NVIC_InitStruct.NVIC_IRQChannel = irqchannel;
-	NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority = TM_EXTI_PRIORITY;
+	NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority = TM_EXTI_NVIC_PRIORITY;
 	NVIC_InitStruct.NVIC_IRQChannelSubPriority = pinsource;
 	NVIC_InitStruct.NVIC_IRQChannelCmd = ENABLE;
 	NVIC_Init(&NVIC_InitStruct);

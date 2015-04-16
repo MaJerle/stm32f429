@@ -171,6 +171,8 @@ uint16_t TM_SPI_GetPrescalerFromMaxFrequency(SPI_TypeDef* SPIx, uint32_t MAX_SPI
 }
 
 uint8_t TM_SPI_Send(SPI_TypeDef* SPIx, uint8_t data) {
+	/* Wait for previous transmissions to complete if DMA TX enabled for SPI */
+	SPI_WAIT(SPIx);
 	/* Fill output buffer with data */
 	SPIx->DR = data;
 	/* Wait for transmission to complete */
@@ -181,6 +183,10 @@ uint8_t TM_SPI_Send(SPI_TypeDef* SPIx, uint8_t data) {
 
 void TM_SPI_SendMulti(SPI_TypeDef* SPIx, uint8_t* dataOut, uint8_t* dataIn, uint16_t count) {
 	uint16_t i;
+	
+	/* Wait for previous transmissions to complete if DMA TX enabled for SPI */
+	SPI_WAIT(SPIx);
+	
 	for (i = 0; i < count; i++) {
 		/* Fill output buffer with data */
 		SPIx->DR = dataOut[i];
@@ -193,6 +199,10 @@ void TM_SPI_SendMulti(SPI_TypeDef* SPIx, uint8_t* dataOut, uint8_t* dataIn, uint
 
 void TM_SPI_WriteMulti(SPI_TypeDef* SPIx, uint8_t* dataOut, uint16_t count) {
 	uint16_t i;
+	
+	/* Wait for previous transmissions to complete if DMA TX enabled for SPI */
+	SPI_WAIT(SPIx);
+	
 	for (i = 0; i < count; i++) {
 		/* Fill output buffer with data */
 		SPIx->DR = dataOut[i];
@@ -205,6 +215,10 @@ void TM_SPI_WriteMulti(SPI_TypeDef* SPIx, uint8_t* dataOut, uint16_t count) {
 
 void TM_SPI_ReadMulti(SPI_TypeDef* SPIx, uint8_t* dataIn, uint8_t dummy, uint16_t count) {
 	uint16_t i;
+	
+	/* Wait for previous transmissions to complete if DMA TX enabled for SPI */
+	SPI_WAIT(SPIx);
+	
 	for (i = 0; i < count; i++) {
 		/* Fill output buffer with data */
 		SPIx->DR = dummy;
@@ -216,6 +230,9 @@ void TM_SPI_ReadMulti(SPI_TypeDef* SPIx, uint8_t* dataIn, uint8_t dummy, uint16_
 }
 
 uint16_t TM_SPI_Send16(SPI_TypeDef* SPIx, uint16_t data) {
+	/* Wait for previous transmissions to complete if DMA TX enabled for SPI */
+	SPI_WAIT(SPIx);
+	
 	/* Fill output buffer with data */
 	SPIx->DR = data;
 	/* Wait for SPI to end everything */
@@ -226,6 +243,10 @@ uint16_t TM_SPI_Send16(SPI_TypeDef* SPIx, uint16_t data) {
 
 void TM_SPI_SendMulti16(SPI_TypeDef* SPIx, uint16_t* dataOut, uint16_t* dataIn, uint16_t count) {
 	uint16_t i;
+	
+	/* Wait for previous transmissions to complete if DMA TX enabled for SPI */
+	SPI_WAIT(SPIx);
+	
 	for (i = 0; i < count; i++) {
 		/* Fill output buffer with data */
 		SPIx->DR = dataOut[i];
@@ -238,6 +259,10 @@ void TM_SPI_SendMulti16(SPI_TypeDef* SPIx, uint16_t* dataOut, uint16_t* dataIn, 
 
 void TM_SPI_WriteMulti16(SPI_TypeDef* SPIx, uint16_t* dataOut, uint16_t count) {
 	uint16_t i;
+	
+	/* Wait for previous transmissions to complete if DMA TX enabled for SPI */
+	SPI_WAIT(SPIx);
+	
 	for (i = 0; i < count; i++) {
 		/* Fill output buffer with data */
 		SPIx->DR = dataOut[i];
@@ -250,6 +275,10 @@ void TM_SPI_WriteMulti16(SPI_TypeDef* SPIx, uint16_t* dataOut, uint16_t count) {
 
 void TM_SPI_ReadMulti16(SPI_TypeDef* SPIx, uint16_t* dataIn, uint16_t dummy, uint16_t count) {
 	uint16_t i;
+	
+	/* Wait for previous transmissions to complete if DMA TX enabled for SPI */
+	SPI_WAIT(SPIx);
+	
 	for (i = 0; i < count; i++) {
 		/* Fill output buffer with data */
 		SPIx->DR = dummy;
