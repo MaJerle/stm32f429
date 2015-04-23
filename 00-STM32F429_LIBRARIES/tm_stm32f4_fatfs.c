@@ -106,3 +106,16 @@ FRESULT TM_FATFS_TruncateBeginning(FIL* fil, uint32_t index) {
 	fr =  f_truncate(fil);									/* Truncate file from new end to actual end */
 	return f_lseek(fil, 0);									/* Move pointer to the beginning */
 }
+
+uint8_t TM_FATFS_CheckCardDetectPin(void) {
+	uint8_t status = 1;
+	
+#if FATFS_USE_DETECT_PIN > 0
+	if (TM_GPIO_GetInputPinValue(FATFS_USE_DETECT_PIN_PORT, FATFS_USE_DETECT_PIN_PIN) != 0) {
+		status = 0;
+	}
+#endif
+	
+	/* Return status */
+	return status;
+}

@@ -26,8 +26,29 @@ TM_EXTI_Result_t TM_EXTI_Attach(GPIO_TypeDef* GPIOx, uint16_t GPIO_Line, TM_EXTI
 	TM_GPIO_PuPd_t PuPd;
 	uint8_t pinsource, portsource, irqchannel;
 	
+	/* Check if user wants to init more than one gpio pin for exti at a time */
+	if (!(GPIO_Line && !(GPIO_Line & (GPIO_Line - 1)))) {
+		uint8_t i;
+		/* Check all pins */
+		for (i = 0; i < 0x10; i++) {
+			if (GPIO_Line & (1 << i)) {
+				/* Attach one pin at a time */
+				if (TM_EXTI_Attach(GPIOx, 1 << i, trigger) != TM_EXTI_Result_Ok) {
+					/* If one failed, return error */
+					return TM_EXTI_Result_Error;
+				}
+			}
+		}
+				
+		/* Return OK, all succedded */
+		return TM_EXTI_Result_Ok;
+	}
+	
 	/* Check if line is already in use */
-	if ((EXTI->IMR & GPIO_Line) || (EXTI->EMR & GPIO_Line)) {
+	if (
+		(EXTI->IMR & GPIO_Line) || /*!< Interrupt already attached */
+		(EXTI->EMR & GPIO_Line)    /*!< Event already attached */
+	) {
 		/* Return error */
 		return TM_EXTI_Result_Error;
 	}
@@ -106,10 +127,13 @@ TM_EXTI_Result_t TM_EXTI_Attach(GPIO_TypeDef* GPIOx, uint16_t GPIO_Line, TM_EXTI
 	
 	/* Select edge */
 	if (trigger == TM_EXTI_Trigger_Falling) {
+		/* Write to falling edge register */
 		EXTI->FTSR |= GPIO_Line;
 	} else if (trigger == TM_EXTI_Trigger_Rising) {
+		/* Write to rising edge register */
 		EXTI->RTSR |= GPIO_Line;
 	} else {
+		/* Write to rising and falling edge registers */
 		EXTI->FTSR |= GPIO_Line;
 		EXTI->RTSR |= GPIO_Line;
 	}
@@ -126,7 +150,7 @@ TM_EXTI_Result_t TM_EXTI_Attach(GPIO_TypeDef* GPIOx, uint16_t GPIO_Line, TM_EXTI
 }
 
 TM_EXTI_Result_t TM_EXTI_Detach(uint16_t GPIO_Line) {
-	/* Disable EXTI */
+	/* Disable EXTI for specific GPIO line */
 	EXTI->IMR &= ~GPIO_Line;
 	EXTI->EMR &= ~GPIO_Line;
 	

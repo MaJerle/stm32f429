@@ -178,9 +178,9 @@ SPI6     | DMA2 | DMA Stream 5  | DMA Channel 1  | DMA Stream 6  | DMA Channel 0
 
 /**
  * @brief  Initializes SPI peripheral DMA
- * @note   This function initialzies TX and RX DMA streams for SPI
+ * @note   This function initializes TX and RX DMA streams for SPI
  *
- * @note   SPI HAVE TO be previously initialized using @ref TM_USART library
+ * @note   SPI HAVE TO be previously initialized using @ref TM_SPI library
  * @param  *SPIx: Pointer to SPI peripheral where you want to enable DMA
  * @retlva None 
  */
@@ -194,8 +194,8 @@ void TM_SPI_DMA_Init(SPI_TypeDef* SPIx);
  * @param  *SPIx: Pointer to SPIx where you want to set custom DMA streams and channels
  * @param  *TX_Stream: Pointer to DMAy_Streamx, where y is DMA (1 or 2) and x is Stream (0 to 7)
  * @param  TX_Channel: Select DMA TX channel for your SPI in specific DMA Stream
- * @param  *TX_Stream: Pointer to DMAy_Streamx, where y is DMA (1 or 2) and x is Stream (0 to 7)
- * @param  TX_Channel: Select DMA RX channel for your SPI in specific DMA Stream
+ * @param  *RX_Stream: Pointer to DMAy_Streamx, where y is DMA (1 or 2) and x is Stream (0 to 7)
+ * @param  RX_Channel: Select DMA RX channel for your SPI in specific DMA Stream
  * @retval None
  */
 void TM_SPI_DMA_InitWithStreamAndChannel(SPI_TypeDef* SPIx, DMA_Stream_TypeDef* TX_Stream, uint32_t TX_Channel, DMA_Stream_TypeDef* RX_Stream, uint32_t RX_Channel);
@@ -252,7 +252,7 @@ uint8_t TM_SPI_DMA_Transmit(SPI_TypeDef* SPIx, uint8_t* TX_Buffer, uint8_t* RX_B
  * @brief  Checks if SPI DMA is still sending/receiving data
  * @param  *SPIx: Pointer to SPIx where you want to enable DMA TX mode
  * @retval Sending status:
- *            - 0: SPI DMA does not sending anymore
+ *            - 0: SPI DMA does not sending any more
  *            - > 0: SPI DMA is still sending data 
  */
 uint8_t TM_SPI_DMA_Working(SPI_TypeDef* SPIx);

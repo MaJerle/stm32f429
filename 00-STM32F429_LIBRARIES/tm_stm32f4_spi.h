@@ -323,9 +323,14 @@ typedef enum {
 //----- SPI6 options end -------
 
 /**
+ * @brief  Check SPI busy status
+ */
+#define SPI_IS_BUSY(SPIx) (((SPIx)->SR & (SPI_SR_TXE | SPI_SR_RXNE)) == 0 || ((SPIx)->SR & SPI_SR_BSY))
+
+/**
  * @brief  SPI wait till end
  */
-#define SPI_WAIT(SPix)      while (((SPIx)->SR & (SPI_SR_TXE | SPI_SR_RXNE)) == 0 || ((SPIx)->SR & SPI_SR_BSY))
+#define SPI_WAIT(SPIx)        while (SPI_IS_BUSY(SPIx))
 
 /**
  * @}
@@ -371,7 +376,7 @@ void TM_SPI_InitWithMode(SPI_TypeDef* SPIx, TM_SPI_PinsPack_t pinspack, TM_SPI_M
 void TM_SPI_InitFull(SPI_TypeDef* SPIx, TM_SPI_PinsPack_t pinspack, uint16_t SPI_BaudRatePrescaler, TM_SPI_Mode_t SPI_Mode_t, uint16_t SPI_Mode, uint16_t SPI_FirstBit);
 
 /**
- * @brief  Calculate bits for SPI prescaler register to get minimal prescaler value for SPI peripheral
+ * @brief  Calculates bits for SPI prescaler register to get minimal prescaler value for SPI peripheral
  * @note   SPI has 8 prescalers available, 2,4,6,...,128,256
  * @note   This function will return you a bits you must set in your CR1 register.
  *
@@ -388,7 +393,7 @@ void TM_SPI_InitFull(SPI_TypeDef* SPIx, TM_SPI_PinsPack_t pinspack, uint16_t SPI
 uint16_t TM_SPI_GetPrescalerFromMaxFrequency(SPI_TypeDef* SPIx, uint32_t MAX_SPI_Frequency);
 
 /**
- * @brief  Send single byte over SPI
+ * @brief  Sends single byte over SPI
  * @param  *SPIx: Pointer to SPIx peripheral you will use, where x is between 1 to 6
  * @param  data: 8-bit data size to send over SPI
  * @retval Received byte from slave device
@@ -396,7 +401,7 @@ uint16_t TM_SPI_GetPrescalerFromMaxFrequency(SPI_TypeDef* SPIx, uint32_t MAX_SPI
 uint8_t TM_SPI_Send(SPI_TypeDef* SPIx, uint8_t data);
 
 /**
- * @brief  Send and receive multiple bytes over SPIx
+ * @brief  Sends and receives multiple bytes over SPIx
  * @param  *SPIx: Pointer to SPIx peripheral you will use, where x is between 1 to 6
  * @param  *dataOut: Pointer to array with data to send over SPI
  * @param  *dataIn: Pointer to array to to save incoming data
@@ -406,7 +411,7 @@ uint8_t TM_SPI_Send(SPI_TypeDef* SPIx, uint8_t data);
 void TM_SPI_SendMulti(SPI_TypeDef* SPIx, uint8_t* dataOut, uint8_t* dataIn, uint16_t count);
 
 /**
- * @brief  Write multiple bytes over SPI
+ * @brief  Writes multiple bytes over SPI
  * @param  *SPIx: Pointer to SPIx peripheral you will use, where x is between 1 to 6
  * @param  *dataOut: Pointer to array with data to send over SPI
  * @param  count: Number of elements to send over SPI
@@ -415,7 +420,7 @@ void TM_SPI_SendMulti(SPI_TypeDef* SPIx, uint8_t* dataOut, uint8_t* dataIn, uint
 void TM_SPI_WriteMulti(SPI_TypeDef* SPIx, uint8_t* dataOut, uint16_t count);
 
 /**
- * @brief  Receive multiple data bytes over SPI
+ * @brief  Receives multiple data bytes over SPI
  * @note   Selected SPI must be set in 16-bit mode
  * @param  *SPIx: Pointer to SPIx peripheral you will use, where x is between 1 to 6
  * @param  *dataIn: Pointer to 8-bit array to save data into
@@ -426,7 +431,7 @@ void TM_SPI_WriteMulti(SPI_TypeDef* SPIx, uint8_t* dataOut, uint16_t count);
 void TM_SPI_ReadMulti(SPI_TypeDef* SPIx, uint8_t *dataIn, uint8_t dummy, uint16_t count);
 
 /**
- * @brief  Send single byte over SPI
+ * @brief  Sends single byte over SPI
  * @note   Selected SPI must be set in 16-bit mode
  * @param  *SPIx: Pointer to SPIx peripheral you will use, where x is between 1 to 6
  * @param  data: 16-bit data size to send over SPI
@@ -435,7 +440,7 @@ void TM_SPI_ReadMulti(SPI_TypeDef* SPIx, uint8_t *dataIn, uint8_t dummy, uint16_
 uint16_t TM_SPI_Send16(SPI_TypeDef* SPIx, uint16_t data);
 
 /**
- * @brief  Send and receive multiple bytes over SPIx in 16-bit SPI mode
+ * @brief  Sends and receives multiple bytes over SPIx in 16-bit SPI mode
  * @note   Selected SPI must be set in 16-bit mode
  * @param  *SPIx: Pointer to SPIx peripheral you will use, where x is between 1 to 6
  * @param  *dataOut: Pointer to array with data to send over SPI
@@ -446,7 +451,7 @@ uint16_t TM_SPI_Send16(SPI_TypeDef* SPIx, uint16_t data);
 void TM_SPI_SendMulti16(SPI_TypeDef* SPIx, uint16_t* dataOut, uint16_t* dataIn, uint16_t count);
 
 /**
- * @brief  Write multiple data via SPI in 16-bit SPI mode
+ * @brief  Writes multiple data via SPI in 16-bit SPI mode
  * @note   Selected SPI must be set in 16-bit mode
  * @param  *SPIx: Pointer to SPIx peripheral you will use, where x is between 1 to 6
  * @param  *dataOut: Pointer to 16-bit array with data to send over SPI
@@ -456,7 +461,7 @@ void TM_SPI_SendMulti16(SPI_TypeDef* SPIx, uint16_t* dataOut, uint16_t* dataIn, 
 void TM_SPI_WriteMulti16(SPI_TypeDef* SPIx, uint16_t* dataOut, uint16_t count);
 
 /**
- * @brief  Receive multiple data bytes over SPI in 16-bit SPI mode
+ * @brief  Receives multiple data bytes over SPI in 16-bit SPI mode
  * @note   Selected SPI must be set in 16-bit mode
  * @param  *SPIx: Pointer to SPIx peripheral you will use, where x is between 1 to 6
  * @param  *dataIn: Pointer to 16-bit array to save data into
@@ -473,10 +478,9 @@ void TM_SPI_ReadMulti16(SPI_TypeDef* SPIx, uint16_t* dataIn, uint16_t dummy, uin
  *
  * @note   You have to initialize MOSI, MISO and SCK pin
  *
- * @note   With __weak parameter to prevent link errors if not defined by user
- *
  * @param  *SPIx: Pointer to SPIx peripheral for which you have to set your custom pin settings
  * @retval None
+ * @note   With __weak parameter to prevent link errors if not defined by user
  */
 __weak void TM_SPI_InitCustomPinsCallback(SPI_TypeDef* SPIx);
 

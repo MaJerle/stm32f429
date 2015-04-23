@@ -174,11 +174,8 @@ uint8_t TM_SPI_DMA_Transmit(SPI_TypeDef* SPIx, uint8_t* TX_Buffer, uint8_t* RX_B
 	/* Enable TX stream */
 	Settings->TX_Stream->CR |= DMA_SxCR_EN;
 	
-	/* Enable SPI RX DMA */
-	SPIx->CR2 |= SPI_CR2_RXDMAEN;
-	
-	/* Enable SPI TX DMA */
-	SPIx->CR2 |= SPI_CR2_TXDMAEN;
+	/* Enable SPI RX & TX DMA */
+	SPIx->CR2 |= SPI_CR2_RXDMAEN | SPI_CR2_TXDMAEN;
 	
 	/* Return OK */
 	return 1;
@@ -189,7 +186,11 @@ uint8_t TM_SPI_DMA_Working(SPI_TypeDef* SPIx) {
 	TM_SPI_DMA_INT_t* Settings = TM_SPI_DMA_INT_GetSettings(SPIx);
 	
 	/* Check if TX or RX DMA is working */
-	return ( Settings->RX_Stream->NDTR || Settings->TX_Stream->NDTR);
+	return (
+		Settings->RX_Stream->NDTR || 
+		Settings->TX_Stream->NDTR ||
+		SPI_IS_BUSY(SPIx)
+	);
 }
 
 /* Private functions */

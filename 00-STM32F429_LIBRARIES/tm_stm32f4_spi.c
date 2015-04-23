@@ -150,7 +150,20 @@ uint16_t TM_SPI_GetPrescalerFromMaxFrequency(SPI_TypeDef* SPIx, uint32_t MAX_SPI
 	RCC_GetClocksFreq(&RCC_Clocks);
 	
 	/* Calculate max SPI clock */
-	if (SPIx == SPI1 || SPIx == SPI4 || SPIx == SPI5 || SPIx == SPI6) {
+	if (0
+#ifdef SPI1	
+		|| SPIx == SPI1
+#endif
+#ifdef SPI4
+		|| SPIx == SPI4
+#endif
+#ifdef SPI5
+		|| SPIx == SPI5
+#endif
+#ifdef SPI6
+		|| SPIx == SPI6
+#endif
+	) {
 		APB_Frequency = RCC_Clocks.PCLK2_Frequency;
 	} else {
 		APB_Frequency = RCC_Clocks.PCLK1_Frequency;
@@ -177,6 +190,7 @@ uint8_t TM_SPI_Send(SPI_TypeDef* SPIx, uint8_t data) {
 	SPIx->DR = data;
 	/* Wait for transmission to complete */
 	SPI_WAIT(SPIx);
+	
 	/* Return data from buffer */
 	return SPIx->DR;
 }
@@ -236,7 +250,7 @@ uint16_t TM_SPI_Send16(SPI_TypeDef* SPIx, uint16_t data) {
 	/* Fill output buffer with data */
 	SPIx->DR = data;
 	/* Wait for SPI to end everything */
-	while (SPIx->SR & SPI_SR_BSY);
+	SPI_WAIT(SPIx);
 	/* Return data from buffer */
 	return SPIx->DR;
 }
@@ -374,6 +388,7 @@ static void TM_SPIx_Init(SPI_TypeDef* SPIx, TM_SPI_PinsPack_t pinspack, TM_SPI_M
 	SPI_InitStruct.SPI_Direction = SPI_Direction_2Lines_FullDuplex;
 	SPI_InitStruct.SPI_FirstBit = SPI_FirstBit;
 	SPI_InitStruct.SPI_Mode = SPI_MasterSlave;
+	SPI_InitStruct.SPI_NSS = SPI_NSS_Soft;
 	
 	/* SPI mode */
 	if (SPI_Mode == TM_SPI_Mode_0) {
@@ -389,7 +404,6 @@ static void TM_SPIx_Init(SPI_TypeDef* SPIx, TM_SPI_PinsPack_t pinspack, TM_SPI_M
 		SPI_InitStruct.SPI_CPOL = SPI_CPOL_High;
 		SPI_InitStruct.SPI_CPHA = SPI_CPHA_2Edge;
 	}
-	SPI_InitStruct.SPI_NSS = SPI_NSS_Soft;
 	
 	/* Disable first */
 	SPIx->CR1 &= ~SPI_CR1_SPE;

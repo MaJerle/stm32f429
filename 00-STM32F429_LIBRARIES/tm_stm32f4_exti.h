@@ -195,18 +195,23 @@ typedef enum {
  *         If you will try that, my function will return error to you, because you have to detach GPIO_Line first and attach back on other GPIO port.
  *
  * @param  *GPIOx: GPIO port where you want EXTI interrupt line
- * @param  GPIO_Line: GPIO pin where you want EXTI interrupt line
+ * @param  GPIO_Line: GPIO pin where you want EXTI interrupt line. Use OR (|) operator if you want to attach
+ *            interrupt in more than one GPIO pin at the same GPIOx at the same time.
  * @param  trigger: Pin trigger source. This parameter can be a value of @ref TM_EXTI_Trigger_t enumeration
  * @retval Attach result:
  *            - @arg TM_EXTI_Result_Ok: Everything ok, interrupt attached
  *            - @arg TM_EXTI_Result_Error: An error occurred, interrupt was not attached
+ * @note   If you use more than one GPIO_Pin with OR (|) operator at single call and if GPIO_Pin can't be attached because
+ *         there is already one GPIO_Pin at this line, function will return error and other pins might not be initialized.
+ *         If function return @arg TM_EXTI_Result_Ok, then all pins are attached correctly.
  */
 TM_EXTI_Result_t TM_EXTI_Attach(GPIO_TypeDef* GPIOx, uint16_t GPIO_Line, TM_EXTI_Trigger_t trigger);
 
 /**
  * @brief  Detach GPIO pin from interrupt lines
- * @param  GPIO_Line: GPIO line you want to disable. Valid GPIO is GPIO_Pin_0 to GPIO_Pin_15
- * @retval result:
+ * @param  GPIO_Line: GPIO line you want to disable. Valid GPIO is GPIO_Pin_0 to GPIO_Pin_15. 
+ *         Use OR (|) operator if you want to detach interrupt in more than one GPIO pin at the same GPIOx at the same time.
+ * @retval Detaching result:
  *            - @arg TM_EXTI_Result_Ok: Everything ok
  *            - @arg TM_EXTI_Result_Error: An error occurred
  */

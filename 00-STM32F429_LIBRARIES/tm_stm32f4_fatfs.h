@@ -378,6 +378,18 @@ FRESULT TM_FATFS_USBDriveSize(uint32_t* total, uint32_t* free);
 FRESULT TM_FATFS_TruncateBeginning(FIL* fil, uint32_t index);
 
 /**
+ * @brief  Checks card detect pin (if activated) if card is inserted
+ * @note   Pin must be set low in order to get card inserted, otherwise card is not inserted
+ *
+ * @note   Card detect pin must be activated in to get this functionality to work
+ * @param  None
+ * @retval Card detected status:
+ *            - 0: Card is not inserted
+ *            - > 0: Card is inserted
+ */
+uint8_t TM_FATFS_CheckCardDetectPin(void);
+
+/**
  * @}
  */
  

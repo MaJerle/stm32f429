@@ -22,8 +22,12 @@
 #include "tm_stm32f4_disco.h"
 #include "tm_stm32f4_spi.h"
 #include "tm_stm32f4_spi_dma.h"
+#include "tm_stm32f4_general.h"
+#include "stdio.h"
+#include "string.h"
 
-uint8_t TX_Buffer[5], RX_Buffer[5];
+uint8_t TX_Buffer[200], RX_Buffer[200];
+uint32_t val;
 
 int main(void) {
 	/* Initialize system */
@@ -39,27 +43,33 @@ int main(void) {
 	TM_SPI_DMA_Init(SPI1);
 	
 	/* Set fake SPI TX buffer */
-	TX_Buffer[0] = 0xAA;
-	TX_Buffer[1] = 0xDD;
-	TX_Buffer[2] = 0xCC;
-	TX_Buffer[3] = 0xAA;
-	TX_Buffer[4] = 0x55;
+	memset(TX_Buffer, 0x00, sizeof(TX_Buffer));
+	
+	val = TM_GENERAL_DWTCounterEnable();
 	
 	/* Set CS low first here before you send data over SPI */
 	
+	
+	TM_GENERAL_DWTCounterSetValue(0);
 	/* Send data over SPI1 with DMA */
 	/* Exchange data with SPI slave using SPI DMA */
 	/* Exchange 5 bytes of data */
-	TM_SPI_DMA_Transmit(SPI1, TX_Buffer, RX_Buffer, 5);
+	TM_SPI_DMA_Transmit(SPI1, TX_Buffer, RX_Buffer, sizeof(TX_Buffer));
 	
 	/* Wait till SPI DMA do it's job */
 	/* You can do other stuff instead */
 	while (TM_SPI_DMA_Working(SPI1));
+	val = TM_GENERAL_DWTCounterGetValue();
 	
 	/* Little delay, for debug */
 	Delayms(10);
 	
+	TM_GENERAL_DWTCounterSetValue(0);
+	TM_SPI_SendMulti(SPI1, TX_Buffer, RX_Buffer, sizeof(TX_Buffer));
+	val = TM_GENERAL_DWTCounterGetValue();
+	
 	/* Send 5 bytes of data and don't care what you receive back from slave via DMA */
+	/* RX_Buffer should not be changed in debug window */
 	TM_SPI_DMA_Transmit(SPI1, TX_Buffer, NULL, 5);
 	
 	/* Wait till SPI DMA do it's job */

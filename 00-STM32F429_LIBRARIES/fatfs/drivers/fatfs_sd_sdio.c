@@ -340,7 +340,7 @@ DRESULT TM_FATFS_SD_SDIO_disk_read(BYTE *buff, DWORD sector, UINT count) {
 	if ((TM_FATFS_SD_SDIO_Stat & STA_NOINIT)) {
 		return RES_NOTRDY;
 	}
-
+/*
 	SD_ReadMultiBlocks(buff, sector << 9, 512, count);
 
 	//Check if the Transfer is finished
@@ -351,8 +351,8 @@ DRESULT TM_FATFS_SD_SDIO_disk_read(BYTE *buff, DWORD sector, UINT count) {
 		return RES_OK;
 	}
 	return RES_ERROR;
+*/
 
-/*
 	if ((DWORD)buff & 3) {
 		DRESULT res = RES_OK;
 		DWORD scratch[BLOCK_SIZE / 4];
@@ -372,7 +372,7 @@ DRESULT TM_FATFS_SD_SDIO_disk_read(BYTE *buff, DWORD sector, UINT count) {
 		return res;
 	}
 
-	Status = SD_ReadMultiBlocks(buff, sector, BLOCK_SIZE, count);
+	Status = SD_ReadMultiBlocks(buff, sector << 9, BLOCK_SIZE, count);
 
 	if (Status == SD_OK) {
 		SDTransferState State;
@@ -389,7 +389,6 @@ DRESULT TM_FATFS_SD_SDIO_disk_read(BYTE *buff, DWORD sector, UINT count) {
 	} else {
 		return RES_ERROR;
 	}
-*/
 }
 
 DRESULT TM_FATFS_SD_SDIO_disk_write(BYTE *buff, DWORD sector, UINT count) {
@@ -402,7 +401,7 @@ DRESULT TM_FATFS_SD_SDIO_disk_write(BYTE *buff, DWORD sector, UINT count) {
 	if (SD_Detect() != SD_PRESENT) {
 		return RES_NOTRDY;
 	}
-	
+/*	
 	SD_WriteMultiBlocks((BYTE *)buff, sector << 9, 512, count);
 
 	//Check if the Transfer is finished
@@ -413,8 +412,7 @@ DRESULT TM_FATFS_SD_SDIO_disk_write(BYTE *buff, DWORD sector, UINT count) {
 		return RES_OK;
 	}
 	return RES_ERROR;
-
-/*
+*/
 	if ((DWORD)buff & 3) {
 		DRESULT res = RES_OK;
 		DWORD scratch[BLOCK_SIZE / 4];
@@ -433,14 +431,14 @@ DRESULT TM_FATFS_SD_SDIO_disk_write(BYTE *buff, DWORD sector, UINT count) {
 		return(res);
 	}
 
-	Status = SD_WriteMultiBlocks((uint8_t *)buff, sector, BLOCK_SIZE, count); // 4GB Compliant
+	Status = SD_WriteMultiBlocks((uint8_t *)buff, sector << 9, BLOCK_SIZE, count); // 4GB Compliant
 
 	if (Status == SD_OK) {
 		SDTransferState State;
 
 		Status = SD_WaitWriteOperation(); // Check if the Transfer is finished
 
-		while((State = SD_GetStatus()) == SD_TRANSFER_BUSY); // BUSY, OK (DONE), ERROR (FAIL)
+		while ((State = SD_GetStatus()) == SD_TRANSFER_BUSY); // BUSY, OK (DONE), ERROR (FAIL)
 
 		if ((State == SD_TRANSFER_ERROR) || (Status != SD_OK)) {
 			return RES_ERROR;
@@ -450,7 +448,6 @@ DRESULT TM_FATFS_SD_SDIO_disk_write(BYTE *buff, DWORD sector, UINT count) {
 	} else {
 		return RES_ERROR;
 	}
-*/
 }
 
 DRESULT TM_FATFS_SD_SDIO_disk_ioctl(BYTE cmd, char *buff) {
@@ -499,9 +496,8 @@ void DMA2_Stream6_IRQHandler(void) {
  * @param  None
  * @retval None
  */
-void SD_DeInit (void)
-{
-        SD_LowLevel_DeInit ();
+void SD_DeInit (void) {
+	SD_LowLevel_DeInit();
 }
 
 /**
@@ -631,12 +627,12 @@ SDCardState SD_GetState(void) {
 uint8_t SD_Detect(void) {
 	__IO uint8_t status = SD_PRESENT;
 
-#if FATFS_USE_DETECT_PIN > 0
-	if (TM_GPIO_GetInputPinValue(FATFS_USE_DETECT_PIN_PORT, FATFS_USE_DETECT_PIN_PIN) != 0) {
+	/* Check status */
+	if (!TM_FATFS_CheckCardDetectPin()) {
 		status = SD_NOT_PRESENT;
 	}
-#endif
 
+	/* Return status */
 	return status;
 }
 
@@ -3192,7 +3188,7 @@ void SD_LowLevel_DMA_TxConfig (uint32_t *BufferSRC, uint32_t BufferSize) {
 	SDDMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
 	SDDMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
 	SDDMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Word;
-	SDDMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_Byte; /* DMA_MemoryDataSize_Word */
+	SDDMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_Byte; /* DMA_MemoryDataSize_Word; */
 	SDDMA_InitStructure.DMA_Mode = DMA_Mode_Normal;
 	SDDMA_InitStructure.DMA_Priority = DMA_Priority_VeryHigh;
 	SDDMA_InitStructure.DMA_FIFOMode = DMA_FIFOMode_Enable;

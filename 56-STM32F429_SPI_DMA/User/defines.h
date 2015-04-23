@@ -29,6 +29,5 @@
 #define TM_DEFINES_H
 
 /* Put your global defines for all libraries here used in your project */
-#define TM_SPI1_PRESCALER	SPI_BaudRatePrescaler_256
 
 #endif

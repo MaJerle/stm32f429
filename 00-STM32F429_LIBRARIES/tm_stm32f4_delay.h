@@ -3,7 +3,7 @@
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
  * @link    http://stm32f4-discovery.com/2014/04/library-03-stm32f429-discovery-system-clock-and-pretty-precise-delay-library/
- * @version v2.2
+ * @version v2.3
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   Pretty accurate delay functions with SysTick or any other timer
@@ -28,7 +28,7 @@
 @endverbatim
  */
 #ifndef TM_DELAY_H
-#define TM_DELAY_H 220
+#define TM_DELAY_H 230
 /**
  * Library dependencies
  * - STM32F4xx
@@ -106,6 +106,10 @@ Or use ARM compiler!
  * \par Changelog
  *
 @verbatim
+ Version 2.3
+  - April 18, 2015
+  - Fixed support for internal RC clock
+  
  Version 2.2
   - January 12, 2015
   - Added support for custom function call each time 1ms interrupt happen
@@ -121,7 +125,7 @@ Or use ARM compiler!
   - Delay library has been totally rewritten. Because Systick is designed to be used
        in RTOS, it is not compatible to use it at the 2 places at the same time.
        For that purpose, library has been rewritten.
-  - Read full documentation below
+  - Read full documentation above
 
  Version 1.0
   - First release

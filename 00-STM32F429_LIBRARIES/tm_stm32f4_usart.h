@@ -130,7 +130,7 @@ UART8        |PE1    PE0     |-      -       |-      -
 @verbatim
 //Change X with possible U(S)ARTs: USART1, USART2, USART3, UART4, UART5, USART6, UART7, UART8
 //Set flow control
-#define TM_X_HARDWARE_FLOW_CONTROL		USART_HardwareFlowControl_None
+#define TM_X_HARDWARE_FLOW_CONTROL		TM_USART_HardwareFlowControl_None
 //Set mode
 #define TM_X_MODE						USART_Mode_Tx | USART_Mode_Rx
 //Set parity
@@ -235,7 +235,7 @@ UART8        |PE1    PE0     |-      -       |-      -
 #endif
 
 
- /**
+/**
  * @defgroup TM_USART_Typedefs
  * @brief    USART Typedefs
  * @{
@@ -480,7 +480,9 @@ void TM_USART_Init(USART_TypeDef* USARTx, TM_USART_PinsPack_t pinspack, uint32_t
 
 /**
  * @brief  Initializes USARTx peripheral and corresponding pins with custom hardware flow control mode
- * @note   Hardware flow control pins are not initialized. Easy solution is to you Custom pinspack option and initialize all USART pins at a time
+ * @note   Hardware flow control pins are not initialized. Easy solution is to use @arg TM_USART_PinsPack_Custom pinspack option 
+ *         when you call @ref TM_USART_Init() function and initialize all USART pins at a time inside @ref TM_USART_InitCustomPinsCallback() 
+ *         callback function, which will be called from my library
  * @param  *USARTx: Pointer to USARTx peripheral you will use
  * @param  pinspack: This parameter can be a value of @ref TM_USART_PinsPack_t enumeration
  * @param  baudrate: Baudrate number for USART communication
@@ -592,7 +594,8 @@ void TM_USART_SetCustomStringEndCharacter(USART_TypeDef* USARTx, uint8_t Charact
 
 /**
  * @brief  Callback for custom pins initialization for USARTx.
- *         When you call TM_USART_Init() function, and if you pass TM_USART_PinsPack_Custom to function,
+ *
+ *         When you call @ef TM_USART_Init() function, and if you pass @arg TM_USART_PinsPack_Custom to function,
  *         then this function will be called where you can initialize custom pins for USART peripheral.
  * @note   With __weak parameter to prevent link errors if not defined by user
  * @param  *USARTx: Pointer to USARTx peripheral you will use for initialization

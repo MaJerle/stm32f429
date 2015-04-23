@@ -47,27 +47,14 @@ static void init_spi (void) {
 }
 
 
-/* Exchange a byte */
-static BYTE xchg_spi (
-	BYTE dat	/* Data to send */
-)
-{
-	//FATFS_DEBUG_SEND_USART("xchg_spi: inside");
-	return TM_SPI_Send(FATFS_SPI, dat);
-}
-
-
 /* Receive multiple byte */
 static void rcvr_spi_multi (
 	BYTE *buff,		/* Pointer to data buffer */
 	UINT btr		/* Number of bytes to receive (even number) */
 )
 {
-	FATFS_DEBUG_SEND_USART("rcvr_spi_multi: inside");
-	
+	/* Read multiple bytes, send 0xFF as dummy */
 	TM_SPI_ReadMulti(FATFS_SPI, buff, 0xFF, btr);
-	
-	FATFS_DEBUG_SEND_USART("rcvr_spi_multi: done"); 
 }
 
 
@@ -78,8 +65,7 @@ static void xmit_spi_multi (
 	UINT btx			/* Number of bytes to send (even number) */
 )
 {
-	FATFS_DEBUG_SEND_USART("xmit_spi_multi: inside");
-	
+	/* Write multiple bytes */
 	TM_SPI_WriteMulti(FATFS_SPI, (uint8_t *)buff, btx);
 }
 #endif
@@ -95,9 +81,11 @@ static int wait_ready (	/* 1:Ready, 0:Timeout */
 {
 	BYTE d;
 
+	/* Set down counter */
 	TM_DELAY_SetTime2(wt);
+	
 	do {
-		d = xchg_spi(0xFF);
+		d = TM_SPI_Send(FATFS_SPI, 0xFF);
 	} while (d != 0xFF && TM_DELAY_Time2());	/* Wait for card goes ready or timeout */
 	if (d == 0xFF) {
 		FATFS_DEBUG_SEND_USART("wait_ready: OK");
@@ -116,7 +104,7 @@ static int wait_ready (	/* 1:Ready, 0:Timeout */
 static void deselect (void)
 {
 	FATFS_CS_HIGH;			/* CS = H */
-	xchg_spi(0xFF);			/* Dummy clock (force DO hi-z for multiple slave SPI) */
+	TM_SPI_Send(FATFS_SPI, 0xFF);			/* Dummy clock (force DO hi-z for multiple slave SPI) */
 	FATFS_DEBUG_SEND_USART("deselect: ok");
 }
 
@@ -129,7 +117,7 @@ static void deselect (void)
 static int select (void)	/* 1:OK, 0:Timeout */
 {
 	FATFS_CS_LOW;
-	xchg_spi(0xFF);	/* Dummy clock (force DO enabled) */
+	TM_SPI_Send(FATFS_SPI, 0xFF);	/* Dummy clock (force DO enabled) */
 
 	if (wait_ready(500)) {
 		FATFS_DEBUG_SEND_USART("select: OK");
@@ -153,13 +141,11 @@ static int rcvr_datablock (	/* 1:OK, 0:Error */
 {
 	BYTE token;
 	
-	FATFS_DEBUG_SEND_USART("rcvr_datablock: inside");
-	
 	//Timer1 = 200;
 	
 	TM_DELAY_SetTime2(200);
 	do {							// Wait for DataStart token in timeout of 200ms 
-		token = xchg_spi(0xFF);
+		token = TM_SPI_Send(FATFS_SPI, 0xFF);
 		// This loop will take a time. Insert rot_rdq() here for multitask envilonment. 
 	} while ((token == 0xFF) && TM_DELAY_Time2());
 	if (token != 0xFE) {
@@ -168,8 +154,7 @@ static int rcvr_datablock (	/* 1:OK, 0:Error */
 	}
 
 	rcvr_spi_multi(buff, btr);		// Store trailing data to the buffer 
-	xchg_spi(0xFF); xchg_spi(0xFF);			// Discard CRC 
-	FATFS_DEBUG_SEND_USART("rcvr_datablock: return = 1");
+	TM_SPI_Send(FATFS_SPI, 0xFF); TM_SPI_Send(FATFS_SPI, 0xFF);			// Discard CRC 
 	return 1;						// Function succeeded 
 }
 
@@ -195,12 +180,12 @@ static int xmit_datablock (	/* 1:OK, 0:Failed */
 	}
 	FATFS_DEBUG_SEND_USART("xmit_datablock: ready");
 
-	xchg_spi(token);					/* Send token */
+	TM_SPI_Send(FATFS_SPI, token);					/* Send token */
 	if (token != 0xFD) {				/* Send data if token is other than StopTran */
 		xmit_spi_multi(buff, 512);		/* Data */
-		xchg_spi(0xFF); xchg_spi(0xFF);	/* Dummy CRC */
+		TM_SPI_Send(FATFS_SPI, 0xFF); TM_SPI_Send(FATFS_SPI, 0xFF);	/* Dummy CRC */
 
-		resp = xchg_spi(0xFF);				/* Receive data resp */
+		resp = TM_SPI_Send(FATFS_SPI, 0xFF);				/* Receive data resp */
 		if ((resp & 0x1F) != 0x05)		/* Function fails if the data packet was not accepted */
 			return 0;
 	}
@@ -219,11 +204,8 @@ static BYTE send_cmd (		/* Return value: R1 resp (bit7==1:Failed to send) */
 )
 {
 	BYTE n, res;
-
-	FATFS_DEBUG_SEND_USART("send_cmd: inside");
 	
 	if (cmd & 0x80) {	/* Send a CMD55 prior to ACMD<n> */
-		FATFS_DEBUG_SEND_USART("send_cmd: 0x80 bit set");
 		cmd &= 0x7F;
 		res = send_cmd(CMD55, 0);
 		if (res > 1) return res;
@@ -231,31 +213,30 @@ static BYTE send_cmd (		/* Return value: R1 resp (bit7==1:Failed to send) */
 
 	/* Select the card and wait for ready except to stop multiple block read */
 	if (cmd != CMD12) {
-		FATFS_DEBUG_SEND_USART("send_cmd: cmd != CMD12");
 		deselect();
 		if (!select()) return 0xFF;
 	}
 
 	/* Send command packet */
-	xchg_spi(0x40 | cmd);				/* Start + command index */
-	xchg_spi((BYTE)(arg >> 24));		/* Argument[31..24] */
-	xchg_spi((BYTE)(arg >> 16));		/* Argument[23..16] */
-	xchg_spi((BYTE)(arg >> 8));			/* Argument[15..8] */
-	xchg_spi((BYTE)arg);				/* Argument[7..0] */
-	n = 0x01;							/* Dummy CRC + Stop */
-	if (cmd == CMD0) n = 0x95;			/* Valid CRC for CMD0(0) */
-	if (cmd == CMD8) n = 0x87;			/* Valid CRC for CMD8(0x1AA) */
-	xchg_spi(n);
+	TM_SPI_Send(FATFS_SPI, 0x40 | cmd);				/* Start + command index */
+	TM_SPI_Send(FATFS_SPI, (BYTE)(arg >> 24));		/* Argument[31..24] */
+	TM_SPI_Send(FATFS_SPI, (BYTE)(arg >> 16));		/* Argument[23..16] */
+	TM_SPI_Send(FATFS_SPI, (BYTE)(arg >> 8));		/* Argument[15..8] */
+	TM_SPI_Send(FATFS_SPI, (BYTE)arg);				/* Argument[7..0] */
+	n = 0x01;										/* Dummy CRC + Stop */
+	if (cmd == CMD0) n = 0x95;						/* Valid CRC for CMD0(0) */
+	if (cmd == CMD8) n = 0x87;						/* Valid CRC for CMD8(0x1AA) */
+	TM_SPI_Send(FATFS_SPI, n);
 
 	/* Receive command resp */
 	if (cmd == CMD12) {
-		FATFS_DEBUG_SEND_USART("send_cmd: CMD12, receive command resp");
-		xchg_spi(0xFF);					/* Diacard following one byte when CMD12 */
+		TM_SPI_Send(FATFS_SPI, 0xFF);					/* Diacard following one byte when CMD12 */
 	}
+	
 	n = 10;								/* Wait for response (10 bytes max) */
-	do
-		res = xchg_spi(0xFF);
-	while ((res & 0x80) && --n);
+	do {
+		res = TM_SPI_Send(FATFS_SPI, 0xFF);
+	} while ((res & 0x80) && --n);
 
 	return res;							/* Return received response */
 }
@@ -275,7 +256,6 @@ void TM_FATFS_InitPins(void) {
 #endif
 }
 
-
 uint8_t TM_FATFS_Detect(void) {
 #if FATFS_USE_DETECT_PIN > 0
 	return !TM_GPIO_GetInputPinValue(FATFS_USE_DETECT_PIN_PORT, FATFS_USE_DETECT_PIN_PIN);
@@ -292,11 +272,8 @@ uint8_t TM_FATFS_WriteEnabled(void) {
 #endif	
 }
 
-
 DSTATUS TM_FATFS_SD_disk_initialize (void) {
 	BYTE n, cmd, ty, ocr[4];
-
-	FATFS_DEBUG_SEND_USART("disk_initialize: inside");
 	
 	//Initialize CS pin
 	TM_FATFS_InitPins();
@@ -306,20 +283,20 @@ DSTATUS TM_FATFS_SD_disk_initialize (void) {
 		return STA_NODISK;
 	}
 	for (n = 10; n; n--) {
-		xchg_spi(0xFF);
+		TM_SPI_Send(FATFS_SPI, 0xFF);
 	}
 	ty = 0;
 	if (send_cmd(CMD0, 0) == 1) {				/* Put the card SPI/Idle state */
-		FATFS_DEBUG_SEND_USART("disk_initialize: CMD0 = 1");
-		//Timer1 = 1000;						/* Initialization timeout = 1 sec */
-		TM_DELAY_SetTime2(1000);
+		TM_DELAY_SetTime2(1000);				/* Initialization timeout = 1 sec */
 		if (send_cmd(CMD8, 0x1AA) == 1) {	/* SDv2? */
-			for (n = 0; n < 4; n++) ocr[n] = xchg_spi(0xFF);	/* Get 32 bit return value of R7 resp */
+			for (n = 0; n < 4; n++) {
+				ocr[n] = TM_SPI_Send(FATFS_SPI, 0xFF);	/* Get 32 bit return value of R7 resp */
+			}
 			if (ocr[2] == 0x01 && ocr[3] == 0xAA) {				/* Is the card supports vcc of 2.7-3.6V? */
 				while (TM_DELAY_Time2() && send_cmd(ACMD41, 1UL << 30)) ;	/* Wait for end of initialization with ACMD41(HCS) */
 				if (TM_DELAY_Time2() && send_cmd(CMD58, 0) == 0) {		/* Check CCS bit in the OCR */
 					for (n = 0; n < 4; n++) {
-						ocr[n] = xchg_spi(0xFF);
+						ocr[n] = TM_SPI_Send(FATFS_SPI, 0xFF);
 					}
 					ty = (ocr[0] & 0x40) ? CT_SD2 | CT_BLOCK : CT_SD2;	/* Card id SDv2 */
 				}
@@ -337,7 +314,6 @@ DSTATUS TM_FATFS_SD_disk_initialize (void) {
 		}
 	}
 	TM_FATFS_SD_CardType = ty;	/* Card type */
-	FATFS_DEBUG_SEND_USART("disk_initialize: deselecting");
 	deselect();
 
 	if (ty) {			/* OK */
@@ -362,13 +338,13 @@ DSTATUS TM_FATFS_SD_disk_initialize (void) {
 /*-----------------------------------------------------------------------*/
 
 DSTATUS TM_FATFS_SD_disk_status (void) {
-	FATFS_DEBUG_SEND_USART("fatfs_sd_disk_status");
 	
+	/* Check card detect pin if enabled */
 	if (!TM_FATFS_Detect()) {
-		FATFS_DEBUG_SEND_USART("not detected");
 		return STA_NOINIT;
 	}
 	
+	/* Check if write is enabled */
 	if (!TM_FATFS_WriteEnabled()) {
 		TM_FATFS_SD_Stat |= STA_PROTECT;
 	} else {
@@ -521,9 +497,9 @@ DRESULT TM_FATFS_SD_disk_ioctl (
 	case GET_BLOCK_SIZE :	/* Get erase block size in unit of sector (DWORD) */
 		if (TM_FATFS_SD_CardType & CT_SD2) {	/* SDC ver 2.00 */
 			if (send_cmd(ACMD13, 0) == 0) {	/* Read SD status */
-				xchg_spi(0xFF);
+				TM_SPI_Send(FATFS_SPI, 0xFF);
 				if (rcvr_datablock(csd, 16)) {				/* Read partial block */
-					for (n = 64 - 16; n; n--) xchg_spi(0xFF);	/* Purge trailing data */
+					for (n = 64 - 16; n; n--) TM_SPI_Send(FATFS_SPI, 0xFF);	/* Purge trailing data */
 					*(DWORD*)buff = 16UL << (csd[10] >> 4);
 					res = RES_OK;
 				}

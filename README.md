@@ -142,6 +142,8 @@ http://bit.ly/1D8RPpX
 http://bit.ly/1HchE9L
 56. SPI DMA - Extend SPI with DMA functionality
 http://bit.ly/1CQPPyO
+57. BUTTON - Use buttons with STM32F4xx
+http://bit.ly/1Gbp8po
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB

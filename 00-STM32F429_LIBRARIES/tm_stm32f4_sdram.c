@@ -18,6 +18,9 @@
  */
 #include "tm_stm32f4_sdram.h"
 
+/* Only for these devices */
+#if defined(STM32F427_437xx) || defined(STM32F429_439xx) || defined(STM32F446xx)
+
 /* Internal functions */
 static void TM_SDRAM_InitPins(void);
 
@@ -216,3 +219,5 @@ __weak uint8_t TM_SDRAM_InitCustomPinsCallback(void) {
 	/* Return 0, lib will use default pins */
 	return 0;
 }
+
+#endif
