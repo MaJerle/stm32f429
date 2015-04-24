@@ -144,11 +144,11 @@ typedef struct {
  * @param  GPIO_Pin: GPIO pin where button is located
  * @param  ButtonState: Button state when it is pressed.
  *            - 0: Button is low when pressed
- *            - > 0: BUtton is high when pressed
+ *            - > 0: Button is high when pressed
  * @param  *ButtonHandler:
  * @retval Button creation status:
  *            - 0: Button was not created 
- *            - 0: Button created and saved to library, button pointer is returned
+ *            - > 0: Button created and saved to library, button pointer is returned
  */
 TM_BUTTON_t* TM_BUTTON_Init(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, uint8_t ButtonState, void (*ButtonHandler)(TM_BUTTON_PressType_t));
 

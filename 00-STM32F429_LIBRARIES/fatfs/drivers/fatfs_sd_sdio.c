@@ -401,7 +401,7 @@ DRESULT TM_FATFS_SD_SDIO_disk_write(BYTE *buff, DWORD sector, UINT count) {
 	if (SD_Detect() != SD_PRESENT) {
 		return RES_NOTRDY;
 	}
-/*	
+/*
 	SD_WriteMultiBlocks((BYTE *)buff, sector << 9, 512, count);
 
 	//Check if the Transfer is finished
@@ -453,10 +453,10 @@ DRESULT TM_FATFS_SD_SDIO_disk_write(BYTE *buff, DWORD sector, UINT count) {
 DRESULT TM_FATFS_SD_SDIO_disk_ioctl(BYTE cmd, char *buff) {
 	switch (cmd) {
 		case GET_SECTOR_SIZE :     // Get R/W sector size (WORD) 
-			*(WORD * )buff = 512;
+			*(WORD *) buff = 512;
 		break;
 		case GET_BLOCK_SIZE :      // Get erase block size in unit of sector (DWORD)
-			*(DWORD * )buff = 32;
+			*(DWORD *) buff = 32;
 		break;
 		case CTRL_SYNC :
 		case CTRL_ERASE_SECTOR :

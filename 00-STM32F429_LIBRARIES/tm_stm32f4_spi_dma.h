@@ -6,7 +6,7 @@
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
- * @brief   Library template 
+ * @brief   DMA functionality for TM SPI library
  *	
 @verbatim
    ----------------------------------------------------------------------

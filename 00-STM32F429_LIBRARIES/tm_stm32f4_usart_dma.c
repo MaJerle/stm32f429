@@ -76,7 +76,7 @@ void TM_USART_DMA_Init(USART_TypeDef* USARTx) {
 	DMA_InitStruct.DMA_DIR = DMA_DIR_MemoryToPeripheral;
 	DMA_InitStruct.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
 	DMA_InitStruct.DMA_MemoryInc = DMA_MemoryInc_Enable;
-	DMA_InitStruct.DMA_PeripheralDataSize = DMA_MemoryDataSize_Byte;
+	DMA_InitStruct.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;
 	DMA_InitStruct.DMA_MemoryDataSize = DMA_MemoryDataSize_Byte;
 	DMA_InitStruct.DMA_Mode = DMA_Mode_Normal;
 	DMA_InitStruct.DMA_Priority = DMA_Priority_Low;

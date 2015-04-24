@@ -79,7 +79,7 @@ void TM_SPI_DMA_Init(SPI_TypeDef* SPIx) {
 	
 	/* Set DMA options for TX stream */
 	DMA_InitStruct.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
-	DMA_InitStruct.DMA_PeripheralDataSize = DMA_MemoryDataSize_Byte;
+	DMA_InitStruct.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;
 	DMA_InitStruct.DMA_MemoryDataSize = DMA_MemoryDataSize_Byte;
 	DMA_InitStruct.DMA_Mode = DMA_Mode_Normal;
 	DMA_InitStruct.DMA_Priority = DMA_Priority_Low;
