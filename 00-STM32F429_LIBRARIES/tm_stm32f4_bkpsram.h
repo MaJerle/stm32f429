@@ -1,42 +1,4 @@
 /**
- *	4-kBytes backup ram library for STM32F4xx.
- *
- *	@author 	Tilen Majerle
- *	@email		tilen@majerle.eu
- *	@website	http://stm32f4-discovery.com
- *	@link		http://stm32f4-discovery.com/2014/12/library-45-interface-backup-sram-on-stm32f4
- *	@version 	v1.1
- *	@ide		Keil uVision
- *	@license	GNU GPL v3
- *	
- * |----------------------------------------------------------------------
- * | Copyright (C) Tilen Majerle, 2014
- * | 
- * | This program is free software: you can redistribute it and/or modify
- * | it under the terms of the GNU General Public License as published by
- * | the Free Software Foundation, either version 3 of the License, or
- * | any later version.
- * |  
- * | This program is distributed in the hope that it will be useful,
- * | but WITHOUT ANY WARRANTY; without even the implied warranty of
- * | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * | GNU General Public License for more details.
- * | 
- * | You should have received a copy of the GNU General Public License
- * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * |----------------------------------------------------------------------
- * 
- * Version 1.1
- *	- December 22, 2014
- *	- You can now store float variables, too
- *
- *  This library is not supported for STM32F401 and STM32F411,
- *	because they don't have backup SRAM.
- *
- *	If you will try to read from "SRAM memory" on these devices,
- *	you will get a "HardFault" error.
- */
-/**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
@@ -83,9 +45,9 @@ extern C {
  * @brief    4-kBytes backup ram library for STM32F4xx - http://stm32f4-discovery.com/2014/12/library-45-interface-backup-sram-on-stm32f4
  * @{
  *
- *  This library is not supported for STM32F401 and STM32F411, because they don't have backup SRAM.
+ * This library is not supported for STM32F401 and STM32F411, because they don't have backup SRAM.
  *
- *	If you will try to read from "SRAM memory" on these devices, you will get a "HardFault" error.
+ * @warning If you will try to read from "SRAM memory" on these devices, you will get a "HardFault" error.
  *
  * \par Changelog
  *

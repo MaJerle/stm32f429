@@ -35,4 +35,3 @@ void TM_BKPSRAM_Init(void) {
 	/* Wait for backup regulator to be ready  */
 	while (!(PWR->CSR & (PWR_FLAG_BRR)));
 }
-
