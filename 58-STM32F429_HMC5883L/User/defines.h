@@ -1,4 +1,13 @@
-/**	
+/**
+ *  Defines for your entire project at one place
+ * 
+ *	@author 	Tilen Majerle
+ *	@email		tilen@majerle.eu
+ *	@website	http://stm32f4-discovery.com
+ *	@version 	v1.0
+ *	@ide		Keil uVision 5
+ *	@license	GNU GPL v3
+ *	
  * |----------------------------------------------------------------------
  * | Copyright (C) Tilen Majerle, 2014
  * | 
@@ -16,28 +25,9 @@
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
  */
-#include "tm_stm32f4_rng.h"
+#ifndef TM_DEFINES_H
+#define TM_DEFINES_H
 
-void TM_RNG_Init(void) {
-	/* Enable RNG clock source */
-	RCC->AHB2ENR |= RCC_AHB2ENR_RNGEN;
-	
-	/* RNG Peripheral enable */
-	RNG->CR |= RNG_CR_RNGEN;
-}
+/* Put your global defines for all libraries here used in your project */
 
-void TM_RNG_DeInit(void) {
-	/* Disable RNG peripheral */
-	RNG->CR &= ~RNG_CR_RNGEN;
-	
-	/* Disable RNG clock source */
-	RCC->AHB2ENR &= ~RCC_AHB2ENR_RNGEN;
-}
-
-uint32_t TM_RNG_Get(void) {
-	/* Wait until one RNG number is ready */
-	while (!(RNG->SR & (RNG_SR_DRDY)));
-
-	/* Get a 32-bit Random number */
-	return RNG->DR;
-}
+#endif

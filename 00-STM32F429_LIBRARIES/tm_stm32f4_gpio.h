@@ -3,7 +3,7 @@
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
  * @link    http://stm32f4-discovery.com/2015/03/library-53-gpio-for-stm32f4
- * @version v1.3
+ * @version v1.4
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   GPIO Library for STM32F4xx devices
@@ -28,7 +28,7 @@
 @endverbatim
  */
 #ifndef TM_GPIO_H
-#define TM_GPIO_H 130
+#define TM_GPIO_H 140
 
 /* C++ detection */
 #ifdef __cplusplus
@@ -53,6 +53,10 @@ extern C {
  * \par Changelog
  *
 @verbatim
+ Version 1.4
+  - April 28, 2015
+  - Added support for PORT locking
+  
  Version 1.3
   - March 23, 2015
   - Totally independent from HAL / SPD drivers
@@ -362,6 +366,15 @@ uint16_t TM_GPIO_GetPortSource(GPIO_TypeDef* GPIOx);
  * @retval Calculated pin source for GPIO pin
  */
 uint16_t TM_GPIO_GetPinSource(uint16_t GPIO_Pin);
+
+/**
+ * @brief  Locks GPIOx register for future changes
+ * @note   You are not able to config GPIO registers until new MCU reset occurs
+ * @param  *GPIOx: GPIOx PORT where you want to lock config registers
+ * @param  GPIO_Pin: GPIO pin(s) where you want to lock config registers
+ * @retval None
+ */
+void TM_GPIO_Lock(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
 
 /**
  * @}

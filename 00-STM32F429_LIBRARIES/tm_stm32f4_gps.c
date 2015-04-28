@@ -44,13 +44,13 @@ uint8_t TM_GPS_INT_StringStartsWith(char* string, const char* str);
 uint8_t TM_GPS_INT_Atoi(char* str, uint32_t* val);
 uint32_t TM_GPS_INT_Pow(uint8_t x, uint8_t y);
 uint8_t TM_GPS_INT_Hex2Dec(char c);
-TM_GPS_Result_t TM_GPS_INT_ReturnWithStatus(TM_GPS_t* GPS_Data, TM_GPS_Result_t status);
 uint8_t TM_GPS_INT_FlagsOk(TM_GPS_t* GPS_Data);
 void TM_GPS_INT_ClearFlags(TM_GPS_t* GPS_Data);
-void TM_GPS_INT_SetFlag(uint32_t flag);
 void TM_GPS_INT_CheckEmpty(TM_GPS_t* GPS_Data);
 
-#define TM_GPS_INT_Add2CRC(c) (TM_GPS_CRC ^= c)
+#define TM_GPS_INT_Add2CRC(c)                            (TM_GPS_CRC ^= c)
+#define TM_GPS_INT_ReturnWithStatus(GPS_Data, status)    (GPS_Data)->Status = status; return status;
+#define TM_GPS_INT_SetFlag(flag)                         (GPS_Flags |= (flag))
 
 /* Public */
 void TM_GPS_Init(TM_GPS_t* GPS_Data, uint32_t baudrate) {
@@ -108,11 +108,11 @@ TM_GPS_Result_t TM_GPS_Update(TM_GPS_t* GPS_Data) {
 	if (TM_GPS_FirstTime) {
 		/* No any valid data, return First Data Waiting */
 		/* Returning only after power up and calling when no all data is received */
-		return TM_GPS_INT_ReturnWithStatus(GPS_Data, TM_GPS_Result_FirstDataWaiting);
+		TM_GPS_INT_ReturnWithStatus(GPS_Data, TM_GPS_Result_FirstDataWaiting);
 	}
 	
 	/* We have old data */
-	return TM_GPS_INT_ReturnWithStatus(GPS_Data, TM_GPS_Result_OldData);
+	TM_GPS_INT_ReturnWithStatus(GPS_Data, TM_GPS_Result_OldData);
 }
 
 TM_GPS_Custom_t * TM_GPS_AddCustom(TM_GPS_t* GPS_Data, char* GPG_Statement, uint8_t TermNumber) {
@@ -157,7 +157,7 @@ float TM_GPS_ConvertSpeed(float SpeedInKnots, TM_GPS_Speed_t toSpeed) {
 		case TM_GPS_Speed_MeterPerMinute:
 			return SpeedInKnots * (float)30.87;
 		
-			/* Imperial */
+		/* Imperial */
 		case TM_GPS_Speed_MilePerSecond:
 			return SpeedInKnots * (float)0.0003197;
 		case TM_GPS_Speed_MilePerHour:
@@ -325,10 +325,10 @@ TM_GPS_Result_t TM_GPS_INT_Do(TM_GPS_t* GPS_Data, char c) {
 }
 
 void TM_GPS_INT_CheckTerm(TM_GPS_t* GPS_Data) {
+	uint32_t temp;
 #ifndef GPS_DISABLE_GPGSA
 	static uint8_t ids_count = 0;
 #endif
-	uint32_t temp;
 	uint8_t count, i;
 	if (GPS_Term_Number == 0) {
 		/* Statement indicator */
@@ -371,8 +371,8 @@ void TM_GPS_INT_CheckTerm(TM_GPS_t* GPS_Data) {
 		case GPS_POS_LATITUDE:	/* GPGGA */
 			/* Convert latitude */
 			count = TM_GPS_INT_Atoi(GPS_Term, &temp);
-			TM_GPS_INT_Data.Latitude = (temp % 100)  * (float)0.016666666667;
-			TM_GPS_INT_Data.Latitude += temp * (float)0.01;
+			TM_GPS_INT_Data.Latitude = temp / 100;
+			TM_GPS_INT_Data.Latitude += (float)(temp % 100) / (float)60;
 		
 			count = TM_GPS_INT_Atoi(&GPS_Term[++count], &temp);
 			TM_GPS_INT_Data.Latitude += temp / (TM_GPS_INT_Pow(10, count) * 60.0);
@@ -392,8 +392,8 @@ void TM_GPS_INT_CheckTerm(TM_GPS_t* GPS_Data) {
 		case GPS_POS_LONGITUDE: /* GPGGA */
 			/* Convert longitude */
 			count = TM_GPS_INT_Atoi(GPS_Term, &temp);
-			TM_GPS_INT_Data.Longitude = (temp % 100) * (float)0.016666666667;
-			TM_GPS_INT_Data.Longitude += temp * (float)0.01;
+			TM_GPS_INT_Data.Longitude = temp / 100; /* Degrees */
+			TM_GPS_INT_Data.Longitude += (float)(temp % 100) / (float)60;
 		
 			count = TM_GPS_INT_Atoi(&GPS_Term[++count], &temp);
 			TM_GPS_INT_Data.Longitude += temp / (TM_GPS_INT_Pow(10, count) * 60.0);
@@ -485,13 +485,9 @@ void TM_GPS_INT_CheckTerm(TM_GPS_t* GPS_Data) {
 			TM_GPS_INT_SetFlag(GPS_FLAG_DATE);
 			break;
 		case GPS_POS_VALIDITY: /* GPRMC */	
-			if (GPS_Term[0] == 'A') {
-				/* GPS Signal valid */
-				TM_GPS_INT_Data.Validity = 1;
-			} else {
-				/* GPS Signal not valid */
-				TM_GPS_INT_Data.Validity = 0;
-			}
+			/* GPS valid status */
+			TM_GPS_INT_Data.Validity = GPS_Term[0] == 'A';
+			
 			/* Set flag */
 			TM_GPS_INT_SetFlag(GPS_FLAG_VALIDITY);
 			break;
@@ -667,18 +663,17 @@ TM_GPS_Result_t TM_GPS_INT_Return(TM_GPS_t* GPS_Data) {
 		}
 #endif
 		
-		GPS_Data->Status = TM_GPS_Result_NewData;
-		/* Return */
-		return TM_GPS_INT_ReturnWithStatus(GPS_Data, TM_GPS_Result_NewData);
+		/* Return new data */
+		TM_GPS_INT_ReturnWithStatus(GPS_Data, TM_GPS_Result_NewData);
 	}
 	
 	/* We are first time */
 	if (TM_GPS_FirstTime) {
-		return TM_GPS_INT_ReturnWithStatus(GPS_Data, TM_GPS_Result_FirstDataWaiting);
+		TM_GPS_INT_ReturnWithStatus(GPS_Data, TM_GPS_Result_FirstDataWaiting);
 	}
 	
 	/* Return old data */
-	return TM_GPS_INT_ReturnWithStatus(GPS_Data, TM_GPS_Result_OldData);
+	TM_GPS_INT_ReturnWithStatus(GPS_Data, TM_GPS_Result_OldData);
 }
 
 uint8_t TM_GPS_INT_StringStartsWith(char* string, const char* str) {
@@ -719,13 +714,6 @@ uint8_t TM_GPS_INT_Hex2Dec(char c) {
 	return 0;
 }
 
-TM_GPS_Result_t TM_GPS_INT_ReturnWithStatus(TM_GPS_t* GPS_Data, TM_GPS_Result_t status) {
-	/* Set status and return status */
-	GPS_Data->Status = status;
-	/* Return status */
-	return status;
-}
-
 uint8_t TM_GPS_INT_FlagsOk(TM_GPS_t* GPS_Data) {
 	/* Check main flags */
 	if (GPS_Flags == GPS_Flags_OK) {
@@ -758,11 +746,6 @@ void TM_GPS_INT_ClearFlags(TM_GPS_t* GPS_Data) {
 		/* If not flag set */
 		GPS_Data->CustomStatements[i]->Updated = 0;
 	}
-}
-
-void TM_GPS_INT_SetFlag(uint32_t flag) {
-	/* Set flag bit */
-	GPS_Flags |= flag;
 }
 
 void TM_GPS_INT_CheckEmpty(TM_GPS_t* GPS_Data) {

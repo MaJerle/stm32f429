@@ -28,8 +28,8 @@ int main(void) {
 	/* Initialize delay */
 	TM_DELAY_Init();
 	
-	/* Initialize USART1, TX: PB6 */
-	TM_USART_Init(USART1, TM_USART_PinsPack_2, 115200);	
+	/* Initialize USART2, TX: PA2, 921600 baud */
+	TM_USART_Init(USART2, TM_USART_PinsPack_1, 921600);	
 	
 	/* Initialize random number generator */
 	TM_RNG_Init();
@@ -39,7 +39,7 @@ int main(void) {
 		sprintf(buffer, "Number: %u\n", TM_RNG_Get());
 		
 		/* Put to USART */
-		TM_USART_Puts(USART1, buffer);
+		TM_USART_Puts(USART2, buffer);
 		
 		/* Delay 1 second */
 		Delayms(1000);

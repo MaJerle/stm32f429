@@ -18,9 +18,6 @@
  */
 #include "tm_stm32f4_exti.h"
 
-/* Used pins variable */
-//static volatile uint32_t pinsused = 0;
-
 TM_EXTI_Result_t TM_EXTI_Attach(GPIO_TypeDef* GPIOx, uint16_t GPIO_Line, TM_EXTI_Trigger_t trigger) {
 	NVIC_InitTypeDef NVIC_InitStruct;
 	TM_GPIO_PuPd_t PuPd;

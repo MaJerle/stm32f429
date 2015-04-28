@@ -50,15 +50,6 @@ void TM_DELAY_Init(void) {
 	if (TM_DELAY_Initialized) {
 		return;
 	}
-
-	/* Only if user uses external HSE clock */
-#ifndef USE_INTERNAL_RC_CLOCK
-	/* Enable External HSE clock */
-	RCC_HSEConfig(RCC_HSE_ON);
-	
-	/* Wait for stable clock */
-	while (!RCC_WaitForHSEStartUp());
-#endif
 	
 #if defined(TM_DELAY_TIM)
 	TM_DELAY_INT_InitTIM();

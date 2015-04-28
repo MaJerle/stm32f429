@@ -110,6 +110,22 @@ void TM_GPIO_SetPinAsAnalog(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin) {
 	}
 }
 
+void TM_GPIO_Lock(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin) {
+	uint32_t d;
+	
+	/* Set GPIO pin with 16th bit set to 1 */
+	d = 0x00010000 | GPIO_Pin;
+	
+	/* Write to LCKR register */
+	GPIOx->LCKR = d;
+	GPIOx->LCKR = GPIO_Pin;
+	GPIOx->LCKR = d;
+	
+	/* Read twice */
+	(void)GPIOx->LCKR;
+	(void)GPIOx->LCKR;
+}
+
 uint16_t TM_GPIO_GetPortSource(GPIO_TypeDef* GPIOx) {
 	uint8_t portsource = 0;
 #ifdef GPIOA

@@ -60,6 +60,14 @@
 #include "stm32f4xx.h"
 #include "defines.h"
 
+#ifndef RNG_NVIC_PREEMPTION_PRIORITY
+#define RNG_NVIC_PREEMPTION_PRIORITY   0x02
+#endif
+
+#ifndef RNG_NVIC_SUBPRIORITY
+#define RNG_NVIC_SUBPRIORITY           0x00
+#endif
+
 /**
  * @defgroup TM_RNG_Functions
  * @brief    Library Functions

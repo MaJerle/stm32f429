@@ -469,6 +469,7 @@ DRESULT TM_FATFS_SD_SDIO_disk_ioctl(BYTE cmd, char *buff) {
 void SDIO_IRQHandler(void) {
 	SD_ProcessIRQSrc();
 }
+
 #ifdef SD_SDIO_DMA_STREAM3
 void DMA2_Stream3_IRQHandler(void) {
 	SD_ProcessDMAIRQ();

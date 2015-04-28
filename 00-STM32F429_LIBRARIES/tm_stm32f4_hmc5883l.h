@@ -66,6 +66,7 @@ extern C {
 #include "defines.h"
 #include "tm_stm32f4_i2c.h"
 #include "tm_stm32f4_gpio.h"
+#include "tm_stm32f4_exti.h"
 
 /**
  * @defgroup TM_HMC5883L_Macros
@@ -143,6 +144,34 @@ typedef enum {
 	TM_HMC5883L_Result_DeviceNotConnected
 } TM_HMC5883L_Result_t;
 
+typedef enum {
+	TM_HMC5883L_Gain_0_88 = 0x00,
+	TM_HMC5883L_Gain_1_3 = 0x20,
+	TM_HMC5883L_Gain_1_9 = 0x40,
+	TM_HMC5883L_Gain_2_5 = 0x60,
+	TM_HMC5883L_Gain_4_0 = 0x80,
+	TM_HMC5883L_Gain_4_7 = 0xA0,
+	TM_HMC5883L_Gain_5_6 = 0xC0,
+	TM_HMC5883L_Gain_8_1 = 0xE0
+} TM_HMC5883L_Gain_t;
+
+typedef enum {
+	TM_HMC5883L_OutputRate_0_75Hz = 0x00,
+	TM_HMC5883L_OutputRate_1_5Hz = 0x04,
+	TM_HMC5883L_OutputRate_3Hz = 0x08,
+	TM_HMC5883L_OutputRate_7_5Hz = 0x0C,
+	TM_HMC5883L_OutputRate_15Hz = 0x10,
+	TM_HMC5883L_OutputRate_30Hz = 0x14,
+	TM_HMC5883L_OutputRate_75Hz = 0x18
+} TM_HMC5883L_OutputRate_t;
+
+typedef struct {
+	uint8_t ID[3];
+	float X;
+	float Y;
+	float Z;
+} TM_HMC5883L_t;
+
 /**
  * @}
  */
@@ -153,7 +182,13 @@ typedef enum {
  * @{
  */
 
-TM_HMC5883L_Result_t TM_HMC5883L_Init(void);
+TM_HMC5883L_Result_t TM_HMC5883L_Init(TM_HMC5883L_t* HMC5883L, TM_HMC5883L_Gain_t Gain, TM_HMC5883L_OutputRate_t OutputRate);
+
+TM_HMC5883L_Result_t TM_HMC5883L_DataReady(TM_HMC5883L_t* HMC5883L);
+
+TM_HMC5883L_Result_t TM_HMC5883L_Read(TM_HMC5883L_t* HMC5883L);
+
+TM_HMC5883L_Result_t TM_HMC5883L_ProcessInterrupt(TM_HMC5883L_t* HMC5883L);
 
 /**
  * @}
