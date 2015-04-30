@@ -484,12 +484,6 @@ extern void SD_LowLevel_DMA_TxConfig (uint32_t *BufferSRC, uint32_t BufferSize);
 extern void SD_LowLevel_DMA_RxConfig (uint32_t *BufferDST, uint32_t BufferSize);
 extern uint8_t IOE16_MonitorIOPin (uint16_t IO_Pin);
 
-extern DSTATUS TM_FATFS_SD_SDIO_disk_initialize(void);
-extern DSTATUS TM_FATFS_SD_SDIO_disk_status(void);
-extern DRESULT TM_FATFS_SD_SDIO_disk_ioctl(BYTE cmd, char *buff);
-extern DRESULT TM_FATFS_SD_SDIO_disk_read(BYTE *buff, DWORD sector, UINT count);
-extern DRESULT TM_FATFS_SD_SDIO_disk_write(BYTE *buff, DWORD sector, UINT count);
-
 extern void SD_DeInit (void);
 extern SD_Error SD_Init (void);
 extern SDTransferState SD_GetStatus (void);

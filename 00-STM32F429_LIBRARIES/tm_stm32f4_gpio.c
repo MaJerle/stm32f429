@@ -110,6 +110,21 @@ void TM_GPIO_SetPinAsAnalog(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin) {
 	}
 }
 
+void TM_GPIO_SetPullResistor(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_GPIO_PuPd_t GPIO_PuPd) {
+	uint8_t pinpos;
+	
+	/* Go through all pins */
+	for (pinpos = 0; pinpos < 0x10; pinpos++) {
+		/* Check if pin available */
+		if ((GPIO_Pin & (1 << pinpos)) == 0) {
+			continue;
+		}
+
+		/* Set GPIO PUPD register */
+		GPIOx->PUPDR = (GPIOx->PUPDR & ~(0x03 << (2 * pinpos))) | ((uint32_t)(GPIO_PuPd << (2 * pinpos)));
+	}
+}
+
 void TM_GPIO_Lock(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin) {
 	uint32_t d;
 	

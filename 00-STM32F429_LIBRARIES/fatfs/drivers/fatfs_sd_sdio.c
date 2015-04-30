@@ -340,19 +340,7 @@ DRESULT TM_FATFS_SD_SDIO_disk_read(BYTE *buff, DWORD sector, UINT count) {
 	if ((TM_FATFS_SD_SDIO_Stat & STA_NOINIT)) {
 		return RES_NOTRDY;
 	}
-/*
-	SD_ReadMultiBlocks(buff, sector << 9, 512, count);
-
-	//Check if the Transfer is finished
-	Status = SD_WaitReadOperation();
-	while (SD_GetStatus() != SD_TRANSFER_OK);
-
-	if (Status == SD_OK) {
-		return RES_OK;
-	}
-	return RES_ERROR;
-*/
-
+	
 	if ((DWORD)buff & 3) {
 		DRESULT res = RES_OK;
 		DWORD scratch[BLOCK_SIZE / 4];
@@ -391,7 +379,7 @@ DRESULT TM_FATFS_SD_SDIO_disk_read(BYTE *buff, DWORD sector, UINT count) {
 	}
 }
 
-DRESULT TM_FATFS_SD_SDIO_disk_write(BYTE *buff, DWORD sector, UINT count) {
+DRESULT TM_FATFS_SD_SDIO_disk_write(const BYTE *buff, DWORD sector, UINT count) {
 	SD_Error Status = SD_OK;
 
 	if (!TM_FATFS_SDIO_WriteEnabled()) {
@@ -401,18 +389,7 @@ DRESULT TM_FATFS_SD_SDIO_disk_write(BYTE *buff, DWORD sector, UINT count) {
 	if (SD_Detect() != SD_PRESENT) {
 		return RES_NOTRDY;
 	}
-/*
-	SD_WriteMultiBlocks((BYTE *)buff, sector << 9, 512, count);
 
-	//Check if the Transfer is finished
-	Status = SD_WaitWriteOperation();
-	while (SD_GetStatus() != SD_TRANSFER_OK);     
-
-	if (Status == SD_OK) {
-		return RES_OK;
-	}
-	return RES_ERROR;
-*/
 	if ((DWORD)buff & 3) {
 		DRESULT res = RES_OK;
 		DWORD scratch[BLOCK_SIZE / 4];
@@ -450,7 +427,7 @@ DRESULT TM_FATFS_SD_SDIO_disk_write(BYTE *buff, DWORD sector, UINT count) {
 	}
 }
 
-DRESULT TM_FATFS_SD_SDIO_disk_ioctl(BYTE cmd, char *buff) {
+DRESULT TM_FATFS_SD_SDIO_disk_ioctl(BYTE cmd, void *buff) {
 	switch (cmd) {
 		case GET_SECTOR_SIZE :     // Get R/W sector size (WORD) 
 			*(WORD *) buff = 512;

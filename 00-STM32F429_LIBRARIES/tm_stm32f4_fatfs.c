@@ -18,6 +18,25 @@
  */
 #include "tm_stm32f4_fatfs.h"
 
+FRESULT TM_FATFS_GetDriveSize(char* str, TM_FATFS_Size_t* SizeStruct) {
+	FATFS *fs;
+    DWORD fre_clust;
+	FRESULT res;
+
+    /* Get volume information and free clusters of drive */
+    res = f_getfree(str, &fre_clust, &fs);
+    if (res != FR_OK) {
+		return res;
+	}
+
+    /* Get total sectors and free sectors */
+    SizeStruct->TotalSize = (fs->n_fatent - 2) * fs->csize * 0.5;
+    SizeStruct->FreeSize = fre_clust * fs->csize * 0.5;
+	
+	/* Return OK */
+	return FR_OK;
+}
+
 FRESULT TM_FATFS_DriveSize(uint32_t* total, uint32_t* free) {
 	FATFS *fs;
     DWORD fre_clust;

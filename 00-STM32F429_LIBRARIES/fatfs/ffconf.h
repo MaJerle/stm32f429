@@ -47,7 +47,7 @@
 /  f_findfirst() and f_findnext(). (0:Disable or 1:Enable) */
 
 
-#define	_USE_MKFS		0
+#define	_USE_MKFS		1
 /* This option switches f_mkfs() function. (0:Disable or 1:Enable) */
 
 
@@ -149,12 +149,12 @@
 / Drive/Volume Configurations
 /---------------------------------------------------------------------------*/
 
-#define _VOLUMES	2
+#define _VOLUMES	9
 /* Number of volumes (logical drives) to be used. */
 
 
-#define _STR_VOLUME_ID	0
-#define _VOLUME_STRS	"RAM","NAND","CF","SD1","SD2","USB1","USB2","USB3"
+#define _STR_VOLUME_ID	1
+#define _VOLUME_STRS	"SD","USB","SDRAM","SPIFLASH","RFU1","RFU2","RFU3","USER1","USER2"
 /* _STR_VOLUME_ID option switches string volume ID feature.
 /  When _STR_VOLUME_ID is set to 1, also pre-defined strings can be used as drive
 /  number in the path name. _VOLUME_STRS defines the drive ID strings for each

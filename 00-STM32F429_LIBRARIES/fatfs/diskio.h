@@ -13,7 +13,7 @@
 #include "attributes.h"
 
 /* Status of Disk Functions */
-typedef BYTE	DSTATUS;
+typedef BYTE DSTATUS;
 
 /* Results of Disk Functions */
 typedef enum {
@@ -24,18 +24,27 @@ typedef enum {
 	RES_PARERR		/* 4: Invalid Parameter */
 } DRESULT;
 
-
 //#define FATFS_DEBUG_SEND_USART(x)	TM_USART_Puts(USART6, x); TM_USART_Puts(USART6, "\n");
 #define FATFS_DEBUG_SEND_USART(x)
 
 /*---------------------------------------*/
 /* Prototypes for disk control functions */
 
-DSTATUS disk_initialize (BYTE pdrv);
-DSTATUS disk_status (BYTE pdrv);
-DRESULT disk_read (BYTE pdrv, BYTE* buff, DWORD sector, UINT count);
-DRESULT disk_write (BYTE pdrv, const BYTE* buff, DWORD sector, UINT count);
-DRESULT disk_ioctl (BYTE pdrv, BYTE cmd, void* buff);
+/* FATFS related */
+DSTATUS disk_initialize(BYTE pdrv);
+DSTATUS disk_status(BYTE pdrv);
+DRESULT disk_read(BYTE pdrv, BYTE* buff, DWORD sector, UINT count);
+DRESULT disk_write(BYTE pdrv, const BYTE* buff, DWORD sector, UINT count);
+DRESULT disk_ioctl(BYTE pdrv, BYTE cmd, void* buff);
+
+/* Driver related functions */
+typedef struct {
+	DSTATUS (*disk_initialize)(void);
+	DSTATUS (*disk_status)(void);
+	DRESULT (*disk_ioctl)(BYTE, void *);
+	DRESULT (*disk_write)(const BYTE *, DWORD, UINT);
+	DRESULT (*disk_read)(BYTE *, DWORD, UINT);
+} DISKIO_LowLevelDriver_t;
 
 /* Disk Status Bits (DSTATUS) */
 
@@ -43,8 +52,7 @@ DRESULT disk_ioctl (BYTE pdrv, BYTE cmd, void* buff);
 #define STA_NODISK		0x02	/* No medium in the drive */
 #define STA_PROTECT		0x04	/* Write protected */
 
-
-/* Command code for disk_ioctrl fucntion */
+/* Command code for disk_ioctrl function */
 
 /* Generic command (used by FatFs) */
 #define CTRL_SYNC			0	/* Flush disk cache (for write functions) */
@@ -77,5 +85,36 @@ DRESULT disk_ioctl (BYTE pdrv, BYTE cmd, void* buff);
 #define CT_SD2		0x04		/* SD ver 2 */
 #define CT_SDC		(CT_SD1|CT_SD2)	/* SD */
 #define CT_BLOCK	0x08		/* Block addressing */
+
+/* Drivers function declarations */
+DSTATUS TM_FATFS_SD_SDIO_disk_initialize(void);
+DSTATUS TM_FATFS_SD_disk_initialize(void);
+DSTATUS TM_FATFS_USB_disk_initialize(void);
+DSTATUS TM_FATFS_SDRAM_disk_initialize(void);
+DSTATUS TM_FATFS_SPI_FLASH_disk_initialize(void);
+
+DSTATUS TM_FATFS_SD_SDIO_disk_status(void);
+DSTATUS TM_FATFS_SD_disk_status(void);
+DSTATUS TM_FATFS_USB_disk_status(void);
+DSTATUS TM_FATFS_SDRAM_disk_status(void);
+DSTATUS TM_FATFS_SPI_FLASH_disk_status(void);
+
+DRESULT TM_FATFS_SD_SDIO_disk_ioctl(BYTE cmd, void *buff);
+DRESULT TM_FATFS_SD_disk_ioctl(BYTE cmd, void *buff);
+DRESULT TM_FATFS_USB_disk_ioctl(BYTE cmd, void *buff);
+DRESULT TM_FATFS_SDRAM_disk_ioctl(BYTE cmd, void *buff);
+DRESULT TM_FATFS_SPI_FLASH_disk_ioctl(BYTE cmd, void *buff);
+
+DRESULT TM_FATFS_SD_SDIO_disk_read(BYTE *buff, DWORD sector, UINT count);
+DRESULT TM_FATFS_SD_disk_read(BYTE *buff, DWORD sector, UINT count);
+DRESULT TM_FATFS_USB_disk_read(BYTE *buff, DWORD sector, UINT count);
+DRESULT TM_FATFS_SDRAM_disk_read(BYTE *buff, DWORD sector, UINT count);
+DRESULT TM_FATFS_SPI_FLASH_disk_read(BYTE *buff, DWORD sector, UINT count);
+
+DRESULT TM_FATFS_SD_SDIO_disk_write(const BYTE *buff, DWORD sector, UINT count);
+DRESULT TM_FATFS_SD_disk_write(const BYTE *buff, DWORD sector, UINT count);
+DRESULT TM_FATFS_USB_disk_write(const BYTE *buff, DWORD sector, UINT count);
+DRESULT TM_FATFS_SDRAM_disk_write(const BYTE *buff, DWORD sector, UINT count);
+DRESULT TM_FATFS_SPI_FLASH_disk_write(const BYTE *buff, DWORD sector, UINT count);
 
 #endif

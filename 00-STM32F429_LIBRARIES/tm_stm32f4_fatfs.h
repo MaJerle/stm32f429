@@ -4,7 +4,7 @@
  * @website http://stm32f4-discovery.com
  * @link    http://stm32f4-discovery.com/2014/07/library-21-read-sd-card-fatfs-stm32f4xx-devices/
  * @link    http://stm32f4-discovery.com/2014/08/library-29-usb-msc-host-usb-flash-drive-stm32f4xx-devices
- * @version v1.6
+ * @version v1.7
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   Fatfs implementation for STM32F4xx devices
@@ -29,7 +29,7 @@
 @endverbatim
  */
 #ifndef TM_FATFS_H
-#define TM_FATFS_H 160
+#define TM_FATFS_H 170
 
 /**
  * @addtogroup TM_STM32F4xx_Libraries
@@ -49,7 +49,7 @@
  * This library is only for communication. To work with files, you have to look at Chan's FatFs manual, link below:
  * http://elm-chan.org/fsw/ff/00index_e.html
  *
- * You can work with SPI or SDIO protocol to interface SDcard.
+ * You can work with SPI or SDIO protocol to interface SDCARD.
  *
  * \par SDCARD pinouts
  *
@@ -266,9 +266,126 @@ f_mount(&usb_fs, "1:", 1);
 
  * This allows you to copy data from one SD card to USB and back too and use of 2 different physical drives at the same time.
  *
+ * \par FatFS with SDRAM
+ *
+ * As of version 1.7, FATFS can now be used with SDRAM memory on STM32F429-Discovery or STM324x9-EVAL board.
+ *
+ * To enable this feature, you will have to open defines.h file and add define:
+ *
+@verbatim
+//Enable SDRAM
+#define FATFS_USE_SDRAM   1
+@endverbatim
+ *
+ * @note  After that, again, SDCARD will be disabled by default, if you want to use it too (with SDCARD together) you have to do 
+ * the same as you have to do when you use USB with FATFS, otherwise, if you will try to read/write from SDCARD, you will get errors.
+ *
+ * Files, you will need for running SDRAM driver are:
+ *
+@verbatim
+- tm_stm32f4_fatfs.h
+- tm_stm32f4_fatfs.c
+- fatfs/diskio.h
+- fatfs/diskio.c
+- fatfs/ff.h
+- fatfs/ff.c
+- fatfs/ffconf.h
+- fatfs/integer.h
+- fatfs/option/syscall.c
+- fatfs/option/unicode.c
+- fatfs/drivers/fatfs_sdram.h
+- fatfs/drivers/fatfs_sdram.c
+- tm_stm32f4_sdram.h
+- tm_stm32f4_sdram.c
+@endverbatim 
+ *
+ * @note SDRAM is not a memory which holds data when power is off. For that reason, you will have to use @ref f_mkfs() function to 
+ *       create file system object on your SDRAM drive. This will have to be done when you initialize your SDRAM or when you first time
+ *       try to mount from SDRAM. Otherwise, you will not be able to interface with FATFS based functionality like SDCARD can do.
+ *
+ * \par FatFS with SPI FLASH
+ *
+ * This option is added to implementation, but low level drivers are not implemented yet.
+ * 
+ * @note If you will try to read from SPIFLASH using @ref f_mount() function, you will get errors.
+ *
+ * \par New names for drivers
+ *
+ * Before version 1.7, SDCARD and USB drivers were supported only with this library.
+ *
+ * If you want to use them both at a time, you always have to keep in mind to 
+ * use different numbers for drivers, for example (notice number in the second parameter):
+ *
+@verbatim
+//Mount SDCARD
+f_mount(&fsSD, "0:", 1);
+//Mount USB 
+f_mount(&fsUSB, "1:", 1);
+@endverbatim
+ *
+ * As of version 1.7, you can now use the same as before, or like that:
+ *
+@verbatim
+//Mount SDCARD
+f_mount(&fsSD, "SD:", 1);
+//Mount USB 
+f_mount(&fsUSB, "USB:", 1);
+@endverbatim
+ *
+ * If you want to open file, fox example on USB, you can do like this:
+ *
+@verbatim
+//Open file on USB key
+//Mount first
+f_open(&fil, "USB:my_file.txt", FA...);
+@endverbatim
+ *
+ * \par All supported names
+ *
+ * Below is a list of all supported strings for volume numbers:
+ *
+ * - SDCARD: <b>SD</b>; Drive number 0
+ * - USB DRIVE: <b>USB</b>; Drive number 1
+ * - SDRAM: <b>SDRAM</b>; Drive number 2
+ * - SPI FLASH: <b>SPIFLASH</b>; Drive number 3; Low level driver not implemented yet
+ *
+ * Example for opening files:
+ *
+@verbatim
+//Open file on SDRAM
+f_open(&fil, "SDRAM:my_file_sdram.txt", FA...);
+//Open file on SDCARD
+f_open(&fil, "SD:my_file_sd.txt", FA...);
+//and more files
+@endverbatim
+ *
+ * \par Example of using all 4 possible drivers in your project
+ *
+ * To use all available data sources (physical drivers) for FATFS, you will have to open defines.h file, and add these defines:
+ *
+@verbatim
+//Enable all possible FATFS sources implemented in library
+
+//Enable USB
+#define FATFS_USE_USB       1
+//Enable SDRAM
+#define FATFS_USE_SDRAM     1
+//Enable SPI flash
+#define FATFS_USE_SPIFLASH  1 //Not implemented yet
+
+//SDCARD is enabled by default, but when you enable anything else too, SDCARD is disabled
+//If you want to enable it too, you have to tell that!
+#define FATFS_USE_SDIO      1 //Set to 0 if you want to use SDCARD with SPI
+@endverbatim
+ *
  * \par Changelog
  *
 @verbatim
+ Version 1.7
+  - April 30, 2015
+  - Added support for SDRAM as FATFS drive
+  - Prepared files (not implemented yet) for SPI flash driver with FATFS
+  
  Version 1.6
   - March 11, 2015
   - Added support for my new GPIO library
@@ -308,6 +425,7 @@ f_mount(&usb_fs, "1:", 1);
  - TM SPI           (only when SPI)
  - TM DELAY         (only when SPI)
  - TM GPIO
+ - TM SDRAM         (only when SDRAM)
  - FatFS by Chan
 @endverbatim
  */
@@ -338,6 +456,21 @@ f_mount(&usb_fs, "1:", 1);
 /**
  * @}
  */
+ 
+/**
+ * @defgroup TM_FATFS_Typedefs
+ * @brief    Library typedefs
+ * @{
+ */
+
+typedef struct {
+	uint32_t TotalSize; /*!< Total size of memory */
+	uint32_t FreeSize;  /*!< Free size of memory */
+} TM_FATFS_Size_t;
+
+/**
+ * @}
+ */
 
 /**
  * @defgroup TM_FATFS_Functions
@@ -346,18 +479,30 @@ f_mount(&usb_fs, "1:", 1);
  */
 
 /**
+ * @brief   Gets total and free memory sizes of any drive
+ * @param   *str: Pointer to string for drive to be checked
+ * @param   *SizeStruct: Pointer to empty @ref TM_FATFS_Size_t structure to store data about memory
+ * @retval  FRESULT structure members. If data are valid, FR_OK is returned
+ * @example Get memory sizes of USB device:
+ *             TM_FATFS_GetDriveSize("USB:", &SizeStruct);
+ */
+FRESULT TM_FATFS_GetDriveSize(char* str, TM_FATFS_Size_t* SizeStruct);
+
+/**
  * @brief  Gets SDCARD drive size and free space
+ * @note   Function is deprecated and will be removed, use @ref TM_FATFS_GetDriveSize instead!
  * @param  *total: Pointer to variable to store total size of SDCARD
  * @param  *free: Pointer to variable to store free space on SDCARD
- * @retval FRESULT structure members. If data are valid, FR_OK is returned.
+ * @retval FRESULT structure members. If data are valid, FR_OK is returned
  */
 FRESULT TM_FATFS_DriveSize(uint32_t* total, uint32_t* free);
 
 /**
  * @brief  Gets USB drive size and free space
+ * @note   Function is deprecated and will be removed, use @ref TM_FATFS_GetDriveSize instead!
  * @param  *total: Pointer to variable to store total size of USB disk
  * @param  *free: Pointer to variable to store free space on USB disk
- * @retval FRESULT structure members. If data are valid, FR_OK is returned.
+ * @retval FRESULT structure members. If data are valid, FR_OK is returned
  */
 FRESULT TM_FATFS_USBDriveSize(uint32_t* total, uint32_t* free);
 

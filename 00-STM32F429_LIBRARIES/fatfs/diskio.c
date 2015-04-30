@@ -16,6 +16,18 @@
 	#define FATFS_USE_USB				0
 #endif
 
+/* Not SDRAM in use */
+/* Define it in defines.h project file if you want to use SDRAM */
+#ifndef FATFS_USE_SDRAM
+	#define FATFS_USE_SDRAM				0
+#endif
+
+/* Not SPI FLASH in use */
+/* Define it in defines.h project file if you want to use SPI FLASH */
+#ifndef FATFS_USE_SPI_FLASH
+	#define FATFS_USE_SPI_FLASH			0
+#endif
+
 /* Set in defines.h file if you want it */
 #ifndef TM_FATFS_CUSTOM_FATTIME
 	#define TM_FATFS_CUSTOM_FATTIME		0
@@ -23,7 +35,7 @@
 
 /* Defined in defines.h */
 /* We are using FATFS with USB */
-#if FATFS_USE_USB == 1
+#if FATFS_USE_USB == 1 || FATFS_USE_SDRAM == 1 || FATFS_USE_SPI_FLASH == 1
 	/* If SDIO is not defined, set to 2, to disable SD card */
 	/* You can set FATFS_USE_SDIO in defines.h file */
 	/* This is for error fixes */
@@ -38,9 +50,18 @@
 	#endif
 #endif
 
+/* USB with FATFS */
 #if FATFS_USE_USB == 1
 	#include "fatfs_usb.h"
-#endif 	/* FATFS_USE_USB */
+#endif /* FATFS_USE_USB */
+/* SDRAM with FATFS */
+#if FATFS_USE_SDRAM == 1
+	#include "fatfs_sdram.h"
+#endif /* FATFS_USE_SDRAM */
+/* SPI FLASH with FATFS */
+#if FATFS_USE_SPI_FLASH == 1
+	#include "fatfs_spi_flash.h"
+#endif /* FATFS_USE_SPI_FLASH */
 
 /* Include SD card files if is enabled */
 #if FATFS_USE_SDIO == 1
@@ -51,8 +72,50 @@
 
 
 /* Definitions of physical drive number for each media */
-#define ATA		0
-#define USB		1
+#define ATA		   0
+#define USB		   1
+#define SDRAM      2
+#define SPI_FLASH  3
+
+/* Make driver structure */
+DISKIO_LowLevelDriver_t FATFS_LowLevelDrivers[_VOLUMES] = {
+	{
+#if FATFS_USE_SDIO == 1
+		TM_FATFS_SD_SDIO_disk_initialize,
+		TM_FATFS_SD_SDIO_disk_status,
+		TM_FATFS_SD_SDIO_disk_ioctl,
+		TM_FATFS_SD_SDIO_disk_write,
+		TM_FATFS_SD_SDIO_disk_read
+#else
+		TM_FATFS_SD_disk_initialize,
+		TM_FATFS_SD_disk_status,
+		TM_FATFS_SD_disk_ioctl,
+		TM_FATFS_SD_disk_write,
+		TM_FATFS_SD_disk_read
+#endif
+	},
+	{
+		TM_FATFS_USB_disk_initialize,
+		TM_FATFS_USB_disk_status,
+		TM_FATFS_USB_disk_ioctl,
+		TM_FATFS_USB_disk_write,
+		TM_FATFS_USB_disk_read
+	},
+	{
+		TM_FATFS_SDRAM_disk_initialize,
+		TM_FATFS_SDRAM_disk_status,
+		TM_FATFS_SDRAM_disk_ioctl,
+		TM_FATFS_SDRAM_disk_write,
+		TM_FATFS_SDRAM_disk_read
+	},
+	{
+		TM_FATFS_SPI_FLASH_disk_initialize,
+		TM_FATFS_SPI_FLASH_disk_status,
+		TM_FATFS_SPI_FLASH_disk_ioctl,
+		TM_FATFS_SPI_FLASH_disk_write,
+		TM_FATFS_SPI_FLASH_disk_read
+	}
+};
 
 /*-----------------------------------------------------------------------*/
 /* Inidialize a Drive                                                    */
@@ -62,25 +125,8 @@ DSTATUS disk_initialize (
 	BYTE pdrv				/* Physical drive nmuber (0..) */
 )
 {
-	DSTATUS status = STA_NOINIT;
-	switch (pdrv) {
-		case ATA:	/* SD CARD */
-			#if FATFS_USE_SDIO == 1
-				status = TM_FATFS_SD_SDIO_disk_initialize();	/* SDIO communication */
-			#elif FATFS_USE_SDIO == 0
-				status = TM_FATFS_SD_disk_initialize();			/* SPI communication */
-			#endif
-			break;
-		case USB:	/* USB storage */
-			#if FATFS_USE_USB == 1
-				status = TM_FATFS_USB_disk_initialize();			/* USB */
-			#endif
-			break;
-		default:
-			status = STA_NOINIT;
-	}
-	
-	return status;
+	/* Return low level status */
+	return FATFS_LowLevelDrivers[pdrv].disk_initialize();
 }
 
 
@@ -93,27 +139,8 @@ DSTATUS disk_status (
 	BYTE pdrv		/* Physical drive nmuber (0..) */
 )
 {
-
-	DSTATUS status = STA_NOINIT;
-	
-	switch (pdrv) {
-		case ATA:	/* SD CARD */
-			#if FATFS_USE_SDIO == 1
-				status = TM_FATFS_SD_SDIO_disk_status();	/* SDIO communication */
-			#elif FATFS_USE_SDIO == 0
-				status = TM_FATFS_SD_disk_status();		/* SPI communication */
-			#endif
-			break;
-		case USB:	/* USB storage */
-			#if FATFS_USE_USB == 1
-				status = TM_FATFS_USB_disk_status();				/* USB */
-			#endif
-			break;
-		default:
-			status = STA_NOINIT;
-	}
-	
-	return status;
+	/* Return low level status */
+	return FATFS_LowLevelDrivers[pdrv].disk_status();
 }
 
 
@@ -129,25 +156,12 @@ DRESULT disk_read (
 	UINT count		/* Number of sectors to read (1..128) */
 )
 {
-	DRESULT status = RES_PARERR;
-	switch (pdrv) {
-		case ATA:	/* SD CARD */
-			#if FATFS_USE_SDIO == 1
-				status = TM_FATFS_SD_SDIO_disk_read(buff, sector, count);	/* SDIO communication */
-			#elif FATFS_USE_SDIO == 0
-				status = TM_FATFS_SD_disk_read(buff, sector, count);		/* SPI communication */
-			#endif
-			break;
-		case USB:	/* USB storage */
-			#if FATFS_USE_USB == 1
-				status = TM_FATFS_USB_disk_read(buff, sector, count);			/* USB */
-			#endif
-			break;
-		default:
-			status = RES_PARERR;
+	if (!count) {
+		return RES_PARERR;
 	}
 	
-	return status;
+	/* Return low level status */
+	return FATFS_LowLevelDrivers[pdrv].disk_read(buff, sector, count);
 }
 
 
@@ -164,29 +178,12 @@ DRESULT disk_write (
 	UINT count			/* Number of sectors to write (1..128) */
 )
 {
-	DRESULT status = RES_PARERR;
 	if (!count) {
-		return RES_PARERR;		/* Check parameter */
+		return RES_PARERR;
 	}
 	
-	switch (pdrv) {
-		case ATA:	/* SD CARD */
-			#if FATFS_USE_SDIO == 1
-				status = TM_FATFS_SD_SDIO_disk_write((BYTE *)buff, sector, count);	/* SDIO communication */
-			#elif FATFS_USE_SDIO == 0
-				status = TM_FATFS_SD_disk_write(buff, sector, count);				/* SPI communication */
-			#endif
-			break;
-		case USB:	/* USB storage */
-			#if FATFS_USE_USB == 1
-				status = TM_FATFS_USB_disk_write(buff, sector, count);					/* USB */
-			#endif
-			break;
-		default:
-			status = RES_PARERR;
-	}
-	
-	return status;
+	/* Return low level status */
+	return FATFS_LowLevelDrivers[pdrv].disk_write(buff, sector, count);
 }
 #endif
 
@@ -202,24 +199,8 @@ DRESULT disk_ioctl (
 	void *buff		/* Buffer to send/receive control data */
 )
 {
-	DRESULT status = RES_PARERR;
-	switch (pdrv) {
-		case ATA:	/* SD CARD */
-			#if FATFS_USE_SDIO == 1
-				status = TM_FATFS_SD_SDIO_disk_ioctl(cmd, buff);					/* SDIO communication */
-			#elif FATFS_USE_SDIO == 0
-				status = TM_FATFS_SD_disk_ioctl(cmd, buff);							/* SPI communication */
-			#endif
-			break;
-		case USB:	/* USB storage */
-			#if FATFS_USE_USB == 1
-				status = TM_FATFS_USB_disk_ioctl(cmd, buff);						/* USB */
-			#endif
-			break;
-		default:
-			status = RES_PARERR;
-	}
-	return status;
+	/* Return low level status */
+	return FATFS_LowLevelDrivers[pdrv].disk_ioctl(cmd, buff);
 }
 #endif
 
@@ -233,4 +214,33 @@ __weak DWORD get_fattime(void) {
 			| ((DWORD)0 >> 1);				/* Sec 0 */
 }
 
+/* Function declarations to prevent link errors if functions are not found */
+__weak DSTATUS TM_FATFS_SD_SDIO_disk_initialize(void) {return RES_ERROR;}
+__weak DSTATUS TM_FATFS_SD_disk_initialize(void) {return RES_ERROR;}
+__weak DSTATUS TM_FATFS_USB_disk_initialize(void) {return RES_ERROR;}
+__weak DSTATUS TM_FATFS_SDRAM_disk_initialize(void) {return RES_ERROR;}
+__weak DSTATUS TM_FATFS_SPI_FLASH_disk_initialize(void) {return RES_ERROR;}
 
+__weak DSTATUS TM_FATFS_SD_SDIO_disk_status(void) {return RES_ERROR;}
+__weak DSTATUS TM_FATFS_SD_disk_status(void) {return RES_ERROR;}
+__weak DSTATUS TM_FATFS_USB_disk_status(void) {return RES_ERROR;}
+__weak DSTATUS TM_FATFS_SDRAM_disk_status(void) {return RES_ERROR;}
+__weak DSTATUS TM_FATFS_SPI_FLASH_disk_status(void) {return RES_ERROR;}
+
+__weak DRESULT TM_FATFS_SD_SDIO_disk_ioctl(BYTE cmd, void *buff) {return (DRESULT)STA_NOINIT;}
+__weak DRESULT TM_FATFS_SD_disk_ioctl(BYTE cmd, void *buff) {return (DRESULT)STA_NOINIT;}
+__weak DRESULT TM_FATFS_USB_disk_ioctl(BYTE cmd, void *buff) {return (DRESULT)STA_NOINIT;}
+__weak DRESULT TM_FATFS_SDRAM_disk_ioctl(BYTE cmd, void *buff) {return (DRESULT)STA_NOINIT;}
+__weak DRESULT TM_FATFS_SPI_FLASH_disk_ioctl(BYTE cmd, void *buff) {return (DRESULT)STA_NOINIT;}
+
+__weak DRESULT TM_FATFS_SD_SDIO_disk_read(BYTE *buff, DWORD sector, UINT count) {return (DRESULT)STA_NOINIT;}
+__weak DRESULT TM_FATFS_SD_disk_read(BYTE *buff, DWORD sector, UINT count) {return (DRESULT)STA_NOINIT;}
+__weak DRESULT TM_FATFS_USB_disk_read(BYTE *buff, DWORD sector, UINT count) {return (DRESULT)STA_NOINIT;}
+__weak DRESULT TM_FATFS_SDRAM_disk_read(BYTE *buff, DWORD sector, UINT count) {return (DRESULT)STA_NOINIT;}
+__weak DRESULT TM_FATFS_SPI_FLASH_disk_read(BYTE *buff, DWORD sector, UINT count) {return (DRESULT)STA_NOINIT;}
+
+__weak DRESULT TM_FATFS_SD_SDIO_disk_write(const BYTE *buff, DWORD sector, UINT count) {return (DRESULT)STA_NOINIT;}
+__weak DRESULT TM_FATFS_SD_disk_write(const BYTE *buff, DWORD sector, UINT count) {return (DRESULT)STA_NOINIT;}
+__weak DRESULT TM_FATFS_USB_disk_write(const BYTE *buff, DWORD sector, UINT count) {return (DRESULT)STA_NOINIT;}
+__weak DRESULT TM_FATFS_SDRAM_disk_write(const BYTE *buff, DWORD sector, UINT count) {return (DRESULT)STA_NOINIT;}
+__weak DRESULT TM_FATFS_SPI_FLASH_disk_write(const BYTE *buff, DWORD sector, UINT count) {return (DRESULT)STA_NOINIT;}

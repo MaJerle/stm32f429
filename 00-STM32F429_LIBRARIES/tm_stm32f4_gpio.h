@@ -272,6 +272,16 @@ void TM_GPIO_SetPinAsOutput(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
 void TM_GPIO_SetPinAsAnalog(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
 
 /**
+ * @brief  Sets pull resistor settings to GPIO pin(s)
+ * @note   Pins HAVE to be initialized first using @ref TM_GPIO_Init() or @ref TM_GPIO_InitAlternate() function
+ * @param  *GPIOx: GPIOx PORT where you want to select pull resistor
+ * @param  GPIO_Pin: Select GPIO pin(s). You can select more pins with | (OR) operator to set them as output
+ * @param  GPIO_PuPd: Pull resistor option. This parameter can be a value of @ref TM_GPIO_PuPd_t enumeration
+ * @retval None
+ */
+void TM_GPIO_SetPullResistor(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_GPIO_PuPd_t GPIO_PuPd);
+
+/**
  * @brief  Sets pin(s) low
  * @note   Defined as macro to get maximum speed using register access
  * @param  GPIOx: GPIOx PORT where you want to set pin low
