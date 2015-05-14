@@ -45,7 +45,7 @@ int main(void) {
 	/* Initialize CRC calculation unit */
 	TM_CRC_Init();
 	
-	/* Calculate CRC from block of 32-bits data array, 16 elements in array, reset before start with calculation */
+	/* Calculate CRC from block of 32-bits data array, 16 elements in array, reset CRC unit before start with calculation */
 	result = TM_CRC_Calculate32(data, 16, 1);
 	
 	while (1) {

@@ -97,7 +97,7 @@ void TM_CRC_DeInit(void);
  *            - > 0: CRC unit is set to 0 before first calculation
  * @retval 32-bit CRC calculated number
  */
-uint32_t TM_CRC_Calculate8(uint8_t* arr, uint16_t count, uint8_t reset);
+uint32_t TM_CRC_Calculate8(uint8_t* arr, uint32_t count, uint8_t reset);
 
 /**
  * @brief  Calculates 32-bit CRC value from 16-bit input array
@@ -108,7 +108,7 @@ uint32_t TM_CRC_Calculate8(uint8_t* arr, uint16_t count, uint8_t reset);
  *            - > 0: CRC unit is set to 0 before first calculation
  * @retval 32-bit CRC calculated number
  */
-uint32_t TM_CRC_Calculate16(uint16_t* arr, uint16_t count, uint8_t reset);
+uint32_t TM_CRC_Calculate16(uint16_t* arr, uint32_t count, uint8_t reset);
 
 /**
  * @brief  Calculates 32-bit CRC value from 32-bit input array
@@ -119,7 +119,7 @@ uint32_t TM_CRC_Calculate16(uint16_t* arr, uint16_t count, uint8_t reset);
  *            - > 0: CRC unit is set to 0 before first calculation
  * @retval 32-bit CRC calculated number
  */
-uint32_t TM_CRC_Calculate32(uint32_t* arr, uint16_t count, uint8_t reset);
+uint32_t TM_CRC_Calculate32(uint32_t* arr, uint32_t count, uint8_t reset);
 
 /**
  * @}

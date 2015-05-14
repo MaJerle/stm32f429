@@ -5,6 +5,7 @@
 
 
 #include "../ff.h"
+#include "stdlib.h"
 
 
 #if _FS_REENTRANT

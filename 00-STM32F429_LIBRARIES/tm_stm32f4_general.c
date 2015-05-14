@@ -35,7 +35,7 @@ static uint32_t x_na_y(uint32_t x, uint8_t y) {
 }
 
 void TM_GENERAL_SystemReset(void) {
-	/* Call use function */
+	/* Call user callback function */
 	TM_GENERAL_SoftwareResetCallback();
 	
 	/* Perform a system software reset */
@@ -170,10 +170,30 @@ float TM_GENERAL_RoundFloat(float Number, uint8_t decimals) {
 	/* Make truncating */
 	if (Number > 0) {
 		return (float)(Number * x + (float)0.5) / x;
-	} else if (Number < 0) {
+	} 
+	if (Number < 0) {
 		return (float)(Number * x - (float)0.5) / x;
 	}
 	
 	/* Return number */
 	return 0;
+}
+
+uint32_t TM_GENERAL_NextPowerOf2(uint32_t number) {
+	/* Check number */
+	if (number <= 1) {
+		return 1;
+	}
+	
+	/* Do some bit operations */
+	number--;
+	number |= number >> 1;
+	number |= number >> 2;
+	number |= number >> 4;
+	number |= number >> 8;
+	number |= number >> 16;
+	number++;
+	
+	/* Return calculated number */
+	return number;
 }

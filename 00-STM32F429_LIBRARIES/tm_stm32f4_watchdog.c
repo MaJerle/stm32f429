@@ -86,9 +86,3 @@ uint8_t TM_WATCHDOG_Init(TM_WATCHDOG_Timeout_t timeout) {
 	/* Return status */
 	return result;
 }
-
-void TM_WATCHDOG_Reset(void) {
-	/* Reload IWDG counter */
-	IWDG->KR = 0xAAAA;
-}
-

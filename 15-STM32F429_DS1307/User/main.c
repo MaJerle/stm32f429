@@ -71,6 +71,7 @@ int main(void) {
 		/* Display on LCD */
 		sprintf(str, "Day: %d\nDate: %02d\nMonth: %02d\nYear: %04d\nHours: %02d\nMinutes: %02d\nSeconds: %02d", time.day, time.date, time.month, time.year + 2000, time.hours, time.minutes, time.seconds);
 		TM_ILI9341_Puts(10, 15, str, &TM_Font_11x18, ILI9341_COLOR_ORANGE, 0x0000);
+		
 		/* Toggle GREEN led if needed */
 		if (last != time.seconds) {
 			last = time.seconds;

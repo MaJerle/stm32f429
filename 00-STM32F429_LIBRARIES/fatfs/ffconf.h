@@ -101,7 +101,7 @@
 /   1    - ASCII (No extended character. Valid for only non-LFN configuration.) */
 
 
-#define	_USE_LFN	1
+#define	_USE_LFN	3
 #define	_MAX_LFN	255
 /* The _USE_LFN option switches the LFN feature.
 /

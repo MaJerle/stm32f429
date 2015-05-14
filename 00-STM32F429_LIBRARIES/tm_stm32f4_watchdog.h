@@ -116,8 +116,9 @@ uint8_t TM_WATCHDOG_Init(TM_WATCHDOG_Timeout_t timeout);
  * @note   This function have to be called periodically to reset watchdog timer, or your system will reset
  * @param  None
  * @retval None
+ * @note   Defined as macro for faster execution
  */
-void TM_WATCHDOG_Reset(void);
+#define TM_WATCHDOG_Reset()     (IWDG->KR = 0xAAAA)
 
 /**
  * @}

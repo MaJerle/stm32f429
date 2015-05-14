@@ -339,6 +339,16 @@ void TM_GENERAL_ConvertFloat(TM_GENERAL_Float_t* Float_Struct, float Number, uin
 float TM_GENERAL_RoundFloat(float Number, uint8_t decimals);
 
 /**
+ * @brief  Calculates next power of 2 from given number
+ * @param  number: Input number to be calculated
+ * @param  Number with next power of 2
+ *         Example:
+ *            - Input number: 450
+ *            - Next power of 2 is: 512 = 2^9
+ */
+uint32_t TM_GENERAL_NextPowerOf2(uint32_t number);
+
+/**
  * @brief  Software reset callback.
  *         Function is called before software reset occurs.
  * @param  None

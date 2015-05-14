@@ -65,11 +65,11 @@ TM_L3GD20_Result_t TM_L3GD20_Init(TM_L3GD20_Scale_t scale) {
 
 TM_L3GD20_Result_t TM_L3GD20_Read(TM_L3GD20_t* L3DG20_Data) {
 	float temp, s;
+	
 	/* Read X axis */
 	L3DG20_Data->X = TM_L3GD20_INT_ReadSPI(L3GD20_REG_OUT_X_L);
 	L3DG20_Data->X |= TM_L3GD20_INT_ReadSPI(L3GD20_REG_OUT_X_H) << 8;
 
-	
 	/* Read Y axis */
 	L3DG20_Data->Y = TM_L3GD20_INT_ReadSPI(L3GD20_REG_OUT_Y_L);
 	L3DG20_Data->Y |= TM_L3GD20_INT_ReadSPI(L3GD20_REG_OUT_Y_H) << 8;
@@ -81,13 +81,13 @@ TM_L3GD20_Result_t TM_L3GD20_Read(TM_L3GD20_t* L3DG20_Data) {
 	/* Set sensitivity scale correction */
 	if (TM_L3GD20_INT_Scale == TM_L3GD20_Scale_250) {
 		/* Sensitivity at 250 range = 8.75 mdps/digit */
-		s = L3GD20_SENSITIVITY_250 / 1000.0;
+		s = L3GD20_SENSITIVITY_250 * 0.001;
 	} else if (TM_L3GD20_INT_Scale == TM_L3GD20_Scale_500) {
 		/* Sensitivity at 500 range = 17.5 mdps/digit */
-		s = L3GD20_SENSITIVITY_500 / 1000.0;
+		s = L3GD20_SENSITIVITY_500 * 0.001;
 	} else {
 		/* Sensitivity at 2000 range = 70 mdps/digit */
-		s = L3GD20_SENSITIVITY_2000 / 1000.0;
+		s = L3GD20_SENSITIVITY_2000 * 0.001;
 	}
 	
 	temp = (float)L3DG20_Data->X * s;
