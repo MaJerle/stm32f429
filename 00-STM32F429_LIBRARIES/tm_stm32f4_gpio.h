@@ -265,8 +265,8 @@ void TM_GPIO_SetPinAsOutput(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
  * @brief  Sets pin(s) as analog
  * @note   Pins HAVE to be initialized first using @ref TM_GPIO_Init() or @ref TM_GPIO_InitAlternate() function
  * @note   This is just an option for fast analog mode 
- * @param  GPIOx: GPIOx PORT where you want to set pin as output
- * @param  GPIO_Pin: Select GPIO pin(s). You can select more pins with | (OR) operator to set them as output
+ * @param  GPIOx: GPIOx PORT where you want to set pin as analog
+ * @param  GPIO_Pin: Select GPIO pin(s). You can select more pins with | (OR) operator to set them as analog
  * @retval None
  */
 void TM_GPIO_SetPinAsAnalog(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);

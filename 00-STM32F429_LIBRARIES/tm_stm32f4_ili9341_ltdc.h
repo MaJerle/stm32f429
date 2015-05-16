@@ -45,8 +45,19 @@ extern C {
  * @brief    ILI9341 library for LCD on STM32F429 Discovery, with LTDC hardware support - http://stm32f4-discovery.com/2014/06/library-18-ili9341-ltdc-stm32f429-discovery/
  * @{
  *
- * @note     Only works for STM32F4(2/3)9 because it has LTDC inside and external memory for data
+ * @note     Only works for STM32F4(2/3)9-Discovery because it has LTDC inside and external memory for data
  * 
+ * \par Pinout on STM32F429-Discovery board
+ *
+@verbatim
+PA3  <-> B5    | PB0  <-> R3 | PC6  <-> HSYNC | PD3  <-> G7 | PF10 <-> ENABLE | PG6  <-> R7     |
+PA4  <-> VSYNC | PB1  <-> R6 | PC7  <-> G6    | PD6  <-> B2 |                 | PG7  <-> DOTCLK |
+PA6  <-> G2    | PB8  <-> B6 | PC10 <-> R2    |             |                 | PB10 <-> G3     |
+PA11 <-> R4    | PB9  <-> B7 |                |             |                 | PG11 <-> B3     |
+PA12 <-> R5    | PB10 <-> G4 |                |             |                 | PG12 <-> B4     |
+               | PB11 <-> G5 |                |             |                 |                 |
+@endverbatim
+ *
  * \par Changelog
  *
 @verbatim

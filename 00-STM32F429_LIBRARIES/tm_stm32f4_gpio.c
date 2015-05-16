@@ -141,68 +141,6 @@ void TM_GPIO_Lock(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin) {
 	(void)GPIOx->LCKR;
 }
 
-uint16_t TM_GPIO_GetPortSource(GPIO_TypeDef* GPIOx) {
-	uint8_t portsource = 0;
-#ifdef GPIOA
-	if (GPIOx == GPIOA) {
-		portsource = 0x00;
-	}
-#endif
-#ifdef GPIOB
-	if (GPIOx == GPIOB) {
-		portsource = 0x01;
-	}
-#endif
-#ifdef GPIOC
-	if (GPIOx == GPIOC) {
-		portsource = 0x02;
-	}
-#endif
-#ifdef GPIOD
-	if (GPIOx == GPIOD) {
-		portsource = 0x03;
-	}
-#endif
-#ifdef GPIOE
-	if (GPIOx == GPIOE) {
-		portsource = 0x04;
-	}
-#endif
-#ifdef GPIOF
-	if (GPIOx == GPIOF) {
-		portsource = 0x05;
-	}
-#endif
-#ifdef GPIOG
-	if (GPIOx == GPIOG) {
-		portsource = 0x06;
-	}
-#endif
-#ifdef GPIOH
-	if (GPIOx == GPIOH) {
-		portsource = 0x07;
-	}
-#endif
-#ifdef GPIOI
-	if (GPIOx == GPIOI) {
-		portsource = 0x08;
-	}
-#endif
-#ifdef GPIOJ
-	if (GPIOx == GPIOJ) {
-		portsource = 0x09;
-	}
-#endif
-#ifdef GPIOK
-	if (GPIOx == GPIOK) {
-		portsource = 0x0A;
-	}
-#endif
-	
-	/* Return portsource */
-	return portsource;
-}
-
 uint16_t TM_GPIO_GetPinSource(uint16_t GPIO_Pin) {
 	uint16_t pinsource = 0;
 	
@@ -218,121 +156,21 @@ uint16_t TM_GPIO_GetPinSource(uint16_t GPIO_Pin) {
 	return pinsource;
 }
 
+uint16_t TM_GPIO_GetPortSource(GPIO_TypeDef* GPIOx) {
+	/* Get port source number */
+	/* Offset from GPIOA                       Difference between 2 GPIO addresses */
+	return ((uint32_t)GPIOx - (GPIOA_BASE)) / ((GPIOB_BASE) - (GPIOA_BASE));
+}
+
 /* Private functions */
 void TM_GPIO_INT_EnableClock(GPIO_TypeDef* GPIOx) {
-#ifdef GPIOA
-	if (GPIOx == GPIOA) {
-		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
-	}
-#endif
-#ifdef GPIOB
-	if (GPIOx == GPIOB) {
-		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOBEN;
-	}
-#endif
-#ifdef GPIOC
-	if (GPIOx == GPIOC) {
-		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOCEN;
-	}
-#endif
-#ifdef GPIOD
-	if (GPIOx == GPIOD) {
-		RCC->AHB1ENR |= RCC_AHB1ENR_GPIODEN;
-	}
-#endif
-#ifdef GPIOE
-	if (GPIOx == GPIOE) {
-		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOEEN;
-	}
-#endif
-#ifdef GPIOF
-	if (GPIOx == GPIOF) {
-		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOFEN;
-	}
-#endif
-#ifdef GPIOG
-	if (GPIOx == GPIOG) {
-		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOGEN;
-	}
-#endif
-#ifdef GPIOH
-	if (GPIOx == GPIOH) {
-		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOHEN;
-	}
-#endif
-#ifdef GPIOI
-	if (GPIOx == GPIOI) {
-		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOIEN;
-	}
-#endif
-#ifdef GPIOJ
-	if (GPIOx == GPIOJ) {
-		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOJEN;
-	}
-#endif
-#ifdef GPIOK
-	if (GPIOx == GPIOK) {
-		RCC->AHB1ENR |= RCC_AHB1ENR_GPIOKEN;
-	}
-#endif
+	/* Set bit according to the 1 << portsourcenumber */
+	RCC->AHB1ENR |= (1 << TM_GPIO_GetPortSource(GPIOx));
 }
 
 void TM_GPIO_INT_DisableClock(GPIO_TypeDef* GPIOx) {
-#ifdef GPIOA
-	if (GPIOx == GPIOA) {
-		RCC->AHB1ENR &= ~RCC_AHB1ENR_GPIOAEN;
-	}
-#endif
-#ifdef GPIOB
-	if (GPIOx == GPIOB) {
-		RCC->AHB1ENR &= ~RCC_AHB1ENR_GPIOBEN;
-	}
-#endif
-#ifdef GPIOC
-	if (GPIOx == GPIOC) {
-		RCC->AHB1ENR &= ~RCC_AHB1ENR_GPIOCEN;
-	}
-#endif
-#ifdef GPIOD
-	if (GPIOx == GPIOD) {
-		RCC->AHB1ENR &= ~RCC_AHB1ENR_GPIODEN;
-	}
-#endif
-#ifdef GPIOE
-	if (GPIOx == GPIOE) {
-		RCC->AHB1ENR &= ~RCC_AHB1ENR_GPIOEEN;
-	}
-#endif
-#ifdef GPIOF
-	if (GPIOx == GPIOF) {
-		RCC->AHB1ENR &= ~RCC_AHB1ENR_GPIOFEN;
-	}
-#endif
-#ifdef GPIOG
-	if (GPIOx == GPIOG) {
-		RCC->AHB1ENR &= ~RCC_AHB1ENR_GPIOGEN;
-	}
-#endif
-#ifdef GPIOH
-	if (GPIOx == GPIOH) {
-		RCC->AHB1ENR &= ~RCC_AHB1ENR_GPIOHEN;
-	}
-#endif
-#ifdef GPIOI
-	if (GPIOx == GPIOI) {
-		RCC->AHB1ENR &= ~RCC_AHB1ENR_GPIOIEN;
-	}
-#endif
-#ifdef GPIOJ
-	if (GPIOx == GPIOJ) {
-		RCC->AHB1ENR &= ~RCC_AHB1ENR_GPIOJEN;
-	}
-#endif
-#ifdef GPIOK
-	if (GPIOx == GPIOK) {
-		RCC->AHB1ENR &= ~RCC_AHB1ENR_GPIOKEN;
-	}
-#endif
+	/* Clear bit according to the 1 << portsourcenumber */
+	RCC->AHB1ENR &= ~(1 << TM_GPIO_GetPortSource(GPIOx));
 }
 
 void TM_GPIO_INT_Init(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_GPIO_Mode_t GPIO_Mode, TM_GPIO_OType_t GPIO_OType, TM_GPIO_PuPd_t GPIO_PuPd, TM_GPIO_Speed_t GPIO_Speed) {
