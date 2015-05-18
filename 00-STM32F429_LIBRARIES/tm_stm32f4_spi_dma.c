@@ -182,7 +182,7 @@ uint8_t TM_SPI_DMA_Transmit(SPI_TypeDef* SPIx, uint8_t* TX_Buffer, uint8_t* RX_B
 }
 
 uint8_t TM_SPI_DMA_Working(SPI_TypeDef* SPIx) {
-	/* Get USART settings */
+	/* Get SPI settings */
 	TM_SPI_DMA_INT_t* Settings = TM_SPI_DMA_INT_GetSettings(SPIx);
 	
 	/* Check if TX or RX DMA is working */

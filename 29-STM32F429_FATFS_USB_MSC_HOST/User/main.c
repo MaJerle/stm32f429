@@ -24,9 +24,11 @@
 
 #include <stdio.h>
 
+FATFS USB_Fs;
+FIL USB_Fil;
+FRESULT fres;
+	
 int main(void) {
-	FATFS USB_Fs;
-	FIL USB_Fil;
 	char buffer[50];
 	uint8_t write = 1;
 	uint32_t free, total;
@@ -53,11 +55,11 @@ int main(void) {
 			if (write) {
 				/* Try to mount USB device */
 				/* USB is at 1: */
-				if (f_mount(&USB_Fs, "1:", 1) == FR_OK) {
+				if ((fres = f_mount(&USB_Fs, "USB:", 1)) == FR_OK) {
 					TM_DISCO_LedOn(LED_GREEN);
 					/* Mounted ok */
 					/* Try to open USB file */
-					if (f_open(&USB_Fil, "1:usb_file.txt", FA_READ | FA_WRITE | FA_OPEN_ALWAYS) == FR_OK) {
+					if ((fres = f_open(&USB_Fil, "USB:usb_file.txt", FA_READ | FA_WRITE | FA_OPEN_ALWAYS)) == FR_OK) {
 						/* We want to write only once */
 						write = 0;
 						
@@ -86,7 +88,7 @@ int main(void) {
 					}
 				}
 				/* Unmount USB */
-				f_mount(0, "1:", 1);
+				f_mount(0, "USB:", 1);
 			}
 		} else {
 			/* Not inserted, turn on RED led */

@@ -68,8 +68,8 @@ extern C {
 
 #include "stm32f4xx.h"
 #include "defines.h"
-#include "tm_stm32f4_delay.h"
 #include "tm_stm32f4_gpio.h"
+#include "tm_stm32f4_delay.h"
 #include "stdlib.h"
 
 /**
@@ -115,7 +115,7 @@ typedef enum {
 /** 
  * @brief  Button private structure 
  */
-typedef struct {
+typedef struct _TM_BUTTON_t {
 	GPIO_TypeDef* GPIOx;                          /*!< GPIOx PORT for button */
 	uint16_t GPIO_Pin;                            /*!< GPIO pin for button */
 	uint8_t GPIO_State;                           /*!< GPIO state for pin when pressed */

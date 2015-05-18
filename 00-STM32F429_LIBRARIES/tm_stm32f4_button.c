@@ -72,7 +72,7 @@ TM_BUTTON_t* TM_BUTTON_Init(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, uint8_t Butt
 		P = TM_GPIO_PuPd_UP;
 	}
 	
-	/* Init */
+	/* Init GPIO pin as input with proper pull resistor */
 	TM_GPIO_Init(GPIOx, GPIO_Pin, TM_GPIO_Mode_IN, TM_GPIO_OType_PP, P, TM_GPIO_Speed_Low);
 	
 	/* Save button */
