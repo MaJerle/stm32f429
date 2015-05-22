@@ -21,7 +21,6 @@
 __IO uint32_t TM_TimingDelay = 0;
 __IO uint32_t TM_Time = 0;
 __IO uint32_t TM_Time2 = 0;
-uint8_t TM_DELAY_Initialized = 0;
 volatile uint32_t mult;
 
 #if defined(TM_DELAY_TIM)
@@ -45,12 +44,7 @@ void SysTick_Handler(void) {
 	TM_DELAY_1msHandler();
 }
 
-void TM_DELAY_Init(void) {
-	/* If already initialized */
-	if (TM_DELAY_Initialized) {
-		return;
-	}
-	
+void TM_DELAY_Init(void) {	
 #if defined(TM_DELAY_TIM)
 	TM_DELAY_INT_InitTIM();
 #else
