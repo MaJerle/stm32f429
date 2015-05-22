@@ -508,11 +508,6 @@
               </FileOption>
             </File>
             <File>
-              <FileName>startup_stm32f411xe_heap_stack_changed.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f411xe_heap_stack_changed.s</FilePath>
-            </File>
-            <File>
               <FileName>startup_stm32f429_439xx.s</FileName>
               <FileType>2</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f429_439xx.s</FilePath>
@@ -596,6 +591,48 @@
                 </FileArmAds>
               </FileOption>
             </File>
+            <File>
+              <FileName>startup_stm32f411xe.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f411xe.s</FilePath>
+              <FileOption>
+                <CommonProperty>
+                  <UseCPPCompiler>2</UseCPPCompiler>
+                  <RVCTCodeConst>0</RVCTCodeConst>
+                  <RVCTZI>0</RVCTZI>
+                  <RVCTOtherData>0</RVCTOtherData>
+                  <ModuleSelection>0</ModuleSelection>
+                  <IncludeInBuild>0</IncludeInBuild>
+                  <AlwaysBuild>0</AlwaysBuild>
+                  <GenerateAssemblyFile>2</GenerateAssemblyFile>
+                  <AssembleAssemblyFile>2</AssembleAssemblyFile>
+                  <PublicsOnly>2</PublicsOnly>
+                  <StopOnExitCode>11</StopOnExitCode>
+                  <CustomArgument></CustomArgument>
+                  <IncludeLibraryModules></IncludeLibraryModules>
+                  <ComprImg>1</ComprImg>
+                </CommonProperty>
+                <FileArmAds>
+                  <Aads>
+                    <interw>2</interw>
+                    <Ropi>2</Ropi>
+                    <Rwpi>2</Rwpi>
+                    <thumb>2</thumb>
+                    <SplitLS>2</SplitLS>
+                    <SwStkChk>2</SwStkChk>
+                    <NoWarn>2</NoWarn>
+                    <uSurpInc>2</uSurpInc>
+                    <useXO>2</useXO>
+                    <VariousControls>
+                      <MiscControls></MiscControls>
+                      <Define></Define>
+                      <Undefine></Undefine>
+                      <IncludePath></IncludePath>
+                    </VariousControls>
+                  </Aads>
+                </FileArmAds>
+              </FileOption>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -635,16 +672,6 @@
               <FileName>tm_stm32f4_delay.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_disco.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_disco.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.c</FilePath>
             </File>
             <File>
               <FileName>tm_stm32f4_gpio.c</FileName>
@@ -1222,11 +1249,6 @@
               </FileOption>
             </File>
             <File>
-              <FileName>startup_stm32f411xe_heap_stack_changed.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f411xe_heap_stack_changed.s</FilePath>
-            </File>
-            <File>
               <FileName>startup_stm32f429_439xx.s</FileName>
               <FileType>2</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f429_439xx.s</FilePath>
@@ -1310,6 +1332,48 @@
                 </FileArmAds>
               </FileOption>
             </File>
+            <File>
+              <FileName>startup_stm32f411xe.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f411xe.s</FilePath>
+              <FileOption>
+                <CommonProperty>
+                  <UseCPPCompiler>2</UseCPPCompiler>
+                  <RVCTCodeConst>0</RVCTCodeConst>
+                  <RVCTZI>0</RVCTZI>
+                  <RVCTOtherData>0</RVCTOtherData>
+                  <ModuleSelection>0</ModuleSelection>
+                  <IncludeInBuild>0</IncludeInBuild>
+                  <AlwaysBuild>0</AlwaysBuild>
+                  <GenerateAssemblyFile>2</GenerateAssemblyFile>
+                  <AssembleAssemblyFile>2</AssembleAssemblyFile>
+                  <PublicsOnly>2</PublicsOnly>
+                  <StopOnExitCode>11</StopOnExitCode>
+                  <CustomArgument></CustomArgument>
+                  <IncludeLibraryModules></IncludeLibraryModules>
+                  <ComprImg>1</ComprImg>
+                </CommonProperty>
+                <FileArmAds>
+                  <Aads>
+                    <interw>2</interw>
+                    <Ropi>2</Ropi>
+                    <Rwpi>2</Rwpi>
+                    <thumb>2</thumb>
+                    <SplitLS>2</SplitLS>
+                    <SwStkChk>2</SwStkChk>
+                    <NoWarn>2</NoWarn>
+                    <uSurpInc>2</uSurpInc>
+                    <useXO>2</useXO>
+                    <VariousControls>
+                      <MiscControls></MiscControls>
+                      <Define></Define>
+                      <Undefine></Undefine>
+                      <IncludePath></IncludePath>
+                    </VariousControls>
+                  </Aads>
+                </FileArmAds>
+              </FileOption>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1349,16 +1413,6 @@
               <FileName>tm_stm32f4_delay.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_disco.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_disco.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.c</FilePath>
             </File>
             <File>
               <FileName>tm_stm32f4_gpio.c</FileName>
@@ -1936,11 +1990,6 @@
               </FileOption>
             </File>
             <File>
-              <FileName>startup_stm32f411xe_heap_stack_changed.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f411xe_heap_stack_changed.s</FilePath>
-            </File>
-            <File>
               <FileName>startup_stm32f429_439xx.s</FileName>
               <FileType>2</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f429_439xx.s</FilePath>
@@ -2024,6 +2073,11 @@
                 </FileArmAds>
               </FileOption>
             </File>
+            <File>
+              <FileName>startup_stm32f411xe.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f411xe.s</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -2063,16 +2117,6 @@
               <FileName>tm_stm32f4_delay.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_disco.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_disco.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.c</FilePath>
             </File>
             <File>
               <FileName>tm_stm32f4_gpio.c</FileName>
@@ -2650,11 +2694,6 @@
               </FileOption>
             </File>
             <File>
-              <FileName>startup_stm32f411xe_heap_stack_changed.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f411xe_heap_stack_changed.s</FilePath>
-            </File>
-            <File>
               <FileName>startup_stm32f429_439xx.s</FileName>
               <FileType>2</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f429_439xx.s</FilePath>
@@ -2738,6 +2777,48 @@
                 </FileArmAds>
               </FileOption>
             </File>
+            <File>
+              <FileName>startup_stm32f411xe.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f411xe.s</FilePath>
+              <FileOption>
+                <CommonProperty>
+                  <UseCPPCompiler>2</UseCPPCompiler>
+                  <RVCTCodeConst>0</RVCTCodeConst>
+                  <RVCTZI>0</RVCTZI>
+                  <RVCTOtherData>0</RVCTOtherData>
+                  <ModuleSelection>0</ModuleSelection>
+                  <IncludeInBuild>0</IncludeInBuild>
+                  <AlwaysBuild>0</AlwaysBuild>
+                  <GenerateAssemblyFile>2</GenerateAssemblyFile>
+                  <AssembleAssemblyFile>2</AssembleAssemblyFile>
+                  <PublicsOnly>2</PublicsOnly>
+                  <StopOnExitCode>11</StopOnExitCode>
+                  <CustomArgument></CustomArgument>
+                  <IncludeLibraryModules></IncludeLibraryModules>
+                  <ComprImg>1</ComprImg>
+                </CommonProperty>
+                <FileArmAds>
+                  <Aads>
+                    <interw>2</interw>
+                    <Ropi>2</Ropi>
+                    <Rwpi>2</Rwpi>
+                    <thumb>2</thumb>
+                    <SplitLS>2</SplitLS>
+                    <SwStkChk>2</SwStkChk>
+                    <NoWarn>2</NoWarn>
+                    <uSurpInc>2</uSurpInc>
+                    <useXO>2</useXO>
+                    <VariousControls>
+                      <MiscControls></MiscControls>
+                      <Define></Define>
+                      <Undefine></Undefine>
+                      <IncludePath></IncludePath>
+                    </VariousControls>
+                  </Aads>
+                </FileArmAds>
+              </FileOption>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -2777,16 +2858,6 @@
               <FileName>tm_stm32f4_delay.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_disco.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_disco.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.c</FilePath>
             </File>
             <File>
               <FileName>tm_stm32f4_gpio.c</FileName>
@@ -3364,11 +3435,6 @@
               </FileOption>
             </File>
             <File>
-              <FileName>startup_stm32f411xe_heap_stack_changed.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f411xe_heap_stack_changed.s</FilePath>
-            </File>
-            <File>
               <FileName>startup_stm32f429_439xx.s</FileName>
               <FileType>2</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f429_439xx.s</FilePath>
@@ -3452,6 +3518,48 @@
                 </FileArmAds>
               </FileOption>
             </File>
+            <File>
+              <FileName>startup_stm32f411xe.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f411xe.s</FilePath>
+              <FileOption>
+                <CommonProperty>
+                  <UseCPPCompiler>2</UseCPPCompiler>
+                  <RVCTCodeConst>0</RVCTCodeConst>
+                  <RVCTZI>0</RVCTZI>
+                  <RVCTOtherData>0</RVCTOtherData>
+                  <ModuleSelection>0</ModuleSelection>
+                  <IncludeInBuild>0</IncludeInBuild>
+                  <AlwaysBuild>0</AlwaysBuild>
+                  <GenerateAssemblyFile>2</GenerateAssemblyFile>
+                  <AssembleAssemblyFile>2</AssembleAssemblyFile>
+                  <PublicsOnly>2</PublicsOnly>
+                  <StopOnExitCode>11</StopOnExitCode>
+                  <CustomArgument></CustomArgument>
+                  <IncludeLibraryModules></IncludeLibraryModules>
+                  <ComprImg>1</ComprImg>
+                </CommonProperty>
+                <FileArmAds>
+                  <Aads>
+                    <interw>2</interw>
+                    <Ropi>2</Ropi>
+                    <Rwpi>2</Rwpi>
+                    <thumb>2</thumb>
+                    <SplitLS>2</SplitLS>
+                    <SwStkChk>2</SwStkChk>
+                    <NoWarn>2</NoWarn>
+                    <uSurpInc>2</uSurpInc>
+                    <useXO>2</useXO>
+                    <VariousControls>
+                      <MiscControls></MiscControls>
+                      <Define></Define>
+                      <Undefine></Undefine>
+                      <IncludePath></IncludePath>
+                    </VariousControls>
+                  </Aads>
+                </FileArmAds>
+              </FileOption>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -3491,16 +3599,6 @@
               <FileName>tm_stm32f4_delay.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_disco.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_disco.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.c</FilePath>
             </File>
             <File>
               <FileName>tm_stm32f4_gpio.c</FileName>
@@ -4078,11 +4176,6 @@
               </FileOption>
             </File>
             <File>
-              <FileName>startup_stm32f411xe_heap_stack_changed.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f411xe_heap_stack_changed.s</FilePath>
-            </File>
-            <File>
               <FileName>startup_stm32f429_439xx.s</FileName>
               <FileType>2</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f429_439xx.s</FilePath>
@@ -4166,6 +4259,48 @@
                 </FileArmAds>
               </FileOption>
             </File>
+            <File>
+              <FileName>startup_stm32f411xe.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f411xe.s</FilePath>
+              <FileOption>
+                <CommonProperty>
+                  <UseCPPCompiler>2</UseCPPCompiler>
+                  <RVCTCodeConst>0</RVCTCodeConst>
+                  <RVCTZI>0</RVCTZI>
+                  <RVCTOtherData>0</RVCTOtherData>
+                  <ModuleSelection>0</ModuleSelection>
+                  <IncludeInBuild>0</IncludeInBuild>
+                  <AlwaysBuild>0</AlwaysBuild>
+                  <GenerateAssemblyFile>2</GenerateAssemblyFile>
+                  <AssembleAssemblyFile>2</AssembleAssemblyFile>
+                  <PublicsOnly>2</PublicsOnly>
+                  <StopOnExitCode>11</StopOnExitCode>
+                  <CustomArgument></CustomArgument>
+                  <IncludeLibraryModules></IncludeLibraryModules>
+                  <ComprImg>1</ComprImg>
+                </CommonProperty>
+                <FileArmAds>
+                  <Aads>
+                    <interw>2</interw>
+                    <Ropi>2</Ropi>
+                    <Rwpi>2</Rwpi>
+                    <thumb>2</thumb>
+                    <SplitLS>2</SplitLS>
+                    <SwStkChk>2</SwStkChk>
+                    <NoWarn>2</NoWarn>
+                    <uSurpInc>2</uSurpInc>
+                    <useXO>2</useXO>
+                    <VariousControls>
+                      <MiscControls></MiscControls>
+                      <Define></Define>
+                      <Undefine></Undefine>
+                      <IncludePath></IncludePath>
+                    </VariousControls>
+                  </Aads>
+                </FileArmAds>
+              </FileOption>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -4205,16 +4340,6 @@
               <FileName>tm_stm32f4_delay.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_disco.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_disco.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.c</FilePath>
             </File>
             <File>
               <FileName>tm_stm32f4_gpio.c</FileName>
@@ -4792,11 +4917,6 @@
               </FileOption>
             </File>
             <File>
-              <FileName>startup_stm32f411xe_heap_stack_changed.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f411xe_heap_stack_changed.s</FilePath>
-            </File>
-            <File>
               <FileName>startup_stm32f429_439xx.s</FileName>
               <FileType>2</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f429_439xx.s</FilePath>
@@ -4880,6 +5000,11 @@
                 </FileArmAds>
               </FileOption>
             </File>
+            <File>
+              <FileName>startup_stm32f411xe.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f411xe.s</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -4919,16 +5044,6 @@
               <FileName>tm_stm32f4_delay.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_disco.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_disco.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.c</FilePath>
             </File>
             <File>
               <FileName>tm_stm32f4_gpio.c</FileName>
@@ -5506,11 +5621,6 @@
               </FileOption>
             </File>
             <File>
-              <FileName>startup_stm32f411xe_heap_stack_changed.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f411xe_heap_stack_changed.s</FilePath>
-            </File>
-            <File>
               <FileName>startup_stm32f429_439xx.s</FileName>
               <FileType>2</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f429_439xx.s</FilePath>
@@ -5594,6 +5704,11 @@
                 </FileArmAds>
               </FileOption>
             </File>
+            <File>
+              <FileName>startup_stm32f411xe.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f411xe.s</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -5633,16 +5748,6 @@
               <FileName>tm_stm32f4_delay.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_disco.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_disco.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.c</FilePath>
             </File>
             <File>
               <FileName>tm_stm32f4_gpio.c</FileName>
@@ -6220,11 +6325,6 @@
               </FileOption>
             </File>
             <File>
-              <FileName>startup_stm32f411xe_heap_stack_changed.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f411xe_heap_stack_changed.s</FilePath>
-            </File>
-            <File>
               <FileName>startup_stm32f429_439xx.s</FileName>
               <FileType>2</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f429_439xx.s</FilePath>
@@ -6308,6 +6408,48 @@
                 </FileArmAds>
               </FileOption>
             </File>
+            <File>
+              <FileName>startup_stm32f411xe.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f411xe.s</FilePath>
+              <FileOption>
+                <CommonProperty>
+                  <UseCPPCompiler>2</UseCPPCompiler>
+                  <RVCTCodeConst>0</RVCTCodeConst>
+                  <RVCTZI>0</RVCTZI>
+                  <RVCTOtherData>0</RVCTOtherData>
+                  <ModuleSelection>0</ModuleSelection>
+                  <IncludeInBuild>0</IncludeInBuild>
+                  <AlwaysBuild>0</AlwaysBuild>
+                  <GenerateAssemblyFile>2</GenerateAssemblyFile>
+                  <AssembleAssemblyFile>2</AssembleAssemblyFile>
+                  <PublicsOnly>2</PublicsOnly>
+                  <StopOnExitCode>11</StopOnExitCode>
+                  <CustomArgument></CustomArgument>
+                  <IncludeLibraryModules></IncludeLibraryModules>
+                  <ComprImg>1</ComprImg>
+                </CommonProperty>
+                <FileArmAds>
+                  <Aads>
+                    <interw>2</interw>
+                    <Ropi>2</Ropi>
+                    <Rwpi>2</Rwpi>
+                    <thumb>2</thumb>
+                    <SplitLS>2</SplitLS>
+                    <SwStkChk>2</SwStkChk>
+                    <NoWarn>2</NoWarn>
+                    <uSurpInc>2</uSurpInc>
+                    <useXO>2</useXO>
+                    <VariousControls>
+                      <MiscControls></MiscControls>
+                      <Define></Define>
+                      <Undefine></Undefine>
+                      <IncludePath></IncludePath>
+                    </VariousControls>
+                  </Aads>
+                </FileArmAds>
+              </FileOption>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -6347,16 +6489,6 @@
               <FileName>tm_stm32f4_delay.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_disco.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_disco.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.c</FilePath>
             </File>
             <File>
               <FileName>tm_stm32f4_gpio.c</FileName>
@@ -6934,11 +7066,6 @@
               </FileOption>
             </File>
             <File>
-              <FileName>startup_stm32f411xe_heap_stack_changed.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f411xe_heap_stack_changed.s</FilePath>
-            </File>
-            <File>
               <FileName>startup_stm32f429_439xx.s</FileName>
               <FileType>2</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f429_439xx.s</FilePath>
@@ -7022,6 +7149,48 @@
                 </FileArmAds>
               </FileOption>
             </File>
+            <File>
+              <FileName>startup_stm32f411xe.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f411xe.s</FilePath>
+              <FileOption>
+                <CommonProperty>
+                  <UseCPPCompiler>2</UseCPPCompiler>
+                  <RVCTCodeConst>0</RVCTCodeConst>
+                  <RVCTZI>0</RVCTZI>
+                  <RVCTOtherData>0</RVCTOtherData>
+                  <ModuleSelection>0</ModuleSelection>
+                  <IncludeInBuild>0</IncludeInBuild>
+                  <AlwaysBuild>0</AlwaysBuild>
+                  <GenerateAssemblyFile>2</GenerateAssemblyFile>
+                  <AssembleAssemblyFile>2</AssembleAssemblyFile>
+                  <PublicsOnly>2</PublicsOnly>
+                  <StopOnExitCode>11</StopOnExitCode>
+                  <CustomArgument></CustomArgument>
+                  <IncludeLibraryModules></IncludeLibraryModules>
+                  <ComprImg>1</ComprImg>
+                </CommonProperty>
+                <FileArmAds>
+                  <Aads>
+                    <interw>2</interw>
+                    <Ropi>2</Ropi>
+                    <Rwpi>2</Rwpi>
+                    <thumb>2</thumb>
+                    <SplitLS>2</SplitLS>
+                    <SwStkChk>2</SwStkChk>
+                    <NoWarn>2</NoWarn>
+                    <uSurpInc>2</uSurpInc>
+                    <useXO>2</useXO>
+                    <VariousControls>
+                      <MiscControls></MiscControls>
+                      <Define></Define>
+                      <Undefine></Undefine>
+                      <IncludePath></IncludePath>
+                    </VariousControls>
+                  </Aads>
+                </FileArmAds>
+              </FileOption>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -7061,16 +7230,6 @@
               <FileName>tm_stm32f4_delay.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_disco.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_disco.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.c</FilePath>
             </File>
             <File>
               <FileName>tm_stm32f4_gpio.c</FileName>

@@ -144,6 +144,8 @@ http://bit.ly/1HchE9L
 http://bit.ly/1CQPPyO
 57. BUTTON - Use buttons with STM32F4xx
 http://bit.ly/1Gbp8po
+58. STRING - Dynamic string allocation for STM32F4xx
+http://bit.ly/1K9toJE
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB
