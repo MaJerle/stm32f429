@@ -2,7 +2,7 @@
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
- * @link    
+ * @link    http://stm32f4-discovery.com/2015/05/library-59-change-pll-settings-while-stm32f4xx-is-running
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -42,9 +42,13 @@ extern C {
 
 /**
  * @defgroup TM_RCC
- * @brief    RCC library for STM32F4xx devices
+ * @brief    RCC library for STM32F4xx devices - http://stm32f4-discovery.com/2015/05/library-59-change-pll-settings-while-stm32f4xx-is-running
  * @{
  *
+ * This library allows you to change PLL settings on the FLY.
+ * 
+ * It can be used to dynamically change system clock for various reasons.
+ * 
  * \par Changelog
  *
 @verbatim
@@ -71,6 +75,7 @@ extern C {
  * @{
  */
 
+/* PLL configuration */
 #define RCC_PLLM_MASK    ((uint32_t)0x0000003F)
 #define RCC_PLLM_POS     0
 #define RCC_PLLN_MASK    ((uint32_t)0x00007FC0)
@@ -91,7 +96,18 @@ extern C {
  * @brief    Library Typedefs
  * @{
  */
-/* Typedefs here */
+
+/**
+ * @brief  PLL structure with settings for read and write operations 
+ */
+typedef struct {
+	uint16_t PLLM; /*!< PLL M parameter. This value can be between 2 and 63.    Use 0 if you don't want to change parameter. */
+	uint16_t PLLN; /*!< PLL M parameter. This value can be between 192 and 432. Use 0 if you don't want to change parameter. */ 
+	uint16_t PLLP; /*!< PLL M parameter. This value can be 2, 4, 6 or 8.        Use 0 if you don't want to change parameter. */
+	uint16_t PLLQ; /*!< PLL M parameter. This value can be between 2 and 15.    Use 0 if you don't want to change parameter. */
+	uint16_t PLLR; /*!< PLL M parameter. This value can be between 2 and 7 and is only available for STM32F446 devices. Use 0 if you don't want to change parameter. */
+} TM_RCC_PLL_t;
+
 /**
  * @}
  */
@@ -105,22 +121,27 @@ extern C {
 /** 
  * @brief  Sets the main PLL settings for STM32F4xx device
  * @note   PLL can only be configured when PLL is not used as system clock.
- *            For that purpose, this function enabled do the following things:
+ *            For that purpose, this function does the following things:
  *              - Enables HSI as system core clock
  *              - Disables PLL
- *              - Sets PLL parameters
+ *              - Sets PLL parameters passed as parameters in function
  *              - Enables PLL
  *              - Waits will PLL is ready and locked
  *              - Enables PLL as system core clock
  *              - Updates system core clock variable
- * @param  PLLM: Set PLL M parameter. This value can be between 2 and 63.    Use 0 if you don't want to change parameter.
- * @param  PLLN: Set PLL N parameter. This value can be between 192 and 432. Use 0 if you don't want to change parameter.
- * @param  PLLP: Set PLL P parameter. This value can be 2, 4, 6 or 8.        Use 0 if you don't want to change parameter.
- * @param  PLLQ: Set PLL Q parameter. This value can be between 2 and 15.    Use 0 if you don't want to change parameter.
- * @param  PLLR: Set PLL R parameter. This value can be between 2 and 7 and is only available for STM32F446 devices. Use 0 if you don't want to change parameter.
+ * @param  *PLL_Settings: Pointer to @ref TM_RCC_PLL_t structure with PLL settings.
+ *            Use 0 for setting you don't want to change
  * @retval None
  */
-void TM_RCC_SetPLL(uint16_t PLLM, uint16_t PLLN, uint16_t PLLP, uint16_t PLLQ, uint16_t PLLR);
+void TM_RCC_SetPLL(TM_RCC_PLL_t* PLL_Settings);
+
+/**
+ * @brief  Gets current PLL settings from RCC registers
+ * @note   You can use this function to read current PLL settings before applying new settings
+ * @param  *PLL_Settings: Pointer to @ref TM_RCC_PLL_t structure where PLL settings will be stored
+ * @retval None
+ */
+void TM_RCC_GetPLL(TM_RCC_PLL_t* PLL_Settings);
 
 /** 
  * @brief  Sets PLL M parameter
