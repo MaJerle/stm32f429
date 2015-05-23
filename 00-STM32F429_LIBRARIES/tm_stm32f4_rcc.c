@@ -35,11 +35,21 @@ void TM_RCC_SetPLL(TM_RCC_PLL_t* PLL_Settings) {
 	RCC->CR &= ~RCC_CR_PLLON;
 	
 	/* Set PLL settings */
-	RCC->PLLCFGR = (RCC->PLLCFGR & ~RCC_PLLM_MASK) | (PLL_Settings->PLLM << RCC_PLLM_POS);
-	RCC->PLLCFGR = (RCC->PLLCFGR & ~RCC_PLLN_MASK) | (PLL_Settings->PLLN << RCC_PLLN_POS);
-	RCC->PLLCFGR = (RCC->PLLCFGR & ~RCC_PLLP_MASK) | (((PLL_Settings->PLLP >> 1) - 1) << RCC_PLLP_POS);
-	RCC->PLLCFGR = (RCC->PLLCFGR & ~RCC_PLLQ_MASK) | (PLL_Settings->PLLQ << RCC_PLLQ_POS);
-	RCC->PLLCFGR = (RCC->PLLCFGR & ~RCC_PLLR_MASK) | (PLL_Settings->PLLR << RCC_PLLR_POS);
+	if (PLL_Settings->PLLM) {
+		RCC->PLLCFGR = (RCC->PLLCFGR & ~RCC_PLLM_MASK) | ((PLL_Settings->PLLM << RCC_PLLM_POS) & RCC_PLLM_MASK);
+	}
+	if (PLL_Settings->PLLN) {
+		RCC->PLLCFGR = (RCC->PLLCFGR & ~RCC_PLLN_MASK) | ((PLL_Settings->PLLN << RCC_PLLN_POS) & RCC_PLLN_MASK);
+	}
+	if (PLL_Settings->PLLP) {
+		RCC->PLLCFGR = (RCC->PLLCFGR & ~RCC_PLLP_MASK) | ((((PLL_Settings->PLLP >> 1) - 1) << RCC_PLLP_POS) & RCC_PLLP_MASK);
+	}
+	if (PLL_Settings->PLLQ) {
+		RCC->PLLCFGR = (RCC->PLLCFGR & ~RCC_PLLQ_MASK) | ((PLL_Settings->PLLQ << RCC_PLLQ_POS) & RCC_PLLQ_MASK);
+	}
+	if (PLL_Settings->PLLR) {
+		RCC->PLLCFGR = (RCC->PLLCFGR & ~RCC_PLLR_MASK) | ((PLL_Settings->PLLR << RCC_PLLR_POS) & RCC_PLLR_MASK);
+	}
 	
 	/* Enable PLL */
 	RCC->CR |= RCC_CR_PLLON;

@@ -143,52 +143,6 @@ void TM_RCC_SetPLL(TM_RCC_PLL_t* PLL_Settings);
  */
 void TM_RCC_GetPLL(TM_RCC_PLL_t* PLL_Settings);
 
-/** 
- * @brief  Sets PLL M parameter
- * @note   PLL must be stopped and HSI/HSE clock must be used as system clock before you can change this setting
- * @note   Use this function only if you know how PLL clock works in STM32F4xx. Use @ref TM_RCC_SetPLL() instead
- * @param  PLLM: Integer number between 2 and 63
- * @retval None
- */
-void TM_RCC_SetPLL_M(uint16_t PLLM);
-
-/** 
- * @brief  Sets PLL N parameter
- * @note   PLL must be stopped and HSI/HSE clock must be used as system clock before you can change this setting
- * @note   Use this function only if you know how PLL clock works in STM32F4xx. Use @ref TM_RCC_SetPLL() instead
- * @param  PLLN: Integer number between 192 and 432
- * @retval None
- */
-void TM_RCC_SetPLL_N(uint16_t PLLN);
-
-/** 
- * @brief  Sets PLL P parameter
- * @note   PLL must be stopped and HSI/HSE clock must be used as system clock before you can change this setting
- * @note   Use this function only if you know how PLL clock works in STM32F4xx. Use @ref TM_RCC_SetPLL() instead
- * @param  PLLP: Integer numbers 2, 4, 6, 8 are valid
- * @retval None
- */
-void TM_RCC_SetPLL_P(uint16_t PLLP);
-
-/** 
- * @brief  Sets PLL Q parameter
- * @note   PLL must be stopped and HSI/HSE clock must be used as system clock before you can change this setting
- * @note   Use this function only if you know how PLL clock works in STM32F4xx. Use @ref TM_RCC_SetPLL() instead
- * @param  PLLQ: Integer number between 2 and 15
- * @retval None
- */
-void TM_RCC_SetPLL_Q(uint16_t PLLQ);
-
-/** 
- * @brief  Sets PLL R parameter
- * @note   PLL must be stopped and HSI/HSE clock must be used as system clock before you can change this setting
- * @note   Use this function only if you know how PLL clock works in STM32F4xx. Use @ref TM_RCC_SetPLL() instead
- * @param  PLLR: Integer number between 2 and 7
- * @note   Only for STM32F446xx devices
- * @retval None
- */
-void TM_RCC_SetPLL_R(uint16_t PLLR);
-
 /**
  * @brief  Checks if main PLL is ready
  * @param  None
