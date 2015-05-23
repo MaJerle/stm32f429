@@ -3,7 +3,7 @@
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
  * @link    http://stm32f4-discovery.com/2015/05/library-58-dynamic-strings-on-stm32f4xx
- * @version v1.0
+ * @version v1.1
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   String library for STM32F4xx devices
@@ -28,7 +28,7 @@
 @endverbatim
  */
 #ifndef TM_STRING_H
-#define TM_STRING_H 100
+#define TM_STRING_H 110
 
 /* C++ detection */
 #ifdef __cplusplus
