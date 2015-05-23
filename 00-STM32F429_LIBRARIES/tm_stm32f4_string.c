@@ -45,14 +45,14 @@ TM_STRING_t* TM_STRING_Create(uint16_t size) {
 	return String;
 }
 
-TM_STRING_t* TM_STRING_AddString(TM_STRING_t* String, char* str) {
+uint16_t TM_STRING_AddString(TM_STRING_t* String, char* str) {
 	TM_STRING_t* ptr;
 	char** tmp1;
 	uint16_t i;
 	
 	/* Check input pointer */
 	if (String == NULL) {
-		return NULL;
+		return 0;
 	}
 	
 	/* Check if memory available */
@@ -63,7 +63,7 @@ TM_STRING_t* TM_STRING_AddString(TM_STRING_t* String, char* str) {
 		
 		/* Check if allocated */
 		if (ptr == NULL || tmp1 == NULL) {
-			return String;
+			return 0;
 		}
 		
 		/* New string is allocated, copy old pointers to new */
@@ -101,6 +101,53 @@ TM_STRING_t* TM_STRING_AddString(TM_STRING_t* String, char* str) {
 	
 	/* Increase count */
 	String->Count++;
+	
+	/* Return pointer */
+	return (String->Count - 1);
+}
+
+TM_STRING_t* TM_STRING_ReplaceString(TM_STRING_t* String, uint16_t pos, char* str) {
+	char *tmp, *tmp1;
+	
+	/* Check input pointer */
+	if (String == NULL) {
+		return NULL;
+	}
+	
+	/* Add string if necessary */
+	if (pos >= String->Count) {
+		/* Add to string */
+		TM_STRING_AddString(String, str);
+		
+		/* Return string pointer */
+		return String;
+	}
+	
+	/* Check size */
+	if (strlen(str) > strlen(String->Strings[pos])) {
+		/* Allocate new memory */
+		tmp = (char *)malloc((strlen(str) + 1) * sizeof(char *));
+		
+		/* Check if allocated */
+		if (tmp == NULL) {
+			return String;
+		}
+		
+		/* Get current string pointer */
+		tmp1 = String->Strings[pos];
+		
+		/* Save new pointer */
+		String->Strings[pos] = tmp;
+		
+		/* Copy string */
+		strcpy(String->Strings[pos], str);
+		
+		/* Free old pointer */
+		free(tmp1);
+	} else {
+		/* Just replace in current memory */
+		strcpy(String->Strings[pos], str);
+	}
 	
 	/* Return pointer */
 	return String;

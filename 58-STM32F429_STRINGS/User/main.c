@@ -26,6 +26,7 @@ TM_STRING_t* String;
 
 int main(void) {
 	uint16_t i = 0;
+	uint16_t strposition;
 	
 	/* Initialize system */
 	SystemInit();
@@ -41,6 +42,20 @@ int main(void) {
 	
 	/* Add another string to memory, allocated memory will be set depending on string length */
 	TM_STRING_AddString(String, "Second string");
+	
+	/* Send strings over USART */
+	for (i = 0; i < String->Count; i++) {
+		/* Print string to user */
+		printf("%s\n", String->Strings[i]);
+	}
+	
+	/* Add some strings */
+	TM_STRING_AddString(String, "Third string");
+	strposition = TM_STRING_AddString(String, "Forth string");
+	TM_STRING_AddString(String, "Fifth string");
+	
+	/* Modify string number 4 */
+	TM_STRING_ReplaceString(String, strposition, "Updated string");
 	
 	/* Send strings over USART */
 	for (i = 0; i < String->Count; i++) {

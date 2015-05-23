@@ -57,6 +57,10 @@ extern C {
  * \par Changelog
  *
 @verbatim
+ Version 1.1
+  - May 23, 2015
+  - Added support for replacing string
+ 
  Version 1.0
   - First release
 @endverbatim
@@ -127,9 +131,20 @@ TM_STRING_t* TM_STRING_Create(uint16_t count);
  *            Memory size for allocation is string length + 1
  * @param  *String: Pointer to @ref TM_STRING_t structure
  * @param  *str: Pointer to string to be added to string
+ * @retval String position in strings array
+ */
+uint16_t TM_STRING_AddString(TM_STRING_t* String, char* str);
+
+/**
+ * @brief  Replaces already added string with new string
+ * @note   If new string is larger than string before, new memory is allocated and old is free,
+ *         but if new string length is smaller than old, only new string is copied to already allocateed memory
+ * @param  *String: Pointer to @ref TM_STRING_t structure
+ * @param  pos: Position in array where to replace string
+ * @param  *str: Pointer to new string which will be applied to memory
  * @retval Pointer to @ref TM_STRING_t structure
  */
-TM_STRING_t* TM_STRING_AddString(TM_STRING_t* String, char* str);
+TM_STRING_t* TM_STRING_ReplaceString(TM_STRING_t* String, uint16_t pos, char* str);
 
 /**
  * @brief  Deletes string from strings array
