@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_cec.c
   * @author  MCD Application Team
-  * @version V1.5.0
-  * @date    06-March-2015
+  * @version V1.5.1
+  * @date    22-May-2015
   * @brief   This file provides firmware functions to manage the following 
   *          functionalities of the Consumer Electronics Control (CEC) peripheral
   *          applicable only on STM32F446xx devices:
@@ -102,6 +102,7 @@
   * @{
   */
 
+#if defined(STM32F446xx)
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 #define BROADCAST_ADDRESS      ((uint32_t)0x0000F)
@@ -596,6 +597,7 @@ void CEC_ClearITPendingBit(uint16_t CEC_IT)
   * @}
   */
 
+#endif /* STM32F446xx */
 /**
   * @}
   */

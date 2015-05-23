@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_qspi.c
   * @author  MCD Application Team
-  * @version V1.5.0
-  * @date    06-March-2015
+  * @version V1.5.1
+  * @date    22-May-2015
   * @brief   This file provides firmware functions to manage the following 
   *          functionalities of the Serial peripheral interface (QSPI):
   *           + Initialization and Configuration
@@ -19,7 +19,7 @@
                        ##### How to use this driver #####
  ===============================================================================
     [..]
-        (#) Enable peripheral clock using   RCC_AHB3PeriphClockCmd(RCC_AHB3Periph_QSPI,ENABLE);
+        (#) Enable peripheral clock using RCC_AHB3PeriphClockCmd(RCC_AHB3Periph_QSPI,ENABLE);
             function.
 
         (#) Enable CLK, BK1_IO0, BK1_IO1, BK1_IO2, BK1_IO3, BK1_NCS, BK2_IO0, 
@@ -90,6 +90,7 @@
   * @{
   */
 
+#if defined(STM32F446xx)
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 #define QSPI_CR_CLEAR_MASK                           0x00FFFFCF
@@ -899,6 +900,7 @@ void QSPI_DualFlashMode_Cmd(FunctionalState NewState)
   * @}
   */
 
+#endif /* STM32F446xx */
 /**
   * @}
   */

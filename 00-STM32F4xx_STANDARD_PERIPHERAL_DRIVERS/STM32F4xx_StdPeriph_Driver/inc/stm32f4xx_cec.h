@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_cec.h
   * @author  MCD Application Team
-  * @version V1.5.0
-  * @date    06-March-2015
+  * @version V1.5.1
+  * @date    22-May-2015
   * @brief   This file contains all the functions prototypes for the CEC firmware 
   *          library, applicable only for STM32F466xx devices.
   ******************************************************************************
@@ -44,6 +44,7 @@
 /** @addtogroup CEC
   * @{
   */
+#if defined(STM32F446xx)
 /* Exported types ------------------------------------------------------------*/
   
 /** 
@@ -283,18 +284,19 @@ void CEC_ClearFlag(uint32_t CEC_FLAG);
 ITStatus CEC_GetITStatus(uint16_t CEC_IT);
 void CEC_ClearITPendingBit(uint16_t CEC_IT);
 
+#endif /* STM32F446xx */
+/**
+  * @}
+  */
+
+/**
+  * @}
+  */
+
 #ifdef __cplusplus
 }
 #endif
 
 #endif /* __STM32F4XX_CEC_H */
-
-/**
-  * @}
-  */
-
-/**
-  * @}
-  */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

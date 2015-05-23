@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_exti.c
   * @author  MCD Application Team
-  * @version V1.5.0
-  * @date    06-March-2015
+  * @version V1.5.1
+  * @date    22-May-2015
   * @brief   This file provides firmware functions to manage the following 
   *          functionalities of the EXTI peripheral:           
   *           + Initialization and Configuration

@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_spdifrx.c
   * @author  MCD Application Team
-  * @version V1.5.0
-  * @date    06-March-2015
+  * @version V1.5.1
+  * @date    22-May-2015
   * @brief   This file provides firmware functions to manage the following 
   *          functionalities of the Serial Audio Interface (SPDIFRX):
   *           + Initialization and Configuration
@@ -43,6 +43,7 @@
   * @{
   */ 
 
+#if defined(STM32F446xx)
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 #define CR_CLEAR_MASK 0x000000FE7
@@ -480,8 +481,9 @@ void SPDIFRX_ClearITPendingBit(uint32_t SPDIFRX_IT)
 
 /**
   * @}
-  */ 
+  */
 
+#endif /* STM32F446xx */
 /**
   * @}
   */ 
