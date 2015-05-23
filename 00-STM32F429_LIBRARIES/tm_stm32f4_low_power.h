@@ -123,11 +123,29 @@ extern C {
  * @{
  */
  
- /**
+/**
  * @}
  */
  
- /**
+/**
+ * @defgroup TM_LOWPOWER_Typedefs
+ * @brief    Library typedefs
+ * @{
+ */
+
+typedef enum {
+	TM_LOWPOWERMODE_SleepUntilInterrupt = 0x00, /*!< Sleep mode until any interrupt in NVIC occurs */
+	TM_LOWPOWERMODE_SleepUntilEvent,            /*!< Sleep mode until any event occurs */
+	TM_LOWPOWERMODE_StopUntilInterrupt,         /*!< Stop mode until interrupt in EXTI line occurs */
+	TM_LOWPOWERMODE_StopUntilEvent,             /*!< Stop mode until event occurs */
+	TM_LOWPOWERMODE_Standby                     /*!< Standby mode until any interrupt occurs */
+} TM_LOWPOWERMODE_t;
+
+/**
+ * @}
+ */
+ 
+/**
  * @defgroup TM_LOWPOWER_Functions
  * @brief    Library Functions
  *

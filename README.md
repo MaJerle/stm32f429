@@ -148,6 +148,8 @@ http://bit.ly/1Gbp8po
 http://bit.ly/1K9toJE
 59. RCC - Dynamic PLL settings for STM32F4xx
 http://bit.ly/1ApFUo1
+60. CPU LOAD - CPU load monitoring for STM32F4xx
+http://bit.ly/1FKF4EJ
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB
