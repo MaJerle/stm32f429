@@ -150,6 +150,8 @@ http://bit.ly/1K9toJE
 http://bit.ly/1ApFUo1
 60. CPU LOAD - CPU load monitoring for STM32F4xx
 http://bit.ly/1FKF4EJ
+61. SSD1306 - Use OLED LCD with STM32F4
+http://bit.ly/1IVVR8z
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB
