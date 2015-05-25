@@ -654,9 +654,9 @@
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_usart.c</FileName>
+              <FileName>stm32f4xx_i2c.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.c</FilePath>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_i2c.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -694,24 +694,34 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_gpio.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_general.c</FileName>
+              <FileName>tm_stm32f4_i2c.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.c</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_i2c.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_general.h</FileName>
+              <FileName>tm_stm32f4_i2c.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.h</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_i2c.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_usart.c</FileName>
+              <FileName>tm_stm32f4_fonts.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_usart.h</FileName>
+              <FileName>tm_stm32f4_fonts.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ssd1306.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ssd1306.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ssd1306.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ssd1306.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1405,9 +1415,9 @@
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_usart.c</FileName>
+              <FileName>stm32f4xx_i2c.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.c</FilePath>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_i2c.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1445,24 +1455,34 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_gpio.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_general.c</FileName>
+              <FileName>tm_stm32f4_i2c.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.c</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_i2c.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_general.h</FileName>
+              <FileName>tm_stm32f4_i2c.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.h</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_i2c.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_usart.c</FileName>
+              <FileName>tm_stm32f4_fonts.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_usart.h</FileName>
+              <FileName>tm_stm32f4_fonts.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ssd1306.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ssd1306.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ssd1306.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ssd1306.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -2156,9 +2176,9 @@
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_usart.c</FileName>
+              <FileName>stm32f4xx_i2c.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.c</FilePath>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_i2c.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2196,24 +2216,34 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_gpio.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_general.c</FileName>
+              <FileName>tm_stm32f4_i2c.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.c</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_i2c.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_general.h</FileName>
+              <FileName>tm_stm32f4_i2c.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.h</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_i2c.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_usart.c</FileName>
+              <FileName>tm_stm32f4_fonts.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_usart.h</FileName>
+              <FileName>tm_stm32f4_fonts.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ssd1306.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ssd1306.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ssd1306.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ssd1306.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -2907,9 +2937,9 @@
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_usart.c</FileName>
+              <FileName>stm32f4xx_i2c.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.c</FilePath>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_i2c.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2947,24 +2977,34 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_gpio.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_general.c</FileName>
+              <FileName>tm_stm32f4_i2c.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.c</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_i2c.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_general.h</FileName>
+              <FileName>tm_stm32f4_i2c.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.h</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_i2c.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_usart.c</FileName>
+              <FileName>tm_stm32f4_fonts.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_usart.h</FileName>
+              <FileName>tm_stm32f4_fonts.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ssd1306.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ssd1306.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ssd1306.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ssd1306.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -3658,9 +3698,9 @@
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_usart.c</FileName>
+              <FileName>stm32f4xx_i2c.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.c</FilePath>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_i2c.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -3698,24 +3738,34 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_gpio.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_general.c</FileName>
+              <FileName>tm_stm32f4_i2c.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.c</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_i2c.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_general.h</FileName>
+              <FileName>tm_stm32f4_i2c.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.h</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_i2c.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_usart.c</FileName>
+              <FileName>tm_stm32f4_fonts.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_usart.h</FileName>
+              <FileName>tm_stm32f4_fonts.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ssd1306.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ssd1306.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ssd1306.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ssd1306.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -4409,9 +4459,9 @@
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_usart.c</FileName>
+              <FileName>stm32f4xx_i2c.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.c</FilePath>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_i2c.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -4449,24 +4499,34 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_gpio.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_general.c</FileName>
+              <FileName>tm_stm32f4_i2c.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.c</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_i2c.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_general.h</FileName>
+              <FileName>tm_stm32f4_i2c.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.h</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_i2c.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_usart.c</FileName>
+              <FileName>tm_stm32f4_fonts.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_usart.h</FileName>
+              <FileName>tm_stm32f4_fonts.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ssd1306.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ssd1306.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ssd1306.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ssd1306.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -5160,9 +5220,9 @@
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_usart.c</FileName>
+              <FileName>stm32f4xx_i2c.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.c</FilePath>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_i2c.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -5200,24 +5260,34 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_gpio.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_general.c</FileName>
+              <FileName>tm_stm32f4_i2c.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.c</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_i2c.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_general.h</FileName>
+              <FileName>tm_stm32f4_i2c.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.h</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_i2c.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_usart.c</FileName>
+              <FileName>tm_stm32f4_fonts.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_usart.h</FileName>
+              <FileName>tm_stm32f4_fonts.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ssd1306.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ssd1306.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ssd1306.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ssd1306.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -5404,7 +5474,7 @@
             <RestoreSysVw>1</RestoreSysVw>
           </Target>
           <RunDebugAfterBuild>0</RunDebugAfterBuild>
-          <TargetSelection>6</TargetSelection>
+          <TargetSelection>11</TargetSelection>
           <SimDlls>
             <CpuDll></CpuDll>
             <CpuDllArguments></CpuDllArguments>
@@ -5418,7 +5488,7 @@
             <PeripheralDll></PeripheralDll>
             <PeripheralDllArguments></PeripheralDllArguments>
             <InitializationFile></InitializationFile>
-            <Driver>Segger\JL2CM3.dll</Driver>
+            <Driver>STLink\ST-LINKIII-KEIL_SWO.dll</Driver>
           </TargetDlls>
         </DebugOption>
         <Utilities>
@@ -5911,9 +5981,9 @@
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_usart.c</FileName>
+              <FileName>stm32f4xx_i2c.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.c</FilePath>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_i2c.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -5951,24 +6021,34 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_gpio.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_general.c</FileName>
+              <FileName>tm_stm32f4_i2c.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.c</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_i2c.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_general.h</FileName>
+              <FileName>tm_stm32f4_i2c.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.h</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_i2c.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_usart.c</FileName>
+              <FileName>tm_stm32f4_fonts.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_usart.h</FileName>
+              <FileName>tm_stm32f4_fonts.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ssd1306.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ssd1306.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ssd1306.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ssd1306.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -6662,9 +6742,9 @@
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_usart.c</FileName>
+              <FileName>stm32f4xx_i2c.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.c</FilePath>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_i2c.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -6702,24 +6782,34 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_gpio.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_general.c</FileName>
+              <FileName>tm_stm32f4_i2c.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.c</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_i2c.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_general.h</FileName>
+              <FileName>tm_stm32f4_i2c.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.h</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_i2c.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_usart.c</FileName>
+              <FileName>tm_stm32f4_fonts.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_usart.h</FileName>
+              <FileName>tm_stm32f4_fonts.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ssd1306.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ssd1306.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ssd1306.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ssd1306.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -7413,9 +7503,9 @@
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_usart.c</FileName>
+              <FileName>stm32f4xx_i2c.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.c</FilePath>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_i2c.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -7453,24 +7543,34 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_gpio.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_general.c</FileName>
+              <FileName>tm_stm32f4_i2c.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.c</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_i2c.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_general.h</FileName>
+              <FileName>tm_stm32f4_i2c.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.h</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_i2c.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_usart.c</FileName>
+              <FileName>tm_stm32f4_fonts.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_usart.h</FileName>
+              <FileName>tm_stm32f4_fonts.h</FileName>
               <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ssd1306.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ssd1306.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ssd1306.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ssd1306.h</FilePath>
             </File>
           </Files>
         </Group>

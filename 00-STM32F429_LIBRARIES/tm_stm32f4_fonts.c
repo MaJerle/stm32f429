@@ -330,3 +330,12 @@ TM_FontDef_t TM_Font_16x26 = {
 	26,
 	TM_Font16x26
 };
+
+char* TM_FONTS_GetStringSize(char* str, TM_FONTS_SIZE_t* SizeStruct, TM_FontDef_t* Font) {
+	/* Fill settings */
+	SizeStruct->Height = Font->FontHeight;
+	SizeStruct->Length = Font->FontWidth * strlen(str);
+	
+	/* Return pointer */
+	return str;
+}

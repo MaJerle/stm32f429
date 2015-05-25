@@ -178,6 +178,7 @@ uint32_t TM_FLASHLOADER_ProcessPacket(uint8_t* data, uint32_t count) {
 
 uint8_t TM_FLASHLOADER_EraseSectors(void) {
 	uint16_t sector;
+	uint32_t irq;
 	
 	/* Erase sectors if the are not already */
 	if (FLASHLOADER.SectorsErased) {
@@ -185,8 +186,8 @@ uint8_t TM_FLASHLOADER_EraseSectors(void) {
 		return 0;
 	}
 	
-	/* Disable all interrupts */
-	__disable_irq();
+	/* Disable all interrupts, get current interrupt status */
+	irq = __disable_irq();
 	
 	/* Do a sectors reset */
 	for (sector = FLASHLOADER.ApplicationStartSector; sector < FLASHLOADER.ApplicationEndSector + 1; sector += 8) {
@@ -204,7 +205,9 @@ uint8_t TM_FLASHLOADER_EraseSectors(void) {
 	FLASHLOADER.SectorsErased = 1;
 	
 	/* Enable all interrupts */
-	__enable_irq();
+	if (!irq) {
+		__enable_irq();
+	}
 	
 	/* Return OK */
 	return 0;
