@@ -58,7 +58,7 @@ PROJECT_LOGO           =
 # entered, it will be relative to the location where doxygen was started. If
 # left blank the current directory will be used.
 
-OUTPUT_DIRECTORY       = "C:/Users/tilz0R/Google Drive/JAVNO/ELEKTRONIKA/ARM/STM32F429/majerle.eu/00-STM32F429_LIBRARIES/Documentation"
+OUTPUT_DIRECTORY       = "C:/Users/tilz0R/Google Drive/ELECTRONICS/ARM/stm32f4-discovery.com/00-STM32F429_LIBRARIES/Documentation"
 
 # If the CREATE_SUBDIRS tag is set to YES then doxygen will create 4096 sub-
 # directories (in 2 levels) under the output directory of each output format and
@@ -768,7 +768,7 @@ WARN_LOGFILE           =
 # spaces.
 # Note: If this tag is empty the current directory is searched.
 
-INPUT                  = "C:/Users/tilz0R/Google Drive/JAVNO/ELEKTRONIKA/ARM/STM32F429/majerle.eu/00-STM32F429_LIBRARIES"
+INPUT                  = "C:/Users/tilz0R/Google Drive/ELECTRONICS/ARM/stm32f4-discovery.com/00-STM32F429_LIBRARIES"
 
 # This tag can be used to specify the character encoding of the source files
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding. Doxygen uses

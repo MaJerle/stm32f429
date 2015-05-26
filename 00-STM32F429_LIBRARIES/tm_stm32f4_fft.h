@@ -42,7 +42,7 @@ extern C {
 
 /**
  * @defgroup TM_FFT
- * @brief    Library description here
+ * @brief    FFT library for STM32F4xx devices - http://stm32f4-discovery.com/2015/05/library-62-fast-fourier-transform-fft-for-stm32f4xx
  * @{
  *
  * This library allows you to calculate FFT in your signal.
