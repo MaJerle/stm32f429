@@ -24,7 +24,7 @@ TM_RE_t RE1_Data;
 TM_RE_t RE2_Data;
 
 int main(void) {
-	char buf[15];
+	char buf[100];
 	
 	/* Initialize system */
 	SystemInit();
@@ -48,7 +48,7 @@ int main(void) {
 		/* Get new rotation */
 		TM_RE_Get(&RE1_Data);
 		
-		/* Format % display on LCD */
+		/* Format & display on LCD */
 		sprintf(buf, "Absolute:\n%8d\n\n\nDifference from\nlast check:\n%8d", RE1_Data.Absolute, RE1_Data.Diff);
 		
 		/* Show on LCD */
@@ -57,7 +57,7 @@ int main(void) {
 		/* Get new rotation */
 		TM_RE_Get(&RE2_Data);
 		
-		/* Format % display on LCD */
+		/* Format & display on LCD */
 		sprintf(buf, "Absolute:\n%8d\n\n\nDifference from\nlast check:\n%8d", RE2_Data.Absolute, RE2_Data.Diff);
 		
 		/* Show on LCD */

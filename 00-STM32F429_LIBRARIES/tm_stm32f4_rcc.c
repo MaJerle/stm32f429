@@ -20,6 +20,16 @@
 
 void TM_RCC_SetPLL(TM_RCC_PLL_t* PLL_Settings) {
 	uint16_t timeout;
+	TM_RCC_PLL_t tmp;
+	
+	/* Read PLL settings */
+	TM_RCC_GetPLL(&tmp);
+	
+	/* Check if structures are equal */
+	if (memcmp(PLL_Settings, &tmp, sizeof(TM_RCC_PLL_t)) == 0) {
+		/* Don't change PLL settings if settings are the same */
+		return;
+	}
 	
 	/* Enable HSI clock */
 	RCC->CR |= RCC_CR_HSION;

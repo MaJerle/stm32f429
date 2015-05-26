@@ -152,6 +152,8 @@ http://bit.ly/1ApFUo1
 http://bit.ly/1FKF4EJ
 61. SSD1306 - Use OLED LCD with STM32F4
 http://bit.ly/1IVVR8z
+62. FFT - FFT Library for STM32F4xx devices
+http://bit.ly/1HIZxu1
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB

@@ -48,6 +48,9 @@ extern C {
  * This library allows you to change PLL settings on the FLY.
  * 
  * It can be used to dynamically change system clock for various reasons.
+ *
+ * @note After you change PLL settings, some peripherals (like USART, Systick, TIMERS) will no longer work properly.
+ *       Doing a reinit would fix that!
  * 
  * \par Changelog
  *
@@ -68,6 +71,7 @@ extern C {
 #include "stm32f4xx.h"
 #include "stm32f4xx_rcc.h"
 #include "defines.h"
+#include "string.h"
 
 /**
  * @defgroup TM_RCC_Macros
