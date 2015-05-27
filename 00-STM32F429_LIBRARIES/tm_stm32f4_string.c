@@ -171,7 +171,7 @@ TM_STRING_t* TM_STRING_DeleteString(TM_STRING_t* String, uint16_t pos) {
 	tmp = String->Strings[pos];
 	
 	/* Copy pointers */
-	for (i = pos; i < String->Count; i++) {
+	for (i = pos; i < (String->Count - 1); i++) {
 		/* Copy up */
 		String->Strings[i] = String->Strings[i + 1];
 	}

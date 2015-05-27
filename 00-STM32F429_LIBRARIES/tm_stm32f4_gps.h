@@ -3,7 +3,7 @@
  * @email  tilen@majerle.eu
  * @website http://stm32f4-discovery.com
  * @link    http://stm32f4-discovery.com/2014/08/library-27-gps-stm32f4-devices/
- * @version v1.3
+ * @version v1.3.1
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   GPS NMEA standard data parser for STM32F4xx devices
@@ -27,7 +27,7 @@
 @endverbatim
  */
 #ifndef TM_GPS_H
-#define TM_GPS_H 130
+#define TM_GPS_H 131
 /**
  * @addtogroup TM_STM32F4xx_Libraries
  * @{
@@ -117,6 +117,10 @@
  * \par Changelog
  *
 @verbatim
+ Version 1.3.1 
+  - May 27, 2015
+  - Fixed bug with getting hard-fault some times because flags were not cleared correct
+  
  Version 1.3
   - April 12, 2015
   - Added support for custom statements defined by user 

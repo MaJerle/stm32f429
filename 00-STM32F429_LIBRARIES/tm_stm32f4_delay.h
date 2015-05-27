@@ -3,7 +3,7 @@
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
  * @link    http://stm32f4-discovery.com/2014/04/library-03-stm32f429-discovery-system-clock-and-pretty-precise-delay-library/
- * @version v2.3
+ * @version v2.4
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   Pretty accurate delay functions with SysTick or any other timer
@@ -28,7 +28,7 @@
 @endverbatim
  */
 #ifndef TM_DELAY_H
-#define TM_DELAY_H 230
+#define TM_DELAY_H 240
 /**
  * Library dependencies
  * - STM32F4xx
@@ -103,9 +103,20 @@ Or use ARM compiler!
  *	- Tab "C/C++"
  *	- Under "Define" add "KEIL_IDE", without quotes
  *
+ * \par Custom timers
+ *
+ * Custom timers are a way to make some tasks in a periodic value. 
+ * As of version 2.4, delay library allows you to create custom timer which count DOWN and when it reaches zero, callback is called.
+ *
+ * You can use variable settings for count, reload value and auto reload feature.
+ *
  * \par Changelog
  *
 @verbatim
+ Version 2.4
+  - May 26, 2015
+  - Added support for custom timers which can be called periodically
+
  Version 2.3
   - April 18, 2015
   - Fixed support for internal RC clock
@@ -153,6 +164,46 @@ Or use ARM compiler!
 #include "stm32f4xx_tim.h"
 #include "tm_stm32f4_timer_properties.h"
 #endif
+#include "stdlib.h"
+
+/**
+ * @defgroup TM_DELAY_Typedefs
+ * @brief    Library Typedefs
+ * @{
+ */
+
+/**
+ * @brief  Custom timer structure
+ */
+typedef struct {
+	uint32_t ARR;           /*!< Auto reload value */
+	uint32_t AutoReload;    /*!< Set to 1 if timer should be auto reloaded when it reaches zero */
+	uint32_t CNT;           /*!< Counter value, counter counts down */
+	uint8_t Enabled;        /*!< Set to 1 when timer is enabled */
+	void (*Callback)(void); /*!< Callback which will be called when timer reaches zero */
+} TM_DELAY_Timer_t;
+
+/**
+ * @}
+ */
+
+/**
+ * @defgroup TM_DELAY_Macros
+ * @brief    Library Macros
+ * @{
+ */
+
+/**
+ * @brief  Number of allowed custom timers
+ * @note   Should be changes in defines.h file if necessary
+ */
+#ifndef DELAY_MAX_CUSTOM_TIMERS
+#define DELAY_MAX_CUSTOM_TIMERS   5
+#endif
+
+/**
+ * @}
+ */
 
 /**
  * @defgroup TM_DELAY_Variables
@@ -288,6 +339,63 @@ void TM_DELAY_DisableDelayTimer(void);
 #define TM_DELAY_SetTime2(time)			(TM_Time2 = (time))
 
 /**
+ * @brief  Creates a new custom timer which has 1ms resolution
+ * @note   It uses @ref malloc for memory allocation for timer structure
+ * @param  ReloadValue: Number of milliseconds when timer reaches zero and callback function is called
+ * @param  AutoReload: If set to 1, timer will start again when it reaches zero and callback is called
+ * @param  StartTimer: If set to 1, timer will start immediately
+ * @param  *TM_DELAY_CustomTimerCallback: Pointer to callback function which will be called when timer reaches zero
+ * @retval Pointer to allocated timer structure
+ */
+TM_DELAY_Timer_t* TM_DELAY_TimerCreate(uint32_t ReloadValue, uint8_t AutoReload, uint8_t StartTimer, void (*TM_DELAY_CustomTimerCallback)(void));
+
+/**
+ * @brief  Deletes already allocated timer
+ * @param  *Timer: Pointer to @ref TM_DELAY_Timer_t structure
+ * @retval None
+ */
+void TM_DELAY_TimerDelete(TM_DELAY_Timer_t* Timer);
+
+/**
+ * @brief  Stops custom timer from counting
+ * @param  *Timer: Pointer to @ref TM_DELAY_Timer_t structure
+ * @retval Pointer to @ref TM_DELAY_Timer_t structure
+ */
+TM_DELAY_Timer_t* TM_DELAY_TimerStop(TM_DELAY_Timer_t* Timer);
+
+/**
+ * @brief  Starts custom timer counting
+ * @param  *Timer: Pointer to @ref TM_DELAY_Timer_t structure
+ * @retval Pointer to @ref TM_DELAY_Timer_t structure
+ */
+TM_DELAY_Timer_t* TM_DELAY_TimerStart(TM_DELAY_Timer_t* Timer);
+
+/**
+ * @brief  Resets custom timer counter value
+ * @param  *Timer: Pointer to @ref TM_DELAY_Timer_t structure
+ * @retval Pointer to @ref TM_DELAY_Timer_t structure
+ */
+TM_DELAY_Timer_t* TM_DELAY_TimerReset(TM_DELAY_Timer_t* Timer);
+
+/**
+ * @brief  Sets auto reload feature for timer
+ * @note   Auto reload features is used for timer which starts again when zero is reached if auto reload active
+ * @param  *Timer: Pointer to @ref TM_DELAY_Timer_t structure
+ * uint8_t AutoReload: Set to 1 if you want to enable AutoReload or 0 to disable
+ * @retval Pointer to @ref TM_DELAY_Timer_t structure
+ */
+TM_DELAY_Timer_t* TM_DELAY_TimerAutoReload(TM_DELAY_Timer_t* Timer, uint8_t AutoReload);
+
+/**
+ * @brief  Sets auto reload value for timer
+ * @param  *Timer: Pointer to @ref TM_DELAY_Timer_t structure
+ * @param  AutoReloadValue: Value for timer to be set when zero is reached and callback is called
+ * @note   AutoReload feature must be enabled for timer in order to get this to work properly
+ * @retval Pointer to @ref TM_DELAY_Timer_t structure
+ */
+TM_DELAY_Timer_t* TM_DELAY_TimerAutoReloadValue(TM_DELAY_Timer_t* Timer, uint32_t AutoReloadValue);
+
+/**
  * @brief  User function, called each 1ms when interrupt from timer happen
  * @note   Here user should put things which has to be called periodically
  * @param  None
@@ -295,6 +403,7 @@ void TM_DELAY_DisableDelayTimer(void);
  * @note   With __weak parameter to prevent link errors if not defined by user
  */
 __weak void TM_DELAY_1msHandler(void);
+
 
 /**
  * @}

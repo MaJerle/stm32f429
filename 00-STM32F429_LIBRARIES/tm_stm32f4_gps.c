@@ -58,6 +58,10 @@ void TM_GPS_Init(TM_GPS_t* GPS_Data, uint32_t baudrate) {
 	GPS_USART_INIT(baudrate);
 	/* Set first-time variable */
 	TM_GPS_FirstTime = 1;
+	
+	/* Reset everything */
+	GPS_Data->CustomStatementsCount = 0;
+	
 	/* Clear all flags */
 	TM_GPS_INT_ClearFlags(GPS_Data);
 	

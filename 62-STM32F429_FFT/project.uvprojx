@@ -653,6 +653,41 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f4xx_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_dac.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dac.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_fmc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_fmc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_ltdc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_ltdc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_tim.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_tim.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -697,6 +732,76 @@
               <FileName>tm_stm32f4_fft.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fft.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_adc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_adc.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_dac_signal.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_dac_signal.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_dac_signal.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_dac_signal.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_fonts.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ili9341_ltdc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341_ltdc.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ili9341_ltdc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341_ltdc.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_sdram.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_spi.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_timer_properties.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_timer_properties.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_timer_properties.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_timer_properties.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -747,6 +852,11 @@
               <FileName>arm_cortexM4lf_math.lib</FileName>
               <FileType>4</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Lib\ARM\arm_cortexM4lf_math.lib</FilePath>
+            </File>
+            <File>
+              <FileName>arm_const_structs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\DSP_Lib\Source\CommonTables\arm_const_structs.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1399,6 +1509,41 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f4xx_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_dac.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dac.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_fmc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_fmc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_ltdc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_ltdc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_tim.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_tim.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1443,6 +1588,76 @@
               <FileName>tm_stm32f4_fft.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fft.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_adc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_adc.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_dac_signal.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_dac_signal.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_dac_signal.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_dac_signal.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_fonts.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ili9341_ltdc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341_ltdc.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ili9341_ltdc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341_ltdc.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_sdram.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_spi.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_timer_properties.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_timer_properties.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_timer_properties.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_timer_properties.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1493,6 +1708,11 @@
               <FileName>arm_cortexM4lf_math.lib</FileName>
               <FileType>4</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Lib\ARM\arm_cortexM4lf_math.lib</FilePath>
+            </File>
+            <File>
+              <FileName>arm_const_structs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\DSP_Lib\Source\CommonTables\arm_const_structs.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2145,6 +2365,41 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f4xx_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_dac.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dac.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_fmc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_fmc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_ltdc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_ltdc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_tim.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_tim.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -2189,6 +2444,76 @@
               <FileName>tm_stm32f4_fft.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fft.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_adc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_adc.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_dac_signal.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_dac_signal.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_dac_signal.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_dac_signal.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_fonts.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ili9341_ltdc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341_ltdc.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ili9341_ltdc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341_ltdc.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_sdram.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_spi.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_timer_properties.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_timer_properties.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_timer_properties.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_timer_properties.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -2239,6 +2564,11 @@
               <FileName>arm_cortexM4lf_math.lib</FileName>
               <FileType>4</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Lib\ARM\arm_cortexM4lf_math.lib</FilePath>
+            </File>
+            <File>
+              <FileName>arm_const_structs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\DSP_Lib\Source\CommonTables\arm_const_structs.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2891,6 +3221,41 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f4xx_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_dac.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dac.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_fmc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_fmc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_ltdc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_ltdc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_tim.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_tim.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -2935,6 +3300,76 @@
               <FileName>tm_stm32f4_fft.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fft.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_adc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_adc.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_dac_signal.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_dac_signal.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_dac_signal.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_dac_signal.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_fonts.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ili9341_ltdc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341_ltdc.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ili9341_ltdc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341_ltdc.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_sdram.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_spi.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_timer_properties.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_timer_properties.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_timer_properties.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_timer_properties.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -2985,6 +3420,11 @@
               <FileName>arm_cortexM4lf_math.lib</FileName>
               <FileType>4</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Lib\ARM\arm_cortexM4lf_math.lib</FilePath>
+            </File>
+            <File>
+              <FileName>arm_const_structs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\DSP_Lib\Source\CommonTables\arm_const_structs.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -3637,6 +4077,41 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f4xx_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_dac.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dac.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_fmc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_fmc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_ltdc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_ltdc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_tim.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_tim.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -3681,6 +4156,76 @@
               <FileName>tm_stm32f4_fft.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fft.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_adc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_adc.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_dac_signal.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_dac_signal.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_dac_signal.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_dac_signal.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_fonts.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ili9341_ltdc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341_ltdc.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ili9341_ltdc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341_ltdc.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_sdram.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_spi.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_timer_properties.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_timer_properties.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_timer_properties.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_timer_properties.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -3731,6 +4276,11 @@
               <FileName>arm_cortexM4lf_math.lib</FileName>
               <FileType>4</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Lib\ARM\arm_cortexM4lf_math.lib</FilePath>
+            </File>
+            <File>
+              <FileName>arm_const_structs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\DSP_Lib\Source\CommonTables\arm_const_structs.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -4383,6 +4933,41 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f4xx_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_dac.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dac.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_fmc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_fmc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_ltdc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_ltdc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_tim.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_tim.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -4427,6 +5012,76 @@
               <FileName>tm_stm32f4_fft.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fft.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_adc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_adc.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_dac_signal.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_dac_signal.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_dac_signal.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_dac_signal.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_fonts.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ili9341_ltdc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341_ltdc.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ili9341_ltdc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341_ltdc.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_sdram.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_spi.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_timer_properties.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_timer_properties.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_timer_properties.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_timer_properties.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -4477,6 +5132,11 @@
               <FileName>arm_cortexM4lf_math.lib</FileName>
               <FileType>4</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Lib\ARM\arm_cortexM4lf_math.lib</FilePath>
+            </File>
+            <File>
+              <FileName>arm_const_structs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\DSP_Lib\Source\CommonTables\arm_const_structs.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -5129,6 +5789,41 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f4xx_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_dac.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dac.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_fmc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_fmc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_ltdc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_ltdc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_tim.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_tim.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -5173,6 +5868,76 @@
               <FileName>tm_stm32f4_fft.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fft.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_adc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_adc.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_dac_signal.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_dac_signal.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_dac_signal.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_dac_signal.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_fonts.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ili9341_ltdc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341_ltdc.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ili9341_ltdc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341_ltdc.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_sdram.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_spi.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_timer_properties.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_timer_properties.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_timer_properties.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_timer_properties.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -5223,6 +5988,11 @@
               <FileName>arm_cortexM4lf_math.lib</FileName>
               <FileType>4</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Lib\ARM\arm_cortexM4lf_math.lib</FilePath>
+            </File>
+            <File>
+              <FileName>arm_const_structs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\DSP_Lib\Source\CommonTables\arm_const_structs.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -5875,6 +6645,41 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f4xx_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_dac.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dac.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_fmc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_fmc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_ltdc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_ltdc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_tim.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_tim.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -5919,6 +6724,76 @@
               <FileName>tm_stm32f4_fft.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fft.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_adc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_adc.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_dac_signal.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_dac_signal.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_dac_signal.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_dac_signal.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_fonts.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ili9341_ltdc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341_ltdc.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ili9341_ltdc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341_ltdc.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_sdram.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_spi.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_timer_properties.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_timer_properties.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_timer_properties.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_timer_properties.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -5969,6 +6844,11 @@
               <FileName>arm_cortexM4lf_math.lib</FileName>
               <FileType>4</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Lib\ARM\arm_cortexM4lf_math.lib</FilePath>
+            </File>
+            <File>
+              <FileName>arm_const_structs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\DSP_Lib\Source\CommonTables\arm_const_structs.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -6621,6 +7501,41 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f4xx_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_dac.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dac.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_fmc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_fmc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_ltdc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_ltdc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_tim.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_tim.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -6665,6 +7580,76 @@
               <FileName>tm_stm32f4_fft.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fft.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_adc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_adc.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_dac_signal.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_dac_signal.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_dac_signal.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_dac_signal.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_fonts.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ili9341_ltdc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341_ltdc.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ili9341_ltdc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341_ltdc.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_sdram.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_spi.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_timer_properties.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_timer_properties.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_timer_properties.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_timer_properties.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -6715,6 +7700,11 @@
               <FileName>arm_cortexM4lf_math.lib</FileName>
               <FileType>4</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Lib\ARM\arm_cortexM4lf_math.lib</FilePath>
+            </File>
+            <File>
+              <FileName>arm_const_structs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\DSP_Lib\Source\CommonTables\arm_const_structs.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -7367,6 +8357,41 @@
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f4xx_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_dac.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dac.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_fmc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_fmc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_ltdc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_ltdc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_tim.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_tim.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -7411,6 +8436,76 @@
               <FileName>tm_stm32f4_fft.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fft.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_adc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_adc.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_dac_signal.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_dac_signal.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_dac_signal.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_dac_signal.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_fonts.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_fonts.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ili9341_ltdc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341_ltdc.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_ili9341_ltdc.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341_ltdc.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_sdram.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_sdram.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_spi.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_timer_properties.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_timer_properties.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_timer_properties.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_timer_properties.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -7461,6 +8556,11 @@
               <FileName>arm_cortexM4lf_math.lib</FileName>
               <FileType>4</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Lib\ARM\arm_cortexM4lf_math.lib</FilePath>
+            </File>
+            <File>
+              <FileName>arm_const_structs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\DSP_Lib\Source\CommonTables\arm_const_structs.c</FilePath>
             </File>
           </Files>
         </Group>
