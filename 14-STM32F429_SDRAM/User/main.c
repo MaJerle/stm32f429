@@ -28,13 +28,13 @@ int main(void) {
 	TM_DELAY_Init();
 	
 	/* Initialize leds */
-	TM_DISCO_LedInit();
+//	TM_DISCO_LedInit();
 	
 	/* Initialize SDRAM */
 	if (TM_SDRAM_Init()) {
-		TM_DISCO_LedOn(LED_GREEN);
+//		TM_DISCO_LedOn(LED_GREEN);
 	} else {
-		TM_DISCO_LedOn(LED_RED);
+//		TM_DISCO_LedOn(LED_RED);
 	}
 	
 	/* Some delay */

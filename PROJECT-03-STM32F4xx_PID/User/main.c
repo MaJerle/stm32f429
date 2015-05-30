@@ -161,7 +161,7 @@ int main(void) {
 			TM_PWM_SetChannelPercent(&TIM_Data, TM_PWM_Channel_1, duty);
 			
 			/* Format string */
-			sprintf(buf, "Expected:   %2.3f C\nActual:     %2.3f C\nError:      %2.3f C\nDuty cycle: %3.2f %%\n----\n", TEMP_WANT, TEMP_CURRENT, pid_error, duty);
+			sprintf(buf, "Expected:   %2.3f C\nActual:     %2.3f C\nError:      %2.3f C\nDuty cycle: %5.2f %%\n----\n", TEMP_WANT, TEMP_CURRENT, pid_error, duty);
 			
 			/* Send to USART */
 			TM_USART_Puts(USART1, buf);

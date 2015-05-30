@@ -240,7 +240,7 @@ uint8_t TM_NRF24L01_Init(uint8_t channel, uint8_t payload_size) {
 	}
 	
 	/* Fill structure */
-	TM_NRF24L01_Struct.Channel = channel;
+	TM_NRF24L01_Struct.Channel = !channel; /* Set channel to some different value for TM_NRF24L01_SetChannel() function */
 	TM_NRF24L01_Struct.PayloadSize = payload_size;
 	TM_NRF24L01_Struct.OutPwr = TM_NRF24L01_OutputPower_0dBm;
 	TM_NRF24L01_Struct.DataRate = TM_NRF24L01_DataRate_2M;
@@ -249,7 +249,7 @@ uint8_t TM_NRF24L01_Init(uint8_t channel, uint8_t payload_size) {
 	TM_NRF24L01_SoftwareReset();
 	
 	/* Channel select */
-	TM_NRF24L01_SetChannel(TM_NRF24L01_Struct.Channel);
+	TM_NRF24L01_SetChannel(channel);
 	
 	/* Set pipeline to max possible 32 bytes */
 	TM_NRF24L01_WriteRegister(NRF24L01_REG_RX_PW_P0, TM_NRF24L01_Struct.PayloadSize); // Auto-ACK pipe

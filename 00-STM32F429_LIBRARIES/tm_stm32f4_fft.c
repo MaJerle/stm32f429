@@ -76,6 +76,10 @@ uint8_t TM_FFT_Init_F32(TM_FFT_F32_t* FFT, uint16_t FFT_Size, uint8_t use_malloc
 		
 		/* Check for success */
 		if (FFT->Output == NULL) {
+			/* Deallocate input buffer */
+			free(FFT->Input);
+			
+			/* Return error */
 			return 3;
 		}
 		

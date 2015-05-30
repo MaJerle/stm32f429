@@ -241,7 +241,7 @@
             <Ro3Chk>0</Ro3Chk>
             <Ir1Chk>1</Ir1Chk>
             <Ir2Chk>0</Ir2Chk>
-            <Ra1Chk>0</Ra1Chk>
+            <Ra1Chk>1</Ra1Chk>
             <Ra2Chk>0</Ra2Chk>
             <Ra3Chk>0</Ra3Chk>
             <Im1Chk>1</Im1Chk>
@@ -319,8 +319,8 @@
               </OCR_RVCT5>
               <OCR_RVCT6>
                 <Type>0</Type>
-                <StartAddress>0x0</StartAddress>
-                <Size>0x0</Size>
+                <StartAddress>0xd0000000</StartAddress>
+                <Size>0x800000</Size>
               </OCR_RVCT6>
               <OCR_RVCT7>
                 <Type>0</Type>
@@ -347,7 +347,7 @@
           </ArmAdsMisc>
           <Cads>
             <interw>1</interw>
-            <Optim>0</Optim>
+            <Optim>1</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
             <OneElfS>0</OneElfS>
@@ -363,7 +363,7 @@
             <useXO>0</useXO>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>STM32F429_439xx,USE_STDPERIPH_DRIVER,STM32F4XX,KEIL_IDE,TM_DISCO_STM32F429_DISCOVERY,HSE_VALUE=8000000,PLL_M=8,PLL_N=360,PLL_P=2,PLL_Q=7</Define>
+              <Define>STM32F429_439xx,USE_STDPERIPH_DRIVER,ARM_MATH_CM4,__FPU_PRESENT=1,STM32F4XX,KEIL_IDE,TM_DISCO_STM32F429_DISCOVERY,HSE_VALUE=8000000,PLL_M=8,PLL_N=360,PLL_P=2,PLL_Q=7</Define>
               <Undefine></Undefine>
               <IncludePath>.\User;.\TM;..\00-STM32F429_LIBRARIES;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\inc;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Include;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Include</IncludePath>
             </VariousControls>
@@ -936,7 +936,7 @@
             <useXO>0</useXO>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>STM32F429_439xx,USE_STDPERIPH_DRIVER,STM32F4XX,KEIL_IDE,TM_DISCO_STM324x9_EVAL,HSE_VALUE=25000000,PLL_M=25,PLL_N=360,PLL_P=2,PLL_Q=7</Define>
+              <Define>STM32F429_439xx,USE_STDPERIPH_DRIVER,ARM_MATH_CM4,__FPU_PRESENT=1,STM32F4XX,KEIL_IDE,TM_DISCO_STM324x9_EVAL,HSE_VALUE=25000000,PLL_M=25,PLL_N=360,PLL_P=2,PLL_Q=7</Define>
               <Undefine></Undefine>
               <IncludePath>.\User;.\TM;..\00-STM32F429_LIBRARIES;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\inc;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Include;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Include</IncludePath>
             </VariousControls>
