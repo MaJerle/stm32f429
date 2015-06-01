@@ -249,6 +249,17 @@ uint8_t TM_SPI_DMA_Transmit(SPI_TypeDef* SPIx, uint8_t* TX_Buffer, uint8_t* RX_B
 #define TM_SPI_DMA_Receive(SPIx, RX_Buffer, count)   (TM_SPI_DMA_Transmit(SPIx, NULL, RX_Buffer, count))
 
 /**
+ * @brief  Sends one byte value multiple times over SPI with DMA
+ * @param  SPIx: Pointer to SPIx where DMA transmission will happen
+ * @param  value: Byte value to be sent
+ * @param  count: Number of bytes with value of @arg value will be sent
+ * @retval Receiving started status:
+ *            - 0: DMA has not started with sending data
+ *            - > 0: DMA has started with sending data
+ */
+uint8_t TM_SPI_DMA_SendByte(SPI_TypeDef* SPIx, uint8_t value, uint32_t count);
+
+/**
  * @brief  Checks if SPI DMA is still sending/receiving data
  * @param  *SPIx: Pointer to SPIx where you want to enable DMA TX mode
  * @retval Sending status:

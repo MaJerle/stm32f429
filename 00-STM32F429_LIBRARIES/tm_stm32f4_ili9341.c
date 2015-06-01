@@ -273,10 +273,14 @@ void TM_ILI9341_Fill(uint32_t color) {
 	unsigned int n, i, j;
 	i = color >> 8;
 	j = color & 0xFF;
+	
+	/* Set cursor position */
 	TM_ILI9341_SetCursorPosition(0, 0, ILI9341_Opts.width - 1, ILI9341_Opts.height - 1);
 
+	/* Set command for GRAM data */
 	TM_ILI9341_SendCommand(ILI9341_GRAM);
 
+	/* Send everything */
 	for (n = 0; n < ILI9341_PIXEL; n++) {
 		TM_ILI9341_SendData(i);
 		TM_ILI9341_SendData(j);
@@ -318,10 +322,10 @@ void TM_ILI9341_Puts(uint16_t x, uint16_t y, char *str, TM_FontDef_t *font, uint
 	ILI9341_y = y;
 	
 	while (*str) {
-		//New line
+		/* New line */
 		if (*str == '\n') {
 			ILI9341_y += font->FontHeight + 1;
-			//if after \n is also \r, than go to the left of the screen
+			/* if after \n is also \r, than go to the left of the screen */
 			if (*(str + 1) == '\r') {
 				ILI9341_x = 0;
 				str++;
@@ -335,6 +339,7 @@ void TM_ILI9341_Puts(uint16_t x, uint16_t y, char *str, TM_FontDef_t *font, uint
 			continue;
 		}
 		
+		/* Put character to LCD */
 		TM_ILI9341_Putc(ILI9341_x, ILI9341_y, *str++, font, foreground, background);
 	}
 }
@@ -354,7 +359,7 @@ void TM_ILI9341_Putc(uint16_t x, uint16_t y, char c, TM_FontDef_t *font, uint32_
 	ILI9341_x = x;
 	ILI9341_y = y;
 	if ((ILI9341_x + font->FontWidth) > ILI9341_Opts.width) {
-		//If at the end of a line of display, go to new line and set x to 0 position
+		/* If at the end of a line of display, go to new line and set x to 0 position */
 		ILI9341_y += font->FontHeight;
 		ILI9341_x = 0;
 	}
@@ -422,9 +427,66 @@ void TM_ILI9341_DrawRectangle(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1
 }
 
 void TM_ILI9341_DrawFilledRectangle(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint32_t color) {
-	for (; y0 < y1; y0++) {
-		TM_ILI9341_DrawLine(x0, y0, x1, y0, color);
+	uint16_t tmp;
+	uint32_t num_of_bytes;
+	uint32_t blk_cnt;
+	uint8_t colorH, colorL;
+	
+	/* Get colors */
+	colorH = (color >> 8) & 0xFF;
+	colorL = (color) & 0xFF;
+	
+	/* Check correction */
+	if (x0 > x1) {
+		tmp = x0;
+		x0 = x1;
+		x1 = tmp;
 	}
+	if (y0 > y1) {
+		tmp = y0;
+		y0 = y1;
+		y1 = tmp;
+	}
+	
+	/* Set cursor position */
+	TM_ILI9341_SetCursorPosition(x0, y0, x1, y1);
+	
+	/* Send GRAM command */
+	TM_ILI9341_SendCommand(ILI9341_GRAM);
+	
+	/* Calculate number of bytes to send */
+	num_of_bytes = (x1 - x0 + 1) * (y1 - y0);
+	
+	/* Send data */
+	ILI9341_WRX_SET;
+	ILI9341_CS_RESET;
+	
+	/* Get number of blocks */
+	blk_cnt = num_of_bytes >> 0x02u;
+	
+	/* Send 4 bytes at a time */
+	while (blk_cnt--) {
+		TM_SPI_Send(ILI9341_SPI, colorH);
+		TM_SPI_Send(ILI9341_SPI, colorL);
+		TM_SPI_Send(ILI9341_SPI, colorH);
+		TM_SPI_Send(ILI9341_SPI, colorL);
+		TM_SPI_Send(ILI9341_SPI, colorH);
+		TM_SPI_Send(ILI9341_SPI, colorL);
+		TM_SPI_Send(ILI9341_SPI, colorH);
+		TM_SPI_Send(ILI9341_SPI, colorL);
+	}
+	
+	/* Send remaining data */
+	blk_cnt = num_of_bytes % 0x04u;
+	
+	/* Send */
+	while (blk_cnt--) {
+		TM_SPI_Send(ILI9341_SPI, colorH);
+		TM_SPI_Send(ILI9341_SPI, colorL);
+	}
+	
+	/* CS HIGH back */
+	ILI9341_CS_SET;
 }
 
 void TM_ILI9341_DrawCircle(int16_t x0, int16_t y0, int16_t r, uint32_t color) {
@@ -491,4 +553,3 @@ void TM_ILI9341_DrawFilledCircle(int16_t x0, int16_t y0, int16_t r, uint32_t col
         TM_ILI9341_DrawLine(x0 + y, y0 - x, x0 - y, y0 - x, color);
     }
 }
-
