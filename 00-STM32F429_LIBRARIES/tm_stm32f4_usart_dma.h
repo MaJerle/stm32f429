@@ -3,7 +3,7 @@
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
  * @link    http://stm32f4-discovery.com/2015/04/library-55-extend-usart-with-tx-dma
- * @version v1.0
+ * @version v1.1
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   DMA TX functionality for TM USART library
@@ -28,7 +28,7 @@
 @endverbatim
  */
 #ifndef TM_USART_DMA_H
-#define TM_USART_DMA_H 100
+#define TM_USART_DMA_H 110
 
 /* C++ detection */
 #ifdef __cplusplus
@@ -78,6 +78,10 @@ UART8      | DMA1 | DMA Stream 0 | DMA Channel 5
  * \par Changelog
  *
 @verbatim
+ Version 1.1
+  - June 06, 2015
+  - Added TM DMA library support for future purpose
+  
  Version 1.0
   - First release
 @endverbatim
@@ -96,6 +100,7 @@ UART8      | DMA1 | DMA Stream 0 | DMA Channel 5
 #include "stm32f4xx.h"
 #include "stm32f4xx_dma.h"
 #include "defines.h"
+#include "tm_stm32f4_dma.h"
 #include "tm_stm32f4_usart.h"
 #include "string.h"
 

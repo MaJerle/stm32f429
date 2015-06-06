@@ -123,7 +123,7 @@ uint8_t TM_USART_DMA_Send(USART_TypeDef* USARTx, uint8_t* DataArray, uint16_t co
 	DMA_InitStruct.DMA_Memory0BaseAddr = (uint32_t) &DataArray[0];
 	
 	/* Deinit first, clear all flags */
-	DMA_DeInit(Settings->DMA_Stream);
+	TM_DMA_ClearFlags(Settings->DMA_Stream);
 	
 	/* Init DMA */
 	DMA_Init(Settings->DMA_Stream, &DMA_InitStruct);

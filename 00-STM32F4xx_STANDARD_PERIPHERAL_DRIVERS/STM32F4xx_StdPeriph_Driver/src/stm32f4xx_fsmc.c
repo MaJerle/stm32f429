@@ -44,6 +44,8 @@
   * @{
   */ 
 
+#if defined(STM32F40_41xxx)
+
 /* Private typedef -----------------------------------------------------------*/
 const FSMC_NORSRAMTimingInitTypeDef FSMC_DefaultTimingStruct = {0x0F, /* FSMC_AddressSetupTime */
                                                                 0x0F, /* FSMC_AddressHoldTime */
@@ -1091,6 +1093,8 @@ void FSMC_ClearITPendingBit(uint32_t FSMC_Bank, uint32_t FSMC_IT)
 /**
   * @}
   */ 
+
+#endif /* STM32F40_41xxx */
 
 /**
   * @}

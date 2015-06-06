@@ -363,7 +363,6 @@ void TM_RTC_Interrupts(TM_RTC_Int_t int_value) {
 	
 	/* Clear pending bit */
 	EXTI_ClearITPendingBit(EXTI_Line22);
-
 	
 	/* Disable wakeup interrupt */
 	RTC_WakeUpCmd(DISABLE);

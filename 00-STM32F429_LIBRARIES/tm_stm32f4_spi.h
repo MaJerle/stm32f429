@@ -3,7 +3,7 @@
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
  * @link    http://stm32f4-discovery.com/2014/04/library-05-spi-for-stm32f4xx/
- * @version v1.9
+ * @version v2.0
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   SPI library for STM32F4xx
@@ -27,7 +27,7 @@
 @endverbatim
  */
 #ifndef TM_SPI_H
-#define TM_SPI_H 190
+#define TM_SPI_H 200
 
 /* C++ detection */
 #ifdef __cplusplus
@@ -95,6 +95,10 @@ SPI6    |PG14   PG12    PG13    |
  * \par Changelog
  *
 @verbatim
+ - Version 2.0
+  - June 06, 2015
+  - Added support for changing SPI data size on runtime
+ 
  Version 1.9
   - March 21, 2015
   - SPI Send BUG fixed
@@ -175,6 +179,14 @@ typedef enum {
 } TM_SPI_PinsPack_t;
 
 /**
+ * @brief  Daza size enumeration
+ */
+typedef enum {
+	TM_SPI_DataSize_8b, /*!< SPI in 8-bits mode */
+	TM_SPI_DataSize_16b /*!< SPI in 16-bits mode */        
+} TM_SPI_DataSize_t;
+
+/**
  * @}
  */
  
@@ -183,6 +195,16 @@ typedef enum {
  * @brief    Library defines
  * @{
  */
+
+/**
+ * @brief  Supported SPI modules 
+ */
+#define USE_SPI1
+#define USE_SPI2
+#define USE_SPI3
+#define USE_SPI4
+#define USE_SPI5
+#define USE_SPI6
 
 //----- SPI1 options start -------
 //Options can be overwriten in defines.h file
@@ -330,7 +352,17 @@ typedef enum {
 /**
  * @brief  SPI wait till end
  */
-#define SPI_WAIT(SPIx)        while (SPI_IS_BUSY(SPIx))
+#define SPI_WAIT(SPIx)            while (SPI_IS_BUSY(SPIx))
+
+/**
+ * @brief  Checks if SPI is enabled
+ */
+#define SPI_CHECK_ENABLED(SPIx)   if (!((SPIx)->CR1 & SPI_CR1_SPE)) {return;}
+
+/**
+ * @brief  Checks if SPI is enabled and returns value from function if not 
+ */
+#define SPI_CHECK_ENABLED_RESP(SPIx, val)   if (!((SPIx)->CR1 & SPI_CR1_SPE)) {return (val);}
 
 /**
  * @}
@@ -393,12 +425,36 @@ void TM_SPI_InitFull(SPI_TypeDef* SPIx, TM_SPI_PinsPack_t pinspack, uint16_t SPI
 uint16_t TM_SPI_GetPrescalerFromMaxFrequency(SPI_TypeDef* SPIx, uint32_t MAX_SPI_Frequency);
 
 /**
+ * @brief  Sets data size for SPI at runtime
+ * @note   You can select either 8 or 16 bits data array. 
+ * @param  *SPIx: Pointer to SPIx peripheral where data size will be set
+ * @param  DataSize: Datasize which will be used. This parameter can be a value of @ref TM_SPI_DataSize_t enumeration
+ * @retval Status of data size before changes happen
+ */
+TM_SPI_DataSize_t TM_SPI_SetDataSize(SPI_TypeDef* SPIx, TM_SPI_DataSize_t DataSize);
+
+/**
  * @brief  Sends single byte over SPI
  * @param  *SPIx: Pointer to SPIx peripheral you will use, where x is between 1 to 6
  * @param  data: 8-bit data size to send over SPI
  * @retval Received byte from slave device
  */
-uint8_t TM_SPI_Send(SPI_TypeDef* SPIx, uint8_t data);
+static __INLINE uint8_t TM_SPI_Send(SPI_TypeDef* SPIx, uint8_t data) {
+	/* Check if SPI is enabled */
+	SPI_CHECK_ENABLED_RESP(SPIx, 0);
+	
+	/* Wait for previous transmissions to complete if DMA TX enabled for SPI */
+	SPI_WAIT(SPIx);
+	
+	/* Fill output buffer with data */
+	SPIx->DR = data;
+	
+	/* Wait for transmission to complete */
+	SPI_WAIT(SPIx);
+	
+	/* Return data from buffer */
+	return SPIx->DR;
+}
 
 /**
  * @brief  Sends and receives multiple bytes over SPIx
@@ -408,7 +464,7 @@ uint8_t TM_SPI_Send(SPI_TypeDef* SPIx, uint8_t data);
  * @param  count: Number of bytes to send/receive over SPI
  * @retval None
  */
-void TM_SPI_SendMulti(SPI_TypeDef* SPIx, uint8_t* dataOut, uint8_t* dataIn, uint16_t count);
+void TM_SPI_SendMulti(SPI_TypeDef* SPIx, uint8_t* dataOut, uint8_t* dataIn, uint32_t count);
 
 /**
  * @brief  Writes multiple bytes over SPI
@@ -417,7 +473,7 @@ void TM_SPI_SendMulti(SPI_TypeDef* SPIx, uint8_t* dataOut, uint8_t* dataIn, uint
  * @param  count: Number of elements to send over SPI
  * @retval None
  */
-void TM_SPI_WriteMulti(SPI_TypeDef* SPIx, uint8_t* dataOut, uint16_t count);
+void TM_SPI_WriteMulti(SPI_TypeDef* SPIx, uint8_t* dataOut, uint32_t count);
 
 /**
  * @brief  Receives multiple data bytes over SPI
@@ -428,7 +484,7 @@ void TM_SPI_WriteMulti(SPI_TypeDef* SPIx, uint8_t* dataOut, uint16_t count);
  * @param  count: Number of bytes you want read from device
  * @retval None
  */
-void TM_SPI_ReadMulti(SPI_TypeDef* SPIx, uint8_t *dataIn, uint8_t dummy, uint16_t count);
+void TM_SPI_ReadMulti(SPI_TypeDef* SPIx, uint8_t *dataIn, uint8_t dummy, uint32_t count);
 
 /**
  * @brief  Sends single byte over SPI
@@ -437,7 +493,22 @@ void TM_SPI_ReadMulti(SPI_TypeDef* SPIx, uint8_t *dataIn, uint8_t dummy, uint16_
  * @param  data: 16-bit data size to send over SPI
  * @retval Received 16-bit value from slave device
  */
-uint16_t TM_SPI_Send16(SPI_TypeDef* SPIx, uint16_t data);
+static __INLINE uint16_t TM_SPI_Send16(SPI_TypeDef* SPIx, uint8_t data) {
+	/* Check if SPI is enabled */
+	SPI_CHECK_ENABLED_RESP(SPIx, 0);
+	
+	/* Wait for previous transmissions to complete if DMA TX enabled for SPI */
+	SPI_WAIT(SPIx);
+	
+	/* Fill output buffer with data */
+	SPIx->DR = data;
+	
+	/* Wait for transmission to complete */
+	SPI_WAIT(SPIx);
+	
+	/* Return data from buffer */
+	return SPIx->DR;
+}
 
 /**
  * @brief  Sends and receives multiple bytes over SPIx in 16-bit SPI mode
@@ -448,7 +519,7 @@ uint16_t TM_SPI_Send16(SPI_TypeDef* SPIx, uint16_t data);
  * @param  count: Number of 16-bit values to send/receive over SPI
  * @retval None
  */
-void TM_SPI_SendMulti16(SPI_TypeDef* SPIx, uint16_t* dataOut, uint16_t* dataIn, uint16_t count);
+void TM_SPI_SendMulti16(SPI_TypeDef* SPIx, uint16_t* dataOut, uint16_t* dataIn, uint32_t count);
 
 /**
  * @brief  Writes multiple data via SPI in 16-bit SPI mode
@@ -458,7 +529,7 @@ void TM_SPI_SendMulti16(SPI_TypeDef* SPIx, uint16_t* dataOut, uint16_t* dataIn, 
  * @param  count: Number of elements to send over SPI
  * @retval None
  */
-void TM_SPI_WriteMulti16(SPI_TypeDef* SPIx, uint16_t* dataOut, uint16_t count);
+void TM_SPI_WriteMulti16(SPI_TypeDef* SPIx, uint16_t* dataOut, uint32_t count);
 
 /**
  * @brief  Receives multiple data bytes over SPI in 16-bit SPI mode
@@ -469,7 +540,7 @@ void TM_SPI_WriteMulti16(SPI_TypeDef* SPIx, uint16_t* dataOut, uint16_t count);
  * @param  count: Number of 16-bit values you want read from device
  * @retval None
  */
-void TM_SPI_ReadMulti16(SPI_TypeDef* SPIx, uint16_t* dataIn, uint16_t dummy, uint16_t count);
+void TM_SPI_ReadMulti16(SPI_TypeDef* SPIx, uint16_t* dataIn, uint16_t dummy, uint32_t count);
 
 /**
  * @brief  Init custom SPI pins for your SPIx. This is callback function and will be called from my library if needed.

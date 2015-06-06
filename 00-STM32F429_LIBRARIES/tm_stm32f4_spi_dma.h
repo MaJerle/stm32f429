@@ -3,7 +3,7 @@
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
  * @link    http://stm32f4-discovery.com/2015/04/library-56-extend-spi-with-dma-for-stm32f4xx
- * @version v1.0
+ * @version v1.1
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   DMA functionality for TM SPI library
@@ -28,7 +28,7 @@
 @endverbatim
  */
 #ifndef TM_SPI_DMA_H
-#define TM_SPI_DMA_H 100
+#define TM_SPI_DMA_H 110
 
 /* C++ detection */
 #ifdef __cplusplus
@@ -69,6 +69,10 @@ SPI6     | DMA2 | DMA Stream 5  | DMA Channel 1  | DMA Stream 6  | DMA Channel 0
  * \par Changelog
  *
 @verbatim
+ Version 1.1
+  - June 06, 2015
+  - Added TM DMA library support for future purpose
+ 
  Version 1.0
   - First release
 @endverbatim
@@ -87,6 +91,7 @@ SPI6     | DMA2 | DMA Stream 5  | DMA Channel 1  | DMA Stream 6  | DMA Channel 0
 #include "stm32f4xx.h"
 #include "stm32f4xx_dma.h"
 #include "defines.h"
+#include "tm_stm32f4_dma.h"
 #include "tm_stm32f4_spi.h"
 #include "stdlib.h"
 
@@ -257,7 +262,18 @@ uint8_t TM_SPI_DMA_Transmit(SPI_TypeDef* SPIx, uint8_t* TX_Buffer, uint8_t* RX_B
  *            - 0: DMA has not started with sending data
  *            - > 0: DMA has started with sending data
  */
-uint8_t TM_SPI_DMA_SendByte(SPI_TypeDef* SPIx, uint8_t value, uint32_t count);
+uint8_t TM_SPI_DMA_SendByte(SPI_TypeDef* SPIx, uint8_t value, uint16_t count);
+
+/**
+ * @brief  Sends one half word value multiple times over SPI with DMA
+ * @param  SPIx: Pointer to SPIx where DMA transmission will happen
+ * @param  value: Byte value to be sent
+ * @param  count: Number of half words with value of @arg value will be sent
+ * @retval Receiving started status:
+ *            - 0: DMA has not started with sending data
+ *            - > 0: DMA has started with sending data
+ */
+uint8_t TM_SPI_DMA_SendHalfWord(SPI_TypeDef* SPIx, uint16_t value, uint16_t count);
 
 /**
  * @brief  Checks if SPI DMA is still sending/receiving data

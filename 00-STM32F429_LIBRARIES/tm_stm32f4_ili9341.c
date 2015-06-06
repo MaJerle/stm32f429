@@ -89,6 +89,7 @@ void TM_ILI9341_SendData(uint8_t data);
 void TM_ILI9341_SendCommand(uint8_t data);
 void TM_ILI9341_Delay(volatile unsigned int delay);
 void TM_ILI9341_SetCursorPosition(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2);
+void TM_ILI9341_INT_Fill(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color);
 
 void TM_ILI9341_Init() {
 	/* Init WRX pin */
@@ -106,6 +107,9 @@ void TM_ILI9341_Init() {
 	/* Init SPI */
 	TM_SPI_Init(ILI9341_SPI, ILI9341_SPI_PINS);
 	
+	/* Init DMA for SPI */
+	TM_SPI_DMA_Init(ILI9341_SPI);
+	
 	/* Init LCD */
 	TM_ILI9341_InitLCD();	
 	
@@ -120,11 +124,17 @@ void TM_ILI9341_Init() {
 }
 
 void TM_ILI9341_InitLCD(void) {
-	//ILI9341_RST_RESET;
+	/* Force reset */
+	ILI9341_RST_RESET;
+	TM_ILI9341_Delay(20000);
 	ILI9341_RST_SET;
 	
+	/* Delay for RST response */
+	TM_ILI9341_Delay(20000);
+	
+	/* Software reset */
 	TM_ILI9341_SendCommand(ILI9341_RESET);
-	TM_ILI9341_Delay(2000000);
+	TM_ILI9341_Delay(50000);
 	
 	TM_ILI9341_SendCommand(ILI9341_POWERA);
 	TM_ILI9341_SendData(0x39);
@@ -270,21 +280,46 @@ void TM_ILI9341_SetCursorPosition(uint16_t x1, uint16_t y1, uint16_t x2, uint16_
 }
 
 void TM_ILI9341_Fill(uint32_t color) {
-	unsigned int n, i, j;
-	i = color >> 8;
-	j = color & 0xFF;
+	/* Fill entire screen */
+	TM_ILI9341_INT_Fill(0, 0, ILI9341_Opts.width - 1, ILI9341_Opts.height, color);
+}
+
+void TM_ILI9341_INT_Fill(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color) {
+	uint32_t pixels_count;
 	
 	/* Set cursor position */
-	TM_ILI9341_SetCursorPosition(0, 0, ILI9341_Opts.width - 1, ILI9341_Opts.height - 1);
+	TM_ILI9341_SetCursorPosition(x0, y0, x1, y1);
 
 	/* Set command for GRAM data */
 	TM_ILI9341_SendCommand(ILI9341_GRAM);
+	
+	/* Calculate pixels count */
+	pixels_count = (x1 - x0 + 1) * (y1 - y0 + 1);
 
 	/* Send everything */
-	for (n = 0; n < ILI9341_PIXEL; n++) {
-		TM_ILI9341_SendData(i);
-		TM_ILI9341_SendData(j);
+	ILI9341_CS_RESET;
+	ILI9341_WRX_SET;
+	
+	/* Go to 16-bit SPI mode */
+	TM_SPI_SetDataSize(ILI9341_SPI, TM_SPI_DataSize_16b);
+	
+	/* Send first 65535 bytes, SPI MUST BE IN 16-bit MODE */
+	TM_SPI_DMA_SendHalfWord(ILI9341_SPI, color, (pixels_count > 0xFFFF) ? 0xFFFF : pixels_count);
+	/* Wait till done */
+	while (TM_SPI_DMA_Working(ILI9341_SPI));
+	
+	/* Check again */
+	if (pixels_count > 0xFFFF) {
+		/* Send remaining data */
+		TM_SPI_DMA_SendHalfWord(ILI9341_SPI, color, pixels_count - 0xFFFF);
+		/* Wait till done */
+		while (TM_SPI_DMA_Working(ILI9341_SPI));
 	}
+	
+	ILI9341_CS_SET;
+
+	/* Go back to 8-bit SPI mode */
+	TM_SPI_SetDataSize(ILI9341_SPI, TM_SPI_DataSize_8b);
 }
 
 void TM_ILI9341_Delay(volatile unsigned int delay) {
@@ -380,7 +415,8 @@ void TM_ILI9341_Putc(uint16_t x, uint16_t y, char c, TM_FontDef_t *font, uint32_
 void TM_ILI9341_DrawLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint32_t color) {
 	/* Code by dewoller: https://github.com/dewoller */
 	
-	int16_t dx, dy, sx, sy, err, e2; 
+	int16_t dx, dy, sx, sy, err, e2; 	
+	uint16_t tmp;
 	
 	/* Check for overflow */
 	if (x0 >= ILI9341_Opts.width) {
@@ -396,8 +432,27 @@ void TM_ILI9341_DrawLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uin
 		y1 = ILI9341_Opts.height - 1;
 	}
 	
-	dx = (x0 < x1) ? (x1 - x0) : (x0 - x1); 
-	dy = (y0 < y1) ? (y1 - y0) : (y0 - y1); 
+	/* Check correction */
+	if (x0 > x1) {
+		tmp = x0;
+		x0 = x1;
+		x1 = tmp;
+	}
+	if (y0 > y1) {
+		tmp = y0;
+		y0 = y1;
+		y1 = tmp;
+	}
+	
+	dx = x1 - x0;
+	dy = y1 - y0;
+	
+	/* Vertical or horizontal line */
+	if (dx == 0 || dy == 0) {
+		TM_ILI9341_INT_Fill(x0, y0, x1, y1, color);
+		return;
+	}
+	
 	sx = (x0 < x1) ? 1 : -1; 
 	sy = (y0 < y1) ? 1 : -1; 
 	err = ((dx > dy) ? dx : -dy) / 2; 
@@ -426,15 +481,8 @@ void TM_ILI9341_DrawRectangle(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1
 	TM_ILI9341_DrawLine(x0, y1, x1, y1, color);	//Bottom
 }
 
-void TM_ILI9341_DrawFilledRectangle(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint32_t color) {
+void TM_ILI9341_DrawFilledRectangle(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint32_t color) {	
 	uint16_t tmp;
-	uint32_t num_of_bytes;
-	uint32_t blk_cnt;
-	uint8_t colorH, colorL;
-	
-	/* Get colors */
-	colorH = (color >> 8) & 0xFF;
-	colorL = (color) & 0xFF;
 	
 	/* Check correction */
 	if (x0 > x1) {
@@ -448,42 +496,8 @@ void TM_ILI9341_DrawFilledRectangle(uint16_t x0, uint16_t y0, uint16_t x1, uint1
 		y1 = tmp;
 	}
 	
-	/* Set cursor position */
-	TM_ILI9341_SetCursorPosition(x0, y0, x1, y1);
-	
-	/* Send GRAM command */
-	TM_ILI9341_SendCommand(ILI9341_GRAM);
-	
-	/* Calculate number of bytes to send */
-	num_of_bytes = (x1 - x0 + 1) * (y1 - y0);
-	
-	/* Send data */
-	ILI9341_WRX_SET;
-	ILI9341_CS_RESET;
-	
-	/* Get number of blocks */
-	blk_cnt = num_of_bytes >> 0x02u;
-	
-	/* Send 4 bytes at a time */
-	while (blk_cnt--) {
-		TM_SPI_Send(ILI9341_SPI, colorH);
-		TM_SPI_Send(ILI9341_SPI, colorL);
-		TM_SPI_Send(ILI9341_SPI, colorH);
-		TM_SPI_Send(ILI9341_SPI, colorL);
-		TM_SPI_Send(ILI9341_SPI, colorH);
-		TM_SPI_Send(ILI9341_SPI, colorL);
-		TM_SPI_Send(ILI9341_SPI, colorH);
-		TM_SPI_Send(ILI9341_SPI, colorL);
-	}
-	
-	/* Send remaining data */
-	blk_cnt = num_of_bytes % 0x04u;
-	
-	/* Send */
-	while (blk_cnt--) {
-		TM_SPI_Send(ILI9341_SPI, colorH);
-		TM_SPI_Send(ILI9341_SPI, colorL);
-	}
+	/* Fill rectangle */
+	TM_ILI9341_INT_Fill(x0, y0, x1, y1, color);
 	
 	/* CS HIGH back */
 	ILI9341_CS_SET;

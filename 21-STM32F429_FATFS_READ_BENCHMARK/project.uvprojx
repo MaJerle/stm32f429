@@ -369,7 +369,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F40_41xxx,USE_STDPERIPH_DRIVER,STM32F4XX,__ASSEMBLY__,KEIL_IDE,TM_DISCO_STM32F4_DISCOVERY</Define>
               <Undefine></Undefine>
-              <IncludePath>.\User;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\inc;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Include;..\00-STM32F429_LIBRARIES;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Include;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm;..\TM</IncludePath>
+              <IncludePath>.\User;..\TM;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\inc;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Include;..\00-STM32F429_LIBRARIES;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Include;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm;..\00-STM32F429_LIBRARIES\fatfs;..\00-STM32F429_LIBRARIES\fatfs\drivers;..\00-STM32F429_LIBRARIES\fatfs\option</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -564,6 +564,11 @@
           <GroupName>STD_Periph_Drivers</GroupName>
           <Files>
             <File>
+              <FileName>misc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\misc.c</FilePath>
+            </File>
+            <File>
               <FileName>stm32f4xx_rcc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rcc.c</FilePath>
@@ -574,19 +579,24 @@
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.c</FilePath>
             </File>
             <File>
+              <FileName>stm32f4xx_sdio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_sdio.c</FilePath>
+            </File>
+            <File>
               <FileName>stm32f4xx_spi.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_spi.c</FilePath>
             </File>
             <File>
-              <FileName>misc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\misc.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f4xx_dma.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -614,26 +624,6 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_fonts.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_fonts.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_ili9341.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_ili9341.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341.h</FilePath>
-            </File>
-            <File>
               <FileName>tm_stm32f4_spi.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.c</FilePath>
@@ -642,6 +632,16 @@
               <FileName>tm_stm32f4_spi.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_fatfs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fatfs.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_fatfs.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fatfs.h</FilePath>
             </File>
             <File>
               <FileName>tm_stm32f4_gpio.c</FileName>
@@ -654,24 +654,9 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_gpio.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_spi_dma.c</FileName>
+              <FileName>tm_stm32f4_usart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi_dma.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_spi_dma.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi_dma.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_dma.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_dma.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_dma.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_dma.h</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -712,6 +697,71 @@
               <FileName>system_stm32f4xx.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\system_stm32f4xx.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>FatFs</GroupName>
+          <Files>
+            <File>
+              <FileName>diskio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\diskio.c</FilePath>
+            </File>
+            <File>
+              <FileName>diskio.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\diskio.h</FilePath>
+            </File>
+            <File>
+              <FileName>ff.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\ff.c</FilePath>
+            </File>
+            <File>
+              <FileName>ff.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\ff.h</FilePath>
+            </File>
+            <File>
+              <FileName>ffconf.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\ffconf.h</FilePath>
+            </File>
+            <File>
+              <FileName>integer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\integer.h</FilePath>
+            </File>
+            <File>
+              <FileName>syscall.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\option\syscall.c</FilePath>
+            </File>
+            <File>
+              <FileName>unicode.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\option\unicode.c</FilePath>
+            </File>
+            <File>
+              <FileName>fatfs_sd_sdio.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_sd_sdio.h</FilePath>
+            </File>
+            <File>
+              <FileName>fatfs_sd_sdio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_sd_sdio.c</FilePath>
+            </File>
+            <File>
+              <FileName>fatfs_sd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_sd.c</FilePath>
+            </File>
+            <File>
+              <FileName>fatfs_sd.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_sd.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -937,7 +987,7 @@
             <hadIRAM2>1</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>8</StupSel>
-            <useUlib>0</useUlib>
+            <useUlib>1</useUlib>
             <EndSel>0</EndSel>
             <uLtcg>0</uLtcg>
             <RoSelD>3</RoSelD>
@@ -1080,7 +1130,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F429_439xx,USE_STDPERIPH_DRIVER,STM32F4XX,__ASSEMBLY__,KEIL_IDE,TM_DISCO_STM32F429_DISCOVERY</Define>
               <Undefine></Undefine>
-              <IncludePath>.\User;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\inc;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Include;..\00-STM32F429_LIBRARIES;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Include;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm;..\TM</IncludePath>
+              <IncludePath>.\User;..\TM;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\inc;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Include;..\00-STM32F429_LIBRARIES;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Include;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm;..\00-STM32F429_LIBRARIES\fatfs;..\00-STM32F429_LIBRARIES\fatfs\drivers;..\00-STM32F429_LIBRARIES\fatfs\option</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1312,6 +1362,11 @@
           <GroupName>STD_Periph_Drivers</GroupName>
           <Files>
             <File>
+              <FileName>misc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\misc.c</FilePath>
+            </File>
+            <File>
               <FileName>stm32f4xx_rcc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rcc.c</FilePath>
@@ -1322,19 +1377,24 @@
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.c</FilePath>
             </File>
             <File>
+              <FileName>stm32f4xx_sdio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_sdio.c</FilePath>
+            </File>
+            <File>
               <FileName>stm32f4xx_spi.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_spi.c</FilePath>
             </File>
             <File>
-              <FileName>misc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\misc.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f4xx_dma.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1362,26 +1422,6 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_fonts.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_fonts.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_ili9341.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_ili9341.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341.h</FilePath>
-            </File>
-            <File>
               <FileName>tm_stm32f4_spi.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.c</FilePath>
@@ -1390,6 +1430,16 @@
               <FileName>tm_stm32f4_spi.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_fatfs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fatfs.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_fatfs.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fatfs.h</FilePath>
             </File>
             <File>
               <FileName>tm_stm32f4_gpio.c</FileName>
@@ -1402,24 +1452,9 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_gpio.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_spi_dma.c</FileName>
+              <FileName>tm_stm32f4_usart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi_dma.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_spi_dma.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi_dma.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_dma.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_dma.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_dma.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_dma.h</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1460,6 +1495,71 @@
               <FileName>system_stm32f4xx.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\system_stm32f4xx.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>FatFs</GroupName>
+          <Files>
+            <File>
+              <FileName>diskio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\diskio.c</FilePath>
+            </File>
+            <File>
+              <FileName>diskio.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\diskio.h</FilePath>
+            </File>
+            <File>
+              <FileName>ff.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\ff.c</FilePath>
+            </File>
+            <File>
+              <FileName>ff.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\ff.h</FilePath>
+            </File>
+            <File>
+              <FileName>ffconf.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\ffconf.h</FilePath>
+            </File>
+            <File>
+              <FileName>integer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\integer.h</FilePath>
+            </File>
+            <File>
+              <FileName>syscall.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\option\syscall.c</FilePath>
+            </File>
+            <File>
+              <FileName>unicode.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\option\unicode.c</FilePath>
+            </File>
+            <File>
+              <FileName>fatfs_sd_sdio.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_sd_sdio.h</FilePath>
+            </File>
+            <File>
+              <FileName>fatfs_sd_sdio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_sd_sdio.c</FilePath>
+            </File>
+            <File>
+              <FileName>fatfs_sd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_sd.c</FilePath>
+            </File>
+            <File>
+              <FileName>fatfs_sd.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_sd.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1828,7 +1928,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F411xE,USE_STDPERIPH_DRIVER,STM32F4XX,__ASSEMBLY__,KEIL_IDE,TM_DISCO_NUCLEO_F411</Define>
               <Undefine></Undefine>
-              <IncludePath>.\User;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\inc;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Include;..\00-STM32F429_LIBRARIES;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Include;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm;..\TM</IncludePath>
+              <IncludePath>.\User;..\TM;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\inc;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Include;..\00-STM32F429_LIBRARIES;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Include;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm;..\00-STM32F429_LIBRARIES\fatfs;..\00-STM32F429_LIBRARIES\fatfs\drivers;..\00-STM32F429_LIBRARIES\fatfs\option</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -2060,6 +2160,11 @@
           <GroupName>STD_Periph_Drivers</GroupName>
           <Files>
             <File>
+              <FileName>misc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\misc.c</FilePath>
+            </File>
+            <File>
               <FileName>stm32f4xx_rcc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rcc.c</FilePath>
@@ -2070,19 +2175,24 @@
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.c</FilePath>
             </File>
             <File>
+              <FileName>stm32f4xx_sdio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_sdio.c</FilePath>
+            </File>
+            <File>
               <FileName>stm32f4xx_spi.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_spi.c</FilePath>
             </File>
             <File>
-              <FileName>misc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\misc.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f4xx_dma.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2110,26 +2220,6 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_fonts.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_fonts.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_ili9341.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_ili9341.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341.h</FilePath>
-            </File>
-            <File>
               <FileName>tm_stm32f4_spi.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.c</FilePath>
@@ -2138,6 +2228,16 @@
               <FileName>tm_stm32f4_spi.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_fatfs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fatfs.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_fatfs.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fatfs.h</FilePath>
             </File>
             <File>
               <FileName>tm_stm32f4_gpio.c</FileName>
@@ -2150,24 +2250,9 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_gpio.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_spi_dma.c</FileName>
+              <FileName>tm_stm32f4_usart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi_dma.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_spi_dma.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi_dma.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_dma.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_dma.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_dma.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_dma.h</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2208,6 +2293,71 @@
               <FileName>system_stm32f4xx.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\system_stm32f4xx.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>FatFs</GroupName>
+          <Files>
+            <File>
+              <FileName>diskio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\diskio.c</FilePath>
+            </File>
+            <File>
+              <FileName>diskio.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\diskio.h</FilePath>
+            </File>
+            <File>
+              <FileName>ff.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\ff.c</FilePath>
+            </File>
+            <File>
+              <FileName>ff.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\ff.h</FilePath>
+            </File>
+            <File>
+              <FileName>ffconf.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\ffconf.h</FilePath>
+            </File>
+            <File>
+              <FileName>integer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\integer.h</FilePath>
+            </File>
+            <File>
+              <FileName>syscall.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\option\syscall.c</FilePath>
+            </File>
+            <File>
+              <FileName>unicode.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\option\unicode.c</FilePath>
+            </File>
+            <File>
+              <FileName>fatfs_sd_sdio.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_sd_sdio.h</FilePath>
+            </File>
+            <File>
+              <FileName>fatfs_sd_sdio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_sd_sdio.c</FilePath>
+            </File>
+            <File>
+              <FileName>fatfs_sd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_sd.c</FilePath>
+            </File>
+            <File>
+              <FileName>fatfs_sd.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_sd.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -2576,7 +2726,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F401xx,USE_STDPERIPH_DRIVER,STM32F4XX,__ASSEMBLY__,KEIL_IDE,TM_DISCO_NUCLEO_F401</Define>
               <Undefine></Undefine>
-              <IncludePath>.\User;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\inc;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Include;..\00-STM32F429_LIBRARIES;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Include;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm;..\TM</IncludePath>
+              <IncludePath>.\User;..\TM;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\inc;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Include;..\00-STM32F429_LIBRARIES;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Include;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm;..\00-STM32F429_LIBRARIES\fatfs;..\00-STM32F429_LIBRARIES\fatfs\drivers;..\00-STM32F429_LIBRARIES\fatfs\option</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -2808,6 +2958,11 @@
           <GroupName>STD_Periph_Drivers</GroupName>
           <Files>
             <File>
+              <FileName>misc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\misc.c</FilePath>
+            </File>
+            <File>
               <FileName>stm32f4xx_rcc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_rcc.c</FilePath>
@@ -2818,19 +2973,24 @@
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_gpio.c</FilePath>
             </File>
             <File>
+              <FileName>stm32f4xx_sdio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_sdio.c</FilePath>
+            </File>
+            <File>
               <FileName>stm32f4xx_spi.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_spi.c</FilePath>
             </File>
             <File>
-              <FileName>misc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\misc.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f4xx_dma.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_dma.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_usart.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2858,26 +3018,6 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_fonts.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_fonts.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_ili9341.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_ili9341.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341.h</FilePath>
-            </File>
-            <File>
               <FileName>tm_stm32f4_spi.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.c</FilePath>
@@ -2886,6 +3026,16 @@
               <FileName>tm_stm32f4_spi.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.h</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_fatfs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fatfs.c</FilePath>
+            </File>
+            <File>
+              <FileName>tm_stm32f4_fatfs.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fatfs.h</FilePath>
             </File>
             <File>
               <FileName>tm_stm32f4_gpio.c</FileName>
@@ -2898,24 +3048,9 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_gpio.h</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_spi_dma.c</FileName>
+              <FileName>tm_stm32f4_usart.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi_dma.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_spi_dma.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi_dma.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_dma.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_dma.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_dma.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_dma.h</FilePath>
+              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2956,6 +3091,71 @@
               <FileName>system_stm32f4xx.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\system_stm32f4xx.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>FatFs</GroupName>
+          <Files>
+            <File>
+              <FileName>diskio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\diskio.c</FilePath>
+            </File>
+            <File>
+              <FileName>diskio.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\diskio.h</FilePath>
+            </File>
+            <File>
+              <FileName>ff.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\ff.c</FilePath>
+            </File>
+            <File>
+              <FileName>ff.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\ff.h</FilePath>
+            </File>
+            <File>
+              <FileName>ffconf.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\ffconf.h</FilePath>
+            </File>
+            <File>
+              <FileName>integer.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\integer.h</FilePath>
+            </File>
+            <File>
+              <FileName>syscall.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\option\syscall.c</FilePath>
+            </File>
+            <File>
+              <FileName>unicode.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\option\unicode.c</FilePath>
+            </File>
+            <File>
+              <FileName>fatfs_sd_sdio.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_sd_sdio.h</FilePath>
+            </File>
+            <File>
+              <FileName>fatfs_sd_sdio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_sd_sdio.c</FilePath>
+            </File>
+            <File>
+              <FileName>fatfs_sd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_sd.c</FilePath>
+            </File>
+            <File>
+              <FileName>fatfs_sd.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\00-STM32F429_LIBRARIES\fatfs\drivers\fatfs_sd.h</FilePath>
             </File>
           </Files>
         </Group>

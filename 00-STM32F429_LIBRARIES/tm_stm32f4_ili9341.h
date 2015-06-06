@@ -3,7 +3,7 @@
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
  * @link    http://stm32f4-discovery.com/2014/04/library-08-ili9341-lcd-on-stm32f429-discovery-board/
- * @version v1.2
+ * @version v1.3
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   ILI9341 library for STM32F4xx with SPI communication, without LTDC hardware
@@ -28,7 +28,7 @@
 @endverbatim
  */
 #ifndef TM_ILI9341_H
-#define TM_ILI9341_H 120
+#define TM_ILI9341_H 130
 
 /**
  * @addtogroup TM_STM32F4xx_Libraries
@@ -94,6 +94,10 @@ VCC				3.3V			Positive power supply
  * \par Changelog
  *
 @verbatim
+ Version 1.3
+  - June 06, 2015
+  - Added support for SPI DMA for faster refreshing
+ 
  Version 1.2
   - March 14, 2015
   - Added support for new GPIO system
@@ -112,6 +116,8 @@ VCC				3.3V			Positive power supply
  - STM32F4xx SPI
  - defines.h
  - TM SPI
+ - TM DMA
+ - TM SPI DMA
  - TM FONTS
  - TM GPIO
 @endverbatim
@@ -121,9 +127,11 @@ VCC				3.3V			Positive power supply
 #include "stm32f4xx_rcc.h"
 #include "stm32f4xx_gpio.h"
 #include "defines.h"
-#include "tm_stm32f4_spi.h"
 #include "tm_stm32f4_fonts.h"
 #include "tm_stm32f4_gpio.h"
+#include "tm_stm32f4_spi.h"
+#include "tm_stm32f4_dma.h"
+#include "tm_stm32f4_spi_dma.h"
 
 /**
  * @defgroup TM_ILI9341_Macros
