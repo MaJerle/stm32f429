@@ -46,14 +46,20 @@ typedef struct {
 	DRESULT (*disk_read)(BYTE *, DWORD, UINT);
 } DISKIO_LowLevelDriver_t;
 
-/* Disk Status Bits (DSTATUS) */
+/**
+ * @brief  Custom drivers for fatfs
+ */
+typedef enum {
+	TM_FATFS_Driver_USER1 = 0x07,
+	TM_FATFS_Driver_USER2 = 0x08
+} TM_FATFS_Driver_t;
 
+/* Disk Status Bits (DSTATUS) */
 #define STA_NOINIT		0x01	/* Drive not initialized */
 #define STA_NODISK		0x02	/* No medium in the drive */
 #define STA_PROTECT		0x04	/* Write protected */
 
 /* Command code for disk_ioctrl function */
-
 /* Generic command (used by FatFs) */
 #define CTRL_SYNC			0	/* Flush disk cache (for write functions) */
 #define GET_SECTOR_COUNT	1	/* Get media size (for only f_mkfs()) */
@@ -85,6 +91,14 @@ typedef struct {
 #define CT_SD2		0x04		/* SD ver 2 */
 #define CT_SDC		(CT_SD1|CT_SD2)	/* SD */
 #define CT_BLOCK	0x08		/* Block addressing */
+
+/**
+ * @brief  Adds new driver for DISKIO fatfs structure
+ * @param  *Driver: Pointer to @ref DISKIO_LowLevelDriver_t with filled structure
+ * @param  DriverName: User can use 2 custom drivers. This parameter can be a value of @ref TM_FATFS_Driver_t enumeration
+ * @retval None
+ */
+void TM_FATFS_AddDriver(DISKIO_LowLevelDriver_t* Driver, TM_FATFS_Driver_t DriverName);
 
 /* Drivers function declarations */
 DSTATUS TM_FATFS_SD_SDIO_disk_initialize(void);

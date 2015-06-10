@@ -18,6 +18,9 @@
  */
 #include "tm_stm32f4_gpio.h"
 
+/* Private function */
+static uint16_t GPIO_UsedPins[11];
+
 /* Private functions */
 void TM_GPIO_INT_EnableClock(GPIO_TypeDef* GPIOx);
 void TM_GPIO_INT_DisableClock(GPIO_TypeDef* GPIOx);
@@ -64,12 +67,17 @@ void TM_GPIO_InitAlternate(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_GPIO_OType
 
 void TM_GPIO_DeInit(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin) {
 	uint8_t i;
+	uint8_t ptr = TM_GPIO_GetPortSource(GPIOx);
+	
 	/* Go through all pins */
 	for (i = 0x00; i < 0x10; i++) {
 		/* Pin is set */
 		if (GPIO_Pin & (1 << i)) {
 			/* Set 11 bits combination for analog mode */
 			GPIOx->MODER |= (0x03 << (2 * i));
+			
+			/* Pin is not used */
+			GPIO_UsedPins[ptr] &= ~(1 << i);
 		}
 	}
 }
@@ -107,6 +115,21 @@ void TM_GPIO_SetPinAsAnalog(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin) {
 			/* Set 11 bits combination for analog mode */
 			GPIOx->MODER |= (0x03 << (2 * i));
 		}
+	}
+}
+
+void TM_GPIO_SetPinAsAlternate(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin) {
+	uint8_t i;
+	
+	/* Set alternate functions for all pins */
+	for (i = 0; i < 0x10; i++) {
+		/* Check pin */
+		if ((GPIO_Pin & (1 << i)) == 0) {
+			continue;
+		}
+		
+		/* Set alternate mode */
+		GPIOx->MODER = (GPIOx->MODER & ~(0x03 << (2 * i))) | (0x02 << (2 * i));
 	}
 }
 
@@ -175,6 +198,7 @@ void TM_GPIO_INT_DisableClock(GPIO_TypeDef* GPIOx) {
 
 void TM_GPIO_INT_Init(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_GPIO_Mode_t GPIO_Mode, TM_GPIO_OType_t GPIO_OType, TM_GPIO_PuPd_t GPIO_PuPd, TM_GPIO_Speed_t GPIO_Speed) {
 	uint8_t pinpos;
+	uint8_t ptr = TM_GPIO_GetPortSource(GPIOx);
 	
 	/* Go through all pins */
 	for (pinpos = 0; pinpos < 0x10; pinpos++) {
@@ -182,6 +206,9 @@ void TM_GPIO_INT_Init(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_GPIO_Mode_t GPI
 		if ((GPIO_Pin & (1 << pinpos)) == 0) {
 			continue;
 		}
+		
+		/* Pin is used */
+		GPIO_UsedPins[ptr] |= 1 << pinpos;
 		
 		/* Set GPIO PUPD register */
 		GPIOx->PUPDR = (GPIOx->PUPDR & ~(0x03 << (2 * pinpos))) | ((uint32_t)(GPIO_PuPd << (2 * pinpos)));
@@ -198,4 +225,14 @@ void TM_GPIO_INT_Init(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, TM_GPIO_Mode_t GPI
 			GPIOx->OSPEEDR = (GPIOx->OSPEEDR & ~((uint32_t)(0x03 << (2 * pinpos)))) | ((uint32_t)(GPIO_Speed << (2 * pinpos)));
 		}
 	}
+}
+
+uint16_t TM_GPIO_GetUsedPins(GPIO_TypeDef* GPIOx) {
+	/* Return used */
+	return GPIO_UsedPins[TM_GPIO_GetPortSource(GPIOx)];
+}
+
+uint16_t TM_GPIO_GetFreePins(GPIO_TypeDef* GPIOx) {
+	/* Return free pins */
+	return ~GPIO_UsedPins[TM_GPIO_GetPortSource(GPIOx)];
 }

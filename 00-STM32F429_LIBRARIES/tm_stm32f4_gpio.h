@@ -3,7 +3,7 @@
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
  * @link    http://stm32f4-discovery.com/2015/03/library-53-gpio-for-stm32f4
- * @version v1.4
+ * @version v1.5
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   GPIO Library for STM32F4xx devices
@@ -28,12 +28,13 @@
 @endverbatim
  */
 #ifndef TM_GPIO_H
-#define TM_GPIO_H 140
+#define TM_GPIO_H 150
 
 /* C++ detection */
 #ifdef __cplusplus
 extern C {
 #endif
+	
 /**
  * @addtogroup TM_STM32F4xx_Libraries
  * @{
@@ -53,6 +54,10 @@ extern C {
  * \par Changelog
  *
 @verbatim
+ Version 1.5
+  - June 10 2015
+  - Added 2 new functions for getting used GPIO pins
+  
  Version 1.4
   - April 28, 2015
   - Added support for PORT locking
@@ -66,7 +71,7 @@ extern C {
   - March 10, 2015
   - Added functions TM_GPIO_SetPinAsInput and TM_GPIO_SetPinAsOutput
   - Added functions TM_GPIO_GetPortSource and TM_GPIO_GetPinSource
-
+0
  Version 1.1
   - March 09, 2015
   - Added function to deinit pin. Pin is set to analog input which allows lowest current consumption
@@ -158,7 +163,6 @@ extern C {
 /**
  * @brief GPIO Mode enumeration
  */
- 
 typedef enum {
 	TM_GPIO_Mode_IN = 0x00,  /*!< GPIO Pin as General Purpose Input */
 	TM_GPIO_Mode_OUT = 0x01, /*!< GPIO Pin as General Purpose Output */
@@ -167,18 +171,16 @@ typedef enum {
 } TM_GPIO_Mode_t;
 
 /**
- * @brief GPIO Output type 
+ * @brief GPIO Output type enumeration
  */
- 
 typedef enum {
 	TM_GPIO_OType_PP = 0x00, /*!< GPIO Output Type Push-Pull */
 	TM_GPIO_OType_OD = 0x01  /*!< GPIO Output Type Open-Drain */
 } TM_GPIO_OType_t;
 
 /**
- * @brief GPIO Speed
+ * @brief  GPIO Speed enumeration
  */
- 
 typedef enum {
 	TM_GPIO_Speed_Low = 0x00,    /*!< GPIO Speed Low */
 	TM_GPIO_Speed_Medium = 0x01, /*!< GPIO Speed Medium */
@@ -189,7 +191,6 @@ typedef enum {
 /**
  * @brief GPIO pull resistors enumeration
  */
- 
 typedef enum {
 	TM_GPIO_PuPd_NOPULL = 0x00, /*!< No pull resistor */
 	TM_GPIO_PuPd_UP = 0x01,     /*!< Pull up resistor enabled */
@@ -270,6 +271,16 @@ void TM_GPIO_SetPinAsOutput(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
  * @retval None
  */
 void TM_GPIO_SetPinAsAnalog(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
+
+/** 
+ * @brief  Sets pin(s) as alternate function
+ * @note   For proper alternate function, you should first init pin using @ref TM_GPIO_InitAlternate() function.
+ *            This functions is only used for changing GPIO mode
+ * @param  GPIOx: GPIOx PORT where you want to set pin as alternate
+ * @param  GPIO_Pin: Select GPIO pin(s). You can select more pins with | (OR) operator to set them as alternate
+ * @retval None
+ */
+void TM_GPIO_SetPinAsAlternate(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
 
 /**
  * @brief  Sets pull resistor settings to GPIO pin(s)
@@ -385,6 +396,20 @@ uint16_t TM_GPIO_GetPinSource(uint16_t GPIO_Pin);
  * @retval None
  */
 void TM_GPIO_Lock(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin);
+
+/** 
+ * @brief  Gets bit separated pins which were used at least once in library and were not deinitialized
+ * @param  *GPIOx: Pointer to GPIOx peripheral where to check used GPIO pins
+ * @retval Bit values for used pins
+ */
+uint16_t TM_GPIO_GetUsedPins(GPIO_TypeDef* GPIOx);
+
+/** 
+ * @brief  Gets bit separated pins which were not used at in library or were deinitialized
+ * @param  *GPIOx: Pointer to GPIOx peripheral where to check used GPIO pins
+ * @retval Bit values for free pins
+ */
+uint16_t TM_GPIO_GetFreePins(GPIO_TypeDef* GPIOx);
 
 /**
  * @}

@@ -55,8 +55,6 @@ int main(void) {
 		if (!write_ok) {
 			/* Mount drive */
 			if (f_mount(&FatFs, "SD:", 1) == FR_OK) {
-				/* Mounted OK, turn on RED LED */
-				TM_DISCO_LedOn(LED_RED);
 				
 				/* Try to open file */
 				if ((fres = f_open(&fil, "SD:benc.txt", FA_CREATE_ALWAYS | FA_READ | FA_WRITE)) == FR_OK) {
@@ -87,6 +85,9 @@ int main(void) {
 					
 					/* Close file, don't forget this! */
 					f_close(&fil);
+					
+					/* GREEN LED on */
+					TM_DISCO_LedOn(LED_GREEN);
 					
 					write_ok = 1;
 				} else {

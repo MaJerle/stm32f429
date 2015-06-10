@@ -16,11 +16,15 @@
 #include "defines.h"
 #include "tm_stm32f4_ili9341.h"
 #include "tm_stm32f4_fonts.h"
+#include "tm_stm32f4_delay.h"
 #include <stdio.h>
 
-int main(void) {
+int main(void) {	
 	/* Initialize system */
 	SystemInit();
+	
+	/* Initialize delay */
+	TM_DELAY_Init();
 		
 	/* Initialize ILI9341 */
 	TM_ILI9341_Init();
@@ -48,6 +52,7 @@ int main(void) {
 	/* Put string with black foreground color and red background with 11x18px font */
 	TM_ILI9341_Puts(45, 229, "stm32f4-discovery.com", &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_ORANGE);
 
+	/* While loop */
 	while (1) {
 		
 	}

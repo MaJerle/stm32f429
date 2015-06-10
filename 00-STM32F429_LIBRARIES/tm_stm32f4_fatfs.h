@@ -436,6 +436,7 @@ f_open(&fil, "SD:my_file_sd.txt", FA...);
 #include "defines.h"
 #include "tm_stm32f4_gpio.h"
 #include "ff.h"
+#include "diskio.h"
 
 /**
  * @defgroup TM_FATFS_Macros

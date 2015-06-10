@@ -117,38 +117,58 @@ DISKIO_LowLevelDriver_t FATFS_LowLevelDrivers[_VOLUMES] = {
 	}
 };
 
+void TM_FATFS_AddDriver(DISKIO_LowLevelDriver_t* Driver, TM_FATFS_Driver_t DriverName) {
+	if (
+		DriverName != TM_FATFS_Driver_USER1 &&
+		DriverName != TM_FATFS_Driver_USER2
+	) {
+		/* Return */
+		return;
+	}
+	
+	/* Add to structure */
+	FATFS_LowLevelDrivers[(uint8_t) DriverName].disk_initialize = Driver->disk_initialize;
+	FATFS_LowLevelDrivers[(uint8_t) DriverName].disk_status = Driver->disk_status;
+	FATFS_LowLevelDrivers[(uint8_t) DriverName].disk_ioctl = Driver->disk_ioctl;
+	FATFS_LowLevelDrivers[(uint8_t) DriverName].disk_read = Driver->disk_read;
+	FATFS_LowLevelDrivers[(uint8_t) DriverName].disk_write = Driver->disk_write;
+}
+
 /*-----------------------------------------------------------------------*/
 /* Inidialize a Drive                                                    */
 /*-----------------------------------------------------------------------*/
-
 DSTATUS disk_initialize (
 	BYTE pdrv				/* Physical drive nmuber (0..) */
 )
 {
 	/* Return low level status */
-	return FATFS_LowLevelDrivers[pdrv].disk_initialize();
+	if (FATFS_LowLevelDrivers[pdrv].disk_initialize) {
+		return FATFS_LowLevelDrivers[pdrv].disk_initialize();
+	}
+	
+	/* Return parameter error */
+	return RES_PARERR;
 }
-
-
 
 /*-----------------------------------------------------------------------*/
 /* Get Disk Status                                                       */
 /*-----------------------------------------------------------------------*/
-
 DSTATUS disk_status (
 	BYTE pdrv		/* Physical drive nmuber (0..) */
 )
 {
 	/* Return low level status */
-	return FATFS_LowLevelDrivers[pdrv].disk_status();
+	if (FATFS_LowLevelDrivers[pdrv].disk_status) {
+		return FATFS_LowLevelDrivers[pdrv].disk_status();
+	}
+	
+	/* Return parameter error */
+	return RES_PARERR;
 }
-
-
 
 /*-----------------------------------------------------------------------*/
 /* Read Sector(s)                                                        */
 /*-----------------------------------------------------------------------*/
-
 DRESULT disk_read (
 	BYTE pdrv,		/* Physical drive nmuber (0..) */
 	BYTE *buff,		/* Data buffer to store read data */
@@ -156,12 +176,18 @@ DRESULT disk_read (
 	UINT count		/* Number of sectors to read (1..128) */
 )
 {
+	/* Check count */
 	if (!count) {
 		return RES_PARERR;
 	}
 	
 	/* Return low level status */
-	return FATFS_LowLevelDrivers[pdrv].disk_read(buff, sector, count);
+	if (FATFS_LowLevelDrivers[pdrv].disk_read) {
+		return FATFS_LowLevelDrivers[pdrv].disk_read(buff, sector, count);
+	}
+	
+	/* Return parameter error */
+	return RES_PARERR;
 }
 
 
@@ -169,7 +195,6 @@ DRESULT disk_read (
 /*-----------------------------------------------------------------------*/
 /* Write Sector(s)                                                       */
 /*-----------------------------------------------------------------------*/
-
 #if _USE_WRITE
 DRESULT disk_write (
 	BYTE pdrv,			/* Physical drive nmuber (0..) */
@@ -178,12 +203,18 @@ DRESULT disk_write (
 	UINT count			/* Number of sectors to write (1..128) */
 )
 {
+	/* Check count */
 	if (!count) {
 		return RES_PARERR;
 	}
 	
 	/* Return low level status */
-	return FATFS_LowLevelDrivers[pdrv].disk_write(buff, sector, count);
+	if (FATFS_LowLevelDrivers[pdrv].disk_write) {
+		return FATFS_LowLevelDrivers[pdrv].disk_write(buff, sector, count);
+	}
+	
+	/* Return parameter error */
+	return RES_PARERR;
 }
 #endif
 
@@ -191,7 +222,6 @@ DRESULT disk_write (
 /*-----------------------------------------------------------------------*/
 /* Miscellaneous Functions                                               */
 /*-----------------------------------------------------------------------*/
-
 #if _USE_IOCTL
 DRESULT disk_ioctl (
 	BYTE pdrv,		/* Physical drive nmuber (0..) */
@@ -200,10 +230,18 @@ DRESULT disk_ioctl (
 )
 {
 	/* Return low level status */
-	return FATFS_LowLevelDrivers[pdrv].disk_ioctl(cmd, buff);
+	if (FATFS_LowLevelDrivers[pdrv].disk_ioctl) {
+		return FATFS_LowLevelDrivers[pdrv].disk_ioctl(cmd, buff);
+	}
+	
+	/* Return parameter error */
+	return RES_PARERR;
 }
 #endif
 
+/*-----------------------------------------------------------------------*/
+/* Get time for fatfs for files                                          */
+/*-----------------------------------------------------------------------*/
 __weak DWORD get_fattime(void) {
 	/* Returns current time packed into a DWORD variable */
 	return	  ((DWORD)(2013 - 1980) << 25)	/* Year 2013 */

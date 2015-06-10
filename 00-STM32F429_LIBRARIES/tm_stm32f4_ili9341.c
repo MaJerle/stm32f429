@@ -393,21 +393,27 @@ void TM_ILI9341_Putc(uint16_t x, uint16_t y, char c, TM_FontDef_t *font, uint32_
 	/* Set coordinates */
 	ILI9341_x = x;
 	ILI9341_y = y;
+	
 	if ((ILI9341_x + font->FontWidth) > ILI9341_Opts.width) {
 		/* If at the end of a line of display, go to new line and set x to 0 position */
 		ILI9341_y += font->FontHeight;
 		ILI9341_x = 0;
 	}
+	
+	/* Draw rectangle for background */
+	TM_ILI9341_INT_Fill(ILI9341_x, ILI9341_y, ILI9341_x + font->FontWidth, ILI9341_y + font->FontHeight, background);
+	
+	/* Draw font data */
 	for (i = 0; i < font->FontHeight; i++) {
 		b = font->data[(c - 32) * font->FontHeight + i];
 		for (j = 0; j < font->FontWidth; j++) {
 			if ((b << j) & 0x8000) {
 				TM_ILI9341_DrawPixel(ILI9341_x + j, (ILI9341_y + i), foreground);
-			} else if ((background & ILI9341_TRANSPARENT) == 0) {
-				TM_ILI9341_DrawPixel(ILI9341_x + j, (ILI9341_y + i), background);
 			}
 		}
 	}
+	
+	/* Set new pointer */
 	ILI9341_x += font->FontWidth;
 }
 

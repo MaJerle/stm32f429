@@ -96,7 +96,10 @@ TM_PWM_Result_t TM_PWM_InitTimer(TIM_TypeDef* TIMx, TM_PWM_TIM_t* TIM_Data, doub
 	TIM_TimeBaseInit(TIMx, &TIM_BaseStruct);
 	
 	/* Start timer */
-	TIM_Cmd(TIMx, ENABLE);
+	TIMx->CR1 |= TIM_CR1_CEN;
+	
+	/* Set default values */
+	TIM_Data->CH_Init = 0;
 	
 	/* Return OK */
 	return TM_PWM_Result_Ok;
@@ -173,7 +176,7 @@ TM_PWM_Result_t TM_PWM_SetChannel(TM_PWM_TIM_t* TIM_Data, TM_PWM_Channel_t Chann
 	TIM_OCInitTypeDef TIM_OCStruct;
 	
 	/* Check pulse length */
-	if (Pulse > (TIM_Data->Period - 1)) {
+	if (Pulse >= TIM_Data->Period) {
 		/* Pulse too high */
 		return TM_PWM_Result_PulseTooHigh;
 	}
@@ -184,27 +187,68 @@ TM_PWM_Result_t TM_PWM_SetChannel(TM_PWM_TIM_t* TIM_Data, TM_PWM_Channel_t Chann
 	TIM_OCStruct.TIM_OutputState = TIM_OutputState_Enable;
 	TIM_OCStruct.TIM_OCPolarity = TIM_OCPolarity_Low;
 	
+	/* Save pulse value */
+	TIM_Data->CH_Periods[(uint8_t)Channel] = Pulse;
+	
+	/* Select proper channel */
 	switch (Channel) {
 		case TM_PWM_Channel_1:
-			TIM_OC1Init(TIM_Data->TIM, &TIM_OCStruct);
-			TIM_OC1PreloadConfig(TIM_Data->TIM, TIM_OCPreload_Enable);
+			/* Check if initialized */
+			if (!(TIM_Data->CH_Init & 0x01)) {
+				TIM_Data->CH_Init |= 0x01;
+				
+				/* Init channel */
+				TIM_OC1Init(TIM_Data->TIM, &TIM_OCStruct);
+				TIM_OC1PreloadConfig(TIM_Data->TIM, TIM_OCPreload_Enable);
+			}
+			
+			/* Set pulse */
+			TIM_Data->TIM->CCR1 = Pulse;
 			break;
 		case TM_PWM_Channel_2:
-			TIM_OC2Init(TIM_Data->TIM, &TIM_OCStruct);
-			TIM_OC2PreloadConfig(TIM_Data->TIM, TIM_OCPreload_Enable);
+			/* Check if initialized */
+			if (!(TIM_Data->CH_Init & 0x02)) {
+				TIM_Data->CH_Init |= 0x02;
+				
+				/* Init channel */
+				TIM_OC2Init(TIM_Data->TIM, &TIM_OCStruct);
+				TIM_OC2PreloadConfig(TIM_Data->TIM, TIM_OCPreload_Enable);
+			}
+			
+			/* Set pulse */
+			TIM_Data->TIM->CCR2 = Pulse;
 			break;
 		case TM_PWM_Channel_3:
-			TIM_OC3Init(TIM_Data->TIM, &TIM_OCStruct);
-			TIM_OC3PreloadConfig(TIM_Data->TIM, TIM_OCPreload_Enable);
+			/* Check if initialized */
+			if (!(TIM_Data->CH_Init & 0x04)) {
+				TIM_Data->CH_Init |= 0x04;
+				
+				/* Init channel */
+				TIM_OC3Init(TIM_Data->TIM, &TIM_OCStruct);
+				TIM_OC3PreloadConfig(TIM_Data->TIM, TIM_OCPreload_Enable);
+			}
+			
+			/* Set pulse */
+			TIM_Data->TIM->CCR3 = Pulse;
 			break;
 		case TM_PWM_Channel_4:
-			TIM_OC4Init(TIM_Data->TIM, &TIM_OCStruct);
-			TIM_OC4PreloadConfig(TIM_Data->TIM, TIM_OCPreload_Enable);
+			/* Check if initialized */
+			if (!(TIM_Data->CH_Init & 0x08)) {
+				TIM_Data->CH_Init |= 0x08;
+				
+				/* Init channel */
+				TIM_OC4Init(TIM_Data->TIM, &TIM_OCStruct);
+				TIM_OC4PreloadConfig(TIM_Data->TIM, TIM_OCPreload_Enable);
+			}
+			
+			/* Set pulse */
+			TIM_Data->TIM->CCR4 = Pulse;
 			break;
 		default:
 			break;
 	}
 	
+	/* Return everything OK */
 	return TM_PWM_Result_Ok;
 }
 

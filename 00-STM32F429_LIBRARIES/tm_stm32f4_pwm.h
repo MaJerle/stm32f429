@@ -140,32 +140,34 @@ typedef enum {
  * @brief  PWM Timer data
  */
 typedef struct {
-	TIM_TypeDef* TIM;   /*!< Pointer to timer used */
-	uint32_t Period;    /*!< Period used, set on initialization for PWM */
-	uint32_t Prescaler; /*!< Prescaler used for PWM frequency */
-	uint32_t Frequency; /*!< PWM frequency used */
-	uint32_t Micros;    /*!< Microseconds used for one period.
-                                This is not useful in large pwm frequency, but good for controlling servos or similar,
-                                Where you need exact time of pulse high*/
+	TIM_TypeDef* TIM;       /*!< Pointer to timer used */
+	uint32_t Period;        /*!< Period used, set on initialization for PWM */
+	uint32_t Prescaler;     /*!< Prescaler used for PWM frequency */
+	uint32_t Frequency;     /*!< PWM frequency used */
+	uint32_t Micros;        /*!< Microseconds used for one period.
+                                    This is not useful in large pwm frequency, but good for controlling servos or similar,
+                                    Where you need exact time of pulse high */
+	uint32_t CH_Periods[4]; /*!< Array of periods for PWM compare */
+	uint8_t CH_Init;        /*!< Flag to check if specific channel is already initialized */
 } TM_PWM_TIM_t;
 
 /**
  * @brief  Channel selection for PWM on specific timer
  */
 typedef enum {
-	TM_PWM_Channel_1 = 0, /*!<  Operate with channel 1 */
-	TM_PWM_Channel_2,     /*!<  Operate with channel 2 */
-	TM_PWM_Channel_3,     /*!<  Operate with channel 3 */
-	TM_PWM_Channel_4      /*!<  Operate with channel 4 */
+	TM_PWM_Channel_1 = 0x00, /*!<  Operate with channel 1 */
+	TM_PWM_Channel_2,        /*!<  Operate with channel 2 */
+	TM_PWM_Channel_3,        /*!<  Operate with channel 3 */
+	TM_PWM_Channel_4         /*!<  Operate with channel 4 */
 } TM_PWM_Channel_t;
 
 /**
  * @brief  Pin selected for corresponding channel on specific channel
  */
 typedef enum {
-	TM_PWM_PinsPack_1 = 0, /*!< Pinspack 1 from pinout table */
-	TM_PWM_PinsPack_2,     /*!< Pinspack 2 from pinout table */
-	TM_PWM_PinsPack_3      /*!< Pinspack 3 from pinout table */
+	TM_PWM_PinsPack_1 = 0x00, /*!< Pinspack 1 from pinout table */
+	TM_PWM_PinsPack_2,        /*!< Pinspack 2 from pinout table */
+	TM_PWM_PinsPack_3         /*!< Pinspack 3 from pinout table */
 } TM_PWM_PinsPack_t;
 
 /**

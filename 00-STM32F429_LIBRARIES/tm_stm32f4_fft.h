@@ -151,6 +151,7 @@ uint8_t TM_FFT_AddToBuffer(TM_FFT_F32_t* FFT, float32_t sampleValue);
  * @brief  Processes and calculates FFT from InputBuffer and saves data to Output buffer
  * @note   This function also calculates max value and max index in array where max value happens
  * @param  *FFT: Pointer to @ref TM_FFT_F32_t where FFT calculation will happen
+ * @retval None
  */
 void TM_FFT_Process_F32(TM_FFT_F32_t* FFT);
 
@@ -171,7 +172,7 @@ void TM_FFT_Free_F32(TM_FFT_F32_t* FFT);
 #define TM_FFT_GetMaxValue(FFT)            ((FFT)->MaxValue)
 
 /**
- * @brief  Gets max index where max value happens from already calculated FFT result
+ * @brief  Gets index value where max value happens from already calculated FFT result
  * @param  FFT: Pointer to @ref TM_FFT_F32_t structure where max index at max value should be checked
  * @retval None
  * @note   Defined as macro for faster execution
@@ -181,7 +182,7 @@ void TM_FFT_Free_F32(TM_FFT_F32_t* FFT);
 /**
  * @brief  Gets FFT size in units of samples length
  * @param  FFT: Pointer to @ref TM_FFT_F32_t structure where FFT size will be checked
- * @retval FFT size
+ * @retval FFT size in units of elements for calculation
  * @note   Defined as macro for faster execution
  */
 #define TM_FFT_GetFFTSize(FFT)             ((FFT)->FFT_Size)
