@@ -1,5 +1,5 @@
 /**
- *	Keil project for USART DMA TX functionality
+ *	Keil project for DMA
  *
  *	Before you start, select your target, on the right of the "Load" button
  *
@@ -21,7 +21,7 @@
 #include "string.h"
 
 /* Create USART working buffer */
-char USART_Buffer[100] = "Hello via USART2 with TX DMA\n";
+char USART_Buffer[100] = "Hello via USART2 with TX DMA before interrupt happens\n";
 
 int main(void) {
 	/* Initialize system */
@@ -35,6 +35,7 @@ int main(void) {
 	TM_USART_Puts(USART2, "Hello via USART2 without DMA\n");
 	
 	/* Init TX DMA for USART2 */
+	/* Interrupts for USART2 DMA TX stream are also enabled */
 	TM_USART_DMA_Init(USART2);
 	
 	/* Send data with DMA */
@@ -55,5 +56,31 @@ int main(void) {
 			/* You can do other stuff here instead of waiting for DMA to end */
 			while (TM_USART_DMA_Sending(USART2));
 		}
+	}
+}
+
+/* Called when transfer is completed for specific stream */
+void TM_DMA_TransferCompleteHandler(DMA_Stream_TypeDef* DMA_Stream) {
+	/* Check if interrupt is for correct stream */
+	if (DMA_Stream == TM_USART_DMA_GetStream(USART2)) {
+		TM_USART_Puts(USART2, "Stream has finished with transfer\n");
+	}
+}
+
+/* Called when half transfer is completed for specific stream */
+void TM_DMA_HalfTransferCompleteHandler(DMA_Stream_TypeDef* DMA_Stream) {
+	/* Check if interrupt is for correct stream */
+	if (DMA_Stream == TM_USART_DMA_GetStream(USART2)) {
+		/* Do stuff here */
+		//TM_USART_Puts(USART2, "Stream has finished with half transfer\n");
+	}
+}
+
+/* Called when transfer error occurs for specific stream */
+void TM_DMA_TransferErrorHandler(DMA_Stream_TypeDef* DMA_Stream) {
+	/* Check if interrupt is for correct stream */
+	if (DMA_Stream == TM_USART_DMA_GetStream(USART2)) {
+		/* Do stuff here */
+		//TM_USART_Puts(USART2, "Stream transfer error occured\n");
 	}
 }

@@ -3,7 +3,7 @@
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
  * @link    http://stm32f4-discovery.com/2015/04/library-55-extend-usart-with-tx-dma
- * @version v1.1
+ * @version v1.2
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   DMA TX functionality for TM USART library
@@ -28,7 +28,7 @@
 @endverbatim
  */
 #ifndef TM_USART_DMA_H
-#define TM_USART_DMA_H 110
+#define TM_USART_DMA_H 120
 
 /* C++ detection */
 #ifdef __cplusplus
@@ -78,6 +78,10 @@ UART8      | DMA1 | DMA Stream 0 | DMA Channel 5
  * \par Changelog
  *
 @verbatim
+ Version 1.2
+  - June 13, 2015
+  - Added support for DMA interrupts for USART
+  
  Version 1.1
   - June 06, 2015
   - Added TM DMA library support for future purpose
@@ -93,6 +97,7 @@ UART8      | DMA1 | DMA Stream 0 | DMA Channel 5
  - STM32F4xx DMA
  - defines.h
  - TM USART
+ - TM DMA
  - string.h
 @endverbatim
  */
@@ -202,6 +207,13 @@ void TM_USART_DMA_Init(USART_TypeDef* USARTx);
  * @retval None
  */
 void TM_USART_DMA_InitWithStreamAndChannel(USART_TypeDef* USARTx, DMA_Stream_TypeDef* DMA_Stream, uint32_t DMA_Channel);
+
+/**
+ * @brief  Gets poitner to DMA stream for desired USART 
+ * @param  *USARTx: Pointer to USART where you wanna get its stream pointer
+ * @retval Pointer to DMA stream for desired USART
+ */
+DMA_Stream_TypeDef* TM_USART_DMA_GetStream(USART_TypeDef* USARTx);
 
 /**
  * @brief  Deinitializes USART DMA TX functionality

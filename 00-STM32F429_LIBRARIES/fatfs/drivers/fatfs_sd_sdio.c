@@ -2231,11 +2231,10 @@ SD_Error SD_ProcessIRQSrc (void)
  */
 void SD_ProcessDMAIRQ (void)
 {
-        if (DMA2 ->LISR & SD_SDIO_DMA_FLAG_TCIF) {
+        if (DMA2->LISR & SD_SDIO_DMA_FLAG_TCIF) {
                 DMAEndOfTransfer = 0x01;
                 DMA_ClearFlag (SD_SDIO_DMA_STREAM, SD_SDIO_DMA_FLAG_TCIF | SD_SDIO_DMA_FLAG_FEIF);
         }
-        logf ("DMA...\r\n");
 }
 
 /**
@@ -2334,7 +2333,7 @@ static SD_Error CmdResp1Error (uint8_t cmd)
         }
 
         /*!< Clear all the static flags */
-        SDIO_ClearFlag (SDIO_STATIC_FLAGS );
+        SDIO_ClearFlag (SDIO_STATIC_FLAGS);
 
         /*!< We have received response, retrieve it for analysis  */
         response_r1 = SDIO_GetResponse (SDIO_RESP1);
@@ -3041,51 +3040,26 @@ SD_Error SD_HighSpeed (void)
  * @param  None
  * @retval None
  */
-void SD_LowLevel_DeInit (void)
-{
-        GPIO_InitTypeDef GPIO_InitStructure;
+void SD_LowLevel_DeInit(void) {
+	/*!< Disable SDIO Clock */
+	SDIO_ClockCmd(DISABLE);
 
-        /*!< Disable SDIO Clock */
-        SDIO_ClockCmd (DISABLE);
+	/*!< Set Power State to OFF */
+	SDIO_SetPowerState(SDIO_PowerState_OFF);
 
-        /*!< Set Power State to OFF */
-        SDIO_SetPowerState (SDIO_PowerState_OFF);
+	/*!< DeInitializes the SDIO peripheral */
+	SDIO_DeInit();
 
-        /*!< DeInitializes the SDIO peripheral */
-        SDIO_DeInit ();
-
-        /* Disable the SDIO APB2 Clock */
-        RCC_APB2PeriphClockCmd (RCC_APB2Periph_SDIO, DISABLE);
+	/* Disable the SDIO APB2 Clock */
+	RCC->APB2ENR &= ~RCC_APB2ENR_SDIOEN;
 
 #if FATFS_SDIO_4BIT == 1
-		GPIO_PinAFConfig (GPIOC, GPIO_PinSource8, GPIO_AF_MCO);		//D0
-		GPIO_PinAFConfig (GPIOC, GPIO_PinSource9, GPIO_AF_MCO);		//D1
-		GPIO_PinAFConfig (GPIOC, GPIO_PinSource10, GPIO_AF_MCO);	//D2
-		GPIO_PinAFConfig (GPIOC, GPIO_PinSource11, GPIO_AF_MCO);	//D3
-		GPIO_PinAFConfig (GPIOC, GPIO_PinSource12, GPIO_AF_MCO);	//CLK
-		GPIO_PinAFConfig (GPIOD, GPIO_PinSource2, GPIO_AF_MCO);		//CMD
-		//							  D0		   D1			D2			  D3
-		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_10 | GPIO_Pin_11;
+	TM_GPIO_DeInit(GPIOC, GPIO_PIN_8 | GPIO_PIN_9 | GPIO_PIN_10 | GPIO_PIN_11 | GPIO_PIN_12);
 #else
-		GPIO_PinAFConfig (GPIOC, GPIO_PinSource8, GPIO_AF_MCO);		//D0
-		GPIO_PinAFConfig (GPIOC, GPIO_PinSource12, GPIO_AF_MCO);	//CLK
-		GPIO_PinAFConfig (GPIOD, GPIO_PinSource2, GPIO_AF_MCO);		//CMD
-		
-		//							  D0
-		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8;
+	TM_GPIO_DeInit(GPIOC, GPIO_PIN_8 | GPIO_PIN_12);
 #endif
 
-        GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
-        GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
-        GPIO_Init (GPIOC, &GPIO_InitStructure);
-
-        /* Configure PD.02 CMD line */
-        GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2;
-        GPIO_Init (GPIOD, &GPIO_InitStructure);
-
-        /* Configure PC.12 pin: CLK pin */
-        GPIO_InitStructure.GPIO_Pin = GPIO_Pin_12;
-        GPIO_Init (GPIOC, &GPIO_InitStructure);
+	TM_GPIO_DeInit(GPIOD, GPIO_PIN_2);
 }
 
 /**
@@ -3094,51 +3068,20 @@ void SD_LowLevel_DeInit (void)
  * @param  None
  * @retval None
  */
-void SD_LowLevel_Init (void)
-{
-        GPIO_InitTypeDef GPIO_InitStructure;
-
-        /* GPIOC and GPIOD Periph clock enable */
-        RCC_AHB1PeriphClockCmd (RCC_AHB1Periph_GPIOC | RCC_AHB1Periph_GPIOD, ENABLE);
-
+void SD_LowLevel_Init (void) {
 #if FATFS_SDIO_4BIT == 1
-		GPIO_PinAFConfig(GPIOC, GPIO_PinSource8, GPIO_AF_SDIO);		//D0
-		GPIO_PinAFConfig(GPIOC, GPIO_PinSource9, GPIO_AF_SDIO);		//D1
-		GPIO_PinAFConfig(GPIOC, GPIO_PinSource10, GPIO_AF_SDIO);	//D2
-		GPIO_PinAFConfig(GPIOC, GPIO_PinSource11, GPIO_AF_SDIO);	//D3
-		GPIO_PinAFConfig(GPIOC, GPIO_PinSource12, GPIO_AF_SDIO);	//CLK
-		GPIO_PinAFConfig(GPIOD, GPIO_PinSource2, GPIO_AF_SDIO);		//CMD
-		//							  D0		   D1			D2			  D3
-		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8 | GPIO_Pin_9 | GPIO_Pin_10 | GPIO_Pin_11;
-	
+	TM_GPIO_InitAlternate(GPIOC, GPIO_PIN_8 | GPIO_PIN_9 | GPIO_PIN_10 | GPIO_PIN_11 | GPIO_PIN_12, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Fast, GPIO_AF_SDIO);
 #else
-		GPIO_PinAFConfig(GPIOC, GPIO_PinSource8, GPIO_AF_SDIO);		//D0
-		GPIO_PinAFConfig(GPIOC, GPIO_PinSource12, GPIO_AF_SDIO);	//CLK
-		GPIO_PinAFConfig(GPIOD, GPIO_PinSource2, GPIO_AF_SDIO);		//CMD
-		//D0 pin
-		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8;
+	TM_GPIO_InitAlternate(GPIOC, GPIO_PIN_8 | GPIO_PIN_12, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Fast, GPIO_AF_SDIO);
 #endif
 
-        GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-        GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
-        GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
-        GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
-        GPIO_Init (GPIOC, &GPIO_InitStructure);
+	TM_GPIO_InitAlternate(GPIOD, GPIO_PIN_2, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Fast, GPIO_AF_SDIO);
 
-        /* Configure PD.02 CMD line */
-        GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2;
-        GPIO_Init (GPIOD, &GPIO_InitStructure);
+	/* Enable the SDIO APB2 Clock */
+	RCC->APB2ENR |= RCC_APB2ENR_SDIOEN;
 
-        /* Configure PC.12 pin: CLK pin */
-        GPIO_InitStructure.GPIO_Pin = GPIO_Pin_12;
-        GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
-        GPIO_Init (GPIOC, &GPIO_InitStructure);
-
-        /* Enable the SDIO APB2 Clock */
-        RCC_APB2PeriphClockCmd (RCC_APB2Periph_SDIO, ENABLE);
-
-        /* Enable the DMA2 Clock */
-        RCC_AHB1PeriphClockCmd (SD_SDIO_DMA_CLK, ENABLE);
+	/* Enable the DMA2 Clock */
+	RCC->AHB1ENR |= SD_SDIO_DMA_CLK;
 }
 
 /**

@@ -154,6 +154,8 @@ http://bit.ly/1FKF4EJ
 http://bit.ly/1IVVR8z
 62. FFT - FFT Library for STM32F4xx devices
 http://bit.ly/1HIZxu1
+63. DMA - DMA library for STM32F4xx
+http://bit.ly/1IBlpoT
 
 - PCD8544 LCD (Nokia 5110/3310) - Library for LCD
 http://bit.ly/1i7l4tB

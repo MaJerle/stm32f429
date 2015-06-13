@@ -83,7 +83,7 @@ void TM_USART_DMA_Init(USART_TypeDef* USARTx) {
 	DMA_InitStruct.DMA_FIFOMode = DMA_FIFOMode_Disable;
 	DMA_InitStruct.DMA_FIFOThreshold = DMA_FIFOThreshold_1QuarterFull;
 	DMA_InitStruct.DMA_MemoryBurst = DMA_MemoryBurst_Single;
-	DMA_InitStruct.DMA_PeripheralBurst = DMA_PeripheralBurst_Single;
+	DMA_InitStruct.DMA_PeripheralBurst = DMA_PeripheralBurst_Single;	
 }
 
 void TM_USART_DMA_InitWithStreamAndChannel(USART_TypeDef* USARTx, DMA_Stream_TypeDef* DMA_Stream, uint32_t DMA_Channel) {
@@ -96,6 +96,11 @@ void TM_USART_DMA_InitWithStreamAndChannel(USART_TypeDef* USARTx, DMA_Stream_Typ
 	
 	/* Init DMA TX */
 	TM_USART_DMA_Init(USARTx);
+}
+
+DMA_Stream_TypeDef* TM_USART_DMA_GetStream(USART_TypeDef* USARTx) {
+	/* Get USART settings */
+	return TM_USART_DMA_INT_GetSettings(USARTx)->DMA_Stream;
 }
 
 void TM_USART_DMA_Deinit(USART_TypeDef* USARTx) {
@@ -127,6 +132,9 @@ uint8_t TM_USART_DMA_Send(USART_TypeDef* USARTx, uint8_t* DataArray, uint16_t co
 	
 	/* Init DMA */
 	DMA_Init(Settings->DMA_Stream, &DMA_InitStruct);
+	
+	/* Enable interrupts for stream */
+	TM_DMA_EnableInterrupts(Settings->DMA_Stream);
 	
 	/* Enable USART TX DMA */
 	USARTx->CR3 |= USART_CR3_DMAT;
@@ -198,5 +206,3 @@ static TM_USART_DMA_INT_t* TM_USART_DMA_INT_GetSettings(USART_TypeDef* USARTx) {
 	/* Return */
 	return result;
 }
-
-

@@ -19,7 +19,7 @@
 #include "tm_stm32f4_gpio.h"
 
 /* Private function */
-static uint16_t GPIO_UsedPins[11];
+static uint16_t GPIO_UsedPins[11] = {0,0,0,0,0,0,0,0,0,0,0};
 
 /* Private functions */
 void TM_GPIO_INT_EnableClock(GPIO_TypeDef* GPIOx);
