@@ -38,6 +38,9 @@ int main(void) {
 	/* Interrupts for USART2 DMA TX stream are also enabled */
 	TM_USART_DMA_Init(USART2);
 	
+	/* Enable USART DMA interrupts */
+	TM_USART_DMA_EnableInterrupts(USART2);
+	
 	/* Send data with DMA */
 	TM_USART_DMA_Send(USART2, (uint8_t *)USART_Buffer, strlen(USART_Buffer));
 	

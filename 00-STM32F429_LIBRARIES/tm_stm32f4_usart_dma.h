@@ -3,7 +3,7 @@
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
  * @link    http://stm32f4-discovery.com/2015/04/library-55-extend-usart-with-tx-dma
- * @version v1.2
+ * @version v1.2.1
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   DMA TX functionality for TM USART library
@@ -28,7 +28,7 @@
 @endverbatim
  */
 #ifndef TM_USART_DMA_H
-#define TM_USART_DMA_H 120
+#define TM_USART_DMA_H 121
 
 /* C++ detection */
 #ifdef __cplusplus
@@ -78,6 +78,9 @@ UART8      | DMA1 | DMA Stream 0 | DMA Channel 5
  * \par Changelog
  *
 @verbatim
+ Version 1.2.1
+  - Added separate function for enabling/disabling USART DMA interrupts
+  
  Version 1.2
   - June 13, 2015
   - Added support for DMA interrupts for USART
@@ -209,18 +212,33 @@ void TM_USART_DMA_Init(USART_TypeDef* USARTx);
 void TM_USART_DMA_InitWithStreamAndChannel(USART_TypeDef* USARTx, DMA_Stream_TypeDef* DMA_Stream, uint32_t DMA_Channel);
 
 /**
- * @brief  Gets poitner to DMA stream for desired USART 
- * @param  *USARTx: Pointer to USART where you wanna get its stream pointer
- * @retval Pointer to DMA stream for desired USART
- */
-DMA_Stream_TypeDef* TM_USART_DMA_GetStream(USART_TypeDef* USARTx);
-
-/**
  * @brief  Deinitializes USART DMA TX functionality
  * @param  *USARTx: Pointer to USARTx where you want to disable DMA TX mode
  * @retval None
  */
 void TM_USART_DMA_Deinit(USART_TypeDef* USARTx);
+
+/**
+ * @breif  Enables interrupts for DMA for USART streams
+ * @note   USART DMA must be initialized first using @ref TM_USART_DMA_Init() or @ref TM_USART_DMA_InitWithStreamAndChannel() functions
+ * @param  *USARTx: Pointer to USARTx where DMA interrupts will be enabled
+ * @retval None
+ */
+void TM_USART_DMA_EnableInterrupts(USART_TypeDef* USARTx);
+
+/**
+ * @breif  Disables interrupts for DMA for USART streams
+ * @param  *USARTx: Pointer to USARTx where DMA interrupts will be disabled
+ * @retval None
+ */
+void TM_USART_DMA_DisableInterrupts(USART_TypeDef* USARTx);
+
+/**
+ * @brief  Gets poitner to DMA stream for desired USART 
+ * @param  *USARTx: Pointer to USART where you wanna get its stream pointer
+ * @retval Pointer to DMA stream for desired USART
+ */
+DMA_Stream_TypeDef* TM_USART_DMA_GetStream(USART_TypeDef* USARTx);
 
 /**
  * @brief  Puts string to USART port with DMA

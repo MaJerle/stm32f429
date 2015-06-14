@@ -159,7 +159,7 @@ void TM_DMA_ClearFlags(DMA_Stream_TypeDef* DMA_Stream);
  * @param  *DMA_Stream: Pointer to @ref DMA_Stream_TypeDef DMA stream where you want to clear flags
  * @param  flags: Flag(s) which you wanna clear:
  *           - DMA_FLAG_TCIF: Transfer complete interrupt flag
- *           - DMA_FLAG HITF: Hafl-transfer complete interrupt flag
+ *           - DMA_FLAG HITF: Half transfer complete interrupt flag
  *           - DMA_FLAG_TEIF: Transfer error interrupt flag
  *           - DMA_FLAG_DMEIF: Direct mode error interrupt flag
  *           - DMA_FLAG_FEIF: FIFO error interrupt flag

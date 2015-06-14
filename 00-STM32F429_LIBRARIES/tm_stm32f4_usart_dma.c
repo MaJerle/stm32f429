@@ -133,9 +133,6 @@ uint8_t TM_USART_DMA_Send(USART_TypeDef* USARTx, uint8_t* DataArray, uint16_t co
 	/* Init DMA */
 	DMA_Init(Settings->DMA_Stream, &DMA_InitStruct);
 	
-	/* Enable interrupts for stream */
-	TM_DMA_EnableInterrupts(Settings->DMA_Stream);
-	
 	/* Enable USART TX DMA */
 	USARTx->CR3 |= USART_CR3_DMAT;
 
@@ -157,6 +154,22 @@ uint8_t TM_USART_DMA_Sending(USART_TypeDef* USARTx) {
 	
 	/* Check DMA Stream register of remaining data bytes */
 	return Settings->DMA_Stream->NDTR;
+}
+
+void TM_USART_DMA_EnableInterrupts(USART_TypeDef* USARTx) {
+	/* Get USART settings */
+	TM_USART_DMA_INT_t* Settings = TM_USART_DMA_INT_GetSettings(USARTx);
+	
+	/* Enable DMA interrupts */
+	TM_DMA_EnableInterrupts(Settings->DMA_Stream);
+}
+
+void TM_USART_DMA_DisableInterrupts(USART_TypeDef* USARTx) {
+	/* Get USART settings */
+	TM_USART_DMA_INT_t* Settings = TM_USART_DMA_INT_GetSettings(USARTx);
+	
+	/* Disable DMA interrupts */
+	TM_DMA_DisableInterrupts(Settings->DMA_Stream);
 }
 
 /* Private functions */
