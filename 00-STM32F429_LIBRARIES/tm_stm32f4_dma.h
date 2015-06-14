@@ -111,7 +111,7 @@ extern C {
  * @brief  DMA macros for interrupt flags
  */
 #define DMA_FLAG_TCIF    ((uint32_t)0x00000020) /*!< DMA stream transfer complete */
-#define DMA_FLAG_HITF    ((uint32_t)0x00000010) /*!< DMA stream half transfer complete */
+#define DMA_FLAG_HTIF    ((uint32_t)0x00000010) /*!< DMA stream half transfer complete */
 #define DMA_FLAG_TEIF    ((uint32_t)0x00000008) /*!< DMA stream transfer error */
 #define DMA_FLAG_DMEIF   ((uint32_t)0x00000004) /*!< DMA stream direct mode error */
 #define DMA_FLAG_FEIF    ((uint32_t)0x00000001) /*!< DMA stream FIFO error */
@@ -159,7 +159,7 @@ void TM_DMA_ClearFlags(DMA_Stream_TypeDef* DMA_Stream);
  * @param  *DMA_Stream: Pointer to @ref DMA_Stream_TypeDef DMA stream where you want to clear flags
  * @param  flags: Flag(s) which you wanna clear:
  *           - DMA_FLAG_TCIF: Transfer complete interrupt flag
- *           - DMA_FLAG HITF: Half transfer complete interrupt flag
+ *           - DMA_FLAG HTIF: Half transfer complete interrupt flag
  *           - DMA_FLAG_TEIF: Transfer error interrupt flag
  *           - DMA_FLAG_DMEIF: Direct mode error interrupt flag
  *           - DMA_FLAG_FEIF: FIFO error interrupt flag
