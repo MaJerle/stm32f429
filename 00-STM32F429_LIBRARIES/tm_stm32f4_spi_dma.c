@@ -274,12 +274,40 @@ uint8_t TM_SPI_DMA_Working(SPI_TypeDef* SPIx) {
 	/* Get SPI settings */
 	TM_SPI_DMA_INT_t* Settings = TM_SPI_DMA_INT_GetSettings(SPIx);
 	
-	/* Check if TX or RX DMA is working */
+	/* Check if TX or RX DMA are working */
 	return (
-		Settings->RX_Stream->NDTR || 
-		Settings->TX_Stream->NDTR ||
-		SPI_IS_BUSY(SPIx)
+		Settings->RX_Stream->NDTR || /*!< RX is working */
+		Settings->TX_Stream->NDTR || /*!< TX is working */
+		SPI_IS_BUSY(SPIx)            /*!< SPI is busy */
 	);
+}
+
+DMA_Stream_TypeDef* TM_SPI_DMA_GetStreamTX(SPI_TypeDef* SPIx) {
+	/* Return pointer to TX stream */
+	return TM_SPI_DMA_INT_GetSettings(SPIx)->TX_Stream;
+}
+
+DMA_Stream_TypeDef* TM_SPI_DMA_GetStreamRX(SPI_TypeDef* SPIx) {
+	/* Return pointer to TX stream */
+	return TM_SPI_DMA_INT_GetSettings(SPIx)->TX_Stream;
+}
+
+void TM_SPI_DMA_EnableInterrupts(SPI_TypeDef* SPIx) {
+	/* Get SPI settings */
+	TM_SPI_DMA_INT_t* Settings = TM_SPI_DMA_INT_GetSettings(SPIx);
+	
+	/* Enable interrupts for TX and RX streams */
+	TM_DMA_EnableInterrupts(Settings->TX_Stream);
+	TM_DMA_EnableInterrupts(Settings->RX_Stream);
+}
+
+void TM_SPI_DMA_DisableInterrupts(SPI_TypeDef* SPIx) {
+	/* Get SPI settings */
+	TM_SPI_DMA_INT_t* Settings = TM_SPI_DMA_INT_GetSettings(SPIx);
+	
+	/* Enable interrupts for TX and RX streams */
+	TM_DMA_DisableInterrupts(Settings->TX_Stream);
+	TM_DMA_DisableInterrupts(Settings->RX_Stream);
 }
 
 /* Private functions */

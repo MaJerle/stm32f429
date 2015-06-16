@@ -285,6 +285,34 @@ uint8_t TM_SPI_DMA_SendHalfWord(SPI_TypeDef* SPIx, uint16_t value, uint16_t coun
 uint8_t TM_SPI_DMA_Working(SPI_TypeDef* SPIx);
 
 /**
+ * @brief  Gets TX DMA stream for specific SPI 
+ * @param  *SPIx: Pointer to SPIx peripheral where you want to get TX stream
+ * @retval Pointer to SPI DMA TX stream
+ */
+DMA_Stream_TypeDef* TM_SPI_DMA_GetStreamTX(SPI_TypeDef* SPIx);
+
+/**
+ * @brief  Gets RX DMA stream for specific SPI 
+ * @param  *SPIx: Pointer to SPIx peripheral where you want to get RX stream
+ * @retval Pointer to SPI DMA RX stream
+ */
+DMA_Stream_TypeDef* TM_SPI_DMA_GetStreamRX(SPI_TypeDef* SPIx);
+
+/**
+ * @brief  Enables DMA stream interrupts for specific SPI
+ * @param  *SPIx: Pointer to SPIx peripheral where you want to enable DMA stream interrupts
+ * @retval None
+ */
+void TM_SPI_DMA_EnableInterrupts(SPI_TypeDef* SPIx);
+
+/**
+ * @brief  Disables DMA stream interrupts for specific SPI
+ * @param  *SPIx: Pointer to SPIx peripheral where you want to disable DMA stream interrupts
+ * @retval None
+ */
+void TM_SPI_DMA_DisableInterrupts(SPI_TypeDef* SPIx);
+
+/**
  * @}
  */
  

@@ -87,3 +87,21 @@ void TM_DMA_TransferErrorHandler(DMA_Stream_TypeDef* DMA_Stream) {
 		//TM_USART_Puts(USART2, "Stream transfer error occured\n");
 	}
 }
+
+/* Called when direct mode error occurs for specific stream */
+void TM_DMA_DirectModeErrorHandler(DMA_Stream_TypeDef* DMA_Stream) {
+	/* Check if interrupt is for correct stream */
+	if (DMA_Stream == TM_USART_DMA_GetStream(USART2)) {
+		/* Do stuff here */
+		//TM_USART_Puts(USART2, "Stream direct mode error occured\n");
+	}
+}
+
+/* Called on FIFO error */
+void TM_DMA_FIFOErrorHandler(DMA_Stream_TypeDef* DMA_Stream) {
+	/* Check if interrupt is for correct stream */
+	if (DMA_Stream == TM_USART_DMA_GetStream(USART2)) {
+		/* Do stuff here */
+		//TM_USART_Puts(USART2, "FIFO error occured\n");
+	}
+}

@@ -69,9 +69,10 @@ void TM_DMA_ClearFlag(DMA_Stream_TypeDef* DMA_Stream, uint32_t flag) {
 }
 
 uint32_t TM_DMA_GetFlags(DMA_Stream_TypeDef* DMA_Stream, uint32_t flag) {
-	uint32_t location;
-	uint32_t stream_number;
-
+	uint32_t stream_number = 0;
+	uint32_t location = 0;
+	uint32_t flags = 0;
+	
 	/* Check stream value */
 	if (DMA_Stream < DMA2_Stream0) {
 		location = (uint32_t)&DMA1->LISR;
@@ -91,7 +92,12 @@ uint32_t TM_DMA_GetFlags(DMA_Stream_TypeDef* DMA_Stream, uint32_t flag) {
 	}
 	
 	/* Get register value */
-	return ((*(__IO uint32_t *)location) >> DMA_Flags_Bit_Pos[stream_number]) & DMA_FLAG_ALL;
+	flags =   *(__IO uint32_t *)location;
+	flags >>= DMA_Flags_Bit_Pos[stream_number];;
+	flags &=  DMA_FLAG_ALL;
+	
+	/* Return value */
+	return flags;
 }
 
 void TM_DMA_EnableInterrupts(DMA_Stream_TypeDef* DMA_Stream) {
@@ -119,7 +125,8 @@ void TM_DMA_EnableInterrupts(DMA_Stream_TypeDef* DMA_Stream) {
 	NVIC_Init(&NVIC_InitStruct);
 	
 	/* Enable DMA stream interrupts */
-	DMA_Stream->CR |= DMA_SxCR_TCIE  | DMA_SxCR_HTIE | DMA_SxCR_TEIE | DMA_SxCR_DMEIE;
+	DMA_Stream->CR |= DMA_SxCR_TCIE | DMA_SxCR_HTIE | DMA_SxCR_TEIE | DMA_SxCR_DMEIE;
+	DMA_Stream->FCR |= DMA_SxFCR_FEIE;
 }
 
 void TM_DMA_DisableInterrupts(DMA_Stream_TypeDef* DMA_Stream) {
@@ -148,6 +155,7 @@ void TM_DMA_DisableInterrupts(DMA_Stream_TypeDef* DMA_Stream) {
 	
 	/* Disable DMA stream interrupts */
 	DMA_Stream->CR &= ~(DMA_SxCR_TCIE  | DMA_SxCR_HTIE | DMA_SxCR_TEIE | DMA_SxCR_DMEIE);
+	DMA_Stream->FCR &= DMA_SxFCR_FEIE;
 }
 
 __weak void TM_DMA_TransferCompleteHandler(DMA_Stream_TypeDef* DMA_Stream) {
@@ -178,19 +186,19 @@ static void TM_DMA_INT_ProcessInterrupt(DMA_Stream_TypeDef* DMA_Stream) {
 	TM_DMA_ClearFlags(DMA_Stream);
 	
 	/* Call user callback function */
-	if (flags & DMA_FLAG_TCIF) {
+	if ((flags & DMA_FLAG_TCIF) && (DMA_Stream->CR & DMA_SxCR_TCIE)) {
 		TM_DMA_TransferCompleteHandler(DMA_Stream);
 	}
-	if (flags & DMA_FLAG_HITF) {
+	if ((flags & DMA_FLAG_HTIF) && (DMA_Stream->CR & DMA_SxCR_HTIE)) {
 		TM_DMA_HalfTransferCompleteHandler(DMA_Stream);
 	}
-	if (flags & DMA_FLAG_TEIF) {
+	if ((flags & DMA_FLAG_TEIF) && (DMA_Stream->CR & DMA_SxCR_TEIE)) {
 		TM_DMA_TransferErrorHandler(DMA_Stream);
 	}
-	if (flags & DMA_FLAG_TCIF) {
+	if ((flags & DMA_FLAG_DMEIF) && (DMA_Stream->CR & DMA_SxCR_DMEIE)) {
 		TM_DMA_DirectModeErrorHandler(DMA_Stream);
 	}
-	if (flags & DMA_FLAG_FEIF) {
+	if ((flags & DMA_FLAG_FEIF) && (DMA_Stream->FCR & DMA_SxFCR_FEIE)) {
 		TM_DMA_FIFOErrorHandler(DMA_Stream);
 	}
 }

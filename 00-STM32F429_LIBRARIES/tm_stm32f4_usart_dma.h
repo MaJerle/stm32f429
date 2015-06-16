@@ -268,7 +268,7 @@ uint8_t TM_USART_DMA_Send(USART_TypeDef* USARTx, uint8_t* DataArray, uint16_t co
  * @param  *USARTx: Pointer to USARTx where you want to check if DMA is still working
  * @retval Sending status:
  *            - 0: USART does not sending anymore
- *            - > 0: USART DMA is still sending data 
+ *            - > 0: USART DMA is still sending data
  */
 uint8_t TM_USART_DMA_Sending(USART_TypeDef* USARTx);
 

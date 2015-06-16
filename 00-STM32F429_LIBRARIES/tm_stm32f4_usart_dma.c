@@ -81,7 +81,7 @@ void TM_USART_DMA_Init(USART_TypeDef* USARTx) {
 	DMA_InitStruct.DMA_Mode = DMA_Mode_Normal;
 	DMA_InitStruct.DMA_Priority = DMA_Priority_Low;
 	DMA_InitStruct.DMA_FIFOMode = DMA_FIFOMode_Disable;
-	DMA_InitStruct.DMA_FIFOThreshold = DMA_FIFOThreshold_1QuarterFull;
+	DMA_InitStruct.DMA_FIFOThreshold = DMA_FIFOThreshold_Full;
 	DMA_InitStruct.DMA_MemoryBurst = DMA_MemoryBurst_Single;
 	DMA_InitStruct.DMA_PeripheralBurst = DMA_PeripheralBurst_Single;	
 }

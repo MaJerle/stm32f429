@@ -1468,7 +1468,7 @@ __STATIC_INLINE void NVIC_SetPriorityGrouping(uint32_t PriorityGroup)
   reg_value &= ~(SCB_AIRCR_VECTKEY_Msk | SCB_AIRCR_PRIGROUP_Msk);             /* clear bits to change               */
   reg_value  =  (reg_value                                 |
                 ((uint32_t)0x5FA << SCB_AIRCR_VECTKEY_Pos) |
-                (PriorityGroupTmp << 8));                                     /* Insert write key and priorty group */
+                (PriorityGroupTmp/* << 8*/));                                     /* Insert write key and priorty group */
   SCB->AIRCR =  reg_value;
 }
 
