@@ -41,13 +41,6 @@ int main(void) {
 	/* Enable USART DMA interrupts */
 	TM_USART_DMA_EnableInterrupts(USART2);
 	
-	/* Send data with DMA */
-	TM_USART_DMA_Send(USART2, (uint8_t *)USART_Buffer, strlen(USART_Buffer));
-	
-	/* Wait till DMA works */
-	/* You can do other stuff here instead of waiting for DMA to end */
-	while (TM_USART_DMA_Sending(USART2));
-	
 	while (1) {
 		/* If any string arrived over USART */
 		/* Expecting "\n" at the end of string from USART terminal or any other source */

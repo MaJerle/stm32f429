@@ -93,7 +93,7 @@ uint32_t TM_DMA_GetFlags(DMA_Stream_TypeDef* DMA_Stream, uint32_t flag) {
 	
 	/* Get register value */
 	flags =   *(__IO uint32_t *)location;
-	flags >>= DMA_Flags_Bit_Pos[stream_number];;
+	flags >>= DMA_Flags_Bit_Pos[stream_number];
 	flags &=  DMA_FLAG_ALL;
 	
 	/* Return value */
