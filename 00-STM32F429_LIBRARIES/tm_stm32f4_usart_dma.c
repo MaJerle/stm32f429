@@ -72,6 +72,12 @@ void TM_USART_DMA_Init(USART_TypeDef* USARTx) {
 		RCC->AHB1ENR |= RCC_AHB1ENR_DMA1EN;
 	}
 	
+	/* Deinit stream */
+	//DMA_DeInit(USART_Settings->DMA_Stream);
+	
+	/* Clear flags */
+	TM_DMA_ClearFlags(USART_Settings->DMA_Stream);
+	
 	/* Set DMA options */
 	DMA_InitStruct.DMA_DIR = DMA_DIR_MemoryToPeripheral;
 	DMA_InitStruct.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
@@ -132,12 +138,12 @@ uint8_t TM_USART_DMA_Send(USART_TypeDef* USARTx, uint8_t* DataArray, uint16_t co
 	
 	/* Init DMA */
 	DMA_Init(Settings->DMA_Stream, &DMA_InitStruct);
-	
-	/* Enable USART TX DMA */
-	USARTx->CR3 |= USART_CR3_DMAT;
 
 	/* Enable DMA Stream */
 	Settings->DMA_Stream->CR |= DMA_SxCR_EN;
+	
+	/* Enable USART TX DMA */
+	USARTx->CR3 |= USART_CR3_DMAT;
 	
 	/* DMA has started */
 	return 1;

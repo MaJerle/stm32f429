@@ -194,7 +194,7 @@ TM_GENERAL_ResetSource_t TM_GENERAL_GetResetSource(uint8_t reset_flags);
  * @retval None
  * @note   Defined as macro for faster execution
  */
-#define TM_GENERAL_DisableInterrupts()   __disable_irq()
+#define TM_GENERAL_DisableInterrupts()       __disable_irq()
 
 /**
  * @brief  Enables interrupts in system.
@@ -203,7 +203,17 @@ TM_GENERAL_ResetSource_t TM_GENERAL_GetResetSource(uint8_t reset_flags);
  * @retval None
  * @note   Defined as macro for faster execution
  */
-#define TM_GENERAL_EnableInterrupts()   __enable_irq()
+#define TM_GENERAL_EnableInterrupts()        __enable_irq()
+
+/**
+ * @brief  Checks if code execution is inside active IRQ
+ * @param  None
+ * @retval IRQ Execution status:
+ *            - 0: Code execution is not inside IRQ, thread mode
+ *            - > 0: Code execution is inside IRQ, IRQ mode
+ * @note   Defines as macro for faster execution
+ */
+#define TM_GENERAL_IsIRQMode()               (SCB->ICSR & SCB_ICSR_VECTACTIVE_Msk)
 
 /**
  * @brief  Gets specific clock speed value from STM32F4xx device
@@ -218,7 +228,7 @@ uint32_t TM_GENERAL_GetClockSpeed(TM_GENERAL_Clock_t clock);
  * @retval None
  * @note   Defined as macro for faster execution
  */
-#define TM_GENERAL_GetSystemClockMHz()    ((uint16_t)(SystemCoreClock * (float)0.000001))
+#define TM_GENERAL_GetSystemClockMHz()       ((uint16_t)(SystemCoreClock * (float)0.000001))
 
 /**
  * @brief  Enables DWT counter in Cortex-M4 core
@@ -239,7 +249,7 @@ uint8_t TM_GENERAL_DWTCounterEnable(void);
  * @retval None
  * @note   Defined as macro for faster execution
  */
-#define TM_GENERAL_DWTCounterDisable()    (DWT->CTRL &= ~0x00000001)
+#define TM_GENERAL_DWTCounterDisable()       (DWT->CTRL &= ~0x00000001)
 
 /**
  * @brief  Gets current DWT counter value
@@ -247,7 +257,7 @@ uint8_t TM_GENERAL_DWTCounterEnable(void);
  * @retval DWT counter value
  * @note   Defined as macro for faster execution
  */
-#define TM_GENERAL_DWTCounterGetValue()  (DWT->CYCCNT)
+#define TM_GENERAL_DWTCounterGetValue()      (DWT->CYCCNT)
 
 /**
  * @brief  Sets DWT counter value
@@ -255,7 +265,7 @@ uint8_t TM_GENERAL_DWTCounterEnable(void);
  * @retval None
  * @note   Defined as macro for faster execution
  */
-#define TM_GENERAL_DWTCounterSetValue(x)  (DWT->CYCCNT = (x))
+#define TM_GENERAL_DWTCounterSetValue(x)     (DWT->CYCCNT = (x))
 
 /**
  * @brief  Delays for amount of microseconds using DWT counter

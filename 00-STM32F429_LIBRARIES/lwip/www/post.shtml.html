@@ -1,0 +1,63 @@
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html" />
+		<meta name="author" content="Tilen Majerle" />
+		<!--<meta http-equiv="refresh" content="2" />-->
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="style.css" type="text/css" />
+		<title>POST request on SD card</title>
+	</head>
+	<body>
+		<div id="header">
+			Web server on STM32F4xx and SD card
+		</div>
+		<div id="main">
+			<p><a href="index.shtml">Go back to first site</a></p>
+			<table>
+				<!--#post_req-->
+				<tr><td class="td_header">Post request</td></tr>
+				<tr><td>
+					<form method="POST">
+				        <div class="div_input">
+                            <div class="div_input_left">Text input</div>
+                            <div class="div_input_right">
+                                <input type="text" name="text" value="Text input example" />
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+				        <div class="div_input">
+                            <div class="div_input_left">Textarea</div>
+                            <div class="div_input_right">
+                                <textarea name="textarea">Textarea input text</textarea>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="div_input">
+                            <div class="div_input_left">Checkbox</div>
+                            <div class="div_input_right">
+                                <input type="checkbox" name="checkbox" value="1" />
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="div_input">
+                            <div class="div_input_left">Radio</div>
+                            <div class="div_input_right">
+                                <input type="radio" name="radio" value="1" />
+                                <input type="radio" name="radio" value="2" />
+                                <input type="radio" name="radio" value="3" />
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="div_input">
+                            <div class="div_input_left">Submit</div>
+                            <div class="div_input_right">
+                                <input type="submit" name="submit" value="Submit form" />
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+					</form>
+				</td></tr>
+			</table>
+		</div>
+	</body>
+</html>

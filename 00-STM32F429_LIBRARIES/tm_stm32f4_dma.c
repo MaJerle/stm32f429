@@ -26,7 +26,7 @@
 const static uint8_t DMA_Flags_Bit_Pos[4] = {
 	0, 6, 16, 22
 };
-const static uint8_t DMA_IRQs[2][8] = {
+const static IRQn_Type DMA_IRQs[2][8] = {
 	{
 		DMA1_Stream0_IRQn, DMA1_Stream1_IRQn, DMA1_Stream2_IRQn, DMA1_Stream3_IRQn,
 		DMA1_Stream4_IRQn, DMA1_Stream5_IRQn, DMA1_Stream6_IRQn, DMA1_Stream7_IRQn
@@ -93,7 +93,7 @@ uint32_t TM_DMA_GetFlags(DMA_Stream_TypeDef* DMA_Stream, uint32_t flag) {
 	
 	/* Get register value */
 	flags =   *(__IO uint32_t *)location;
-	flags >>= DMA_Flags_Bit_Pos[stream_number];;
+	flags >>= DMA_Flags_Bit_Pos[stream_number];
 	flags &=  DMA_FLAG_ALL;
 	
 	/* Return value */
@@ -105,7 +105,7 @@ void TM_DMA_EnableInterrupts(DMA_Stream_TypeDef* DMA_Stream) {
 	uint32_t stream_number;
 	
 	/* Clear flags first */
-	TM_DMA_ClearFlags(DMA_Stream);
+	TM_DMA_ClearFlag(DMA_Stream, DMA_FLAG_ALL);
 
 	/* Check stream value */
 	if (DMA_Stream < DMA2_Stream0) {
@@ -118,6 +118,7 @@ void TM_DMA_EnableInterrupts(DMA_Stream_TypeDef* DMA_Stream) {
 		NVIC_InitStruct.NVIC_IRQChannel = DMA_IRQs[1][stream_number];
 	}
 	
+	/* Fill NVIC */
 	NVIC_InitStruct.NVIC_IRQChannelCmd = ENABLE;
 	NVIC_InitStruct.NVIC_IRQChannelSubPriority = stream_number;
 	
@@ -130,28 +131,20 @@ void TM_DMA_EnableInterrupts(DMA_Stream_TypeDef* DMA_Stream) {
 }
 
 void TM_DMA_DisableInterrupts(DMA_Stream_TypeDef* DMA_Stream) {
-	NVIC_InitTypeDef NVIC_InitStruct;
-	uint32_t stream_number;
+	IRQn_Type IRQValue;
 	
 	/* Clear flags first */
-	TM_DMA_ClearFlags(DMA_Stream);
+	TM_DMA_ClearFlag(DMA_Stream, DMA_FLAG_ALL);
 
 	/* Check stream value */
 	if (DMA_Stream < DMA2_Stream0) {
-		stream_number = GET_STREAM_NUMBER_DMA1(DMA_Stream);
-		NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority = DMA1_NVIC_PREEMPTION_PRIORITY;
-		NVIC_InitStruct.NVIC_IRQChannel = DMA_IRQs[0][stream_number];
+		IRQValue = DMA_IRQs[0][GET_STREAM_NUMBER_DMA1(DMA_Stream)];
 	} else {
-		stream_number = GET_STREAM_NUMBER_DMA2(DMA_Stream);
-		NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority = DMA2_NVIC_PREEMPTION_PRIORITY;
-		NVIC_InitStruct.NVIC_IRQChannel = DMA_IRQs[1][stream_number];
+		IRQValue = DMA_IRQs[0][GET_STREAM_NUMBER_DMA2(DMA_Stream)];
 	}
 	
-	NVIC_InitStruct.NVIC_IRQChannelCmd = DISABLE;
-	NVIC_InitStruct.NVIC_IRQChannelSubPriority = stream_number;
-	
-	/* Init NVIC */
-	NVIC_Init(&NVIC_InitStruct);
+	/* Disable NVIC */
+	NVIC_DisableIRQ(IRQValue);
 	
 	/* Disable DMA stream interrupts */
 	DMA_Stream->CR &= ~(DMA_SxCR_TCIE  | DMA_SxCR_HTIE | DMA_SxCR_TEIE | DMA_SxCR_DMEIE);
@@ -183,21 +176,27 @@ static void TM_DMA_INT_ProcessInterrupt(DMA_Stream_TypeDef* DMA_Stream) {
 	uint16_t flags = TM_DMA_GetFlags(DMA_Stream, DMA_FLAG_ALL);
 	
 	/* Clear flags */
-	TM_DMA_ClearFlags(DMA_Stream);
+	TM_DMA_ClearFlag(DMA_Stream, DMA_FLAG_ALL);
 	
 	/* Call user callback function */
+	
+	/* Check transfer complete flag */
 	if ((flags & DMA_FLAG_TCIF) && (DMA_Stream->CR & DMA_SxCR_TCIE)) {
 		TM_DMA_TransferCompleteHandler(DMA_Stream);
 	}
+	/* Check half-transfer complete flag */
 	if ((flags & DMA_FLAG_HTIF) && (DMA_Stream->CR & DMA_SxCR_HTIE)) {
 		TM_DMA_HalfTransferCompleteHandler(DMA_Stream);
 	}
+	/* Check transfer error flag */
 	if ((flags & DMA_FLAG_TEIF) && (DMA_Stream->CR & DMA_SxCR_TEIE)) {
 		TM_DMA_TransferErrorHandler(DMA_Stream);
 	}
+	/* Check direct error flag */
 	if ((flags & DMA_FLAG_DMEIF) && (DMA_Stream->CR & DMA_SxCR_DMEIE)) {
 		TM_DMA_DirectModeErrorHandler(DMA_Stream);
 	}
+	/* Check FIFO error flag */
 	if ((flags & DMA_FLAG_FEIF) && (DMA_Stream->FCR & DMA_SxFCR_FEIE)) {
 		TM_DMA_FIFOErrorHandler(DMA_Stream);
 	}
