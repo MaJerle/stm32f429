@@ -180,7 +180,7 @@
 #define NRF24L01_NOP_MASK					0xFF
 
 /* Clear interrupt flags */
-#define NRF24L01_CLEAR_INTERRUPTS			TM_NRF24L01_WriteBit(7, 4, Bit_SET); TM_NRF24L01_WriteBit(7, 5, Bit_SET); TM_NRF24L01_WriteBit(7, 6, Bit_SET)		
+#define NRF24L01_CLEAR_INTERRUPTS			do { TM_NRF24L01_WriteBit(7, 4, Bit_SET); TM_NRF24L01_WriteBit(7, 5, Bit_SET); TM_NRF24L01_WriteBit(7, 6, Bit_SET); } while (0);
 
 /* Flush FIFOs */
 #define NRF24L01_FLUSH_TX					NRF24L01_CSN_LOW; TM_SPI_Send(NRF24L01_SPI, NRF24L01_FLUSH_TX_MASK); NRF24L01_CSN_HIGH
@@ -362,12 +362,12 @@ void TM_NRF24L01_PowerUpTx(void) {
 }
 
 void TM_NRF24L01_PowerUpRx(void) {
+	/* Disable RX/TX mode */
+	NRF24L01_CE_LOW;
 	/* Clear RX buffer */
 	NRF24L01_FLUSH_RX;
 	/* Clear interrupts */
 	NRF24L01_CLEAR_INTERRUPTS;
-	/* Disable RX/TX mode */
-	NRF24L01_CE_LOW;
 	/* Setup RX mode */
 	TM_NRF24L01_WriteRegister(NRF24L01_REG_CONFIG, NRF24L01_CONFIG | 1 << NRF24L01_PWR_UP | 1 << NRF24L01_PRIM_RX);
 	/* Start listening */

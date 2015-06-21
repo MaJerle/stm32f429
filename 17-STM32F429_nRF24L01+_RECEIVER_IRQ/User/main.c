@@ -20,6 +20,7 @@
 #include "tm_stm32f4_disco.h"
 #include "tm_stm32f4_delay.h"
 #include "tm_stm32f4_usart.h"
+#include "tm_stm32f4_exti.h"
 #include <stdio.h>
 
 /* Receiver address */
@@ -39,11 +40,16 @@ uint8_t MyAddress[] = {
 	0x7E
 };
 
-uint8_t dataOut[32], dataIn[32];
+uint8_t dataIn[32];
+
+/* Interrupt pin settings */
+#define IRQ_PORT    GPIOA
+#define IRQ_PIN     GPIO_PIN_10
+
+/* NRF transmission status */
+TM_NRF24L01_Transmit_Status_t transmissionStatus;
 
 int main(void) {
-	TM_NRF24L01_Transmit_Status_t transmissionStatus;
-
 	/* Initialize system */
 	SystemInit();
 	
@@ -69,8 +75,21 @@ int main(void) {
 	
 	/* Set TX address, 5 bytes */
 	TM_NRF24L01_SetTxAddress(TxAddress);
+	
+	/* Enable interrupts for NRF24L01+ IRQ pin */
+	TM_EXTI_Attach(IRQ_PORT, IRQ_PIN, TM_EXTI_Trigger_Falling);
 
 	while (1) {
+
+	}
+}
+
+/* Interrupt handler */
+void TM_EXTI_Handler(uint16_t GPIO_Pin) {
+	/* Check for proper interrupt pin */
+	if (GPIO_Pin == IRQ_PIN) {
+		/* NRF pin has occured */
+		
 		/* If data is ready on NRF24L01+ */
 		if (TM_NRF24L01_DataReady()) {
 			/* Get data from NRF24L01+ */

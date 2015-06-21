@@ -67,29 +67,38 @@ int main(void) {
 	
 	/* Set my address, 5 bytes */
 	TM_NRF24L01_SetMyAddress(MyAddress);
+	
 	/* Set TX address, 5 bytes */
 	TM_NRF24L01_SetTxAddress(TxAddress);
 	
 	/* Reset counter */
 	TM_DELAY_SetTime(2001);
+	
 	while (1) {
 		/* Every 2 seconds */
 		if (TM_DELAY_Time() > 2000) {
+			
 			/* Fill data with something */
 			sprintf((char *)dataOut, "abcdefghijklmnoszxABCDEFCBDA");
+			
 			/* Display on USART */
 			TM_USART_Puts(USART1, "pinging: ");
+			
 			/* Reset time, start counting microseconds */
 			TM_DELAY_SetTime(0);
+			
 			/* Transmit data, goes automatically to TX mode */
 			TM_NRF24L01_Transmit(dataOut);
 			
 			/* Turn on led to indicate sending */
 			TM_DISCO_LedOn(LED_GREEN);
+			
 			/* Wait for data to be sent */
 			do {
+				/* Get transmission status */
 				transmissionStatus = TM_NRF24L01_GetTransmissionStatus();
 			} while (transmissionStatus == TM_NRF24L01_Transmit_Status_Sending);
+			
 			/* Turn off led */
 			TM_DISCO_LedOff(LED_GREEN);
 			
@@ -101,6 +110,7 @@ int main(void) {
 			
 			/* Format time */
 			sprintf(str, "%d ms", TM_DELAY_Time());
+			
 			/* Show ping time */
 			TM_USART_Puts(USART1, str);
 			
