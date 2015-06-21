@@ -22,6 +22,62 @@
 
 #include "stdio.h"
 
+void ImportantFunction2(void);
+void ImportantFunction1(void);
+
+void ImportantFunction1(void) {
+	/* Important function 1 */
+	uint32_t prim;
+	
+	/* Do some stuff here which can be interrupted */
+	
+	/* Read PRIMASK register */
+	/* Returns 0 if they are enabled, or non-zero if enabled */
+	prim = __get_PRIMASK();
+	
+	/* Disable interrupts */
+	__disable_irq();
+	
+	/* Do some stuff here which can not be interrupted */
+	
+	/* Call subfunction */
+	ImportantFunction2();
+	
+	/* Do some stuff here which can not be interrupted */
+	/* This part is not still interrupt safe because ImportantFunction2 will not enable interrupts */
+	
+	/* Enable interrupts back */
+	if (!prim) {
+		__enable_irq();
+	}
+	
+	/* Do some stuff here which can be interrupted */
+}
+
+void ImportantFunction2(void) {
+	/* Important function 2 */
+	uint32_t prim;
+	
+	/* Do some stuff here which can be interrupted */
+	
+	/* Read PRIMASK register */
+	/* Returns 0 if they are enabled, or non-zero if enabled */
+	prim = __get_PRIMASK();
+	
+	/* Disable interrupts */
+	__disable_irq();
+	
+	/* Do some stuff here which can not be interrupted */
+	
+	/* Enable interrupts back only if they were enabled before we disable it here in this function */
+	if (!prim) {
+		__enable_irq();
+	}
+	
+	/* Do some stuff here which can be interrupted */
+}
+
+
 int main(void) {
 	/* Initialize system */
 	SystemInit();

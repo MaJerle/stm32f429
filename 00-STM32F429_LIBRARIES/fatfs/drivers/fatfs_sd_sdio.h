@@ -212,19 +212,19 @@ typedef struct {
  * @brief SD Card Status
  */
 typedef struct {
-        __IO uint8_t DAT_BUS_WIDTH;__IO uint8_t SECURED_MODE;__IO uint16_t SD_CARD_TYPE;__IO uint32_t SIZE_OF_PROTECTED_AREA;__IO uint8_t SPEED_CLASS;__IO uint8_t PERFORMANCE_MOVE;__IO uint8_t AU_SIZE;__IO uint16_t ERASE_SIZE;__IO uint8_t ERASE_TIMEOUT;__IO uint8_t ERASE_OFFSET;
+	__IO uint8_t DAT_BUS_WIDTH;__IO uint8_t SECURED_MODE;__IO uint16_t SD_CARD_TYPE;__IO uint32_t SIZE_OF_PROTECTED_AREA;__IO uint8_t SPEED_CLASS;__IO uint8_t PERFORMANCE_MOVE;__IO uint8_t AU_SIZE;__IO uint16_t ERASE_SIZE;__IO uint8_t ERASE_TIMEOUT;__IO uint8_t ERASE_OFFSET;
 } SD_CardStatus;
 
 /** 
  * @brief SD Card information
  */
 typedef struct {
-        SD_CSD SD_csd;
-        SD_CID SD_cid;
-        uint64_t CardCapacity; /*!< Card Capacity */
-        uint32_t CardBlockSize; /*!< Card Block Size */
-        uint16_t RCA;
-        uint8_t CardType;
+	SD_CSD SD_csd;
+	SD_CID SD_cid;
+	uint64_t CardCapacity; /*!< Card Capacity */
+	uint32_t CardBlockSize; /*!< Card Block Size */
+	uint16_t RCA;
+	uint8_t CardType;
 } SD_CardInfo;
 
 /**

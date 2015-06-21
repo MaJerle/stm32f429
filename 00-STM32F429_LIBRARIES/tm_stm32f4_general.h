@@ -3,7 +3,7 @@
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
  * @link    http://stm32f4-discovery.com/2015/03/library-54-general-library-for-stm32f4xx-devices
- * @version v1.3
+ * @version v1.4
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   GENERAL library for STM32F4xx devices
@@ -28,7 +28,7 @@
 @endverbatim
  */
 #ifndef TM_GENERAL_H
-#define TM_GENERAL_H 130
+#define TM_GENERAL_H 140
 
 /* C++ detection */
 #ifdef __cplusplus
@@ -64,6 +64,10 @@ extern C {
  * \par Changelog
  *
 @verbatim
+ Version 1.4
+  - June 20, 2015
+  - Changed interrupt enable/disable functions. They now supports nested interrupt disabling
+ 
  Version 1.3
   - April 13, 2015
   - Added float number operations
@@ -192,18 +196,19 @@ TM_GENERAL_ResetSource_t TM_GENERAL_GetResetSource(uint8_t reset_flags);
  * @brief  Disables all interrupts in system
  * @param  None
  * @retval None
- * @note   Defined as macro for faster execution
  */
-#define TM_GENERAL_DisableInterrupts()       __disable_irq()
+void TM_GENERAL_DisableInterrupts(void);
 
 /**
  * @brief  Enables interrupts in system.
- * @note   Only defined interrupts in NVIC are enabled
+ * @note   This function has nesting support. This means that if you call @ref TM_GENERAL_DisableInterrupts() 4 times,
+ *         then you have to call this function also 4 times to enable interrupts.
  * @param  None
- * @retval None
- * @note   Defined as macro for faster execution
+ * @retval Interrupt enabled status:
+ *            - 0: Interrupts were not enabled
+ *            - > 0: Interrupts were enabled
  */
-#define TM_GENERAL_EnableInterrupts()        __enable_irq()
+uint8_t TM_GENERAL_EnableInterrupts(void);
 
 /**
  * @brief  Checks if code execution is inside active IRQ

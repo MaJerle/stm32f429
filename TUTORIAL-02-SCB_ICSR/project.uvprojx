@@ -367,7 +367,7 @@
             <v6LangP>0</v6LangP>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>STM32F40_41xxx,USE_STDPERIPH_DRIVER,STM32F4XX,KEIL_IDE,TM_DISCO_STM32F4_DISCOVERY,PLL_M=8,PLL_N=336,PLL_P=2,PLL_Q=7</Define>
+              <Define>STM32F40_41xxx,USE_STDPERIPH_DRIVER,ARM_MATH_CM4,__FPU_PRESENT=1,STM32F4XX,KEIL_IDE,TM_DISCO_STM32F4_DISCOVERY,PLL_M=8,PLL_N=336,PLL_P=2,PLL_Q=7</Define>
               <Undefine></Undefine>
               <IncludePath>.\User;.\TM;..\00-STM32F429_LIBRARIES;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\inc;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Include;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Include</IncludePath>
             </VariousControls>
@@ -701,21 +701,6 @@
               <FileName>tm_stm32f4_usart.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_usart.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_general.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_general.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1122,7 +1107,7 @@
             <v6LangP>0</v6LangP>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>STM32F401xx,USE_STDPERIPH_DRIVER,STM32F4XX,KEIL_IDE,TM_DISCO_STM32F401_DISCOVERY,HSE_VALUE=8000000,PLL_M=8,PLL_N=336,PLL_P=4,PLL_Q=7</Define>
+              <Define>STM32F401xx,USE_STDPERIPH_DRIVER,ARM_MATH_CM4,__FPU_PRESENT=1,STM32F4XX,KEIL_IDE,TM_DISCO_STM32F401_DISCOVERY,HSE_VALUE=8000000,PLL_M=8,PLL_N=336,PLL_P=4,PLL_Q=7</Define>
               <Undefine></Undefine>
               <IncludePath>.\User;.\TM;..\00-STM32F429_LIBRARIES;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\inc;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Include;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Include</IncludePath>
             </VariousControls>
@@ -1456,21 +1441,6 @@
               <FileName>tm_stm32f4_usart.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_usart.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_general.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_general.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -1877,7 +1847,7 @@
             <v6LangP>0</v6LangP>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>STM32F411xx,USE_STDPERIPH_DRIVER,STM32F4XX,KEIL_IDE,TM_DISCO_STM32F411_DISCOVERY,HSE_VALUE=8000000,PLL_M=8,PLL_N=400,PLL_P=4,PLL_Q=8</Define>
+              <Define>STM32F411xx,USE_STDPERIPH_DRIVER,ARM_MATH_CM4,__FPU_PRESENT=1,STM32F4XX,KEIL_IDE,TM_DISCO_STM32F411_DISCOVERY,HSE_VALUE=8000000,PLL_M=8,PLL_N=400,PLL_P=4,PLL_Q=8</Define>
               <Undefine></Undefine>
               <IncludePath>.\User;.\TM;..\00-STM32F429_LIBRARIES;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\inc;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Include;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Include</IncludePath>
             </VariousControls>
@@ -2211,21 +2181,6 @@
               <FileName>tm_stm32f4_usart.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_usart.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_general.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_general.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -2632,7 +2587,7 @@
             <v6LangP>0</v6LangP>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>STM32F429_439xx,USE_STDPERIPH_DRIVER,STM32F4XX,KEIL_IDE,TM_DISCO_STM32F429_DISCOVERY,HSE_VALUE=8000000,PLL_M=8,PLL_N=360,PLL_P=2,PLL_Q=7</Define>
+              <Define>STM32F429_439xx,USE_STDPERIPH_DRIVER,ARM_MATH_CM4,__FPU_PRESENT=1,STM32F4XX,KEIL_IDE,TM_DISCO_STM32F429_DISCOVERY,HSE_VALUE=8000000,PLL_M=8,PLL_N=360,PLL_P=2,PLL_Q=7</Define>
               <Undefine></Undefine>
               <IncludePath>.\User;.\TM;..\00-STM32F429_LIBRARIES;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\inc;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Include;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Include</IncludePath>
             </VariousControls>
@@ -2966,21 +2921,6 @@
               <FileName>tm_stm32f4_usart.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_usart.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_general.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_general.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -3387,7 +3327,7 @@
             <v6LangP>0</v6LangP>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>STM32F401xx,USE_STDPERIPH_DRIVER,STM32F4XX,KEIL_IDE,TM_DISCO_NUCLEO_F401,USE_INTERNAL_RC_CLOCK,PLL_M=16,PLL_N=336,PLL_P=4,PLL_Q=7</Define>
+              <Define>STM32F401xx,USE_STDPERIPH_DRIVER,ARM_MATH_CM4,__FPU_PRESENT=1,STM32F4XX,KEIL_IDE,TM_DISCO_NUCLEO_F401,USE_INTERNAL_RC_CLOCK,PLL_M=16,PLL_N=336,PLL_P=4,PLL_Q=7</Define>
               <Undefine></Undefine>
               <IncludePath>.\User;.\TM;..\00-STM32F429_LIBRARIES;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\inc;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Include;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Include</IncludePath>
             </VariousControls>
@@ -3721,21 +3661,6 @@
               <FileName>tm_stm32f4_usart.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_usart.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_general.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_general.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -4142,7 +4067,7 @@
             <v6LangP>0</v6LangP>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>STM32F401xx,USE_STDPERIPH_DRIVER,STM32F4XX,KEIL_IDE,TM_DISCO_NUCLEO_F401,HSE_VALUE=8000000,PLL_M=8,PLL_N=336,PLL_P=4,PLL_Q=7</Define>
+              <Define>STM32F401xx,USE_STDPERIPH_DRIVER,ARM_MATH_CM4,__FPU_PRESENT=1,STM32F4XX,KEIL_IDE,TM_DISCO_NUCLEO_F401,HSE_VALUE=8000000,PLL_M=8,PLL_N=336,PLL_P=4,PLL_Q=7</Define>
               <Undefine></Undefine>
               <IncludePath>.\User;.\TM;..\00-STM32F429_LIBRARIES;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\inc;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Include;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Include</IncludePath>
             </VariousControls>
@@ -4476,21 +4401,6 @@
               <FileName>tm_stm32f4_usart.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_usart.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_general.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_general.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -4897,7 +4807,7 @@
             <v6LangP>0</v6LangP>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>STM32F411xE,USE_STDPERIPH_DRIVER,STM32F4XX,KEIL_IDE,TM_DISCO_NUCLEO_F411,USE_INTERNAL_RC_CLOCK,PLL_M=16,PLL_N=400,PLL_P=4,PLL_Q=8</Define>
+              <Define>STM32F411xE,USE_STDPERIPH_DRIVER,ARM_MATH_CM4,__FPU_PRESENT=1,STM32F4XX,KEIL_IDE,TM_DISCO_NUCLEO_F411,USE_INTERNAL_RC_CLOCK,PLL_M=16,PLL_N=400,PLL_P=4,PLL_Q=8</Define>
               <Undefine></Undefine>
               <IncludePath>.\User;.\TM;..\00-STM32F429_LIBRARIES;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\inc;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Include;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Include</IncludePath>
             </VariousControls>
@@ -5231,21 +5141,6 @@
               <FileName>tm_stm32f4_usart.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_usart.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_general.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_general.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -5652,7 +5547,7 @@
             <v6LangP>0</v6LangP>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>STM32F411xx,USE_STDPERIPH_DRIVER,STM32F4XX,KEIL_IDE,TM_DISCO_NUCLEO_F411,HSE_VALUE=8000000,PLL_M=8,PLL_N=400,PLL_P=4,PLL_Q=8</Define>
+              <Define>STM32F411xx,USE_STDPERIPH_DRIVER,ARM_MATH_CM4,__FPU_PRESENT=1,STM32F4XX,KEIL_IDE,TM_DISCO_NUCLEO_F411,HSE_VALUE=8000000,PLL_M=8,PLL_N=400,PLL_P=4,PLL_Q=8</Define>
               <Undefine></Undefine>
               <IncludePath>.\User;.\TM;..\00-STM32F429_LIBRARIES;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\inc;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Include;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Include</IncludePath>
             </VariousControls>
@@ -5986,21 +5881,6 @@
               <FileName>tm_stm32f4_usart.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_usart.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_general.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_general.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -6407,7 +6287,7 @@
             <v6LangP>0</v6LangP>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>STM32F446xx,USE_STDPERIPH_DRIVER,STM32F4XX,KEIL_IDE,HSE_VALUE=8000000,PLL_M=8,PLL_N=360,PLL_P=2,PLL_Q=7</Define>
+              <Define>STM32F446xx,USE_STDPERIPH_DRIVER,ARM_MATH_CM4,__FPU_PRESENT=1,STM32F4XX,KEIL_IDE,HSE_VALUE=8000000,PLL_M=8,PLL_N=360,PLL_P=2,PLL_Q=7</Define>
               <Undefine></Undefine>
               <IncludePath>.\User;.\TM;..\00-STM32F429_LIBRARIES;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\inc;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Include;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Include</IncludePath>
             </VariousControls>
@@ -6741,21 +6621,6 @@
               <FileName>tm_stm32f4_usart.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_usart.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_general.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_general.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -7162,7 +7027,7 @@
             <v6LangP>0</v6LangP>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>STM32F429_439xx,USE_STDPERIPH_DRIVER,STM32F4XX,KEIL_IDE,TM_DISCO_STM324x9_EVAL,HSE_VALUE=25000000,PLL_M=25,PLL_N=360,PLL_P=2,PLL_Q=7</Define>
+              <Define>STM32F429_439xx,USE_STDPERIPH_DRIVER,ARM_MATH_CM4,__FPU_PRESENT=1,STM32F4XX,KEIL_IDE,TM_DISCO_STM324x9_EVAL,HSE_VALUE=25000000,PLL_M=25,PLL_N=360,PLL_P=2,PLL_Q=7</Define>
               <Undefine></Undefine>
               <IncludePath>.\User;.\TM;..\00-STM32F429_LIBRARIES;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\inc;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Include;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm;..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\CMSIS\Include</IncludePath>
             </VariousControls>
@@ -7496,21 +7361,6 @@
               <FileName>tm_stm32f4_usart.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_usart.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usart.h</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_general.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_general.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_general.h</FilePath>
             </File>
           </Files>
         </Group>

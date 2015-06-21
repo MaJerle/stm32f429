@@ -72,9 +72,6 @@ void TM_USART_DMA_Init(USART_TypeDef* USARTx) {
 		RCC->AHB1ENR |= RCC_AHB1ENR_DMA1EN;
 	}
 	
-	/* Deinit stream */
-	//DMA_DeInit(USART_Settings->DMA_Stream);
-	
 	/* Clear flags */
 	TM_DMA_ClearFlags(USART_Settings->DMA_Stream);
 	

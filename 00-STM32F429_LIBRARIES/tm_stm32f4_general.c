@@ -20,6 +20,7 @@
 
 /* System speed in MHz */
 uint16_t GENERAL_SystemSpeedInMHz = 0;
+static uint16_t InterruptDisabledCount = 0;
 
 /* Private functions */
 static uint32_t x_na_y(uint32_t x, uint8_t y) {
@@ -32,6 +33,30 @@ static uint32_t x_na_y(uint32_t x, uint8_t y) {
 	
 	/* Return output value */
 	return output;
+}
+
+void TM_GENERAL_DisableInterrupts(void) {
+	/* Disable interrupts */
+	__disable_irq();
+	
+	/* Increase number of disable interrupt function calls */
+	InterruptDisabledCount++;
+}
+
+uint8_t TM_GENERAL_EnableInterrupts(void) {
+	/* Decrease number of disable interrupt function calls */
+	if (InterruptDisabledCount) {
+		InterruptDisabledCount--;
+	}
+	
+	/* Check if we are ready to enable interrupts */
+	if (!InterruptDisabledCount) {
+		/* Enable interrupts */
+		__enable_irq();
+	}
+	
+	/* Return interrupt enabled status */
+	return !InterruptDisabledCount;
 }
 
 void TM_GENERAL_SystemReset(void) {

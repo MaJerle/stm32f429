@@ -2229,12 +2229,15 @@ SD_Error SD_ProcessIRQSrc (void)
  * @param  None.
  * @retval None.
  */
-void SD_ProcessDMAIRQ (void)
-{
-        if (DMA2->LISR & SD_SDIO_DMA_FLAG_TCIF) {
-                DMAEndOfTransfer = 0x01;
-                DMA_ClearFlag (SD_SDIO_DMA_STREAM, SD_SDIO_DMA_FLAG_TCIF | SD_SDIO_DMA_FLAG_FEIF);
-        }
+void SD_ProcessDMAIRQ(void) {
+#ifdef SD_SDIO_DMA_STREAM3
+	if (DMA2->LISR & SD_SDIO_DMA_FLAG_TCIF) {
+#else
+	if (DMA2->HISR & SD_SDIO_DMA_FLAG_TCIF) {
+#endif
+		DMAEndOfTransfer = 0x01;
+		DMA_ClearFlag(SD_SDIO_DMA_STREAM, SD_SDIO_DMA_FLAG_TCIF | SD_SDIO_DMA_FLAG_FEIF);
+	}
 }
 
 /**
@@ -2244,24 +2247,24 @@ void SD_ProcessDMAIRQ (void)
  */
 static SD_Error CmdError (void)
 {
-        SD_Error errorstatus = SD_OK;
-        uint32_t timeout;
+	SD_Error errorstatus = SD_OK;
+	uint32_t timeout;
 
-        timeout = SDIO_CMD0TIMEOUT; /*!< 10000 */
+	timeout = SDIO_CMD0TIMEOUT; /*!< 10000 */
 
-        while ((timeout > 0) && (SDIO_GetFlagStatus (SDIO_FLAG_CMDSENT) == RESET)) {
-                timeout--;
-        }
+	while ((timeout > 0) && (SDIO_GetFlagStatus (SDIO_FLAG_CMDSENT) == RESET)) {
+		timeout--;
+	}
 
-        if (timeout == 0) {
-                errorstatus = SD_CMD_RSP_TIMEOUT;
-                return (errorstatus);
-        }
+	if (timeout == 0) {
+		errorstatus = SD_CMD_RSP_TIMEOUT;
+		return (errorstatus);
+	}
 
-        /*!< Clear all the static flags */
-        SDIO_ClearFlag (SDIO_STATIC_FLAGS );
+	/*!< Clear all the static flags */
+	SDIO_ClearFlag (SDIO_STATIC_FLAGS );
 
-        return (errorstatus);
+	return (errorstatus);
 }
 
 /**
@@ -2271,31 +2274,31 @@ static SD_Error CmdError (void)
  */
 static SD_Error CmdResp7Error (void)
 {
-        SD_Error errorstatus = SD_OK;
-        uint32_t status;
-        uint32_t timeout = SDIO_CMD0TIMEOUT;
+	SD_Error errorstatus = SD_OK;
+	uint32_t status;
+	uint32_t timeout = SDIO_CMD0TIMEOUT;
 
-        status = SDIO ->STA;
+	status = SDIO ->STA;
 
-        while (!(status & (SDIO_FLAG_CCRCFAIL | SDIO_FLAG_CMDREND | SDIO_FLAG_CTIMEOUT)) && (timeout > 0)) {
-                timeout--;
-                status = SDIO ->STA;
-        }
+	while (!(status & (SDIO_FLAG_CCRCFAIL | SDIO_FLAG_CMDREND | SDIO_FLAG_CTIMEOUT)) && (timeout > 0)) {
+		timeout--;
+		status = SDIO ->STA;
+	}
 
-        if ((timeout == 0) || (status & SDIO_FLAG_CTIMEOUT)) {
-                /*!< Card is not V2.0 complient or card does not support the set voltage range */
-                errorstatus = SD_CMD_RSP_TIMEOUT;
-                SDIO_ClearFlag (SDIO_FLAG_CTIMEOUT);
-                return (errorstatus);
-        }
+	if ((timeout == 0) || (status & SDIO_FLAG_CTIMEOUT)) {
+		/*!< Card is not V2.0 complient or card does not support the set voltage range */
+		errorstatus = SD_CMD_RSP_TIMEOUT;
+		SDIO_ClearFlag (SDIO_FLAG_CTIMEOUT);
+		return (errorstatus);
+	}
 
-        if (status & SDIO_FLAG_CMDREND) {
-                /*!< Card is SD V2.0 compliant */
-                errorstatus = SD_OK;
-                SDIO_ClearFlag (SDIO_FLAG_CMDREND);
-                return (errorstatus);
-        }
-        return (errorstatus);
+	if (status & SDIO_FLAG_CMDREND) {
+		/*!< Card is SD V2.0 compliant */
+		errorstatus = SD_OK;
+		SDIO_ClearFlag (SDIO_FLAG_CMDREND);
+		return (errorstatus);
+	}
+	return (errorstatus);
 }
 
 /**
