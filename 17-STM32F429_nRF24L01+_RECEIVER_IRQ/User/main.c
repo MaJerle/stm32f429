@@ -1,5 +1,5 @@
 /**
- *	Keil project for NRF24L01+ transceiver
+ *	Keil project for NRF24L01+ transceiver using IRQ pin for data receive
  *
  *	Receiver code
  *
