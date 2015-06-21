@@ -179,17 +179,14 @@
 #define NRF24L01_R_RX_PL_WID_MASK			0x60
 #define NRF24L01_NOP_MASK					0xFF
 
-/* Clear interrupt flags */
-#define NRF24L01_CLEAR_INTERRUPTS			do { TM_NRF24L01_WriteBit(7, 4, Bit_SET); TM_NRF24L01_WriteBit(7, 5, Bit_SET); TM_NRF24L01_WriteBit(7, 6, Bit_SET); } while (0);
-
 /* Flush FIFOs */
-#define NRF24L01_FLUSH_TX					NRF24L01_CSN_LOW; TM_SPI_Send(NRF24L01_SPI, NRF24L01_FLUSH_TX_MASK); NRF24L01_CSN_HIGH
-#define NRF24L01_FLUSH_RX					NRF24L01_CSN_LOW; TM_SPI_Send(NRF24L01_SPI, NRF24L01_FLUSH_RX_MASK); NRF24L01_CSN_HIGH
+#define NRF24L01_FLUSH_TX					do { NRF24L01_CSN_LOW; TM_SPI_Send(NRF24L01_SPI, NRF24L01_FLUSH_TX_MASK); NRF24L01_CSN_HIGH; } while (0)
+#define NRF24L01_FLUSH_RX					do { NRF24L01_CSN_LOW; TM_SPI_Send(NRF24L01_SPI, NRF24L01_FLUSH_RX_MASK); NRF24L01_CSN_HIGH; } while (0)
 
 #define NRF24L01_TRANSMISSON_OK 			0
 #define NRF24L01_MESSAGE_LOST   			1
 
-#define NRF24L01_CHECK_BIT(reg,bit)			(reg & (1 << bit))
+#define NRF24L01_CHECK_BIT(reg, bit)       (reg & (1 << bit))
 
 typedef struct {
 	uint8_t PayloadSize;				//Payload size
@@ -204,13 +201,12 @@ void TM_NRF24L01_WriteBit(uint8_t reg, uint8_t bit, uint8_t value);
 uint8_t TM_NRF24L01_ReadBit(uint8_t reg, uint8_t bit);
 uint8_t TM_NRF24L01_ReadRegister(uint8_t reg);
 void TM_NRF24L01_ReadRegisterMulti(uint8_t reg, uint8_t* data, uint8_t count);
-void TM_NRF24L01_WriteRegister(uint8_t reg, uint8_t value);
 void TM_NRF24L01_WriteRegisterMulti(uint8_t reg, uint8_t *data, uint8_t count);
 void TM_NRF24L01_SoftwareReset(void);
 uint8_t TM_NRF24L01_RxFifoEmpty(void);
 
 /* NRF structure */
-TM_NRF24L01_t TM_NRF24L01_Struct;
+static TM_NRF24L01_t TM_NRF24L01_Struct;
 
 void TM_NRF24L01_InitPins(void) {
 	/* Init pins */

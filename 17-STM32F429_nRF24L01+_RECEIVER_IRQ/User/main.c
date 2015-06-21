@@ -88,10 +88,11 @@ int main(void) {
 void TM_EXTI_Handler(uint16_t GPIO_Pin) {
 	/* Check for proper interrupt pin */
 	if (GPIO_Pin == IRQ_PIN) {
-		/* NRF pin has occured */
+		/* Read interrupts */
+		uint8_t irq = NRF24L01_GET_INTERRUPTS;
 		
 		/* If data is ready on NRF24L01+ */
-		if (TM_NRF24L01_DataReady()) {
+		if (irq & NRF24L01_IRQ_DATA_READY) {
 			/* Get data from NRF24L01+ */
 			TM_NRF24L01_GetData(dataIn);
 			
@@ -113,5 +114,8 @@ void TM_EXTI_Handler(uint16_t GPIO_Pin) {
 			/* Go back to RX mode */
 			TM_NRF24L01_PowerUpRx();		
 		}
+		
+		/* Clear interrupts */
+		NRF24L01_CLEAR_INTERRUPTS;
 	}
 }

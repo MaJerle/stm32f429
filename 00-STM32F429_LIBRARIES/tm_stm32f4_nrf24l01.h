@@ -189,6 +189,17 @@ typedef enum {
 	TM_NRF24L01_OutputPower_0dBm    /*!< Output power set to 0dBm */
 } TM_NRF24L01_OutputPower_t;
 
+/* Clear interrupt flags */
+#define NRF24L01_CLEAR_INTERRUPTS   do { TM_NRF24L01_WriteRegister(0x07, 0x70); } while (0)
+
+/* Gets interrupt status from device */
+#define NRF24L01_GET_INTERRUPTS     TM_NRF24L01_GetStatus()
+
+/* Interrupt masks */
+#define NRF24L01_IRQ_DATA_READY     0x40 /*!< Data ready for receive */
+#define NRF24L01_IRQ_TRAN_OK        0x20 /*!< Transmission went OK */
+#define NRF24L01_IRQ_MAX_RT         0x10 /*!< Max retransmissions reached, last transmission failed */
+
 /**
  * @}
  */
@@ -316,6 +327,9 @@ void TM_NRF24L01_SetRF(TM_NRF24L01_DataRate_t DataRate, TM_NRF24L01_OutputPower_
  * @retval Status register from NRF
  */
 uint8_t TM_NRF24L01_GetStatus(void);
+
+/* Private */
+void TM_NRF24L01_WriteRegister(uint8_t reg, uint8_t value);
 
 /**
  * @}
