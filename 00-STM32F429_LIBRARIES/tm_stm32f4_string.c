@@ -126,7 +126,7 @@ TM_STRING_t* TM_STRING_ReplaceString(TM_STRING_t* String, uint16_t pos, char* st
 	/* Check size */
 	if (strlen(str) > strlen(String->Strings[pos])) {
 		/* Allocate new memory */
-		tmp = (char *)malloc((strlen(str) + 1) * sizeof(char *));
+		tmp = (char *) malloc((strlen(str) + 1) * sizeof(char *));
 		
 		/* Check if allocated */
 		if (tmp == NULL) {

@@ -110,6 +110,7 @@ TM_USB_VCP_Result TM_USB_VCP_Getc(uint8_t* c) {
 
 TM_USB_VCP_Result TM_USB_VCP_Putc(volatile char c) {
 	uint8_t ce = (uint8_t)c;
+	
 	/* Send data over USB */
 	VCP_DataTx(&ce, 1);
 	
@@ -121,6 +122,14 @@ TM_USB_VCP_Result TM_USB_VCP_Puts(char* str) {
 	while (*str) {
 		TM_USB_VCP_Putc(*str++);
 	}
+	
+	/* Return OK */
+	return TM_USB_VCP_OK;
+}
+
+TM_USB_VCP_Result TM_USB_VCP_Send(uint8_t* DataArray, uint32_t Length) {
+	/* Send array */
+	VCP_DataTx(DataArray, Length);
 	
 	/* Return OK */
 	return TM_USB_VCP_OK;

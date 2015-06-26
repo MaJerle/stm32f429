@@ -61,7 +61,7 @@ uint8_t TM_GENERAL_EnableInterrupts(void) {
 
 void TM_GENERAL_SystemReset(void) {
 	/* Call user callback function */
-	TM_GENERAL_SoftwareResetCallback();
+	TM_GENERAL_SystemResetCallback();
 	
 	/* Perform a system software reset */
 	NVIC_SystemReset();
@@ -222,3 +222,10 @@ uint32_t TM_GENERAL_NextPowerOf2(uint32_t number) {
 	/* Return calculated number */
 	return number;
 }
+
+__weak void TM_GENERAL_SystemResetCallback(void) {
+	/* NOTE: This function should not be modified, when the callback is needed,
+            the TM_GENERAL_SystemResetCallback could be implemented in the user file
+	*/
+}
+

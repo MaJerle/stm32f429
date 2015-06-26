@@ -220,8 +220,11 @@ void TM_DELAY_TimerDelete(TM_DELAY_Timer_t* Timer) {
 		return;
 	}
 	
+	/* Get interrupt status */
+	irq = __get_PRIMASK();
+
 	/* Disable interrupts */
-	irq = __disable_irq();
+	__disable_irq();
 	
 	/* Shift array up */
 	for (; i < (CustomTimers.Count - 1); i++) {

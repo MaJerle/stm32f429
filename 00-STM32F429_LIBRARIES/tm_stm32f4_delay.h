@@ -281,7 +281,10 @@ static __INLINE void Delayms(uint32_t millis) {
 	volatile uint32_t timer = TM_Time;
 
 	/* Wait for timer to count milliseconds */
-	while ((TM_Time - timer) < millis);
+	while ((TM_Time - timer) < millis) {
+		/* Go sleep, wait systick interrupt */
+		__WFI();
+	}
 }
 
 /**

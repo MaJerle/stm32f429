@@ -65,6 +65,7 @@ extern C {
 #include "defines.h"
 #include "tm_stm32f4_sdram.h"
 
+/* FATFS functions */
 #include "diskio.h"
 
 /**
@@ -72,9 +73,11 @@ extern C {
  * @brief    Library defines
  * @{
  */
+
 #ifndef FATFS_SDRAM_SECTOR_SIZE
 #define FATFS_SDRAM_SECTOR_SIZE    512
 #endif
+
 /**
  * @}
  */
@@ -91,14 +94,16 @@ extern C {
 
 /**
  * @defgroup TM_FATFS_SDRAM_Functions
- * @brief    Library Functions
+ * @brief    Library Functions - Low level functions for FATFS implementation
  * @{
  */
+
 DSTATUS TM_FATFS_SDRAM_disk_initialize(void);
 DSTATUS TM_FATFS_SDRAM_disk_status(void);
 DRESULT TM_FATFS_SDRAM_disk_ioctl(BYTE cmd, void *buff);
 DRESULT TM_FATFS_SDRAM_disk_read(BYTE *buff, DWORD sector, UINT count);
 DRESULT TM_FATFS_SDRAM_disk_write(const BYTE *buff, DWORD sector, UINT count);
+
 /**
  * @}
  */

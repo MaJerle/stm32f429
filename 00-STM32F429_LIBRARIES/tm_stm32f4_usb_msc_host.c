@@ -19,7 +19,7 @@
 #include "tm_stm32f4_usb_msc_host.h"
 
 /* Private variables */
-USB_OTG_CORE_HANDLE     USB_OTG_Core;
+USB_OTG_CORE_HANDLE     USB_OTG_MSC_Core;
 USBH_HOST               USB_Host;
 uint8_t                 TM_USB_MSCHOST_INT_Initialized = 0;
 TM_USB_MSCHOST_Result_t TM_USB_MSCHOST_INT_Result;
@@ -28,7 +28,7 @@ TM_USB_MSCHOST_Result_t TM_USB_MSCHOST_Init() {
 	/* Set default */
 	TM_USB_MSCHOST_INT_Result = TM_USB_MSCHOST_Result_Disconnected;
 	/* Init Host Library */
-	USBH_Init(	&USB_OTG_Core,
+	USBH_Init(	&USB_OTG_MSC_Core,
 			#ifdef USE_USB_OTG_FS
 				USB_OTG_FS_CORE_ID,
 			#else
@@ -37,10 +37,13 @@ TM_USB_MSCHOST_Result_t TM_USB_MSCHOST_Init() {
 				&USB_Host,
 				&USBH_MSC_cb, 
 				&USR_Callbacks);
-	/* Process */
-	TM_USB_MSCHOST_Process();
+	
 	/* Initialized */
 	TM_USB_MSCHOST_INT_Initialized = 1;
+	
+	/* Process */
+	TM_USB_MSCHOST_Process();
+	
 	/* Is connected already? */
 	return TM_USB_MSCHOST_Device();
 }
@@ -49,7 +52,7 @@ void TM_USB_MSCHOST_Process(void) {
 	/* if library is initialized */
 	if (TM_USB_MSCHOST_INT_Initialized) {
 		/* Process */
-		USBH_Process(&USB_OTG_Core, &USB_Host);
+		USBH_Process(&USB_OTG_MSC_Core, &USB_Host);
 	}
 }
 

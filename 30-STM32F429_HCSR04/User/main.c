@@ -1,7 +1,7 @@
 /**
  *	Keil project for HC-SR04 Ultrasonic distance sensor
  *	
- * 	Tested on STM32F4-, STM32F429- Discovery and Nucleo F401RE boards
+ * 	Tested on STM32F4-, STM32F429- Discovery and Nucleo F401/411RE boards
  *
  *	Before you start, select your target, on the right of the "Load" button
  *
@@ -37,7 +37,7 @@ int main(void) {
 	/* Turn on LED red */
 	TM_DISCO_LedOn(LED_RED);
 	
-	/* Initialize distance sensor1 on pins; TRIGGER: PD0, ECHO: PC1 */
+	/* Initialize distance sensor1 on pins; ECHO: PD0, TRIGGER: PC1 */
 	if (!TM_HCSR04_Init(&HCSR04, GPIOD, GPIO_PIN_0, GPIOC, GPIO_PIN_1)) {
 		/* Sensor is not ready to use */
 		/* Maybe wiring is incorrect */

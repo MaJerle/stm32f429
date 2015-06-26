@@ -286,9 +286,7 @@ static __INLINE void TM_GENERAL_DWTCounterDelayus(uint32_t micros) {
 	micros -= 12;
 	
 	/* Wait till done */
-	while ((TM_GENERAL_DWTCounterGetValue() - c) < micros) {
-		/* Do nothing */
-	}
+	while ((TM_GENERAL_DWTCounterGetValue() - c) < micros);
 }
 
 /**
@@ -305,22 +303,8 @@ static __INLINE void TM_GENERAL_DWTCounterDelayms(uint32_t millis) {
 	millis -= 12;
 	
 	/* Wait till done */
-	while ((TM_GENERAL_DWTCounterGetValue() - c) < millis) {
-		/* Do nothing */
-	}
+	while ((TM_GENERAL_DWTCounterGetValue() - c) < millis);
 }
-
-/**
- * @brief  Checks if number is power of 2
- * @note   It can be used to determine if number has more than just one bit set
- *         If only one bit is set, function will return > 0 because this is power of 2.
- * @param  number: Number to check if it is power of 2
- * @retval Is power of 2 status:
- *            - 0: Number if not power of 2
- *            - > 0: Number is power of 2
- * @note   Defined as macro for faster execution
- */
-#define TM_GENERAL_IsNumberPowerOfTwo(number)    (number && !(number & (number - 1)))
 
 /**
  * @brief  Checks if number is odd or even
@@ -330,7 +314,7 @@ static __INLINE void TM_GENERAL_DWTCounterDelayms(uint32_t millis) {
  *            - > 0: Number is even
  * @note   Defined as macro for faster execution
  */
-#define TM_GENERAL_IsNumberEven(number)    ((number & 1) == 0)
+#define TM_GENERAL_IsNumberEven(number)          ((number & 1) == 0)
 
 /**
  * @brief  Converts float coded number into integer and decimal part
@@ -354,9 +338,21 @@ void TM_GENERAL_ConvertFloat(TM_GENERAL_Float_t* Float_Struct, float Number, uin
 float TM_GENERAL_RoundFloat(float Number, uint8_t decimals);
 
 /**
+ * @brief  Checks if number is power of 2
+ * @note   It can be used to determine if number has more than just one bit set
+ *         If only one bit is set, function will return > 0 because this is power of 2.
+ * @param  number: Number to check if it is power of 2
+ * @retval Is power of 2 status:
+ *            - 0: Number if not power of 2
+ *            - > 0: Number is power of 2
+ * @note   Defined as macro for faster execution
+ */
+#define TM_GENERAL_IsNumberPowerOfTwo(number)    (number && !(number & (number - 1)))
+
+/**
  * @brief  Calculates next power of 2 from given number
  * @param  number: Input number to be calculated
- * @param  Number with next power of 2
+ * @retval Number with next power of 2
  *         Example:
  *            - Input number: 450
  *            - Next power of 2 is: 512 = 2^9
@@ -364,13 +360,13 @@ float TM_GENERAL_RoundFloat(float Number, uint8_t decimals);
 uint32_t TM_GENERAL_NextPowerOf2(uint32_t number);
 
 /**
- * @brief  Software reset callback.
- *         Function is called before software reset occurs.
+ * @brief  System reset callback.
+ * @note   Function is called before software reset occurs.
  * @param  None
  * @retval None
  * @note   With __weak parameter to prevent link errors if not defined by user
  */
-__weak void TM_GENERAL_SoftwareResetCallback(void);
+void TM_GENERAL_SystemResetCallback(void);
 
 /**
  * @}

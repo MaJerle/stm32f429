@@ -81,7 +81,7 @@ void TM_LOWPOWER_StopUntilEvent(void) {
 	SystemInit();
 }
 
-extern void TM_LOWPOWER_EnableWakeUpPin(void) {
+void TM_LOWPOWER_EnableWakeUpPin(void) {
 	/* Enable Wakeup pin, PA0 */
 #if defined(STM32F446xx)
 	PWR_WakeUpPinCmd(PWR_WakeUp_Pin1, ENABLE);
@@ -90,7 +90,7 @@ extern void TM_LOWPOWER_EnableWakeUpPin(void) {
 #endif
 }
 
-extern void TM_LOWPOWER_DisableWakeUpPin(void) {
+void TM_LOWPOWER_DisableWakeUpPin(void) {
 	/* Disable Wakeup pin, PA0 */
 #if defined(STM32F446xx)
 	PWR_WakeUpPinCmd(PWR_WakeUp_Pin1, DISABLE);

@@ -155,7 +155,7 @@ void TM_EXTI_Handler(uint16_t GPIO_Pin) {
 			TM_NRF24L01_PowerUpRx();
 		}
 		
-		/* Check if max transmission reached and failed */
+		/* Check if max transmission reached and last transmission failed */
 		if (irq & NRF24L01_IRQ_MAX_RT) {
 			/* Save transmission status */
 			transmissionStatus = TM_NRF24L01_Transmit_Status_Lost;

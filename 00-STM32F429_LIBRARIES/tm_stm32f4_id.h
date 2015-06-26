@@ -141,7 +141,7 @@ extern C {
  *           - 0x1007: Revision 1
  *           - 0x2001: Revision 3
  */
-#define TM_ID_GetRevision()		(*(uint16_t *) (ID_DBGMCU_IDCODE + 2))
+#define TM_ID_GetRevision()		(*(uint16_t *) (DBGMCU->IDCODE + 2))
 
 /**
  * @brief  Get STM32F4xx device's flash size in kilo bytes

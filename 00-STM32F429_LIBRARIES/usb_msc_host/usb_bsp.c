@@ -39,7 +39,7 @@
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 
-extern USB_OTG_CORE_HANDLE          USB_OTG_Core;
+extern USB_OTG_CORE_HANDLE          USB_OTG_MSC_Core;
 extern USBH_HOST                    USB_Host;
 
 /**
@@ -215,6 +215,6 @@ void OTG_FS_IRQHandler(void) {
 #else
 void OTG_HS_IRQHandler(void) {	
 #endif
-	USBH_OTG_ISR_Handler(&USB_OTG_Core);
+	USBH_OTG_ISR_Handler(&USB_OTG_MSC_Core);
 }
 

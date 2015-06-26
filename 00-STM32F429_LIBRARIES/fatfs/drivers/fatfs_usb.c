@@ -25,14 +25,14 @@
 static volatile DSTATUS USB_Stat = STA_NOINIT;	/* Disk status */
 extern TM_USB_MSCHOST_Result_t 	TM_USB_MSCHOST_INT_Result;
 
-extern USB_OTG_CORE_HANDLE   USB_OTG_Core;
+extern USB_OTG_CORE_HANDLE   USB_OTG_MSC_Core;
 extern USBH_HOST             USB_Host;
 
 /*-----------------------------------------------------------------------*/
 /* Initialize USB                                                        */
 /*-----------------------------------------------------------------------*/
 DSTATUS TM_FATFS_USB_disk_initialize(void) {
-	if (HCD_IsDeviceConnected(&USB_OTG_Core) && TM_USB_MSCHOST_INT_Result == TM_USB_MSCHOST_Result_Connected) {
+	if (HCD_IsDeviceConnected(&USB_OTG_MSC_Core) && TM_USB_MSCHOST_INT_Result == TM_USB_MSCHOST_Result_Connected) {
 		USB_Stat &= ~STA_NOINIT;
 	} else {
 		USB_Stat |= STA_NOINIT;
@@ -66,13 +66,12 @@ DRESULT TM_FATFS_USB_disk_read (
 		return RES_NOTRDY;
 	}
 
-	if (HCD_IsDeviceConnected(&USB_OTG_Core) && TM_USB_MSCHOST_INT_Result == TM_USB_MSCHOST_Result_Connected) {
-		do
-		{
-			status = USBH_MSC_Read10(&USB_OTG_Core, buff, sector, 512 * count);
-			USBH_MSC_HandleBOTXfer(&USB_OTG_Core, &USB_Host);
+	if (HCD_IsDeviceConnected(&USB_OTG_MSC_Core) && TM_USB_MSCHOST_INT_Result == TM_USB_MSCHOST_Result_Connected) {
+		do {
+			status = USBH_MSC_Read10(&USB_OTG_MSC_Core, buff, sector, 512 * count);
+			USBH_MSC_HandleBOTXfer(&USB_OTG_MSC_Core, &USB_Host);
 
-			if (!HCD_IsDeviceConnected(&USB_OTG_Core)) { 
+			if (!HCD_IsDeviceConnected(&USB_OTG_MSC_Core)) { 
 				return RES_ERROR;
 			}
 		} while (status == USBH_MSC_BUSY);
@@ -105,13 +104,12 @@ DRESULT TM_FATFS_USB_disk_write (
 		return RES_WRPRT;
 	}
 
-	if (HCD_IsDeviceConnected(&USB_OTG_Core) && TM_USB_MSCHOST_INT_Result == TM_USB_MSCHOST_Result_Connected) {
-		do
-		{
-			status = USBH_MSC_Write10(&USB_OTG_Core, (BYTE*)buff, sector, 512 * count);
-			USBH_MSC_HandleBOTXfer(&USB_OTG_Core, &USB_Host);
+	if (HCD_IsDeviceConnected(&USB_OTG_MSC_Core) && TM_USB_MSCHOST_INT_Result == TM_USB_MSCHOST_Result_Connected) {
+		do {
+			status = USBH_MSC_Write10(&USB_OTG_MSC_Core, (BYTE*)buff, sector, 512 * count);
+			USBH_MSC_HandleBOTXfer(&USB_OTG_MSC_Core, &USB_Host);
 
-			if (!HCD_IsDeviceConnected(&USB_OTG_Core)) {
+			if (!HCD_IsDeviceConnected(&USB_OTG_MSC_Core)) {
 				return RES_ERROR;
 			}
 		} while (status == USBH_MSC_BUSY);

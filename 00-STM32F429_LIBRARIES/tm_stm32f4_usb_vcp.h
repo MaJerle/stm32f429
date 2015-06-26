@@ -267,6 +267,14 @@ uint16_t TM_USB_VCP_Gets(char* buffer, uint16_t bufsize);
 TM_USB_VCP_Result TM_USB_VCP_Puts(char* str);
 
 /**
+ * @brief  Sends array of data to USB VCP
+ * @param  *DataArray: Pointer to 8-bit data array to be sent over USB
+ * @param  Length: Number of elements to sent in units of bytes
+ * @retval Sending status
+ */
+TM_USB_VCP_Result TM_USB_VCP_Send(uint8_t* DataArray, uint32_t Length);
+
+/**
  * @brief  Gets VCP status
  * @param  None
  * @retval Device status:

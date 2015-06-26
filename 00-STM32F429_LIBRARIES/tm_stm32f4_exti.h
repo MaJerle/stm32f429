@@ -3,7 +3,7 @@
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
  * @link    http://stm32f4-discovery.com/2014/10/library-38-external-interrupts-for-stm32f4
- * @version v1.3
+ * @version v1.4
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   External interrupts library for STM32F4 devices
@@ -28,7 +28,7 @@
 @endverbatim
  */
 #ifndef TM_EXTI_H
-#define TM_EXTI_H 130
+#define TM_EXTI_H 140
 
 /* C++ detection */
 #ifdef __cplusplus
@@ -98,8 +98,12 @@ extern C {
  * \par Changelog
  *
 @verbatim
+ Version 1.4
+  - June 22, 2015
+  - Added support for clearing all external interrupt with DeInit function
+  
  Version 1.3
-  - March 23 2015  - Totally independent from HAL / SPD drivers
+  - March 23 2015 - Totally independent from HAL / SPD drivers
   - Library can be used with any drivers or totally itself
   - Now only one function handler TM_EXTI_Handler for all lines. No separate handlers anymore.
   
@@ -218,11 +222,20 @@ TM_EXTI_Result_t TM_EXTI_Attach(GPIO_TypeDef* GPIOx, uint16_t GPIO_Line, TM_EXTI
 TM_EXTI_Result_t TM_EXTI_Detach(uint16_t GPIO_Line);
 
 /**
+ * @brief  Clears all interrupts on EXTI line
+ * @note   It clears bits for external pins (bit 0 to bit 15) only!
+ *         It has no effect for internally connected peripherals (like RTC) to EXTI line
+ * @param  None
+ * @retval None
+ */
+void TM_EXTI_DeInit(void);
+
+/**
  * @brief  Creates software interrupt for specific external GPIO line
  * @note   This also works for others EXTI lines from 16 to 23
- * @note   Defined as macro for faster execution
- * @param  GPIO_Line: GPIO line where you want software interrupt.
+ * @param  GPIO_Line: GPIO line where you want software interrupt
  * @retval None
+ * @note   Defined as macro for faster execution
  */
 #define TM_EXTI_SoftwareInterrupt(GPIO_Line)	(EXTI->SWIER |= (GPIO_Line))
 

@@ -159,6 +159,15 @@ TM_EXTI_Result_t TM_EXTI_Detach(uint16_t GPIO_Line) {
 	return TM_EXTI_Result_Ok;
 }
 
+void TM_EXTI_DeInit(void) {
+	/* CLear EXTERNAL lines only = GPIO pins */
+	EXTI->IMR &= 0xFFFF0000;
+	EXTI->EMR &= 0xFFFF0000;
+	EXTI->FTSR &= 0xFFFF0000;
+	EXTI->RTSR &= 0xFFFF0000;
+	EXTI->PR &= 0xFFFF0000;
+}
+
 #ifndef TM_EXTI_DISABLE_DEFAULT_HANDLER_0
 void EXTI0_IRQHandler(void) {
 	/* Check status */

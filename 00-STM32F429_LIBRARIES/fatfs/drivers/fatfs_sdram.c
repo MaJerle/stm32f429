@@ -43,7 +43,7 @@ DSTATUS TM_FATFS_SDRAM_disk_status(void) {
 	return SDRAM_Status;
 }
 
-DRESULT TM_FATFS_SDRAM_disk_ioctl(BYTE cmd, void *buff) {
+DRESULT TM_FATFS_SDRAM_disk_ioctl(BYTE cmd, void* buff) {
 	/* Get command */
 	switch (cmd) {
 		case GET_SECTOR_COUNT:	/* Get drive capacity in unit of sector (DWORD) */
@@ -64,7 +64,7 @@ DRESULT TM_FATFS_SDRAM_disk_ioctl(BYTE cmd, void *buff) {
 }
 
 DRESULT TM_FATFS_SDRAM_disk_read(BYTE *buff, DWORD sector, UINT count) {
-	DWORD start, end, i;
+	DWORD start, cnt;
 	
 	/* If not initialized */
 	if (SDRAM_Status & STA_NOINIT) {
@@ -73,19 +73,19 @@ DRESULT TM_FATFS_SDRAM_disk_read(BYTE *buff, DWORD sector, UINT count) {
 	
 	/* Start address of reading */
 	start = sector * FATFS_SDRAM_SECTOR_SIZE;
-	end = start + count * FATFS_SDRAM_SECTOR_SIZE;
+
+	/* Get number of elements to read */
+	cnt = count * FATFS_SDRAM_SECTOR_SIZE;
 	
-	/* Read data */
-	for (i = start; i < end; i++) {
-		*buff++ = TM_SDRAM_Read8(i);
-	}
+	/* Read data from external ram */
+	memcpy((uint8_t *)buff, (uint8_t *)(SDRAM_START_ADR + start), cnt);
 	
 	/* Return OK */
 	return RES_OK;
 }
 
 DRESULT TM_FATFS_SDRAM_disk_write(const BYTE *buff, DWORD sector, UINT count) {
-	DWORD start, end, i;
+	DWORD start, cnt;
 	
 	/* If not initialized */
 	if (SDRAM_Status & STA_NOINIT) {
@@ -94,13 +94,13 @@ DRESULT TM_FATFS_SDRAM_disk_write(const BYTE *buff, DWORD sector, UINT count) {
 	
 	/* Start address of reading */
 	start = sector * FATFS_SDRAM_SECTOR_SIZE;
-	end = start + count * FATFS_SDRAM_SECTOR_SIZE;
+
+	/* Get number of elements to read */
+	cnt = count * FATFS_SDRAM_SECTOR_SIZE;
 	
-	/* Read data */
-	for (i = start; i < end; i++) {
-		TM_SDRAM_Write8(i, *buff++);
-	}
-	
+	/* Read data from external ram */
+	memcpy((uint8_t *)(SDRAM_START_ADR + start), (uint8_t *)buff, cnt);
+
 	/* Return OK */
 	return RES_OK;
 }
