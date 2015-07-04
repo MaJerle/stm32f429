@@ -45,33 +45,33 @@
  * \par Default pinout
  *
 @verbatim
-ILI9341			STM32F4xx		DESCRIPTION
+ILI9341      STM32F4xx    DESCRIPTION
 		
-SDO (MISO)		PF8				Output from LCD for SPI.	Not used, can be left
-LED				3.3V			Backlight
-SCK				PF7				SPI clock
-SDI (MOSI)		PF9				SPI master output
-WRX or D/C		PD13			Data/Command register
-RESET			PD12			Reset LCD
-CS				PC2				Chip select for SPI
-GND				GND				Ground
-VCC				3.3V			Positive power supply
+SDO (MISO    PF8          Output from LCD for SPI.	Not used, can be left
+LED          3.3V         Backlight
+SCK          PF7          SPI clock
+SDI (MOSI)   PF9          SPI master output
+WRX or D/C   PD13         Data/Command register
+RESET        PD12         Reset LCD
+CS           PC2          Chip select for SPI
+GND          GND          Ground
+VCC          3.3V         Positive power supply
 @endverbatim
  *		
  * All pins can be changed in your defines.h file
  *		
 @verbatim
 //Default SPI used is SPI5. Check my SPI library for other pinouts
-#define ILI9341_SPI 				SPI5
-#define ILI9341_SPI_PINS			TM_SPI_PinsPack_1
+#define ILI9341_SPI           SPI5
+#define ILI9341_SPI_PINS      TM_SPI_PinsPack_1
 		
 //Default CS pin. Edit this in your defines.h file
-#define ILI9341_CS_PORT				GPIOC
-#define ILI9341_CS_PIN				GPIO_PIN_2
+#define ILI9341_CS_PORT       GPIOC
+#define ILI9341_CS_PIN        GPIO_PIN_2
 		
 //Default D/C (or WRX) pin. Edit this in your defines.h file
-#define ILI9341_WRX_PORT			GPIOD
-#define ILI9341_WRX_PIN				GPIO_PIN_13
+#define ILI9341_WRX_PORT      GPIOD
+#define ILI9341_WRX_PIN       GPIO_PIN_13
 @endverbatim
  *
  * Reset pin can be disabled, if you need GPIOs for other purpose.
@@ -143,43 +143,43 @@ VCC				3.3V			Positive power supply
  * @brief  This SPI pins are used on STM32F429-Discovery board
  */
 #ifndef ILI9341_SPI
-#define ILI9341_SPI 				SPI5
-#define ILI9341_SPI_PINS			TM_SPI_PinsPack_1
+#define ILI9341_SPI           SPI5
+#define ILI9341_SPI_PINS      TM_SPI_PinsPack_1
 #endif
 
 /**
  * @brief  CS PIN for SPI, used as on STM32F429-Discovery board
  */
 #ifndef ILI9341_CS_PIN
-#define ILI9341_CS_PORT				GPIOC
-#define ILI9341_CS_PIN				GPIO_PIN_2
+#define ILI9341_CS_PORT       GPIOC
+#define ILI9341_CS_PIN        GPIO_PIN_2
 #endif
 
 /**
  * @brief  WRX PIN for data/command, used as on STM32F429-Discovery board
  */
 #ifndef ILI9341_WRX_PIN
-#define ILI9341_WRX_PORT			GPIOD
-#define ILI9341_WRX_PIN				GPIO_PIN_13
+#define ILI9341_WRX_PORT      GPIOD
+#define ILI9341_WRX_PIN       GPIO_PIN_13
 #endif
 
 /**
  * @brief  RESET for LCD
  */
 #ifndef ILI9341_RST_PIN
-#define ILI9341_RST_PORT			GPIOD
-#define ILI9341_RST_PIN				GPIO_PIN_12
+#define ILI9341_RST_PORT      GPIOD
+#define ILI9341_RST_PIN       GPIO_PIN_12
 #endif
 
 /* LCD settings */
-#define ILI9341_WIDTH 				240
-#define ILI9341_HEIGHT				320
-#define ILI9341_PIXEL				76800
+#define ILI9341_WIDTH        240
+#define ILI9341_HEIGHT       320
+#define ILI9341_PIXEL        76800
 
 /* Colors */
 #define ILI9341_COLOR_WHITE			0xFFFF
 #define ILI9341_COLOR_BLACK			0x0000
-#define ILI9341_COLOR_RED			0xF800
+#define ILI9341_COLOR_RED       0xF800
 #define ILI9341_COLOR_GREEN			0x07E0
 #define ILI9341_COLOR_GREEN2		0xB723
 #define ILI9341_COLOR_BLUE			0x001F

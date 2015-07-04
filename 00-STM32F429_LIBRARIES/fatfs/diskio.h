@@ -50,8 +50,8 @@ typedef struct {
  * @brief  Custom drivers for fatfs
  */
 typedef enum {
-	TM_FATFS_Driver_USER1 = 0x07,
-	TM_FATFS_Driver_USER2 = 0x08
+	TM_FATFS_Driver_USER1 = 0x07, /*!< Use USER1: when mounting and other stuff to access to this driver. USER1 is a logical string name of your drive */
+	TM_FATFS_Driver_USER2 = 0x08  /*!< User USER2: when mounting and other stuff to access to this driver. USER2 is a logical string name of your drive */
 } TM_FATFS_Driver_t;
 
 /* Disk Status Bits (DSTATUS) */

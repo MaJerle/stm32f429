@@ -28,18 +28,20 @@ typedef struct {
 	uint16_t CurrentWidth;
 	uint16_t CurrentHeight;
 	uint32_t StartAddress;
+	uint32_t LayerOffset;
 	uint32_t Offset;
 	uint32_t Pixels;
 	uint8_t Initialized;
 	uint8_t Orientation;
+	uint8_t PixelSize;
 } TM_INT_DMA2D_t;
 
 /* Private structures */
-DMA2D_InitTypeDef GRAPHIC_DMA2D_InitStruct;
-DMA2D_FG_InitTypeDef GRAPHIC_DMA2D_FG_InitStruct;
+static DMA2D_InitTypeDef GRAPHIC_DMA2D_InitStruct;
+//static DMA2D_FG_InitTypeDef GRAPHIC_DMA2D_FG_InitStruct;
 volatile TM_INT_DMA2D_t DIS;
 
-static void DrawPixel(uint16_t x, uint16_t y, uint32_t color) {
+__STATIC_INLINE DrawPixel(uint16_t x, uint16_t y, uint32_t color) {
 	TM_DMA2DGRAPHIC_DrawHorizontalLine(x, y, 1, color);
 }
 
@@ -59,13 +61,7 @@ void TM_DMA2DGRAPHIC_Init(void) {
 	DIS.CurrentHeight = DMA2D_GRAPHIC_LCD_WIDTH;
 	DIS.CurrentWidth = DMA2D_GRAPHIC_LCD_HEIGHT;
 	DIS.Orientation = 0;
-	
-/* Set default orientation */
-#if defined(DMA2D_GRAPHIC_USE_STM324x9_EVAL) || defined(TM_DISCO_STM324x9_EVAL)
-	DIS.Orientation = 1;
-	DIS.CurrentHeight = DMA2D_GRAPHIC_LCD_HEIGHT;
-	DIS.CurrentWidth = DMA2D_GRAPHIC_LCD_WIDTH;
-#endif
+	DIS.PixelSize = 2;
 	
 	/* Enable DMA2D clock */
 	RCC->AHB1ENR |= RCC_AHB1ENR_DMA2DEN;
@@ -75,30 +71,31 @@ void TM_DMA2DGRAPHIC_Init(void) {
 }
 
 void TM_DMA2DGRAPHIC_SetLayer(uint8_t layer_number) {
-	DIS.Offset = (layer_number - 1) * DIS.Pixels * 2;
+	/* Set offset */
+	DIS.Offset = (layer_number - 1) * DIS.LayerOffset;
 }
 
 void TM_DMA2DGRAPHIC_DrawPixel(uint16_t x, uint16_t y, uint32_t color) {
 	if (DIS.Orientation == 1) { /* Normal */
-		*(__IO uint16_t *) (DIS.StartAddress + DIS.Offset + 2 * (y * DIS.Width + x)) = color;
+		*(__IO uint16_t *) (DIS.StartAddress + DIS.Offset + DIS.PixelSize * (y * DIS.Width + x)) = color;
 	} else if (DIS.Orientation == 0) { /* 180 */
-		*(__IO uint16_t *) (DIS.StartAddress + DIS.Offset + 2 * ((DIS.Height - y - 1) * DIS.Width + (DIS.Width - x - 1))) = color;
+		*(__IO uint16_t *) (DIS.StartAddress + DIS.Offset + DIS.PixelSize * ((DIS.Height - y - 1) * DIS.Width + (DIS.Width - x - 1))) = color;
 	} else if (DIS.Orientation == 3) { /* 90 */ /* x + width * y */
-		*(__IO uint16_t *) (DIS.StartAddress + DIS.Offset + 2 * ((x) * DIS.Width + DIS.Width - y - 1)) = color;
+		*(__IO uint16_t *) (DIS.StartAddress + DIS.Offset + DIS.PixelSize * ((x) * DIS.Width + DIS.Width - y - 1)) = color;
 	} else if (DIS.Orientation == 2) { /* 270 */
-		*(__IO uint16_t *) (DIS.StartAddress + DIS.Offset + 2 * ((DIS.Height - x - 1) * DIS.Width + y)) = color;
+		*(__IO uint16_t *) (DIS.StartAddress + DIS.Offset + DIS.PixelSize * ((DIS.Height - x - 1) * DIS.Width + y)) = color;
 	}
 }
 
 uint32_t TM_DMA2DGRAPHIC_GetPixel(uint16_t x, uint16_t y) {
 	if (DIS.Orientation == 1) { /* Normal */
-		return *(__IO uint16_t *) (DIS.StartAddress + DIS.Offset + 2 * (y * DIS.Width + x));
+		return *(__IO uint16_t *) (DIS.StartAddress + DIS.Offset + DIS.PixelSize * (y * DIS.Width + x));
 	} else if (DIS.Orientation == 0) { /* 180 */
-		return *(__IO uint16_t *) (DIS.StartAddress + DIS.Offset + 2 * ((DIS.Height - y - 1) * DIS.Width + (DIS.Width - x - 1)));
+		return *(__IO uint16_t *) (DIS.StartAddress + DIS.Offset + DIS.PixelSize * ((DIS.Height - y - 1) * DIS.Width + (DIS.Width - x - 1)));
 	} else if (DIS.Orientation == 3) { /* 90 */ /* x + width * y */
-		return *(__IO uint16_t *) (DIS.StartAddress + DIS.Offset + 2 * ((x) * DIS.Width + DIS.Width - y - 1));
+		return *(__IO uint16_t *) (DIS.StartAddress + DIS.Offset + DIS.PixelSize * ((x) * DIS.Width + DIS.Width - y - 1));
 	} else if (DIS.Orientation == 2) { /* 270 */
-		return *(__IO uint16_t *) (DIS.StartAddress + DIS.Offset + 2 * ((DIS.Height - x - 1) * DIS.Width + y));
+		return *(__IO uint16_t *) (DIS.StartAddress + DIS.Offset + DIS.PixelSize * ((DIS.Height - x - 1) * DIS.Width + y));
 	}
 	return 0;
 }
@@ -180,16 +177,16 @@ void TM_DMA2DGRAPHIC_DrawFilledRectangle(uint16_t x, uint16_t y, uint16_t width,
 	
 	/* Set memory settings */
 	if (DIS.Orientation == 1) { /* Normal */
-		TM_INT_DMA2DGRAPHIC_SetMemory(2 * (y * DIS.Width + x), DIS.Width - width, height, width);
+		TM_INT_DMA2DGRAPHIC_SetMemory(DIS.PixelSize * (y * DIS.Width + x), DIS.Width - width, height, width);
 	} 
 	if (DIS.Orientation == 0) { /* 180 */
-		TM_INT_DMA2DGRAPHIC_SetMemory(2 * ((DIS.Height - height - y) * DIS.Width + DIS.Width - x - width), DIS.Width - width, height, width);
+		TM_INT_DMA2DGRAPHIC_SetMemory(DIS.PixelSize * ((DIS.Height - height - y) * DIS.Width + DIS.Width - x - width), DIS.Width - width, height, width);
 	} 
 	if (DIS.Orientation == 3) { /* 90 */
-		TM_INT_DMA2DGRAPHIC_SetMemory(2 * (DIS.Width - y - height + DIS.Width * x), DIS.Width - height, width, height);
+		TM_INT_DMA2DGRAPHIC_SetMemory(DIS.PixelSize * (DIS.Width - y - height + DIS.Width * x), DIS.Width - height, width, height);
 	} 
 	if (DIS.Orientation == 2) { /* 270 */
-		TM_INT_DMA2DGRAPHIC_SetMemory(2 * (x + DIS.Width * (DIS.Height - width - x)), DIS.Width - height, width, height);
+		TM_INT_DMA2DGRAPHIC_SetMemory(DIS.PixelSize * (x + DIS.Width * (DIS.Height - width - x)), DIS.Width - height, width, height);
 	}
 	
 	/* Start transfer and wait till done */
@@ -228,7 +225,10 @@ void TM_DMA2DGRAPHIC_DrawRoundedRectangle(uint16_t x, uint16_t y, uint16_t width
 	
 	/* No radius */
 	if (r == 0) {
+		/* Draw normal rectangle */
 		TM_DMA2DGRAPHIC_DrawRectangle(x, y, width, height, color);
+		
+		/* Return from function */
 		return;
 	}
 	
@@ -324,16 +324,16 @@ void TM_DMA2DGRAPHIC_DrawVerticalLine(int16_t x, int16_t y, uint16_t length, uin
 	
 	/* Set memory settings */
 	if (DIS.Orientation == 1) { /* Normal */
-		TM_INT_DMA2DGRAPHIC_SetMemory(2 * (y * DIS.Width + x), DIS.Width - 1, length, 1);
+		TM_INT_DMA2DGRAPHIC_SetMemory(DIS.PixelSize * (y * DIS.Width + x), DIS.Width - 1, length, 1);
 	} 
 	if (DIS.Orientation == 0) { /* 180 */
-		TM_INT_DMA2DGRAPHIC_SetMemory(2 * ((DIS.Height - length - y) * DIS.Width + DIS.Width - x - 1), DIS.Width - 1, length, 1);
+		TM_INT_DMA2DGRAPHIC_SetMemory(DIS.PixelSize * ((DIS.Height - length - y) * DIS.Width + DIS.Width - x - 1), DIS.Width - 1, length, 1);
 	} 
 	if (DIS.Orientation == 3) { /* 90 */
-		TM_INT_DMA2DGRAPHIC_SetMemory(2 * (DIS.Width - y - length + DIS.Width * x), DIS.Width - length, 1, length);
+		TM_INT_DMA2DGRAPHIC_SetMemory(DIS.PixelSize * (DIS.Width - y - length + DIS.Width * x), DIS.Width - length, 1, length);
 	} 
 	if (DIS.Orientation == 2) { /* 270 */
-		TM_INT_DMA2DGRAPHIC_SetMemory(2 * (y + DIS.Width * (DIS.Height - 1 - x)), DIS.Width - length, 1, length);
+		TM_INT_DMA2DGRAPHIC_SetMemory(DIS.PixelSize * (y + DIS.Width * (DIS.Height - 1 - x)), DIS.Width - length, 1, length);
 	}
 	
 	/* Start transfer and wait till done */
@@ -381,16 +381,16 @@ void TM_DMA2DGRAPHIC_DrawHorizontalLine(int16_t x, int16_t y, uint16_t length, u
 	
 	/* Set memory settings */
 	if (DIS.Orientation == 1) { /* Normal */
-		TM_INT_DMA2DGRAPHIC_SetMemory(2 * (y * DIS.Width + x), DIS.Width - length, 1, length);
+		TM_INT_DMA2DGRAPHIC_SetMemory(DIS.PixelSize * (y * DIS.Width + x), DIS.Width - length, 1, length);
 	} 
 	if (DIS.Orientation == 0) { /* 180 */
-		TM_INT_DMA2DGRAPHIC_SetMemory(2 * ((DIS.Height - 1 - y) * DIS.Width + DIS.Width - x - length), DIS.Width - length, 1, length);
+		TM_INT_DMA2DGRAPHIC_SetMemory(DIS.PixelSize * ((DIS.Height - 1 - y) * DIS.Width + DIS.Width - x - length), DIS.Width - length, 1, length);
 	} 
 	if (DIS.Orientation == 3) { /* 90 */
-		TM_INT_DMA2DGRAPHIC_SetMemory(2 * (DIS.Width - y - 1 + DIS.Width * x), DIS.Width - 1, length, 1);
+		TM_INT_DMA2DGRAPHIC_SetMemory(DIS.PixelSize * (DIS.Width - y - 1 + DIS.Width * x), DIS.Width - 1, length, 1);
 	} 
 	if (DIS.Orientation == 2) { /* 270 */
-		TM_INT_DMA2DGRAPHIC_SetMemory(2 * (y + DIS.Width * (DIS.Height - length - x)), DIS.Width - 1, length, 1);
+		TM_INT_DMA2DGRAPHIC_SetMemory(DIS.PixelSize * (y + DIS.Width * (DIS.Height - length - x)), DIS.Width - 1, length, 1);
 	}
 	
 	/* Start transfer and wait till done */
@@ -592,11 +592,63 @@ void TM_DMA2DGRAPHIC_DrawFilledTriangle(uint16_t x1, uint16_t y1, uint16_t x2, u
 	}
 }
 
-/* Private functions */
-void TM_INT_DMA2DGRAPHIC_InitAndTransfer(void) {
-	uint32_t timeout;
+void TM_DMA2DGRAPHIC_CopyBuffer(void* pSrc, void* pDst, uint32_t xSize, uint32_t ySize, uint32_t OffLineSrc, uint32_t OffLineDst) {
+	/* Copy buffer using interrupt */
+	TM_DMA2DGRAPHIC_CopyBufferIT(pSrc, pDst, xSize, ySize, OffLineSrc, OffLineDst);
+
+	/* Wait until transfer is done */
+	DMA2D_WAIT;
+}
+
+
+void TM_DMA2DGRAPHIC_CopyBufferIT(void* pSrc, void* pDst, uint32_t xSize, uint32_t ySize, uint32_t OffLineSrc, uint32_t OffLineDst) {
+	/* Wait for previous operation to be done */
+	DMA2D_WAIT;
+	
 	/* DeInit DMA2D */
-	DMA2D_DeInit(); 
+	RCC->AHB1RSTR |= RCC_AHB1RSTR_DMA2DRST;
+	RCC->AHB1RSTR &= ~RCC_AHB1RSTR_DMA2DRST;
+	
+	DMA2D->CR = 0x00000000UL | (1 << 9);
+	
+	/* Set up pointers */
+	DMA2D->FGMAR = (uint32_t)pSrc;                       
+	DMA2D->OMAR = (uint32_t)pDst;                       
+	DMA2D->FGOR = OffLineSrc;                      
+	DMA2D->OOR = OffLineDst; 
+
+	/* Set up pixel format */  
+	DMA2D->FGPFCCR = LTDC_Pixelformat_RGB565;  
+
+	/* Set up size */
+	DMA2D->NLR = (uint32_t)(xSize << 16) | (uint16_t)ySize; 
+
+	/* Start DMA2D */
+	DMA2D->CR |= DMA2D_CR_START; 
+}
+
+/* Private functions */
+void TM_INT_DMA2DGRAPHIC_SetConf(TM_DMA2DGRAPHIC_INT_Conf_t* Conf) {
+	/* Fill settings for DMA2D */
+	DIS.Width = Conf->Width;
+	DIS.Height = Conf->Height;
+	DIS.StartAddress = Conf->BufferStart;
+	DIS.LayerOffset = Conf->BufferOffset;
+	DIS.PixelSize = Conf->BytesPerPixel;
+	DIS.Pixels = DIS.Width * DIS.Height;
+	DIS.Orientation = Conf->Orientation;
+	
+	/* Set DMA2D orientation */
+	TM_DMA2DGRAPHIC_SetOrientation(DIS.Orientation);
+}
+
+void TM_INT_DMA2DGRAPHIC_InitAndTransfer(void) {
+	/* Wait until transfer is done first from other calls */
+	DMA2D_WAIT;
+	
+	/* DeInit DMA2D */
+	RCC->AHB1RSTR |= RCC_AHB1RSTR_DMA2DRST;
+	RCC->AHB1RSTR &= ~RCC_AHB1RSTR_DMA2DRST;
 	
 	/* Initialize DMA2D */
 	DMA2D_Init(&GRAPHIC_DMA2D_InitStruct);
@@ -604,14 +656,8 @@ void TM_INT_DMA2DGRAPHIC_InitAndTransfer(void) {
 	/* Start transfer */
 	DMA2D->CR |= (uint32_t)DMA2D_CR_START;
 	
-	/* Start timeout */
-	timeout = DMA2D_GRAPHIC_TIMEOUT;
-	
 	/* Wait till transfer ends */
-	while ((DMA2D->ISR & DMA2D_FLAG_TC) == RESET && timeout--);
-	
-	/* Clear flag */
-	DMA2D->IFCR = (uint32_t)DMA2D_FLAG_TC;
+	DMA2D_WAIT;
 }
 
 void TM_INT_DMA2DGRAPHIC_SetMemory(uint32_t MemoryAddress, uint32_t Offset, uint32_t NumberOfLine, uint32_t PixelPerLine) {	

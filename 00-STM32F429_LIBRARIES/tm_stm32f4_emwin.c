@@ -19,8 +19,10 @@
 #include "tm_stm32f4_emwin.h"
 
 /* Private variables */
-TM_STMPE811_TouchData TS_Data;
-GUI_PID_STATE TS_State;
+static TM_STMPE811_TouchData TS_Data;
+static GUI_PID_STATE TS_State;
+static __IO uint8_t MemoryEnabled = 0;
+__IO uint32_t EMWIN_LCD_DRIVER_CB_CALLED = 0;
 
 /* External ISR handlers */
 extern void LTDC_ISR_Handler(void);
@@ -53,6 +55,49 @@ TM_EMWIN_Result_t TM_EMWIN_Init(void) {
 	
 	/* Return OK */
 	return TM_EMWIN_Result_Ok;
+}
+
+void TM_EMWIN_MemoryEnable(void) {
+	/* Set layer 2 as view layer for LCD */
+	/* EMWIN works on layer 1 and data will be transfered from layer 1 to layer 2 */
+	/* after EMWIN finishes drawings using @ref TM_EMWIN_Exec() function */
+	TM_ILI9341_SetLayer1Opacity(0);
+	TM_ILI9341_SetLayer2Opacity(255);
+	TM_ILI9341_SetLayer2();
+	
+	/* Memory is enabled */
+	MemoryEnabled = 1;
+}
+
+void TM_EMWIN_MemoryDisable(void) {
+	/* Set layer 2 as view layer for LCD */
+	/* EMWIN works on layer 1 and data will be transfered from layer 1 to layer 2 */
+	/* after EMWIN finishes drawings using @ref TM_EMWIN_Exec() function */
+	TM_ILI9341_SetLayer2Opacity(0);
+	TM_ILI9341_SetLayer1Opacity(255);
+	TM_ILI9341_SetLayer1();
+	
+	/* Memory is enabled */
+	MemoryEnabled = 0;
+}
+
+uint32_t TM_EMWIN_Exec(void) {
+	int exec;
+		
+	/* Execute pending tasks */
+	exec = GUI_Exec();
+	
+	/* If anything has been done and memory is enabled */
+	if (EMWIN_LCD_DRIVER_CB_CALLED && MemoryEnabled) {
+		/* Clear flag */
+		//EMWIN_LCD_DRIVER_CB_CALLED = 0;
+		
+		/* Copy content from layer1 (EMWIN drawing layer) to layer2 (visible layer) */
+		TM_ILI9341_Layer1To2();
+	}
+	
+	/* Return GUI status */
+	return exec;
 }
 
 TM_EMWIN_Result_t TM_EMWIN_Rotate(TM_EMWIN_Rotate_t rotation) {	

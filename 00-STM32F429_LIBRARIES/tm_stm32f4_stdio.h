@@ -115,7 +115,7 @@ struct __FILE {
 /**
  * @brief  Links file output stream with output put character function
  * @param  *f: Pointer to file stream
- * @param  *outputFuncPointer: Pointer to function that will be used to output data to stream
+ * @param  *outputFuncPointer: Pointer to function to be used to output data to stream
  * @retval None
  */
 void TM_STDIO_SetOutputFunction(FILE* f, int (*outputFuncPointer)(int, FILE *));
@@ -123,7 +123,7 @@ void TM_STDIO_SetOutputFunction(FILE* f, int (*outputFuncPointer)(int, FILE *));
 /**
  * @brief  Links file input stream with input get character function
  * @param  *f: Pointer to file stream
- * @param  *inputFuncPointer: Pointer to function that will be used for input data from stream
+ * @param  *inputFuncPointer: Pointer to function to be used for input data from stream
  * @retval None
  */
 void TM_STDIO_SetInputFunction(FILE* f, int (*inputFuncPointer)(FILE *));
@@ -139,7 +139,7 @@ void TM_STDIO_SetInputFunction(FILE* f, int (*inputFuncPointer)(FILE *));
  *                 to continue with more characters if needed
  * @note   With __weak parameter to prevent link errors if not defined by user
  */
-__weak int TM_STDIO_StdoutHandler(int c, FILE* f);
+int TM_STDIO_StdoutHandler(int c, FILE* f);
 
 /**
  * @brief  Default input handler for standard input (stdin)
@@ -150,7 +150,7 @@ __weak int TM_STDIO_StdoutHandler(int c, FILE* f);
  *            - character: Return character value
  * @note   With __weak parameter to prevent link errors if not defined by user
  */
-__weak int TM_STDIO_StdinHandler(FILE* f);
+int TM_STDIO_StdinHandler(FILE* f);
 
 /**
  * @}

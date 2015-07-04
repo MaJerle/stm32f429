@@ -22,7 +22,7 @@ TM_STRING_t* TM_STRING_Create(uint16_t size) {
 	TM_STRING_t* String;
 
 	/* Allocate memory */
-	String = (TM_STRING_t *) malloc(sizeof(TM_STRING_t));
+	String = (TM_STRING_t *) LIB_ALLOC_FUNC(sizeof(TM_STRING_t));
 	
 	/* Check if allocated */
 	if (String == NULL) {
@@ -30,7 +30,7 @@ TM_STRING_t* TM_STRING_Create(uint16_t size) {
 	}
 	
 	/* Allocate memory for number of counts */
-	String->Strings = (char **) malloc(size * sizeof(char *));
+	String->Strings = (char **) LIB_ALLOC_FUNC(size * sizeof(char *));
 	
 	/* Check if allocated */
 	if (String->Strings == NULL) {
@@ -59,7 +59,7 @@ uint16_t TM_STRING_AddString(TM_STRING_t* String, char* str) {
 	if (String->Count >= String->Size) {
 		/* Create new string with more memory */
 		ptr = TM_STRING_Create(String->Size + 1);
-		tmp1 = (char **) malloc((String->Size + 1) * sizeof(char *));
+		tmp1 = (char **) LIB_ALLOC_FUNC((String->Size + 1) * sizeof(char *));
 		
 		/* Check if allocated */
 		if (ptr == NULL || tmp1 == NULL) {
@@ -94,7 +94,7 @@ uint16_t TM_STRING_AddString(TM_STRING_t* String, char* str) {
 	}
 	
 	/* Allocate memory for string */
-	String->Strings[String->Count] = (char *) malloc((strlen(str) + 1) * sizeof(char));
+	String->Strings[String->Count] = (char *) LIB_ALLOC_FUNC((strlen(str) + 1) * sizeof(char));
 	
 	/* Copy content to string */
 	strcpy(String->Strings[String->Count], str);
@@ -126,7 +126,7 @@ TM_STRING_t* TM_STRING_ReplaceString(TM_STRING_t* String, uint16_t pos, char* st
 	/* Check size */
 	if (strlen(str) > strlen(String->Strings[pos])) {
 		/* Allocate new memory */
-		tmp = (char *) malloc((strlen(str) + 1) * sizeof(char *));
+		tmp = (char *) LIB_ALLOC_FUNC((strlen(str) + 1) * sizeof(char *));
 		
 		/* Check if allocated */
 		if (tmp == NULL) {
@@ -143,7 +143,7 @@ TM_STRING_t* TM_STRING_ReplaceString(TM_STRING_t* String, uint16_t pos, char* st
 		strcpy(String->Strings[pos], str);
 		
 		/* Free old pointer */
-		free(tmp1);
+		LIB_FREE_FUNC(tmp1);
 	} else {
 		/* Just replace in current memory */
 		strcpy(String->Strings[pos], str);
@@ -180,7 +180,7 @@ TM_STRING_t* TM_STRING_DeleteString(TM_STRING_t* String, uint16_t pos) {
 	String->Count--;
 	
 	/* Deallocate */
-	free(tmp);
+	LIB_FREE_FUNC(tmp);
 	
 	/* Return pointer */
 	return String;
@@ -209,10 +209,10 @@ void TM_STRING_Free(TM_STRING_t* String) {
 	}
 	
 	/* Deallocate pointers */
-	free(String->Strings);
+	LIB_FREE_FUNC(String->Strings);
 	
 	/* Deallocate structure */
-	free(String);
+	LIB_FREE_FUNC(String);
 }
 
 void TM_STRING_FreeAll(TM_STRING_t* String) {
@@ -225,7 +225,8 @@ void TM_STRING_FreeAll(TM_STRING_t* String) {
 	
 	/* Deallocate all string locations */
 	for (i = 0; i < String->Count; i++) {
-		free(String->Strings[i]);
+		/* Deallocate pointer by pointer */
+		LIB_FREE_FUNC(String->Strings[i]);
 	}
 	
 	/* Deallocate the rest */

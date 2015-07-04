@@ -200,8 +200,6 @@ uint8_t TM_USART_Getc(USART_TypeDef* USARTx) {
 	
 	/* Check if we have any data in buffer */
 	if (u->Num > 0 || u->In != u->Out) {
-		__disable_irq();
-		
 		/* Check overflow */
 		if (u->Out == u->Size) {
 			u->Out = 0;
@@ -217,7 +215,6 @@ uint8_t TM_USART_Getc(USART_TypeDef* USARTx) {
 		if (u->Num) {
 			u->Num--;
 		}
-		__enable_irq();
 	}
 	
 	/* Return character */
@@ -246,6 +243,7 @@ uint16_t TM_USART_Gets(USART_TypeDef* USARTx, char* buffer, uint16_t bufsize) {
 	while (i < (bufsize - 1)) {
 		/* We have available data */
 		buffer[i] = (char) TM_USART_Getc(USARTx);
+		
 		/* Check for end of string */
 		if ((uint8_t)buffer[i] == (uint8_t)u->StringDelimiter) {
 			/* Done */

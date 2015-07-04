@@ -71,9 +71,6 @@
 #endif
 #endif
 
-#ifndef FATFS_USE_
-
-
 typedef enum
 {
 	/**
@@ -478,6 +475,9 @@ typedef struct {
  */
 #define SDIO_SEND_IF_COND               ((uint32_t)0x00000008)
 
+/* SDIO data block size */
+#define SDIO_DATABLOCKSIZE              ((uint32_t)((9 << 4)))
+
 extern void SD_LowLevel_DeInit (void);
 extern void SD_LowLevel_Init (void);
 extern void SD_LowLevel_DMA_TxConfig (uint32_t *BufferSRC, uint32_t BufferSize);
@@ -512,9 +512,6 @@ extern void SD_ProcessDMAIRQ (void);
 extern SD_Error SD_WaitReadOperation (void);
 extern SD_Error SD_WaitWriteOperation (void);
 extern SD_Error SD_HighSpeed (void);
-
-
-#endif 
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
 

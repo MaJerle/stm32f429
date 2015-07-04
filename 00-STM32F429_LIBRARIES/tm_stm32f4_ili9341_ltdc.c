@@ -564,20 +564,24 @@ void TM_ILI9341_ChangeLayers(void) {
 	}
 }
 
+#include "tm_stm32f4_dma2d_graphic.h"
 void TM_ILI9341_Layer2To1(void) {
-	uint32_t i;
-	uint32_t pixels = ILI9341_PIXEL * 2;
-	for (i = 0; i < pixels; i += 2) {
-		*(uint16_t *) (ILI9341_FRAME_BUFFER + i) = *(uint16_t *) (ILI9341_FRAME_BUFFER + ILI9341_FRAME_OFFSET + i);
-	}
+	/* Make a memory copy */
+	TM_DMA2DGRAPHIC_CopyBuffer(
+		(uint8_t *)(ILI9341_FRAME_BUFFER + ILI9341_FRAME_OFFSET), 
+		(uint8_t *)(ILI9341_FRAME_BUFFER),
+		240, 320, 0, 0
+	);
 }
 
 void TM_ILI9341_Layer1To2(void) {
-	uint32_t i;
-	uint32_t pixels = ILI9341_PIXEL * 2;
-	for (i = 0; i < pixels; i += 2) {
-		*(uint16_t *) (ILI9341_FRAME_BUFFER + ILI9341_FRAME_OFFSET + i) = *(uint16_t *) (ILI9341_FRAME_BUFFER + i);
-	}
+	/* Make a memory copy */
+	TM_DMA2DGRAPHIC_CopyBuffer(
+		(uint8_t *)(ILI9341_FRAME_BUFFER), 
+		(uint8_t *)(ILI9341_FRAME_BUFFER + ILI9341_FRAME_OFFSET),
+		240, 320, 0, 0
+	);
+	//memcpy((uint8_t *)(ILI9341_FRAME_BUFFER + ILI9341_FRAME_OFFSET), (uint8_t *)(ILI9341_FRAME_BUFFER), ILI9341_PIXEL * 2);
 }
 
 void TM_ILI9341_Puts(uint16_t x, uint16_t y, char *str, TM_FontDef_t *font, uint32_t foreground, uint32_t background) {

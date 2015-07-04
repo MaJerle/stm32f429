@@ -241,7 +241,7 @@
 /   0: Disable re-entrancy. _FS_TIMEOUT and _SYNC_t have no effect.
 /   1: Enable re-entrancy. Also user provided synchronization handlers,
 /      ff_req_grant(), ff_rel_grant(), ff_del_syncobj() and ff_cre_syncobj()
-/      function, must be added to the project. Samples are available in
+/      function, must be added to the project. Samples are available inrrrrrrrrrrrrrr
 /      option/syscall.c.
 /
 /  The _FS_TIMEOUT defines timeout period in unit of time tick.

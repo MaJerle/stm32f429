@@ -58,3 +58,17 @@ void TM_STDIO_SetInputFunction(FILE* f, int (*inputFuncPointer)(FILE *)) {
 	/* Set pointer to input function for specific file pointer */
 	f->inputFuncPointer = inputFuncPointer;
 }
+
+__weak int TM_STDIO_StdoutHandler(int c, FILE* f) {
+	/* NOTE : This function Should not be modified, when the callback is needed,
+            the TM_STDIO_StdoutHandler could be implemented in the user file
+	*/
+	return 0;
+}
+
+__weak int TM_STDIO_StdinHandler(FILE* f) {
+	/* NOTE : This function Should not be modified, when the callback is needed,
+            the TM_STDIO_StdoutHandler could be implemented in the user file
+	*/
+	return 0;
+}

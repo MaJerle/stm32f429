@@ -223,6 +223,15 @@ uint32_t TM_GENERAL_NextPowerOf2(uint32_t number) {
 	return number;
 }
 
+void TM_GENERAL_ForceHardFaultError(void) {
+	/* Create hard-fault-function typedef */
+	typedef void (*hff)(void);
+	hff hf_func = 0;
+	
+	/* Call function at zero location in memory = HARDFAULT */
+	hf_func();
+}
+
 __weak void TM_GENERAL_SystemResetCallback(void) {
 	/* NOTE: This function should not be modified, when the callback is needed,
             the TM_GENERAL_SystemResetCallback could be implemented in the user file

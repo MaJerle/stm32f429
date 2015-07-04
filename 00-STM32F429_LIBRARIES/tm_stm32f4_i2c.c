@@ -120,7 +120,7 @@ void TM_I2C_ReadMulti(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t* 
 	uint8_t i;
 	TM_I2C_Start(I2Cx, address, I2C_TRANSMITTER_MODE, I2C_ACK_ENABLE);
 	TM_I2C_WriteData(I2Cx, reg);
-	TM_I2C_Stop(I2Cx);
+	//TM_I2C_Stop(I2Cx);
 	TM_I2C_Start(I2Cx, address, I2C_RECEIVER_MODE, I2C_ACK_ENABLE);
 	for (i = 0; i < count; i++) {
 		if (i == (count - 1)) {

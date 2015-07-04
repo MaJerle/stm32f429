@@ -18,8 +18,8 @@
 #include "tm_stm32f4_disco.h"
 
 /* Create 2 callback functions for custom timers */
-void CustomTIMER1_Task(void);
-void CustomTIMER2_Task(void);
+void CustomTIMER1_Task(void* UserParameters);
+void CustomTIMER2_Task(void* UserParameters);
 
 /* Pointers to custom timers */
 TM_DELAY_Timer_t* CustomTimer1;
@@ -37,10 +37,10 @@ int main(void) {
 
 	/* Init 2 custom timers */
 	/* Timer1 has reload value each 500ms, enabled auto reload feature and timer is enabled */
-	CustomTimer1 = TM_DELAY_TimerCreate(100, 1, 1, CustomTIMER1_Task);
+	CustomTimer1 = TM_DELAY_TimerCreate(100, 1, 1, CustomTIMER1_Task, NULL);
 	
 	/* Timer1 has reload value each 70ms, enabled auto reload feature and timer is enabled */
-	CustomTimer2 = TM_DELAY_TimerCreate(200, 1, 1, CustomTIMER2_Task);
+	CustomTimer2 = TM_DELAY_TimerCreate(200, 1, 1, CustomTIMER2_Task, NULL);
 	
 	while (1) {
 		/* After 2 seconds */
@@ -52,13 +52,13 @@ int main(void) {
 }
 
 /* Called when Custom TIMER1 reaches zero */
-void CustomTIMER1_Task(void) {
+void CustomTIMER1_Task(void* UserParameters) {
 	/* Toggle GREEN led */
 	TM_DISCO_LedToggle(LED_GREEN);
 }
 
 /* Called when Custom TIMER2 reaches zero */
-void CustomTIMER2_Task(void) {
+void CustomTIMER2_Task(void* UserParameters) {
 	/* Toggle RED led */
 	TM_DISCO_LedToggle(LED_RED);
 }

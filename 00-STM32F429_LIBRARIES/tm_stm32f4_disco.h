@@ -71,7 +71,7 @@
  *     - LED_GREEN   on PG6
  *     - LED_ORANGE  on PG7
  *     - LED_RED     on PG10
- *     - LED_BLUE    on PD12
+ *     - LED_BLUE    on PG12
  *   - Button: (HIGH when pressed)
  *     - Blue button on PA0
  *

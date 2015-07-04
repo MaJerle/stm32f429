@@ -158,6 +158,10 @@ extern C {
 #define GRAPHIC_COLOR_GRAY			0x7BEF
 #define GRAPHIC_COLOR_BROWN			0xBBCA
 
+/* Waiting flags */
+#define DMA2D_WORKING               ((DMA2D->CR & DMA2D_CR_START))
+#define DMA2D_WAIT                  do { while (DMA2D_WORKING); DMA2D->IFCR = DMA2D_IFSR_CTCIF;} while (0);
+
 /**
  * @}
  */
@@ -180,6 +184,19 @@ typedef struct {
 	uint16_t X; /*!< X coordinate for poly line */
 	uint16_t Y; /*!< Y coordinate for poly line */
 } TM_DMA2DRAPHIC_Poly_t;
+
+/**
+ * @brief  Configuration structure
+ * @note   Meant for private use
+ */
+typedef struct {
+	uint16_t Width;
+	uint16_t Height;
+	uint8_t BytesPerPixel;
+	uint32_t BufferStart;
+	uint32_t BufferOffset;
+	uint8_t Orientation;
+} TM_DMA2DGRAPHIC_INT_Conf_t;
 
 /**
  * @}
@@ -379,6 +396,12 @@ void TM_DMA2DGRAPHIC_DrawTriangle(uint16_t x1, uint16_t y1,  uint16_t x2, uint16
  * @retval None
  */
 void TM_DMA2DGRAPHIC_DrawFilledTriangle(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t x3, uint16_t y3, uint32_t color);
+
+void TM_DMA2DGRAPHIC_CopyBuffer(void* pSrc, void* pDst, uint32_t xSize, uint32_t ySize, uint32_t OffLineSrc, uint32_t OffLineDst);
+void TM_DMA2DGRAPHIC_CopyBufferIT(void* pSrc, void* pDst, uint32_t xSize, uint32_t ySize, uint32_t OffLineSrc, uint32_t OffLineDst);
+
+/* Private functions */
+void TM_INT_DMA2DGRAPHIC_SetConf(TM_DMA2DGRAPHIC_INT_Conf_t* Conf);
 
 /**
  * @}

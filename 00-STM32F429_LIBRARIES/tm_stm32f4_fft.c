@@ -64,7 +64,7 @@ uint8_t TM_FFT_Init_F32(TM_FFT_F32_t* FFT, uint16_t FFT_Size, uint8_t use_malloc
 	/* If malloc selected for allocation, use it */
 	if (use_malloc) {
 		/* Allocate input buffer */
-		FFT->Input = (float32_t *) malloc((FFT->FFT_Size * 2) * sizeof(float32_t));
+		FFT->Input = (float32_t *) LIB_ALLOC_FUNC((FFT->FFT_Size * 2) * sizeof(float32_t));
 		
 		/* Check for success */
 		if (FFT->Input == NULL) {
@@ -72,12 +72,12 @@ uint8_t TM_FFT_Init_F32(TM_FFT_F32_t* FFT, uint16_t FFT_Size, uint8_t use_malloc
 		}
 		
 		/* Allocate input buffer */
-		FFT->Output = (float32_t *) malloc(FFT->FFT_Size * sizeof(float32_t));
+		FFT->Output = (float32_t *) LIB_ALLOC_FUNC(FFT->FFT_Size * sizeof(float32_t));
 		
 		/* Check for success */
 		if (FFT->Output == NULL) {
 			/* Deallocate input buffer */
-			free(FFT->Input);
+			LIB_FREE_FUNC(FFT->Input);
 			
 			/* Return error */
 			return 3;
@@ -125,13 +125,13 @@ uint8_t TM_FFT_AddToBuffer(TM_FFT_F32_t* FFT, float32_t sampleValue) {
 }
 
 void TM_FFT_Process_F32(TM_FFT_F32_t* FFT) {
-	/* Process FFT */
+	/* Process FFT input data */
 	arm_cfft_f32(FFT->S, FFT->Input, 0, 1);
 	
 	/* Process the data through the Complex Magniture Module for calculating the magnitude at each bin */
 	arm_cmplx_mag_f32(FFT->Input, FFT->Output, FFT->FFT_Size);
 	
-	/* Calculates maxValue and returns corresponding value */
+	/* Calculates maxValue and returns corresponding value and index */
 	arm_max_f32(FFT->Output, FFT->FFT_Size, &FFT->MaxValue, &FFT->MaxIndex);
 	
 	/* Reset count */
@@ -147,11 +147,11 @@ void TM_FFT_Free_F32(TM_FFT_F32_t* FFT) {
 	
 	/* Check input buffer */
 	if (FFT->Input) {
-		free(FFT->Input);
+		LIB_FREE_FUNC(FFT->Input);
 	}
 	
 	/* Check output buffer */
 	if (FFT->Output) {
-		free(FFT->Output);
+		LIB_FREE_FUNC(FFT->Output);
 	}
 }

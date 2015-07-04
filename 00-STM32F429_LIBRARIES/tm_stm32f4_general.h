@@ -360,6 +360,14 @@ float TM_GENERAL_RoundFloat(float Number, uint8_t decimals);
 uint32_t TM_GENERAL_NextPowerOf2(uint32_t number);
 
 /**
+ * @brief  Forces processor to jump to Hard-fault handler
+ * @note   Function tries to call function at zero location in memory which causes hard-fault
+ * @param  None
+ * @retval None
+ */
+void TM_GENERAL_ForceHardFaultError(void);
+
+/**
  * @brief  System reset callback.
  * @note   Function is called before software reset occurs.
  * @param  None

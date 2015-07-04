@@ -176,11 +176,12 @@ Or use ARM compiler!
  * @brief  Custom timer structure
  */
 typedef struct {
-	uint32_t ARR;           /*!< Auto reload value */
-	uint32_t AutoReload;    /*!< Set to 1 if timer should be auto reloaded when it reaches zero */
-	uint32_t CNT;           /*!< Counter value, counter counts down */
-	uint8_t Enabled;        /*!< Set to 1 when timer is enabled */
-	void (*Callback)(void); /*!< Callback which will be called when timer reaches zero */
+	uint32_t ARR;             /*!< Auto reload value */
+	uint32_t AutoReload;      /*!< Set to 1 if timer should be auto reloaded when it reaches zero */
+	uint32_t CNT;             /*!< Counter value, counter counts down */
+	uint8_t Enabled;          /*!< Set to 1 when timer is enabled */
+	void (*Callback)(void *); /*!< Callback which will be called when timer reaches zero */
+	void* UserParameters;     /*!< Pointer to user parameters used for callback function */
 } TM_DELAY_Timer_t;
 
 /**
@@ -199,6 +200,16 @@ typedef struct {
  */
 #ifndef DELAY_MAX_CUSTOM_TIMERS
 #define DELAY_MAX_CUSTOM_TIMERS   5
+#endif
+
+/* Memory allocation function */
+#ifndef LIB_ALLOC_FUNC
+#define LIB_ALLOC_FUNC    malloc
+#endif
+
+/* Memory free function */
+#ifndef LIB_FREE_FUNC
+#define LIB_FREE_FUNC     free
 #endif
 
 /**
@@ -348,9 +359,10 @@ void TM_DELAY_DisableDelayTimer(void);
  * @param  AutoReload: If set to 1, timer will start again when it reaches zero and callback is called
  * @param  StartTimer: If set to 1, timer will start immediately
  * @param  *TM_DELAY_CustomTimerCallback: Pointer to callback function which will be called when timer reaches zero
+ * @param  *UserParameters: Pointer to void pointer to user parameters used as first parameter in callback function
  * @retval Pointer to allocated timer structure
  */
-TM_DELAY_Timer_t* TM_DELAY_TimerCreate(uint32_t ReloadValue, uint8_t AutoReload, uint8_t StartTimer, void (*TM_DELAY_CustomTimerCallback)(void));
+TM_DELAY_Timer_t* TM_DELAY_TimerCreate(uint32_t ReloadValue, uint8_t AutoReload, uint8_t StartTimer, void (*TM_DELAY_CustomTimerCallback)(void *), void* UserParameters);
 
 /**
  * @brief  Deletes already allocated timer

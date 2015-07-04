@@ -85,7 +85,17 @@ extern C {
  * @brief    Library defines
  * @{
  */
-/* Macros here */
+
+/* Memory allocation function */
+#ifndef LIB_ALLOC_FUNC
+#define LIB_ALLOC_FUNC    malloc
+#endif
+
+/* Memory free function */
+#ifndef LIB_FREE_FUNC
+#define LIB_FREE_FUNC     free
+#endif
+
 /**
  * @}
  */

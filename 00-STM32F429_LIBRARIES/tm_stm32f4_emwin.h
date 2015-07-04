@@ -163,6 +163,32 @@ TM_EMWIN_Result_t TM_EMWIN_Init(void);
 TM_EMWIN_Result_t TM_EMWIN_Rotate(TM_EMWIN_Rotate_t rotation);
 
 /**
+ * @brief  Enables memory feature for EMWIN
+ * @note   When you enable memory, then all drawings for EMWIN are stored on LCD layer 1,
+ *            but layer 2 is shown to user. You have to use @ref TM_EMWIN_Exec() to update data from LCD layer 1 to layer 2
+ *         This is used to avoid flickering system when doing a lot of redrawing, for example updating a big graph very fast 
+ * @param  None
+ * @retval None
+ */
+void TM_EMWIN_MemoryEnable(void);
+
+/**
+ * @brief  Disables memory feature for EMWIN
+ * @param  None
+ * @retval None
+ */
+void TM_EMWIN_MemoryDisable(void);
+
+/**
+ * @brief  Execute EMWIN pending tasks 
+ * @note   This function was designed to be used in case memory is enabled using @ref TM_EMWIN_MemoryEnable function.
+ *            You can also use it (and it is recommended) in case you don't have memory enabled
+ * @param  None
+ * @retval Return values of GUI_Exec() function from EMWIN
+ */
+uint32_t TM_EMWIN_Exec(void);
+
+/**
  * @brief  Updates touch
  * @brief  It must be called periodically every 1ms.
  *

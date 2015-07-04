@@ -39,7 +39,7 @@ void TM_DELAY_INT_InitTIM(void);
 
 #if defined(TM_DELAY_TIM)
 void TM_DELAY_TIM_IRQ_HANDLER(void) {
-	TIM_ClearITPendingBit(TM_DELAY_TIM, TIM_IT_Update);
+	TM_DELAY_TIM->SR = ~TIM_IT_Update;
 #elif defined(KEIL_IDE)
 void TimingDelay_Decrement(void) {
 #else
@@ -59,9 +59,9 @@ void SysTick_Handler(void) {
 	for (i = 0; i < CustomTimers.Count; i++) {
 		/* Check if timer is enabled */
 		if (
-			CustomTimers.Timers[i] && 
-			CustomTimers.Timers[i]->Enabled && 
-			CustomTimers.Timers[i]->CNT > 0
+			CustomTimers.Timers[i] &&          /*!< Pointer exists */
+			CustomTimers.Timers[i]->Enabled && /*!< Timer is enabled */
+			CustomTimers.Timers[i]->CNT > 0    /*!< Counter is not NULL */
 		) {
 			/* Decrease counter */
 			CustomTimers.Timers[i]->CNT--;
@@ -69,12 +69,12 @@ void SysTick_Handler(void) {
 			/* Check if count is zero */
 			if (CustomTimers.Timers[i]->CNT == 0) {
 				/* Call user callback function */
-				CustomTimers.Timers[i]->Callback();
+				CustomTimers.Timers[i]->Callback(CustomTimers.Timers[i]->UserParameters);
 				
 				/* Set new counter value */
 				CustomTimers.Timers[i]->CNT = CustomTimers.Timers[i]->ARR;
 				
-				/* Set count value if we want to */
+				/* Disable timer if auto reload feature is not used */
 				if (!CustomTimers.Timers[i]->AutoReload) {
 					/* Disable counter */
 					CustomTimers.Timers[i]->Enabled = 0;
@@ -115,7 +115,7 @@ void TM_DELAY_EnableDelayTimer(void) {
 	
 #if defined(TM_DELAY_TIM)
 	/* Enable TIMER for delay, useful when you wakeup from sleep mode */
-	TIM_Cmd(TM_DELAY_TIM, ENABLE);
+	TM_DELAY_TIM->CR1 |= TIM_CR1_CEN;
 #else
 	/* Enable systick interrupts, useful when you wakeup from sleep mode */  
 	SysTick->CTRL |= SysTick_CTRL_TICKINT_Msk;
@@ -125,7 +125,7 @@ void TM_DELAY_EnableDelayTimer(void) {
 void TM_DELAY_DisableDelayTimer(void) {
 #if defined(TM_DELAY_TIM)
 	/* Disable TIMER for delay, useful when you go to sleep mode */
-	TIM_Cmd(TM_DELAY_TIM, DISABLE);
+	TM_DELAY_TIM->CR1 &= ~TIM_CR1_CEN;
 #else
 	/* Disable systick, useful when you go to sleep mode */
 	SysTick->CTRL &= ~SysTick_CTRL_TICKINT_Msk;
@@ -158,7 +158,7 @@ void TM_DELAY_INT_InitTIM(void) {
 	/* Initialize timer */
 	TIM_TimeBaseInit(TM_DELAY_TIM, &TIM_TimeBaseStruct);
 	
-	/* Enable interrupt */
+	/* Enable interrupt each update cycle */
 	TIMx->DIER |= TIM_IT_Update;
 	
 	/* Set NVIC parameters */
@@ -166,6 +166,7 @@ void TM_DELAY_INT_InitTIM(void) {
 	NVIC_InitStruct.NVIC_IRQChannelCmd = ENABLE;
 	NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority = 0;
 	NVIC_InitStruct.NVIC_IRQChannelSubPriority = 0;
+	
 	/* Add to NVIC */
 	NVIC_Init(&NVIC_InitStruct);
 	
@@ -174,7 +175,7 @@ void TM_DELAY_INT_InitTIM(void) {
 }
 #endif
 
-TM_DELAY_Timer_t* TM_DELAY_TimerCreate(uint32_t ReloadValue, uint8_t AutoReload, uint8_t StartTimer, void (*TM_DELAY_CustomTimerCallback)(void)) {
+TM_DELAY_Timer_t* TM_DELAY_TimerCreate(uint32_t ReloadValue, uint8_t AutoReload, uint8_t StartTimer, void (*TM_DELAY_CustomTimerCallback)(void *), void* UserParameters) {
 	TM_DELAY_Timer_t* tmp;
 	
 	/* Check if available */
@@ -183,7 +184,7 @@ TM_DELAY_Timer_t* TM_DELAY_TimerCreate(uint32_t ReloadValue, uint8_t AutoReload,
 	}
 	
 	/* Try to allocate memory for timer structure */
-	tmp = (TM_DELAY_Timer_t *) malloc(sizeof(TM_DELAY_Timer_t));
+	tmp = (TM_DELAY_Timer_t *) LIB_ALLOC_FUNC(sizeof(TM_DELAY_Timer_t));
 	
 	/* Check if allocated */
 	if (tmp == NULL) {
@@ -196,6 +197,7 @@ TM_DELAY_Timer_t* TM_DELAY_TimerCreate(uint32_t ReloadValue, uint8_t AutoReload,
 	tmp->AutoReload = AutoReload;
 	tmp->Enabled = StartTimer;
 	tmp->Callback = TM_DELAY_CustomTimerCallback;
+	tmp->UserParameters = UserParameters;
 	
 	/* Increase number of timers in memory */
 	CustomTimers.Timers[CustomTimers.Count++] = tmp;
@@ -207,6 +209,7 @@ TM_DELAY_Timer_t* TM_DELAY_TimerCreate(uint32_t ReloadValue, uint8_t AutoReload,
 void TM_DELAY_TimerDelete(TM_DELAY_Timer_t* Timer) {
 	uint8_t i;
 	uint32_t irq;
+	TM_DELAY_Timer_t* tmp;
 	
 	/* Get location in array of pointers */
 	for (i = 0; i < CustomTimers.Count; i++) {
@@ -219,6 +222,9 @@ void TM_DELAY_TimerDelete(TM_DELAY_Timer_t* Timer) {
 	if (i == CustomTimers.Count) {
 		return;
 	}
+	
+	/* Save pointer to timer */
+	tmp = CustomTimers.Timers[i];
 	
 	/* Get interrupt status */
 	irq = __get_PRIMASK();
@@ -234,6 +240,9 @@ void TM_DELAY_TimerDelete(TM_DELAY_Timer_t* Timer) {
 	
 	/* Decrease count */
 	CustomTimers.Count--;
+	
+	/* Free timer */
+	LIB_FREE_FUNC(tmp);
 	
 	/* Enable IRQ if necessary */
 	if (!irq) {

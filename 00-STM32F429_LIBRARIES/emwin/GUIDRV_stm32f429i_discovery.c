@@ -67,6 +67,9 @@ can be set here.
 #include "GUIDRV_Lin.h"
 #include "global_includes.h"
 
+/* External variable, declared in tm_stm32f4_emwin.c file */
+extern uint32_t EMWIN_LCD_DRIVER_CB_CALLED;
+
 /*********************************************************************
 *
 *       Display configuration (to be modified)
@@ -127,7 +130,7 @@ can be set here.
 //
 // Color mode layer 0
 //
-#define COLOR_MODE_0 _CM_ARGB8888
+#define COLOR_MODE_0 _CM_RGB565
 //
 // Layer size
 //
@@ -138,7 +141,7 @@ can be set here.
 *
 *       Layer 1
 */
-#define COLOR_MODE_1 _CM_ARGB8888
+#define COLOR_MODE_1 _CM_RGB565
 //
 // Layer size
 //
@@ -322,7 +325,10 @@ static const LCD_API_COLOR_CONV * _apColorConvAPI[] = {
 *       _GetPixelformat
 */
 static U32 _GetPixelformat(int LayerIndex) {
-  const LCD_API_COLOR_CONV * pColorConvAPI;
+  const LCD_API_COLOR_CONV * pColorConvAPI;	
+	
+  /* Function was called, EMWIN has do some job, update LCD when necessary */
+  EMWIN_LCD_DRIVER_CB_CALLED = 1;
 
   if (LayerIndex >= GUI_COUNTOF(_apColorConvAPI)) {
     return 0;
@@ -353,7 +359,10 @@ static U32 _GetPixelformat(int LayerIndex) {
 *       _GetBytesPerLine
 */
 static int _GetBytesPerLine(int LayerIndex, int xSize) {
-  int BitsPerPixel, BytesPerLine;
+  int BitsPerPixel, BytesPerLine;	
+	
+  /* Function was called, EMWIN has do some job, update LCD when necessary */
+  EMWIN_LCD_DRIVER_CB_CALLED = 1;
 
   BitsPerPixel  = LCD_GetBitsPerPixelEx(LayerIndex);
   BytesPerLine = (BitsPerPixel * xSize + 7) / 8;
@@ -364,7 +373,10 @@ static int _GetBytesPerLine(int LayerIndex, int xSize) {
 *
 *       _DMA_LoadLUT
 */
-static void _DMA_LoadLUT(LCD_COLOR * pColor, U32 NumItems) {
+static void _DMA_LoadLUT(LCD_COLOR * pColor, U32 NumItems) {	
+  /* Function was called, EMWIN has do some job, update LCD when necessary */
+  EMWIN_LCD_DRIVER_CB_CALLED = 1;
+	
   DMA2D->FGCMAR  = (U32)pColor;                     // Foreground CLUT Memory Address Register
   //
   // Foreground PFC Control Register
@@ -388,6 +400,10 @@ static void _DMA_LoadLUT(LCD_COLOR * pColor, U32 NumItems) {
 */
 static void _InvertAlpha_SwapRB(LCD_COLOR * pColorSrc, LCD_COLOR * pColorDst, U32 NumItems) {
   U32 Color;
+		
+  /* Function was called, EMWIN has do some job, update LCD when necessary */
+  EMWIN_LCD_DRIVER_CB_CALLED = 1;
+	
   do {
     Color = *pColorSrc++;
     *pColorDst++ = ((Color & 0x000000FF) << 16)         // Swap red <-> blue
@@ -408,6 +424,9 @@ static void _InvertAlpha_SwapRB(LCD_COLOR * pColorSrc, LCD_COLOR * pColorDst, U3
 */
 static void _InvertAlpha(LCD_COLOR * pColorSrc, LCD_COLOR * pColorDst, U32 NumItems) {
   U32 Color;
+		
+  /* Function was called, EMWIN has do some job, update LCD when necessary */
+  EMWIN_LCD_DRIVER_CB_CALLED = 1;
 
   do {
     Color = *pColorSrc++;
@@ -419,7 +438,9 @@ static void _InvertAlpha(LCD_COLOR * pColorSrc, LCD_COLOR * pColorDst, U32 NumIt
 *
 *       _DMA_AlphaBlendingBulk
 */
-static void _DMA_AlphaBlendingBulk(LCD_COLOR * pColorFG, LCD_COLOR * pColorBG, LCD_COLOR * pColorDst, U32 NumItems) {
+static void _DMA_AlphaBlendingBulk(LCD_COLOR * pColorFG, LCD_COLOR * pColorBG, LCD_COLOR * pColorDst, U32 NumItems) {	
+  /* Function was called, EMWIN has do some job, update LCD when necessary */
+  EMWIN_LCD_DRIVER_CB_CALLED = 1;
   //
   // Set up mode
   //
@@ -453,7 +474,7 @@ static void _DMA_AlphaBlendingBulk(LCD_COLOR * pColorFG, LCD_COLOR * pColorBG, L
   DMA2D->CR     |= 1;  
     
   while (DMA2D->CR & DMA2D_CR_START) {
-    //__WFI();                                        // Sleep until next interrupt
+    __WFI();                                        // Sleep until next interrupt
   }
 }
 
@@ -467,7 +488,10 @@ static void _DMA_AlphaBlendingBulk(LCD_COLOR * pColorFG, LCD_COLOR * pColorBG, L
 *   foreground color should be used unchanged.
 */
 static LCD_COLOR _DMA_MixColors(LCD_COLOR Color, LCD_COLOR BkColor, U8 Intens) {
-  U32 ColorFG, ColorBG, ColorDst;
+  U32 ColorFG, ColorBG, ColorDst;	
+	
+  /* Function was called, EMWIN has do some job, update LCD when necessary */
+  EMWIN_LCD_DRIVER_CB_CALLED = 1;
 
   if ((BkColor & 0xFF000000) == 0xFF000000) {
     return Color;
@@ -518,7 +542,9 @@ static LCD_COLOR _DMA_MixColors(LCD_COLOR Color, LCD_COLOR BkColor, U8 Intens) {
 *
 *       _DMA_ConvertColor
 */
-static void _DMA_ConvertColor(void * pSrc, void * pDst,  U32 PixelFormatSrc, U32 PixelFormatDst, U32 NumItems) {
+static void _DMA_ConvertColor(void * pSrc, void * pDst,  U32 PixelFormatSrc, U32 PixelFormatDst, U32 NumItems) {	
+  /* Function was called, EMWIN has do some job, update LCD when necessary */
+  EMWIN_LCD_DRIVER_CB_CALLED = 1;
   //
   // Set up mode
   //
@@ -564,7 +590,10 @@ static void _DMA_ConvertColor(void * pSrc, void * pDst,  U32 PixelFormatSrc, U32
 */
 static LCD_PIXELINDEX * _LCD_GetpPalConvTable(const LCD_LOGPALETTE GUI_UNI_PTR * pLogPal, const GUI_BITMAP GUI_UNI_PTR * pBitmap, int LayerIndex) {
   void (* pFunc)(void);
-  int DoDefault = 0;
+  int DoDefault = 0;	
+	
+  /* Function was called, EMWIN has do some job, update LCD when necessary */
+  EMWIN_LCD_DRIVER_CB_CALLED = 1;
 
   //
   // Check if we have a non transparent device independent bitmap
@@ -613,7 +642,9 @@ static LCD_PIXELINDEX * _LCD_GetpPalConvTable(const LCD_LOGPALETTE GUI_UNI_PTR *
 *
 *       _DMA_MixColorsBulk
 */
-static void _DMA_MixColorsBulk(LCD_COLOR * pColorFG, LCD_COLOR * pColorBG, LCD_COLOR * pColorDst, U8 Intens, U32 NumItems) {
+static void _DMA_MixColorsBulk(LCD_COLOR * pColorFG, LCD_COLOR * pColorBG, LCD_COLOR * pColorDst, U8 Intens, U32 NumItems) {	
+  /* Function was called, EMWIN has do some job, update LCD when necessary */
+  EMWIN_LCD_DRIVER_CB_CALLED = 1;
   //
   // Set up mode
   //
@@ -651,7 +682,9 @@ static void _DMA_MixColorsBulk(LCD_COLOR * pColorFG, LCD_COLOR * pColorBG, LCD_C
 *
 *       _DMA_AlphaBlending
 */
-static void _DMA_AlphaBlending(LCD_COLOR * pColorFG, LCD_COLOR * pColorBG, LCD_COLOR * pColorDst, U32 NumItems) {
+static void _DMA_AlphaBlending(LCD_COLOR * pColorFG, LCD_COLOR * pColorBG, LCD_COLOR * pColorDst, U32 NumItems) {	
+  /* Function was called, EMWIN has do some job, update LCD when necessary */
+  EMWIN_LCD_DRIVER_CB_CALLED = 1;
   //
   // Invert alpha values
   //
@@ -677,7 +710,9 @@ static void _DMA_AlphaBlending(LCD_COLOR * pColorFG, LCD_COLOR * pColorBG, LCD_C
 *   Because emWin uses ABGR internally and 0x00 and 0xFF for opaque and fully
 *   transparent the color array needs to be converted after DMA2D has been used.
 */
-static void _DMA_Index2ColorBulk(void * pIndex, LCD_COLOR * pColor, U32 NumItems, U8 SizeOfIndex, U32 PixelFormat) {
+static void _DMA_Index2ColorBulk(void * pIndex, LCD_COLOR * pColor, U32 NumItems, U8 SizeOfIndex, U32 PixelFormat) {	
+  /* Function was called, EMWIN has do some job, update LCD when necessary */
+  EMWIN_LCD_DRIVER_CB_CALLED = 1;
   //
   // Use DMA2D for the conversion
   //
@@ -698,7 +733,9 @@ static void _DMA_Index2ColorBulk(void * pIndex, LCD_COLOR * pColor, U32 NumItems
 *   Because emWin uses ABGR internally and 0x00 and 0xFF for opaque and fully
 *   transparent the given color array needs to be converted before DMA2D can be used.
 */
-static void _DMA_Color2IndexBulk(LCD_COLOR * pColor, void * pIndex, U32 NumItems, U8 SizeOfIndex, U32 PixelFormat) {
+static void _DMA_Color2IndexBulk(LCD_COLOR * pColor, void * pIndex, U32 NumItems, U8 SizeOfIndex, U32 PixelFormat) {	
+  /* Function was called, EMWIN has do some job, update LCD when necessary */
+  EMWIN_LCD_DRIVER_CB_CALLED = 1;
   //
   // Convert colors from ABGR to ARGB and invert alpha values
   //
@@ -715,6 +752,9 @@ static void _DMA_Color2IndexBulk(LCD_COLOR * pColor, void * pIndex, U32 NumItems
 */
 static void _LCD_MixColorsBulk(U32 * pFG, U32 * pBG, U32 * pDst, unsigned OffFG, unsigned OffBG, unsigned OffDest, unsigned xSize, unsigned ySize, U8 Intens) {
   int y;
+		
+  /* Function was called, EMWIN has do some job, update LCD when necessary */
+  EMWIN_LCD_DRIVER_CB_CALLED = 1;
 
   GUI_USE_PARA(OffFG);
   GUI_USE_PARA(OffDest);
@@ -743,7 +783,10 @@ static void _LCD_MixColorsBulk(U32 * pFG, U32 * pBG, U32 * pDst, unsigned OffFG,
 *
 *       _LTDC_LayerEnableColorKeying
 */
-static void _LTDC_LayerEnableColorKeying(LTDC_Layer_TypeDef * LTDC_Layerx, int NewState) {
+static void _LTDC_LayerEnableColorKeying(LTDC_Layer_TypeDef * LTDC_Layerx, int NewState) {	
+  /* Function was called, EMWIN has do some job, update LCD when necessary */
+  EMWIN_LCD_DRIVER_CB_CALLED = 1;
+	
   if (NewState != DISABLE) {
     LTDC_Layerx->CR |= (U32)LTDC_LxCR_COLKEN;
   } else {
@@ -771,7 +814,11 @@ static void _LTDC_LayerEnableLUT(LTDC_Layer_TypeDef * LTDC_Layerx, int NewState)
 */
 static void _LTDC_SetLayerPos(int LayerIndex, int xPos, int yPos) {
   int xSize, ySize;
-  U32 HorizontalStart, HorizontalStop, VerticalStart, VerticalStop;
+  U32 HorizontalStart, HorizontalStop, VerticalStart, VerticalStop;	
+	
+  /* Function was called, EMWIN has do some job, update LCD when necessary */
+  EMWIN_LCD_DRIVER_CB_CALLED = 1;
+	
 
   xSize = LCD_GetXSizeEx(LayerIndex);
   ySize = LCD_GetYSizeEx(LayerIndex);
@@ -799,7 +846,9 @@ static void _LTDC_SetLayerPos(int LayerIndex, int xPos, int yPos) {
 *
 *       _LTDC_SetLayerAlpha
 */
-static void _LTDC_SetLayerAlpha(int LayerIndex, int Alpha) {
+static void _LTDC_SetLayerAlpha(int LayerIndex, int Alpha) {	
+  /* Function was called, EMWIN has do some job, update LCD when necessary */
+  EMWIN_LCD_DRIVER_CB_CALLED = 1;
   //
   // Set constant alpha value
   //
@@ -817,6 +866,9 @@ static void _LTDC_SetLayerAlpha(int LayerIndex, int Alpha) {
 */
 static void _LTDC_SetLUTEntry(int LayerIndex, U32 Color, int Pos) {
   U32 r, g, b, a;
+		
+  /* Function was called, EMWIN has do some job, update LCD when necessary */
+  EMWIN_LCD_DRIVER_CB_CALLED = 1;
 
   r = ( Color        & 0xff) << 16;
   g = ((Color >>  8) & 0xff) <<  8;
@@ -836,6 +888,9 @@ static void _LTDC_SetLUTEntry(int LayerIndex, U32 Color, int Pos) {
 */
 static void _DMA_Copy(int LayerIndex, void * pSrc, void * pDst, int xSize, int ySize, int OffLineSrc, int OffLineDst) {
   U32 PixelFormat;
+		
+  /* Function was called, EMWIN has do some job, update LCD when necessary */
+  EMWIN_LCD_DRIVER_CB_CALLED = 1;
 
   PixelFormat = _GetPixelformat(LayerIndex);
   DMA2D->CR      = 0x00000000UL | (1 << 9);         // Control Register (Memory to memory and TCIE)
@@ -860,6 +915,9 @@ static void _DMA_Copy(int LayerIndex, void * pSrc, void * pDst, int xSize, int y
 */
 static void _DMA_Fill(int LayerIndex, void * pDst, int xSize, int ySize, int OffLine, U32 ColorIndex) {
   U32 PixelFormat;
+		
+  /* Function was called, EMWIN has do some job, update LCD when necessary */
+  EMWIN_LCD_DRIVER_CB_CALLED = 1;
 
   PixelFormat = _GetPixelformat(LayerIndex);
   DMA2D->CR      = 0x00030000UL | (1 << 9);         // Register to memory and TCIE
@@ -873,7 +931,7 @@ static void _DMA_Fill(int LayerIndex, void * pDst, int xSize, int ySize, int Off
   // Wait until transfer is done
   //
   while (DMA2D->CR & DMA2D_CR_START) {
-    //__WFI();                                        // Sleep until next interrupt
+    __WFI();                                        // Sleep until next interrupt
   }
 }
 
@@ -895,6 +953,9 @@ static void _LCD_InitController(int LayerIndex) {
   static int xSize, ySize, BytesPerLine, BitsPerPixel, i;
   static U32 Pixelformat, Color;
   static int Done;
+  	
+  /* Function was called, EMWIN has do some job, update LCD when necessary */
+  EMWIN_LCD_DRIVER_CB_CALLED = 1;
 
   if (LayerIndex >= GUI_COUNTOF(_apLayer)) {
     return;
@@ -997,6 +1058,9 @@ static void _LCD_InitController(int LayerIndex) {
 */
 static U32 _GetBufferSize(int LayerIndex) {
   U32 BufferSize;
+		
+  /* Function was called, EMWIN has do some job, update LCD when necessary */
+  EMWIN_LCD_DRIVER_CB_CALLED = 1;
 
   BufferSize = _axSize[LayerIndex] * _aySize[LayerIndex] * _aBytesPerPixels[LayerIndex];
   return BufferSize;
@@ -1007,6 +1071,9 @@ static U32 _GetBufferSize(int LayerIndex) {
 *       _DMA_DrawBitmapL8
 */
 static void _DMA_DrawBitmapL8(void * pSrc, void * pDst,  U32 OffSrc, U32 OffDst, U32 PixelFormatDst, U32 xSize, U32 ySize) {
+  /* Function was called, EMWIN has do some job, update LCD when necessary */
+  EMWIN_LCD_DRIVER_CB_CALLED = 1;
+	
   //
   // Set up mode
   //
@@ -1047,6 +1114,9 @@ static void _DMA_DrawBitmapL8(void * pSrc, void * pDst,  U32 OffSrc, U32 OffDst,
 */
 static void _LCD_CopyBuffer(int LayerIndex, int IndexSrc, int IndexDst) {
   U32 BufferSize, AddrSrc, AddrDst;
+		
+  /* Function was called, EMWIN has do some job, update LCD when necessary */
+  EMWIN_LCD_DRIVER_CB_CALLED = 1;
 
   BufferSize = _GetBufferSize(LayerIndex);
   AddrSrc    = _aAddr[LayerIndex] + BufferSize * IndexSrc;
@@ -1060,6 +1130,9 @@ static void _LCD_CopyBuffer(int LayerIndex, int IndexSrc, int IndexDst) {
 */
 static void _LCD_CopyRect(int LayerIndex, int x0, int y0, int x1, int y1, int xSize, int ySize) {
   U32 BufferSize, AddrSrc, AddrDst;
+		
+  /* Function was called, EMWIN has do some job, update LCD when necessary */
+  EMWIN_LCD_DRIVER_CB_CALLED = 1;
 
   BufferSize = _GetBufferSize(LayerIndex);
   AddrSrc = _aAddr[LayerIndex] + BufferSize * _aBufferIndex[LayerIndex] + (y0 * _axSize[LayerIndex] + x0) * _aBytesPerPixels[LayerIndex];
@@ -1074,6 +1147,9 @@ static void _LCD_CopyRect(int LayerIndex, int x0, int y0, int x1, int y1, int xS
 static void _LCD_FillRect(int LayerIndex, int x0, int y0, int x1, int y1, U32 PixelIndex) {
   U32 BufferSize, AddrDst;
   int xSize, ySize;
+		
+  /* Function was called, EMWIN has do some job, update LCD when necessary */
+  EMWIN_LCD_DRIVER_CB_CALLED = 1;
 
   if (GUI_GetDrawMode() == GUI_DM_XOR) {
     LCD_SetDevFunc(LayerIndex, LCD_DEVFUNC_FILLRECT, NULL);
@@ -1095,6 +1171,9 @@ static void _LCD_FillRect(int LayerIndex, int x0, int y0, int x1, int y1, U32 Pi
 static void _LCD_DrawBitmap16bpp(int LayerIndex, int x, int y, U16 const * p, int xSize, int ySize, int BytesPerLine) {
   U32 BufferSize, AddrDst;
   int OffLineSrc, OffLineDst;
+		
+  /* Function was called, EMWIN has do some job, update LCD when necessary */
+  EMWIN_LCD_DRIVER_CB_CALLED = 1;
 
   BufferSize = _GetBufferSize(LayerIndex);
   AddrDst = _aAddr[LayerIndex] + BufferSize * _aBufferIndex[LayerIndex] + (y * _axSize[LayerIndex] + x) * _aBytesPerPixels[LayerIndex];
@@ -1112,6 +1191,7 @@ static void _LCD_DrawBitmap8bpp(int LayerIndex, int x, int y, U8 const * p, int 
   U32 BufferSize, AddrDst;
   int OffLineSrc, OffLineDst;
   U32 PixelFormat;
+	
 
   BufferSize = _GetBufferSize(LayerIndex);
   AddrDst = _aAddr[LayerIndex] + BufferSize * _aBufferIndex[LayerIndex] + (y * _axSize[LayerIndex] + x) * _aBytesPerPixels[LayerIndex];
