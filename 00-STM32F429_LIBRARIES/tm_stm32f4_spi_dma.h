@@ -83,11 +83,11 @@ SPI6     | DMA2 | DMA Stream 5  | DMA Channel 1  | DMA Stream 6  | DMA Channel 0
  - STM32F4xx
  - STM32F4xx DMA
  - defines.h
+ - TM DMA
  - TM SPI
  - stdlib.h
 @endverbatim
  */
-
 #include "stm32f4xx.h"
 #include "stm32f4xx_dma.h"
 #include "defines.h"

@@ -347,7 +347,7 @@ f_open(&fil, "USB:my_file.txt", FA...);
  * - SDCARD: <b>SD</b>; Drive number 0
  * - USB DRIVE: <b>USB</b>; Drive number 1
  * - SDRAM: <b>SDRAM</b>; Drive number 2
- * - SPI FLASH: <b>SPIFLASH</b>; Drive number 3; Low level driver not implemented yet
+ * - SPI FLASH: <b>SPIFLASH</b>; Drive number 3; Low level driver is not implemented yet
  *
  * Example for opening files:
  *

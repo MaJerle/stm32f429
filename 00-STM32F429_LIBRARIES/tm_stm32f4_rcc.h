@@ -106,10 +106,11 @@ extern C {
  */
 typedef struct {
 	uint16_t PLLM; /*!< PLL M parameter. This value can be between 2 and 63.    Use 0 if you don't want to change parameter. */
-	uint16_t PLLN; /*!< PLL M parameter. This value can be between 192 and 432. Use 0 if you don't want to change parameter. */ 
-	uint16_t PLLP; /*!< PLL M parameter. This value can be 2, 4, 6 or 8.        Use 0 if you don't want to change parameter. */
-	uint16_t PLLQ; /*!< PLL M parameter. This value can be between 2 and 15.    Use 0 if you don't want to change parameter. */
-	uint16_t PLLR; /*!< PLL M parameter. This value can be between 2 and 7 and is only available for STM32F446 devices. Use 0 if you don't want to change parameter. */
+	uint16_t PLLN; /*!< PLL N parameter. This value can be between 192 and 432. Use 0 if you don't want to change parameter. */ 
+	uint16_t PLLP; /*!< PLL P parameter. This value can be 2, 4, 6 or 8.        Use 0 if you don't want to change parameter. */
+	uint16_t PLLQ; /*!< PLL Q parameter. This value can be between 2 and 15.    Use 0 if you don't want to change parameter. */
+	uint16_t PLLR; /*!< PLL R parameter. This value can be between 2 and 7 and is only available for STM32F446 devices. 
+	                       Use 0 if you don't want to change parameter. */
 } TM_RCC_PLL_t;
 
 /**

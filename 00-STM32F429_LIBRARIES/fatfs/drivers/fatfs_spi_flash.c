@@ -18,7 +18,7 @@
  */
 #include "fatfs_spi_flash.h"
 
-/* Status for SDRAM */
+/* Status for SPIFLASH */
 static volatile DSTATUS SPI_FLASH_Status = STA_NOINIT;
 
 DSTATUS TM_FATFS_SPI_FLASH_disk_initialize(void) {

@@ -151,7 +151,7 @@ uint8_t TM_SPI_DMA_Transmit(SPI_TypeDef* SPIx, uint8_t* TX_Buffer, uint8_t* RX_B
 	}
 	
 	/* Deinit first TX stream */
-	DMA_DeInit(Settings->TX_Stream);
+	TM_DMA_ClearFlag(Settings->TX_Stream, DMA_FLAG_ALL);
 	
 	/* Init TX stream */
 	DMA_Init(Settings->TX_Stream, &DMA_InitStruct);	
@@ -169,7 +169,7 @@ uint8_t TM_SPI_DMA_Transmit(SPI_TypeDef* SPIx, uint8_t* TX_Buffer, uint8_t* RX_B
 	}
 	
 	/* Deinit first RX stream */
-	DMA_DeInit(Settings->RX_Stream);
+	TM_DMA_ClearFlag(Settings->RX_Stream, DMA_FLAG_ALL);
 	
 	/* Init RX stream */
 	DMA_Init(Settings->RX_Stream, &DMA_InitStruct);
@@ -213,7 +213,7 @@ uint8_t TM_SPI_DMA_SendByte(SPI_TypeDef* SPIx, uint8_t value, uint16_t count) {
 	DMA_InitStruct.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;
 	
 	/* Deinit first TX stream */
-	DMA_DeInit(Settings->TX_Stream);
+	TM_DMA_ClearFlag(Settings->TX_Stream, DMA_FLAG_ALL);
 	
 	/* Init TX stream */
 	DMA_Init(Settings->TX_Stream, &DMA_InitStruct);
@@ -243,7 +243,7 @@ uint8_t TM_SPI_DMA_SendHalfWord(SPI_TypeDef* SPIx, uint16_t value, uint16_t coun
 	/* Set DMA peripheral address, number of bytes and disable memory increase pointer */
 	DMA_InitStruct.DMA_PeripheralBaseAddr = (uint32_t) &SPIx->DR;
 	DMA_InitStruct.DMA_BufferSize = count;
-	DMA_InitStruct.DMA_Memory0BaseAddr = (uint32_t)&SPI_DMA_Dummy16;
+	DMA_InitStruct.DMA_Memory0BaseAddr = (uint32_t) &SPI_DMA_Dummy16;
 	DMA_InitStruct.DMA_MemoryInc = DMA_MemoryInc_Disable;
 	
 	/* Configure TX DMA */
@@ -255,7 +255,7 @@ uint8_t TM_SPI_DMA_SendHalfWord(SPI_TypeDef* SPIx, uint16_t value, uint16_t coun
 	DMA_InitStruct.DMA_PeripheralDataSize = DMA_PeripheralDataSize_HalfWord;
 	
 	/* Deinit first TX stream */
-	DMA_DeInit(Settings->TX_Stream);
+	TM_DMA_ClearFlag(Settings->TX_Stream, DMA_FLAG_ALL);
 	
 	/* Init TX stream */
 	DMA_Init(Settings->TX_Stream, &DMA_InitStruct);

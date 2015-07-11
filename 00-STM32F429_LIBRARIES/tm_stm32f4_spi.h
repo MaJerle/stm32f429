@@ -202,9 +202,21 @@ typedef enum {
 #define USE_SPI1
 #define USE_SPI2
 #define USE_SPI3
+#ifdef SPI4
 #define USE_SPI4
+#else
+#warning "SPI4 undefined. Please update library with STD drivers from ST.com"
+#endif
+#ifdef SPI5
 #define USE_SPI5
+#else
+#warning "SPI5 undefined. Please update library with STD drivers from ST.com"
+#endif
+#ifdef SPI6
 #define USE_SPI6
+#else
+#warning "SPI6 undefined. Please update library with STD drivers from ST.com"
+#endif
 
 //----- SPI1 options start -------
 //Options can be overwriten in defines.h file

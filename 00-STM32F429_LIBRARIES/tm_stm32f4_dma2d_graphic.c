@@ -41,7 +41,7 @@ static DMA2D_InitTypeDef GRAPHIC_DMA2D_InitStruct;
 //static DMA2D_FG_InitTypeDef GRAPHIC_DMA2D_FG_InitStruct;
 volatile TM_INT_DMA2D_t DIS;
 
-__STATIC_INLINE DrawPixel(uint16_t x, uint16_t y, uint32_t color) {
+__STATIC_INLINE void DrawPixel(uint16_t x, uint16_t y, uint32_t color) {
 	TM_DMA2DGRAPHIC_DrawHorizontalLine(x, y, 1, color);
 }
 

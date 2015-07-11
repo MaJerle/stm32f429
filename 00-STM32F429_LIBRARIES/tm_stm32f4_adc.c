@@ -125,13 +125,19 @@ void TM_ADC_InitADC(ADC_TypeDef* ADCx) {
 }
 
 uint16_t TM_ADC_Read(ADC_TypeDef* ADCx, uint8_t channel) {
+	uint32_t timeout = 0xFFF;
+	
 	ADC_RegularChannelConfig(ADCx, channel, 1, ADC_SampleTime_15Cycles);
 
 	/* Start software conversion */
 	ADCx->CR2 |= (uint32_t)ADC_CR2_SWSTART;
 	
 	/* Wait till done */
-	while (!(ADCx->SR & ADC_SR_EOC));
+	while (!(ADCx->SR & ADC_SR_EOC)) {
+		if (timeout-- == 0x00) {
+			return 0;
+		}
+	}
 	
 	/* Return result */
 	return ADCx->DR;

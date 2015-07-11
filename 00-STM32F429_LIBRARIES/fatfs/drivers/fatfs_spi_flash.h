@@ -77,8 +77,8 @@ extern C {
 #endif
 
 /* Memory size on flash */
-#ifndef SPI_FLASH_MEMORY_SIZE
-#define SPI_FLASH_MEMORY_SIZE          512
+#ifndef FATFS_SPI_FLASH_MEMORY_SIZE
+#define FATFS_SPI_FLASH_MEMORY_SIZE    512
 #endif
 /**
  * @}
