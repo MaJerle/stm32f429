@@ -62,6 +62,7 @@ void TM_DMA2DGRAPHIC_Init(void) {
 	DIS.CurrentWidth = DMA2D_GRAPHIC_LCD_HEIGHT;
 	DIS.Orientation = 0;
 	DIS.PixelSize = 2;
+	DIS.LayerOffset = DMA2D_GRAPHIC_LCD_WIDTH * DMA2D_GRAPHIC_LCD_HEIGHT * DIS.PixelSize;
 	
 	/* Enable DMA2D clock */
 	RCC->AHB1ENR |= RCC_AHB1ENR_DMA2DEN;
