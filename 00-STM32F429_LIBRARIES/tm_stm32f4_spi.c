@@ -331,6 +331,11 @@ void TM_SPI_ReadMulti16(SPI_TypeDef* SPIx, uint16_t* dataIn, uint16_t dummy, uin
 	}
 }
 
+__weak void TM_SPI_InitCustomPinsCallback(SPI_TypeDef* SPIx, uint16_t AlternateFunction) {
+	/* Custom user function. */
+	/* In case user needs functionality for custom pins, this function should be declared outside this library */
+}
+
 /* Private functions */
 static void TM_SPIx_Init(SPI_TypeDef* SPIx, TM_SPI_PinsPack_t pinspack, TM_SPI_Mode_t SPI_Mode, uint16_t SPI_BaudRatePrescaler, uint16_t SPI_MasterSlave, uint16_t SPI_FirstBit) {
 	SPI_InitTypeDef SPI_InitStruct;
@@ -460,7 +465,7 @@ void TM_SPI1_INT_InitPins(TM_SPI_PinsPack_t pinspack) {
 #endif
 	if (pinspack == TM_SPI_PinsPack_Custom) {
 		/* Call user function */
-		TM_SPI_InitCustomPinsCallback(SPI1);
+		TM_SPI_InitCustomPinsCallback(SPI1, GPIO_AF_SPI1);
 	}
 }
 #endif
@@ -486,7 +491,7 @@ void TM_SPI2_INT_InitPins(TM_SPI_PinsPack_t pinspack) {
 #endif
 	if (pinspack == TM_SPI_PinsPack_Custom) {
 		/* Call user function */
-		TM_SPI_InitCustomPinsCallback(SPI2);
+		TM_SPI_InitCustomPinsCallback(SPI2, GPIO_AF_SPI2);
 	}
 }
 #endif
@@ -506,7 +511,7 @@ void TM_SPI3_INT_InitPins(TM_SPI_PinsPack_t pinspack) {
 #endif
 	if (pinspack == TM_SPI_PinsPack_Custom) {
 		/* Call user function */
-		TM_SPI_InitCustomPinsCallback(SPI3);
+		TM_SPI_InitCustomPinsCallback(SPI3, GPIO_AF_SPI3);
 	}
 }
 #endif
@@ -526,7 +531,7 @@ void TM_SPI4_INT_InitPins(TM_SPI_PinsPack_t pinspack) {
 #endif
 	if (pinspack == TM_SPI_PinsPack_Custom) {
 		/* Call user function */
-		TM_SPI_InitCustomPinsCallback(SPI4);
+		TM_SPI_InitCustomPinsCallback(SPI4, GPIO_AF_SPI4);
 	}
 }
 #endif
@@ -547,7 +552,7 @@ void TM_SPI5_INT_InitPins(TM_SPI_PinsPack_t pinspack) {
 #endif
 	if (pinspack == TM_SPI_PinsPack_Custom) {
 		/* Call user function */
-		TM_SPI_InitCustomPinsCallback(SPI5);
+		TM_SPI_InitCustomPinsCallback(SPI5, GPIO_AF_SPI5);
 	}
 }
 #endif
@@ -562,7 +567,7 @@ void TM_SPI6_INT_InitPins(TM_SPI_PinsPack_t pinspack) {
 #endif
 	if (pinspack == TM_SPI_PinsPack_Custom) {
 		/* Call user function */
-		TM_SPI_InitCustomPinsCallback(SPI6);
+		TM_SPI_InitCustomPinsCallback(SPI6, GPIO_AF_SPI6);
 	}
 }
 #endif

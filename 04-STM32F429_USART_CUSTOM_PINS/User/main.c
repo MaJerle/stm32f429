@@ -37,13 +37,13 @@ int main(void) {
 }
 
 /* Custom pinout callback for USART */
-void TM_USART_InitCustomPinsCallback(USART_TypeDef* USARTx) {
+void TM_USART_InitCustomPinsCallback(USART_TypeDef* USARTx, uint16_t AlternateFunction) {
 	/* Check for proper USART */
 	if (USARTx == USART1) {
 		/* Initialize custom pins */
 		/* TX pin = PB6 */
-		TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_6, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Low, GPIO_AF_USART1);
+		TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_6, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Low, AlternateFunction);
 		/* RX pin = PA10 */
-		TM_GPIO_InitAlternate(GPIOA, GPIO_PIN_10, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Low, GPIO_AF_USART1);
+		TM_GPIO_InitAlternate(GPIOA, GPIO_PIN_10, TM_GPIO_OType_PP, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Low, AlternateFunction);
 	}
 }

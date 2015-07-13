@@ -372,7 +372,7 @@ void TM_USART_INT_InsertToBuffer(TM_USART_t* u, uint8_t c) {
 	}
 }
 
-__weak void TM_USART_InitCustomPinsCallback(USART_TypeDef* USARTx) {
+__weak void TM_USART_InitCustomPinsCallback(USART_TypeDef* USARTx, uint16_t AlternateFunction) {
 	/* Custom user function. */
 	/* In case user needs functionality for custom pins, this function should be declared outside this library */
 }
@@ -486,7 +486,7 @@ void TM_USART1_InitPins(TM_USART_PinsPack_t pinspack) {
 #endif
 	if (pinspack == TM_USART_PinsPack_Custom) {
 		/* Init custom pins, callback used */
-		TM_USART_InitCustomPinsCallback(USART1);
+		TM_USART_InitCustomPinsCallback(USART1, GPIO_AF_USART1);
 	}
 }
 #endif
@@ -506,7 +506,7 @@ void TM_USART2_InitPins(TM_USART_PinsPack_t pinspack) {
 #endif
 	if (pinspack == TM_USART_PinsPack_Custom) {
 		/* Init custom pins, callback used */
-		TM_USART_InitCustomPinsCallback(USART2);
+		TM_USART_InitCustomPinsCallback(USART2, GPIO_AF_USART2);
 	}
 }
 #endif
@@ -531,7 +531,7 @@ void TM_USART3_InitPins(TM_USART_PinsPack_t pinspack) {
 #endif
 	if (pinspack == TM_USART_PinsPack_Custom) {
 		/* Init custom pins, callback used */
-		TM_USART_InitCustomPinsCallback(USART3);
+		TM_USART_InitCustomPinsCallback(USART3, GPIO_AF_USART3);
 	}
 }
 #endif
@@ -551,7 +551,7 @@ void TM_UART4_InitPins(TM_USART_PinsPack_t pinspack) {
 #endif
 	if (pinspack == TM_USART_PinsPack_Custom) {
 		/* Init custom pins, callback used */
-		TM_USART_InitCustomPinsCallback(UART4);
+		TM_USART_InitCustomPinsCallback(UART4, GPIO_AF_UART4);
 	}
 }
 #endif
@@ -567,7 +567,7 @@ void TM_UART5_InitPins(TM_USART_PinsPack_t pinspack) {
 #endif
 	if (pinspack == TM_USART_PinsPack_Custom) {
 		/* Init custom pins, callback used */
-		TM_USART_InitCustomPinsCallback(UART5);
+		TM_USART_InitCustomPinsCallback(UART5, GPIO_AF_UART5);
 	}
 }
 #endif
@@ -587,7 +587,7 @@ void TM_USART6_InitPins(TM_USART_PinsPack_t pinspack) {
 #endif
 	if (pinspack == TM_USART_PinsPack_Custom) {
 		/* Init custom pins, callback used */
-		TM_USART_InitCustomPinsCallback(USART6);
+		TM_USART_InitCustomPinsCallback(USART6, GPIO_AF_USART6);
 	}
 }
 #endif
@@ -607,7 +607,7 @@ void TM_UART7_InitPins(TM_USART_PinsPack_t pinspack) {
 #endif
 	if (pinspack == TM_USART_PinsPack_Custom) {
 		/* Init custom pins, callback used */
-		TM_USART_InitCustomPinsCallback(UART7);
+		TM_USART_InitCustomPinsCallback(UART7, GPIO_AF_UART7);
 	}
 }
 #endif
@@ -622,7 +622,7 @@ void TM_UART8_InitPins(TM_USART_PinsPack_t pinspack) {
 #endif
 	if (pinspack == TM_USART_PinsPack_Custom) {
 		/* Init custom pins, callback used */
-		TM_USART_InitCustomPinsCallback(UART8);
+		TM_USART_InitCustomPinsCallback(UART8, GPIO_AF_UART8);
 	}
 }
 #endif

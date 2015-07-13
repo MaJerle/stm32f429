@@ -562,10 +562,11 @@ void TM_SPI_ReadMulti16(SPI_TypeDef* SPIx, uint16_t* dataIn, uint16_t dummy, uin
  * @note   You have to initialize MOSI, MISO and SCK pin
  *
  * @param  *SPIx: Pointer to SPIx peripheral for which you have to set your custom pin settings
+ * @param  AlternateFunction: Alternate function which should be used for GPIO initialization
  * @retval None
  * @note   With __weak parameter to prevent link errors if not defined by user
  */
-__weak void TM_SPI_InitCustomPinsCallback(SPI_TypeDef* SPIx);
+void TM_SPI_InitCustomPinsCallback(SPI_TypeDef* SPIx, uint16_t AlternateFunction);
 
 /**
  * @}

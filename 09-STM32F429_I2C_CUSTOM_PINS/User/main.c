@@ -53,12 +53,12 @@ int main(void) {
 }
 
 /* Custom pinout initialization callback */
-void TM_I2C_InitCustomPinsCallback(I2C_TypeDef* I2Cx) {
+void TM_I2C_InitCustomPinsCallback(I2C_TypeDef* I2Cx, uint16_t AlternateFunction) {
 	/* Check I2C */
 	if (I2Cx == I2C1) {
 		/* Init SCL and SDA pins */
 		/* SCL = PB6, SDA = PB9 */
-		TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_6 | GPIO_PIN_9, TM_GPIO_OType_OD, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Low, GPIO_AF_I2C1);
+		TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_6 | GPIO_PIN_9, TM_GPIO_OType_OD, TM_GPIO_PuPd_UP, TM_GPIO_Speed_Low, AlternateFunction);
 	}
 }
 

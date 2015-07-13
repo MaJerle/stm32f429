@@ -377,10 +377,11 @@ void TM_I2C_WriteData(I2C_TypeDef* I2Cx, uint8_t data);
  *         When you call TM_I2C_Init() function, and if you pass TM_I2C_PinsPack_Custom to function,
  *         then this function will be called where you can initialize custom pins for I2C peripheral.
  * @param  *I2Cx: I2C for which initialization will be set
+ * @param  AlternateFunction: Alternate function which should be used for GPIO initialization
  * @retval None
  * @note   With __weak parameter to prevent link errors if not defined by user
  */
-__weak void TM_I2C_InitCustomPinsCallback(I2C_TypeDef* I2Cx);
+void TM_I2C_InitCustomPinsCallback(I2C_TypeDef* I2Cx, uint16_t AlternateFunction);
 
 /**
  * @}

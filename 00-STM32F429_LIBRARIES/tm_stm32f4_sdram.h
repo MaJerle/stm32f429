@@ -78,19 +78,19 @@ PB6  <-> FMC_SDNE1 |                    | PD1  <-> FMC_D3   | PE1  <-> FMC_NBL1 
  * \par STM324x9-EVAL pinout
  * 
 @verbatim
-PD0  <-> FMC_D2   | PE0  <-> FMC_NBL0  | PF0  <-> FMC_A0    | PG0  <-> FMC_A10   | PH2  <-> FMC_SDCKE0| PI4  <-> FMC_NBL2 
-PD1  <-> FMC_D3   | PE1  <-> FMC_NBL1  | PF1  <-> FMC_A1    | PG1  <-> FMC_A11   | PH3  <-> FMC_SDNE0 | PI5  <-> FMC_NBL3 
-PD8  <-> FMC_D13  | PE7  <-> FMC_D4    | PF2  <-> FMC_A2    | PG4  <-> FMC_A14   | PH5  <-> FMC_SDNW  | PI0  <-> FMC_D24 
-PD9  <-> FMC_D14  | PE8  <-> FMC_D5    | PF3  <-> FMC_A3    | PG5  <-> FMC_A15   | PH8  <-> FMC_D16   | PI1  <-> FMC_D25  
-PD10 <-> FMC_D15  | PE9  <-> FMC_D6    | PF4  <-> FMC_A4    | PG8  <-> FC_SDCLK  | PH9  <-> FMC_D17   | PI2  <-> FMC_D26  
-PD14 <-> FMC_D0   | PE10 <-> FMC_D7    | PF5  <-> FMC_A5    | PG15 <-> FMC_NCAS  | PH10 <-> FMC_D18   | PI3  <-> FMC_D27  
-PD15 <-> FMC_D1   | PE11 <-> FMC_D8    | PF11 <-> FC_NRAS   | PH11 <-> FMC_D19   | PI6 <-> FMC_D28    | PI7  <-> FMC_D29 
-                  | PE12 <-> FMC_D9    | PF12 <-> FMC_A6    |                    | PH12 <-> FMC_D20   | PI9  <-> FMC_D30     
-                  | PE13 <-> FMC_D10   | PF13 <-> FMC_A7    |                    | PH13 <-> FMC_D21   | PI10 <-> FMC_D31    
-                  | PE14 <-> FMC_D11   | PF14 <-> FMC_A8    |                    | PH14 <-> FMC_D22   |
-                  | PE15 <-> FMC_D12   | PF15 <-> FMC_A9    |                    | PH15 <-> FMC_D23   |
-@endverbatim
- *
+PD0  <-> FMC_D2   | PE0  <-> FMC_NBL0  | PF0  <-> FMC_A0    | PG0  <-> FMC_A10   | PH2  <-> FMC_SDCKE0| PI0  <-> FMC_D24  
+PD1  <-> FMC_D3   | PE1  <-> FMC_NBL1  | PF1  <-> FMC_A1    | PG1  <-> FMC_A11   | PH3  <-> FMC_SDNE0 | PI1  <-> FMC_D25   
+PD8  <-> FMC_D13  | PE7  <-> FMC_D4    | PF2  <-> FMC_A2    | PG4  <-> FMC_A14   | PH5  <-> FMC_SDNW  | PI2  <-> FMC_D26  
+PD9  <-> FMC_D14  | PE8  <-> FMC_D5    | PF3  <-> FMC_A3    | PG5  <-> FMC_A15   | PH8  <-> FMC_D16   | PI3  <-> FMC_D27  
+PD10 <-> FMC_D15  | PE9  <-> FMC_D6    | PF4  <-> FMC_A4    | PG8  <-> FC_SDCLK  | PH9  <-> FMC_D17   | PI4  <-> FMC_NBL2
+PD14 <-> FMC_D0   | PE10 <-> FMC_D7    | PF5  <-> FMC_A5    | PG15 <-> FMC_NCAS  | PH10 <-> FMC_D18   | PI5  <-> FMC_NBL3 
+PD15 <-> FMC_D1   | PE11 <-> FMC_D8    | PF11 <-> FC_NRAS   | PH11 <-> FMC_D19   | PH12 <-> FMC_D20   | PI6  <-> FMC_D28  
+                  | PE12 <-> FMC_D9    | PF12 <-> FMC_A6    |                    | PH13 <-> FMC_D21   | PI7  <-> FMC_D29      
+                  | PE13 <-> FMC_D10   | PF13 <-> FMC_A7    |                    | PH14 <-> FMC_D22   | PI9  <-> FMC_D30  
+                  | PE14 <-> FMC_D11   | PF14 <-> FMC_A8    |                    | PH15 <-> FMC_D23   | PI10 <-> FMC_D31
+                  | PE15 <-> FMC_D12   | PF15 <-> FMC_A9    |                    |                    |
+@endverbatim                                                                                            
+ *          
  * \par Changelog
  *
 @verbatim

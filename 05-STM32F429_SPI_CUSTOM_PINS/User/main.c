@@ -32,13 +32,13 @@ int main(void) {
 }
 
 /* Custom pins callback for SPI */
-void TM_SPI_InitCustomPinsCallback(SPI_TypeDef* SPIx) {
+void TM_SPI_InitCustomPinsCallback(SPI_TypeDef* SPIx, uint16_t AlternateFunction) {
 	/* Check for SPI1 */
 	if (SPIx == SPI1) {
 		/* Init custom pins */
 		/* MOSI = PA7, MISO = PA6 */
-		TM_GPIO_InitAlternate(GPIOA, GPIO_PIN_7 | GPIO_PIN_6, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_SPI1);
+		TM_GPIO_InitAlternate(GPIOA, GPIO_PIN_7 | GPIO_PIN_6, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, AlternateFunction);
 		/* SCK = PB3 */
-		TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_3, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, GPIO_AF_SPI1);
+		TM_GPIO_InitAlternate(GPIOB, GPIO_PIN_3, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High, AlternateFunction);
 	}
 }

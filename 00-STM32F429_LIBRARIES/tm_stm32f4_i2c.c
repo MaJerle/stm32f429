@@ -322,6 +322,11 @@ uint8_t TM_I2C_IsDeviceConnected(I2C_TypeDef* I2Cx, uint8_t address) {
 	return connected;
 }
 
+__weak void TM_I2C_InitCustomPinsCallback(I2C_TypeDef* I2Cx, uint16_t AlternateFunction) {
+	/* Custom user function. */
+	/* In case user needs functionality for custom pins, this function should be declared outside this library */
+}
+
 /* Private functions */
 void TM_I2C1_INT_InitPins(TM_I2C_PinsPack_t pinspack) {
 	/* Init pins */
@@ -342,7 +347,7 @@ void TM_I2C1_INT_InitPins(TM_I2C_PinsPack_t pinspack) {
 #endif
 	if (pinspack == TM_I2C_PinsPack_Custom) {
 		/* Init custom pins, callback function */
-		TM_I2C_InitCustomPinsCallback(I2C1);
+		TM_I2C_InitCustomPinsCallback(I2C1, GPIO_AF_I2C1);
 	}
 }
 
@@ -365,7 +370,7 @@ void TM_I2C2_INT_InitPins(TM_I2C_PinsPack_t pinspack) {
 #endif
 	if (pinspack == TM_I2C_PinsPack_Custom) {
 		/* Init custom pins, callback function */
-		TM_I2C_InitCustomPinsCallback(I2C2);
+		TM_I2C_InitCustomPinsCallback(I2C2, GPIO_AF_I2C2);
 	}
 }
 
@@ -384,6 +389,6 @@ void TM_I2C3_INT_InitPins(TM_I2C_PinsPack_t pinspack) {
 #endif
 	if (pinspack == TM_I2C_PinsPack_Custom) {
 		/* Init custom pins, callback function */
-		TM_I2C_InitCustomPinsCallback(I2C3);
+		TM_I2C_InitCustomPinsCallback(I2C3, GPIO_AF_I2C3);
 	}
 }
