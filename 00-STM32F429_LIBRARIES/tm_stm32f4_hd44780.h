@@ -68,23 +68,23 @@ K		GND				Ground for back light
  *	
 @verbatim
 //RS - Register select pin
-#define TM_HD44780_RS_PORT		GPIOB
-#define TM_HD44780_RS_PIN		GPIO_PIN_2
+#define HD44780_RS_PORT     GPIOB
+#define HD44780_RS_PIN      GPIO_PIN_2
 //E - Enable pin
-#define TM_HD44780_E_PORT		GPIOB
-#define TM_HD44780_E_PIN		GPIO_PIN_7
+#define HD44780_E_PORT      GPIOB
+#define HD44780_E_PIN       GPIO_PIN_7
 //D4 - Data 4 pin
-#define TM_HD44780_D4_PORT		GPIOC
-#define TM_HD44780_D4_PIN		GPIO_PIN_12
+#define HD44780_D4_PORT     GPIOC
+#define HD44780_D4_PIN      GPIO_PIN_12
 //D5 - Data 5 pin
-#define TM_HD44780_D5_PORT		GPIOC
-#define TM_HD44780_D5_PIN		GPIO_PIN_13
+#define HD44780_D5_PORT     GPIOC
+#define HD44780_D5_PIN      GPIO_PIN_13
 //D6 - Data 6 pin
-#define TM_HD44780_D6_PORT		GPIOB
-#define TM_HD44780_D6_PIN		GPIO_PIN_12
+#define HD44780_D6_PORT     GPIOB
+#define HD44780_D6_PIN      GPIO_PIN_12
 //D7 - Data 7 pin
-#define TM_HD44780_D7_PORT		GPIOB
-#define TM_HD44780_D7_PIN		GPIO_PIN_13
+#define HD44780_D7_PORT     GPIOB
+#define HD44780_D7_PIN      GPIO_PIN_13
 @endverbatim
  *
  * \par Changelog
@@ -126,79 +126,36 @@ K		GND				Ground for back light
 /* 4 bit mode */
 /* Control pins, can be overwritten */
 /* RS - Register select pin */
-#ifndef TM_HD44780_RS_PIN
-#define TM_HD44780_RS_PORT				GPIOB
-#define TM_HD44780_RS_PIN				GPIO_PIN_2
+#ifndef HD44780_RS_PIN
+#define HD44780_RS_PORT				GPIOB
+#define HD44780_RS_PIN				GPIO_PIN_2
 #endif
 /* E - Enable pin */
-#ifndef TM_HD44780_E_PIN
-#define TM_HD44780_E_PORT				GPIOB
-#define TM_HD44780_E_PIN				GPIO_PIN_7
+#ifndef HD44780_E_PIN
+#define HD44780_E_PORT				GPIOB
+#define HD44780_E_PIN				GPIO_PIN_7
 #endif
 /* Data pins */
 /* D4 - Data 4 pin */
-#ifndef TM_HD44780_D4_PIN
-#define TM_HD44780_D4_PORT				GPIOC
-#define TM_HD44780_D4_PIN				GPIO_PIN_12
+#ifndef HD44780_D4_PIN
+#define HD44780_D4_PORT				GPIOC
+#define HD44780_D4_PIN				GPIO_PIN_12
 #endif
 /* D5 - Data 5 pin */
-#ifndef TM_HD44780_D5_PIN
-#define TM_HD44780_D5_PORT				GPIOC
-#define TM_HD44780_D5_PIN				GPIO_PIN_13
+#ifndef HD44780_D5_PIN
+#define HD44780_D5_PORT				GPIOC
+#define HD44780_D5_PIN				GPIO_PIN_13
 #endif
 /* D6 - Data 6 pin */
-#ifndef TM_HD44780_D6_PIN
-#define TM_HD44780_D6_PORT				GPIOB
-#define TM_HD44780_D6_PIN				GPIO_PIN_12
+#ifndef HD44780_D6_PIN
+#define HD44780_D6_PORT				GPIOB
+#define HD44780_D6_PIN				GPIO_PIN_12
 #endif
 /* D7 - Data 7 pin */
-#ifndef TM_HD44780_D7_PIN
-#define TM_HD44780_D7_PORT				GPIOB
-#define TM_HD44780_D7_PIN				GPIO_PIN_13
+#ifndef HD44780_D7_PIN
+#define HD44780_D7_PORT				GPIOB
+#define HD44780_D7_PIN				GPIO_PIN_13
 #endif
-
-#define TM_HD44780_RS_LOW				TM_GPIO_SetPinLow(TM_HD44780_RS_PORT, TM_HD44780_RS_PIN)
-#define TM_HD44780_RS_HIGH				TM_GPIO_SetPinHigh(TM_HD44780_RS_PORT, TM_HD44780_RS_PIN)
-#define TM_HD44780_E_LOW				TM_GPIO_SetPinLow(TM_HD44780_E_PORT, TM_HD44780_E_PIN)
-#define TM_HD44780_E_HIGH				TM_GPIO_SetPinHigh(TM_HD44780_E_PORT, TM_HD44780_E_PIN)
-
-#define TM_HD44780_E_BLINK				TM_HD44780_E_HIGH; TM_HD44780_Delay(20); TM_HD44780_E_LOW; TM_HD44780_Delay(20)
-#define TM_HD44780_Delay(x)				Delay(x)
-
-/* Commands*/
-#define TM_HD44780_CLEARDISPLAY			0x01
-#define TM_HD44780_RETURNHOME			0x02
-#define TM_HD44780_ENTRYMODESET			0x04
-#define TM_HD44780_DISPLAYCONTROL		0x08
-#define TM_HD44780_CURSORSHIFT			0x10
-#define TM_HD44780_FUNCTIONSET			0x20
-#define TM_HD44780_SETCGRAMADDR			0x40
-#define TM_HD44780_SETDDRAMADDR			0x80
-
-/* Flags for display entry mode */
-#define TM_HD44780_ENTRYRIGHT			0x00
-#define TM_HD44780_ENTRYLEFT			0x02
-#define TM_HD44780_ENTRYSHIFTINCREMENT 	0x01
-#define TM_HD44780_ENTRYSHIFTDECREMENT 	0x00
-
-/* Flags for display on/off control */
-#define TM_HD44780_DISPLAYON			0x04
-#define TM_HD44780_CURSORON				0x02
-#define TM_HD44780_BLINKON				0x01
-
-/* Flags for display/cursor shift */
-#define TM_HD44780_DISPLAYMOVE			0x08
-#define TM_HD44780_CURSORMOVE			0x00
-#define TM_HD44780_MOVERIGHT			0x04
-#define TM_HD44780_MOVELEFT				0x00
-
-/* Flags for function set */
-#define TM_HD44780_8BITMODE				0x10
-#define TM_HD44780_4BITMODE				0x00
-#define TM_HD44780_2LINE				0x08
-#define TM_HD44780_1LINE				0x00
-#define TM_HD44780_5x10DOTS				0x04
-#define TM_HD44780_5x8DOTS				0x00
 
 /**
  * @}

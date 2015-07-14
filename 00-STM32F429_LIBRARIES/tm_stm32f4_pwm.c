@@ -95,6 +95,21 @@ TM_PWM_Result_t TM_PWM_InitTimer(TIM_TypeDef* TIMx, TM_PWM_TIM_t* TIM_Data, doub
 	/* Initialize timer */
 	TIM_TimeBaseInit(TIMx, &TIM_BaseStruct);
 	
+	/* Preload enable */
+	TIM_ARRPreloadConfig(TIMx, ENABLE);
+	
+	if (0
+#ifdef TIM1
+		|| TIMx == TIM1
+#endif	
+#ifdef TIM8
+		|| TIMx == TIM8
+#endif
+	) {
+		/* Enable PWM outputs */
+		TIM_CtrlPWMOutputs(TIMx, ENABLE);
+	}
+	
 	/* Start timer */
 	TIMx->CR1 |= TIM_CR1_CEN;
 	
@@ -174,6 +189,7 @@ TM_PWM_Result_t TM_PWM_InitChannel(TM_PWM_TIM_t* TIM_Data, TM_PWM_Channel_t Chan
 
 TM_PWM_Result_t TM_PWM_SetChannel(TM_PWM_TIM_t* TIM_Data, TM_PWM_Channel_t Channel, uint32_t Pulse) {
 	TIM_OCInitTypeDef TIM_OCStruct;
+	uint8_t ch = (uint8_t)Channel;
 	
 	/* Check pulse length */
 	if (Pulse >= TIM_Data->Period) {
@@ -188,14 +204,17 @@ TM_PWM_Result_t TM_PWM_SetChannel(TM_PWM_TIM_t* TIM_Data, TM_PWM_Channel_t Chann
 	TIM_OCStruct.TIM_OCPolarity = TIM_OCPolarity_Low;
 	
 	/* Save pulse value */
-	TIM_Data->CH_Periods[(uint8_t)Channel] = Pulse;
+	TIM_Data->CH_Periods[ch] = Pulse;
+	
+	/* Go to bits */
+	ch = 1 << ch;
 	
 	/* Select proper channel */
 	switch (Channel) {
 		case TM_PWM_Channel_1:
 			/* Check if initialized */
-			if (!(TIM_Data->CH_Init & 0x01)) {
-				TIM_Data->CH_Init |= 0x01;
+			if (!(TIM_Data->CH_Init & ch)) {
+				TIM_Data->CH_Init |= ch;
 				
 				/* Init channel */
 				TIM_OC1Init(TIM_Data->TIM, &TIM_OCStruct);
@@ -207,8 +226,8 @@ TM_PWM_Result_t TM_PWM_SetChannel(TM_PWM_TIM_t* TIM_Data, TM_PWM_Channel_t Chann
 			break;
 		case TM_PWM_Channel_2:
 			/* Check if initialized */
-			if (!(TIM_Data->CH_Init & 0x02)) {
-				TIM_Data->CH_Init |= 0x02;
+			if (!(TIM_Data->CH_Init & ch)) {
+				TIM_Data->CH_Init |= ch;
 				
 				/* Init channel */
 				TIM_OC2Init(TIM_Data->TIM, &TIM_OCStruct);
@@ -220,8 +239,8 @@ TM_PWM_Result_t TM_PWM_SetChannel(TM_PWM_TIM_t* TIM_Data, TM_PWM_Channel_t Chann
 			break;
 		case TM_PWM_Channel_3:
 			/* Check if initialized */
-			if (!(TIM_Data->CH_Init & 0x04)) {
-				TIM_Data->CH_Init |= 0x04;
+			if (!(TIM_Data->CH_Init & ch)) {
+				TIM_Data->CH_Init |= ch;
 				
 				/* Init channel */
 				TIM_OC3Init(TIM_Data->TIM, &TIM_OCStruct);
@@ -233,8 +252,8 @@ TM_PWM_Result_t TM_PWM_SetChannel(TM_PWM_TIM_t* TIM_Data, TM_PWM_Channel_t Chann
 			break;
 		case TM_PWM_Channel_4:
 			/* Check if initialized */
-			if (!(TIM_Data->CH_Init & 0x08)) {
-				TIM_Data->CH_Init |= 0x08;
+			if (!(TIM_Data->CH_Init & ch)) {
+				TIM_Data->CH_Init |= ch;
 				
 				/* Init channel */
 				TIM_OC4Init(TIM_Data->TIM, &TIM_OCStruct);

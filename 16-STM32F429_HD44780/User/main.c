@@ -34,6 +34,9 @@ int main(void) {
 	/* Initialize system */
 	SystemInit();
 	
+	/* Init delay */
+	TM_DELAY_Init();
+	
 	/* Initialize LCD 20 cols x 4 rows */
 	TM_HD44780_Init(20, 4);
 	

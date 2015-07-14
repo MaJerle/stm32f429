@@ -58,6 +58,7 @@ TM_BUTTON_t* TM_BUTTON_Init(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, uint8_t Butt
 	ButtonStruct->GPIO_Pin = GPIO_Pin;
 	ButtonStruct->GPIO_State = ButtonState ? 1 : 0;
 	ButtonStruct->ButtonHandler = ButtonHandler;
+	ButtonStruct->State = BUTTON_STATE_START;
 	
 	/* Set default values */
 	ButtonStruct->PressNormalTime = BUTTON_NORMAL_PRESS_TIME;
