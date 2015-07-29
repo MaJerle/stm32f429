@@ -80,7 +80,7 @@ uint32_t TM_RTC_Init(TM_RTC_ClockSource_t source) {
 		
 		/* Clear interrupt flags */
 		RTC_ClearITPendingBit(RTC_IT_WUT);
-		EXTI_ClearITPendingBit(EXTI_Line22);
+		EXTI->PR = 0x00400000;
 		
 		/* Get date and time */
 		TM_RTC_GetDateTime(&datatime, TM_RTC_Format_BIN);
@@ -97,7 +97,7 @@ uint32_t TM_RTC_Init(TM_RTC_ClockSource_t source) {
 		
 		/* Clear interrupt flags */
 		RTC_ClearITPendingBit(RTC_IT_WUT);
-		EXTI_ClearITPendingBit(EXTI_Line22);
+		EXTI->PR = 0x00400000;
 		
 		/* Get date and time */
 		TM_RTC_GetDateTime(&datatime, TM_RTC_Format_BIN);
@@ -362,7 +362,7 @@ void TM_RTC_Interrupts(TM_RTC_Int_t int_value) {
 	uint32_t int_val;
 	
 	/* Clear pending bit */
-	EXTI_ClearITPendingBit(EXTI_Line22);
+	EXTI->PR = 0x00400000;
 	
 	/* Disable wakeup interrupt */
 	RTC_WakeUpCmd(DISABLE);
@@ -614,7 +614,7 @@ void TM_RTC_DisableAlarm(TM_RTC_Alarm_t Alarm) {
 	}
 	
 	/* Clear RTC Alarm pending bit */
-	EXTI_ClearITPendingBit(EXTI_Line17);
+	EXTI->PR = 0x00020000;
 	
 	/* Configure EXTI 17 as interrupt */
 	EXTI_InitStruct.EXTI_Line = EXTI_Line17;

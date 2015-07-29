@@ -258,7 +258,7 @@ uint8_t TM_SPI_DMA_Transmit(SPI_TypeDef* SPIx, uint8_t* TX_Buffer, uint8_t* RX_B
  * @param  SPIx: Pointer to SPIx where DMA transmission will happen
  * @param  value: Byte value to be sent
  * @param  count: Number of bytes with value of @arg value will be sent
- * @retval Receiving started status:
+ * @retval Transmission started status:
  *            - 0: DMA has not started with sending data
  *            - > 0: DMA has started with sending data
  */
@@ -269,7 +269,7 @@ uint8_t TM_SPI_DMA_SendByte(SPI_TypeDef* SPIx, uint8_t value, uint16_t count);
  * @param  SPIx: Pointer to SPIx where DMA transmission will happen
  * @param  value: Byte value to be sent
  * @param  count: Number of half words with value of @arg value will be sent
- * @retval Receiving started status:
+ * @retval Transmission started status:
  *            - 0: DMA has not started with sending data
  *            - > 0: DMA has started with sending data
  */

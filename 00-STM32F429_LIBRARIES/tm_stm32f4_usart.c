@@ -245,7 +245,7 @@ uint16_t TM_USART_Gets(USART_TypeDef* USARTx, char* buffer, uint16_t bufsize) {
 		buffer[i] = (char) TM_USART_Getc(USARTx);
 		
 		/* Check for end of string */
-		if ((uint8_t)buffer[i] == (uint8_t)u->StringDelimiter) {
+		if ((uint8_t) buffer[i] == (uint8_t) u->StringDelimiter) {
 			/* Done */
 			break;
 		}
@@ -305,7 +305,9 @@ uint8_t TM_USART_FindCharacter(USART_TypeDef* USARTx, uint8_t c) {
 		if (out == u->Size) {
 			out = 0;
 		}
-		if (*(u->Buffer + out) == (uint8_t)c) {
+		
+		/* Check if characters matches */
+		if ((uint8_t) u->Buffer[out] == (uint8_t) c) {
 			/* Character found */
 			return 1;
 		}
@@ -865,6 +867,15 @@ static void TM_USART_INT_Init(
 	}
 #endif
 	
+	/* Deinit USART, force reset */
+	USART_DeInit(USARTx);
+	
+	/* Fill NVIC settings */
+	NVIC_InitStruct.NVIC_IRQChannelCmd = ENABLE;
+	NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority = TM_USART_NVIC_PRIORITY;
+	NVIC_InitStruct.NVIC_IRQChannelSubPriority = TM_USART_INT_GetSubPriority(USARTx);
+	NVIC_Init(&NVIC_InitStruct);
+	
 	/* Fill default settings */
 	USART_InitStruct.USART_HardwareFlowControl = FlowControl;
 	USART_InitStruct.USART_Mode = Mode;
@@ -875,20 +886,16 @@ static void TM_USART_INT_Init(
 	/* We are not initialized */
 	u->Initialized = 0;
 	
-	/* Disable if not already */
-	USARTx->CR1 &= ~USART_CR1_UE;
+	do {
+		volatile uint32_t x = 0xFFF;
+		while (x--);
+	} while (0);
 	
 	/* Init */
 	USART_Init(USARTx, &USART_InitStruct);
 	
 	/* Enable RX interrupt */
 	USARTx->CR1 |= USART_CR1_RXNEIE;
-
-	/* Fill NVIC settings */
-	NVIC_InitStruct.NVIC_IRQChannelCmd = ENABLE;
-	NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority = TM_USART_NVIC_PRIORITY;
-	NVIC_InitStruct.NVIC_IRQChannelSubPriority = TM_USART_INT_GetSubPriority(USARTx);
-	NVIC_Init(&NVIC_InitStruct);
 	
 	/* We are initialized now */
 	u->Initialized = 1;

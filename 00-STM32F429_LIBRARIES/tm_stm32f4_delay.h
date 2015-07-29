@@ -294,7 +294,9 @@ static __INLINE void Delayms(uint32_t millis) {
 	/* Wait for timer to count milliseconds */
 	while ((TM_Time - timer) < millis) {
 		/* Go sleep, wait systick interrupt */
+#ifdef DELAY_SLEEP
 		__WFI();
+#endif
 	}
 }
 

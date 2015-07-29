@@ -452,7 +452,7 @@ typedef enum {
 /**
  * @brief  Wait till USART finishes transmission
  */
-#define USART_WAIT(USARTx)                  while (!((USARTx)->SR & USART_FLAG_TXE))
+#define USART_WAIT(USARTx)                  do { while (!((USARTx)->SR & USART_FLAG_TXE)); } while (0)
 
 /**
  * @brief  Default string delimiter for USART
@@ -498,7 +498,7 @@ void TM_USART_InitWithFlowControl(USART_TypeDef* USARTx, TM_USART_PinsPack_t pin
  * @retval None
  */
 static __INLINE void TM_USART_Putc(USART_TypeDef* USARTx, volatile char c) {
-	/* Check USART */
+	/* Check USART if enabled */
 	if ((USARTx->CR1 & USART_CR1_UE)) {	
 		/* Wait to be ready, buffer empty */
 		USART_WAIT(USARTx);
@@ -534,7 +534,7 @@ void TM_USART_Send(USART_TypeDef* USARTx, uint8_t* DataArray, uint16_t count);
 uint8_t TM_USART_Getc(USART_TypeDef* USARTx);
 
 /**
- * @brief  Get string from USART
+ * @brief  Gets string from USART
  *
  *         This function can create a string from USART received data.
  *
@@ -549,7 +549,7 @@ uint8_t TM_USART_Getc(USART_TypeDef* USARTx);
 uint16_t TM_USART_Gets(USART_TypeDef* USARTx, char* buffer, uint16_t bufsize);
 
 /**
- * @brief  Check if character c is available in internal buffer
+ * @brief  Checks if character c is available in internal buffer
  * @param  *USARTx: Pointer to USARTx peripheral you will use
  * @param  c: character to check if it is in USARTx's buffer
  * @retval Character status:
