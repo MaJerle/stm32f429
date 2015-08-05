@@ -151,26 +151,43 @@ void TM_DMA_DisableInterrupts(DMA_Stream_TypeDef* DMA_Stream) {
 	DMA_Stream->FCR &= DMA_SxFCR_FEIE;
 }
 
+
+/*****************************************************************/
+/*                 DMA INTERRUPT USER CALLBACKS                  */
+/*****************************************************************/
 __weak void TM_DMA_TransferCompleteHandler(DMA_Stream_TypeDef* DMA_Stream) {
-	/* Implement this function outside if you need handler */
+	/* NOTE: This function should not be modified, when the callback is needed,
+            the TM_DMA_TransferCompleteHandler could be implemented in the user file
+	*/
 }
 
 __weak void TM_DMA_HalfTransferCompleteHandler(DMA_Stream_TypeDef* DMA_Stream) {
-	/* Implement this function outside if you need handler */
+	/* NOTE: This function should not be modified, when the callback is needed,
+            the TM_DMA_HalfTransferCompleteHandler could be implemented in the user file
+	*/
 }
 
 __weak void TM_DMA_TransferErrorHandler(DMA_Stream_TypeDef* DMA_Stream) {
-	/* Implement this function outside if you need handler */
+	/* NOTE: This function should not be modified, when the callback is needed,
+            the TM_DMA_TransferErrorHandler could be implemented in the user file
+	*/
 }
 
 __weak void TM_DMA_DirectModeErrorHandler(DMA_Stream_TypeDef* DMA_Stream) {
-	/* Implement this function outside if you need handler */
+	/* NOTE: This function should not be modified, when the callback is needed,
+            the TM_DMA_DirectModeErrorHandler could be implemented in the user file
+	*/
 }
 
 __weak void TM_DMA_FIFOErrorHandler(DMA_Stream_TypeDef* DMA_Stream) {
-	/* Implement this function outside if you need handler */
+	/* NOTE: This function should not be modified, when the callback is needed,
+            the TM_DMA_FIFOErrorHandler could be implemented in the user file
+	*/
 }
 
+/*****************************************************************/
+/*                    DMA INTERNAL FUNCTIONS                     */
+/*****************************************************************/
 static void TM_DMA_INT_ProcessInterrupt(DMA_Stream_TypeDef* DMA_Stream) {
 	/* Get DMA interrupt status flags */
 	uint16_t flags = TM_DMA_GetFlags(DMA_Stream, DMA_FLAG_ALL);

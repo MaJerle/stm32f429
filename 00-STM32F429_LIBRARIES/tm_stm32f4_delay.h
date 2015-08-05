@@ -291,12 +291,22 @@ static __INLINE void Delay(uint32_t micros) {
 static __INLINE void Delayms(uint32_t millis) {
 	volatile uint32_t timer = TM_Time;
 
-	/* Wait for timer to count milliseconds */
-	while ((TM_Time - timer) < millis) {
-		/* Go sleep, wait systick interrupt */
+	/* Called from interrupt */
+	if (__get_IPSR()) {
+		/* Wait for timer to count milliseconds */
+		while ((TM_Time - timer) < millis) {
+			/* Go sleep, wait systick interrupt */
 #ifdef DELAY_SLEEP
-		__WFI();
+			__WFI();
 #endif
+		}
+	} else {
+		/* Called from thread */
+		while (millis--) {
+			if (SysTick->CTRL & SysTick_CTRL_COUNTFLAG_Msk) {
+				millis--;
+			}
+		}
 	}
 }
 

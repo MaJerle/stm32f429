@@ -171,7 +171,7 @@ void TM_DELAY_INT_InitTIM(void) {
 	NVIC_Init(&NVIC_InitStruct);
 	
 	/* Start timer */
-	TIMx->CR1 |= TIM_CR1_CEN;
+	TM_DELAY_TIM->CR1 |= TIM_CR1_CEN;
 }
 #endif
 
@@ -241,13 +241,13 @@ void TM_DELAY_TimerDelete(TM_DELAY_Timer_t* Timer) {
 	/* Decrease count */
 	CustomTimers.Count--;
 	
-	/* Free timer */
-	LIB_FREE_FUNC(tmp);
-	
 	/* Enable IRQ if necessary */
 	if (!irq) {
 		__enable_irq();
 	}
+	
+	/* Free timer */
+	LIB_FREE_FUNC(tmp);
 }
 
 TM_DELAY_Timer_t* TM_DELAY_TimerStop(TM_DELAY_Timer_t* Timer) {
