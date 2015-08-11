@@ -38,6 +38,7 @@ void TM_PVD_Enable(TM_PVD_Level_t Level, TM_PVD_Trigger_t Trigger) {
 	}
 	
 	/* Clear interrupt */
+	EXTI->PR = PVD_EXTI_LINE;
 	
 	/* Enable EXTI interrupt */
 	EXTI->IMR |= PVD_EXTI_LINE;

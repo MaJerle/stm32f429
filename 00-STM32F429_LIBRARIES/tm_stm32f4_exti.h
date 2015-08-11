@@ -92,7 +92,7 @@ extern C {
  * If you need higher priority for external interrupts in NVIC, add lines below in defines.h file and edit them
 @verbatim
 //Set custom NVIC priority
-#define TM_EXTI_NVIC_PRIORITY	0x0A
+#define EXTI_NVIC_PRIORITY	0x0A
 @endverbatim
  *
  * \par Changelog
@@ -145,8 +145,8 @@ extern C {
 /**
  * @brief  Default EXTI preemption priority for EXTI lines used in NVIC
  */
-#ifndef TM_EXTI_NVIC_PRIORITY
-#define TM_EXTI_NVIC_PRIORITY     0x0A
+#ifndef EXTI_NVIC_PRIORITY
+#define EXTI_NVIC_PRIORITY     0x0A
 #endif
 
  /**

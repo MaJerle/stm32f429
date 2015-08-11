@@ -265,6 +265,8 @@ uint8_t convert_from_bytes_to_power_of_two (uint16_t NumberOfBytes);
 
 static volatile DSTATUS TM_FATFS_SD_SDIO_Stat = STA_NOINIT;	/* Physical drive status */
 
+#define BLOCK_SIZE            512
+
 uint8_t TM_FATFS_SDIO_WriteEnabled(void) {
 #if FATFS_USE_WRITEPROTECT_PIN > 0
 	return !TM_GPIO_GetInputPinValue(FATFS_USE_WRITEPROTECT_PIN_PORT, FATFS_USE_WRITEPROTECT_PIN_PIN);
@@ -329,8 +331,6 @@ DSTATUS TM_FATFS_SD_SDIO_disk_status(void) {
 	
 	return TM_FATFS_SD_SDIO_Stat;
 }
-
-#define BLOCK_SIZE            512
 
 DRESULT TM_FATFS_SD_SDIO_disk_read(BYTE *buff, DWORD sector, UINT count) {
 	SD_Error Status = SD_OK;

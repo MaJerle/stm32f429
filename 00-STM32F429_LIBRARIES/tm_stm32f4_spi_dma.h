@@ -3,7 +3,7 @@
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
  * @link    http://stm32f4-discovery.com/2015/04/library-56-extend-spi-with-dma-for-stm32f4xx
- * @version v1.1
+ * @version v1.1.1
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   DMA functionality for TM SPI library
@@ -28,7 +28,7 @@
 @endverbatim
  */
 #ifndef TM_SPI_DMA_H
-#define TM_SPI_DMA_H 110
+#define TM_SPI_DMA_H 111
 
 /* C++ detection */
 #ifdef __cplusplus
@@ -42,12 +42,12 @@ extern C {
 
 /**
  * @defgroup TM_SPI_DMA
- * @brief    DMA functionality for TM SPI library - http://stm32f4-discovery.com/2015/04/library-56-extend-spi-with-dma-for-stm32f4xx
+ * @brief    DMA functionality for @ref TM_SPI library - http://stm32f4-discovery.com/2015/04/library-56-extend-spi-with-dma-for-stm32f4xx
  * @{
  *
  * This library allows you to use DMA with SPI peripheral.
  *
- * It can send, receive or transmit data over SPI with DMA feature.
+ * It can send (TX only), receive (RX only) or transmit (TX and RX) data over SPI with DMA feature.
  *
  * \par 
  *
@@ -69,6 +69,10 @@ SPI6     | DMA2 | DMA Stream 5  | DMA Channel 1  | DMA Stream 6  | DMA Channel 0
  * \par Changelog
  *
 @verbatim
+ Version 1.1.1
+  - August 11, 2015
+  - Fixed bug with default TX Stream value for SPI4
+
  Version 1.1
   - June 06, 2015
   - Added TM DMA library support for future purpose
@@ -133,7 +137,7 @@ SPI6     | DMA2 | DMA Stream 5  | DMA Channel 1  | DMA Stream 6  | DMA Channel 0
 
 /* SPI4 TX and RX default settings */
 #ifndef SPI4_DMA_TX_STREAM
-#define SPI4_DMA_TX_STREAM    DMA2_Stream0
+#define SPI4_DMA_TX_STREAM    DMA2_Stream1
 #define SPI4_DMA_TX_CHANNEL   DMA_Channel_4
 #endif
 #ifndef SPI4_DMA_RX_STREAM

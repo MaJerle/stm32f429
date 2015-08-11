@@ -53,15 +53,13 @@
  * @{
  *
 @verbatim
-------!!!!!!!!!!!------
-If you are using GCC (sucks) compiler, then your delay is probably totally inaccurate.
-USE TIMER FOR DELAY, otherwise your delay will not be accurate
+If you are using GCC compiler, then your microseconds delay is probably totally inaccurate.
+USE TIMER FOR DELAY, otherwise your delay will not be accurate.
 
-Or use ARM compiler!
-------!!!!!!!!!!!------
+Another way is to use ARM compiler.
 @endverbatim
  *
- * As of version 2.0 you have now to possible ways to make a delay.
+ * As of version 2.0 you have now two possible ways to make a delay.
  * The first (and default) is Systick timer. It makes interrupts every 1ms.
  * If you want delay in "us" accuracy, there is simple pooling (variable) mode.
  *
@@ -74,15 +72,15 @@ Or use ARM compiler!
  * \par Select custom TIM for delay functions
  *
  * By default, Systick timer is used for delay. If you want your custom timer,
- * open defines.h file, add lines below and edit for your needs:
+ * open defines.h file, add lines below and edit for your needs.
  *
-@verbatim
+\code{.c}
 //Select custom timer for delay, here is TIM2 selected.
 //If you want custom TIMx, just replace number "2" for your TIM's number.
 #define TM_DELAY_TIM				TIM2
 #define TM_DELAY_TIM_IRQ			TIM2_IRQn
 #define TM_DELAY_TIM_IRQ_HANDLER	TIM2_IRQHandler
-@endverbatim
+\endcode
  *
  *
  * With this setting (using custom timer) you have better accuracy in "us" delay.
@@ -291,18 +289,18 @@ static __INLINE void Delay(uint32_t micros) {
 static __INLINE void Delayms(uint32_t millis) {
 	volatile uint32_t timer = TM_Time;
 
-	/* Called from interrupt */
-	if (__get_IPSR()) {
+	/* Called from thread */
+	if (!__get_IPSR()) {
 		/* Wait for timer to count milliseconds */
 		while ((TM_Time - timer) < millis) {
-			/* Go sleep, wait systick interrupt */
 #ifdef DELAY_SLEEP
+			/* Go sleep, wait systick interrupt */
 			__WFI();
 #endif
 		}
 	} else {
-		/* Called from thread */
-		while (millis--) {
+		/* Called from interrupt */
+		while (millis) {
 			if (SysTick->CTRL & SysTick_CTRL_COUNTFLAG_Msk) {
 				millis--;
 			}

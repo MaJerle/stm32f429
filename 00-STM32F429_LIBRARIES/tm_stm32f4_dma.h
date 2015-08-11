@@ -124,7 +124,7 @@ extern C {
 
 /* DMA2 preemption priority */
 #ifndef DMA2_NVIC_PREEMPTION_PRIORITY
-#define DMA2_NVIC_PREEMPTION_PRIORITY   0x02
+#define DMA2_NVIC_PREEMPTION_PRIORITY   0x01
 #endif
 
 /**
