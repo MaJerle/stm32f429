@@ -71,7 +71,7 @@ void TM_X_ReceiveHandler(uint8_t c) {
  * In your project you can set internal cyclic buffer length, default is 32Bytes, with:
 @verbatim
 //Set buffer sie for all buffers
-#define TM_USART_BUFFER_SIZE number_of_bytes
+#define USART_BUFFER_SIZE number_of_bytes
 @endverbatim
  * in your project's defines.h file. This will set default length for each buffer.
  * So if you are working with F429 (it has 8 U(S)ARTs) then you will use 8kB RAM if 
@@ -79,7 +79,7 @@ void TM_X_ReceiveHandler(uint8_t c) {
  *
  * As of version 2.0, you can now set different buffer sizes for different U(S)ARTs.
  * If you don't change anything, then all USART's have buffer length of value, stored in
- * <code>TM_USART_BUFFER_SIZE</code> define. If you want let's say just for USART1 to be 1kB, but others default value,
+ * <code>USART_BUFFER_SIZE</code> define. If you want let's say just for USART1 to be 1kB, but others default value,
  * you can add define below in defines.h file:
 @verbatim
 //Buffer length for USART1 is 1kB, for others is still TM_USART_BUFFER_SIZE
