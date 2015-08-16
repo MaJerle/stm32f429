@@ -169,7 +169,7 @@ typedef enum {
 } TM_SPI_Mode_t;
 
 /**
- * @brief  USART PinsPack enumeration to select pins combination for USART
+ * @brief  SPI PinsPack enumeration to select pins combination for SPI
  */
 typedef enum {
 	TM_SPI_PinsPack_1,       /*!< Select PinsPack1 from Pinout table for specific SPI */

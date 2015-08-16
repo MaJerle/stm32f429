@@ -10,6 +10,7 @@
       <TargetName>STM32F429-Discovery</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
+      <pCCUsed>5060020::V5.06 (build 20)::ARMCC</pCCUsed>
       <TargetOption>
         <TargetCommonOption>
           <Device>STM32F429ZITx</Device>
@@ -229,6 +230,7 @@
             <useUlib>0</useUlib>
             <EndSel>0</EndSel>
             <uLtcg>0</uLtcg>
+            <nSecure>0</nSecure>
             <RoSelD>3</RoSelD>
             <RwSelD>3</RwSelD>
             <CodeSel>0</CodeSel>
@@ -365,6 +367,8 @@
             <useXO>0</useXO>
             <v6Lang>0</v6Lang>
             <v6LangP>0</v6LangP>
+            <vShortEn>0</vShortEn>
+            <vShortWch>0</vShortWch>
             <VariousControls>
               <MiscControls></MiscControls>
               <Define>STM32F429_439xx,USE_STDPERIPH_DRIVER,STM32F4XX,__ASSEMBLY__,KEIL_IDE,TM_DISCO_STM32F429_DISCOVERY,USE_USB_OTG_HS</Define>
