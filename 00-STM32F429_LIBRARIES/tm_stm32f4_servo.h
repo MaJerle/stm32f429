@@ -49,6 +49,24 @@ extern C {
  * 
  * Basically, only limitation for number of servos is number of timers in MCU.
  *
+ * \par Calculations
+ *
+ * Equation for pulse length to get specific rotation is:
+\code
+Pulse length (degrees) = (MAX – MIN) * degrees / 180 + MIN
+\endcode
+ *
+ * where:
+ *  - MAX: maximum pulse length for servo, 2000us
+ *  - MIN: minimum pulse length for servo, 1000us
+ *
+ * If you want to get rotation in degrees from know pulse length:
+ *
+\code
+Degrees (pulse_length) = (pulse_length – MIN) * 180 / (MAX – MIN)
+\endcode
+ *
+ *
  * \par Changelog
  *
 @verbatim
