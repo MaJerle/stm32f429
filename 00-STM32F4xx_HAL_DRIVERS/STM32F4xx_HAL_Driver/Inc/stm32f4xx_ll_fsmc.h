@@ -2,13 +2,13 @@
   ******************************************************************************
   * @file    stm32f4xx_ll_fsmc.h
   * @author  MCD Application Team
-  * @version V1.1.0
-  * @date    19-June-2014
+  * @version V1.4.0
+  * @date    14-August-2015
   * @brief   Header file of FSMC HAL module.
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT(c) 2014 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT(c) 2015 STMicroelectronics</center></h2>
   *
   * Redistribution and use in source and binary forms, with or without modification,
   * are permitted provided that the following conditions are met:
@@ -43,32 +43,25 @@
  extern "C" {
 #endif
 
-#if defined(STM32F405xx) || defined(STM32F415xx) || defined(STM32F407xx) || defined(STM32F417xx)
-
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_hal_def.h"
 
 /** @addtogroup STM32F4xx_HAL_Driver
   * @{
   */
-
-/** @addtogroup FSMC
+   
+/** @addtogroup FSMC_LL
   * @{
-  */ 
+  */
 
-/* Exported typedef ----------------------------------------------------------*/ 
-#define FSMC_NORSRAM_TypeDef            FSMC_Bank1_TypeDef
-#define FSMC_NORSRAM_EXTENDED_TypeDef   FSMC_Bank1E_TypeDef
-#define FSMC_NAND_TypeDef               FSMC_Bank2_3_TypeDef
-#define FSMC_PCCARD_TypeDef             FSMC_Bank4_TypeDef
-
-#define FSMC_NORSRAM_DEVICE             FSMC_Bank1
-#define FSMC_NORSRAM_EXTENDED_DEVICE    FSMC_Bank1E
-#define FSMC_NAND_DEVICE                FSMC_Bank2_3
-#define FSMC_PCCARD_DEVICE              FSMC_Bank4
+#if defined(STM32F405xx) || defined(STM32F415xx) || defined(STM32F407xx) || defined(STM32F417xx) 
+/* Private types -------------------------------------------------------------*/
+/** @defgroup FSMC_LL_Private_Types FSMC Private Types
+  * @{
+  */
 
 /** 
-  * @brief  FSMC_NORSRAM Configuration Structure definition
+  * @brief FSMC NORSRAM Configuration Structure definition
   */ 
 typedef struct
 {
@@ -123,7 +116,7 @@ typedef struct
 }FSMC_NORSRAM_InitTypeDef;
 
 /** 
-  * @brief  FSMC_NORSRAM Timing parameters structure definition
+  * @brief FSMC NORSRAM Timing parameters structure definition
   */
 typedef struct
 {
@@ -166,8 +159,9 @@ typedef struct
 
 }FSMC_NORSRAM_TimingTypeDef;
 
+#if defined(STM32F405xx) || defined(STM32F415xx) || defined(STM32F407xx) || defined(STM32F417xx)
 /** 
-  * @brief  FSMC_NAND Configuration Structure definition
+  * @brief FSMC NAND Configuration Structure definition
   */ 
 typedef struct
 {
@@ -197,7 +191,7 @@ typedef struct
 }FSMC_NAND_InitTypeDef;  
 
 /** 
-  * @brief  FSMC_NAND_PCCARD Timing parameters structure definition
+  * @brief FSMC NAND/PCCARD Timing parameters structure definition
   */
 typedef struct
 {
@@ -229,7 +223,7 @@ typedef struct
 }FSMC_NAND_PCC_TimingTypeDef;
 
 /** 
-  * @brief  FSMC_NAND Configuration Structure definition
+  * @brief  FSMC NAND Configuration Structure definition
   */
 typedef struct
 {
@@ -245,74 +239,60 @@ typedef struct
                                         This parameter can be a number between Min_Data = 0 and Max_Data = 255 */
 
 }FSMC_PCCARD_InitTypeDef;
+/**
+  * @}
+  */
+#endif /* STM32F405xx || STM32F415xx || STM32F407xx || STM32F417xx */
 
-/* Exported constants --------------------------------------------------------*/
+/* Private constants ---------------------------------------------------------*/
+/** @defgroup FSMC_LL_Private_Constants FSMC Private Constants
+  * @{
+  */
 
-/** @defgroup FSMC_NOR_SRAM_Controller 
+/** @defgroup FSMC_LL_NOR_SRAM_Controller FSMC NOR/SRAM Controller 
   * @{
   */ 
-  
-/** @defgroup FSMC_NORSRAM_Bank 
+/** @defgroup FSMC_NORSRAM_Bank FSMC NOR/SRAM Bank
   * @{
   */
 #define FSMC_NORSRAM_BANK1                       ((uint32_t)0x00000000)
 #define FSMC_NORSRAM_BANK2                       ((uint32_t)0x00000002)
 #define FSMC_NORSRAM_BANK3                       ((uint32_t)0x00000004)
 #define FSMC_NORSRAM_BANK4                       ((uint32_t)0x00000006)
-
-#define IS_FSMC_NORSRAM_BANK(BANK) (((BANK) == FSMC_NORSRAM_BANK1) || \
-                                    ((BANK) == FSMC_NORSRAM_BANK2) || \
-                                    ((BANK) == FSMC_NORSRAM_BANK3) || \
-                                    ((BANK) == FSMC_NORSRAM_BANK4))
 /**
   * @}
   */
 
-/** @defgroup FSMC_Data_Address_Bus_Multiplexing 
+/** @defgroup FSMC_Data_Address_Bus_Multiplexing FSMC Data Address Bus Multiplexing
   * @{
   */
-
 #define FSMC_DATA_ADDRESS_MUX_DISABLE            ((uint32_t)0x00000000)
 #define FSMC_DATA_ADDRESS_MUX_ENABLE             ((uint32_t)0x00000002)
-
-#define IS_FSMC_MUX(MUX) (((MUX) == FSMC_DATA_ADDRESS_MUX_DISABLE) || \
-                          ((MUX) == FSMC_DATA_ADDRESS_MUX_ENABLE))
 /**
   * @}
   */
 
-/** @defgroup FSMC_Memory_Type 
+/** @defgroup FSMC_Memory_Type FSMC Memory Type
   * @{
   */
-
 #define FSMC_MEMORY_TYPE_SRAM                    ((uint32_t)0x00000000)
 #define FSMC_MEMORY_TYPE_PSRAM                   ((uint32_t)0x00000004)
 #define FSMC_MEMORY_TYPE_NOR                     ((uint32_t)0x00000008)
-
-
-#define IS_FSMC_MEMORY(MEMORY) (((MEMORY) == FSMC_MEMORY_TYPE_SRAM) || \
-                                ((MEMORY) == FSMC_MEMORY_TYPE_PSRAM)|| \
-                                ((MEMORY) == FSMC_MEMORY_TYPE_NOR))
 /**
   * @}
   */
 
-/** @defgroup FSMC_NORSRAM_Data_Width 
+/** @defgroup FSMC_NORSRAM_Data_Width FSMC NOR/SRAM Data Width
   * @{
   */
-
 #define FSMC_NORSRAM_MEM_BUS_WIDTH_8             ((uint32_t)0x00000000)
 #define FSMC_NORSRAM_MEM_BUS_WIDTH_16            ((uint32_t)0x00000010)
 #define FSMC_NORSRAM_MEM_BUS_WIDTH_32            ((uint32_t)0x00000020)
-
-#define IS_FSMC_NORSRAM_MEMORY_WIDTH(WIDTH) (((WIDTH) == FSMC_NORSRAM_MEM_BUS_WIDTH_8)  || \
-                                             ((WIDTH) == FSMC_NORSRAM_MEM_BUS_WIDTH_16) || \
-                                             ((WIDTH) == FSMC_NORSRAM_MEM_BUS_WIDTH_32))
 /**
   * @}
   */
 
-/** @defgroup FSMC_NORSRAM_Flash_Access 
+/** @defgroup FSMC_NORSRAM_Flash_Access FSMC NOR/SRAM Flash Access
   * @{
   */
 #define FSMC_NORSRAM_FLASH_ACCESS_ENABLE         ((uint32_t)0x00000040)
@@ -321,232 +301,133 @@ typedef struct
   * @}
   */
 
-/** @defgroup FSMC_Burst_Access_Mode 
+/** @defgroup FSMC_Burst_Access_Mode FSMC Burst Access Mode
   * @{
   */
-
 #define FSMC_BURST_ACCESS_MODE_DISABLE           ((uint32_t)0x00000000) 
 #define FSMC_BURST_ACCESS_MODE_ENABLE            ((uint32_t)0x00000100)
-
-#define IS_FSMC_BURSTMODE(STATE) (((STATE) == FSMC_BURST_ACCESS_MODE_DISABLE) || \
-                                  ((STATE) == FSMC_BURST_ACCESS_MODE_ENABLE))
 /**
   * @}
   */
-    
 
-/** @defgroup FSMC_Wait_Signal_Polarity 
+/** @defgroup FSMC_Wait_Signal_Polarity FSMC Wait Signal Polarity
   * @{
   */
 #define FSMC_WAIT_SIGNAL_POLARITY_LOW            ((uint32_t)0x00000000)
 #define FSMC_WAIT_SIGNAL_POLARITY_HIGH           ((uint32_t)0x00000200)
-
-#define IS_FSMC_WAIT_POLARITY(POLARITY) (((POLARITY) == FSMC_WAIT_SIGNAL_POLARITY_LOW) || \
-                                         ((POLARITY) == FSMC_WAIT_SIGNAL_POLARITY_HIGH))
 /**
   * @}
   */
 
-/** @defgroup FSMC_Wrap_Mode 
+/** @defgroup FSMC_Wrap_Mode FSMC Wrap Mode
   * @{
   */
 #define FSMC_WRAP_MODE_DISABLE                   ((uint32_t)0x00000000)
 #define FSMC_WRAP_MODE_ENABLE                    ((uint32_t)0x00000400)
-
-#define IS_FSMC_WRAP_MODE(MODE) (((MODE) == FSMC_WRAP_MODE_DISABLE) || \
-                                 ((MODE) == FSMC_WRAP_MODE_ENABLE)) 
 /**
   * @}
   */
 
-/** @defgroup FSMC_Wait_Timing 
+/** @defgroup FSMC_Wait_Timing FSMC Wait Timing
   * @{
   */
 #define FSMC_WAIT_TIMING_BEFORE_WS               ((uint32_t)0x00000000)
 #define FSMC_WAIT_TIMING_DURING_WS               ((uint32_t)0x00000800)
-
-#define IS_FSMC_WAIT_SIGNAL_ACTIVE(ACTIVE) (((ACTIVE) == FSMC_WAIT_TIMING_BEFORE_WS) || \
-                                            ((ACTIVE) == FSMC_WAIT_TIMING_DURING_WS)) 
 /**
   * @}
   */
 
-/** @defgroup FSMC_Write_Operation 
+/** @defgroup FSMC_Write_Operation FSMC Write Operation
   * @{
   */
 #define FSMC_WRITE_OPERATION_DISABLE             ((uint32_t)0x00000000)
 #define FSMC_WRITE_OPERATION_ENABLE              ((uint32_t)0x00001000)
-
-#define IS_FSMC_WRITE_OPERATION(OPERATION) (((OPERATION) == FSMC_WRITE_OPERATION_DISABLE) || \
-                                            ((OPERATION) == FSMC_WRITE_OPERATION_ENABLE))
 /**
   * @}
   */
 
-/** @defgroup FSMC_Wait_Signal 
+/** @defgroup FSMC_Wait_Signal FSMC Wait Signal
   * @{
   */
 #define FSMC_WAIT_SIGNAL_DISABLE                 ((uint32_t)0x00000000)
 #define FSMC_WAIT_SIGNAL_ENABLE                  ((uint32_t)0x00002000)
-
-#define IS_FSMC_WAITE_SIGNAL(SIGNAL) (((SIGNAL) == FSMC_WAIT_SIGNAL_DISABLE) || \
-                                      ((SIGNAL) == FSMC_WAIT_SIGNAL_ENABLE)) 
-
 /**
   * @}
   */
 
-/** @defgroup FSMC_Extended_Mode 
+/** @defgroup FSMC_Extended_Mode FSMC Extended Mode
   * @{
   */
 #define FSMC_EXTENDED_MODE_DISABLE               ((uint32_t)0x00000000)
 #define FSMC_EXTENDED_MODE_ENABLE                ((uint32_t)0x00004000)
-
-#define IS_FSMC_EXTENDED_MODE(MODE) (((MODE) == FSMC_EXTENDED_MODE_DISABLE) || \
-                                     ((MODE) == FSMC_EXTENDED_MODE_ENABLE))
 /**
   * @}
   */
 
-/** @defgroup FSMC_AsynchronousWait 
+/** @defgroup FSMC_AsynchronousWait FSMC Asynchronous Wait
   * @{
   */
 #define FSMC_ASYNCHRONOUS_WAIT_DISABLE           ((uint32_t)0x00000000)
 #define FSMC_ASYNCHRONOUS_WAIT_ENABLE            ((uint32_t)0x00008000)
-
-#define IS_FSMC_ASYNWAIT(STATE) (((STATE) == FSMC_ASYNCHRONOUS_WAIT_DISABLE) || \
-                                 ((STATE) == FSMC_ASYNCHRONOUS_WAIT_ENABLE))
-
 /**
   * @}
   */  
 
-/** @defgroup FSMC_Write_Burst 
+/** @defgroup FSMC_Write_Burst FSMC Write Burst
   * @{
   */
-
 #define FSMC_WRITE_BURST_DISABLE                 ((uint32_t)0x00000000)
 #define FSMC_WRITE_BURST_ENABLE                  ((uint32_t)0x00080000)
-
-#define IS_FSMC_WRITE_BURST(BURST) (((BURST) == FSMC_WRITE_BURST_DISABLE) || \
-                                    ((BURST) == FSMC_WRITE_BURST_ENABLE)) 
-
 /**
   * @}
   */
   
-/** @defgroup FSMC_Continous_Clock 
+/** @defgroup FSMC_Continous_Clock FSMC Continous Clock
   * @{
   */
-
 #define FSMC_CONTINUOUS_CLOCK_SYNC_ONLY          ((uint32_t)0x00000000)
 #define FSMC_CONTINUOUS_CLOCK_SYNC_ASYNC         ((uint32_t)0x00100000)
-
-#define IS_FSMC_CONTINOUS_CLOCK(CCLOCK) (((CCLOCK) == FSMC_CONTINUOUS_CLOCK_SYNC_ONLY) || \
-                                         ((CCLOCK) == FSMC_CONTINUOUS_CLOCK_SYNC_ASYNC)) 
-
-/**
-  * @}
-  */
-  
-/** @defgroup FSMC_Address_Setup_Time 
-  * @{
-  */
-#define IS_FSMC_ADDRESS_SETUP_TIME(TIME) ((TIME) <= 15)
 /**
   * @}
   */
 
-/** @defgroup FSMC_Address_Hold_Time 
-  * @{
-  */
-#define IS_FSMC_ADDRESS_HOLD_TIME(TIME) (((TIME) > 0) && ((TIME) <= 15))
-/**
-  * @}
-  */
-
-/** @defgroup FSMC_Data_Setup_Time 
-  * @{
-  */
-#define IS_FSMC_DATASETUP_TIME(TIME) (((TIME) > 0) && ((TIME) <= 255))
-/**
-  * @}
-  */
-
-/** @defgroup FSMC_Bus_Turn_around_Duration 
-  * @{
-  */
-#define IS_FSMC_TURNAROUND_TIME(TIME) ((TIME) <= 15)
-/**
-  * @}
-  */
-
-/** @defgroup FSMC_CLK_Division 
-  * @{
-  */
-#define IS_FSMC_CLK_DIV(DIV) (((DIV) > 1) && ((DIV) <= 16))
-/**
-  * @}
-  */
-
-/** @defgroup FSMC_Data_Latency 
-  * @{
-  */
-#define IS_FSMC_DATA_LATENCY(LATENCY) (((LATENCY) > 1) && ((LATENCY) <= 17))
-/**
-  * @}
-  */  
-
-/** @defgroup FSMC_Access_Mode 
+/** @defgroup FSMC_Access_Mode FSMC Access Mode
   * @{
   */
 #define FSMC_ACCESS_MODE_A                        ((uint32_t)0x00000000)
 #define FSMC_ACCESS_MODE_B                        ((uint32_t)0x10000000) 
 #define FSMC_ACCESS_MODE_C                        ((uint32_t)0x20000000)
 #define FSMC_ACCESS_MODE_D                        ((uint32_t)0x30000000)
-
-#define IS_FSMC_ACCESS_MODE(MODE) (((MODE) == FSMC_ACCESS_MODE_A) || \
-                                   ((MODE) == FSMC_ACCESS_MODE_B) || \
-                                   ((MODE) == FSMC_ACCESS_MODE_C) || \
-                                   ((MODE) == FSMC_ACCESS_MODE_D))
 /**
   * @}
   */
-    
 /**
   * @}
-  */  
-
-/** @defgroup FSMC_NAND_Controller 
-  * @{
   */
 
-/** @defgroup FSMC_NAND_Bank 
+#if defined(STM32F405xx) || defined(STM32F415xx) || defined(STM32F407xx) || defined(STM32F417xx)
+/** @defgroup FSMC_LL_NAND_Controller FSMC NAND and PCCARD Controller
   * @{
-  */  
+  */
+/** @defgroup FSMC_NAND_Bank FSMC NAND Bank
+  * @{
+  */
 #define FSMC_NAND_BANK2                          ((uint32_t)0x00000010)
 #define FSMC_NAND_BANK3                          ((uint32_t)0x00000100)
-
-#define IS_FSMC_NAND_BANK(BANK) (((BANK) == FSMC_NAND_BANK2) || \
-                                 ((BANK) == FSMC_NAND_BANK3))  
-
 /**
   * @}
   */
 
-/** @defgroup FSMC_Wait_feature 
+/** @defgroup FSMC_Wait_feature FSMC Wait feature
   * @{
   */
 #define FSMC_NAND_PCC_WAIT_FEATURE_DISABLE           ((uint32_t)0x00000000)
 #define FSMC_NAND_PCC_WAIT_FEATURE_ENABLE            ((uint32_t)0x00000002)
-
-#define IS_FSMC_WAIT_FEATURE(FEATURE) (((FEATURE) == FSMC_NAND_PCC_WAIT_FEATURE_DISABLE) || \
-                                       ((FEATURE) == FSMC_NAND_PCC_WAIT_FEATURE_ENABLE))
 /**
   * @}
   */
 
-/** @defgroup FSMC_PCR_Memory_Type 
+/** @defgroup FSMC_PCR_Memory_Type FSMC PCR Memory Type
   * @{
   */
 #define FSMC_PCR_MEMORY_TYPE_PCCARD        ((uint32_t)0x00000000)
@@ -555,31 +436,25 @@ typedef struct
   * @}
   */
 
-/** @defgroup FSMC_NAND_Data_Width 
+/** @defgroup FSMC_NAND_Data_Width FSMC NAND Data Width
   * @{
   */
 #define FSMC_NAND_PCC_MEM_BUS_WIDTH_8                ((uint32_t)0x00000000)
 #define FSMC_NAND_PCC_MEM_BUS_WIDTH_16               ((uint32_t)0x00000010)
-
-#define IS_FSMC_NAND_MEMORY_WIDTH(WIDTH) (((WIDTH) == FSMC_NAND_PCC_MEM_BUS_WIDTH_8) || \
-                                          ((WIDTH) == FSMC_NAND_PCC_MEM_BUS_WIDTH_16))
 /**
   * @}
   */
 
-/** @defgroup FSMC_ECC 
+/** @defgroup FSMC_ECC FSMC ECC
   * @{
   */
 #define FSMC_NAND_ECC_DISABLE                    ((uint32_t)0x00000000)
 #define FSMC_NAND_ECC_ENABLE                     ((uint32_t)0x00000040)
-
-#define IS_FSMC_ECC_STATE(STATE) (((STATE) == FSMC_NAND_ECC_DISABLE) || \
-                                  ((STATE) == FSMC_NAND_ECC_ENABLE))
 /**
   * @}
   */
 
-/** @defgroup FSMC_ECC_Page_Size 
+/** @defgroup FSMC_ECC_Page_Size FSMC ECC Page Size
   * @{
   */
 #define FSMC_NAND_ECC_PAGE_SIZE_256BYTE          ((uint32_t)0x00000000)
@@ -588,154 +463,146 @@ typedef struct
 #define FSMC_NAND_ECC_PAGE_SIZE_2048BYTE         ((uint32_t)0x00060000)
 #define FSMC_NAND_ECC_PAGE_SIZE_4096BYTE         ((uint32_t)0x00080000)
 #define FSMC_NAND_ECC_PAGE_SIZE_8192BYTE         ((uint32_t)0x000A0000)
-
-#define IS_FSMC_ECCPAGE_SIZE(SIZE) (((SIZE) == FSMC_NAND_ECC_PAGE_SIZE_256BYTE)  || \
-                                    ((SIZE) == FSMC_NAND_ECC_PAGE_SIZE_512BYTE)  || \
-                                    ((SIZE) == FSMC_NAND_ECC_PAGE_SIZE_1024BYTE) || \
-                                    ((SIZE) == FSMC_NAND_ECC_PAGE_SIZE_2048BYTE) || \
-                                    ((SIZE) == FSMC_NAND_ECC_PAGE_SIZE_4096BYTE) || \
-                                    ((SIZE) == FSMC_NAND_ECC_PAGE_SIZE_8192BYTE))
 /**
   * @}
   */
-
-/** @defgroup FSMC_TCLR_Setup_Time 
-  * @{
-  */
-#define IS_FSMC_TCLR_TIME(TIME) ((TIME) <= 255)
-/**
-  * @}
-  */
-
-/** @defgroup FSMC_TAR_Setup_Time 
-  * @{
-  */
-#define IS_FSMC_TAR_TIME(TIME) ((TIME) <= 255)
-/**
-  * @}
-  */
-
-/** @defgroup FSMC_Setup_Time 
-  * @{
-  */
-#define IS_FSMC_SETUP_TIME(TIME) ((TIME) <= 255)
-/**
-  * @}
-  */
-
-/** @defgroup FSMC_Wait_Setup_Time 
-  * @{
-  */
-#define IS_FSMC_WAIT_TIME(TIME) ((TIME) <= 255)
-/**
-  * @}
-  */
-
-/** @defgroup FSMC_Hold_Setup_Time 
-  * @{
-  */
-#define IS_FSMC_HOLD_TIME(TIME) ((TIME) <= 255)
-/**
-  * @}
-  */
-
-/** @defgroup FSMC_HiZ_Setup_Time 
-  * @{
-  */
-#define IS_FSMC_HIZ_TIME(TIME) ((TIME) <= 255)
 /**
   * @}
   */  
-    
-/**
-  * @}
-  */  
-  
+#endif /* STM32F405xx || STM32F415xx || STM32F407xx || STM32F417xx */
 
-/** @defgroup FSMC_NORSRAM_Device_Instance
-  * @{
-  */
-#define IS_FSMC_NORSRAM_DEVICE(INSTANCE) ((INSTANCE) == FSMC_NORSRAM_DEVICE)
-
-/**
-  * @}
-  */
-
-/** @defgroup FSMC_NORSRAM_EXTENDED_Device_Instance
-  * @{
-  */
-#define IS_FSMC_NORSRAM_EXTENDED_DEVICE(INSTANCE) ((INSTANCE) == FSMC_NORSRAM_EXTENDED_DEVICE)
-
-/**
-  * @}
-  */
-  
-  /** @defgroup FSMC_NAND_Device_Instance
-  * @{
-  */
-#define IS_FSMC_NAND_DEVICE(INSTANCE) ((INSTANCE) == FSMC_NAND_DEVICE)
-
-/**
-  * @}
-  */  
-
-/** @defgroup FSMC_PCCARD_Device_Instance
-  * @{
-  */
-#define IS_FSMC_PCCARD_DEVICE(INSTANCE) ((INSTANCE) == FSMC_PCCARD_DEVICE)
-
-/**
-  * @}
-  */ 
-   
-/** @defgroup FSMC_Interrupt_definition 
-  * @brief FSMC Interrupt definition
+/** @defgroup FSMC_LL_Interrupt_definition FSMC Interrupt definition
   * @{
   */  
 #define FSMC_IT_RISING_EDGE                ((uint32_t)0x00000008)
 #define FSMC_IT_LEVEL                      ((uint32_t)0x00000010)
 #define FSMC_IT_FALLING_EDGE               ((uint32_t)0x00000020)
 #define FSMC_IT_REFRESH_ERROR              ((uint32_t)0x00004000)
-
-#define IS_FSMC_IT(IT) ((((IT) & (uint32_t)0xFFFFBFC7) == 0x00000000) && ((IT) != 0x00000000))
-#define IS_FSMC_GET_IT(IT) (((IT) == FSMC_IT_RISING_EDGE)  || \
-                            ((IT) == FSMC_IT_LEVEL)        || \
-                            ((IT) == FSMC_IT_FALLING_EDGE) || \
-                            ((IT) == FSMC_IT_REFRESH_ERROR)) 
 /**
   * @}
   */
     
-/** @defgroup FSMC_Flag_definition 
-  * @brief FSMC Flag definition
+/** @defgroup FSMC_LL_Flag_definition  FSMC Flag definition
   * @{
   */ 
 #define FSMC_FLAG_RISING_EDGE                    ((uint32_t)0x00000001)
 #define FSMC_FLAG_LEVEL                          ((uint32_t)0x00000002)
 #define FSMC_FLAG_FALLING_EDGE                   ((uint32_t)0x00000004)
 #define FSMC_FLAG_FEMPT                          ((uint32_t)0x00000040)
+/**
+  * @}
+  */
 
-#define IS_FSMC_GET_FLAG(FLAG) (((FLAG) == FSMC_FLAG_RISING_EDGE)  || \
-                                ((FLAG) == FSMC_FLAG_LEVEL)        || \
-                                ((FLAG) == FSMC_FLAG_FALLING_EDGE) || \
-                                ((FLAG) == FSMC_FLAG_FEMPT))
+/** @defgroup FSMC_LL_Alias_definition  FSMC Alias definition
+  * @{
+  */
+#define FSMC_NORSRAM_TypeDef                  FSMC_Bank1_TypeDef
+#define FSMC_NORSRAM_EXTENDED_TypeDef         FSMC_Bank1E_TypeDef
+#if defined(STM32F405xx) || defined(STM32F415xx) || defined(STM32F407xx) || defined(STM32F417xx)
+#define FSMC_NAND_TypeDef                     FSMC_Bank2_3_TypeDef
+#define FSMC_PCCARD_TypeDef                   FSMC_Bank4_TypeDef
+#endif /* STM32F405xx || STM32F415xx || STM32F407xx || STM32F417xx */
 
-#define IS_FSMC_CLEAR_FLAG(FLAG) ((((FLAG) & (uint32_t)0xFFFFFFF8) == 0x00000000) && ((FLAG) != 0x00000000))
-                               
+#define FSMC_NORSRAM_DEVICE                   FSMC_Bank1
+#define FSMC_NORSRAM_EXTENDED_DEVICE          FSMC_Bank1E
+#if defined(STM32F405xx) || defined(STM32F415xx) || defined(STM32F407xx) || defined(STM32F417xx)
+#define FSMC_NAND_DEVICE                      FSMC_Bank2_3
+#define FSMC_PCCARD_DEVICE                    FSMC_Bank4
+#endif /* STM32F405xx || STM32F415xx || STM32F407xx || STM32F417xx */
+
+#define FMC_NORSRAM_TypeDef                   FSMC_NORSRAM_TypeDef
+#define FMC_NORSRAM_EXTENDED_TypeDef          FSMC_NORSRAM_EXTENDED_TypeDef
+#define FMC_NORSRAM_InitTypeDef               FSMC_NORSRAM_InitTypeDef
+#define FMC_NORSRAM_TimingTypeDef             FSMC_NORSRAM_TimingTypeDef
+
+#define FMC_NORSRAM_Init                      FSMC_NORSRAM_Init
+#define FMC_NORSRAM_Timing_Init               FSMC_NORSRAM_Timing_Init
+#define FMC_NORSRAM_Extended_Timing_Init      FSMC_NORSRAM_Extended_Timing_Init
+#define FMC_NORSRAM_DeInit                    FSMC_NORSRAM_DeInit
+#define FMC_NORSRAM_WriteOperation_Enable     FSMC_NORSRAM_WriteOperation_Enable
+#define FMC_NORSRAM_WriteOperation_Disable    FSMC_NORSRAM_WriteOperation_Disable
+
+#define __FMC_NORSRAM_ENABLE                  __FSMC_NORSRAM_ENABLE
+#define __FMC_NORSRAM_DISABLE                 __FSMC_NORSRAM_DISABLE 
+
+#if defined(STM32F405xx) || defined(STM32F415xx) || defined(STM32F407xx) || defined(STM32F417xx)
+#define FMC_NAND_InitTypeDef                  FSMC_NAND_InitTypeDef
+#define FMC_PCCARD_InitTypeDef                FSMC_PCCARD_InitTypeDef
+#define FMC_NAND_PCC_TimingTypeDef            FSMC_NAND_PCC_TimingTypeDef
+
+#define FMC_NAND_Init                         FSMC_NAND_Init
+#define FMC_NAND_CommonSpace_Timing_Init      FSMC_NAND_CommonSpace_Timing_Init
+#define FMC_NAND_AttributeSpace_Timing_Init   FSMC_NAND_AttributeSpace_Timing_Init
+#define FMC_NAND_DeInit                       FSMC_NAND_DeInit
+#define FMC_NAND_ECC_Enable                   FSMC_NAND_ECC_Enable
+#define FMC_NAND_ECC_Disable                  FSMC_NAND_ECC_Disable
+#define FMC_NAND_GetECC                       FSMC_NAND_GetECC
+#define FMC_PCCARD_Init                       FSMC_PCCARD_Init
+#define FMC_PCCARD_CommonSpace_Timing_Init    FSMC_PCCARD_CommonSpace_Timing_Init
+#define FMC_PCCARD_AttributeSpace_Timing_Init FSMC_PCCARD_AttributeSpace_Timing_Init
+#define FMC_PCCARD_IOSpace_Timing_Init        FSMC_PCCARD_IOSpace_Timing_Init
+#define FMC_PCCARD_DeInit                     FSMC_PCCARD_DeInit
+
+#define __FMC_NAND_ENABLE                     __FSMC_NAND_ENABLE
+#define __FMC_NAND_DISABLE                    __FSMC_NAND_DISABLE
+#define __FMC_PCCARD_ENABLE                   __FSMC_PCCARD_ENABLE
+#define __FMC_PCCARD_DISABLE                  __FSMC_PCCARD_DISABLE
+#define __FMC_NAND_ENABLE_IT                  __FSMC_NAND_ENABLE_IT
+#define __FMC_NAND_DISABLE_IT                 __FSMC_NAND_DISABLE_IT
+#define __FMC_NAND_GET_FLAG                   __FSMC_NAND_GET_FLAG
+#define __FMC_NAND_CLEAR_FLAG                 __FSMC_NAND_CLEAR_FLAG
+#define __FMC_PCCARD_ENABLE_IT                __FSMC_PCCARD_ENABLE_IT
+#define __FMC_PCCARD_DISABLE_IT               __FSMC_PCCARD_DISABLE_IT
+#define __FMC_PCCARD_GET_FLAG                 __FSMC_PCCARD_GET_FLAG
+#define __FMC_PCCARD_CLEAR_FLAG               __FSMC_PCCARD_CLEAR_FLAG
+#endif /* STM32F405xx || STM32F415xx || STM32F407xx || STM32F417xx */
+
+#define FMC_NORSRAM_TypeDef                   FSMC_NORSRAM_TypeDef
+#define FMC_NORSRAM_EXTENDED_TypeDef          FSMC_NORSRAM_EXTENDED_TypeDef
+#if defined(STM32F405xx) || defined(STM32F415xx) || defined(STM32F407xx) || defined(STM32F417xx)
+#define FMC_NAND_TypeDef                      FSMC_NAND_TypeDef
+#define FMC_PCCARD_TypeDef                    FSMC_PCCARD_TypeDef
+#endif /* STM32F405xx || STM32F415xx || STM32F407xx || STM32F417xx */
+
+#define FMC_NORSRAM_DEVICE                    FSMC_NORSRAM_DEVICE            
+#define FMC_NORSRAM_EXTENDED_DEVICE           FSMC_NORSRAM_EXTENDED_DEVICE  
+#if defined(STM32F405xx) || defined(STM32F415xx) || defined(STM32F407xx) || defined(STM32F417xx)
+#define FMC_NAND_DEVICE                       FSMC_NAND_DEVICE             
+#define FMC_PCCARD_DEVICE                     FSMC_PCCARD_DEVICE 
+
+#define FMC_NAND_BANK2                        FSMC_NAND_BANK2
+#endif /* STM32F405xx || STM32F415xx || STM32F407xx || STM32F417xx */
+
+#define FMC_NORSRAM_BANK1                     FSMC_NORSRAM_BANK1    
+#define FMC_NORSRAM_BANK2                     FSMC_NORSRAM_BANK2    
+#define FMC_NORSRAM_BANK3                     FSMC_NORSRAM_BANK3
+
+#define FMC_IT_RISING_EDGE                    FSMC_IT_RISING_EDGE
+#define FMC_IT_LEVEL                          FSMC_IT_LEVEL
+#define FMC_IT_FALLING_EDGE                   FSMC_IT_FALLING_EDGE
+#define FMC_IT_REFRESH_ERROR                  FSMC_IT_REFRESH_ERROR
+
+#define FMC_FLAG_RISING_EDGE                  FSMC_FLAG_RISING_EDGE
+#define FMC_FLAG_LEVEL                        FSMC_FLAG_LEVEL
+#define FMC_FLAG_FALLING_EDGE                 FSMC_FLAG_FALLING_EDGE
+#define FMC_FLAG_FEMPT                        FSMC_FLAG_FEMPT
+/**
+  * @}
+  */
 
 /**
   * @}
   */
 
+/* Private macro -------------------------------------------------------------*/
+/** @defgroup FSMC_LL_Private_Macros FSMC Private Macros
+  * @{
+  */
 
-/* Exported macro ------------------------------------------------------------*/
-
-
-/** @defgroup FSMC_NOR_Macros
+/** @defgroup FSMC_LL_NOR_Macros FSMC NOR/SRAM Exported Macros
  *  @brief macros to handle NOR device enable/disable and read/write operations
  *  @{
  */
- 
 /**
   * @brief  Enable the NORSRAM device access.
   * @param  __INSTANCE__: FSMC_NORSRAM Instance
@@ -751,17 +618,15 @@ typedef struct
   * @retval none
   */ 
 #define __FSMC_NORSRAM_DISABLE(__INSTANCE__, __BANK__) ((__INSTANCE__)->BTCR[(__BANK__)] &= ~FSMC_BCR1_MBKEN)  
-
 /**
   * @}
   */ 
   
-
-/** @defgroup FSMC_NAND_Macros
+/** @defgroup FSMC_LL_NAND_Macros FSMC NAND Macros
  *  @brief macros to handle NAND device enable/disable
  *  @{
  */
- 
+#if defined(STM32F405xx) || defined(STM32F415xx) || defined(STM32F407xx) || defined(STM32F417xx)
 /**
   * @brief  Enable the NAND device access.
   * @param  __INSTANCE__: FSMC_NAND Instance
@@ -770,7 +635,6 @@ typedef struct
   */  
 #define __FSMC_NAND_ENABLE(__INSTANCE__, __BANK__)  (((__BANK__) == FSMC_NAND_BANK2)? ((__INSTANCE__)->PCR2 |= FSMC_PCR2_PBKEN): \
                                                     ((__INSTANCE__)->PCR3 |= FSMC_PCR3_PBKEN))
-                                         
 
 /**
   * @brief  Disable the NAND device access.
@@ -780,17 +644,14 @@ typedef struct
   */                                          
 #define __FSMC_NAND_DISABLE(__INSTANCE__, __BANK__) (((__BANK__) == FSMC_NAND_BANK2)? ((__INSTANCE__)->PCR2 &= ~FSMC_PCR2_PBKEN): \
                                                    ((__INSTANCE__)->PCR3 &= ~FSMC_PCR3_PBKEN))
-                                         
-                                        
 /**
   * @}
   */ 
   
-/** @defgroup FSMC_PCCARD_Macros
- *  @brief macros to handle SRAM read/write operations 
- *  @{
- */
-
+/** @defgroup FSMC_LL_PCCARD_Macros FSMC PCCARD Macros
+  *  @brief macros to handle SRAM read/write operations 
+  *  @{
+  */
 /**
   * @brief  Enable the PCCARD device access.
   * @param  __INSTANCE__: FSMC_PCCARD Instance  
@@ -804,16 +665,14 @@ typedef struct
   * @retval none
   */ 
 #define __FSMC_PCCARD_DISABLE(__INSTANCE__) ((__INSTANCE__)->PCR4 &= ~FSMC_PCR4_PBKEN)
-
 /**
   * @}
   */
   
-/** @defgroup FSMC_Interrupt
- *  @brief macros to handle FSMC interrupts
+/** @defgroup FSMC_LL_Flag_Interrupt_Macros FSMC Flag&Interrupt Macros
+ *  @brief macros to handle FSMC flags and interrupts
  * @{
  */ 
-
 /**
   * @brief  Enable the NAND device interrupt.
   * @param  __INSTANCE__: FSMC_NAND Instance
@@ -845,8 +704,8 @@ typedef struct
 /**
   * @brief  Get flag status of the NAND device.
   * @param  __INSTANCE__: FSMC_NAND Instance
-  * @param  __BANK__: FSMC_NAND Bank 
-  * @param  __FLAG__: FSMC_NAND flag
+  * @param  __BANK__    : FSMC_NAND Bank 
+  * @param  __FLAG__    : FSMC_NAND flag
   *         This parameter can be any combination of the following values:
   *            @arg FSMC_FLAG_RISING_EDGE: Interrupt rising edge flag.
   *            @arg FSMC_FLAG_LEVEL: Interrupt level edge flag.
@@ -889,14 +748,14 @@ typedef struct
   *         This parameter can be any combination of the following values:
   *            @arg FSMC_IT_RISING_EDGE: Interrupt rising edge.
   *            @arg FSMC_IT_LEVEL: Interrupt level.
-  *            @arg FSMC_IT_FALLING_EDGE: Interrupt falling edge.        
+  *            @arg FSMC_IT_FALLING_EDGE: Interrupt falling edge.       
   * @retval None
   */ 
 #define __FSMC_PCCARD_DISABLE_IT(__INSTANCE__, __INTERRUPT__)  ((__INSTANCE__)->SR4 &= ~(__INTERRUPT__)) 
 
 /**
   * @brief  Get flag status of the PCCARD device.
-  * @param  __INSTANCE__: FSMC_PCCARD Instance    
+  * @param  __INSTANCE__: FSMC_PCCARD Instance  
   * @param  __FLAG__: FSMC_PCCARD flag
   *         This parameter can be any combination of the following values:
   *            @arg FSMC_FLAG_RISING_EDGE: Interrupt rising edge flag.
@@ -909,7 +768,7 @@ typedef struct
 
 /**
   * @brief  Clear flag status of the PCCARD device.
-  * @param  __INSTANCE__: FSMC_PCCARD Instance   
+  * @param  __INSTANCE__: FSMC_PCCARD Instance
   * @param  __FLAG__: FSMC_PCCARD flag
   *         This parameter can be any combination of the following values:
   *            @arg FSMC_FLAG_RISING_EDGE: Interrupt rising edge flag.
@@ -919,117 +778,206 @@ typedef struct
   * @retval None
   */
 #define __FSMC_PCCARD_CLEAR_FLAG(__INSTANCE__, __FLAG__)  ((__INSTANCE__)->SR4 &= ~(__FLAG__))
+/**
+  * @}
+  */
+#endif /* STM32F405xx || STM32F415xx || STM32F407xx || STM32F417xx */
 
+/** @defgroup FSMC_LL_Assert_Macros FSMC Assert Macros
+  * @{
+  */
+#define IS_FSMC_NORSRAM_BANK(__BANK__) (((__BANK__) == FSMC_NORSRAM_BANK1) || \
+                                        ((__BANK__) == FSMC_NORSRAM_BANK2) || \
+                                        ((__BANK__) == FSMC_NORSRAM_BANK3) || \
+                                        ((__BANK__) == FSMC_NORSRAM_BANK4))
+
+#define IS_FSMC_MUX(__MUX__) (((__MUX__) == FSMC_DATA_ADDRESS_MUX_DISABLE) || \
+                              ((__MUX__) == FSMC_DATA_ADDRESS_MUX_ENABLE))
+
+#define IS_FSMC_MEMORY(__MEMORY__) (((__MEMORY__) == FSMC_MEMORY_TYPE_SRAM) || \
+                                    ((__MEMORY__) == FSMC_MEMORY_TYPE_PSRAM)|| \
+                                    ((__MEMORY__) == FSMC_MEMORY_TYPE_NOR))
+
+#define IS_FSMC_NORSRAM_MEMORY_WIDTH(__WIDTH__) (((__WIDTH__) == FSMC_NORSRAM_MEM_BUS_WIDTH_8)  || \
+                                                 ((__WIDTH__) == FSMC_NORSRAM_MEM_BUS_WIDTH_16) || \
+                                                 ((__WIDTH__) == FSMC_NORSRAM_MEM_BUS_WIDTH_32))
+
+#define IS_FSMC_ACCESS_MODE(__MODE__) (((__MODE__) == FSMC_ACCESS_MODE_A) || \
+                                       ((__MODE__) == FSMC_ACCESS_MODE_B) || \
+                                       ((__MODE__) == FSMC_ACCESS_MODE_C) || \
+                                       ((__MODE__) == FSMC_ACCESS_MODE_D))
+
+#define IS_FSMC_NAND_BANK(BANK) (((BANK) == FSMC_NAND_BANK2) || \
+                                ((BANK) == FSMC_NAND_BANK3))
+
+#define IS_FSMC_WAIT_FEATURE(FEATURE) (((FEATURE) == FSMC_NAND_PCC_WAIT_FEATURE_DISABLE) || \
+                                      ((FEATURE) == FSMC_NAND_PCC_WAIT_FEATURE_ENABLE))
+
+#define IS_FSMC_NAND_MEMORY_WIDTH(WIDTH) (((WIDTH) == FSMC_NAND_PCC_MEM_BUS_WIDTH_8) || \
+                                         ((WIDTH) == FSMC_NAND_PCC_MEM_BUS_WIDTH_16))
+
+#define IS_FSMC_ECC_STATE(STATE) (((STATE) == FSMC_NAND_ECC_DISABLE) || \
+                                 ((STATE) == FSMC_NAND_ECC_ENABLE))
+
+#define IS_FSMC_ECCPAGE_SIZE(SIZE) (((SIZE) == FSMC_NAND_ECC_PAGE_SIZE_256BYTE)  || \
+                                   ((SIZE) == FSMC_NAND_ECC_PAGE_SIZE_512BYTE)  || \
+                                   ((SIZE) == FSMC_NAND_ECC_PAGE_SIZE_1024BYTE) || \
+                                   ((SIZE) == FSMC_NAND_ECC_PAGE_SIZE_2048BYTE) || \
+                                   ((SIZE) == FSMC_NAND_ECC_PAGE_SIZE_4096BYTE) || \
+                                   ((SIZE) == FSMC_NAND_ECC_PAGE_SIZE_8192BYTE))
+
+#define IS_FSMC_TCLR_TIME(TIME) ((TIME) <= 255)
+
+#define IS_FSMC_TAR_TIME(TIME) ((TIME) <= 255)
+
+#define IS_FSMC_SETUP_TIME(TIME) ((TIME) <= 255)
+
+#define IS_FSMC_WAIT_TIME(TIME) ((TIME) <= 255)
+
+#define IS_FSMC_HOLD_TIME(TIME) ((TIME) <= 255)
+
+#define IS_FSMC_HIZ_TIME(TIME) ((TIME) <= 255)
+
+#define IS_FSMC_NORSRAM_DEVICE(__INSTANCE__) ((__INSTANCE__) == FSMC_NORSRAM_DEVICE)
+
+#define IS_FSMC_NORSRAM_EXTENDED_DEVICE(__INSTANCE__) ((__INSTANCE__) == FSMC_NORSRAM_EXTENDED_DEVICE)
+
+#define IS_FSMC_NAND_DEVICE(INSTANCE) ((INSTANCE) == FSMC_NAND_DEVICE)
+
+#define IS_FSMC_PCCARD_DEVICE(INSTANCE) ((INSTANCE) == FSMC_PCCARD_DEVICE)
+
+#define IS_FSMC_BURSTMODE(__STATE__) (((__STATE__) == FSMC_BURST_ACCESS_MODE_DISABLE) || \
+                                      ((__STATE__) == FSMC_BURST_ACCESS_MODE_ENABLE))
+
+#define IS_FSMC_WAIT_POLARITY(__POLARITY__) (((__POLARITY__) == FSMC_WAIT_SIGNAL_POLARITY_LOW) || \
+                                             ((__POLARITY__) == FSMC_WAIT_SIGNAL_POLARITY_HIGH))
+
+#define IS_FSMC_WRAP_MODE(__MODE__) (((__MODE__) == FSMC_WRAP_MODE_DISABLE) || \
+                                     ((__MODE__) == FSMC_WRAP_MODE_ENABLE)) 
+
+#define IS_FSMC_WAIT_SIGNAL_ACTIVE(__ACTIVE__) (((__ACTIVE__) == FSMC_WAIT_TIMING_BEFORE_WS) || \
+                                                ((__ACTIVE__) == FSMC_WAIT_TIMING_DURING_WS)) 
+
+#define IS_FSMC_WRITE_OPERATION(__OPERATION__) (((__OPERATION__) == FSMC_WRITE_OPERATION_DISABLE) || \
+                                                ((__OPERATION__) == FSMC_WRITE_OPERATION_ENABLE))
+
+#define IS_FSMC_WAITE_SIGNAL(__SIGNAL__) (((__SIGNAL__) == FSMC_WAIT_SIGNAL_DISABLE) || \
+                                          ((__SIGNAL__) == FSMC_WAIT_SIGNAL_ENABLE)) 
+
+#define IS_FSMC_EXTENDED_MODE(__MODE__) (((__MODE__) == FSMC_EXTENDED_MODE_DISABLE) || \
+                                         ((__MODE__) == FSMC_EXTENDED_MODE_ENABLE))
+
+#define IS_FSMC_ASYNWAIT(__STATE__) (((__STATE__) == FSMC_ASYNCHRONOUS_WAIT_DISABLE) || \
+                                     ((__STATE__) == FSMC_ASYNCHRONOUS_WAIT_ENABLE))
+
+#define IS_FSMC_DATA_LATENCY(__LATENCY__) (((__LATENCY__) > 1) && ((__LATENCY__) <= 17))
+
+#define IS_FSMC_WRITE_BURST(__BURST__) (((__BURST__) == FSMC_WRITE_BURST_DISABLE) || \
+                                        ((__BURST__) == FSMC_WRITE_BURST_ENABLE)) 
+
+#define IS_FSMC_ADDRESS_SETUP_TIME(__TIME__) ((__TIME__) <= 15)
+
+#define IS_FSMC_ADDRESS_HOLD_TIME(__TIME__) (((__TIME__) > 0) && ((__TIME__) <= 15))
+
+#define IS_FSMC_DATASETUP_TIME(__TIME__) (((__TIME__) > 0) && ((__TIME__) <= 255))
+
+#define IS_FSMC_TURNAROUND_TIME(__TIME__) ((__TIME__) <= 15)
+
+#define IS_FSMC_CONTINOUS_CLOCK(CCLOCK) (((CCLOCK) == FSMC_CONTINUOUS_CLOCK_SYNC_ONLY) || \
+                                         ((CCLOCK) == FSMC_CONTINUOUS_CLOCK_SYNC_ASYNC))
+
+#define IS_FSMC_CLK_DIV(DIV) (((DIV) > 1) && ((DIV) <= 16))
+
+/**
+  * @}
+  */
 /**
   * @}
   */ 
 
-/* Exported functions --------------------------------------------------------*/
+/* Private functions ---------------------------------------------------------*/
+/** @defgroup FSMC_LL_Private_Functions FSMC LL Private Functions
+  *  @{
+  */
 
-/* FSMC_NORSRAM Controller functions ******************************************/
-/* Initialization/de-initialization functions */
+/** @defgroup FSMC_LL_NORSRAM  NOR SRAM
+  *  @{
+  */
+
+/** @defgroup FSMC_LL_NORSRAM_Private_Functions_Group1 NOR SRAM Initialization/de-initialization functions 
+  *  @{
+  */
 HAL_StatusTypeDef  FSMC_NORSRAM_Init(FSMC_NORSRAM_TypeDef *Device, FSMC_NORSRAM_InitTypeDef *Init);
 HAL_StatusTypeDef  FSMC_NORSRAM_Timing_Init(FSMC_NORSRAM_TypeDef *Device, FSMC_NORSRAM_TimingTypeDef *Timing, uint32_t Bank);
 HAL_StatusTypeDef  FSMC_NORSRAM_Extended_Timing_Init(FSMC_NORSRAM_EXTENDED_TypeDef *Device, FSMC_NORSRAM_TimingTypeDef *Timing, uint32_t Bank, uint32_t ExtendedMode);
 HAL_StatusTypeDef  FSMC_NORSRAM_DeInit(FSMC_NORSRAM_TypeDef *Device, FSMC_NORSRAM_EXTENDED_TypeDef *ExDevice, uint32_t Bank);
+/**
+  * @}
+  */ 
 
-/* FSMC_NORSRAM Control functions */
+/** @defgroup FSMC_LL_NORSRAM_Private_Functions_Group2 NOR SRAM Control functions 
+  *  @{
+  */
 HAL_StatusTypeDef  FSMC_NORSRAM_WriteOperation_Enable(FSMC_NORSRAM_TypeDef *Device, uint32_t Bank);
 HAL_StatusTypeDef  FSMC_NORSRAM_WriteOperation_Disable(FSMC_NORSRAM_TypeDef *Device, uint32_t Bank);
+/**
+  * @}
+  */ 
+/**
+  * @}
+  */
 
-/* FSMC_NAND Controller functions *********************************************/
-/* Initialization/de-initialization functions */
+#if defined(STM32F405xx) || defined(STM32F415xx) || defined(STM32F407xx) || defined(STM32F417xx)
+/** @defgroup FSMC_LL_NAND NAND
+  *  @{
+  */
+/** @defgroup FSMC_LL_NAND_Private_Functions_Group1 NAND Initialization/de-initialization functions 
+  *  @{
+  */
 HAL_StatusTypeDef  FSMC_NAND_Init(FSMC_NAND_TypeDef *Device, FSMC_NAND_InitTypeDef *Init);
 HAL_StatusTypeDef  FSMC_NAND_CommonSpace_Timing_Init(FSMC_NAND_TypeDef *Device, FSMC_NAND_PCC_TimingTypeDef *Timing, uint32_t Bank);
 HAL_StatusTypeDef  FSMC_NAND_AttributeSpace_Timing_Init(FSMC_NAND_TypeDef *Device, FSMC_NAND_PCC_TimingTypeDef *Timing, uint32_t Bank);
 HAL_StatusTypeDef  FSMC_NAND_DeInit(FSMC_NAND_TypeDef *Device, uint32_t Bank);
+/**
+  * @}
+  */
 
-/* FSMC_NAND Control functions */
+/** @defgroup FSMC_LL_NAND_Private_Functions_Group2 NAND Control functions 
+  *  @{
+  */
 HAL_StatusTypeDef  FSMC_NAND_ECC_Enable(FSMC_NAND_TypeDef *Device, uint32_t Bank);
 HAL_StatusTypeDef  FSMC_NAND_ECC_Disable(FSMC_NAND_TypeDef *Device, uint32_t Bank);
 HAL_StatusTypeDef  FSMC_NAND_GetECC(FSMC_NAND_TypeDef *Device, uint32_t *ECCval, uint32_t Bank, uint32_t Timeout);
+/**
+  * @}
+  */ 
+/**
+  * @}
+  */ 
 
-/* FSMC_PCCARD Controller functions *******************************************/
-/* Initialization/de-initialization functions */
+/** @defgroup FSMC_LL_PCCARD PCCARD
+  *  @{
+  */
+/** @defgroup FSMC_LL_PCCARD_Private_Functions_Group1 PCCARD Initialization/de-initialization functions 
+  *  @{
+  */
 HAL_StatusTypeDef  FSMC_PCCARD_Init(FSMC_PCCARD_TypeDef *Device, FSMC_PCCARD_InitTypeDef *Init);
 HAL_StatusTypeDef  FSMC_PCCARD_CommonSpace_Timing_Init(FSMC_PCCARD_TypeDef *Device, FSMC_NAND_PCC_TimingTypeDef *Timing);
 HAL_StatusTypeDef  FSMC_PCCARD_AttributeSpace_Timing_Init(FSMC_PCCARD_TypeDef *Device, FSMC_NAND_PCC_TimingTypeDef *Timing);
 HAL_StatusTypeDef  FSMC_PCCARD_IOSpace_Timing_Init(FSMC_PCCARD_TypeDef *Device, FSMC_NAND_PCC_TimingTypeDef *Timing); 
 HAL_StatusTypeDef  FSMC_PCCARD_DeInit(FSMC_PCCARD_TypeDef *Device);
-
-/* FSMC APIs, macros and typedefs redefinition */
-#define FMC_NORSRAM_TypeDef                   FSMC_NORSRAM_TypeDef
-#define FMC_NORSRAM_EXTENDED_TypeDef          FSMC_NORSRAM_EXTENDED_TypeDef
-#define FMC_NORSRAM_InitTypeDef               FSMC_NORSRAM_InitTypeDef
-#define FMC_NORSRAM_TimingTypeDef             FSMC_NORSRAM_TimingTypeDef
-
-#define FMC_NORSRAM_Init                      FSMC_NORSRAM_Init
-#define FMC_NORSRAM_Timing_Init               FSMC_NORSRAM_Timing_Init
-#define FMC_NORSRAM_Extended_Timing_Init      FSMC_NORSRAM_Extended_Timing_Init
-#define FMC_NORSRAM_DeInit                    FSMC_NORSRAM_DeInit
-#define FMC_NORSRAM_WriteOperation_Enable     FSMC_NORSRAM_WriteOperation_Enable
-#define FMC_NORSRAM_WriteOperation_Disable    FSMC_NORSRAM_WriteOperation_Disable
-
-#define __FMC_NORSRAM_ENABLE                  __FSMC_NORSRAM_ENABLE
-#define __FMC_NORSRAM_DISABLE                 __FSMC_NORSRAM_DISABLE 
-
-#define FMC_NAND_InitTypeDef                  FSMC_NAND_InitTypeDef
-#define FMC_PCCARD_InitTypeDef                FSMC_PCCARD_InitTypeDef
-#define FMC_NAND_PCC_TimingTypeDef            FSMC_NAND_PCC_TimingTypeDef
-
-#define FMC_NAND_Init                         FSMC_NAND_Init
-#define FMC_NAND_CommonSpace_Timing_Init      FSMC_NAND_CommonSpace_Timing_Init
-#define FMC_NAND_AttributeSpace_Timing_Init   FSMC_NAND_AttributeSpace_Timing_Init
-#define FMC_NAND_DeInit                       FSMC_NAND_DeInit
-#define FMC_NAND_ECC_Enable                   FSMC_NAND_ECC_Enable
-#define FMC_NAND_ECC_Disable                  FSMC_NAND_ECC_Disable
-#define FMC_NAND_GetECC                       FSMC_NAND_GetECC
-#define FMC_PCCARD_Init                       FSMC_PCCARD_Init
-#define FMC_PCCARD_CommonSpace_Timing_Init    FSMC_PCCARD_CommonSpace_Timing_Init
-#define FMC_PCCARD_AttributeSpace_Timing_Init FSMC_PCCARD_AttributeSpace_Timing_Init
-#define FMC_PCCARD_IOSpace_Timing_Init        FSMC_PCCARD_IOSpace_Timing_Init
-#define FMC_PCCARD_DeInit                     FSMC_PCCARD_DeInit
-
-#define __FMC_NAND_ENABLE                     __FSMC_NAND_ENABLE
-#define __FMC_NAND_DISABLE                    __FSMC_NAND_DISABLE
-#define __FMC_PCCARD_ENABLE                   __FSMC_PCCARD_ENABLE
-#define __FMC_PCCARD_DISABLE                  __FSMC_PCCARD_DISABLE
-#define __FMC_NAND_ENABLE_IT                  __FSMC_NAND_ENABLE_IT
-#define __FMC_NAND_DISABLE_IT                 __FSMC_NAND_DISABLE_IT
-#define __FMC_NAND_GET_FLAG                   __FSMC_NAND_GET_FLAG
-#define __FMC_NAND_CLEAR_FLAG                 __FSMC_NAND_CLEAR_FLAG
-#define __FMC_PCCARD_ENABLE_IT                __FSMC_PCCARD_ENABLE_IT
-#define __FMC_PCCARD_DISABLE_IT               __FSMC_PCCARD_DISABLE_IT
-#define __FMC_PCCARD_GET_FLAG                 __FSMC_PCCARD_GET_FLAG
-#define __FMC_PCCARD_CLEAR_FLAG               __FSMC_PCCARD_CLEAR_FLAG
-
-#define FMC_NORSRAM_TypeDef                   FSMC_NORSRAM_TypeDef
-#define FMC_NORSRAM_EXTENDED_TypeDef          FSMC_NORSRAM_EXTENDED_TypeDef
-#define FMC_NAND_TypeDef                      FSMC_NAND_TypeDef
-#define FMC_PCCARD_TypeDef                    FSMC_PCCARD_TypeDef
-
-#define FMC_NORSRAM_DEVICE                    FSMC_NORSRAM_DEVICE            
-#define FMC_NORSRAM_EXTENDED_DEVICE           FSMC_NORSRAM_EXTENDED_DEVICE   
-#define FMC_NAND_DEVICE                       FSMC_NAND_DEVICE             
-#define FMC_PCCARD_DEVICE                     FSMC_PCCARD_DEVICE 
-
-#define FMC_NAND_BANK2                        FSMC_NAND_BANK2
-
-#define FMC_NORSRAM_BANK1                     FSMC_NORSRAM_BANK1    
-#define FMC_NORSRAM_BANK2                     FSMC_NORSRAM_BANK2    
-#define FMC_NORSRAM_BANK3                     FSMC_NORSRAM_BANK3
-
-#define FMC_IT_RISING_EDGE                    FSMC_IT_RISING_EDGE
-#define FMC_IT_LEVEL                          FSMC_IT_LEVEL
-#define FMC_IT_FALLING_EDGE                   FSMC_IT_FALLING_EDGE
-#define FMC_IT_REFRESH_ERROR                  FSMC_IT_REFRESH_ERROR
-
-#define FMC_FLAG_RISING_EDGE                  FSMC_FLAG_RISING_EDGE
-#define FMC_FLAG_LEVEL                        FSMC_FLAG_LEVEL
-#define FMC_FLAG_FALLING_EDGE                 FSMC_FLAG_FALLING_EDGE
-#define FMC_FLAG_FEMPT                        FSMC_FLAG_FEMPT
-
+/**
+  * @}
+  */
+/**
+  * @}
+  */
 #endif /* STM32F405xx || STM32F415xx || STM32F407xx || STM32F417xx */
+
+/**
+  * @}
+  */
+#endif /* STM32F405xx || STM32F415xx || STM32F407xx || STM32F417xx  */
 
 /**
   * @}

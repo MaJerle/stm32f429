@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_hal_pcd_ex.c
   * @author  MCD Application Team
-  * @version V1.1.0
-  * @date    19-June-2014
+  * @version V1.4.0
+  * @date    14-August-2015
   * @brief   PCD HAL module driver.
   *          This file provides firmware functions to manage the following 
   *          functionalities of the USB Peripheral Controller:
@@ -12,7 +12,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT(c) 2014 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT(c) 2015 STMicroelectronics</center></h2>
   *
   * Redistribution and use in source and binary forms, with or without modification,
   * are permitted provided that the following conditions are met:
@@ -46,29 +46,30 @@
   * @{
   */
 
-/** @defgroup PCDEx 
+/** @defgroup PCDEx PCDEx
   * @brief PCD Extended HAL module driver
   * @{
   */
-
 #ifdef HAL_PCD_MODULE_ENABLED
-
-/* Private typedef -----------------------------------------------------------*/
-/* Private define ------------------------------------------------------------*/
-/* Private macro -------------------------------------------------------------*/
+#if defined(STM32F405xx) || defined(STM32F415xx) || defined(STM32F407xx) || defined(STM32F417xx) || \
+    defined(STM32F427xx) || defined(STM32F437xx) || defined(STM32F429xx) || defined(STM32F439xx) || \
+    defined(STM32F401xC) || defined(STM32F401xE) || defined(STM32F411xE) || defined(STM32F446xx) || \
+    defined(STM32F469xx) || defined(STM32F479xx) 
+/* Private types -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-/* Private function prototypes -----------------------------------------------*/
+/* Private constants ---------------------------------------------------------*/
+/* Private macros ------------------------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
+/* Exported functions --------------------------------------------------------*/
 
-/** @defgroup PCDEx_Private_Functions
+/** @defgroup PCDEx_Exported_Functions PCD Extended Exported Functions
   * @{
   */
 
-  
-/** @defgroup PCDEx_Group1 Extended features functions 
- *  @brief    Extended features functions  
- *
-@verbatim   
+/** @defgroup PCDEx_Exported_Functions_Group1 Peripheral Control functions
+  * @brief    PCDEx control functions 
+  *
+@verbatim  
  ===============================================================================
                  ##### Extended features functions #####
  ===============================================================================  
@@ -80,8 +81,10 @@
   */
 
 /**
-  * @brief  Update FIFO configuration
+  * @brief  Set Tx FIFO
   * @param  hpcd: PCD handle
+  * @param  fifo: The number of Tx fifo
+  * @param  size: Fifo size
   * @retval HAL status
   */
 HAL_StatusTypeDef HAL_PCDEx_SetTxFiFo(PCD_HandleTypeDef *hpcd, uint8_t fifo, uint16_t size)
@@ -103,7 +106,7 @@ HAL_StatusTypeDef HAL_PCDEx_SetTxFiFo(PCD_HandleTypeDef *hpcd, uint8_t fifo, uin
   
   if(fifo == 0)
   {
-    hpcd->Instance->DIEPTXF0_HNPTXFSIZ = (size << 16) | Tx_Offset;
+    hpcd->Instance->DIEPTXF0_HNPTXFSIZ = (uint32_t)(((uint32_t)size << 16) | Tx_Offset);
   }
   else
   {
@@ -114,34 +117,80 @@ HAL_StatusTypeDef HAL_PCDEx_SetTxFiFo(PCD_HandleTypeDef *hpcd, uint8_t fifo, uin
     }
     
     /* Multiply Tx_Size by 2 to get higher performance */
-    hpcd->Instance->DIEPTXF[fifo - 1] = (size << 16) | Tx_Offset;
-    
+    hpcd->Instance->DIEPTXF[fifo - 1] = (uint32_t)(((uint32_t)size << 16) | Tx_Offset);        
   }
   
   return HAL_OK;
 }
 
 /**
-  * @brief  Update FIFO configuration
+  * @brief  Set Rx FIFO
   * @param  hpcd: PCD handle
+  * @param  size: Size of Rx fifo
   * @retval HAL status
   */
 HAL_StatusTypeDef HAL_PCDEx_SetRxFiFo(PCD_HandleTypeDef *hpcd, uint16_t size)
 {
-  
   hpcd->Instance->GRXFSIZ = size;
   
   return HAL_OK;
 }
 
+#if defined(STM32F446xx) || defined(STM32F469xx) || defined(STM32F479xx) 
 /**
-  * @}
+  * @brief  Activate LPM feature
+  * @param  hpcd: PCD handle
+  * @retval HAL status
   */
+HAL_StatusTypeDef HAL_PCDEx_ActivateLPM(PCD_HandleTypeDef *hpcd)
+{
+  USB_OTG_GlobalTypeDef *USBx = hpcd->Instance;  
+  
+  hpcd->lpm_active = ENABLE;
+  hpcd->LPM_State = LPM_L0;
+  USBx->GINTMSK |= USB_OTG_GINTMSK_LPMINTM;
+  USBx->GLPMCFG |= (USB_OTG_GLPMCFG_LPMEN | USB_OTG_GLPMCFG_LPMACK | USB_OTG_GLPMCFG_ENBESL);
+  
+  return HAL_OK;  
+}
+
+/**
+  * @brief  Deactivate LPM feature.
+  * @param  hpcd: PCD handle
+  * @retval HAL status
+  */
+HAL_StatusTypeDef HAL_PCDEx_DeActivateLPM(PCD_HandleTypeDef *hpcd)
+{
+  USB_OTG_GlobalTypeDef *USBx = hpcd->Instance;  
+  
+  hpcd->lpm_active = DISABLE;
+  USBx->GINTMSK &= ~USB_OTG_GINTMSK_LPMINTM;
+  USBx->GLPMCFG &= ~(USB_OTG_GLPMCFG_LPMEN | USB_OTG_GLPMCFG_LPMACK | USB_OTG_GLPMCFG_ENBESL);
+  
+  return HAL_OK;  
+}
+
+/**
+  * @brief  Send LPM message to user layer callback.
+  * @param  hpcd: PCD handle
+  * @param  msg: LPM message
+  * @retval HAL status
+  */
+__weak void HAL_PCDEx_LPM_Callback(PCD_HandleTypeDef *hpcd, PCD_LPM_MsgTypeDef msg)
+{
+}
+#endif /* STM32F446xx || STM32F469xx || STM32F479xx  */
 
 /**
   * @}
   */
 
+/**
+  * @}
+  */
+
+#endif /* STM32F405xx || STM32F415xx || STM32F407xx || STM32F417xx || STM32F427xx || STM32F437xx || STM32F429xx || STM32F439xx ||
+          STM32F401xC || STM32F401xE || STM32F411xE || STM32F446xx || STM32F469xx || STM32F479xx  */
 #endif /* HAL_PCD_MODULE_ENABLED */
 /**
   * @}
