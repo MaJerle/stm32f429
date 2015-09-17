@@ -159,7 +159,7 @@ void TM_DELAY_INT_InitTIM(void) {
 	TIM_TimeBaseInit(TM_DELAY_TIM, &TIM_TimeBaseStruct);
 	
 	/* Enable interrupt each update cycle */
-	TIMx->DIER |= TIM_IT_Update;
+	TM_DELAY_TIM->DIER |= TIM_IT_Update;
 	
 	/* Set NVIC parameters */
 	NVIC_InitStruct.NVIC_IRQChannel = TM_DELAY_TIM_IRQ;
