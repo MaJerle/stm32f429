@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f30x_fmpi2c.h
   * @author  MCD Application Team
-  * @version V1.5.1
-  * @date    22-May-2015
+  * @version V1.6.0
+  * @date    10-July-2015
   * @brief   This file contains all the functions prototypes for the I2C Fast Mode
   *          Plus firmware library.
   ******************************************************************************
@@ -44,7 +44,7 @@
 /** @addtogroup FMPI2C
   * @{
   */
-#if defined(STM32F446xx)
+#if defined(STM32F410xx) || defined(STM32F446xx)
 /* Exported types ------------------------------------------------------------*/
 
 /**
@@ -442,7 +442,7 @@ void FMPI2C_CalculatePEC(FMPI2C_TypeDef* FMPI2Cx, FunctionalState NewState);
 void FMPI2C_PECRequestCmd(FMPI2C_TypeDef* FMPI2Cx, FunctionalState NewState);
 uint8_t FMPI2C_GetPEC(FMPI2C_TypeDef* FMPI2Cx);
 
-/* FMPI2C registers management functions **************************************/
+/* FMPI2C registers management functions *****************************************/
 uint32_t FMPI2C_ReadRegister(FMPI2C_TypeDef* FMPI2Cx, uint8_t FMPI2C_Register);
 
 /* Data transfers management functions ****************************************/
@@ -458,7 +458,7 @@ void FMPI2C_ClearFlag(FMPI2C_TypeDef* FMPI2Cx, uint32_t FMPI2C_FLAG);
 ITStatus FMPI2C_GetITStatus(FMPI2C_TypeDef* FMPI2Cx, uint32_t FMPI2C_IT);
 void FMPI2C_ClearITPendingBit(FMPI2C_TypeDef* FMPI2Cx, uint32_t FMPI2C_IT);
 
-#endif /* STM32F446xx */
+#endif /* STM32F410xx || STM32F446xx */
 /**
   * @}
   */

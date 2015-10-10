@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_exti.h
   * @author  MCD Application Team
-  * @version V1.5.1
-  * @date    22-May-2015
+  * @version V1.6.0
+  * @date    10-July-2015
   * @brief   This file contains all the functions prototypes for the EXTI firmware
   *          library.
   ******************************************************************************
@@ -124,7 +124,9 @@ typedef struct
 #define EXTI_Line19      ((uint32_t)0x80000)     /*!< External interrupt line 19 Connected to the Ethernet Wakeup event */
 #define EXTI_Line20      ((uint32_t)0x00100000)  /*!< External interrupt line 20 Connected to the USB OTG HS (configured in FS) Wakeup event  */
 #define EXTI_Line21      ((uint32_t)0x00200000)  /*!< External interrupt line 21 Connected to the RTC Tamper and Time Stamp events */                                               
-#define EXTI_Line22      ((uint32_t)0x00400000)  /*!< External interrupt line 22 Connected to the RTC Wakeup event */                                               
+#define EXTI_Line22      ((uint32_t)0x00400000)  /*!< External interrupt line 22 Connected to the RTC Wakeup event */
+#define EXTI_Line23      ((uint32_t)0x00800000)  /*!< External interrupt line 23 Connected to the LPTIM Wakeup event */
+
                                           
 #define IS_EXTI_LINE(LINE) ((((LINE) & (uint32_t)0xFF800000) == 0x00) && ((LINE) != (uint16_t)0x00))
 
@@ -139,7 +141,7 @@ typedef struct
                                 ((LINE) == EXTI_Line16) || ((LINE) == EXTI_Line17) || \
                                 ((LINE) == EXTI_Line18) || ((LINE) == EXTI_Line19) || \
                                 ((LINE) == EXTI_Line20) || ((LINE) == EXTI_Line21) ||\
-                                ((LINE) == EXTI_Line22))
+                                ((LINE) == EXTI_Line22) || ((LINE) == EXTI_Line23))
                     
 /**
   * @}

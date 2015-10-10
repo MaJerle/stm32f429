@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_i2c.c
   * @author  MCD Application Team
-  * @version V1.5.1
-  * @date    22-May-2015
+  * @version V1.6.0
+  * @date    10-July-2015
   * @brief   This file provides firmware functions to manage the following 
   *          functionalities of the Inter-integrated circuit (I2C)
   *           + Initialization and Configuration
@@ -330,7 +330,7 @@ void I2C_Cmd(I2C_TypeDef* I2Cx, FunctionalState NewState)
 /**
   * @brief  Enables or disables the Analog filter of I2C peripheral.
   * 
-  * @note   This function can be used only for STM32F42xxx/STM3243xxx, STM32F401xx and STM32F411xE devices.
+  * @note   This function can be used only for STM32F42xxx/STM3243xxx, STM32F401xx, STM32F410xx and STM32F411xE devices.
   *        
   * @param  I2Cx: where x can be 1, 2 or 3 to select the I2C peripheral.
   * @param  NewState: new state of the Analog filter. 
@@ -359,7 +359,7 @@ void I2C_AnalogFilterCmd(I2C_TypeDef* I2Cx, FunctionalState NewState)
 /**
   * @brief  Configures the Digital noise filter of I2C peripheral.
   * 
-  * @note   This function can be used only for STM32F42xxx/STM3243xxx, STM32F401xx and STM32F411xE devices.
+  * @note   This function can be used only for STM32F42xxx/STM3243xxx, STM32F401xx, STM32F410xx and STM32F411xE devices.
   *       
   * @param  I2Cx: where x can be 1, 2 or 3 to select the I2C peripheral.
   * @param  I2C_DigitalFilter: Coefficient of digital noise filter. 

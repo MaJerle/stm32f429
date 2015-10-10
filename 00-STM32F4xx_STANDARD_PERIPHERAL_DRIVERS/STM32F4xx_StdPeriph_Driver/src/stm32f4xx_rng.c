@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_rng.c
   * @author  MCD Application Team
-  * @version V1.5.1
-  * @date    22-May-2015
+  * @version V1.6.0
+  * @date    10-July-2015
   * @brief This file provides firmware functions to manage the following 
   *          functionalities of the Random Number Generator (RNG) peripheral:           
   *           + Initialization and Configuration 
@@ -64,7 +64,7 @@
   * @brief RNG driver modules
   * @{
   */ 
-
+#if defined(STM32F40_41xxx) || defined(STM32F427_437xx) || defined(STM32F410xx) || defined(STM32F429_439xx) || defined(STM32F469_479xx)  
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
@@ -98,11 +98,20 @@
   */
 void RNG_DeInit(void)
 {
+#if defined(STM32F40_41xxx) || defined(STM32F427_437xx) || defined(STM32F429_439xx) || defined(STM32F469_479xx)  
   /* Enable RNG reset state */
   RCC_AHB2PeriphResetCmd(RCC_AHB2Periph_RNG, ENABLE);
 
   /* Release RNG from reset state */
   RCC_AHB2PeriphResetCmd(RCC_AHB2Periph_RNG, DISABLE);
+#endif /* STM32F40_41xxx || STM32F427_437xx || STM32F429_439xx || STM32F469_479xx */
+#if defined(STM32F410xx)
+   /* Enable RNG reset state */
+  RCC_AHB1PeriphResetCmd(RCC_AHB1Periph_RNG, ENABLE);
+
+  /* Release RNG from reset state */
+  RCC_AHB1PeriphResetCmd(RCC_AHB1Periph_RNG, DISABLE); 
+#endif /* STM32F410xx*/  
 }
 
 /**
@@ -384,7 +393,7 @@ void RNG_ClearITPendingBit(uint8_t RNG_IT)
 /**
   * @}
   */ 
-
+#endif /* STM32F40_41xxx || STM32F427_437xx || STM32F410xx || STM32F429_439xx || STM32F469_479xx */
 /**
   * @}
   */ 

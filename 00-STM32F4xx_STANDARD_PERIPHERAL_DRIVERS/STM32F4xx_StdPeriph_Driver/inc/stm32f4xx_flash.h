@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_flash.h
   * @author  MCD Application Team
-  * @version V1.5.1
-  * @date    22-May-2015
+  * @version V1.6.0
+  * @date    10-July-2015
   * @brief   This file contains all the functions prototypes for the FLASH 
   *          firmware library.
   ******************************************************************************
@@ -166,10 +166,10 @@ typedef enum
                                  ((SECTOR) == FLASH_Sector_20)  || ((SECTOR) == FLASH_Sector_21)  ||\
                                  ((SECTOR) == FLASH_Sector_22)  || ((SECTOR) == FLASH_Sector_23))
 
-#if defined (STM32F427_437xx) || defined (STM32F429_439xx)
+#if defined (STM32F427_437xx) || defined (STM32F429_439xx) || defined (STM32F469_479xx)
 #define IS_FLASH_ADDRESS(ADDRESS) ((((ADDRESS) >= 0x08000000) && ((ADDRESS) <= 0x081FFFFF)) ||\
                                    (((ADDRESS) >= 0x1FFF7800) && ((ADDRESS) <= 0x1FFF7A0F)))  
-#endif /* STM32F427_437xx || STM32F429_439xx */
+#endif /* STM32F427_437xx || STM32F429_439xx || STM32F469_479xx */
 
 #if defined (STM32F40_41xxx)
 #define IS_FLASH_ADDRESS(ADDRESS) ((((ADDRESS) >= 0x08000000) && ((ADDRESS) <= 0x080FFFFF)) ||\
@@ -184,7 +184,12 @@ typedef enum
 #if defined (STM32F411xE) || defined (STM32F446xx)
 #define IS_FLASH_ADDRESS(ADDRESS) ((((ADDRESS) >= 0x08000000) && ((ADDRESS) <= 0x0807FFFF)) ||\
                                    (((ADDRESS) >= 0x1FFF7800) && ((ADDRESS) <= 0x1FFF7A0F)))
-#endif /* STM32F411xE */
+#endif /* STM32F411xE || STM32F446xx */
+
+#if defined (STM32F410xx)
+#define IS_FLASH_ADDRESS(ADDRESS) ((((ADDRESS) >= 0x08000000) && ((ADDRESS) <= 0x0801FFFF)) ||\
+                                   (((ADDRESS) >= 0x1FFF7800) && ((ADDRESS) <= 0x1FFF7A0F)))
+#endif /* STM32F410xx */
 
 /**
   * @}

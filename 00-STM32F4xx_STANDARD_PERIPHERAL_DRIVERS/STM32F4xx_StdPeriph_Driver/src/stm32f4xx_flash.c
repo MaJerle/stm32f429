@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_flash.c
   * @author  MCD Application Team
-  * @version V1.5.1
-  * @date    22-May-2015
+  * @version V1.6.0
+  * @date    10-July-2015
   * @brief   This file provides firmware functions to manage the following 
   *          functionalities of the FLASH peripheral:
   *            + FLASH Interface configuration
@@ -179,7 +179,7 @@
  +-------------------------------------------------------------------------------------+
 
     [..]
-    For STM32F411xE devices
+    For STM32F410xx/STM32F411xE devices
  +-------------------------------------------------------------------------------------+
  | Latency       |                HCLK clock frequency (MHz)                           |
  |               |---------------------------------------------------------------------|
@@ -224,7 +224,7 @@
            (++) when VOS[1:0] = '0x01' Scale 3 mode, the maximum value of fHCLK is 60MHz.
            (++) when VOS[1:0] = '0x10' Scale 2 mode, the maximum value of fHCLK is 84MHz.
           [..]  
-          On STM32F411xE devices:
+          On STM32F410xx/STM32F411xE devices:
            (++) when VOS[1:0] = '0x01' Scale 3 mode, the maximum value of fHCLK is 64MHz.
            (++) when VOS[1:0] = '0x10' Scale 2 mode, the maximum value of fHCLK is 84MHz.
            (++) when VOS[1:0] = '0x11' Scale 1 mode, the maximum value of fHCLK is 100MHz.
@@ -452,6 +452,9 @@ void FLASH_Lock(void)
   *         For STM32F411xE devices this parameter can be a value between 
   *         FLASH_Sector_0 and FLASH_Sector_7.
   *
+  *         For STM32F410xx devices this parameter can be a value between 
+  *         FLASH_Sector_0 and FLASH_Sector_4.
+  *
   * @param  VoltageRange: The device voltage range which defines the erase parallelism.  
   *          This parameter can be one of the following values:
   *            @arg VoltageRange_1: when the device voltage range is 1.8V to 2.1V, 
@@ -562,7 +565,7 @@ FLASH_Status FLASH_EraseAllSectors(uint8_t VoltageRange)
   if(status == FLASH_COMPLETE)
   {
     /* if the previous operation is completed, proceed to erase all sectors */
-#if defined(STM32F427_437xx) || defined(STM32F429_439xx)   
+#if defined(STM32F427_437xx) || defined(STM32F429_439xx) || defined(STM32F469_479xx)     
     FLASH->CR &= CR_PSIZE_MASK;
     FLASH->CR |= tmp_psize;
     FLASH->CR |= (FLASH_CR_MER1 | FLASH_CR_MER2);
@@ -573,9 +576,9 @@ FLASH_Status FLASH_EraseAllSectors(uint8_t VoltageRange)
 
     /* if the erase operation is completed, disable the MER Bit */
     FLASH->CR &= ~(FLASH_CR_MER1 | FLASH_CR_MER2);
-#endif /* STM32F427_437xx ||  STM32F429_439xx */
+#endif /* STM32F427_437xx ||  STM32F429_439xx ||  STM32F469_479xx */
 
-#if defined(STM32F40_41xxx) || defined(STM32F401xx) || defined(STM32F411xE) || defined(STM32F446xx)
+#if defined(STM32F40_41xxx) || defined(STM32F401xx) || defined(STM32F410xx) || defined(STM32F411xE) || defined(STM32F446xx)
     FLASH->CR &= CR_PSIZE_MASK;
     FLASH->CR |= tmp_psize;
     FLASH->CR |= FLASH_CR_MER;
@@ -586,7 +589,7 @@ FLASH_Status FLASH_EraseAllSectors(uint8_t VoltageRange)
 
     /* if the erase operation is completed, disable the MER Bit */
     FLASH->CR &= (~FLASH_CR_MER);
-#endif /* STM32F40_41xxx || STM32F401xx || STM32F411xE || STM32F446xx */
+#endif /* STM32F40_41xxx || STM32F401xx || STM32F410xx || STM32F411xE || STM32F446xx */
 
   }   
   /* Return the Erase Status */
@@ -1245,15 +1248,15 @@ void FLASH_OB_UserConfig(uint8_t OB_IWDG, uint8_t OB_STOP, uint8_t OB_STDBY)
   
   if(status == FLASH_COMPLETE)
   { 
-#if defined(STM32F427_437xx) || defined(STM32F429_439xx)
+#if defined(STM32F427_437xx) || defined(STM32F429_439xx) || defined(STM32F469_479xx)
     /* Mask OPTLOCK, OPTSTRT, BOR_LEV and BFB2 bits */
     optiontmp =  (uint8_t)((*(__IO uint8_t *)OPTCR_BYTE0_ADDRESS) & (uint8_t)0x1F);
-#endif /* STM32F427_437xx ||  STM32F429_439xx */
+#endif /* STM32F427_437xx ||  STM32F429_439xx ||  STM32F469_479xx */
 
-#if defined(STM32F40_41xxx) || defined(STM32F401xx) || defined(STM32F411xE) || defined(STM32F446xx)
+#if defined(STM32F40_41xxx) || defined(STM32F401xx) || defined(STM32F410xx) || defined(STM32F411xE) || defined(STM32F446xx)
     /* Mask OPTLOCK, OPTSTRT and BOR_LEV bits */
     optiontmp =  (uint8_t)((*(__IO uint8_t *)OPTCR_BYTE0_ADDRESS) & (uint8_t)0x0F); 
-#endif /* STM32F40_41xxx || STM32F401xx || STM32F411xE || STM32F446xx */ 
+#endif /* STM32F40_41xxx || STM32F401xx || STM32F410xx || STM32F411xE || STM32F446xx */ 
 
     /* Update User Option Byte */
     *(__IO uint8_t *)OPTCR_BYTE0_ADDRESS = OB_IWDG | (uint8_t)(OB_STDBY | (uint8_t)(OB_STOP | ((uint8_t)optiontmp))); 

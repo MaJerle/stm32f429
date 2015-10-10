@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_sai.c
   * @author  MCD Application Team
-  * @version V1.5.1
-  * @date    22-May-2015  
+  * @version V1.6.0
+  * @date    10-July-2015  
   * @brief   This file provides firmware functions to manage the following 
   *          functionalities of the Serial Audio Interface (SAI):
   *           + Initialization and Configuration
@@ -134,6 +134,8 @@
   * @brief SAI driver modules
   * @{
   */ 
+#if defined (STM32F40_41xxx) || defined (STM32F427_437xx) || defined (STM32F429_439xx) || \
+    defined (STM32F401xx) || defined (STM32F411xE) || defined (STM32F446xx) || defined (STM32F469_479xx)
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
@@ -1082,6 +1084,7 @@ uint32_t SAI_GetFIFOStatus(SAI_Block_TypeDef* SAI_Block_x)
 /**
   * @}
   */ 
+#endif /* STM32F40_41xxx || STM32F427_437xx || STM32F429_439xx || STM32F401xx || STM32F411xE || STM32F446xx || STM32F469_479xx */
 
 /**
   * @}

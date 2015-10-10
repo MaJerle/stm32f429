@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_syscfg.c
   * @author  MCD Application Team
-  * @version V1.5.1
-  * @date    22-May-2015
+  * @version V1.6.0
+  * @date    10-July-2015
   * @brief   This file provides firmware functions to manage the SYSCFG peripheral.
   *
  @verbatim
@@ -68,14 +68,13 @@
 #define MEMRMP_OFFSET             SYSCFG_OFFSET 
 #define UFB_MODE_BitNumber        ((uint8_t)0x8) 
 #define UFB_MODE_BB               (PERIPH_BB_BASE + (MEMRMP_OFFSET * 32) + (UFB_MODE_BitNumber * 4)) 
-
-
+    
 /* ---  PMC Register ---*/ 
 /* Alias word address of MII_RMII_SEL bit */ 
 #define PMC_OFFSET                (SYSCFG_OFFSET + 0x04) 
 #define MII_RMII_SEL_BitNumber    ((uint8_t)0x17) 
 #define PMC_MII_RMII_SEL_BB       (PERIPH_BB_BASE + (PMC_OFFSET * 32) + (MII_RMII_SEL_BitNumber * 4)) 
-
+    
 /* ---  CMPCR Register ---*/ 
 /* Alias word address of CMP_PD bit */ 
 #define CMPCR_OFFSET              (SYSCFG_OFFSET + 0x20) 
@@ -111,7 +110,7 @@ void SYSCFG_DeInit(void)
   *            @arg SYSCFG_MemoryRemap_SystemFlash: System Flash memory mapped at 0x00000000
   *            @arg SYSCFG_MemoryRemap_FSMC:        FSMC (Bank1 (NOR/PSRAM 1 and 2) mapped at 0x00000000 for STM32F405xx/407xx and STM32F415xx/417xx devices. 
   *            @arg SYSCFG_MemoryRemap_FMC:         FMC (Bank1 (NOR/PSRAM 1 and 2) mapped at 0x00000000 for STM32F42xxx/43xxx devices. 
-  *            @arg SYSCFG_MemoryRemap_ExtMEM:      External Memory mapped at 0x00000000 for STM32F446xx devices. 
+  *            @arg SYSCFG_MemoryRemap_ExtMEM:      External Memory mapped at 0x00000000 for STM32F446xx/STM32F469_479xx devices. 
   *            @arg SYSCFG_MemoryRemap_SRAM:        Embedded SRAM (112kB) mapped at 0x00000000
   *            @arg SYSCFG_MemoryRemap_SDRAM:       FMC (External SDRAM)  mapped at 0x00000000 for STM32F42xxx/43xxx devices.            
   * @retval None
@@ -226,6 +225,25 @@ FlagStatus SYSCFG_GetCompensationCellStatus(void)
   return bitstatus;
 }
 
+#if defined(STM32F410xx)
+/**
+  * @brief  Connects the selected parameter to the break input of TIM1.
+  * @note   The selected configuration is locked and can be unlocked by system reset
+  * @param  SYSCFG_Break: selects the configuration to be connected to break
+  *         input of TIM1
+  *   This parameter can be any combination of the following values:
+  *     @arg SYSCFG_Break_PVD: PVD interrupt is connected to the break input of TIM1/8.
+  *     @arg SYSCFG_Break_HardFault: Lockup output of CortexM4 is connected to the break input of TIM1/8.
+  * @retval None
+  */
+void SYSCFG_BreakConfig(uint32_t SYSCFG_Break)
+{
+  /* Check the parameter */
+  assert_param(IS_SYSCFG_LOCK_CONFIG(SYSCFG_Break));
+
+  SYSCFG->CFGR2 |= (uint32_t) SYSCFG_Break;
+}
+#endif /* STM32F410xx */
 /**
   * @}
   */

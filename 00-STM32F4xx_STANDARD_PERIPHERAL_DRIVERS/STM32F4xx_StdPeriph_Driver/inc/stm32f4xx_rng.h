@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_rng.h
   * @author  MCD Application Team
-  * @version V1.5.1
-  * @date    22-May-2015
+  * @version V1.6.0
+  * @date    10-July-2015
   * @brief   This file contains all the functions prototypes for the Random 
   *          Number Generator(RNG) firmware library.
   ******************************************************************************
@@ -44,7 +44,7 @@
 /** @addtogroup RNG
   * @{
   */ 
-
+#if defined(STM32F40_41xxx) || defined(STM32F427_437xx) || defined(STM32F410xx) || defined(STM32F429_439xx) || defined(STM32F469_479xx)
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/ 
 
@@ -102,6 +102,7 @@ FlagStatus RNG_GetFlagStatus(uint8_t RNG_FLAG);
 void RNG_ClearFlag(uint8_t RNG_FLAG);
 ITStatus RNG_GetITStatus(uint8_t RNG_IT);
 void RNG_ClearITPendingBit(uint8_t RNG_IT);
+#endif /* STM32F40_41xxx || STM32F427_437xx || STM32F410xx || STM32F429_439xx || STM32F469_479xx */
 
 #ifdef __cplusplus
 }

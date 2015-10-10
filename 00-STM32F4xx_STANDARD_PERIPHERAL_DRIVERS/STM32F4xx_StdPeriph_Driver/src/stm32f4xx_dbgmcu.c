@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_dbgmcu.c
   * @author  MCD Application Team
-  * @version V1.5.1
-  * @date    22-May-2015
+  * @version V1.6.0
+  * @date    10-July-2015
   * @brief   This file provides all the DBGMCU firmware functions.
   ******************************************************************************
   * @attention

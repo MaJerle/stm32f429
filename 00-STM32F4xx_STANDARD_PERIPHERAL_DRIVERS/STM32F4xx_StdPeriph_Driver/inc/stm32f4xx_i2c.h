@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_i2c.h
   * @author  MCD Application Team
-  * @version V1.5.1
-  * @date    22-May-2015
+  * @version V1.6.0
+  * @date    10-July-2015
   * @brief   This file contains all the functions prototypes for the I2C firmware 
   *          library.
   ******************************************************************************
@@ -81,7 +81,6 @@ typedef struct
 #define IS_I2C_ALL_PERIPH(PERIPH) (((PERIPH) == I2C1) || \
                                    ((PERIPH) == I2C2) || \
                                    ((PERIPH) == I2C3))
-
 /** @defgroup I2C_Digital_Filter
   * @{
   */
