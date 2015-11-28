@@ -24,7 +24,7 @@ USBH_HOST               USB_Host;
 uint8_t                 TM_USB_MSCHOST_INT_Initialized = 0;
 TM_USB_MSCHOST_Result_t TM_USB_MSCHOST_INT_Result;
 
-TM_USB_MSCHOST_Result_t TM_USB_MSCHOST_Init() {
+TM_USB_MSCHOST_Result_t TM_USB_MSCHOST_Init(void) {
 	/* Set default */
 	TM_USB_MSCHOST_INT_Result = TM_USB_MSCHOST_Result_Disconnected;
 	/* Init Host Library */
@@ -46,6 +46,14 @@ TM_USB_MSCHOST_Result_t TM_USB_MSCHOST_Init() {
 	
 	/* Is connected already? */
 	return TM_USB_MSCHOST_Device();
+}
+
+TM_USB_MSCHOST_Result_t TM_USB_MSCHOST_DeInit(void) {
+	/* Deinit USB host */
+	USBH_DeInit(&USB_OTG_MSC_Core, &USB_Host);
+	
+	/* Return OK */
+	return TM_USB_MSCHOST_Result_Disconnected;
 }
 
 void TM_USB_MSCHOST_Process(void) {

@@ -165,6 +165,13 @@ typedef enum {
 TM_USB_MSCHOST_Result_t TM_USB_MSCHOST_Init(void);
 
 /**
+ * @brief  Deinitializes USB MSC HOST
+ * @param  None
+ * @retval Status. A member of @ref TM_USB_MSCHOST_Result_t
+ */
+TM_USB_MSCHOST_Result_t TM_USB_MSCHOST_DeInit(void);
+
+/**
  * This function has to be called periodically. 
  * As fast as possible.
  * 

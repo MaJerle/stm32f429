@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file      startup_stm32f429_439xx.s
   * @author    MCD Application Team
-  * @version   V1.5.0
-  * @date      06-March-2015
+  * @version   V1.6.0
+  * @date      10-July-2015
   * @brief     STM32F429xx/439xx Devices vector table for Atollic TrueSTUDIO toolchain.   
   *            This module performs:
   *                - Set the initial SP
@@ -37,7 +37,7 @@
   */
     
   .syntax unified
-  .cpu cortex-m3
+  .cpu cortex-m4
   .fpu softvfp
   .thumb
 

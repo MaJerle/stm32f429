@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file      startup_stm32f427x.s
   * @author    MCD Application Team
-  * @version   V1.3.0
-  * @date      08-November-2013
+  * @version   V1.6.0
+  * @date      10-July-2015
   * @brief     STM32F427xx/437xx Devices vector table for RIDE7 toolchain.
   *            Same as startup_stm32f427_437xx.s and maintained for legacy purpose              
   *            This module performs:
@@ -20,7 +20,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2013 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -38,7 +38,7 @@
   */
     
   .syntax unified
-  .cpu cortex-m3
+  .cpu cortex-m4
   .fpu softvfp
   .thumb
 

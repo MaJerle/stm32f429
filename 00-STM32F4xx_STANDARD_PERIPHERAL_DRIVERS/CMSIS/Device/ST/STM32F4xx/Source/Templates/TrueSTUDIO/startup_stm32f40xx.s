@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file      startup_stm32f40_41xxx.s
   * @author    MCD Application Team
-  * @version   V1.5.0
-  * @date      06-March-2015
+  * @version   V1.6.0
+  * @date      10-July-2015
   * @brief     STM32F40xxx/41xxx Devices vector table for Atollic TrueSTUDIO toolchain.  
   *            Same as startup_stm32f40_41xxx.s and maintained for legacy purpose   
   *            This module performs:
@@ -38,7 +38,7 @@
   */
     
   .syntax unified
-  .cpu cortex-m3
+  .cpu cortex-m4
   .fpu softvfp
   .thumb
 
