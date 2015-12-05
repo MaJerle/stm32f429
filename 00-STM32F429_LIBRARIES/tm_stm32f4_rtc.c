@@ -75,8 +75,14 @@ uint32_t TM_RTC_Init(TM_RTC_ClockSource_t source) {
 			TM_RTC_Config(TM_RTC_ClockSource_Internal);
 		}
 		
+		/* Disable write protection */
+		RTC_WriteProtectionCmd(DISABLE);
+
 		/* Wait for RTC APB registers synchronisation (needed after start-up from Reset) */
 		RTC_WaitForSynchro();
+
+		/* Enable write protection */
+		RTC_WriteProtectionCmd(ENABLE);
 		
 		/* Clear interrupt flags */
 		RTC_ClearITPendingBit(RTC_IT_WUT);
@@ -92,9 +98,15 @@ uint32_t TM_RTC_Init(TM_RTC_ClockSource_t source) {
 			TM_RTC_Config(TM_RTC_ClockSource_Internal);
 		}
 		
+		/* Disable write protection */
+		RTC_WriteProtectionCmd(DISABLE);
+
 		/* Wait for RTC APB registers synchronisation (needed after start-up from Reset) */
 		RTC_WaitForSynchro();
-		
+
+		/* Enable write protection */
+		RTC_WriteProtectionCmd(ENABLE);
+
 		/* Clear interrupt flags */
 		RTC_ClearITPendingBit(RTC_IT_WUT);
 		EXTI->PR = 0x00400000;
@@ -350,9 +362,15 @@ void TM_RTC_Config(TM_RTC_ClockSource_t source) {
 	
 	/* Enable the RTC Clock */
 	RCC_RTCCLKCmd(ENABLE);
-	
-	/* Wait for register synchronization */
+		
+	/* Disable write protection */
+	RTC_WriteProtectionCmd(DISABLE);
+
+	/* Wait for RTC APB registers synchronisation (needed after start-up from Reset) */
 	RTC_WaitForSynchro();
+
+	/* Enable write protection */
+	RTC_WriteProtectionCmd(ENABLE);
 
 	/* Write status */
 	RTC_WriteBackupRegister(RTC_STATUS_REG, RTC_STATUS_INIT_OK);
