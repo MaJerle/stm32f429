@@ -32,7 +32,7 @@
 
 /* C++ detection */
 #ifdef __cplusplus
-extern C {
+extern "C" {
 #endif
 /**
  * @addtogroup TM_STM32F4xx_Libraries
