@@ -32,7 +32,7 @@
 
 /* C++ detection */
 #ifdef __cplusplus
-extern C {
+extern "C" {
 #endif
 
 /**
@@ -68,7 +68,7 @@ DATA		PD1				Data line
  * \par Data output
  *
  * Temperature and humidity are returned from sensor in x10 multiplier, so like 55.5% humidity,
- * sensor will return 555 and 27.3°C, sensor will return 273.
+ * sensor will return 555 and 27.3Â°C, sensor will return 273.
  *
  * @note This values are also returned from my library, you have to manually convert them (divide by 10)
  *
@@ -169,7 +169,7 @@ typedef enum {
  */
 typedef struct {
 	int16_t Temp; /*!< Temperature in tenths of degrees.
-	                   If real temperature is 27.3°C, this variable's value is 273 */
+	                   If real temperature is 27.3Â°C, this variable's value is 273 */
 	uint16_t Hum; /*!< Humidity in tenths of percent.
 	                   If real humidity is 55.5%, this variable's value is 555 */
 } TM_AM2301_Data_t;
