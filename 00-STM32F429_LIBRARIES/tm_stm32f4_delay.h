@@ -29,19 +29,12 @@
  */
 #ifndef TM_DELAY_H
 #define TM_DELAY_H 240
-/**
- * Library dependencies
- * - STM32F4xx
- * - STM32F4xx RCC
- * - STM32F4xx TIM 			(Only if you want to use TIMx for delay instead of Systick)
- * - MISC         			(Only if you want to use TIMx for delay instead of Systick)
- * - TM TIMER PROPERTIES	(Only if you want to use TIMx for delay instead of Systick)
- * - defines.h
- * - attributes.h
- */
-/**
- * Includes
- */
+
+/* C++ detection */
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * @addtogroup TM_STM32F4xx_Libraries
  * @{
@@ -441,5 +434,10 @@ __weak void TM_DELAY_1msHandler(void);
 /**
  * @}
  */
+
+/* C++ detection */
+#ifdef __cplusplus
+}
+#endif
 
 #endif
