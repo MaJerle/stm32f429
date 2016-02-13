@@ -187,7 +187,7 @@ void TM_DMA2DGRAPHIC_DrawFilledRectangle(uint16_t x, uint16_t y, uint16_t width,
 		TM_INT_DMA2DGRAPHIC_SetMemory(DIS.PixelSize * (DIS.Width - y - height + DIS.Width * x), DIS.Width - height, width, height);
 	} 
 	if (DIS.Orientation == 2) { /* 270 */
-		TM_INT_DMA2DGRAPHIC_SetMemory(DIS.PixelSize * (x + DIS.Width * (DIS.Height - width - x)), DIS.Width - height, width, height);
+		TM_INT_DMA2DGRAPHIC_SetMemory(DIS.PixelSize * (y + DIS.Width * (DIS.Height - width - x)), DIS.Width - height, width, height);
 	}
 	
 	/* Start transfer and wait till done */
@@ -249,7 +249,7 @@ void TM_DMA2DGRAPHIC_DrawRoundedRectangle(uint16_t x, uint16_t y, uint16_t width
 
 void TM_DMA2DGRAPHIC_DrawFilledRoundedRectangle(uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint16_t r, uint32_t color) {
 	/* Check input parameters */
-	if (width == 0 || width == 0) {
+	if (width == 0 || height == 0) {
 		return;
 	}
 	
