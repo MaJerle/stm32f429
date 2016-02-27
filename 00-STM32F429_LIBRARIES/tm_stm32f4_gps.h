@@ -350,10 +350,10 @@ typedef struct {
  * @brief  Time structure for GPS
  */
 typedef struct {
-	uint8_t Hours;      /*!< Hours from GPS time. */
-	uint8_t Minutes;    /*!< Minutes from GPS time. */			
-	uint8_t Seconds;    /*!< Seconds from GPS time. */
-	uint8_t Hundredths; /*!< Hundredths from GPS time. */
+	uint8_t Hours;       /*!< Hours from GPS time. */
+	uint8_t Minutes;     /*!< Minutes from GPS time. */			
+	uint8_t Seconds;     /*!< Seconds from GPS time. */
+	uint16_t Hundredths; /*!< Hundredths from GPS time. */
 } TM_GPS_Time_t;
 
 /**
