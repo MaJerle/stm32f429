@@ -270,7 +270,7 @@ uint8_t TM_USART_DMA_Send(USART_TypeDef* USARTx, uint8_t* DataArray, uint16_t co
  *            - 0: USART does not sending anymore
  *            - > 0: USART DMA is still sending data
  */
-uint8_t TM_USART_DMA_Sending(USART_TypeDef* USARTx);
+uint16_t TM_USART_DMA_Sending(USART_TypeDef* USARTx);
 
 /**
  * @}

@@ -151,12 +151,12 @@ uint8_t TM_USART_DMA_Puts(USART_TypeDef* USARTx, char* DataArray) {
 	return TM_USART_DMA_Send(USARTx, (uint8_t *)DataArray, strlen(DataArray));
 }
 
-uint8_t TM_USART_DMA_Sending(USART_TypeDef* USARTx) {
+uint16_t TM_USART_DMA_Sending(USART_TypeDef* USARTx) {
 	/* Get USART settings */
 	TM_USART_DMA_INT_t* Settings = TM_USART_DMA_INT_GetSettings(USARTx);
 	
 	/* Check DMA Stream register of remaining data bytes */
-	return Settings->DMA_Stream->NDTR;
+	return Settings->DMA_Stream->NDTR ? 1 : 0;
 }
 
 void TM_USART_DMA_EnableInterrupts(USART_TypeDef* USARTx) {
