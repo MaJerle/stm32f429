@@ -452,8 +452,7 @@ typedef enum {
 /**
  * @brief  Wait till USART finishes transmission
  */
-#define USART_TXEMPTY(USARTx)               ((USARTx)->SR & USART_FLAG_TXE)
-#define USART_WAIT(USARTx)                  do { while (!USART_TXEMPTY(USARTx)); } while (0)
+#define USART_WAIT(USARTx)                  do { while (!((USARTx)->SR & USART_FLAG_TXE)); } while (0)
 
 /**
  * @brief  Default string delimiter for USART

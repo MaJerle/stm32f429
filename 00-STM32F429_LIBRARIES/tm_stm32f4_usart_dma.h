@@ -28,7 +28,7 @@
 @endverbatim
  */
 #ifndef TM_USART_DMA_H
-#define TM_USART_DMA_H 121
+#define TM_USART_DMA_H 122
 
 /* C++ detection */
 #ifdef __cplusplus
@@ -78,6 +78,10 @@ UART8      | DMA1 | DMA Stream 0 | DMA Channel 5
  * \par Changelog
  *
 @verbatim
+ Version 1.3
+  - TM_USART_DMA_Working() function now returns > 0 also when USART works, not only when DMA works.
+     Requires updated USART library  
+
  Version 1.2.1
   - Added separate function for enabling/disabling USART DMA interrupts
   

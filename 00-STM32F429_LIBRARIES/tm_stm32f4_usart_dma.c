@@ -155,8 +155,13 @@ uint16_t TM_USART_DMA_Sending(USART_TypeDef* USARTx) {
 	/* Get USART settings */
 	TM_USART_DMA_INT_t* Settings = TM_USART_DMA_INT_GetSettings(USARTx);
 	
+	/* DMA has work to do still */
+	if (Settings->DMA_Stream->NDTR) {
+		return 1;
+	}
+
 	/* Check DMA Stream register of remaining data bytes */
-	return Settings->DMA_Stream->NDTR ? 1 : 0;
+	return !USART_TXEMPTY(USARTx);
 }
 
 void TM_USART_DMA_EnableInterrupts(USART_TypeDef* USARTx) {
