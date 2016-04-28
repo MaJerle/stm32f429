@@ -3,7 +3,7 @@
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.com
  * @link    http://stm32f4-discovery.com/2015/04/library-55-extend-usart-with-tx-dma
- * @version v1.2.1
+ * @version v1.2.3
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   DMA TX functionality for TM USART library
@@ -28,7 +28,7 @@
 @endverbatim
  */
 #ifndef TM_USART_DMA_H
-#define TM_USART_DMA_H 122
+#define TM_USART_DMA_H 123
 
 /* C++ detection */
 #ifdef __cplusplus
@@ -159,7 +159,7 @@ UART8      | DMA1 | DMA Stream 0 | DMA Channel 5
 
 /* Default DMA Stream and Channel for USART6 */
 #ifndef USART6_DMA_TX_STREAM
-#define USART6_DMA_TX_STREAM      DMA1_Stream6
+#define USART6_DMA_TX_STREAM      DMA2_Stream6
 #define USART6_DMA_TX_CHANNEL     DMA_Channel_5
 #endif
 
