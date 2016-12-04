@@ -10,12 +10,12 @@
       <TargetName>STM32F429-Discovery</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>5060020::V5.06 (build 20)::ARMCC</pCCUsed>
+      <pCCUsed>5060183::V5.06 update 2 (build 183)::ARMCC</pCCUsed>
       <TargetOption>
         <TargetCommonOption>
           <Device>STM32F429ZITx</Device>
           <Vendor>STMicroelectronics</Vendor>
-          <PackID>Keil.STM32F4xx_DFP.2.5.0</PackID>
+          <PackID>Keil.STM32F4xx_DFP.2.7.0</PackID>
           <PackURL>http://www.keil.com/pack</PackURL>
           <Cpu>IROM(0x08000000,0x200000) IRAM(0x20000000,0x30000) IRAM2(0x10000000,0x10000) CPUTYPE("Cortex-M4") FPU2 CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -125,47 +125,6 @@
             <HexOffset>0</HexOffset>
             <Oh166RecLen>16</Oh166RecLen>
           </OPTHX>
-          <Simulator>
-            <UseSimulator>0</UseSimulator>
-            <LoadApplicationAtStartup>1</LoadApplicationAtStartup>
-            <RunToMain>1</RunToMain>
-            <RestoreBreakpoints>1</RestoreBreakpoints>
-            <RestoreWatchpoints>1</RestoreWatchpoints>
-            <RestoreMemoryDisplay>1</RestoreMemoryDisplay>
-            <RestoreFunctions>1</RestoreFunctions>
-            <RestoreToolbox>1</RestoreToolbox>
-            <LimitSpeedToRealTime>0</LimitSpeedToRealTime>
-            <RestoreSysVw>1</RestoreSysVw>
-          </Simulator>
-          <Target>
-            <UseTarget>1</UseTarget>
-            <LoadApplicationAtStartup>1</LoadApplicationAtStartup>
-            <RunToMain>1</RunToMain>
-            <RestoreBreakpoints>1</RestoreBreakpoints>
-            <RestoreWatchpoints>1</RestoreWatchpoints>
-            <RestoreMemoryDisplay>1</RestoreMemoryDisplay>
-            <RestoreFunctions>0</RestoreFunctions>
-            <RestoreToolbox>1</RestoreToolbox>
-            <RestoreTracepoints>1</RestoreTracepoints>
-            <RestoreSysVw>1</RestoreSysVw>
-          </Target>
-          <RunDebugAfterBuild>0</RunDebugAfterBuild>
-          <TargetSelection>11</TargetSelection>
-          <SimDlls>
-            <CpuDll></CpuDll>
-            <CpuDllArguments></CpuDllArguments>
-            <PeripheralDll></PeripheralDll>
-            <PeripheralDllArguments></PeripheralDllArguments>
-            <InitializationFile></InitializationFile>
-          </SimDlls>
-          <TargetDlls>
-            <CpuDll></CpuDll>
-            <CpuDllArguments></CpuDllArguments>
-            <PeripheralDll></PeripheralDll>
-            <PeripheralDllArguments></PeripheralDllArguments>
-            <InitializationFile></InitializationFile>
-            <Driver>STLink\ST-LINKIII-KEIL_SWO.dll</Driver>
-          </TargetDlls>
         </DebugOption>
         <Utilities>
           <Flash1>
@@ -369,6 +328,8 @@
             <v6LangP>0</v6LangP>
             <vShortEn>0</vShortEn>
             <vShortWch>0</vShortWch>
+            <v6Lto>0</v6Lto>
+            <v6WtE>0</v6WtE>
             <VariousControls>
               <MiscControls></MiscControls>
               <Define>STM32F429_439xx,USE_STDPERIPH_DRIVER,STM32F4XX,__ASSEMBLY__,KEIL_IDE,TM_DISCO_STM32F429_DISCOVERY,USE_USB_OTG_HS</Define>
@@ -725,11 +686,6 @@
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_fmpi2c.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_fsmc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_fsmc.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f4xx_hash.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F4xx_STANDARD_PERIPHERAL_DRIVERS\STM32F4xx_StdPeriph_Driver\src\stm32f4xx_hash.c</FilePath>
@@ -810,19 +766,9 @@
           <GroupName>TM</GroupName>
           <Files>
             <File>
-              <FileName>tm_stm32f4_delay.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.h</FilePath>
-            </File>
-            <File>
               <FileName>tm_stm32f4_delay.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_delay.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_disco.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_disco.h</FilePath>
             </File>
             <File>
               <FileName>tm_stm32f4_disco.c</FileName>
@@ -835,19 +781,9 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_fonts.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_fonts.h</FilePath>
-            </File>
-            <File>
               <FileName>tm_stm32f4_ili9341_ltdc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341_ltdc.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_ili9341_ltdc.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_ili9341_ltdc.h</FilePath>
             </File>
             <File>
               <FileName>tm_stm32f4_rng.c</FileName>
@@ -855,19 +791,9 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_rng.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_rng.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_rng.h</FilePath>
-            </File>
-            <File>
               <FileName>tm_stm32f4_sdram.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_sdram.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_sdram.h</FilePath>
             </File>
             <File>
               <FileName>tm_stm32f4_spi.c</FileName>
@@ -875,19 +801,9 @@
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_spi.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_spi.h</FilePath>
-            </File>
-            <File>
               <FileName>tm_stm32f4_usb_hid_host.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usb_hid_host.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_usb_hid_host.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_usb_hid_host.h</FilePath>
             </File>
             <File>
               <FileName>tm_stm32f4_snake.c</FileName>
@@ -895,29 +811,14 @@
               <FilePath>.\TM\tm_stm32f4_snake.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_snake.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\TM\tm_stm32f4_snake.h</FilePath>
-            </File>
-            <File>
               <FileName>tm_stm32f4_gpio.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_gpio.c</FilePath>
             </File>
             <File>
-              <FileName>tm_stm32f4_gpio.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_gpio.h</FilePath>
-            </File>
-            <File>
               <FileName>tm_stm32f4_dma2d_graphic.c</FileName>
-              <FileType>9</FileType>
+              <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_dma2d_graphic.c</FilePath>
-            </File>
-            <File>
-              <FileName>tm_stm32f4_dma2d_graphic.h</FileName>
-              <FileType>9</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\tm_stm32f4_dma2d_graphic.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -925,34 +826,14 @@
           <GroupName>User</GroupName>
           <Files>
             <File>
-              <FileName>main.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\main.h</FilePath>
-            </File>
-            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\main.c</FilePath>
             </File>
             <File>
-              <FileName>defines.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\defines.h</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_conf.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\stm32f4xx_conf.h</FilePath>
-            </File>
-            <File>
               <FileName>stm32f4xx_it.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\User\stm32f4xx_it.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f4xx_it.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\User\stm32f4xx_it.h</FilePath>
             </File>
             <File>
               <FileName>system_stm32f4xx.c</FileName>
@@ -970,29 +851,9 @@
               <FilePath>..\00-STM32F429_LIBRARIES\usb_hid_host\usb_bsp.c</FilePath>
             </File>
             <File>
-              <FileName>usb_bsp.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\usb_hid_host\usb_bsp.h</FilePath>
-            </File>
-            <File>
-              <FileName>usb_conf.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\usb_hid_host\usb_conf.h</FilePath>
-            </File>
-            <File>
               <FileName>usb_core.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\usb_hid_host\usb_core.c</FilePath>
-            </File>
-            <File>
-              <FileName>usb_core.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\usb_hid_host\usb_core.h</FilePath>
-            </File>
-            <File>
-              <FileName>usb_defines.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\usb_hid_host\usb_defines.h</FilePath>
             </File>
             <File>
               <FileName>usb_hcd.c</FileName>
@@ -1000,29 +861,9 @@
               <FilePath>..\00-STM32F429_LIBRARIES\usb_hid_host\usb_hcd.c</FilePath>
             </File>
             <File>
-              <FileName>usb_hcd.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\usb_hid_host\usb_hcd.h</FilePath>
-            </File>
-            <File>
               <FileName>usb_hcd_int.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\usb_hid_host\usb_hcd_int.c</FilePath>
-            </File>
-            <File>
-              <FileName>usb_hcd_int.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\usb_hid_host\usb_hcd_int.h</FilePath>
-            </File>
-            <File>
-              <FileName>usb_regs.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\usb_hid_host\usb_regs.h</FilePath>
-            </File>
-            <File>
-              <FileName>usbh_conf.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\usb_hid_host\usbh_conf.h</FilePath>
             </File>
             <File>
               <FileName>usbh_core.c</FileName>
@@ -1030,24 +871,9 @@
               <FilePath>..\00-STM32F429_LIBRARIES\usb_hid_host\usbh_core.c</FilePath>
             </File>
             <File>
-              <FileName>usbh_core.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\usb_hid_host\usbh_core.h</FilePath>
-            </File>
-            <File>
-              <FileName>usbh_def.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\usb_hid_host\usbh_def.h</FilePath>
-            </File>
-            <File>
               <FileName>usbh_hcs.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\usb_hid_host\usbh_hcs.c</FilePath>
-            </File>
-            <File>
-              <FileName>usbh_hcs.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\usb_hid_host\usbh_hcs.h</FilePath>
             </File>
             <File>
               <FileName>usbh_hid_core.c</FileName>
@@ -1055,19 +881,9 @@
               <FilePath>..\00-STM32F429_LIBRARIES\usb_hid_host\usbh_hid_core.c</FilePath>
             </File>
             <File>
-              <FileName>usbh_hid_core.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\usb_hid_host\usbh_hid_core.h</FilePath>
-            </File>
-            <File>
               <FileName>usbh_hid_keybd.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\usb_hid_host\usbh_hid_keybd.c</FilePath>
-            </File>
-            <File>
-              <FileName>usbh_hid_keybd.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\usb_hid_host\usbh_hid_keybd.h</FilePath>
             </File>
             <File>
               <FileName>usbh_hid_mouse.c</FileName>
@@ -1075,19 +891,9 @@
               <FilePath>..\00-STM32F429_LIBRARIES\usb_hid_host\usbh_hid_mouse.c</FilePath>
             </File>
             <File>
-              <FileName>usbh_hid_mouse.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\usb_hid_host\usbh_hid_mouse.h</FilePath>
-            </File>
-            <File>
               <FileName>usbh_ioreq.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\usb_hid_host\usbh_ioreq.c</FilePath>
-            </File>
-            <File>
-              <FileName>usbh_ioreq.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\usb_hid_host\usbh_ioreq.h</FilePath>
             </File>
             <File>
               <FileName>usbh_stdreq.c</FileName>
@@ -1095,19 +901,9 @@
               <FilePath>..\00-STM32F429_LIBRARIES\usb_hid_host\usbh_stdreq.c</FilePath>
             </File>
             <File>
-              <FileName>usbh_stdreq.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\usb_hid_host\usbh_stdreq.h</FilePath>
-            </File>
-            <File>
               <FileName>usbh_usr.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\00-STM32F429_LIBRARIES\usb_hid_host\usbh_usr.c</FilePath>
-            </File>
-            <File>
-              <FileName>usbh_usr.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\00-STM32F429_LIBRARIES\usb_hid_host\usbh_usr.h</FilePath>
             </File>
           </Files>
         </Group>

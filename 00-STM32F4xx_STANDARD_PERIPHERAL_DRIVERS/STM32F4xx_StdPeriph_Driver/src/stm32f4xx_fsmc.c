@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_fsmc.c
   * @author  MCD Application Team
-  * @version V1.6.0
-  * @date    10-July-2015
+  * @version V1.7.0
+  * @date    22-April-2016
  * @brief    This file provides firmware functions to manage the following 
   *          functionalities of the FSMC peripheral:           
   *           + Interface with SRAM, PSRAM, NOR and OneNAND memories
@@ -14,7 +14,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2016 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -236,23 +236,20 @@ void FSMC_NORSRAMInit(FSMC_NORSRAMInitTypeDef* FSMC_NORSRAMInitStruct)
     assert_param(IS_FSMC_ADDRESS_SETUP_TIME(FSMC_NORSRAMInitStruct->FSMC_WriteTimingStruct->FSMC_AddressSetupTime));
     assert_param(IS_FSMC_ADDRESS_HOLD_TIME(FSMC_NORSRAMInitStruct->FSMC_WriteTimingStruct->FSMC_AddressHoldTime));
     assert_param(IS_FSMC_DATASETUP_TIME(FSMC_NORSRAMInitStruct->FSMC_WriteTimingStruct->FSMC_DataSetupTime));
-    assert_param(IS_FSMC_CLK_DIV(FSMC_NORSRAMInitStruct->FSMC_WriteTimingStruct->FSMC_CLKDivision));
-    assert_param(IS_FSMC_DATA_LATENCY(FSMC_NORSRAMInitStruct->FSMC_WriteTimingStruct->FSMC_DataLatency));
+    assert_param(IS_FSMC_TURNAROUND_TIME(FSMC_NORSRAMInitStruct->FSMC_WriteTimingStruct->FSMC_BusTurnAroundDuration));
     assert_param(IS_FSMC_ACCESS_MODE(FSMC_NORSRAMInitStruct->FSMC_WriteTimingStruct->FSMC_AccessMode));
     
     /* Get the BWTR register value */
     tmpbwr = FSMC_Bank1E->BWTR[FSMC_NORSRAMInitStruct->FSMC_Bank];
     
-    /* Clear ADDSET, ADDHLD, DATAST, BUSTURN, CLKDIV, DATLAT and ACCMOD bits */
+    /* Clear ADDSET, ADDHLD, DATAST, BUSTURN, and ACCMOD bits */
     tmpbwr &= ((uint32_t)~(FSMC_BWTR1_ADDSET | FSMC_BWTR1_ADDHLD | FSMC_BWTR1_DATAST | \
-                           FSMC_BWTR1_BUSTURN | FSMC_BWTR1_CLKDIV | FSMC_BWTR1_DATLAT | \
-                           FSMC_BWTR1_ACCMOD));
+                           FSMC_BWTR1_BUSTURN | FSMC_BWTR1_ACCMOD));
     
     tmpbwr |= (uint32_t)FSMC_NORSRAMInitStruct->FSMC_WriteTimingStruct->FSMC_AddressSetupTime |
                        (FSMC_NORSRAMInitStruct->FSMC_WriteTimingStruct->FSMC_AddressHoldTime << 4 )|
                        (FSMC_NORSRAMInitStruct->FSMC_WriteTimingStruct->FSMC_DataSetupTime << 8) |
-                       (FSMC_NORSRAMInitStruct->FSMC_WriteTimingStruct->FSMC_CLKDivision << 20) |
-                       (FSMC_NORSRAMInitStruct->FSMC_WriteTimingStruct->FSMC_DataLatency << 24) |
+                       (FSMC_NORSRAMInitStruct->FSMC_WriteTimingStruct->FSMC_BusTurnAroundDuration << 16) |
                         FSMC_NORSRAMInitStruct->FSMC_WriteTimingStruct->FSMC_AccessMode;
     
     FSMC_Bank1E->BWTR[FSMC_NORSRAMInitStruct->FSMC_Bank] = tmpbwr;

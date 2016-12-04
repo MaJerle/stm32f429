@@ -29,9 +29,9 @@ static uint32_t TM_I2C_INT_Clocks[3] = {0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF};
 #define I2C_ACK_DISABLE        0
 
 /* Private functions */
-void TM_I2C1_INT_InitPins(TM_I2C_PinsPack_t pinspack);
-void TM_I2C2_INT_InitPins(TM_I2C_PinsPack_t pinspack);
-void TM_I2C3_INT_InitPins(TM_I2C_PinsPack_t pinspack);
+static void TM_I2C1_INT_InitPins(TM_I2C_PinsPack_t pinspack);
+static void TM_I2C2_INT_InitPins(TM_I2C_PinsPack_t pinspack);
+static void TM_I2C3_INT_InitPins(TM_I2C_PinsPack_t pinspack);
 
 void TM_I2C_Init(I2C_TypeDef* I2Cx, TM_I2C_PinsPack_t pinspack, uint32_t clockSpeed) {
 	I2C_InitTypeDef I2C_InitStruct;
@@ -115,19 +115,17 @@ uint8_t TM_I2C_Read(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg) {
 	return received_data;
 }
 
-
 void TM_I2C_ReadMulti(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t* data, uint16_t count) {
-	uint8_t i;
 	TM_I2C_Start(I2Cx, address, I2C_TRANSMITTER_MODE, I2C_ACK_ENABLE);
 	TM_I2C_WriteData(I2Cx, reg);
 	//TM_I2C_Stop(I2Cx);
 	TM_I2C_Start(I2Cx, address, I2C_RECEIVER_MODE, I2C_ACK_ENABLE);
-	for (i = 0; i < count; i++) {
-		if (i == (count - 1)) {
+	while (count--) {
+		if (!count) {
 			/* Last byte */
-			data[i] = TM_I2C_ReadNack(I2Cx);
+			*data++ = TM_I2C_ReadNack(I2Cx);
 		} else {
-			data[i] = TM_I2C_ReadAck(I2Cx);
+			*data++ = TM_I2C_ReadAck(I2Cx);
 		}
 	}
 }
@@ -141,14 +139,13 @@ uint8_t TM_I2C_ReadNoRegister(I2C_TypeDef* I2Cx, uint8_t address) {
 }
 
 void TM_I2C_ReadMultiNoRegister(I2C_TypeDef* I2Cx, uint8_t address, uint8_t* data, uint16_t count) {
-	uint8_t i;
 	TM_I2C_Start(I2Cx, address, I2C_RECEIVER_MODE, I2C_ACK_ENABLE);
-	for (i = 0; i < count; i++) {
-		if (i == (count - 1)) {
+	while (count--) {
+		if (!count) {
 			/* Last byte */
-			data[i] = TM_I2C_ReadNack(I2Cx);
+			*data = TM_I2C_ReadNack(I2Cx);
 		} else {
-			data[i] = TM_I2C_ReadAck(I2Cx);
+			*data = TM_I2C_ReadAck(I2Cx);
 		}
 	}
 }
@@ -161,11 +158,10 @@ void TM_I2C_Write(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t data)
 }
 
 void TM_I2C_WriteMulti(I2C_TypeDef* I2Cx, uint8_t address, uint8_t reg, uint8_t* data, uint16_t count) {
-	uint8_t i;
 	TM_I2C_Start(I2Cx, address, I2C_TRANSMITTER_MODE, I2C_ACK_DISABLE);
 	TM_I2C_WriteData(I2Cx, reg);
-	for (i = 0; i < count; i++) {
-		TM_I2C_WriteData(I2Cx, data[i]);
+	while (count--) {
+		TM_I2C_WriteData(I2Cx, *data++);
 	}
 	TM_I2C_Stop(I2Cx);
 }
@@ -177,12 +173,31 @@ void TM_I2C_WriteNoRegister(I2C_TypeDef* I2Cx, uint8_t address, uint8_t data) {
 }
 
 void TM_I2C_WriteMultiNoRegister(I2C_TypeDef* I2Cx, uint8_t address, uint8_t* data, uint16_t count) {
-	uint8_t i;
 	TM_I2C_Start(I2Cx, address, I2C_TRANSMITTER_MODE, I2C_ACK_DISABLE);
-	for (i = 0; i < count; i++) {
-		TM_I2C_WriteData(I2Cx, data[i]);
+	while (count--) {
+		TM_I2C_WriteData(I2Cx, *data++);
 	}
 	TM_I2C_Stop(I2Cx);
+}
+
+
+uint8_t TM_I2C_IsDeviceConnected(I2C_TypeDef* I2Cx, uint8_t address) {
+	uint8_t connected = 0;
+	/* Try to start, function will return 0 in case device will send ACK */
+	if (!TM_I2C_Start(I2Cx, address, I2C_TRANSMITTER_MODE, I2C_ACK_ENABLE)) {
+		connected = 1;
+	}
+	
+	/* STOP I2C */
+	TM_I2C_Stop(I2Cx);
+	
+	/* Return status */
+	return connected;
+}
+
+__weak void TM_I2C_InitCustomPinsCallback(I2C_TypeDef* I2Cx, uint16_t AlternateFunction) {
+	/* Custom user function. */
+	/* In case user needs functionality for custom pins, this function should be declared outside this library */
 }
 
 /* Private functions */
@@ -308,27 +323,11 @@ uint8_t TM_I2C_Stop(I2C_TypeDef* I2Cx) {
 	return 0;
 }
 
-uint8_t TM_I2C_IsDeviceConnected(I2C_TypeDef* I2Cx, uint8_t address) {
-	uint8_t connected = 0;
-	/* Try to start, function will return 0 in case device will send ACK */
-	if (!TM_I2C_Start(I2Cx, address, I2C_TRANSMITTER_MODE, I2C_ACK_ENABLE)) {
-		connected = 1;
-	}
-	
-	/* STOP I2C */
-	TM_I2C_Stop(I2Cx);
-	
-	/* Return status */
-	return connected;
-}
 
-__weak void TM_I2C_InitCustomPinsCallback(I2C_TypeDef* I2Cx, uint16_t AlternateFunction) {
-	/* Custom user function. */
-	/* In case user needs functionality for custom pins, this function should be declared outside this library */
-}
+
 
 /* Private functions */
-void TM_I2C1_INT_InitPins(TM_I2C_PinsPack_t pinspack) {
+static void TM_I2C1_INT_InitPins(TM_I2C_PinsPack_t pinspack) {
 	/* Init pins */
 #if defined(GPIOB)
 	if (pinspack == TM_I2C_PinsPack_1) {
@@ -351,7 +350,7 @@ void TM_I2C1_INT_InitPins(TM_I2C_PinsPack_t pinspack) {
 	}
 }
 
-void TM_I2C2_INT_InitPins(TM_I2C_PinsPack_t pinspack) {
+static void TM_I2C2_INT_InitPins(TM_I2C_PinsPack_t pinspack) {
 	/* Init pins */
 #if defined(GPIOB)
 	if (pinspack == TM_I2C_PinsPack_1) {
@@ -374,7 +373,7 @@ void TM_I2C2_INT_InitPins(TM_I2C_PinsPack_t pinspack) {
 	}
 }
 
-void TM_I2C3_INT_InitPins(TM_I2C_PinsPack_t pinspack) {
+static void TM_I2C3_INT_InitPins(TM_I2C_PinsPack_t pinspack) {
 	/* Init pins */
 #if defined(GPIOA) && defined(GPIOC)
 	if (pinspack == TM_I2C_PinsPack_1) {

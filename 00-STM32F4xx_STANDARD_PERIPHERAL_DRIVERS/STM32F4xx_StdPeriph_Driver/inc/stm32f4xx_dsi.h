@@ -2,13 +2,13 @@
   ******************************************************************************
   * @file    stm32f4xx_dsi.h
   * @author  MCD Application Team
-  * @version V1.6.0
-  * @date    10-July-2015
+  * @version V1.7.0
+  * @date    22-April-2016
   * @brief   Header file of DSI module.
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2016 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -165,9 +165,8 @@ typedef struct
   uint32_t ColorCoding;           /*!< Color coding for LTDC interface
                                        This parameter can be any value of @ref DSI_Color_Coding          */
   
-  uint32_t HorizontalLine;        /*!< Horizontal line duration (in lane byte clock cycles)              */
-  
-  uint32_t CommandSize;           /*!< Maximum allowed size for an LTDC write memory command             */
+  uint32_t CommandSize;           /*!< Maximum allowed size for an LTDC write memory command, measured in 
+                                       pixels. This parameter can be any value between 0x00 and 0xFFFF   */
   
   uint32_t TearingEffectSource;   /*!< Tearing effect source
                                        This parameter can be any value of @ref DSI_TearingEffectSource   */
@@ -641,7 +640,7 @@ typedef struct
   * @{
   */
 #define DSI_HS_PM_DISABLE 0
-#define DSI_HS_PM_ENABLE DSI_TCCR4_PM
+#define DSI_HS_PM_ENABLE DSI_TCCR3_PM
 /**
   * @}
   */
@@ -950,7 +949,7 @@ void DSI_StructInit(DSI_InitTypeDef* DSI_InitStruct, DSI_HOST_TimeoutTypeDef* DS
 void DSI_SetGenericVCID(DSI_TypeDef *DSIx, uint32_t VirtualChannelID);
 void DSI_ConfigVideoMode(DSI_TypeDef *DSIx, DSI_VidCfgTypeDef *VidCfg);
 void DSI_ConfigAdaptedCommandMode(DSI_TypeDef *DSIx, DSI_CmdCfgTypeDef *CmdCfg);
-void DSI_ConfigLowPowerCommand(DSI_TypeDef *DSIx, DSI_LPCmdTypeDef *LPCmd);
+void DSI_ConfigCommand(DSI_TypeDef *DSIx, DSI_LPCmdTypeDef *LPCmd);
 void DSI_ConfigFlowControl(DSI_TypeDef *DSIx, uint32_t FlowControl);
 void DSI_ConfigPhyTimer(DSI_TypeDef *DSIx, DSI_PHY_TimerTypeDef *PhyTimers);
 void DSI_ConfigHostTimeouts(DSI_TypeDef *DSIx, DSI_HOST_TimeoutTypeDef *HostTimeouts);
@@ -961,6 +960,9 @@ void DSI_Stop(DSI_TypeDef *DSIx);
 void DSI_Refresh(DSI_TypeDef *DSIx);
 void DSI_ColorMode(DSI_TypeDef *DSIx, uint32_t ColorMode);
 void DSI_Shutdown(DSI_TypeDef *DSIx, uint32_t Shutdown);
+
+/* Alias for compatibility with STM32F4XX Standard Peripherals Library version number V1.6.0 */
+#define DSI_ConfigLowPowerCommand DSI_ConfigCommand
 
 /* Data transfers management functions ****************************************/
 void DSI_ShortWrite(DSI_TypeDef *DSIx, uint32_t ChannelID, uint32_t Mode, uint32_t Param1, uint32_t Param2);

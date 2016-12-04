@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    stm32f4xx_dsi.c
   * @author  MCD Application Team
-  * @version V1.6.0
-  * @date    10-July-2015
+  * @version V1.7.0
+  * @date    22-April-2016
   * @brief   This file provides firmware functions to manage the following 
   *          functionalities of the Display Serial Interface (DSI):
   *           + Initialization and Configuration
@@ -23,7 +23,7 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT 2015 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT 2016 STMicroelectronics</center></h2>
   *
   * Licensed under MCD-ST Liberty SW License Agreement V2, (the "License");
   * You may not use this file except in compliance with the License.
@@ -193,7 +193,6 @@ void DSI_Init(DSI_TypeDef *DSIx,DSI_InitTypeDef* DSI_InitStruct, DSI_PLLInitType
   DSIx->PCONFR |= DSI_InitStruct->NumberOfLanes;
   
   /************************ Set the DSI clock parameters ************************/
-  
   /* Set the TX escape clock division factor */
   DSIx->CCR &= ~DSI_CCR_TXECKDIV;
   DSIx->CCR = DSI_InitStruct->TXEscapeCkdiv;
@@ -205,8 +204,13 @@ void DSI_Init(DSI_TypeDef *DSIx,DSI_InitTypeDef* DSI_InitStruct, DSI_PLLInitType
   unitIntervalx4 = (4000000 * tempIDF * (1 << PLLInit->PLLODF)) / ((HSE_VALUE/1000) * PLLInit->PLLNDIV);
   
   /* Set the bit period in high-speed mode */
-  DSIx->WPCR[0] &= ~DSI_WPCR1_UIX4;
+  DSIx->WPCR[0] &= ~DSI_WPCR0_UIX4;
   DSIx->WPCR[0] |= unitIntervalx4;
+  
+  /****************************** Error management *****************************/
+  /* Disable all error interrupts */
+  DSIx->IER[0] = 0;
+  DSIx->IER[1] = 0;
 }
 
 /**
@@ -439,11 +443,7 @@ void DSI_ConfigAdaptedCommandMode(DSI_TypeDef *DSIx, DSI_CmdCfgTypeDef *CmdCfg)
   /* Select the color coding for the wrapper */
   DSIx->WCFGR &= ~DSI_WCFGR_COLMUX;
   DSIx->WCFGR |= ((CmdCfg->ColorCoding)<<1);
-  
-  /* Set the total line time (HLINE=HSA+HBP+HACT+HFP) in lane byte clock cycles */
-  DSIx->VLCR &= ~DSI_VLCR_HLINE;
-  DSIx->VLCR |= CmdCfg->HorizontalLine;
-  
+
   /* Configure the maximum allowed size for write memory command */
   DSIx->LCCR &= ~DSI_LCCR_CMDSIZE;
   DSIx->LCCR |= CmdCfg->CommandSize;
@@ -470,7 +470,7 @@ void DSI_ConfigAdaptedCommandMode(DSI_TypeDef *DSIx, DSI_CmdCfgTypeDef *CmdCfg)
   *                the DSI command transmission mode configuration parameters
   * @retval None
   */
-void DSI_ConfigLowPowerCommand(DSI_TypeDef *DSIx, DSI_LPCmdTypeDef *LPCmd)
+void DSI_ConfigCommand(DSI_TypeDef *DSIx, DSI_LPCmdTypeDef *LPCmd)
 {
   assert_param(IS_DSI_LP_GSW0P(LPCmd->LPGenShortWriteNoP));
   assert_param(IS_DSI_LP_GSW1P(LPCmd->LPGenShortWriteOneP));
@@ -542,10 +542,23 @@ void DSI_ConfigFlowControl(DSI_TypeDef *DSIx, uint32_t FlowControl)
   * @retval None
   */
 void DSI_ConfigPhyTimer(DSI_TypeDef *DSIx, DSI_PHY_TimerTypeDef *PhyTimers)
-{  
+{ 
+  uint32_t maxTime = 0;
+ 
+  maxTime = (PhyTimers->ClockLaneLP2HSTime > PhyTimers->ClockLaneHS2LPTime)? PhyTimers->ClockLaneLP2HSTime: PhyTimers->ClockLaneHS2LPTime;
+
   /* Clock lane timer configuration */
+  /* In Automatic Clock Lane control mode, the DSI Host can turn off the clock lane between two
+     High-Speed transmission.
+     To do so, the DSI Host calculates the time required for the clock lane to change from HighSpeed
+     to Low-Power and from Low-Power to High-Speed.
+     This timings are configured by the HS2LP_TIME and LP2HS_TIME in the DSI Host Clock Lane Timer Configuration Register (DSI_CLTCR).
+     But the DSI Host is not calculating LP2HS_TIME + HS2LP_TIME but 2 x HS2LP_TIME.
+
+     Workaround : Configure HS2LP_TIME and LP2HS_TIME with the same value being the max of HS2LP_TIME or LP2HS_TIME.
+  */
   DSIx->CLTCR &= ~(DSI_CLTCR_LP2HS_TIME | DSI_CLTCR_HS2LP_TIME);
-  DSIx->CLTCR |= (PhyTimers->ClockLaneLP2HSTime | ((PhyTimers->ClockLaneHS2LPTime)<<16));
+  DSIx->CLTCR |= (maxTime | ((maxTime)<<16));
   
   /* Data lane timer configuration */
   DSIx->DLTCR &= ~(DSI_DLTCR_MRD_TIME | DSI_DLTCR_LP2HS_TIME | DSI_DLTCR_HS2LP_TIME);
@@ -570,72 +583,36 @@ void DSI_ConfigHostTimeouts(DSI_TypeDef *DSIx, DSI_HOST_TimeoutTypeDef *HostTime
   DSIx->CCR = ((HostTimeouts->TimeoutCkdiv)<<8);
   
   /* High-speed transmission timeout */
-  DSIx->TCCR[0] &= ~DSI_TCCR1_HSTX_TOCNT;
+  DSIx->TCCR[0] &= ~DSI_TCCR0_HSTX_TOCNT;
   DSIx->TCCR[0] |= ((HostTimeouts->HighSpeedTransmissionTimeout)<<16);
   
   /* Low-power reception timeout */
-  DSIx->TCCR[0] &= ~DSI_TCCR1_LPRX_TOCNT;
+  DSIx->TCCR[0] &= ~DSI_TCCR0_LPRX_TOCNT;
   DSIx->TCCR[0] |= HostTimeouts->LowPowerReceptionTimeout;
   
   /* High-speed read timeout */
-  DSIx->TCCR[1] &= ~DSI_TCCR2_HSRD_TOCNT;
+  DSIx->TCCR[1] &= ~DSI_TCCR1_HSRD_TOCNT;
   DSIx->TCCR[1] |= HostTimeouts->HighSpeedReadTimeout;
   
   /* Low-power read timeout */
-  DSIx->TCCR[2] &= ~DSI_TCCR3_LPRD_TOCNT;
+  DSIx->TCCR[2] &= ~DSI_TCCR2_LPRD_TOCNT;
   DSIx->TCCR[2] |= HostTimeouts->LowPowerReadTimeout;
   
   /* High-speed write timeout */
-  DSIx->TCCR[3] &= ~DSI_TCCR4_HSWR_TOCNT;
+  DSIx->TCCR[3] &= ~DSI_TCCR3_HSWR_TOCNT;
   DSIx->TCCR[3] |= HostTimeouts->HighSpeedWriteTimeout;
   
   /* High-speed write presp mode */
-  DSIx->TCCR[3] &= ~DSI_TCCR4_PM;
+  DSIx->TCCR[3] &= ~DSI_TCCR3_PM;
   DSIx->TCCR[3] |= HostTimeouts->HighSpeedWritePrespMode;
   
   /* Low-speed write timeout */
-  DSIx->TCCR[4] &= ~DSI_TCCR5_LPWR_TOCNT;
+  DSIx->TCCR[4] &= ~DSI_TCCR4_LPWR_TOCNT;
   DSIx->TCCR[4] |= HostTimeouts->LowPowerWriteTimeout;
   
   /* BTA timeout */
-  DSIx->TCCR[5] &= ~DSI_TCCR6_BTA_TOCNT;
+  DSIx->TCCR[5] &= ~DSI_TCCR5_BTA_TOCNT;
   DSIx->TCCR[5] |= HostTimeouts->BTATimeout;
-}
-
-/**
-  * @brief  Start test pattern generation
-  * @param  DSIx: To select the DSIx peripheral, where x can be the different DSI instances
-  * @param  Mode: Pattern generator mode
-  *          This parameter can be one of the following values:
-  *           0 : Color bars (horizontal or vertical)
-  *           1 : BER pattern (vertical only)
-  * @param  Orientation: Pattern generator orientation
-  *          This parameter can be one of the following values:
-  *           0 : Vertical color bars
-  *           1 : Horizontal color bars
-  * @retval None
-  */
-void DSI_PatternGeneratorStart(DSI_TypeDef *DSIx, uint32_t Mode, uint32_t Orientation)
-{
-  
-  /* Configure pattern generator mode and orientation */
-  DSIx->VMCR &= ~(DSI_VMCR_PGM | DSI_VMCR_PGO);
-  DSIx->VMCR |= ((Mode<<20) | (Orientation<<24));
-  
-  /* Enable pattern generator by setting PGE bit */
-  DSIx->VMCR |= DSI_VMCR_PGE;
-  
-}
-
-/**
-  * @brief  Stop test pattern generation
-  * @param  DSIx: To select the DSIx peripheral, where x can be the different DSI instances
-  * @retval None
-  */
-void DSI_PatternGeneratorStop(DSI_TypeDef *DSIx)
-{  
-  /* Disable pattern generator by clearing PGE bit */
-  DSIx->VMCR &= ~DSI_VMCR_PGE;
 }
 
 /**
@@ -781,6 +758,9 @@ void DSI_LongWrite(DSI_TypeDef *DSIx,
                                 uint8_t* ParametersTable)
 {
   uint32_t uicounter = 0;
+  
+  /* Check the parameters */
+  assert_param(IS_DSI_LONG_WRITE_PACKET_TYPE(Mode));
       
   /* Wait for Command FIFO Empty */
   while((DSIx->GPSR & DSI_GPSR_CMDFE) == 0)
@@ -864,7 +844,7 @@ void DSI_Read(DSI_TypeDef *DSIx,
   }
     
   /* Check that the payload read FIFO is not empty */
-  while((DSIx->GPSR & (DSI_GPSR_RCB | DSI_GPSR_PRDFE)) != 0)
+  while((DSIx->GPSR & DSI_GPSR_PRDFE) == DSI_GPSR_PRDFE)
   {}
   
   /* Get the first byte */
@@ -874,7 +854,7 @@ void DSI_Read(DSI_TypeDef *DSIx,
     Size -= 4;
     Array += 4;
   }
-      
+
   /* Get the remaining bytes if any */
   while(((int)(Size)) > 0)
   {
@@ -1053,6 +1033,42 @@ void DSI_ExitULPM(DSI_TypeDef *DSIx)
 }
 
 /**
+  * @brief  Start test pattern generation
+  * @param  DSIx: To select the DSIx peripheral, where x can be the different DSI instances
+  * @param  Mode: Pattern generator mode
+  *          This parameter can be one of the following values:
+  *           0 : Color bars (horizontal or vertical)
+  *           1 : BER pattern (vertical only)
+  * @param  Orientation: Pattern generator orientation
+  *          This parameter can be one of the following values:
+  *           0 : Vertical color bars
+  *           1 : Horizontal color bars
+  * @retval None
+  */
+void DSI_PatternGeneratorStart(DSI_TypeDef *DSIx, uint32_t Mode, uint32_t Orientation)
+{
+  
+  /* Configure pattern generator mode and orientation */
+  DSIx->VMCR &= ~(DSI_VMCR_PGM | DSI_VMCR_PGO);
+  DSIx->VMCR |= ((Mode<<20) | (Orientation<<24));
+  
+  /* Enable pattern generator by setting PGE bit */
+  DSIx->VMCR |= DSI_VMCR_PGE;
+  
+}
+
+/**
+  * @brief  Stop test pattern generation
+  * @param  DSIx: To select the DSIx peripheral, where x can be the different DSI instances
+  * @retval None
+  */
+void DSI_PatternGeneratorStop(DSI_TypeDef *DSIx)
+{  
+  /* Disable pattern generator by clearing PGE bit */
+  DSIx->VMCR &= ~DSI_VMCR_PGE;
+}
+
+/**
   * @brief  Set Slew-Rate And Delay Tuning
   * @param  DSIx: Pointer to DSI register base
   * @param  CommDelay: Communication delay to be adjusted.
@@ -1074,13 +1090,13 @@ void DSI_SetSlewRateAndDelayTuning(DSI_TypeDef *DSIx, uint32_t CommDelay, uint32
     if(Lane == DSI_CLOCK_LANE)
     {
       /* High-Speed Transmission Slew Rate Control on Clock Lane */
-      DSIx->WPCR[1] &= ~DSI_WPCR2_HSTXSRCCL;
+      DSIx->WPCR[1] &= ~DSI_WPCR1_HSTXSRCCL;
       DSIx->WPCR[1] |= Value<<16;
     }
     else if(Lane == DSI_DATA_LANES)
     {
       /* High-Speed Transmission Slew Rate Control on Data Lanes */
-      DSIx->WPCR[1] &= ~DSI_WPCR2_HSTXSRCDL;
+      DSIx->WPCR[1] &= ~DSI_WPCR1_HSTXSRCDL;
       DSIx->WPCR[1] |= Value<<18;
     }
     break;
@@ -1088,13 +1104,13 @@ void DSI_SetSlewRateAndDelayTuning(DSI_TypeDef *DSIx, uint32_t CommDelay, uint32
     if(Lane == DSI_CLOCK_LANE)
     {
       /* Low-Power transmission Slew Rate Compensation on Clock Lane */
-      DSIx->WPCR[1] &= ~DSI_WPCR2_LPSRCCL;
+      DSIx->WPCR[1] &= ~DSI_WPCR1_LPSRCCL;
       DSIx->WPCR[1] |= Value<<6;
     }
     else if(Lane == DSI_DATA_LANES)
     {
       /* Low-Power transmission Slew Rate Compensation on Data Lanes */
-      DSIx->WPCR[1] &= ~DSI_WPCR2_LPSRCDL;
+      DSIx->WPCR[1] &= ~DSI_WPCR1_LPSRCDL;
       DSIx->WPCR[1] |= Value<<8;
     }
     break;
@@ -1102,13 +1118,13 @@ void DSI_SetSlewRateAndDelayTuning(DSI_TypeDef *DSIx, uint32_t CommDelay, uint32
     if(Lane == DSI_CLOCK_LANE)
     {
       /* High-Speed Transmission Delay on Clock Lane */
-      DSIx->WPCR[1] &= ~DSI_WPCR2_HSTXDCL;
+      DSIx->WPCR[1] &= ~DSI_WPCR1_HSTXDCL;
       DSIx->WPCR[1] |= Value;
     }
     else if(Lane == DSI_DATA_LANES)
     {
       /* High-Speed Transmission Delay on Data Lanes */
-      DSIx->WPCR[1] &= ~DSI_WPCR2_HSTXDDL;
+      DSIx->WPCR[1] &= ~DSI_WPCR1_HSTXDDL;
       DSIx->WPCR[1] |= Value<<2;
     }
     break;
@@ -1126,7 +1142,7 @@ void DSI_SetSlewRateAndDelayTuning(DSI_TypeDef *DSIx, uint32_t CommDelay, uint32
 void DSI_SetLowPowerRXFilter(DSI_TypeDef *DSIx, uint32_t Frequency)
 {  
   /* Low-Power RX low-pass Filtering Tuning */
-  DSIx->WPCR[1] &= ~DSI_WPCR2_LPRXFT;
+  DSIx->WPCR[1] &= ~DSI_WPCR1_LPRXFT;
   DSIx->WPCR[1] |= Frequency<<25;
 }
 
@@ -1144,7 +1160,7 @@ void DSI_SetSDD(DSI_TypeDef *DSIx, FunctionalState State)
   assert_param(IS_FUNCTIONAL_STATE(State));
   
   /* Activate/Disactivate additional current path on all lanes */
-  DSIx->WPCR[1] &= ~DSI_WPCR2_SDDC;
+  DSIx->WPCR[1] &= ~DSI_WPCR1_SDDC;
   DSIx->WPCR[1] |= State<<12;
 }
 
@@ -1171,19 +1187,19 @@ void DSI_SetLanePinsConfiguration(DSI_TypeDef *DSIx, uint32_t CustomLane, uint32
     if(Lane == DSI_CLOCK_LANE)
     {
       /* Swap pins on clock lane */
-      DSIx->WPCR[0] &= ~DSI_WPCR1_SWCL;
+      DSIx->WPCR[0] &= ~DSI_WPCR0_SWCL;
       DSIx->WPCR[0] |= (State<<6);
     }
     else if(Lane == DSI_DATA_LANE0)
     {
       /* Swap pins on data lane 0 */
-      DSIx->WPCR[0] &= ~DSI_WPCR1_SWDL0;
+      DSIx->WPCR[0] &= ~DSI_WPCR0_SWDL0;
       DSIx->WPCR[0] |= (State<<7);
     }
     else if(Lane == DSI_DATA_LANE1)
     {
       /* Swap pins on data lane 1 */
-      DSIx->WPCR[0] &= ~DSI_WPCR1_SWDL1;
+      DSIx->WPCR[0] &= ~DSI_WPCR0_SWDL1;
       DSIx->WPCR[0] |= (State<<8);
     }
     break;
@@ -1191,19 +1207,19 @@ void DSI_SetLanePinsConfiguration(DSI_TypeDef *DSIx, uint32_t CustomLane, uint32
     if(Lane == DSI_CLOCK_LANE)
     {
       /* Invert HS signal on clock lane */
-      DSIx->WPCR[0] &= ~DSI_WPCR1_HSICL;
+      DSIx->WPCR[0] &= ~DSI_WPCR0_HSICL;
       DSIx->WPCR[0] |= (State<<9);
     }
     else if(Lane == DSI_DATA_LANE0)
     {
       /* Invert HS signal on data lane 0 */
-      DSIx->WPCR[0] &= ~DSI_WPCR1_HSIDL0;
+      DSIx->WPCR[0] &= ~DSI_WPCR0_HSIDL0;
       DSIx->WPCR[0] |= (State<<10);
     }
     else if(Lane == DSI_DATA_LANE1)
     {
       /* Invert HS signal on data lane 1 */
-      DSIx->WPCR[0] &= ~DSI_WPCR1_HSIDL1;
+      DSIx->WPCR[0] &= ~DSI_WPCR0_HSIDL1;
       DSIx->WPCR[0] |= (State<<11);
     }
     break;
@@ -1231,117 +1247,117 @@ void DSI_SetPHYTimings(DSI_TypeDef *DSIx, uint32_t Timing, FunctionalState State
   {
   case DSI_TCLK_POST:
     /* Enable/Disable custom timing setting */
-    DSIx->WPCR[0] &= ~DSI_WPCR1_TCLKPOSTEN;
+    DSIx->WPCR[0] &= ~DSI_WPCR0_TCLKPOSTEN;
     DSIx->WPCR[0] |= (State<<27);
     
     if(State)
     {
       /* Set custom value */
-      DSIx->WPCR[4] &= ~DSI_WPCR5_TCLKPOST;
+      DSIx->WPCR[4] &= ~DSI_WPCR4_TCLKPOST;
       DSIx->WPCR[4] |= Value;
     }
     
     break;
   case DSI_TLPX_CLK:
     /* Enable/Disable custom timing setting */
-    DSIx->WPCR[0] &= ~DSI_WPCR1_TLPXCEN;
+    DSIx->WPCR[0] &= ~DSI_WPCR0_TLPXCEN;
     DSIx->WPCR[0] |= (State<<26);
     
     if(State)
     {
       /* Set custom value */
-      DSIx->WPCR[3] &= ~DSI_WPCR4_TLPXC;
+      DSIx->WPCR[3] &= ~DSI_WPCR3_TLPXC;
       DSIx->WPCR[3] |= Value;
     }
     
     break;
   case DSI_THS_EXIT:
     /* Enable/Disable custom timing setting */
-    DSIx->WPCR[0] &= ~DSI_WPCR1_THSEXITEN;
+    DSIx->WPCR[0] &= ~DSI_WPCR0_THSEXITEN;
     DSIx->WPCR[0] |= (State<<25);
     
     if(State)
     {
       /* Set custom value */
-      DSIx->WPCR[3] &= ~DSI_WPCR4_THSEXIT;
+      DSIx->WPCR[3] &= ~DSI_WPCR3_THSEXIT;
       DSIx->WPCR[3] |= Value;
     }
     
     break;
   case DSI_TLPX_DATA:
     /* Enable/Disable custom timing setting */
-    DSIx->WPCR[0] &= ~DSI_WPCR1_TLPXDEN;
+    DSIx->WPCR[0] &= ~DSI_WPCR0_TLPXDEN;
     DSIx->WPCR[0] |= (State<<24);
     
     if(State)
     {
       /* Set custom value */
-      DSIx->WPCR[3] &= ~DSI_WPCR4_TLPXD;
+      DSIx->WPCR[3] &= ~DSI_WPCR3_TLPXD;
       DSIx->WPCR[3] |= Value;
     }
     
     break;
   case DSI_THS_ZERO:
     /* Enable/Disable custom timing setting */
-    DSIx->WPCR[0] &= ~DSI_WPCR1_THSZEROEN;
+    DSIx->WPCR[0] &= ~DSI_WPCR0_THSZEROEN;
     DSIx->WPCR[0] |= (State<<23);
     
     if(State)
     {
       /* Set custom value */
-      DSIx->WPCR[3] &= ~DSI_WPCR4_THSZERO;
+      DSIx->WPCR[3] &= ~DSI_WPCR3_THSZERO;
       DSIx->WPCR[3] |= Value;
     }
     
     break;
   case DSI_THS_TRAIL:
     /* Enable/Disable custom timing setting */
-    DSIx->WPCR[0] &= ~DSI_WPCR1_THSTRAILEN;
+    DSIx->WPCR[0] &= ~DSI_WPCR0_THSTRAILEN;
     DSIx->WPCR[0] |= (State<<22);
     
     if(State)
     {
       /* Set custom value */
-      DSIx->WPCR[2] &= ~DSI_WPCR3_THSTRAIL;
+      DSIx->WPCR[2] &= ~DSI_WPCR2_THSTRAIL;
       DSIx->WPCR[2] |= Value;
     }
     
     break;
   case DSI_THS_PREPARE:
     /* Enable/Disable custom timing setting */
-    DSIx->WPCR[0] &= ~DSI_WPCR1_THSPREPEN;
+    DSIx->WPCR[0] &= ~DSI_WPCR0_THSPREPEN;
     DSIx->WPCR[0] |= (State<<21);
     
     if(State)
     {
       /* Set custom value */
-      DSIx->WPCR[2] &= ~DSI_WPCR3_THSPREP;
+      DSIx->WPCR[2] &= ~DSI_WPCR2_THSPREP;
       DSIx->WPCR[2] |= Value;
     }
     
     break;
   case DSI_TCLK_ZERO:
     /* Enable/Disable custom timing setting */
-    DSIx->WPCR[0] &= ~DSI_WPCR1_TCLKZEROEN;
+    DSIx->WPCR[0] &= ~DSI_WPCR0_TCLKZEROEN;
     DSIx->WPCR[0] |= (State<<20);
     
     if(State)
     {
       /* Set custom value */
-      DSIx->WPCR[2] &= ~DSI_WPCR3_TCLKZERO;
+      DSIx->WPCR[2] &= ~DSI_WPCR2_TCLKZERO;
       DSIx->WPCR[2] |= Value;
     }
     
     break;
   case DSI_TCLK_PREPARE:
     /* Enable/Disable custom timing setting */
-    DSIx->WPCR[0] &= ~DSI_WPCR1_TCLKPREPEN;
+    DSIx->WPCR[0] &= ~DSI_WPCR0_TCLKPREPEN;
     DSIx->WPCR[0] |= (State<<19);
     
     if(State)
     {
       /* Set custom value */
-      DSIx->WPCR[2] &= ~DSI_WPCR3_TCLKPREP;
+      DSIx->WPCR[2] &= ~DSI_WPCR2_TCLKPREP;
       DSIx->WPCR[2] |= Value;
     }
     
@@ -1368,13 +1384,13 @@ void DSI_ForceTXStopMode(DSI_TypeDef *DSIx, uint32_t Lane, FunctionalState State
   if(Lane == DSI_CLOCK_LANE)
   {
     /* Force/Unforce the Clock Lane in TX Stop Mode */
-    DSIx->WPCR[0] &= ~DSI_WPCR1_FTXSMCL;
+    DSIx->WPCR[0] &= ~DSI_WPCR0_FTXSMCL;
     DSIx->WPCR[0] |= (State<<12);
   }
   else if(Lane == DSI_DATA_LANES)
   {
     /* Force/Unforce the Data Lanes in TX Stop Mode */
-    DSIx->WPCR[0] &= ~DSI_WPCR1_FTXSMDL;
+    DSIx->WPCR[0] &= ~DSI_WPCR0_FTXSMDL;
     DSIx->WPCR[0] |= (State<<13);
   }
 }
@@ -1392,7 +1408,7 @@ void DSI_ForceRXLowPower(DSI_TypeDef *DSIx, FunctionalState State)
   assert_param(IS_FUNCTIONAL_STATE(State));
   
   /* Force/Unforce LP Receiver in Low-Power Mode */
-  DSIx->WPCR[1] &= ~DSI_WPCR2_FLPRXLPM;
+  DSIx->WPCR[1] &= ~DSI_WPCR1_FLPRXLPM;
   DSIx->WPCR[1] |= State<<22;
 }
 
@@ -1409,7 +1425,7 @@ void DSI_ForceDataLanesInRX(DSI_TypeDef *DSIx, FunctionalState State)
   assert_param(IS_FUNCTIONAL_STATE(State));
   
   /* Force Data Lanes in RX Mode */
-  DSIx->WPCR[0] &= ~DSI_WPCR1_TDDL;
+  DSIx->WPCR[0] &= ~DSI_WPCR0_TDDL;
   DSIx->WPCR[0] |= State<<16;
 }
 
@@ -1426,7 +1442,7 @@ void DSI_SetPullDown(DSI_TypeDef *DSIx, FunctionalState State)
   assert_param(IS_FUNCTIONAL_STATE(State));
   
   /* Enable/Disable pull-down on lanes */
-  DSIx->WPCR[0] &= ~DSI_WPCR1_PDEN;
+  DSIx->WPCR[0] &= ~DSI_WPCR0_PDEN;
   DSIx->WPCR[0] |= State<<18;
 }
 
@@ -1443,7 +1459,7 @@ void DSI_SetContentionDetectionOff(DSI_TypeDef *DSIx, FunctionalState State)
   assert_param(IS_FUNCTIONAL_STATE(State));
   
   /* Contention Detection on Data Lanes OFF */
-  DSIx->WPCR[0] &= ~DSI_WPCR1_CDOFFDL;
+  DSIx->WPCR[0] &= ~DSI_WPCR0_CDOFFDL;
   DSIx->WPCR[0] |= State<<14;
 }
 

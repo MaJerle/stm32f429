@@ -36,7 +36,7 @@ int main(void) {
 	/* Init pin PA5 */
 	TM_GPIO_Init(GPIOA, GPIO_Pin_5, TM_GPIO_Mode_OUT, TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High);
 #endif
-	
+
 	while (1) {
 		/* Toggle leds */
 #if defined(TM_DISCO_STM32F4_DISCOVERY)

@@ -51,7 +51,7 @@ extern "C" {
  *
  * It also contains SWO (Single Wire Output) for debugging purpose.
  *
- * This output works only (!!) when you are in debug mode with your processor.
+ * @note This output works only (!!) when you are in debug mode with your processor.
  * 
  * This library allows you to send data to PC using SWO peripheral.
  * 
@@ -84,7 +84,7 @@ extern "C" {
  *		- Compile your application and click on "Start/Stop Debug Session"
  *		- On the left top, find button "Run" or press "F5" and if you don't have it, open Trace window under 
  *		  "View" tab
- *	- In case you are using STM32F4xx boards, you might made some modifications to enable "Trace output":
+ *	- In case you are using STM32F4xx boards, you need to do some modifications to enable "Trace output":
  *		- STM32F4-Discovery: Enabled by default
  *		- STM32F429-Discovery: You have to solder SB9 jumper to enable this feature
  *		- STM32-Nucleo: Enabled by default

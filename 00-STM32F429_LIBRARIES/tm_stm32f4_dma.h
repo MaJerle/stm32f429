@@ -98,6 +98,7 @@ extern "C" {
 
 #include "stm32f4xx.h"
 #include "tm_stm32f4_dma.h"
+#include "misc.h"
 #include "defines.h"
 #include "attributes.h"
 

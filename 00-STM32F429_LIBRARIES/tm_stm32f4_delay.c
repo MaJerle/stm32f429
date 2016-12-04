@@ -39,13 +39,15 @@ void TM_DELAY_INT_InitTIM(void);
 
 #if defined(TM_DELAY_TIM)
 void TM_DELAY_TIM_IRQ_HANDLER(void) {
+	uint8_t i;
 	TM_DELAY_TIM->SR = ~TIM_IT_Update;
 #elif defined(KEIL_IDE)
 void TimingDelay_Decrement(void) {
+	uint8_t i;
 #else
 void SysTick_Handler(void) {
-#endif
 	uint8_t i;
+#endif
 	
 	TM_Time++;
 	if (TM_Time2 != 0x00) {

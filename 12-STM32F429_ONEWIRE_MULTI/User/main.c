@@ -22,7 +22,7 @@
 #include <stdio.h>
 
 int main(void) {
-	char buf[30];
+	char buf[100];
 	uint8_t devices, i, j, count, device[2][8];
 	/* OneWire working structure */
 	TM_OneWire_t OneWire1, OneWire2;
