@@ -6,8 +6,8 @@
  *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
- *	@website	http://stm32f4-discovery.com
- *	@link		http://stm32f4-discovery.com/2014/07/library-23-read-rfid-tag-mfrc522-stm32f4xx-devices/
+ *	@website	http://stm32f4-discovery.net
+ *	@link		http://stm32f4-discovery.net/2014/07/library-23-read-rfid-tag-mfrc522-stm32f4xx-devices/
  *	@version 	v1.0
  *	@ide		Keil uVision
  *	@license	GNU GPL v3

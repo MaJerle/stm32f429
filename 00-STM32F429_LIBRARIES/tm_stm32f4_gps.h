@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email  tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2014/08/library-27-gps-stm32f4-devices/
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2014/08/library-27-gps-stm32f4-devices/
  * @version v1.3.1
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -35,7 +35,7 @@
 
 /**
  * @defgroup TM_GPS
- * @brief    GPS NMEA standard data parser for STM32F4xx devices - http://stm32f4-discovery.com/2014/08/library-27-gps-stm32f4-devices/
+ * @brief    GPS NMEA standard data parser for STM32F4xx devices - http://stm32f4-discovery.net/2014/08/library-27-gps-stm32f4-devices/
  * @{
  *
  * This library parses response from GPS module, in NMEA statements format.

@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2015/01/library-47-crc-module-on-stm32f4
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2015/01/library-47-crc-module-on-stm32f4
  * @version v1.1
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -42,7 +42,7 @@ extern "C" {
 
 /**
  * @defgroup TM_CRC
- * @brief    CRC library for STM32F4xx devices - http://stm32f4-discovery.com/2015/01/library-47-crc-module-on-stm32f4
+ * @brief    CRC library for STM32F4xx devices - http://stm32f4-discovery.net/2015/01/library-47-crc-module-on-stm32f4
  * @{
  *
  * Library uses hardware CRC unit in STM32F4xx device

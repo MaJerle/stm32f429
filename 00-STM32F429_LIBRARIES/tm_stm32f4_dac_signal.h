@@ -3,8 +3,8 @@
  *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
- *	@website	http://stm32f4-discovery.com
- *	@link		http://stm32f4-discovery.com/2014/09/library-36-dac-signal-generator-stm32f4
+ *	@website	http://stm32f4-discovery.net
+ *	@link		http://stm32f4-discovery.net/2014/09/library-36-dac-signal-generator-stm32f4
  *	@version 	v1.1
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
@@ -52,8 +52,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2014/09/library-36-dac-signal-generator-stm32f4
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2014/09/library-36-dac-signal-generator-stm32f4
  * @version v1.1
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -93,7 +93,7 @@ extern "C" {
 
 /**
  * @defgroup TM_DAC_SIGNAL
- * @brief    DAC with DMA and TIM signal generator feature for STM32F4 - http://stm32f4-discovery.com/2014/09/library-36-dac-signal-generator-stm32f4
+ * @brief    DAC with DMA and TIM signal generator feature for STM32F4 - http://stm32f4-discovery.net/2014/09/library-36-dac-signal-generator-stm32f4
  * @{
  *
  * \par Signals available

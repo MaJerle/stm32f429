@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2014/08/library-28-l3gd20-3-axis-gyroscope
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2014/08/library-28-l3gd20-3-axis-gyroscope
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -42,7 +42,7 @@ extern "C" {
 
 /**
  * @defgroup TM_L3GD20
- * @brief    L3GD20 library for STM32F4xx devices - http://stm32f4-discovery.com/2014/08/library-28-l3gd20-3-axis-gyroscope
+ * @brief    L3GD20 library for STM32F4xx devices - http://stm32f4-discovery.net/2014/08/library-28-l3gd20-3-axis-gyroscope
  * @{
  *
  * L3GD20 3-axis Gyroscope is connected on STM32F429 Discovery board.

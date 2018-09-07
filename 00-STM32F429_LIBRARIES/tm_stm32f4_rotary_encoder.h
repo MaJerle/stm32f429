@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2014/08/library-26-rotary-encoder-stm32f4
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2014/08/library-26-rotary-encoder-stm32f4
  * @version v2.0
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -37,7 +37,7 @@
 
 /**
  * @defgroup TM_ROTARY_ENCODER
- * @brief    Rotary encoder library for STM32F4xx devices - http://stm32f4-discovery.com/2014/08/library-26-rotary-encoder-stm32f4
+ * @brief    Rotary encoder library for STM32F4xx devices - http://stm32f4-discovery.net/2014/08/library-26-rotary-encoder-stm32f4
  * @{
  *
  * This library supports up to 16 rotary encoders at a time.

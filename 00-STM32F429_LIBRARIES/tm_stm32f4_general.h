@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2015/03/library-54-general-library-for-stm32f4xx-devices
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2015/03/library-54-general-library-for-stm32f4xx-devices
  * @version v1.4
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -42,7 +42,7 @@ extern "C" {
 
 /**
  * @defgroup TM_GENERAL
- * @brief    GENERAL library for STM32F4xx devices - http://stm32f4-discovery.com/2015/03/library-54-general-library-for-stm32f4xx-devices
+ * @brief    GENERAL library for STM32F4xx devices - http://stm32f4-discovery.net/2015/03/library-54-general-library-for-stm32f4xx-devices
  * @{
  *
  * This is a simple library, where it's content can be used in a lot of places in your project.

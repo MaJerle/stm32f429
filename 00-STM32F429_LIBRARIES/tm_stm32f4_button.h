@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2015/04/library-57-buttons-for-stm32f4xx/
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2015/04/library-57-buttons-for-stm32f4xx/
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -42,7 +42,7 @@ extern "C" {
 
 /**
  * @defgroup TM_BUTTON
- * @brief    Button library for STM32F4xx devices - http://stm32f4-discovery.com/2015/04/library-57-buttons-for-stm32f4xx/
+ * @brief    Button library for STM32F4xx devices - http://stm32f4-discovery.net/2015/04/library-57-buttons-for-stm32f4xx/
  * @{
  *
  * This library works with external buttons.

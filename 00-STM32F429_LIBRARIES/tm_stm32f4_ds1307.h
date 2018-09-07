@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2014/05/library-15-ds1307-real-time-clock-for-stm32f429-discovery/ 
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2014/05/library-15-ds1307-real-time-clock-for-stm32f429-discovery/ 
  * @version v1.2
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -36,7 +36,7 @@
 
 /**
  * @defgroup TM_DS1307
- * @brief    DS1307 Library for STM32F4xx - http://stm32f4-discovery.com/2014/05/library-15-ds1307-real-time-clock-for-stm32f429-discovery/
+ * @brief    DS1307 Library for STM32F4xx - http://stm32f4-discovery.net/2014/05/library-15-ds1307-real-time-clock-for-stm32f429-discovery/
  * @note     Not recommended for future projects, use internal RTC inside STM32F4xx instead.
  *@{
  *

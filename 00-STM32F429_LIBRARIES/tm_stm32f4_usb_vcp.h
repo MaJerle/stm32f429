@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2014/08/library-24-virtual-com-port-vcp-stm32f4xx/
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2014/08/library-24-virtual-com-port-vcp-stm32f4xx/
  * @version v1.2
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -42,7 +42,7 @@ extern "C" {
 
 /**
  * @defgroup TM_USB_VCP
- * @brief    USB Virtual COM Port for STM32F4xx devices - http://stm32f4-discovery.com/2014/08/library-24-virtual-com-port-vcp-stm32f4xx/
+ * @brief    USB Virtual COM Port for STM32F4xx devices - http://stm32f4-discovery.net/2014/08/library-24-virtual-com-port-vcp-stm32f4xx/
  * @{
  *
  * With this library, your STM32F4xx will be seen to your computer as Virtual COM Port (VCP).

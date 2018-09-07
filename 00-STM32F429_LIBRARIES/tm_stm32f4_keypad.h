@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2014/09/library-32-matrix-keypad-on-stm32f4xx
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2014/09/library-32-matrix-keypad-on-stm32f4xx
  * @version v2.0
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -42,7 +42,7 @@ extern "C" {
 
 /**
  * @defgroup TM_KEYPAD
- * @brief    Matrix keyboard for STM32F4xx device - http://stm32f4-discovery.com/2014/09/library-32-matrix-keypad-on-stm32f4xx
+ * @brief    Matrix keyboard for STM32F4xx device - http://stm32f4-discovery.net/2014/09/library-32-matrix-keypad-on-stm32f4xx
  * @{
  *
  * Library supports 2 versions of keypads:

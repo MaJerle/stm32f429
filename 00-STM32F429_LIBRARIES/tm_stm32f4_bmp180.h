@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2014/09/library-37-bmp180-pressure-sensor-stm32f4
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2014/09/library-37-bmp180-pressure-sensor-stm32f4
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -42,7 +42,7 @@ extern "C" {
 
 /**
  * @defgroup TM_BMP180
- * @brief    BMP180 pressure sensor library for STM32F4xx - http://stm32f4-discovery.com/2014/09/library-37-bmp180-pressure-sensor-stm32f4
+ * @brief    BMP180 pressure sensor library for STM32F4xx - http://stm32f4-discovery.net/2014/09/library-37-bmp180-pressure-sensor-stm32f4
  * @{
  *
  * You can read temperature and pressure with this sensor.

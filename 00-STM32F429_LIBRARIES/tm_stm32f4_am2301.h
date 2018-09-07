@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2014/08/library-25-am2301-dht21-sensor-stm32f4xx/
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2014/08/library-25-am2301-dht21-sensor-stm32f4xx/
  * @version v1.3
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -42,7 +42,7 @@ extern "C" {
 
 /**
  * @defgroup TM_AM2301
- * @brief    Basic library for AM2301 (DHT21) temperature and humidity sensor - http://stm32f4-discovery.com/2014/08/library-25-am2301-dht21-sensor-stm32f4xx/
+ * @brief    Basic library for AM2301 (DHT21) temperature and humidity sensor - http://stm32f4-discovery.net/2014/08/library-25-am2301-dht21-sensor-stm32f4xx/
  * @{
  *
  * This library does not use any timers and interrupts to increase speed, only basic pooling mode.

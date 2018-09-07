@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2014/10/library-43-mpu-6050-6-axes-gyro-accelerometer-stm32f4/
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2014/10/library-43-mpu-6050-6-axes-gyro-accelerometer-stm32f4/
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -42,7 +42,7 @@ extern "C" {
 
 /**
  * @defgroup TM_MPU6050
- * @brief    MPU6050 library for STM32F4xx - http://stm32f4-discovery.com/2014/10/library-43-mpu-6050-6-axes-gyro-accelerometer-stm32f4/
+ * @brief    MPU6050 library for STM32F4xx - http://stm32f4-discovery.net/2014/10/library-43-mpu-6050-6-axes-gyro-accelerometer-stm32f4/
  * @{
  *
  * \par Default pinout

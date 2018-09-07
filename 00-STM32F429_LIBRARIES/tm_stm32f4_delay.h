@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2014/04/library-03-stm32f429-discovery-system-clock-and-pretty-precise-delay-library/
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2014/04/library-03-stm32f429-discovery-system-clock-and-pretty-precise-delay-library/
  * @version v2.4
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -42,7 +42,7 @@ extern "C" {
 
 /**
  * @defgroup TM_DELAY
- * @brief    Pretty accurate delay functions with SysTick or any other timer - http://stm32f4-discovery.com/2014/04/library-03-stm32f429-discovery-system-clock-and-pretty-precise-delay-library/
+ * @brief    Pretty accurate delay functions with SysTick or any other timer - http://stm32f4-discovery.net/2014/04/library-03-stm32f429-discovery-system-clock-and-pretty-precise-delay-library/
  * @{
  *
 @verbatim

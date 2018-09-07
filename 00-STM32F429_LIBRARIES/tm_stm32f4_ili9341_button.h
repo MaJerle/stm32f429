@@ -4,8 +4,8 @@
  *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
- *	@website	http://stm32f4-discovery.com
- *	@link		http://stm32f4-discovery.com/2014/05/11-button-library-for-ili9341-lcd-and-stmpe811-touch-controller-on-stm32f429-discovery-board/
+ *	@website	http://stm32f4-discovery.net
+ *	@link		http://stm32f4-discovery.net/2014/05/11-button-library-for-ili9341-lcd-and-stmpe811-touch-controller-on-stm32f429-discovery-board/
  *	@version 	v1.0
  *	@ide		Keil uVision
  *	@license	GNU GPL v3

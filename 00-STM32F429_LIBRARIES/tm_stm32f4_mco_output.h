@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2014/10/library-40-output-clocks-stm32f4/
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2014/10/library-40-output-clocks-stm32f4/
  * @version v1.1
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -42,7 +42,7 @@ extern "C" {
 
 /**
  * @defgroup TM_MCO
- * @brief    MCO Output clock for STM32F4xx - http://stm32f4-discovery.com/2014/10/library-40-output-clocks-stm32f4/
+ * @brief    MCO Output clock for STM32F4xx - http://stm32f4-discovery.net/2014/10/library-40-output-clocks-stm32f4/
  * @{
  *
  * This library allows you to output different frequencies. They are split into 2 different output sections.

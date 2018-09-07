@@ -4,8 +4,8 @@
  *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
- *	@website	http://stm32f4-discovery.com
- *	@link		http://stm32f4-discovery.com/pcd8544-nokia-33105110-lcd-stm32f429-discovery-library/
+ *	@website	http://stm32f4-discovery.net
+ *	@link		http://stm32f4-discovery.net/pcd8544-nokia-33105110-lcd-stm32f429-discovery-library/
  *	@version 	v1.0
  *	@ide		Keil uVision
  *	@license	GNU GPL v3

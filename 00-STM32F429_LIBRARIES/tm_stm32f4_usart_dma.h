@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2015/04/library-55-extend-usart-with-tx-dma
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2015/04/library-55-extend-usart-with-tx-dma
  * @version v1.2.3
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -42,7 +42,7 @@ extern "C" {
 
 /**
  * @defgroup TM_USART_DMA
- * @brief    DMA TX functionality for TM USART library - http://stm32f4-discovery.com/2015/04/library-55-extend-usart-with-tx-dma
+ * @brief    DMA TX functionality for TM USART library - http://stm32f4-discovery.net/2015/04/library-55-extend-usart-with-tx-dma
  * @{
  *
  * This library allows you to send data over USART with DMA feature.

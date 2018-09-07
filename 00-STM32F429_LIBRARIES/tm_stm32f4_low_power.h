@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2014/10/library-39-power-consumption-modes-for-stm32f4
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2014/10/library-39-power-consumption-modes-for-stm32f4
  * @version v1.2
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -42,7 +42,7 @@ extern "C" {
 
 /**
  * @defgroup TM_LOWPOWER
- * @brief    Low power library for STM32F4xx devices - http://stm32f4-discovery.com/2014/10/library-39-power-consumption-modes-for-stm32f4
+ * @brief    Low power library for STM32F4xx devices - http://stm32f4-discovery.net/2014/10/library-39-power-consumption-modes-for-stm32f4
  * @{
  *
  * This library can put MCU into 3 different modes:
