@@ -1,9 +1,9 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2014/07/library-21-read-sd-card-fatfs-stm32f4xx-devices/
- * @link    http://stm32f4-discovery.com/2014/08/library-29-usb-msc-host-usb-flash-drive-stm32f4xx-devices
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2014/07/library-21-read-sd-card-fatfs-stm32f4xx-devices/
+ * @link    http://stm32f4-discovery.net/2014/08/library-29-usb-msc-host-usb-flash-drive-stm32f4xx-devices
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -37,7 +37,7 @@
 
 /**
  * @defgroup TM_USB_MSC_HOST
- * @brief    USB MSC HOST library for STM32F4xx devices - http://stm32f4-discovery.com/2014/07/library-21-read-sd-card-fatfs-stm32f4xx-devices/ - http://stm32f4-discovery.com/2014/08/library-29-usb-msc-host-usb-flash-drive-stm32f4xx-devices
+ * @brief    USB MSC HOST library for STM32F4xx devices - http://stm32f4-discovery.net/2014/07/library-21-read-sd-card-fatfs-stm32f4xx-devices/ - http://stm32f4-discovery.net/2014/08/library-29-usb-msc-host-usb-flash-drive-stm32f4xx-devices
  * @{
  *
  * This library allows you to read and write data to USB mass storage devices.

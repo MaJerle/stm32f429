@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2014/05/library-10-stmpe811-touch-screen-driver-for-stm32f429-discovery-board/
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2014/05/library-10-stmpe811-touch-screen-driver-for-stm32f429-discovery-board/
  * @version v1.2
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -42,7 +42,7 @@ extern "C" {
 
 /**
  * @defgroup TM_STMPE811
- * @brief    STMPE811 Touch screen controller library - http://stm32f4-discovery.com/2014/05/library-10-stmpe811-touch-screen-driver-for-stm32f429-discovery-board/
+ * @brief    STMPE811 Touch screen controller library - http://stm32f4-discovery.net/2014/05/library-10-stmpe811-touch-screen-driver-for-stm32f429-discovery-board/
  * @{
  *
  * It can be used on STM32F429 Discovery board, or any other LCD with 240*320 pixels

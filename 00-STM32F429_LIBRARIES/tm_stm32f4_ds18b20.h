@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2014/05/13-reading-temperature-with-dallas-ds18b20-on-stm32f429-discovery-board/
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2014/05/13-reading-temperature-with-dallas-ds18b20-on-stm32f429-discovery-board/
  * @version v2.0
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -32,8 +32,8 @@
  *
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
- *	@website	http://stm32f4-discovery.com
- *	@link		http://stm32f4-discovery.com/2014/05/13-reading-temperature-with-dallas-ds18b20-on-stm32f429-discovery-board/
+ *	@website	http://stm32f4-discovery.net
+ *	@link		http://stm32f4-discovery.net/2014/05/13-reading-temperature-with-dallas-ds18b20-on-stm32f429-discovery-board/
  *	@version 	v2.0
  *	@ide		Keil uVision
  *	@license	GNU GPL v3
@@ -62,7 +62,7 @@
  * Version 1.1
  *	- December 06, 2014
  *	- Now CRC is calculated and checked if data are valid
- *	- New version of OneWire library is required, download already available on stm32f4-discovery.com
+ *	- New version of OneWire library is required, download already available on stm32f4-discovery.net
  *
  * With this you can read temperature, set and get temperature resolution from 9 to 12 bits
  * and check if device is DS18B20
@@ -79,7 +79,7 @@
 
 /**
  * @defgroup TM_DS12820
- * @brief    Library for interfacing DS18B20 temperature sensor from Dallas semiconductors - http://stm32f4-discovery.com/2014/05/13-reading-temperature-with-dallas-ds18b20-on-stm32f429-discovery-board/
+ * @brief    Library for interfacing DS18B20 temperature sensor from Dallas semiconductors - http://stm32f4-discovery.net/2014/05/13-reading-temperature-with-dallas-ds18b20-on-stm32f429-discovery-board/
  * @{
  *
  * With this you can read temperature, set and get temperature resolution from 9 to 12 bits and check if device is DS18B20.
@@ -96,7 +96,7 @@
  Version 1.1
   - December 06, 2014
   - Now CRC is calculated and checked if data are valid
-  - New version of OneWire library is required, download already available on stm32f4-discovery.com
+  - New version of OneWire library is required, download already available on stm32f4-discovery.net
 
  Version 1.0
   - First release
@@ -118,7 +118,7 @@
 
 /* OneWire version check */
 #if TM_ONEWIRE_H < 200
-#error "Please update TM ONEWIRE LIB, minimum required version is 2.0.0. Download available on stm32f4-discovery.com website"
+#error "Please update TM ONEWIRE LIB, minimum required version is 2.0.0. Download available on stm32f4-discovery.net website"
 #endif
 
 /**

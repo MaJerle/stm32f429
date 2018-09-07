@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2015/05/library-59-change-pll-settings-while-stm32f4xx-is-running
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2015/05/library-59-change-pll-settings-while-stm32f4xx-is-running
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -42,7 +42,7 @@ extern "C" {
 
 /**
  * @defgroup TM_RCC
- * @brief    RCC library for STM32F4xx devices - http://stm32f4-discovery.com/2015/05/library-59-change-pll-settings-while-stm32f4xx-is-running
+ * @brief    RCC library for STM32F4xx devices - http://stm32f4-discovery.net/2015/05/library-59-change-pll-settings-while-stm32f4xx-is-running
  * @{
  *
  * This library allows you to change PLL settings on the FLY.

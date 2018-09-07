@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2014/07/library-20-independent-watchdog-timer-on-stm32f4xx/
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2014/07/library-20-independent-watchdog-timer-on-stm32f4xx/
  * @version v1.2
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -36,7 +36,7 @@
 
 /**
  * @defgroup TM_WATCHDOG
- * @brief    Independent Watchdog timer for STM32F4xx - http://stm32f4-discovery.com/2014/07/library-20-independent-watchdog-timer-on-stm32f4xx/
+ * @brief    Independent Watchdog timer for STM32F4xx - http://stm32f4-discovery.net/2014/07/library-20-independent-watchdog-timer-on-stm32f4xx/
  * @{
  *
  * \par Changelog

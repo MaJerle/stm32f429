@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2014/06/library-18-ili9341-ltdc-stm32f429-discovery/
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2014/06/library-18-ili9341-ltdc-stm32f429-discovery/
  * @version v1.4
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -42,7 +42,7 @@ extern "C" {
 
 /**
  * @defgroup TM_ILI9341_LTDC
- * @brief    ILI9341 library for LCD on STM32F429 Discovery, with LTDC hardware support - http://stm32f4-discovery.com/2014/06/library-18-ili9341-ltdc-stm32f429-discovery/
+ * @brief    ILI9341 library for LCD on STM32F429 Discovery, with LTDC hardware support - http://stm32f4-discovery.net/2014/06/library-18-ili9341-ltdc-stm32f429-discovery/
  * @{
  *
  * @note     Only works for STM32F4(2/3)9-Discovery because it has LTDC inside and external memory for data

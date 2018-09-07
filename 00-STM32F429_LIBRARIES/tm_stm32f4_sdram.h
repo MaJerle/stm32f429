@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2014/05/library-14-working-with-sdram-on-stm32f429-discovery/
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2014/05/library-14-working-with-sdram-on-stm32f429-discovery/
  * @version v1.3
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -36,7 +36,7 @@
 
 /**
  * @defgroup TM_SDRAM
- * @brief    Connect external SDRAM to STM32F4xx devices with integrated FMC peripheral -  http://stm32f4-discovery.com/2014/05/library-14-working-with-sdram-on-stm32f429-discovery/
+ * @brief    Connect external SDRAM to STM32F4xx devices with integrated FMC peripheral -  http://stm32f4-discovery.net/2014/05/library-14-working-with-sdram-on-stm32f429-discovery/
  * @{
  *
  * This library allows you to connect and use external SDRAM.

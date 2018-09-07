@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2014/10/library-41-stdio-implementation-for-stm32f4
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2014/10/library-41-stdio-implementation-for-stm32f4
  * @version v1.1
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -42,7 +42,7 @@ extern "C" {
 
 /**
  * @defgroup TM_STDIO
- * @brief    Simple STDIO output & input stream implementation for STM32F4 - http://stm32f4-discovery.com/2014/10/library-41-stdio-implementation-for-stm32f4
+ * @brief    Simple STDIO output & input stream implementation for STM32F4 - http://stm32f4-discovery.net/2014/10/library-41-stdio-implementation-for-stm32f4
  * @{
  *
  * This library allows you to use printf (stdout) and fprintf functions on STM32F4

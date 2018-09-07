@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2015/05/library-61-ssd1306-oled-i2c-lcd-for-stm32f4xx
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2015/05/library-61-ssd1306-oled-i2c-lcd-for-stm32f4xx
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -42,7 +42,7 @@ extern "C" {
 
 /**
  * @defgroup TM_SSD1306
- * @brief    Library for 128x64 SSD1306 I2C LCD - http://stm32f4-discovery.com/2015/05/library-61-ssd1306-oled-i2c-lcd-for-stm32f4xx
+ * @brief    Library for 128x64 SSD1306 I2C LCD - http://stm32f4-discovery.net/2015/05/library-61-ssd1306-oled-i2c-lcd-for-stm32f4xx
  * @{
  *
  * This SSD1306 LCD uses I2C for communication

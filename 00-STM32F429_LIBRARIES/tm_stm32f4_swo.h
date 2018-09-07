@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2014/12/library-46-debug-stm32f4-device-swo-feature/
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2014/12/library-46-debug-stm32f4-device-swo-feature/
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -42,7 +42,7 @@ extern "C" {
 
 /**
  * @defgroup TM_SWO
- * @brief    SWO Debugging library for Cortex-M4/M3 processors including STM32F4xx - http://stm32f4-discovery.com/2014/12/library-46-debug-stm32f4-device-swo-feature/
+ * @brief    SWO Debugging library for Cortex-M4/M3 processors including STM32F4xx - http://stm32f4-discovery.net/2014/12/library-46-debug-stm32f4-device-swo-feature/
  * @{
  *
  * Instead of using UART for debugging your program, you can use better solution for this.

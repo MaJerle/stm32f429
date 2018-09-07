@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2014/07/library-19-use-internal-rtc-on-stm32f4xx-devices/
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2014/07/library-19-use-internal-rtc-on-stm32f4xx-devices/
  * @version 1.7.1
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -42,7 +42,7 @@ extern "C" {
 
 /**
  * @defgroup TM_RTC
- * @brief    RTC Library for STM32F4xx devices - http://stm32f4-discovery.com/2014/07/library-19-use-internal-rtc-on-stm32f4xx-devices/
+ * @brief    RTC Library for STM32F4xx devices - http://stm32f4-discovery.net/2014/07/library-19-use-internal-rtc-on-stm32f4xx-devices/
  * @{
  *
  * \par Features

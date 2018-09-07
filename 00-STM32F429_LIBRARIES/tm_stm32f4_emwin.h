@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2015/01/library-50-stemwin-for-stm32f429-discovery
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2015/01/library-50-stemwin-for-stm32f429-discovery
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -42,7 +42,7 @@ extern "C" {
 
 /**
  * @defgroup TM_EMWIN
- * @brief    STemWin implementation for STM32F429-Discovery - http://stm32f4-discovery.com/2015/01/library-50-stemwin-stm32f429-discovery/
+ * @brief    STemWin implementation for STM32F429-Discovery - http://stm32f4-discovery.net/2015/01/library-50-stemwin-stm32f429-discovery/
  * @{
  *
  * Library is only low-layer implementation between STemWin GUI and STM32F429-Discovery board.

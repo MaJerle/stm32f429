@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2014/10/library-38-external-interrupts-for-stm32f4
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2014/10/library-38-external-interrupts-for-stm32f4
  * @version v1.4
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -42,7 +42,7 @@ extern "C" {
 
 /**
  * @defgroup TM_EXTI
- * @brief    External interrupts library for STM32F4 devices - http://stm32f4-discovery.com/2014/10/library-38-external-interrupts-for-stm32f4
+ * @brief    External interrupts library for STM32F4 devices - http://stm32f4-discovery.net/2014/10/library-38-external-interrupts-for-stm32f4
  * @{
  *
  * This library allows you to easy enable external interrupt on specific pin.

@@ -19,11 +19,11 @@ When you download repository and open project, you have to set correct your targ
 If you use other device in your project, then set your project and copy settings there from target options.
 
 More information below
-http://stm32f4-discovery.com
+http://stm32f4-discovery.net
 
 
 First time with Discovery board?
-http://stm32f4-discovery.com
+http://stm32f4-discovery.net
 
 Current librarires:
 

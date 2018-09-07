@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2014/06/library-17-nrf24l01-stm32f4xx/
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2014/06/library-17-nrf24l01-stm32f4xx/
  * @version v1.1.1
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -42,7 +42,7 @@ extern "C" {
 
 /**
  * @defgroup TM_NRF24L01P
- * @brief    nRF24L01+ library for STM32F4xx devices - http://stm32f4-discovery.com/2014/06/library-17-nrf24l01-stm32f4xx/
+ * @brief    nRF24L01+ library for STM32F4xx devices - http://stm32f4-discovery.net/2014/06/library-17-nrf24l01-stm32f4xx/
  * @{
  *
  * This library allows you to work with nRF24L01+ modules.

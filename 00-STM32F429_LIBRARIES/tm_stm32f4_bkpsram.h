@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2014/12/library-45-interface-backup-sram-on-stm32f4
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2014/12/library-45-interface-backup-sram-on-stm32f4
  * @version v1.1
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -42,7 +42,7 @@ extern "C" {
 
 /**
  * @defgroup TM_BKPSRAM
- * @brief    4-kBytes backup ram library for STM32F4xx - http://stm32f4-discovery.com/2014/12/library-45-interface-backup-sram-on-stm32f4
+ * @brief    4-kBytes backup ram library for STM32F4xx - http://stm32f4-discovery.net/2014/12/library-45-interface-backup-sram-on-stm32f4
  * @{
  *
  * This library is not supported for STM32F401 and STM32F411, because they don't have backup SRAM.

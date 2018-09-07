@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2014/04/library-06-ad-converter-on-stm32f4xx/
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2014/04/library-06-ad-converter-on-stm32f4xx/
  * @version v1.2
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -37,7 +37,7 @@
 
 /**
  * @defgroup TM_ADC
- * @brief    ADC library for STM32F4xx - http://stm32f4-discovery.com/2014/04/library-06-ad-converter-on-stm32f4xx/
+ * @brief    ADC library for STM32F4xx - http://stm32f4-discovery.net/2014/04/library-06-ad-converter-on-stm32f4xx/
  * @{
  *
  * This library allows you to operate with ADC peripheral on STM32F4xx devices.

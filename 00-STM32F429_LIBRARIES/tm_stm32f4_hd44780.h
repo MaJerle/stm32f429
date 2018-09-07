@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2014/06/library-16-interfacing-hd44780-lcd-controller-with-stm32f4/
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2014/06/library-16-interfacing-hd44780-lcd-controller-with-stm32f4/
  * @version v1.2
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -36,7 +36,7 @@
 
 /**
  * @defgroup TM_HD44780
- * @brief    HD44780 LCD driver library for STM32F4xx - http://stm32f4-discovery.com/2014/06/library-16-interfacing-hd44780-lcd-controller-with-stm32f4/
+ * @brief    HD44780 LCD driver library for STM32F4xx - http://stm32f4-discovery.net/2014/06/library-16-interfacing-hd44780-lcd-controller-with-stm32f4/
  * @{
  *
  *	It also supports all HD44780 compatible LCD drivers.

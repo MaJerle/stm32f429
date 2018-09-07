@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2015/01/library-51-chrom-art-accelerator-dma2d-graphic-library-on-stm32f429-discovery
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2015/01/library-51-chrom-art-accelerator-dma2d-graphic-library-on-stm32f429-discovery
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -42,7 +42,7 @@ extern "C" {
 
 /**
  * @defgroup TM_DMA2D_GRAPHIC
- * @brief    Graphic library for LCD using DMA2D for transferring graphic data to memory for LCD display - http://stm32f4-discovery.com/2015/01/library-51-chrom-art-accelerator-dma2d-graphic-library-on-stm32f429-discovery
+ * @brief    Graphic library for LCD using DMA2D for transferring graphic data to memory for LCD display - http://stm32f4-discovery.net/2015/01/library-51-chrom-art-accelerator-dma2d-graphic-library-on-stm32f429-discovery
  * @{
  *
  * This DMA2D graphic library is used only for graphic data transmission to memory.

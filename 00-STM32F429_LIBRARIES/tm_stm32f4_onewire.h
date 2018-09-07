@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2014/05/library-12-onewire-library-for-stm43f4xx/
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2014/05/library-12-onewire-library-for-stm43f4xx/
  * @version v2.1
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -42,7 +42,7 @@ extern "C" {
 
 /**
  * @defgroup TM_ONEWIRE
- * @brief    Onewire library for STM32F4 devices - http://stm32f4-discovery.com/2014/05/library-12-onewire-library-for-stm43f4xx/
+ * @brief    Onewire library for STM32F4 devices - http://stm32f4-discovery.net/2014/05/library-12-onewire-library-for-stm43f4xx/
  * @{
  *
  * As of version 2.0 you can now use more than just one one-wire "port" on STM32F4. This allows you to group devices to separate ports.

@@ -1,8 +1,8 @@
 /** 
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2015/03/library-53-gpio-for-stm32f4
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2015/03/library-53-gpio-for-stm32f4
  * @version v1.5
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -42,7 +42,7 @@ extern "C" {
 
 /**
  * @defgroup TM_GPIO
- * @brief    TM GPIO Library for STM32F4xx - http://stm32f4-discovery.com/2015/03/library-53-gpio-for-stm32f4
+ * @brief    TM GPIO Library for STM32F4xx - http://stm32f4-discovery.net/2015/03/library-53-gpio-for-stm32f4
  * @{
  *
  * GPIO library can be used for GPIO pins. 

@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2014/04/library-08-ili9341-lcd-on-stm32f429-discovery-board/
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2014/04/library-08-ili9341-lcd-on-stm32f429-discovery-board/
  * @version v1.3
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -37,7 +37,7 @@
 
 /**
  * @defgroup TM_ILI9341
- * @brief    ILI9341 library for STM32F4xx with SPI communication, without LTDC hardware - http://stm32f4-discovery.com/2014/04/library-08-ili9341-lcd-on-stm32f429-discovery-board/
+ * @brief    ILI9341 library for STM32F4xx with SPI communication, without LTDC hardware - http://stm32f4-discovery.net/2014/04/library-08-ili9341-lcd-on-stm32f429-discovery-board/
  * @{
  *
  * This driver works for all STM32F4xx series with built in SPI peripheral.

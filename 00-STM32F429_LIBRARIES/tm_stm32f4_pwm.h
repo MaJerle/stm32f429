@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2014/09/library-33-pwm-for-stm32f4xx/
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2014/09/library-33-pwm-for-stm32f4xx/
  * @version v2.1
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -36,7 +36,7 @@
 
 /**
  * @defgroup TM_PWM
- * @brief    PWM library for STM32F4xx devices, supporting all possible timers with PWM feature - http://stm32f4-discovery.com/2014/09/library-33-pwm-for-stm32f4xx/
+ * @brief    PWM library for STM32F4xx devices, supporting all possible timers with PWM feature - http://stm32f4-discovery.net/2014/09/library-33-pwm-for-stm32f4xx/
  * @{
  *
  * This library allows you to use PWM feature on any timer with supported PWM output

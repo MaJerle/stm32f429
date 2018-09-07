@@ -1,8 +1,8 @@
 /**
  * @author  Tilen Majerle
  * @email   tilen@majerle.eu
- * @website http://stm32f4-discovery.com
- * @link    http://stm32f4-discovery.com/2014/04/stm32f429-discovery-gpio-tutorial-with-onboard-leds-and-button/
+ * @website http://stm32f4-discovery.net
+ * @link    http://stm32f4-discovery.net/2014/04/stm32f429-discovery-gpio-tutorial-with-onboard-leds-and-button/
  * @version v1.11
  * @ide     Keil uVision
  * @license GNU GPL v3
@@ -37,7 +37,7 @@
 
 /**
  * @defgroup TM_DISCO
- * @brief    Leds and buttons for STM32F4 Discovery, Nucleo and eval boards - http://stm32f4-discovery.com/2014/04/stm32f429-discovery-gpio-tutorial-with-onboard-leds-and-button/
+ * @brief    Leds and buttons for STM32F4 Discovery, Nucleo and eval boards - http://stm32f4-discovery.net/2014/04/stm32f429-discovery-gpio-tutorial-with-onboard-leds-and-button/
  * @{
  *
  * Library supports all STM32F4 Discovery boards, All STM32F4 Nucleo boards and STM324x9 eval board.
