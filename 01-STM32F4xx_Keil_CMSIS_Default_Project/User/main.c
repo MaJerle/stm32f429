@@ -5,7 +5,7 @@
  *
  * @author    Tilen Majerle
  * @email     tilen@majerle.eu
- * @website   http://stm32f4-discovery.com
+ * @website   http://stm32f4-discovery.net
  * @ide       Keil uVision 5
  * @conf      PLL parameters are set in "Options for Target" -> "C/C++" -> "Defines"
  * @packs     STM32F4xx Keil packs version 2.4.0 or greater required

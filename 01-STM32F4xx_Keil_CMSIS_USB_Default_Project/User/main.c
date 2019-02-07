@@ -5,7 +5,7 @@
  *
  * @author    Tilen Majerle
  * @email     tilen@majerle.eu
- * @website   http://stm32f4-discovery.com
+ * @website   http://stm32f4-discovery.net
  * @ide		  Keil uVision 5
  * @conf      System clock configured for USB if needed
  * @conf      STM32F429 and STM32F446 are set to 168MHz and STM32F411xx to 96MHz for USB 48MHz clock

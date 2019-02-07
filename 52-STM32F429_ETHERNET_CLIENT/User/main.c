@@ -5,7 +5,7 @@
  *
  *	@author		Tilen Majerle
  *	@email		tilen@majerle.eu
- *	@website	http://stm32f4-discovery.com
+ *	@website	http://stm32f4-discovery.net
  *	@ide		Keil uVision 5
  *	@conf		PLL parameters are set in "Options for Target" -> "C/C++" -> "Defines"
  *	@packs		STM32F4xx Keil packs version 2.2.0 or greater required
@@ -80,7 +80,7 @@ int main(void) {
 		if (MyDNS.Working == 0 && MyDNS.HaveIP == 0) {
 			/* Try to start DNS */
 			/* It will return error in case Ethernet is not ready yet so you have to try more than one time */
-			if (TM_ETHERNETDNS_GetHostByName("stm32f4-discovery.com") == TM_ETHERNET_Result_Ok) {
+			if (TM_ETHERNETDNS_GetHostByName("stm32f4-discovery.net") == TM_ETHERNET_Result_Ok) {
 				/* We started with working */
 				MyDNS.Working = 1;
 			}
@@ -89,7 +89,7 @@ int main(void) {
 		/* On button pressed, make a new connection and if we have IP known */
 		if (TM_DISCO_ButtonOnPressed() && MyDNS.HaveIP) {
 			/* Try to make a new connection, port 80 */
-			if (TM_ETHERNETCLIENT_Connect("stm32f4-discovery.com", MyDNS.ip[0], MyDNS.ip[1], MyDNS.ip[2], MyDNS.ip[3], 80, &requests_count) != TM_ETHERNET_Result_Ok) {
+			if (TM_ETHERNETCLIENT_Connect("stm32f4-discovery.net", MyDNS.ip[0], MyDNS.ip[1], MyDNS.ip[2], MyDNS.ip[3], 80, &requests_count) != TM_ETHERNET_Result_Ok) {
 				/* Print to user */
 				printf("Can not make a new connection!\n");
 			}
@@ -110,7 +110,7 @@ void TM_DELAY_1msHandler(void) {
 uint16_t TM_ETHERNETCLIENT_CreateHeadersCallback(TM_TCPCLIENT_t* connection, char* buffer, uint16_t buffer_length) {
 	/* Create request headers */
 	sprintf(buffer, "GET /hello_world.php?number=%d HTTP/1.1\r\n", *(uint16_t *)connection->user_parameters);
-	strcat(buffer, "Host: stm32f4-discovery.com\r\n");
+	strcat(buffer, "Host: stm32f4-discovery.net\r\n");
 	strcat(buffer, "Connection: close\r\n");
 	strcat(buffer, "\r\n");
 	
@@ -179,8 +179,8 @@ void TM_ETHERNETCLIENT_ConnectionStartedCallback(TM_TCPCLIENT_t* connection) {
 
 /* DNS has IP */
 void TM_ETHERNETDNS_FoundCallback(char* host_name, uint8_t ip_addr1, uint8_t ip_addr2, uint8_t ip_addr3, uint8_t ip_addr4) {
-	/* If host name is stm32f4-discovery.com */
-	if (strstr(host_name, "stm32f4-discovery.com")) {
+	/* If host name is stm32f4-discovery.net */
+	if (strstr(host_name, "stm32f4-discovery.net")) {
 		/* We have IP */
 		MyDNS.HaveIP = 1;
 		/* Save IP */
@@ -198,8 +198,8 @@ void TM_ETHERNETDNS_FoundCallback(char* host_name, uint8_t ip_addr1, uint8_t ip_
 
 /* DNS error callback */
 void TM_ETHERNETDNS_ErrorCallback(char* host_name) {
-	/* If host name is stm32f4-discovery.com */
-	if (strstr(host_name, "stm32f4-discovery.com")) {
+	/* If host name is stm32f4-discovery.net */
+	if (strstr(host_name, "stm32f4-discovery.net")) {
 		/* We have IP */
 		MyDNS.HaveIP = 0;
 		/* We are not working anymore */

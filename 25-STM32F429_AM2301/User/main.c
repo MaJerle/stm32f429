@@ -5,7 +5,7 @@
  *
  *	@author		Tilen Majerle
  *	@email		tilen@majerle.eu
- *	@website	http://stm32f4-discovery.com
+ *	@website	http://stm32f4-discovery.net
  *	@ide		Keil uVision 5
  *	@packs		STM32F4xx Keil packs version 2.2.0 or greater required
  *	@stdperiph	STM32F4xx Standard peripheral drivers version 1.4.0 or greater required
@@ -35,7 +35,7 @@ int main(void) {
 	TM_ILI9341_Rotate(TM_ILI9341_Orientation_Portrait_2);
 	TM_ILI9341_Fill(ILI9341_COLOR_ORANGE);
 	TM_ILI9341_Puts(10, 10, "AM2301 (DHT21)\nsensor", &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_ORANGE);
-	TM_ILI9341_Puts(90, 310, "stm32f4-discovery.com", &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_ORANGE);
+	TM_ILI9341_Puts(90, 310, "stm32f4-discovery.net", &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_ORANGE);
 	
 	/* Initialize sensor */
 	TM_AM2301_Init();

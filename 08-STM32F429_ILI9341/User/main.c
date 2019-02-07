@@ -5,7 +5,7 @@
  *
  *	@author		Tilen Majerle
  *	@email		tilen@majerle.eu
- *	@website	http://stm32f4-discovery.com
+ *	@website	http://stm32f4-discovery.net
  *	@ide		Keil uVision 5
  *	@packs		STM32F4xx Keil packs version 2.2.0 or greater required
  *	@stdperiph	STM32F4xx Standard peripheral drivers version 1.4.0 or greater required
@@ -50,7 +50,7 @@ int main(void) {
 	/* Put string with black foreground color and blue background with 11x18px font */
 	TM_ILI9341_Puts(60, 150, "ILI9341 LCD Module", &TM_Font_11x18, ILI9341_COLOR_BLACK, ILI9341_COLOR_BLUE2);
 	/* Put string with black foreground color and red background with 11x18px font */
-	TM_ILI9341_Puts(45, 229, "stm32f4-discovery.com", &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_ORANGE);
+	TM_ILI9341_Puts(45, 229, "stm32f4-discovery.net", &TM_Font_7x10, ILI9341_COLOR_BLACK, ILI9341_COLOR_ORANGE);
 
 	/* While loop */
 	while (1) {

@@ -3,7 +3,7 @@
  * 
  *	@author 	Tilen Majerle
  *	@email		tilen@majerle.eu
- *	@website	http://stm32f4-discovery.com
+ *	@website	http://stm32f4-discovery.net
  *	@version 	v1.0
  *	@ide		Keil uVision 5
  *	@license	GNU GPL v3

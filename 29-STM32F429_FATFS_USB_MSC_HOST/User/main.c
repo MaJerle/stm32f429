@@ -3,7 +3,7 @@
  *
  *	@author		Tilen Majerle
  *	@email		tilen@majerle.eu
- *	@website	http://stm32f4-discovery.com
+ *	@website	http://stm32f4-discovery.net
  *	@ide		Keil uVision 5
  *	@packs		STM32F4xx Keil packs version 2.2.0 or greater required
  *	@stdperiph	STM32F4xx Standard peripheral drivers version 1.4.0 or greater required
@@ -68,7 +68,7 @@ int main(void) {
 						
 						/* Put data */
 						f_puts("This is my first file with USB and FatFS\n", &USB_Fil);
-						f_puts("with USB MSC HOST library from stm32f4-discovery.com\n", &USB_Fil);
+						f_puts("with USB MSC HOST library from stm32f4-discovery.net\n", &USB_Fil);
 						f_puts("----------------------------------------------------\n", &USB_Fil);
 						f_puts("USB total and free space:\n\n", &USB_Fil);
 						/* Total space */
