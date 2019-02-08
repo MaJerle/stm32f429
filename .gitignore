@@ -19,6 +19,9 @@
 *.dbgconf
 *.uvguix
 *.uvoptx
+*.__i
+
+RTE/
 
 *.TMP
 /docs_src/x_Doxyfile.doxy
