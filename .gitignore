@@ -1,5 +1,5 @@
+#Build Keil files
 *.rar
-
 *.o
 *.d
 *.crf
@@ -20,8 +20,26 @@
 *.uvguix
 *.uvoptx
 *.__i
-
 RTE/
+
+# IAR Settings  
+**/settings/*.crun  
+**/settings/*.dbgdt  
+**/settings/*.cspy  
+**/settings/*.cspy.*  
+**/settings/*.xcl  
+**/settings/*.dni  
+**/settings/*.wsdt  
+**/settings/*.wspos  
+
+# IAR Debug Exe  
+**/Exe/*.sim  
+
+# IAR Debug Obj  
+**/Obj/*.pbd  
+**/Obj/*.pbd.*  
+**/Obj/*.pbi  
+**/Obj/*.pbi.*  
 
 *.TMP
 /docs_src/x_Doxyfile.doxy
