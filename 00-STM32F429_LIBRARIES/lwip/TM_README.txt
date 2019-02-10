@@ -1,1 +1,0 @@
-Place folder www to your SD card if you want to run SD card server example

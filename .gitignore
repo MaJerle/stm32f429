@@ -20,6 +20,8 @@
 *.uvguix
 *.uvoptx
 *.__i
+*.i
+*.txt
 RTE/
 
 # IAR Settings  
