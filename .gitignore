@@ -70,6 +70,7 @@ RTE/
 x64/
 x86/
 bld/
+[Bb]in/
 [Oo]bj/
 [Ll]og/
 
@@ -372,6 +373,7 @@ ASALocalRun/
 # MSBuild Binary and Structured Log
 *.binlog
 
+log_file.txt
 .metadata/
 .mxproject
 .settings/
