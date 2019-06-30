@@ -44,8 +44,6 @@ int main(void) {
 	/* Put data to LCD */
 	PCD8544_Refresh();
 
-    while (1) {
-
-    }
+    while (1) {}
 }
 
