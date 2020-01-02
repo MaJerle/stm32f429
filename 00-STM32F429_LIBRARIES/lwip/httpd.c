@@ -1840,7 +1840,7 @@ static err_t http_init_file(struct http_state *hs, struct fs_file *file, int is_
     hs->handle = file;
     hs->file = (char*)file->data;
     LWIP_ASSERT("File length must be positive!", (file->len >= 0));
-#if LWIP_HTTPD_CUSTOM_FILES /* Fix by Tilen Majerle */
+#if LWIP_HTTPD_CUSTOM_FILES /* Fix by Tilen MAJERLE */
 	if (file->is_custom_file) {
 		hs->left = 0;
 	} else {
@@ -2148,13 +2148,13 @@ void httpd_init(void) {
 	}
 }
 
-/* Disable server, by Tilen Majerle */
+/* Disable server, by Tilen MAJERLE */
 void httpd_deinit(void) {
 	/* Disable server */
 	/* Set accept function to NULL */
 	/* Ignore all connections */
 	tcp_accept(server_tpcb, NULL);
-} /* By Tilen Majerle */
+} /* By Tilen MAJERLE */
 
 
 #if LWIP_HTTPD_SSI

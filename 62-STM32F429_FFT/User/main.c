@@ -3,7 +3,7 @@
  *
  *	Works on STM32F429-Discovery board because it has LCD
  *
- *	@author		Tilen Majerle
+ *	@author		Tilen MAJERLE
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.net
  *	@ide		Keil uVision 5

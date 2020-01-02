@@ -1,7 +1,7 @@
 /**
  *	DAC with DMA and TIM signal generator feature for STM32F4
  *
- *	@author 	Tilen Majerle
+ *	@author 	Tilen MAJERLE
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.net
  *	@link		http://stm32f4-discovery.net/2014/09/library-36-dac-signal-generator-stm32f4
@@ -10,7 +10,7 @@
  *	@license	GNU GPL v3
  *	
  * |----------------------------------------------------------------------
- * | Copyright (C) Tilen Majerle, 2014
+ * | Copyright (C) Tilen MAJERLE, 2014
  * | 
  * | This program is free software: you can redistribute it and/or modify
  * | it under the terms of the GNU General Public License as published by
@@ -50,7 +50,7 @@
  * Pins for DAC are fixed, analog and can not be changed
  */
 /**
- * @author  Tilen Majerle
+ * @author  Tilen MAJERLE
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.net
  * @link    http://stm32f4-discovery.net/2014/09/library-36-dac-signal-generator-stm32f4
@@ -61,7 +61,7 @@
  *	
 @verbatim
    ----------------------------------------------------------------------
-    Copyright (C) Tilen Majerle, 2015
+    Copyright (C) Tilen MAJERLE, 2015
     
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by

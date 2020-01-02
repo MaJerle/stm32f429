@@ -325,7 +325,7 @@
 #endif /* USE_HSE_BYPASS */
 #endif /* STM32F40_41xxx || STM32F427_437xx || STM32F429_439xx || STM32F401xx */  
 
-/* Edit by Tilen Majerle */
+/* Edit by Tilen MAJERLE */
 /* ALL PLL Parameters are defined in "Options for target" -> C/C++ -> Defines section */
 
 
@@ -347,7 +347,7 @@
   * @{
   */
 
-/* Settings by Tilen Majerle */
+/* Settings by Tilen MAJERLE */
 #ifdef USE_INTERNAL_RC_CLOCK
 	/* 16MHz internal RC clock */
 	uint32_t SystemCoreClock = ((16000000UL / PLL_M) * PLL_N) / PLL_P;

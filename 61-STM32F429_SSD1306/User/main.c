@@ -3,7 +3,7 @@
  *
  *	Before you start, select your target, on the right of the "Load" button
  *
- *	@author		Tilen Majerle
+ *	@author		Tilen MAJERLE
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.net
  *	@ide		Keil uVision 5
@@ -48,7 +48,7 @@ int main(void) {
 	
 	/* Go to location X = 15, Y = 45 */
 	TM_SSD1306_GotoXY(15, 45);
-	TM_SSD1306_Puts("Tilen Majerle", &TM_Font_7x10, SSD1306_COLOR_WHITE);
+	TM_SSD1306_Puts("Tilen MAJERLE", &TM_Font_7x10, SSD1306_COLOR_WHITE);
 	
 	/* Update screen, send changes to LCD */
 	TM_SSD1306_UpdateScreen();

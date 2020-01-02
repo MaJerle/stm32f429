@@ -2,7 +2,7 @@
  * PCD8544 LCD controller driver.
  * This controller is used in Nokia's 3310 and 5110 LCD's.
  *
- *	@author 	Tilen Majerle
+ *	@author 	Tilen MAJERLE
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.net
  *	@link		http://stm32f4-discovery.net/pcd8544-nokia-33105110-lcd-stm32f429-discovery-library/
@@ -11,7 +11,7 @@
  *	@license	GNU GPL v3
  *	
  * |----------------------------------------------------------------------
- * | Copyright (C) Tilen Majerle, 2014
+ * | Copyright (C) Tilen MAJERLE, 2014
  * | 
  * | This program is free software: you can redistribute it and/or modify
  * | it under the terms of the GNU General Public License as published by

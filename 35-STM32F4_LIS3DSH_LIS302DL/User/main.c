@@ -3,7 +3,7 @@
  *
  *  Designed to work with STM32F4-Discovery board with onboard device
  *
- *	@author		Tilen Majerle
+ *	@author		Tilen MAJERLE
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.net
  *	@ide		Keil uVision 5

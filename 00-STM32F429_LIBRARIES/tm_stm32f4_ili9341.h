@@ -1,5 +1,5 @@
 /**
- * @author  Tilen Majerle
+ * @author  Tilen MAJERLE
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.net
  * @link    http://stm32f4-discovery.net/2014/04/library-08-ili9341-lcd-on-stm32f429-discovery-board/
@@ -10,7 +10,7 @@
  *	
 @verbatim
    ----------------------------------------------------------------------
-    Copyright (C) Tilen Majerle, 2015
+    Copyright (C) Tilen MAJERLE, 2015
     
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by

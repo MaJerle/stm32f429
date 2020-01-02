@@ -368,7 +368,7 @@
 /************************* PLL Parameters *************************************/
 
 /* Everything is defined in "Options for target" inside "Keil uVision" */
-/* Settings by Tilen Majerle */
+/* Settings by Tilen MAJERLE */
 #ifdef USE_INTERNAL_RC_CLOCK
 	/* 16MHz internal RC clock */
 	uint32_t SystemCoreClock = ((16000000UL / PLL_M) * PLL_N) / PLL_P;

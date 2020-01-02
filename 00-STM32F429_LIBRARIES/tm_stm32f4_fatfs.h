@@ -1,5 +1,5 @@
 /**
- * @author  Tilen Majerle
+ * @author  Tilen MAJERLE
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.net
  * @link    http://stm32f4-discovery.net/2014/07/library-21-read-sd-card-fatfs-stm32f4xx-devices/
@@ -11,7 +11,7 @@
  *	
 @verbatim
    ----------------------------------------------------------------------
-    Copyright (C) Tilen Majerle, 2015
+    Copyright (C) Tilen MAJERLE, 2015
     
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by

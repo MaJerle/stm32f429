@@ -2,7 +2,7 @@
  *	PWM IN library for STM32F4xx devices
  *	It allows you to measure PWM signal with timer
  *
- *	@author 	Tilen Majerle
+ *	@author 	Tilen MAJERLE
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.net
  *	@link		http://stm32f4-discovery.net/2015/01/library-48-measure-pwm-input-signal-with-stm32f4
@@ -11,7 +11,7 @@
  *	@license	GNU GPL v3
  *	
  * |----------------------------------------------------------------------
- * | Copyright (C) Tilen Majerle, 2014
+ * | Copyright (C) Tilen MAJERLE, 2014
  * | 
  * | This program is free software: you can redistribute it and/or modify
  * | it under the terms of the GNU General Public License as published by

@@ -5,7 +5,7 @@
  *
  *	To see, how timer is configured for delay, open project's defines.h file
  *
- *	@author		Tilen Majerle
+ *	@author		Tilen MAJERLE
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.net
  *	@ide		Keil uVision 5

@@ -10,7 +10,7 @@
  *	You have to set correct target above first, but code will be always compiled,
  *	if you select STM32F4-Discovery or Nucleo F401RE boards
  *
- *	@author		Tilen Majerle
+ *	@author		Tilen MAJERLE
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.net
  *	@ide		Keil uVision 5

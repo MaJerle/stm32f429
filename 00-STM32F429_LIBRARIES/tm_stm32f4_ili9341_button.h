@@ -2,7 +2,7 @@
  *	Button library for ILI9341 LCD controller
  * 	and STMPE811 Resistive touch screen controller
  *
- *	@author 	Tilen Majerle
+ *	@author 	Tilen MAJERLE
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.net
  *	@link		http://stm32f4-discovery.net/2014/05/11-button-library-for-ili9341-lcd-and-stmpe811-touch-controller-on-stm32f429-discovery-board/
@@ -11,7 +11,7 @@
  *	@license	GNU GPL v3
  *	
  * |----------------------------------------------------------------------
- * | Copyright (C) Tilen Majerle, 2014
+ * | Copyright (C) Tilen MAJERLE, 2014
  * | 
  * | This program is free software: you can redistribute it and/or modify
  * | it under the terms of the GNU General Public License as published by

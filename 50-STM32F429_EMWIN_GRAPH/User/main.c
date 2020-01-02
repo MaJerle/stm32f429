@@ -7,7 +7,7 @@
  *
  * Function TM_EMWIN_Exec is the same as GUI_Exec function.
  *
- * @author    Tilen Majerle
+ * @author    Tilen MAJERLE
  * @email     tilen@majerle.eu
  * @website   http://stm32f4-discovery.net
  * @ide       Keil uVision 5

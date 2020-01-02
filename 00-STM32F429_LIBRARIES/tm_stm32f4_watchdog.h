@@ -1,5 +1,5 @@
 /**
- * @author  Tilen Majerle
+ * @author  Tilen MAJERLE
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.net
  * @link    http://stm32f4-discovery.net/2014/07/library-20-independent-watchdog-timer-on-stm32f4xx/
@@ -10,7 +10,7 @@
  *	
 @verbatim
    ----------------------------------------------------------------------
-    Copyright (C) Tilen Majerle, 2014
+    Copyright (C) Tilen MAJERLE, 2014
     
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by

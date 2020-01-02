@@ -232,6 +232,6 @@ void httpd_post_data_recved(void *connection, u16_t recved_len);
 #endif /* LWIP_HTTPD_SUPPORT_POST */
 
 void httpd_init(void);
-void httpd_deinit(void); /* By Tilen Majerle */
+void httpd_deinit(void); /* By Tilen MAJERLE */
 
 #endif /* __HTTPD_H__ */

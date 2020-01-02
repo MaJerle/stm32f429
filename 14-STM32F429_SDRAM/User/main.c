@@ -3,7 +3,7 @@
  *
  *	Works only for STM32F429-Discovery board or STM324x9-EVAL board
  *
- *	@author		Tilen Majerle
+ *	@author		Tilen MAJERLE
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.net
  *	@ide		Keil uVision 5

@@ -2,7 +2,7 @@
  *	Keil project for USB MSC HOST
  *	Data is saved into SD card via SDIO communication and into USB flash drive
  *
- *	@author		Tilen Majerle
+ *	@author		Tilen MAJERLE
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.net
  *	@ide		Keil uVision 5

@@ -345,7 +345,7 @@
 
 #if defined (STM32F411xE)
 
-/* Added by Tilen Majerle to set 48MHz for USB, SDIO and RNG */		
+/* Added by Tilen MAJERLE to set 48MHz for USB, SDIO and RNG */		
 #ifdef PLL_Q	
 #undef PLL_Q	
 #endif

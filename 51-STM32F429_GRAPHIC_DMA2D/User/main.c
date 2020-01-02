@@ -3,7 +3,7 @@
  *	
  *	Works only on STM32F429-Discovery!
  *
- *	@author		Tilen Majerle
+ *	@author		Tilen MAJERLE
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.net
  *	@ide		Keil uVision 5

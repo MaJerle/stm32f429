@@ -2,7 +2,7 @@
  *	Coocox project template for ethernet server.
  *	File to be shown to user is stored on SD card
  *
- *	@author		Tilen Majerle
+ *	@author		Tilen MAJERLE
  *	@email		tilen@majerle.eu
  *	@website	http://stm32f4-discovery.net
  *	@ide		Coocox
