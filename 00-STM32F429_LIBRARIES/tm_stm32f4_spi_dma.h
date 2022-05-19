@@ -7,21 +7,21 @@
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   DMA functionality for TM SPI library
- *	
+ *
 @verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen MAJERLE, 2015
-    
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     any later version.
-     
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
@@ -49,7 +49,7 @@ extern "C" {
  *
  * It can send (TX only), receive (RX only) or transmit (TX and RX) data over SPI with DMA feature.
  *
- * \par 
+ * \par
  *
  * @note All possible DMA Streams and Channels for SPI DMA can be found in STM32F4xx Reference manual.
  *
@@ -57,13 +57,13 @@ extern "C" {
  *
 @verbatim
 SPIx     | DMA  | DMA TX Stream | DMA TX Channel | DMA RX Stream | DMA RX Channel
-                                                   
-SPI1     | DMA2 | DMA Stream 3  | DMA Channel 3  | DMA Stream 2  | DMA Channel 3 
+
+SPI1     | DMA2 | DMA Stream 3  | DMA Channel 3  | DMA Stream 2  | DMA Channel 3
 SPI2     | DMA1 | DMA Stream 4  | DMA Channel 0  | DMA Stream 3  | DMA Channel 0
-SPI3     | DMA1 | DMA Stream 5  | DMA Channel 0  | DMA Stream 0  | DMA Channel 0 
-SPI4     | DMA2 | DMA Stream 1  | DMA Channel 4  | DMA Stream 0  | DMA Channel 4 
-SPI5     | DMA2 | DMA Stream 6  | DMA Channel 7  | DMA Stream 5  | DMA Channel 7 
-SPI6     | DMA2 | DMA Stream 5  | DMA Channel 1  | DMA Stream 6  | DMA Channel 0 
+SPI3     | DMA1 | DMA Stream 5  | DMA Channel 0  | DMA Stream 0  | DMA Channel 0
+SPI4     | DMA2 | DMA Stream 1  | DMA Channel 4  | DMA Stream 0  | DMA Channel 4
+SPI5     | DMA2 | DMA Stream 6  | DMA Channel 7  | DMA Stream 5  | DMA Channel 7
+SPI6     | DMA2 | DMA Stream 5  | DMA Channel 1  | DMA Stream 6  | DMA Channel 0
 @endverbatim
  *
  * \par Changelog
@@ -76,7 +76,7 @@ SPI6     | DMA2 | DMA Stream 5  | DMA Channel 1  | DMA Stream 6  | DMA Channel 0
  Version 1.1
   - June 06, 2015
   - Added TM DMA library support for future purpose
- 
+
  Version 1.0
   - First release
 @endverbatim
@@ -168,7 +168,7 @@ SPI6     | DMA2 | DMA Stream 5  | DMA Channel 1  | DMA Stream 6  | DMA Channel 0
 /**
  * @}
  */
- 
+
 /**
  * @defgroup TM_SPI_DMA_Typedefs
  * @brief    Library Typedefs
@@ -191,7 +191,7 @@ SPI6     | DMA2 | DMA Stream 5  | DMA Channel 1  | DMA Stream 6  | DMA Channel 0
  *
  * @note   SPI HAVE TO be previously initialized using @ref TM_SPI library
  * @param  *SPIx: Pointer to SPI peripheral where you want to enable DMA
- * @retlva None 
+ * @retlva None
  */
 void TM_SPI_DMA_Init(SPI_TypeDef* SPIx);
 
@@ -284,19 +284,19 @@ uint8_t TM_SPI_DMA_SendHalfWord(SPI_TypeDef* SPIx, uint16_t value, uint16_t coun
  * @param  *SPIx: Pointer to SPIx where you want to enable DMA TX mode
  * @retval Sending status:
  *            - 0: SPI DMA does not sending any more
- *            - > 0: SPI DMA is still sending data 
+ *            - > 0: SPI DMA is still sending data
  */
 uint8_t TM_SPI_DMA_Working(SPI_TypeDef* SPIx);
 
 /**
- * @brief  Gets TX DMA stream for specific SPI 
+ * @brief  Gets TX DMA stream for specific SPI
  * @param  *SPIx: Pointer to SPIx peripheral where you want to get TX stream
  * @retval Pointer to SPI DMA TX stream
  */
 DMA_Stream_TypeDef* TM_SPI_DMA_GetStreamTX(SPI_TypeDef* SPIx);
 
 /**
- * @brief  Gets RX DMA stream for specific SPI 
+ * @brief  Gets RX DMA stream for specific SPI
  * @param  *SPIx: Pointer to SPIx peripheral where you want to get RX stream
  * @retval Pointer to SPI DMA RX stream
  */
@@ -319,11 +319,11 @@ void TM_SPI_DMA_DisableInterrupts(SPI_TypeDef* SPIx);
 /**
  * @}
  */
- 
+
 /**
  * @}
  */
- 
+
 /**
  * @}
  */

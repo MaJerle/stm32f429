@@ -7,21 +7,21 @@
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   USB Virtual COM Port for STM32F4xx devices
- *	
+ *
 @verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen MAJERLE, 2015
-    
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     any later version.
-     
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
@@ -48,7 +48,7 @@ extern "C" {
  * With this library, your STM32F4xx will be seen to your computer as Virtual COM Port (VCP).
  * To be able to work, you have to install ST's VCP Driver, from link below:
  *
- *		http://www.st.com/web/en/catalog/tools/PF257938
+ *      http://www.st.com/web/en/catalog/tools/PF257938
  *
  * This library can work in 2 ways.
  * First and default is Full-Speed mode, second option is High-Speed mode.
@@ -63,20 +63,20 @@ extern "C" {
  * For security reasons set 22Ohm resistors in serial to your data pins.
  *
  * USB FS MODE (micro USB connected on STM32F4 Discovery board)
- *	- This is default option and don't need any special settings.
+ *  - This is default option and don't need any special settings.
  *
  * \par Pinout for USB FS mode
  *
 @verbatim
-USB			STM32F4xx
-Data +		PA12
-Data -		PA11
+USB         STM32F4xx
+Data +      PA12
+Data -      PA11
 @endverbatim
  *
  * USB HS in FS mode (micro USB connected on STM32F429 Discovery board)
  *
- *	If you are working with STM32F429 Discovery board, and you want to use microUSB connector for VCP,
- *	then set define below in your defines.h file
+ *  If you are working with STM32F429 Discovery board, and you want to use microUSB connector for VCP,
+ *  then set define below in your defines.h file
  *
 @verbatim
 //Activate USB HS in FS mode
@@ -86,9 +86,9 @@ Data -		PA11
  * \par Pinout for USB HS in FS mode
  *
 @verbatim
-USB			STM32F4xx
-Data +		PB15
-Data -		PB14
+USB         STM32F4xx
+Data +      PB15
+Data -      PB14
 @endverbatim
  *
  *
@@ -147,13 +147,13 @@ Data -		PB14
  * @note   Increase this value if you need more memory for VCP receive data
  */
 #ifndef USB_VCP_RECEIVE_BUFFER_LENGTH
-#define USB_VCP_RECEIVE_BUFFER_LENGTH		128
+#define USB_VCP_RECEIVE_BUFFER_LENGTH       128
 #endif
 
 /**
  * @}
  */
- 
+
 /**
  * @defgroup TM_USB_VCP_Typedefs
  * @brief    Library Typedefs
@@ -164,44 +164,44 @@ Data -		PB14
  * @brief VCP Result Enumerations
  */
 typedef enum {
-	TM_USB_VCP_OK,                  /*!< Everything ok */
-	TM_USB_VCP_ERROR,               /*!< An error occurred */
-	TM_USB_VCP_RECEIVE_BUFFER_FULL, /*!< Receive buffer is full */
-	TM_USB_VCP_DATA_OK,             /*!< Data OK */
-	TM_USB_VCP_DATA_EMPTY,          /*!< Data empty */
-	TM_USB_VCP_NOT_CONNECTED,       /*!< Not connected to PC */
-	TM_USB_VCP_CONNECTED,           /*!< Connected to PC */
-	TM_USB_VCP_DEVICE_SUSPENDED,    /*!< Device is suspended */
-	TM_USB_VCP_DEVICE_RESUMED       /*!< Device is resumed */
+    TM_USB_VCP_OK,                  /*!< Everything ok */
+    TM_USB_VCP_ERROR,               /*!< An error occurred */
+    TM_USB_VCP_RECEIVE_BUFFER_FULL, /*!< Receive buffer is full */
+    TM_USB_VCP_DATA_OK,             /*!< Data OK */
+    TM_USB_VCP_DATA_EMPTY,          /*!< Data empty */
+    TM_USB_VCP_NOT_CONNECTED,       /*!< Not connected to PC */
+    TM_USB_VCP_CONNECTED,           /*!< Connected to PC */
+    TM_USB_VCP_DEVICE_SUSPENDED,    /*!< Device is suspended */
+    TM_USB_VCP_DEVICE_RESUMED       /*!< Device is resumed */
 } TM_USB_VCP_Result;
 
 /**
  * @brief  Structure for USART if you are working USB/UART converter with STM32F4xx
  */
 typedef struct {
-	uint32_t Baudrate; /*!< Baudrate, which is set by user on terminal. 
-	                        Value is number of bits per second, for example: 115200 */
-	uint8_t Stopbits;  /*!< Stop bits, which is set by user on terminal.
-	                        Possible values:
+    uint32_t Baudrate; /*!< Baudrate, which is set by user on terminal.
+                            Value is number of bits per second, for example: 115200 */
+    uint8_t Stopbits;  /*!< Stop bits, which is set by user on terminal.
+                            Possible values:
                                - 0: 1 stop bit
                                - 1: 1.5 stop bits
                                - 2: 2 stop bits */
-	uint8_t DataBits;  /*!< Data bits, which is set by user on terminal.
+    uint8_t DataBits;  /*!< Data bits, which is set by user on terminal.
                             Possible values:
                                - 5: 5 data bits
                                - 6: 6 data bits
                                - 7: 7 data bits
                                - 8: 8 data bits
                                - 9: 9 data bits */
-	uint8_t Parity;    /*!< Parity, which is set by user on terminal.
+    uint8_t Parity;    /*!< Parity, which is set by user on terminal.
                             Possible values:
                                - 0: No parity
                                - 1: Odd parity
                                - 2: Even parity
                                - 3: Mark parity
                                - 4: Space parity */
-	uint8_t Changed;   /*!< When you check for settings in my function, 
-	                        this will be set to 1 if user has changed parameters,
+    uint8_t Changed;   /*!< When you check for settings in my function,
+                            this will be set to 1 if user has changed parameters,
                             so you can reinitialize USART peripheral if you need to. */
 } TM_USB_VCP_Settings_t;
 
@@ -214,7 +214,7 @@ typedef struct {
  * @brief    Library Functions
  * @{
  */
- 
+
 /**
  * @brief  Initializes USB VCP
  * @param  None
@@ -316,11 +316,11 @@ extern TM_USB_VCP_Result TM_INT_USB_VCP_AddReceived(uint8_t c);
 /**
  * @}
  */
- 
+
 /**
  * @}
  */
- 
+
 /**
  * @}
  */

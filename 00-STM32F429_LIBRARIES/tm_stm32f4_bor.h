@@ -2,26 +2,26 @@
  * @author  Tilen MAJERLE
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.net
- * @link    
+ * @link
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   Brown-Out detection for STM32F4xx
- *	
+ *
 @verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen MAJERLE, 2015
-    
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     any later version.
-     
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
@@ -74,23 +74,23 @@ extern "C" {
 /**
  * @}
  */
- 
+
 /**
  * @defgroup TM_BOR_Typedefs
  * @brief    Library Typedefs
  * @{
  */
- 
+
 typedef enum {
-	TM_BOR_Level_None = OB_BOR_OFF,
-	TM_BOR_Level_1 = OB_BOR_LEVEL1,
-	TM_BOR_Level_2 = OB_BOR_LEVEL2,
-	TM_BOR_Level_3 = OB_BOR_LEVEL3
+    TM_BOR_Level_None = OB_BOR_OFF,
+    TM_BOR_Level_1 = OB_BOR_LEVEL1,
+    TM_BOR_Level_2 = OB_BOR_LEVEL2,
+    TM_BOR_Level_3 = OB_BOR_LEVEL3
 } TM_BOR_Level_t;
- 
+
 typedef enum {
-	TM_BOR_Result_Ok,   /*!< Everything OK */
-	TM_BOR_Result_Error /*!< An error has occurred */
+    TM_BOR_Result_Ok,   /*!< Everything OK */
+    TM_BOR_Result_Error /*!< An error has occurred */
 } TM_BOR_Result_t;
 
 /**
@@ -109,11 +109,11 @@ TM_BOR_Level_t TM_BOR_Get(void);
 /**
  * @}
  */
- 
+
 /**
  * @}
  */
- 
+
 /**
  * @}
  */

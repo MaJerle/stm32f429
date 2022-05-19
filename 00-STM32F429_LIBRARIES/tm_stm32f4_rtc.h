@@ -7,21 +7,21 @@
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   Internal RTC library for STM32F4xx devices
- *	
+ *
 @verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen MAJERLE, 2015
-    
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     any later version.
-     
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
@@ -68,7 +68,7 @@ extern "C" {
  *
 @verbatim
  STM32F4XX  Oscillator   Description
-	
+
  PC14       OSC1         Oscillator terminal 1
  PC15       OSC2         Oscillator terminal 2
 @endverbatim
@@ -160,29 +160,29 @@ extern "C" {
 /* RTC clock is: f_clk = RTCCLK(LSI or LSE) / ((RTC_SYNC_PREDIV + 1) * (RTC_ASYNC_PREDIV + 1)) */
 /* Sync pre division for clock */
 #ifndef RTC_SYNC_PREDIV
-#define RTC_SYNC_PREDIV					0x3FF
+#define RTC_SYNC_PREDIV                 0x3FF
 #endif
 /* Async pre division for clock */
 #ifndef RTC_ASYNC_PREDIV
-#define RTC_ASYNC_PREDIV				0x1F
+#define RTC_ASYNC_PREDIV                0x1F
 #endif
 /* NVIC global Priority set */
 #ifndef RTC_PRIORITY
-#define RTC_PRIORITY					0x04
+#define RTC_PRIORITY                    0x04
 #endif
 /* Sub priority for wakeup trigger */
 #ifndef RTC_WAKEUP_SUBPRIORITY
-#define RTC_WAKEUP_SUBPRIORITY			0x00
+#define RTC_WAKEUP_SUBPRIORITY          0x00
 #endif
 /* Sub priority for alarm trigger */
 #ifndef RTC_ALARM_SUBPRIORITY
-#define RTC_ALARM_SUBPRIORITY			0x01
+#define RTC_ALARM_SUBPRIORITY           0x01
 #endif
 
- /**
- * @}
- */
- 
+/**
+* @}
+*/
+
 /**
  * @defgroup TM_RTC_Typedefs
  * @brief    Library Typedefs
@@ -193,16 +193,16 @@ extern "C" {
  * @brief  RTC Struct for date/time
  */
 typedef struct {
-	uint8_t seconds;     /*!< Seconds parameter, from 00 to 59 */
-	uint16_t subseconds; /*!< Subsecond downcounter. When it reaches zero, it's reload value is the same as
+    uint8_t seconds;     /*!< Seconds parameter, from 00 to 59 */
+    uint16_t subseconds; /*!< Subsecond downcounter. When it reaches zero, it's reload value is the same as
                                  @ref RTC_SYNC_PREDIV, so in our case 0x3FF = 1023, 1024 steps in one second */
-	uint8_t minutes;     /*!< Minutes parameter, from 00 to 59 */
-	uint8_t hours;       /*!< Hours parameter, 24Hour mode, 00 to 23 */
-	uint8_t day;         /*!< Day in a week, from 1 to 7 */
-	uint8_t date;        /*!< Date in a month, 1 to 31 */
-	uint8_t month;       /*!< Month in a year, 1 to 12 */
-	uint8_t year;        /*!< Year parameter, 00 to 99, 00 is 2000 and 99 is 2099 */
-	uint32_t unix;       /*!< Seconds from 01.01.1970 00:00:00 */
+    uint8_t minutes;     /*!< Minutes parameter, from 00 to 59 */
+    uint8_t hours;       /*!< Hours parameter, 24Hour mode, 00 to 23 */
+    uint8_t day;         /*!< Day in a week, from 1 to 7 */
+    uint8_t date;        /*!< Date in a month, 1 to 31 */
+    uint8_t month;       /*!< Month in a year, 1 to 12 */
+    uint8_t year;        /*!< Year parameter, 00 to 99, 00 is 2000 and 99 is 2099 */
+    uint32_t unix;       /*!< Seconds from 01.01.1970 00:00:00 */
 } TM_RTC_t;
 
 /**
@@ -214,33 +214,33 @@ typedef TM_RTC_t TM_RTC_Time_t;
  * @brief RTC Result enumeration
  */
 typedef enum {
-	TM_RTC_Result_Ok,   /*!< Everything OK */
-	TM_RTC_Result_Error /*!< An error occurred */
+    TM_RTC_Result_Ok,   /*!< Everything OK */
+    TM_RTC_Result_Error /*!< An error occurred */
 } TM_RTC_Result_t;
 
 /**
  * @brief RTC date and time format
  */
 typedef enum {
-	TM_RTC_Format_BIN = 0x00, /*!< RTC data in binary format */
-	TM_RTC_Format_BCD         /*!< RTC data in binary-coded decimal format */
+    TM_RTC_Format_BIN = 0x00, /*!< RTC data in binary format */
+    TM_RTC_Format_BCD         /*!< RTC data in binary-coded decimal format */
 } TM_RTC_Format_t;
 
 /**
  * @brief  RTC Interrupt enumeration
  */
 typedef enum {
-	TM_RTC_Int_Disable = 0x00, /*!< Disable RTC wakeup interrupts */
-	TM_RTC_Int_60s,            /*!< RTC Wakeup interrupt every 60 seconds */
-	TM_RTC_Int_30s,            /*!< RTC Wakeup interrupt every 30 seconds */
-	TM_RTC_Int_15s,            /*!< RTC Wakeup interrupt every 15 seconds */
-	TM_RTC_Int_10s,            /*!< RTC Wakeup interrupt every 10 seconds */
-	TM_RTC_Int_5s,             /*!< RTC Wakeup interrupt every 5 seconds */
-	TM_RTC_Int_2s,             /*!< RTC Wakeup interrupt every 2 seconds */
-	TM_RTC_Int_1s,             /*!< RTC Wakeup interrupt every 1 seconds */
-	TM_RTC_Int_500ms,          /*!< RTC Wakeup interrupt every 500 milliseconds */
-	TM_RTC_Int_250ms,          /*!< RTC Wakeup interrupt every 250 milliseconds */
-	TM_RTC_Int_125ms           /*!< RTC Wakeup interrupt every 125 milliseconds */
+    TM_RTC_Int_Disable = 0x00, /*!< Disable RTC wakeup interrupts */
+    TM_RTC_Int_60s,            /*!< RTC Wakeup interrupt every 60 seconds */
+    TM_RTC_Int_30s,            /*!< RTC Wakeup interrupt every 30 seconds */
+    TM_RTC_Int_15s,            /*!< RTC Wakeup interrupt every 15 seconds */
+    TM_RTC_Int_10s,            /*!< RTC Wakeup interrupt every 10 seconds */
+    TM_RTC_Int_5s,             /*!< RTC Wakeup interrupt every 5 seconds */
+    TM_RTC_Int_2s,             /*!< RTC Wakeup interrupt every 2 seconds */
+    TM_RTC_Int_1s,             /*!< RTC Wakeup interrupt every 1 seconds */
+    TM_RTC_Int_500ms,          /*!< RTC Wakeup interrupt every 500 milliseconds */
+    TM_RTC_Int_250ms,          /*!< RTC Wakeup interrupt every 250 milliseconds */
+    TM_RTC_Int_125ms           /*!< RTC Wakeup interrupt every 125 milliseconds */
 } TM_RTC_Int_t;
 
 /**
@@ -248,35 +248,35 @@ typedef enum {
  * @note   Internal clock is not accurate and should not be used in production
  */
 typedef enum {
-	TM_RTC_ClockSource_Internal = 0x00, /*!< Use internal clock source for RTC (LSI oscillator) */
-	TM_RTC_ClockSource_External         /*!< Use external clock source for RTC (LSE oscillator) */
+    TM_RTC_ClockSource_Internal = 0x00, /*!< Use internal clock source for RTC (LSI oscillator) */
+    TM_RTC_ClockSource_External         /*!< Use external clock source for RTC (LSE oscillator) */
 } TM_RTC_ClockSource_t;
 
 /**
  * @brief  RTC Alarm type
  */
 typedef enum {
-	TM_RTC_AlarmType_DayInWeek, /*!< Trigger alarm every day in a week, days from 1 to 7 (Monday to Sunday) */
-	TM_RTC_AlarmType_DayInMonth /*!< Trigger alarm every month */
+    TM_RTC_AlarmType_DayInWeek, /*!< Trigger alarm every day in a week, days from 1 to 7 (Monday to Sunday) */
+    TM_RTC_AlarmType_DayInMonth /*!< Trigger alarm every month */
 } TM_RTC_AlarmType_t;
 
 /**
  * @brief  Alarm identifier you will use for Alarm functions
  */
 typedef enum {
-	TM_RTC_Alarm_A = 0x00, /*!< Work with alarm A */
-	TM_RTC_Alarm_B         /*!< Work with alarm B */
+    TM_RTC_Alarm_A = 0x00, /*!< Work with alarm A */
+    TM_RTC_Alarm_B         /*!< Work with alarm B */
 } TM_RTC_Alarm_t;
 
 /**
  * @brief  RTC structure for alarm time
  */
 typedef struct {
-	TM_RTC_AlarmType_t alarmtype; /*!< Alarm type setting. @ref TM_RTC_AlarmType_t for more info */
-	uint8_t seconds;              /*!< Alarm seconds value */
-	uint8_t minutes;              /*!< Alarm minutes value */
-	uint8_t hours;                /*!< Alarm hours value */
-	uint8_t day;                  /*!< Alarm day value. If you select trigger for alarm every week, then this parameter has value between
+    TM_RTC_AlarmType_t alarmtype; /*!< Alarm type setting. @ref TM_RTC_AlarmType_t for more info */
+    uint8_t seconds;              /*!< Alarm seconds value */
+    uint8_t minutes;              /*!< Alarm minutes value */
+    uint8_t hours;                /*!< Alarm hours value */
+    uint8_t day;                  /*!< Alarm day value. If you select trigger for alarm every week, then this parameter has value between
                                           1 and 7, representing days in a week, Monday to Sunday
                                           If you select trigger for alarm every month, then this parameter has value between
                                           1 - 31, representing days in a month. */
@@ -366,7 +366,7 @@ void TM_RTC_GetDateTime(TM_RTC_t* data, TM_RTC_Format_t format);
 /**
  * @brief  Get number of days in month
  * @note   This function also detects if it is leap year and returns different number for February
- * @param  month: Month number in year, valid numbers are 1 - 12 
+ * @param  month: Month number in year, valid numbers are 1 - 12
  * @param  year: Year number where you want to get days in month, last 2 digits
  * @retval Number of days in specific month and year
  */
@@ -453,11 +453,11 @@ void TM_RTC_AlarmBHandler(void);
 /**
  * @}
  */
- 
+
 /**
  * @}
  */
- 
+
 /**
  * @}
  */

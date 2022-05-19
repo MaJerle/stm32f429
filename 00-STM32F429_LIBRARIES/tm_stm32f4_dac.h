@@ -7,21 +7,21 @@
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   DAC library for STM32F4xx
- *	
+ *
 @verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen MAJERLE, 2015
-    
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     any later version.
-     
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
@@ -46,14 +46,14 @@ extern "C" {
  * @{
  *
  * This library provides 12-bit digital to analog output, values from 0 to 4095
- *	
+ *
  * @par Pinout
  *
 @verbatim
-DAC	channel		STM32F4xx
-		
-DAC1			PA4
-DAC2			PA5
+DAC channel     STM32F4xx
+
+DAC1            PA4
+DAC2            PA5
 @endverbatim
  *
  * \par Changelog
@@ -62,7 +62,7 @@ DAC2			PA5
  Version 1.1
   - March 12, 2015
   - Support for my new GPIO library
- 
+
  Version 1.0
   - First release
 @endverbatim
@@ -95,8 +95,8 @@ DAC2			PA5
  * @brief  Select which DAC channel
  */
 typedef enum {
-	TM_DAC1, /*!< DAC channel 1 */
-	TM_DAC2  /*!< DAC channel 2 */
+    TM_DAC1, /*!< DAC channel 1 */
+    TM_DAC2  /*!< DAC channel 2 */
 } TM_DAC_Channel_t;
 
 /**
@@ -108,7 +108,7 @@ typedef enum {
  * @brief    Library Functions
  * @{
  */
- 
+
 /**
  * @brief  Initializes DAC channel and it's pin
  * @param  DACx: DAC Channel you will use. This parameter can be a value of @ref TM_DAC_Channel_t enumeration
@@ -127,11 +127,11 @@ void TM_DAC_SetValue(TM_DAC_Channel_t DACx, uint16_t value);
 /**
  * @}
  */
- 
+
 /**
  * @}
  */
- 
+
 /**
  * @}
  */

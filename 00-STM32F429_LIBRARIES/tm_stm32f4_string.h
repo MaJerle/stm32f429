@@ -7,21 +7,21 @@
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   String library for STM32F4xx devices
- *	
+ *
 @verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen MAJERLE, 2015
-    
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     any later version.
-     
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
@@ -53,14 +53,14 @@ extern "C" {
  * If you use Keil uVision, then you can set HEAP memory by simply open startup file (*.s) and increase variable "Heap_Size".
  *
  * For other compilers, check it's manual.
- * 
+ *
  * \par Changelog
  *
 @verbatim
  Version 1.1
   - May 23, 2015
   - Added support for replacing string
- 
+
  Version 1.0
   - First release
 @endverbatim
@@ -99,7 +99,7 @@ extern "C" {
 /**
  * @}
  */
- 
+
 /**
  * @defgroup TM_STRING_Typedefs
  * @brief    Library Typedefs
@@ -110,9 +110,9 @@ extern "C" {
  * @brief  Main string structure
  */
 typedef struct {
-	char** Strings;    /*!< Pointer to pointers to strings */
-	uint32_t Count;    /*!< Number of string elementsz */
-	uint32_t Size;     /*!< Number of all allocated pointers for strings */
+    char** Strings;    /*!< Pointer to pointers to strings */
+    uint32_t Count;    /*!< Number of string elementsz */
+    uint32_t Size;     /*!< Number of all allocated pointers for strings */
 } TM_STRING_t;
 
 /**
@@ -202,11 +202,11 @@ void TM_STRING_Free(TM_STRING_t* String);
 /**
  * @}
  */
- 
+
 /**
  * @}
  */
- 
+
 /**
  * @}
  */

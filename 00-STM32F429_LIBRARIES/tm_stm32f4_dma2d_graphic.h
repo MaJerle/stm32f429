@@ -7,21 +7,21 @@
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   Graphic library for LCD using DMA2D for transferring graphic data to memory for LCD display
- *	
+ *
 @verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen MAJERLE, 2015
-    
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     any later version.
-     
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
@@ -54,8 +54,8 @@ extern "C" {
  *
  * If you want to make custom application, you can use this library for that.
  * Changes you need to make are:
- * 	- Set custom start address in memory where pixel 0,0 is for LCD
- * 	- Set LCD width and height
+ *  - Set custom start address in memory where pixel 0,0 is for LCD
+ *  - Set LCD width and height
  *
  * With this library you can also rotate LCD.
  * This allows you to draw graphic in different LCD orientation.
@@ -80,7 +80,7 @@ extern "C" {
  - defines.h
 @endverbatim
  */
- 
+
 #include "stm32f4xx.h"
 #include "stm32f4xx_rcc.h"
 #include "stm32f4xx_dma2d.h"
@@ -96,22 +96,22 @@ extern "C" {
  * @brief  Default LCD width in pixels
  */
 #ifndef DMA2D_GRAPHIC_LCD_WIDTH
-	#if defined(DMA2D_GRAPHIC_USE_STM324x9_EVAL) || defined(TM_DISCO_STM324x9_EVAL)
-		#define DMA2D_GRAPHIC_LCD_WIDTH     640 /*!< STM32439-Eval board */
-	#else
-		#define DMA2D_GRAPHIC_LCD_WIDTH     240 /*!< STM32F429-Discovery board */
-	#endif
+#if defined(DMA2D_GRAPHIC_USE_STM324x9_EVAL) || defined(TM_DISCO_STM324x9_EVAL)
+#define DMA2D_GRAPHIC_LCD_WIDTH     640 /*!< STM32439-Eval board */
+#else
+#define DMA2D_GRAPHIC_LCD_WIDTH     240 /*!< STM32F429-Discovery board */
+#endif
 #endif
 
 /**
  * @brief  Default LCD height in pixels
  */
 #ifndef DMA2D_GRAPHIC_LCD_HEIGHT
-	#if defined(DMA2D_GRAPHIC_USE_STM324x9_EVAL) || defined(TM_DISCO_STM324x9_EVAL)
-		#define DMA2D_GRAPHIC_LCD_HEIGHT    480 /*!< STM32439-Eval board */
-	#else
-		#define DMA2D_GRAPHIC_LCD_HEIGHT    320 /*!< STM32F429-Discovery board */
-	#endif
+#if defined(DMA2D_GRAPHIC_USE_STM324x9_EVAL) || defined(TM_DISCO_STM324x9_EVAL)
+#define DMA2D_GRAPHIC_LCD_HEIGHT    480 /*!< STM32439-Eval board */
+#else
+#define DMA2D_GRAPHIC_LCD_HEIGHT    320 /*!< STM32F429-Discovery board */
+#endif
 #endif
 
 /**
@@ -119,11 +119,11 @@ extern "C" {
  * @note   On STM32F429-Discovery, this is address for SDRAM which operate with LCD and LTDC peripheral
  */
 #ifndef DMA2D_GRAPHIC_RAM_ADDR
-	#if defined(DMA2D_GRAPHIC_USE_STM324x9_EVAL) || defined(TM_DISCO_STM324x9_EVAL)
-		#define DMA2D_GRAPHIC_RAM_ADDR      0xC0000000 /*!< STM32439-Eval board */
-	#else
-		#define DMA2D_GRAPHIC_RAM_ADDR      0xD0000000 /*!< STM32F429-Discovery board */
-	#endif
+#if defined(DMA2D_GRAPHIC_USE_STM324x9_EVAL) || defined(TM_DISCO_STM324x9_EVAL)
+#define DMA2D_GRAPHIC_RAM_ADDR      0xC0000000 /*!< STM32439-Eval board */
+#else
+#define DMA2D_GRAPHIC_RAM_ADDR      0xD0000000 /*!< STM32F429-Discovery board */
+#endif
 #endif
 
 /**
@@ -143,20 +143,20 @@ extern "C" {
  *
  * @{
  */
- 
-#define GRAPHIC_COLOR_WHITE			0xFFFF
-#define GRAPHIC_COLOR_BLACK			0x0000
-#define GRAPHIC_COLOR_RED			0xF800
-#define GRAPHIC_COLOR_GREEN			0x07E0
-#define GRAPHIC_COLOR_GREEN2		0xB723
-#define GRAPHIC_COLOR_BLUE			0x001F
-#define GRAPHIC_COLOR_BLUE2			0x051D
-#define GRAPHIC_COLOR_YELLOW		0xFFE0
-#define GRAPHIC_COLOR_ORANGE		0xFBE4
-#define GRAPHIC_COLOR_CYAN			0x07FF
-#define GRAPHIC_COLOR_MAGENTA		0xA254
-#define GRAPHIC_COLOR_GRAY			0x7BEF
-#define GRAPHIC_COLOR_BROWN			0xBBCA
+
+#define GRAPHIC_COLOR_WHITE         0xFFFF
+#define GRAPHIC_COLOR_BLACK         0x0000
+#define GRAPHIC_COLOR_RED           0xF800
+#define GRAPHIC_COLOR_GREEN         0x07E0
+#define GRAPHIC_COLOR_GREEN2        0xB723
+#define GRAPHIC_COLOR_BLUE          0x001F
+#define GRAPHIC_COLOR_BLUE2         0x051D
+#define GRAPHIC_COLOR_YELLOW        0xFFE0
+#define GRAPHIC_COLOR_ORANGE        0xFBE4
+#define GRAPHIC_COLOR_CYAN          0x07FF
+#define GRAPHIC_COLOR_MAGENTA       0xA254
+#define GRAPHIC_COLOR_GRAY          0x7BEF
+#define GRAPHIC_COLOR_BROWN         0xBBCA
 
 /* Waiting flags */
 #define DMA2D_WORKING               ((DMA2D->CR & DMA2D_CR_START))
@@ -169,7 +169,7 @@ extern "C" {
 /**
  * @}
  */
- 
+
 /**
  * @defgroup TM_DMA2D_GRAPHIC_Typedefs
  * @brief    Library Typedefs
@@ -181,8 +181,8 @@ extern "C" {
  * @note   If you have big poly line, you can use array of this structure for more coordinates
  */
 typedef struct {
-	uint16_t X; /*!< X coordinate for poly line */
-	uint16_t Y; /*!< Y coordinate for poly line */
+    uint16_t X; /*!< X coordinate for poly line */
+    uint16_t Y; /*!< Y coordinate for poly line */
 } TM_DMA2DRAPHIC_Poly_t;
 
 /**
@@ -190,12 +190,12 @@ typedef struct {
  * @note   Meant for private use
  */
 typedef struct {
-	uint16_t Width;
-	uint16_t Height;
-	uint8_t BytesPerPixel;
-	uint32_t BufferStart;
-	uint32_t BufferOffset;
-	uint8_t Orientation;
+    uint16_t Width;
+    uint16_t Height;
+    uint8_t BytesPerPixel;
+    uint32_t BufferStart;
+    uint32_t BufferOffset;
+    uint8_t Orientation;
 } TM_DMA2DGRAPHIC_INT_Conf_t;
 
 /**
@@ -220,7 +220,7 @@ void TM_DMA2DGRAPHIC_Init(void);
  * @brief  Sets layer for DMA2D working memory.
  * @note   This functions just works in memory, so when you set layer,
  *         basically just address offset is used and changed.
- *         
+ *
  * @note   To show anything on LCD you need LTDC or anything else for transmission
  * @param  layer_number: Layer number, starting from 1 to infinity.
  *            You are limited by your LCD size and available memory size
@@ -406,11 +406,11 @@ void TM_INT_DMA2DGRAPHIC_SetConf(TM_DMA2DGRAPHIC_INT_Conf_t* Conf);
 /**
  * @}
  */
- 
+
 /**
  * @}
  */
- 
+
 /**
  * @}
  */

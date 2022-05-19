@@ -7,21 +7,21 @@
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   DMA TX functionality for TM USART library
- *	
+ *
 @verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen MAJERLE, 2015
-    
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     any later version.
-     
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
@@ -80,19 +80,19 @@ UART8      | DMA1 | DMA Stream 0 | DMA Channel 5
 @verbatim
  Version 1.3
   - TM_USART_DMA_Working() function now returns > 0 also when USART works, not only when DMA works.
-     Requires updated USART library  
+     Requires updated USART library
 
  Version 1.2.1
   - Added separate function for enabling/disabling USART DMA interrupts
-  
+
  Version 1.2
   - June 13, 2015
   - Added support for DMA interrupts for USART
-  
+
  Version 1.1
   - June 06, 2015
   - Added TM DMA library support for future purpose
-  
+
  Version 1.0
   - First release
 @endverbatim
@@ -178,7 +178,7 @@ UART8      | DMA1 | DMA Stream 0 | DMA Channel 5
 /**
  * @}
  */
- 
+
 /**
  * @defgroup TM_USART_DMA_Typedefs
  * @brief    Library Typedefs
@@ -238,7 +238,7 @@ void TM_USART_DMA_EnableInterrupts(USART_TypeDef* USARTx);
 void TM_USART_DMA_DisableInterrupts(USART_TypeDef* USARTx);
 
 /**
- * @brief  Gets poitner to DMA stream for desired USART 
+ * @brief  Gets poitner to DMA stream for desired USART
  * @param  *USARTx: Pointer to USART where you wanna get its stream pointer
  * @retval Pointer to DMA stream for desired USART
  */
@@ -279,11 +279,11 @@ uint16_t TM_USART_DMA_Sending(USART_TypeDef* USARTx);
 /**
  * @}
  */
- 
+
 /**
  * @}
  */
- 
+
 /**
  * @}
  */

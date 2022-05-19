@@ -7,21 +7,21 @@
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   Library for interfacing DS18B20 temperature sensor from Dallas semiconductors.
- *	
+ *
 @verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen MAJERLE, 2015
-    
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     any later version.
-     
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
@@ -30,43 +30,43 @@
 /**
  * Library for interfacing DS18B20 temperature sensor from Dallas semiconductors.
  *
- *	@author 	Tilen MAJERLE
- *	@email		tilen@majerle.eu
- *	@website	http://stm32f4-discovery.net
- *	@link		http://stm32f4-discovery.net/2014/05/13-reading-temperature-with-dallas-ds18b20-on-stm32f429-discovery-board/
- *	@version 	v2.0
- *	@ide		Keil uVision
- *	@license	GNU GPL v3
- *	
+ *  @author     Tilen MAJERLE
+ *  @email      tilen@majerle.eu
+ *  @website    http://stm32f4-discovery.net
+ *  @link       http://stm32f4-discovery.net/2014/05/13-reading-temperature-with-dallas-ds18b20-on-stm32f429-discovery-board/
+ *  @version    v2.0
+ *  @ide        Keil uVision
+ *  @license    GNU GPL v3
+ *
  * |----------------------------------------------------------------------
  * | Copyright (C) Tilen MAJERLE, 2014
- * | 
+ * |
  * | This program is free software: you can redistribute it and/or modify
  * | it under the terms of the GNU General Public License as published by
  * | the Free Software Foundation, either version 3 of the License, or
  * | any later version.
- * |  
+ * |
  * | This program is distributed in the hope that it will be useful,
  * | but WITHOUT ANY WARRANTY; without even the implied warranty of
  * | MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * | GNU General Public License for more details.
- * | 
+ * |
  * | You should have received a copy of the GNU General Public License
  * | along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * |----------------------------------------------------------------------
- *	
+ *
  * Version 2.0
- *	- January 04, 2015
- *	- New system, supporting OneWire library 2.0
+ *  - January 04, 2015
+ *  - New system, supporting OneWire library 2.0
  *
  * Version 1.1
- *	- December 06, 2014
- *	- Now CRC is calculated and checked if data are valid
- *	- New version of OneWire library is required, download already available on stm32f4-discovery.net
+ *  - December 06, 2014
+ *  - Now CRC is calculated and checked if data are valid
+ *  - New version of OneWire library is required, download already available on stm32f4-discovery.net
  *
  * With this you can read temperature, set and get temperature resolution from 9 to 12 bits
  * and check if device is DS18B20
- * 
+ *
  * Pin for STM32F4xx is the same as set with TM ONEWIRE library.
  */
 #ifndef TM_DS18B20_H
@@ -83,7 +83,7 @@
  * @{
  *
  * With this you can read temperature, set and get temperature resolution from 9 to 12 bits and check if device is DS18B20.
- * 
+ *
  * Pin for STM32F4xx is the same as set with TM ONEWIRE library.
  *
  * \par Changelog
@@ -129,25 +129,25 @@
 
 /* Every onewire chip has different ROM code, but all the same chips has same family code */
 /* in case of DS18B20 this is 0x28 and this is first byte of ROM address */
-#define DS18B20_FAMILY_CODE				0x28
-#define DS18B20_CMD_ALARMSEARCH			0xEC
+#define DS18B20_FAMILY_CODE             0x28
+#define DS18B20_CMD_ALARMSEARCH         0xEC
 
 /* DS18B20 read temperature command */
-#define DS18B20_CMD_CONVERTTEMP			0x44 	/* Convert temperature */
-#define DS18B20_DECIMAL_STEPS_12BIT		0.0625
-#define DS18B20_DECIMAL_STEPS_11BIT		0.125
-#define DS18B20_DECIMAL_STEPS_10BIT		0.25
-#define DS18B20_DECIMAL_STEPS_9BIT		0.5
+#define DS18B20_CMD_CONVERTTEMP         0x44    /* Convert temperature */
+#define DS18B20_DECIMAL_STEPS_12BIT     0.0625
+#define DS18B20_DECIMAL_STEPS_11BIT     0.125
+#define DS18B20_DECIMAL_STEPS_10BIT     0.25
+#define DS18B20_DECIMAL_STEPS_9BIT      0.5
 
 /* Bits locations for resolution */
-#define DS18B20_RESOLUTION_R1			6
-#define DS18B20_RESOLUTION_R0			5
+#define DS18B20_RESOLUTION_R1           6
+#define DS18B20_RESOLUTION_R0           5
 
 /* CRC enabled */
-#ifdef DS18B20_USE_CRC	
-#define DS18B20_DATA_LEN				9
+#ifdef DS18B20_USE_CRC
+#define DS18B20_DATA_LEN                9
 #else
-#define DS18B20_DATA_LEN				2
+#define DS18B20_DATA_LEN                2
 #endif
 
 /**
@@ -164,10 +164,10 @@
  * @brief  DS18B0 Resolutions available
  */
 typedef enum {
-	TM_DS18B20_Resolution_9bits = 9,   /*!< DS18B20 9 bits resolution */
-	TM_DS18B20_Resolution_10bits = 10, /*!< DS18B20 10 bits resolution */
-	TM_DS18B20_Resolution_11bits = 11, /*!< DS18B20 11 bits resolution */
-	TM_DS18B20_Resolution_12bits = 12  /*!< DS18B20 12 bits resolution */
+    TM_DS18B20_Resolution_9bits = 9,   /*!< DS18B20 9 bits resolution */
+    TM_DS18B20_Resolution_10bits = 10, /*!< DS18B20 10 bits resolution */
+    TM_DS18B20_Resolution_11bits = 11, /*!< DS18B20 11 bits resolution */
+    TM_DS18B20_Resolution_12bits = 12  /*!< DS18B20 12 bits resolution */
 } TM_DS18B20_Resolution_t;
 
 /**
@@ -286,10 +286,10 @@ uint8_t TM_DS18B20_DisableAlarmTemperature(TM_OneWire_t* OneWireStruct, uint8_t*
  * @note   To get all devices on one onewire channel with alarm flag set, you can do this:
 @verbatim
 while (TM_DS18B20_AlarmSearch(&OneWireStruct)) {
-	//Read device ID here 
-	//Print to user device by device
+    //Read device ID here
+    //Print to user device by device
 }
-@endverbatim 
+@endverbatim
  * @retval 1 if any device has flag, otherwise 0
  */
 uint8_t TM_DS18B20_AlarmSearch(TM_OneWire_t* OneWireStruct);
@@ -306,14 +306,14 @@ uint8_t TM_DS18B20_AllDone(TM_OneWire_t* OneWireStruct);
 /**
  * @}
  */
- 
+
 /**
  * @}
  */
- 
+
 /**
  * @}
  */
- 
+
 #endif
 

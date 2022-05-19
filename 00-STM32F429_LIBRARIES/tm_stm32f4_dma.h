@@ -7,21 +7,21 @@
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   DMA library for STM32F4xx for several purposes
- *	
+ *
 @verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen MAJERLE, 2015
-    
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     any later version.
-     
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
@@ -46,15 +46,15 @@ extern "C" {
  * @{
  *
  * This is a generic DMA library for STM32F4xx devices.
- * 
+ *
  * It allows you to easily enable interrupts for DMA streams, checking flags and more.
- * 
+ *
  * It is also designed in a ways that all interrupts that happens are handled by this library. No worries for correct stream handler anymore!
  *
  * \par Customization
- * 
+ *
  * Library implements ALL stream handlers (DMA1,2, streams 0 to 7, together is this 14 stream handlers) but some of my libraries uses default stream handler, like FATFS.
- * FATFS uses DMA2_Stream3 for interrupts for SDIO and in my FATFS library is written function name DMA2_Stream3_IRQHandler(). 
+ * FATFS uses DMA2_Stream3 for interrupts for SDIO and in my FATFS library is written function name DMA2_Stream3_IRQHandler().
  *
  * DMA library also features this function and now if you use DMA library and FATFS library, you will get error for "Multiple declarations...".
  *
@@ -70,7 +70,7 @@ extern "C" {
 @endverbatim
  *
  * \par Handling interrupts
- * 
+ *
  * Every stream on DMA can make 5 interrupts. My library is designed in a way that specific callback is called for each interrupt type.
  * Check functions section for more informations
  *
@@ -79,8 +79,8 @@ extern "C" {
 @verbatim
  Version 1.1
   - June 13, 2015
-  - Added support for clearing DMA interrupt flags 
-	
+  - Added support for clearing DMA interrupt flags
+
  Version 1.0
   - First release
 @endverbatim
@@ -131,7 +131,7 @@ extern "C" {
 /**
  * @}
  */
- 
+
 /**
  * @defgroup TM_DMA_Typedefs
  * @brief    Library Typedefs
@@ -150,12 +150,12 @@ extern "C" {
 
 /**
  * @brief  Clears all flags for selected DMA stream
- * @param  *DMA_Stream: Pointer to @ref DMA_Stream_TypeDef DMA stream where you want to clear flags 
+ * @param  *DMA_Stream: Pointer to @ref DMA_Stream_TypeDef DMA stream where you want to clear flags
  * @retval None
  */
 void TM_DMA_ClearFlags(DMA_Stream_TypeDef* DMA_Stream);
 
-/** 
+/**
  * @brief  Clears selected DMA interrupt flag
  * @param  *DMA_Stream: Pointer to @ref DMA_Stream_TypeDef DMA stream where you want to clear flags
  * @param  flags: Flag(s) which you wanna clear:
@@ -233,11 +233,11 @@ void TM_DMA_FIFOErrorHandler(DMA_Stream_TypeDef* DMA_Stream);
 /**
  * @}
  */
- 
+
 /**
  * @}
  */
- 
+
 /**
  * @}
  */

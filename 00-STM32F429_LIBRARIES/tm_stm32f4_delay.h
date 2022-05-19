@@ -7,21 +7,21 @@
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   Pretty accurate delay functions with SysTick or any other timer
- *	
+ *
 @verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen MAJERLE, 2015
-    
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     any later version.
-     
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
@@ -70,33 +70,33 @@ Another way is to use ARM compiler.
 \code{.c}
 //Select custom timer for delay, here is TIM2 selected.
 //If you want custom TIMx, just replace number "2" for your TIM's number.
-#define TM_DELAY_TIM				TIM2
-#define TM_DELAY_TIM_IRQ			TIM2_IRQn
-#define TM_DELAY_TIM_IRQ_HANDLER	TIM2_IRQHandler
+#define TM_DELAY_TIM                TIM2
+#define TM_DELAY_TIM_IRQ            TIM2_IRQn
+#define TM_DELAY_TIM_IRQ_HANDLER    TIM2_IRQHandler
 \endcode
  *
  *
  * With this setting (using custom timer) you have better accuracy in "us" delay.
  * Also, you have to know, that if you want to use timer for delay, you have to include additional files:
  *
- *	- CMSIS:
- *		- STM32F4xx TIM
- *		- MISC
- *	- TM:
- *		TM TIMER PROPERTIES
+ *  - CMSIS:
+ *      - STM32F4xx TIM
+ *      - MISC
+ *  - TM:
+ *      TM TIMER PROPERTIES
  *
  * Delay functions (Delay, Delayms) are now Inline functions.
  * This allows faster execution and more accurate delay.
  *
  * If you are working with Keil uVision and you are using Systick for delay,
  * then set KEIL_IDE define in options for project:
- *	- Open "Options for target"
- *	- Tab "C/C++"
- *	- Under "Define" add "KEIL_IDE", without quotes
+ *  - Open "Options for target"
+ *  - Tab "C/C++"
+ *  - Under "Define" add "KEIL_IDE", without quotes
  *
  * \par Custom timers
  *
- * Custom timers are a way to make some tasks in a periodic value. 
+ * Custom timers are a way to make some tasks in a periodic value.
  * As of version 2.4, delay library allows you to create custom timer which count DOWN and when it reaches zero, callback is called.
  *
  * You can use variable settings for count, reload value and auto reload feature.
@@ -111,13 +111,13 @@ Another way is to use ARM compiler.
  Version 2.3
   - April 18, 2015
   - Fixed support for internal RC clock
-  
+
  Version 2.2
   - January 12, 2015
   - Added support for custom function call each time 1ms interrupt happen
   - Function is called TM_DELAY_1msHandler(void), with __weak parameter
   - attributes.h file needed
-  
+
  Version 2.1
   - GCC compiler fixes
   - Still prefer that you use TIM for delay if you are working with ARM-GCC compiler
@@ -167,12 +167,12 @@ Another way is to use ARM compiler.
  * @brief  Custom timer structure
  */
 typedef struct {
-	uint32_t ARR;             /*!< Auto reload value */
-	uint32_t AutoReload;      /*!< Set to 1 if timer should be auto reloaded when it reaches zero */
-	uint32_t CNT;             /*!< Counter value, counter counts down */
-	uint8_t Enabled;          /*!< Set to 1 when timer is enabled */
-	void (*Callback)(void *); /*!< Callback which will be called when timer reaches zero */
-	void* UserParameters;     /*!< Pointer to user parameters used for callback function */
+    uint32_t ARR;             /*!< Auto reload value */
+    uint32_t AutoReload;      /*!< Set to 1 if timer should be auto reloaded when it reaches zero */
+    uint32_t CNT;             /*!< Counter value, counter counts down */
+    uint8_t Enabled;          /*!< Set to 1 when timer is enabled */
+    void (*Callback)(void*);  /*!< Callback which will be called when timer reaches zero */
+    void* UserParameters;     /*!< Pointer to user parameters used for callback function */
 } TM_DELAY_Timer_t;
 
 /**
@@ -239,37 +239,37 @@ extern __IO uint32_t mult;
  */
 static __INLINE void Delay(uint32_t micros) {
 #if defined(TM_DELAY_TIM)
-	volatile uint32_t timer = TM_DELAY_TIM->CNT;
+    volatile uint32_t timer = TM_DELAY_TIM->CNT;
 
-	do {
-		/* Count timer ticks */
-		while ((TM_DELAY_TIM->CNT - timer) == 0);
+    do {
+        /* Count timer ticks */
+        while ((TM_DELAY_TIM->CNT - timer) == 0);
 
-		/* Increase timer */
-		timer = TM_DELAY_TIM->CNT;
+        /* Increase timer */
+        timer = TM_DELAY_TIM->CNT;
 
-		/* Decrease microseconds */
-	} while (--micros);
+        /* Decrease microseconds */
+    } while (--micros);
 #else
-	uint32_t amicros;
+    uint32_t amicros;
 
-	/* Multiply micro seconds */
-	amicros = (micros) * (mult);
+    /* Multiply micro seconds */
+    amicros = (micros) * (mult);
 
-	#ifdef __GNUC__
-		if (SystemCoreClock == 180000000 || SystemCoreClock == 100000000) {
-			amicros -= mult;
-		}
-	#endif
+#ifdef __GNUC__
+    if (SystemCoreClock == 180000000 || SystemCoreClock == 100000000) {
+        amicros -= mult;
+    }
+#endif
 
-	/* If clock is 100MHz, then add additional multiplier */
-	/* 100/3 = 33.3 = 33 and delay wouldn't be so accurate */
-	#if defined(STM32F411xE)
-	amicros += mult;
-	#endif
+    /* If clock is 100MHz, then add additional multiplier */
+    /* 100/3 = 33.3 = 33 and delay wouldn't be so accurate */
+#if defined(STM32F411xE)
+    amicros += mult;
+#endif
 
-	/* While loop */
-	while (amicros--);
+    /* While loop */
+    while (amicros--);
 #endif /* TM_DELAY_TIM */
 }
 
@@ -280,25 +280,25 @@ static __INLINE void Delay(uint32_t micros) {
  * @note   Declared as static inline
  */
 static __INLINE void Delayms(uint32_t millis) {
-	volatile uint32_t timer = TM_Time;
+    volatile uint32_t timer = TM_Time;
 
-	/* Called from thread */
-	if (!__get_IPSR()) {
-		/* Wait for timer to count milliseconds */
-		while ((TM_Time - timer) < millis) {
+    /* Called from thread */
+    if (!__get_IPSR()) {
+        /* Wait for timer to count milliseconds */
+        while ((TM_Time - timer) < millis) {
 #ifdef DELAY_SLEEP
-			/* Go sleep, wait systick interrupt */
-			__WFI();
+            /* Go sleep, wait systick interrupt */
+            __WFI();
 #endif
-		}
-	} else {
-		/* Called from interrupt */
-		while (millis) {
-			if (SysTick->CTRL & SysTick_CTRL_COUNTFLAG_Msk) {
-				millis--;
-			}
-		}
-	}
+        }
+    } else {
+        /* Called from interrupt */
+        while (millis) {
+            if (SysTick->CTRL & SysTick_CTRL_COUNTFLAG_Msk) {
+                millis--;
+            }
+        }
+    }
 }
 
 /**
@@ -314,14 +314,14 @@ void TM_DELAY_Init(void);
  * @param  None
  * @retval Current time in milliseconds
  */
-#define TM_DELAY_Time()					(TM_Time)
+#define TM_DELAY_Time()                 (TM_Time)
 
 /**
  * @brief  Sets value for TM_Time variable
  * @param  time: Time in milliseconds
  * @retval None
  */
-#define TM_DELAY_SetTime(time)			(TM_Time = (time))
+#define TM_DELAY_SetTime(time)          (TM_Time = (time))
 
 /**
  * @brief  Re-enables delay timer It has to be configured before with TM_DELAY_Init()
@@ -345,7 +345,7 @@ void TM_DELAY_DisableDelayTimer(void);
  * @retval Current time in milliseconds
  * @note   This is not meant for public use
  */
-#define TM_DELAY_Time2()				(TM_Time2)
+#define TM_DELAY_Time2()                (TM_Time2)
 
 /**
  * @brief  Sets value for TM_Time variable
@@ -353,7 +353,7 @@ void TM_DELAY_DisableDelayTimer(void);
  * @retval None
  * @note   This is not meant for public use
  */
-#define TM_DELAY_SetTime2(time)			(TM_Time2 = (time))
+#define TM_DELAY_SetTime2(time)         (TM_Time2 = (time))
 
 /**
  * @brief  Creates a new custom timer which has 1ms resolution
@@ -365,7 +365,7 @@ void TM_DELAY_DisableDelayTimer(void);
  * @param  *UserParameters: Pointer to void pointer to user parameters used as first parameter in callback function
  * @retval Pointer to allocated timer structure
  */
-TM_DELAY_Timer_t* TM_DELAY_TimerCreate(uint32_t ReloadValue, uint8_t AutoReload, uint8_t StartTimer, void (*TM_DELAY_CustomTimerCallback)(void *), void* UserParameters);
+TM_DELAY_Timer_t* TM_DELAY_TimerCreate(uint32_t ReloadValue, uint8_t AutoReload, uint8_t StartTimer, void (*TM_DELAY_CustomTimerCallback)(void*), void* UserParameters);
 
 /**
  * @brief  Deletes already allocated timer
@@ -426,11 +426,11 @@ __weak void TM_DELAY_1msHandler(void);
 /**
  * @}
  */
- 
+
 /**
  * @}
  */
- 
+
 /**
  * @}
  */

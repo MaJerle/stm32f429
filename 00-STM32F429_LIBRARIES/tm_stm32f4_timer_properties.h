@@ -2,26 +2,26 @@
  * @author  Tilen MAJERLE
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.net
- * @link    
+ * @link
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   Timer properties for all STM32F4xx timers
- *	
+ *
 @verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen MAJERLE, 2015
-    
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     any later version.
-     
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
@@ -83,26 +83,26 @@ extern "C" {
  */
 
 /**
- * @brief  Timer result enumeration 		
+ * @brief  Timer result enumeration
  */
 typedef enum {
-	TM_TIMER_PROPERTIES_Result_Ok,               /*!< Everything OK */
-	TM_TIMER_PROPERTIES_Result_Error,            /*!< An error occurred */
-	TM_TIMER_PROPERTIES_Result_TimerNotValid,    /*!< Timer is not valid */
-	TM_TIMER_PROPERTIES_Result_FrequencyTooHigh, /*!< Frequency for timer is too high */
-	TM_TIMER_PROPERTIES_Result_FrequencyTooLow   /*!< Frequency for timer is too low */
+    TM_TIMER_PROPERTIES_Result_Ok,               /*!< Everything OK */
+    TM_TIMER_PROPERTIES_Result_Error,            /*!< An error occurred */
+    TM_TIMER_PROPERTIES_Result_TimerNotValid,    /*!< Timer is not valid */
+    TM_TIMER_PROPERTIES_Result_FrequencyTooHigh, /*!< Frequency for timer is too high */
+    TM_TIMER_PROPERTIES_Result_FrequencyTooLow   /*!< Frequency for timer is too low */
 } TM_TIMER_PROPERTIES_Result_t;
 
 /**
  * @brief  Structure for timer data
  */
 typedef struct {
-	uint32_t TimerFrequency; /*!< timer's working frequency */
-	uint32_t MaxPeriod;      /*!< Max timer period */
-	uint32_t MaxPrescaler;   /*!< Max timer prescaler */
-	uint32_t Period;         /*!< Timer's working period */
-	uint32_t Prescaler;      /*!< Timer's working prescaler */
-	uint32_t Frequency;      /*!< Timer's reload frequency */
+    uint32_t TimerFrequency; /*!< timer's working frequency */
+    uint32_t MaxPeriod;      /*!< Max timer period */
+    uint32_t MaxPrescaler;   /*!< Max timer prescaler */
+    uint32_t Period;         /*!< Timer's working period */
+    uint32_t Prescaler;      /*!< Timer's working prescaler */
+    uint32_t Frequency;      /*!< Timer's reload frequency */
 } TM_TIMER_PROPERTIES_t;
 
 /**
@@ -114,7 +114,7 @@ typedef struct {
  * @brief    Library Functions
  * @{
  */
- 
+
 /**
  * @brief  Gets timer properties
  * @param  *TIMx: Timer used to get settings for
@@ -148,11 +148,11 @@ TM_TIMER_PROPERTIES_Result_t TM_TIMER_PROPERTIES_DisableClock(TIM_TypeDef* TIMx)
 /**
  * @}
  */
- 
+
 /**
  * @}
  */
- 
+
 /**
  * @}
  */

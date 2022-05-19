@@ -7,21 +7,21 @@
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   OTP (One-Time Programmable) flash section library for STM32F4xx
- *	
+ *
 @verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen MAJERLE, 2015
-    
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     any later version.
-     
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
@@ -70,36 +70,36 @@ extern "C" {
  * @brief    Library defines
  * @{
  */
- 
+
 /**
  * @brief  OTP memory start address
  */
-#define OTP_START_ADDR		(0x1FFF7800)
+#define OTP_START_ADDR      (0x1FFF7800)
 
 /**
  * @brief  OTP memory lock address
  */
-#define OTP_LOCK_ADDR		(0x1FFF7A00)
-	
+#define OTP_LOCK_ADDR       (0x1FFF7A00)
+
 /**
- * @brief  Number of OTP blocks 
+ * @brief  Number of OTP blocks
  */
-#define OTP_BLOCKS			16
+#define OTP_BLOCKS          16
 
 /**
  * @brief  Number of bytes in one block
  */
-#define OTP_BYTES_IN_BLOCK	32
+#define OTP_BYTES_IN_BLOCK  32
 
 /**
  * @brief  Number of all OTP bytes
  */
-#define OTP_SIZE			(OTP_BLOCKS * OTP_BYTES_IN_BLOCK)
+#define OTP_SIZE            (OTP_BLOCKS * OTP_BYTES_IN_BLOCK)
 
 /**
  * @}
  */
- 
+
 /**
  * @defgroup TM_OTP_Typedefs
  * @brief    Library Typedefs
@@ -112,7 +112,7 @@ extern "C" {
 typedef enum {
     TM_OTP_Result_Ok = 0,  /*!< Everything OK */
     TM_OTP_Result_Error    /*!< An error occurred.
-	                            This is returned when you try to write data to location which does not exists,
+                                This is returned when you try to write data to location which does not exists,
                                 or if you try to write data to locked block */
 } TM_OTP_Result_t;
 
@@ -132,7 +132,7 @@ typedef enum {
  * @param  block: OTP block number, 0 to 15 is allowed
  * @param  byte: OTP byte inside one block, 0 to 31 is allowed
  * @param  data: Data to be written to OTP memory
- * @retval Member of @ref TM_OTP_Result_t enumeration 
+ * @retval Member of @ref TM_OTP_Result_t enumeration
  */
 TM_OTP_Result_t TM_OTP_Write(uint8_t block, uint8_t byte, uint8_t data);
 
@@ -148,7 +148,7 @@ uint8_t TM_OTP_Read(uint8_t block, uint8_t byte);
 /**
  * @brief  Locks entire block to prevent future programming inside
  * @note   When you lock your block, then you are not able to program it anymore.
- * 	       Even, if it is totally empty. You can't unlock it back!
+ *         Even, if it is totally empty. You can't unlock it back!
  * @param  block: OTP block number, 0 to 15 is allowed
  * @retval Member of @ref TM_OTP_Result_t enumeration
  */
@@ -161,16 +161,16 @@ TM_OTP_Result_t TM_OTP_BlockLock(uint8_t block);
  *            - 0: Block is not locked
  *            - > 0: Block locked
  */
-#define TM_OTP_BlockLocked(block)	((*(__IO uint8_t *) (OTP_LOCK_ADDR + block)) == 0x00 ? 1 : 0)
+#define TM_OTP_BlockLocked(block)   ((*(__IO uint8_t *) (OTP_LOCK_ADDR + block)) == 0x00 ? 1 : 0)
 
 /**
  * @}
  */
- 
+
 /**
  * @}
  */
- 
+
 /**
  * @}
  */

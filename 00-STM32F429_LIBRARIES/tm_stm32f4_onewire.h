@@ -7,21 +7,21 @@
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   Onewire library for STM32F4 devices
- *	
+ *
 @verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen MAJERLE, 2015
-    
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     any later version.
-     
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
@@ -46,7 +46,7 @@ extern "C" {
  * @{
  *
  * As of version 2.0 you can now use more than just one one-wire "port" on STM32F4. This allows you to group devices to separate ports.
- * 
+ *
  * Because if you have a loot devices on one port, if one device fail, everything is failed. You can prevent this by use more than just one port.
  *
  * To set your port and pin for OneWire protocol, you can do this when calling @ref TM_OneWire_Init function.
@@ -56,7 +56,7 @@ extern "C" {
 @verbatim
  Version 2.1
   - March 10, 2015
-  - Added support for new GPIO library 
+  - Added support for new GPIO library
 
  Version 2.0
   - January 04, 2015
@@ -66,7 +66,7 @@ extern "C" {
  Version 1.1
   - December 06, 2014
   - Added 8-bit CRC calculation for 1-Wire devices, algorithm from Dallas
- 
+
  Version 1.0
   - First release
 @endverbatim
@@ -96,29 +96,29 @@ extern "C" {
  */
 
 /* OneWire delay */
-#define ONEWIRE_DELAY(x)				Delay(x)
+#define ONEWIRE_DELAY(x)                Delay(x)
 
 /* Pin settings */
-#define ONEWIRE_LOW(structure)			TM_GPIO_SetPinLow((structure)->GPIOx, (structure)->GPIO_Pin)
-#define ONEWIRE_HIGH(structure)			TM_GPIO_SetPinHigh((structure)->GPIOx, (structure)->GPIO_Pin)
-#define ONEWIRE_INPUT(structure)		TM_GPIO_SetPinAsInput(structure->GPIOx, (structure)->GPIO_Pin)
-#define ONEWIRE_OUTPUT(structure)		TM_GPIO_SetPinAsOutput(structure->GPIOx, (structure)->GPIO_Pin)
+#define ONEWIRE_LOW(structure)          TM_GPIO_SetPinLow((structure)->GPIOx, (structure)->GPIO_Pin)
+#define ONEWIRE_HIGH(structure)         TM_GPIO_SetPinHigh((structure)->GPIOx, (structure)->GPIO_Pin)
+#define ONEWIRE_INPUT(structure)        TM_GPIO_SetPinAsInput(structure->GPIOx, (structure)->GPIO_Pin)
+#define ONEWIRE_OUTPUT(structure)       TM_GPIO_SetPinAsOutput(structure->GPIOx, (structure)->GPIO_Pin)
 
 /* OneWire commands */
-#define ONEWIRE_CMD_RSCRATCHPAD			0xBE
-#define ONEWIRE_CMD_WSCRATCHPAD			0x4E
-#define ONEWIRE_CMD_CPYSCRATCHPAD		0x48
-#define ONEWIRE_CMD_RECEEPROM			0xB8
-#define ONEWIRE_CMD_RPWRSUPPLY			0xB4
-#define ONEWIRE_CMD_SEARCHROM			0xF0
-#define ONEWIRE_CMD_READROM				0x33
-#define ONEWIRE_CMD_MATCHROM			0x55
-#define ONEWIRE_CMD_SKIPROM				0xCC
+#define ONEWIRE_CMD_RSCRATCHPAD         0xBE
+#define ONEWIRE_CMD_WSCRATCHPAD         0x4E
+#define ONEWIRE_CMD_CPYSCRATCHPAD       0x48
+#define ONEWIRE_CMD_RECEEPROM           0xB8
+#define ONEWIRE_CMD_RPWRSUPPLY          0xB4
+#define ONEWIRE_CMD_SEARCHROM           0xF0
+#define ONEWIRE_CMD_READROM             0x33
+#define ONEWIRE_CMD_MATCHROM            0x55
+#define ONEWIRE_CMD_SKIPROM             0xCC
 
 /**
  * @}
  */
- 
+
 /**
  * @defgroup TM_ONEWIRE_Typedefs
  * @brief    Library Typedefs
@@ -130,12 +130,12 @@ extern "C" {
  * @note   Except ROM_NO member, everything is fully private and should not be touched by user
  */
 typedef struct {
-	GPIO_TypeDef* GPIOx;           /*!< GPIOx port to be used for I/O functions */
-	uint16_t GPIO_Pin;             /*!< GPIO Pin to be used for I/O functions */
-	uint8_t LastDiscrepancy;       /*!< Search private */
-	uint8_t LastFamilyDiscrepancy; /*!< Search private */
-	uint8_t LastDeviceFlag;        /*!< Search private */
-	uint8_t ROM_NO[8];             /*!< 8-bytes address of last search device */
+    GPIO_TypeDef* GPIOx;           /*!< GPIOx port to be used for I/O functions */
+    uint16_t GPIO_Pin;             /*!< GPIO Pin to be used for I/O functions */
+    uint8_t LastDiscrepancy;       /*!< Search private */
+    uint8_t LastFamilyDiscrepancy; /*!< Search private */
+    uint8_t LastDeviceFlag;        /*!< Search private */
+    uint8_t ROM_NO[8];             /*!< 8-bytes address of last search device */
 } TM_OneWire_t;
 
 /**
@@ -159,7 +159,7 @@ void TM_OneWire_Init(TM_OneWire_t* OneWireStruct, GPIO_TypeDef* GPIOx, uint16_t 
 
 /**
  * @brief  Resets OneWire bus
- * 
+ *
  * @note   Sends reset command for OneWire
  * @param  *OneWireStruct: Pointer to @ref TM_OneWire_t working onewire structure
  * @retval None
@@ -222,10 +222,10 @@ void TM_OneWire_ResetSearch(TM_OneWire_t* OneWireStruct);
 /...Initialization before
 status = TM_OneWire_First(&OneWireStruct);
 while (status) {
-	//Save ROM number from device
-	TM_OneWire_GetFullROM(ROM_Array_Pointer);
-	//Check for new device
-	status = TM_OneWire_Next(&OneWireStruct);
+    //Save ROM number from device
+    TM_OneWire_GetFullROM(ROM_Array_Pointer);
+    //Check for new device
+    status = TM_OneWire_Next(&OneWireStruct);
 }
 @endverbatim
  * @param  *OneWireStruct: Pointer to @ref TM_OneWire_t working onewire where to reset search values
@@ -259,7 +259,7 @@ uint8_t TM_OneWire_GetROM(TM_OneWire_t* OneWireStruct, uint8_t index);
  * @param  *firstIndex: Pointer to first location for first byte, other bytes are automatically incremented
  * @retval None
  */
-void TM_OneWire_GetFullROM(TM_OneWire_t* OneWireStruct, uint8_t *firstIndex);
+void TM_OneWire_GetFullROM(TM_OneWire_t* OneWireStruct, uint8_t* firstIndex);
 
 /**
  * @brief  Selects specific slave on bus
@@ -289,15 +289,15 @@ uint8_t TM_OneWire_CRC8(uint8_t* addr, uint8_t len);
 /**
  * @}
  */
- 
+
 /**
  * @}
  */
- 
+
 /**
  * @}
  */
- 
+
 /* C++ detection */
 #ifdef __cplusplus
 }

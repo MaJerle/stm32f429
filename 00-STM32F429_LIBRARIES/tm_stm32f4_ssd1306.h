@@ -7,21 +7,21 @@
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   Library for 128x64 SSD1306 I2C LCD
- *	
+ *
 @verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen MAJERLE, 2015
-    
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     any later version.
-     
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
@@ -71,7 +71,7 @@ SDA        |PC9          |Serial data line
 #define SSD1306_I2C              I2C3
 #define SSD1306_I2C_PINSPACK     TM_I2C_PinsPack_1
 
-//Select custom I2C address 
+//Select custom I2C address
 #define SSD1306_I2C_ADDR         0x78
 
 //Select custom width and height if your LCD differs in size
@@ -141,7 +141,7 @@ SDA        |PC9          |Serial data line
 /**
  * @}
  */
- 
+
 /**
  * @defgroup TM_SSD1306_Typedefs
  * @brief    Library Typedefs
@@ -152,8 +152,8 @@ SDA        |PC9          |Serial data line
  * @brief  SSD1306 color enumeration
  */
 typedef enum {
-	SSD1306_COLOR_BLACK = 0x00, /*!< Black color, no pixel */
-	SSD1306_COLOR_WHITE = 0x01  /*!< Pixel is set. Color depends on LCD */
+    SSD1306_COLOR_BLACK = 0x00, /*!< Black color, no pixel */
+    SSD1306_COLOR_WHITE = 0x01  /*!< Pixel is set. Color depends on LCD */
 } SSD1306_COLOR_t;
 
 /**
@@ -175,7 +175,7 @@ typedef enum {
  */
 uint8_t TM_SSD1306_Init(void);
 
-/** 
+/**
  * @brief  Updates buffer from internal RAM to LCD
  * @note   This function must be called each time you do some changes to LCD, to update buffer from RAM to LCD
  * @param  None
@@ -191,7 +191,7 @@ void TM_SSD1306_UpdateScreen(void);
  */
 void TM_SSD1306_ToggleInvert(void);
 
-/** 
+/**
  * @brief  Fills entire LCD with desired color
  * @note   @ref TM_SSD1306_UpdateScreen() must be called after that in order to see updated LCD screen
  * @param  Color: Color to be used for screen fill. This parameter can be a value of @ref SSD1306_COLOR_t enumeration
@@ -207,7 +207,7 @@ void TM_SSD1306_Fill(SSD1306_COLOR_t Color);
  * @param  color: Color to be used for screen fill. This parameter can be a value of @ref SSD1306_COLOR_t enumeration
  * @retval None
  */
-void TM_SSD1306_DrawPixel(uint16_t x, uint16_t y, SSD1306_COLOR_t color); 
+void TM_SSD1306_DrawPixel(uint16_t x, uint16_t y, SSD1306_COLOR_t color);
 
 /**
  * @brief  Sets cursor pointer to desired location for strings
@@ -312,11 +312,11 @@ void TM_SSD1306_DrawFilledCircle(int16_t x0, int16_t y0, int16_t r, SSD1306_COLO
 /**
  * @}
  */
- 
+
 /**
  * @}
  */
- 
+
 /**
  * @}
  */

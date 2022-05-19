@@ -7,21 +7,21 @@
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   ILI9341 library for LCD on STM32F429 Discovery using LTDC and external ram
- *	
+ *
 @verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen MAJERLE, 2015
-    
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     any later version.
-     
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
@@ -46,7 +46,7 @@ extern "C" {
  * @{
  *
  * @note     Only works for STM32F4(2/3)9-Discovery because it has LTDC inside and external memory for data
- * 
+ *
  * \par Pinout on STM32F429-Discovery board
  *
 @verbatim
@@ -65,15 +65,15 @@ PA12 <-> R5    | PB10 <-> G4 |                |             |                 | 
   - March 14, 2015
   - Added support for new GPIO system
   - Added functions TM_ILI9341_DisplayOff() and TM_ILI9341_DisplayOn()
- 
+
  Version 1.3
   - January 21, 2015,
   - Added support for rounded rectangles
-	
+
  Version 1.2
   - December 27, 2014
   - Added transparent option for strings and chars
-	
+
  Version 1.1
   - August 07, 2014
   - Added scroll down and scroll up features
@@ -116,54 +116,54 @@ PA12 <-> R5    | PB10 <-> G4 |                |             |                 | 
  * @brief  This SPI pins are used on STM32F429-Discovery board
  */
 #ifndef ILI9341_SPI
-#define ILI9341_SPI 				SPI5
-#define ILI9341_SPI_PINS			TM_SPI_PinsPack_1
+#define ILI9341_SPI                 SPI5
+#define ILI9341_SPI_PINS            TM_SPI_PinsPack_1
 #endif
 
 /**
  * @brief  CS PIN for SPI, used as on STM32F429-Discovery board
  */
 #ifndef ILI9341_CS_PIN
-#define ILI9341_CS_PORT				GPIOC
-#define ILI9341_CS_PIN				GPIO_PIN_2
+#define ILI9341_CS_PORT             GPIOC
+#define ILI9341_CS_PIN              GPIO_PIN_2
 #endif
 
 /**
  * @brief  WRX PIN for data/command, used as on STM32F429-Discovery board
  */
 #ifndef ILI9341_WRX_PIN
-#define ILI9341_WRX_PORT			GPIOD
-#define ILI9341_WRX_PIN				GPIO_PIN_13
+#define ILI9341_WRX_PORT            GPIOD
+#define ILI9341_WRX_PIN             GPIO_PIN_13
 #endif
 
 /**
  * @brief  Colors for LCD in RGB565 format
  */
-#define ILI9341_COLOR_WHITE			0xFFFF
-#define ILI9341_COLOR_BLACK			0x0000
-#define ILI9341_COLOR_RED			0xF800
-#define ILI9341_COLOR_GREEN			0x07E0
-#define ILI9341_COLOR_GREEN2		0xB723
-#define ILI9341_COLOR_BLUE			0x001F
-#define ILI9341_COLOR_BLUE2			0x051D
-#define ILI9341_COLOR_YELLOW		0xFFE0
-#define ILI9341_COLOR_ORANGE		0xFBE4
-#define ILI9341_COLOR_CYAN			0x07FF
-#define ILI9341_COLOR_MAGENTA		0xA254
-#define ILI9341_COLOR_GRAY			0x7BEF
-#define ILI9341_COLOR_BROWN			0xBBCA
+#define ILI9341_COLOR_WHITE         0xFFFF
+#define ILI9341_COLOR_BLACK         0x0000
+#define ILI9341_COLOR_RED           0xF800
+#define ILI9341_COLOR_GREEN         0x07E0
+#define ILI9341_COLOR_GREEN2        0xB723
+#define ILI9341_COLOR_BLUE          0x001F
+#define ILI9341_COLOR_BLUE2         0x051D
+#define ILI9341_COLOR_YELLOW        0xFFE0
+#define ILI9341_COLOR_ORANGE        0xFBE4
+#define ILI9341_COLOR_CYAN          0x07FF
+#define ILI9341_COLOR_MAGENTA       0xA254
+#define ILI9341_COLOR_GRAY          0x7BEF
+#define ILI9341_COLOR_BROWN         0xBBCA
 
-/** 
+/**
  * @brief  Transparent background, only for chars and strings
  * @note   Use this as background when you use @ref TM_ILI9341_Putc or @ref TM_ILI9341_Puts
  *         if you want transparent background
  */
-#define ILI9341_TRANSPARENT			0x80000000
+#define ILI9341_TRANSPARENT         0x80000000
 
 /**
  * @}
  */
- 
+
 /**
  * @defgroup TM_ILI9341_LTDC_Typedefs
  * @brief    Library Typedefs
@@ -174,10 +174,10 @@ PA12 <-> R5    | PB10 <-> G4 |                |             |                 | 
  * @brief  Possible orientations for LCD
  */
 typedef enum {
-	TM_ILI9341_Orientation_Portrait_1,  /*!< Portrait orientation mode 1 */
-	TM_ILI9341_Orientation_Portrait_2,  /*!< Portrait orientation mode 2 */
-	TM_ILI9341_Orientation_Landscape_1, /*!< Landscape orientation mode 1 */
-	TM_ILI9341_Orientation_Landscape_2  /*!< Landscape orientation mode 2 */
+    TM_ILI9341_Orientation_Portrait_1,  /*!< Portrait orientation mode 1 */
+    TM_ILI9341_Orientation_Portrait_2,  /*!< Portrait orientation mode 2 */
+    TM_ILI9341_Orientation_Landscape_1, /*!< Landscape orientation mode 1 */
+    TM_ILI9341_Orientation_Landscape_2  /*!< Landscape orientation mode 2 */
 } TM_ILI9341_Orientation_t;
 
 /**
@@ -242,7 +242,7 @@ void TM_ILI9341_Putc(uint16_t x, uint16_t y, char c, TM_FontDef_t* font, uint32_
  * @param  background: Color for string background
  * @retval None
  */
-void TM_ILI9341_Puts(uint16_t x, uint16_t y, char* str, TM_FontDef_t *font, uint32_t foreground, uint32_t background);
+void TM_ILI9341_Puts(uint16_t x, uint16_t y, char* str, TM_FontDef_t* font, uint32_t foreground, uint32_t background);
 
 /**
  * @brief  Gets width and height of box with text
@@ -362,7 +362,7 @@ void TM_ILI9341_SetLayer2Opacity(uint8_t opacity);
 /**
  * @brief  This changes current active layer
  *         It sets transparency to 0 and 255 depends on which layer is selected
- 
+
  * @note   If current layer is Layer 1, then now will be Layer 2 and vice versa
  * @retval None
  */
@@ -400,11 +400,11 @@ void TM_ILI9341_DisplayOff(void);
 /**
  * @}
  */
- 
+
 /**
  * @}
  */
- 
+
 /**
  * @}
  */

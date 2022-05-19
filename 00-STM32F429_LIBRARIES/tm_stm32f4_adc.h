@@ -7,21 +7,21 @@
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   ADC library for STM32F4xx
- *	
+ *
 @verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen MAJERLE, 2015
-    
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     any later version.
-     
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
@@ -108,43 +108,43 @@ CHANNEL   ADC1   ADC2   ADC3
  * @brief  Default resolution for ADC1
  */
 #ifndef TM_ADC1_RESOLUTION
-#define TM_ADC1_RESOLUTION		ADC_Resolution_12b
+#define TM_ADC1_RESOLUTION      ADC_Resolution_12b
 #endif
 
 /**
  * @brief  Default resolution for ADC2
  */
 #ifndef TM_ADC2_RESOLUTION
-#define TM_ADC2_RESOLUTION		ADC_Resolution_12b
+#define TM_ADC2_RESOLUTION      ADC_Resolution_12b
 #endif
 
 /**
  * @brief  Default resolution for ADC3
  */
 #ifndef TM_ADC3_RESOLUTION
-#define TM_ADC3_RESOLUTION		ADC_Resolution_12b
+#define TM_ADC3_RESOLUTION      ADC_Resolution_12b
 #endif
 
 /**
  * @brief  Default supply voltage in mV
  */
 #ifndef ADC_SUPPLY_VOLTAGE
-#define ADC_SUPPLY_VOLTAGE		3300
+#define ADC_SUPPLY_VOLTAGE      3300
 #endif
 
 /**
  * @brief  Multipliers for VBAT measurement */
 #if defined (STM32F40_41xxx)
-#define ADC_VBAT_MULTI			2
+#define ADC_VBAT_MULTI          2
 #endif
 #if defined (STM32F427_437xx) || defined (STM32F429_439xx) || defined (STM32F401xx) || defined (STM32F411xE)
-#define ADC_VBAT_MULTI			4
+#define ADC_VBAT_MULTI          4
 #endif
 
 /**
  * @}
  */
- 
+
 /**
  * @defgroup TM_ADC_Typedefs
  * @brief    Library Typedefs
@@ -155,25 +155,25 @@ CHANNEL   ADC1   ADC2   ADC3
  * @brief  ADC available channels
  */
 typedef enum {
-	TM_ADC_Channel_0,  /*!< Operate with ADC channel 0 */
-	TM_ADC_Channel_1,  /*!< Operate with ADC channel 1 */
-	TM_ADC_Channel_2,  /*!< Operate with ADC channel 2 */
-	TM_ADC_Channel_3,  /*!< Operate with ADC channel 3 */
-	TM_ADC_Channel_4,  /*!< Operate with ADC channel 4 */
-	TM_ADC_Channel_5,  /*!< Operate with ADC channel 5 */
-	TM_ADC_Channel_6,  /*!< Operate with ADC channel 6 */
-	TM_ADC_Channel_7,  /*!< Operate with ADC channel 7 */
-	TM_ADC_Channel_8,  /*!< Operate with ADC channel 8 */
-	TM_ADC_Channel_9,  /*!< Operate with ADC channel 9 */
-	TM_ADC_Channel_10, /*!< Operate with ADC channel 10 */
-	TM_ADC_Channel_11, /*!< Operate with ADC channel 11 */
-	TM_ADC_Channel_12, /*!< Operate with ADC channel 12 */
-	TM_ADC_Channel_13, /*!< Operate with ADC channel 13 */
-	TM_ADC_Channel_14, /*!< Operate with ADC channel 14 */
-	TM_ADC_Channel_15, /*!< Operate with ADC channel 15 */
-	TM_ADC_Channel_16, /*!< Operate with ADC channel 16 */
-	TM_ADC_Channel_17, /*!< Operate with ADC channel 17 */
-	TM_ADC_Channel_18  /*!< Operate with ADC channel 18 */
+    TM_ADC_Channel_0,  /*!< Operate with ADC channel 0 */
+    TM_ADC_Channel_1,  /*!< Operate with ADC channel 1 */
+    TM_ADC_Channel_2,  /*!< Operate with ADC channel 2 */
+    TM_ADC_Channel_3,  /*!< Operate with ADC channel 3 */
+    TM_ADC_Channel_4,  /*!< Operate with ADC channel 4 */
+    TM_ADC_Channel_5,  /*!< Operate with ADC channel 5 */
+    TM_ADC_Channel_6,  /*!< Operate with ADC channel 6 */
+    TM_ADC_Channel_7,  /*!< Operate with ADC channel 7 */
+    TM_ADC_Channel_8,  /*!< Operate with ADC channel 8 */
+    TM_ADC_Channel_9,  /*!< Operate with ADC channel 9 */
+    TM_ADC_Channel_10, /*!< Operate with ADC channel 10 */
+    TM_ADC_Channel_11, /*!< Operate with ADC channel 11 */
+    TM_ADC_Channel_12, /*!< Operate with ADC channel 12 */
+    TM_ADC_Channel_13, /*!< Operate with ADC channel 13 */
+    TM_ADC_Channel_14, /*!< Operate with ADC channel 14 */
+    TM_ADC_Channel_15, /*!< Operate with ADC channel 15 */
+    TM_ADC_Channel_16, /*!< Operate with ADC channel 16 */
+    TM_ADC_Channel_17, /*!< Operate with ADC channel 17 */
+    TM_ADC_Channel_18  /*!< Operate with ADC channel 18 */
 } TM_ADC_Channel_t;
 
 /**
@@ -233,11 +233,11 @@ uint16_t TM_ADC_ReadVbat(ADC_TypeDef* ADCx);
 /**
  * @}
  */
- 
+
 /**
  * @}
  */
- 
+
 /**
  * @}
  */

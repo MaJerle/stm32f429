@@ -6,22 +6,22 @@
  * @version v1.2
  * @ide     Keil uVision
  * @license GNU GPL v3
- * @brief   STM32F4xx low power modes library 
- *	
+ * @brief   STM32F4xx low power modes library
+ *
 @verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen MAJERLE, 2015
-    
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     any later version.
-     
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
@@ -84,14 +84,14 @@ extern "C" {
  *    - tamper and time-stamp event
  *    - external reset in NRST pin
  *    - IWDG reset
- * 
+ *
  * \par Changelog
  *
 @verbatim
  Version 1.2
   - March 23, 2015
   - Fixed problems with entering to standby mode
-  
+
  Version 1.1
   - October 18, 2014
   - Added TM_LOWPOWER_StandbyReset(). This allows you to check if system was reset from standby wakeup
@@ -122,11 +122,11 @@ extern "C" {
  * @brief    Library macros
  * @{
  */
- 
+
 /**
  * @}
  */
- 
+
 /**
  * @defgroup TM_LOWPOWER_Typedefs
  * @brief    Library typedefs
@@ -134,17 +134,17 @@ extern "C" {
  */
 
 typedef enum {
-	TM_LOWPOWERMODE_SleepUntilInterrupt = 0x00, /*!< Sleep mode until any interrupt in NVIC occurs */
-	TM_LOWPOWERMODE_SleepUntilEvent,            /*!< Sleep mode until any event occurs */
-	TM_LOWPOWERMODE_StopUntilInterrupt,         /*!< Stop mode until interrupt in EXTI line occurs */
-	TM_LOWPOWERMODE_StopUntilEvent,             /*!< Stop mode until event occurs */
-	TM_LOWPOWERMODE_Standby                     /*!< Standby mode until any interrupt occurs */
+    TM_LOWPOWERMODE_SleepUntilInterrupt = 0x00, /*!< Sleep mode until any interrupt in NVIC occurs */
+    TM_LOWPOWERMODE_SleepUntilEvent,            /*!< Sleep mode until any event occurs */
+    TM_LOWPOWERMODE_StopUntilInterrupt,         /*!< Stop mode until interrupt in EXTI line occurs */
+    TM_LOWPOWERMODE_StopUntilEvent,             /*!< Stop mode until event occurs */
+    TM_LOWPOWERMODE_Standby                     /*!< Standby mode until any interrupt occurs */
 } TM_LOWPOWERMODE_t;
 
 /**
  * @}
  */
- 
+
 /**
  * @defgroup TM_LOWPOWER_Functions
  * @brief    Library Functions
@@ -155,7 +155,7 @@ typedef enum {
 
 /**
  * @brief  Put device into sleep mode
- * 
+ *
  * @note   MCU will be in sleep mode until next interrupt occured.
  *         This means, that delay timer (Systick or any user selectable delay timer) can wakeup STM32F4 too.
  *         If you want prevent this, you have to disable delay timer as well it.
@@ -227,7 +227,7 @@ void TM_LOWPOWER_DisableWakeUpPin(void);
 /**
  * @}
  */
- 
+
 /**
  * @}
  */

@@ -7,21 +7,21 @@
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   CPU load monitoring for STM32F4xx
- *	
+ *
 @verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen MAJERLE, 2015
-    
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     any later version.
-     
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
@@ -80,7 +80,7 @@ extern "C" {
 /**
  * @}
  */
- 
+
 /**
  * @defgroup TM_CPULOAD_Typedefs
  * @brief    Library Typedefs
@@ -91,10 +91,10 @@ extern "C" {
  * @brief  CPU LOAD structure
  */
 typedef struct {
-	uint32_t WCNT;   /*!< Number of working cycles in one period */
-	uint32_t SCNT;   /*!< Number of sleeping cycles in one period */
-	float Load;      /*!< CPU load percentage */
-	uint8_t Updated; /*!< Set to 1 when new CPU load is calculated */
+    uint32_t WCNT;   /*!< Number of working cycles in one period */
+    uint32_t SCNT;   /*!< Number of sleeping cycles in one period */
+    float Load;      /*!< CPU load percentage */
+    uint8_t Updated; /*!< Set to 1 when new CPU load is calculated */
 } TM_CPULOAD_t;
 
 /**
@@ -116,10 +116,10 @@ typedef struct {
  */
 uint8_t TM_CPULOAD_Init(TM_CPULOAD_t* CPU_Load);
 
-/** 
+/**
  * @brief  Goes to low power mode and measures sleeping time and working time using DWT cycle counter
  * @note   You need wake up source, otherwise you might stay forever inside low power mode
- * @param  *CPU_Load: Pointer to @ref TM_CPULOAD_t structure 
+ * @param  *CPU_Load: Pointer to @ref TM_CPULOAD_t structure
  * @param  PowerMode: Select power mode you want to use for measure CPU load. Valid parameters are:
  *            - TM_LOWPOWERMODE_SleepUntilInterrupt: Go to sleep mode with __WFI() instruction
  *            - TM_LOWPOWERMODE_SleepUntilEvent: Go to sleep mode with __WFE() instruction
@@ -132,11 +132,11 @@ uint8_t TM_CPULOAD_GoToSleepMode(TM_CPULOAD_t* CPU_Load, TM_LOWPOWERMODE_t Power
 /**
  * @}
  */
- 
+
 /**
  * @}
  */
- 
+
 /**
  * @}
  */

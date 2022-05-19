@@ -2,26 +2,26 @@
  * @author  Tilen MAJERLE
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.net
- * @link    
+ * @link
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
- * @brief   Library template 
- *	
+ * @brief   Library template
+ *
 @verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen MAJERLE, 2015
-    
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     any later version.
-     
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
@@ -103,7 +103,7 @@ extern "C" {
 /**
  * @}
  */
- 
+
 /**
  * @defgroup TM_HMC5883L_Registers
  * @brief    Register settings for HMC5883L
@@ -127,11 +127,11 @@ extern "C" {
 /**
  * @}
  */
- 
+
 /**
  * @}
  */
- 
+
 /**
  * @defgroup TM_HMC5883L_Typedefs
  * @brief    Library Typedefs
@@ -139,37 +139,37 @@ extern "C" {
  */
 
 typedef enum {
-	TM_HMC5883L_Result_Ok = 0x00,
-	TM_HMC5883L_Result_Error,
-	TM_HMC5883L_Result_DeviceNotConnected
+    TM_HMC5883L_Result_Ok = 0x00,
+    TM_HMC5883L_Result_Error,
+    TM_HMC5883L_Result_DeviceNotConnected
 } TM_HMC5883L_Result_t;
 
 typedef enum {
-	TM_HMC5883L_Gain_0_88 = 0x00,
-	TM_HMC5883L_Gain_1_3 = 0x20,
-	TM_HMC5883L_Gain_1_9 = 0x40,
-	TM_HMC5883L_Gain_2_5 = 0x60,
-	TM_HMC5883L_Gain_4_0 = 0x80,
-	TM_HMC5883L_Gain_4_7 = 0xA0,
-	TM_HMC5883L_Gain_5_6 = 0xC0,
-	TM_HMC5883L_Gain_8_1 = 0xE0
+    TM_HMC5883L_Gain_0_88 = 0x00,
+    TM_HMC5883L_Gain_1_3 = 0x20,
+    TM_HMC5883L_Gain_1_9 = 0x40,
+    TM_HMC5883L_Gain_2_5 = 0x60,
+    TM_HMC5883L_Gain_4_0 = 0x80,
+    TM_HMC5883L_Gain_4_7 = 0xA0,
+    TM_HMC5883L_Gain_5_6 = 0xC0,
+    TM_HMC5883L_Gain_8_1 = 0xE0
 } TM_HMC5883L_Gain_t;
 
 typedef enum {
-	TM_HMC5883L_OutputRate_0_75Hz = 0x00,
-	TM_HMC5883L_OutputRate_1_5Hz = 0x04,
-	TM_HMC5883L_OutputRate_3Hz = 0x08,
-	TM_HMC5883L_OutputRate_7_5Hz = 0x0C,
-	TM_HMC5883L_OutputRate_15Hz = 0x10,
-	TM_HMC5883L_OutputRate_30Hz = 0x14,
-	TM_HMC5883L_OutputRate_75Hz = 0x18
+    TM_HMC5883L_OutputRate_0_75Hz = 0x00,
+    TM_HMC5883L_OutputRate_1_5Hz = 0x04,
+    TM_HMC5883L_OutputRate_3Hz = 0x08,
+    TM_HMC5883L_OutputRate_7_5Hz = 0x0C,
+    TM_HMC5883L_OutputRate_15Hz = 0x10,
+    TM_HMC5883L_OutputRate_30Hz = 0x14,
+    TM_HMC5883L_OutputRate_75Hz = 0x18
 } TM_HMC5883L_OutputRate_t;
 
 typedef struct {
-	uint8_t ID[3];
-	float X;
-	float Y;
-	float Z;
+    uint8_t ID[3];
+    float X;
+    float Y;
+    float Z;
 } TM_HMC5883L_t;
 
 /**
@@ -193,11 +193,11 @@ TM_HMC5883L_Result_t TM_HMC5883L_ProcessInterrupt(TM_HMC5883L_t* HMC5883L);
 /**
  * @}
  */
- 
+
 /**
  * @}
  */
- 
+
 /**
  * @}
  */

@@ -7,21 +7,21 @@
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   GENERAL library for STM32F4xx devices
- *	
+ *
 @verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen MAJERLE, 2015
-    
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     any later version.
-     
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
@@ -67,7 +67,7 @@ extern "C" {
  Version 1.4
   - June 20, 2015
   - Changed interrupt enable/disable functions. They now supports nested interrupt disabling
- 
+
  Version 1.3
   - April 13, 2015
   - Added float number operations
@@ -75,11 +75,11 @@ extern "C" {
  Version 1.2
   - April 10, 2015
   - Added support for checking if number is odd or even and if it is power of 2
-  
+
  Version 1.1
   - April 07, 2015
   - Added support for DWT counter
-  
+
  Version 1.0
   - First release
 @endverbatim
@@ -113,17 +113,17 @@ extern uint16_t GENERAL_SystemSpeedInMHz;
 /**
  * @}
  */
- 
+
 /**
  * @defgroup TM_GENERAL_Variables
  * @brief    Library variables
  * @{
  */
- 
+
 /**
  * @}
  */
- 
+
 /**
  * @defgroup TM_GENERAL_Typedefs
  * @brief    Library Typedefs
@@ -134,34 +134,34 @@ extern uint16_t GENERAL_SystemSpeedInMHz;
  * @brief  Clock speed enumeration
  */
 typedef enum {
-	TM_GENERAL_Clock_HSI,    /*!< High speed internal clock */
-	TM_GENERAL_Clock_HSE,    /*!< High speed external clock */
-	TM_GENERAL_Clock_SYSCLK, /*!< System core clock */
-	TM_GENERAL_Clock_PCLK1,  /*!< PCLK1 (APB1) peripheral clock */
-	TM_GENERAL_Clock_PCLK2,  /*!< PCLK2 (APB2) peripheral clock */
-	TM_GENERAL_Clock_HCLK    /*!< HCLK (AHB1) high speed clock */
+    TM_GENERAL_Clock_HSI,    /*!< High speed internal clock */
+    TM_GENERAL_Clock_HSE,    /*!< High speed external clock */
+    TM_GENERAL_Clock_SYSCLK, /*!< System core clock */
+    TM_GENERAL_Clock_PCLK1,  /*!< PCLK1 (APB1) peripheral clock */
+    TM_GENERAL_Clock_PCLK2,  /*!< PCLK2 (APB2) peripheral clock */
+    TM_GENERAL_Clock_HCLK    /*!< HCLK (AHB1) high speed clock */
 } TM_GENERAL_Clock_t;
 
 /**
  * @brief  All possible reset sources
  */
 typedef enum {
-	TM_GENERAL_ResetSource_None = 0x00,     /*!< No reset source detected. Flags are already cleared */
-	TM_GENERAL_ResetSource_LowPower = 0x01, /*!< Low-power management reset occurs */
-	TM_GENERAL_ResetSource_WWDG = 0x02,     /*!< Window watchdog reset occurs */
-	TM_GENERAL_ResetSource_IWDG = 0x03,     /*!< Independent watchdog reset occurs */
-	TM_GENERAL_ResetSource_Software = 0x04, /*!< Software reset occurs */
-	TM_GENERAL_ResetSource_POR = 0x05,      /*!< POR/PDR reset occurs */
-	TM_GENERAL_ResetSource_PIN = 0x06,      /*!< NRST pin is set to low by hardware reset, hardware reset */
-	TM_GENERAL_ResetSource_BOR = 0x07,      /*!< BOR reset occurs */
+    TM_GENERAL_ResetSource_None = 0x00,     /*!< No reset source detected. Flags are already cleared */
+    TM_GENERAL_ResetSource_LowPower = 0x01, /*!< Low-power management reset occurs */
+    TM_GENERAL_ResetSource_WWDG = 0x02,     /*!< Window watchdog reset occurs */
+    TM_GENERAL_ResetSource_IWDG = 0x03,     /*!< Independent watchdog reset occurs */
+    TM_GENERAL_ResetSource_Software = 0x04, /*!< Software reset occurs */
+    TM_GENERAL_ResetSource_POR = 0x05,      /*!< POR/PDR reset occurs */
+    TM_GENERAL_ResetSource_PIN = 0x06,      /*!< NRST pin is set to low by hardware reset, hardware reset */
+    TM_GENERAL_ResetSource_BOR = 0x07,      /*!< BOR reset occurs */
 } TM_GENERAL_ResetSource_t;
 
 /**
  * @brief  Float number operation structure
  */
 typedef struct {
-	int32_t Integer;  /*!< Integer part of float number */
-	uint32_t Decimal; /*!< Decimal part of float number */
+    int32_t Integer;  /*!< Integer part of float number */
+    uint32_t Decimal; /*!< Decimal part of float number */
 } TM_GENERAL_Float_t;
 
 /**
@@ -274,36 +274,36 @@ uint8_t TM_GENERAL_DWTCounterEnable(void);
 
 /**
  * @brief  Delays for amount of microseconds using DWT counter
- * @param  micros: Number of micro seconds for delay 
+ * @param  micros: Number of micro seconds for delay
  * @retval None
  * @note   DWT Counter HAVE to be initialized first using @ref TM_GENERAL_EnableDWTCounter()
  */
 static __INLINE void TM_GENERAL_DWTCounterDelayus(uint32_t micros) {
-	uint32_t c = TM_GENERAL_DWTCounterGetValue();
-	
-	/* Calculate clock cycles */
-	micros *= (SystemCoreClock / 1000000);
-	micros -= 12;
-	
-	/* Wait till done */
-	while ((TM_GENERAL_DWTCounterGetValue() - c) < micros);
+    uint32_t c = TM_GENERAL_DWTCounterGetValue();
+
+    /* Calculate clock cycles */
+    micros *= (SystemCoreClock / 1000000);
+    micros -= 12;
+
+    /* Wait till done */
+    while ((TM_GENERAL_DWTCounterGetValue() - c) < micros);
 }
 
 /**
  * @brief  Delays for amount of milliseconds using DWT counter
- * @param  millis: Number of micro seconds for delay 
+ * @param  millis: Number of micro seconds for delay
  * @retval None
  * @note   DWT Counter HAVE to be initialized first using @ref TM_GENERAL_EnableDWTCounter()
  */
 static __INLINE void TM_GENERAL_DWTCounterDelayms(uint32_t millis) {
-	uint32_t c = TM_GENERAL_DWTCounterGetValue();
-	
-	/* Calculate clock cycles */
-	millis *= (SystemCoreClock / 1000);
-	millis -= 12;
-	
-	/* Wait till done */
-	while ((TM_GENERAL_DWTCounterGetValue() - c) < millis);
+    uint32_t c = TM_GENERAL_DWTCounterGetValue();
+
+    /* Calculate clock cycles */
+    millis *= (SystemCoreClock / 1000);
+    millis -= 12;
+
+    /* Wait till done */
+    while ((TM_GENERAL_DWTCounterGetValue() - c) < millis);
 }
 
 /**
@@ -379,11 +379,11 @@ void TM_GENERAL_SystemResetCallback(void);
 /**
  * @}
  */
- 
+
 /**
  * @}
  */
- 
+
 /**
  * @}
  */

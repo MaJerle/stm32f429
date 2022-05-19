@@ -7,21 +7,21 @@
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   STMPE811 Touch screen controller library
- *	
+ *
 @verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen MAJERLE, 2015
-    
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     any later version.
-     
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
@@ -55,7 +55,7 @@ STMPE811   STM32F4xx   Description
 SCL        PA8         Clock pin for I2C
 SDA        PC9         Data pin for I2C
 @endverbatim
- * 
+ *
  * @note This pinout is used on STM32F429 Discovery board.
  *
  * \par Custom pinout
@@ -73,7 +73,7 @@ SDA        PC9         Data pin for I2C
 @verbatim
  Version 1.0
   - First release
-  
+
  Version 1.2
   - January 27, 2015
   - Added support for last pressed state
@@ -94,7 +94,7 @@ SDA        PC9         Data pin for I2C
  - TM DELAY
 @endverbatim
  */
- 
+
 #include "stm32f4xx.h"
 #include "stm32f4xx_rcc.h"
 #include "stm32f4xx_gpio.h"
@@ -109,60 +109,60 @@ SDA        PC9         Data pin for I2C
  */
 
 /**
- * @brief  Default I2C used, on STM32F429-Discovery board 
+ * @brief  Default I2C used, on STM32F429-Discovery board
  */
 #ifndef STMPE811_I2C
-#define STMPE811_I2C					I2C3
-#define STMPE811_I2C_PINSPACK			TM_I2C_PinsPack_1
+#define STMPE811_I2C                    I2C3
+#define STMPE811_I2C_PINSPACK           TM_I2C_PinsPack_1
 #endif
 
 /**
  * @brief  Default I2C clock for STMPE811
  */
 #ifndef STMPE811_I2C_CLOCK
-#define STMPE811_I2C_CLOCK				100000
+#define STMPE811_I2C_CLOCK              100000
 #endif
 
 /**
  * @}
  */
- 
+
 /**
  * @defgroup TM_STMPE811_Typedefs
  * @brief    Library Typedefs
  * @{
  */
- 
+
 /**
  * @brief  Enum for set how to read x and y from controller
  * @note   You may need experimenting to get proper orientation to match your LCD
  */
 typedef enum {
-	TM_STMPE811_Orientation_Portrait_1,  /*!< Portrait orientation mode 1 */
-	TM_STMPE811_Orientation_Portrait_2,  /*!< Portrait orientation mode 2 */
-	TM_STMPE811_Orientation_Landscape_1, /*!< Landscape orientation mode 1 */
-	TM_STMPE811_Orientation_Landscape_2, /*!< Landscape orientation mode 2 */
+    TM_STMPE811_Orientation_Portrait_1,  /*!< Portrait orientation mode 1 */
+    TM_STMPE811_Orientation_Portrait_2,  /*!< Portrait orientation mode 2 */
+    TM_STMPE811_Orientation_Landscape_1, /*!< Landscape orientation mode 1 */
+    TM_STMPE811_Orientation_Landscape_2, /*!< Landscape orientation mode 2 */
 } TM_STMPE811_Orientation_t;
 
 /**
  * @brief  Enumeration for touch pressed or released
  */
 typedef enum {
-	TM_STMPE811_State_Pressed,  /*!< Touch detected as pressed */
-	TM_STMPE811_State_Released, /*!< Touch detected as released/not pressed */
-	TM_STMPE811_State_Ok,       /*!< Result OK. Used on initialization */
-	TM_STMPE811_State_Error     /*!< Result error. Used on initialization */
+    TM_STMPE811_State_Pressed,  /*!< Touch detected as pressed */
+    TM_STMPE811_State_Released, /*!< Touch detected as released/not pressed */
+    TM_STMPE811_State_Ok,       /*!< Result OK. Used on initialization */
+    TM_STMPE811_State_Error     /*!< Result error. Used on initialization */
 } TM_STMPE811_State_t;
 
 /**
  * @brief  Main structure, which is passed into @ref TM_STMPE811_ReadTouch function
  */
 typedef struct {
-	uint16_t x;                            /*!< X coordinate on LCD for touch */ 
-	uint16_t y;                            /*!< Y coordinate on LCD for touch */
-	TM_STMPE811_State_t pressed;           /*!< Pressed touch status */
-	TM_STMPE811_State_t last_pressed;      /*!< Last pressed touch status */
-	TM_STMPE811_Orientation_t orientation; /*!< Touch screen orientation to match your LCD orientation */
+    uint16_t x;                            /*!< X coordinate on LCD for touch */
+    uint16_t y;                            /*!< Y coordinate on LCD for touch */
+    TM_STMPE811_State_t pressed;           /*!< Pressed touch status */
+    TM_STMPE811_State_t last_pressed;      /*!< Last pressed touch status */
+    TM_STMPE811_Orientation_t orientation; /*!< Touch screen orientation to match your LCD orientation */
 } TM_STMPE811_t;
 
 /* Backward compatibility */
@@ -177,7 +177,7 @@ typedef TM_STMPE811_t TM_STMPE811_TouchData;
  * @brief    Library Functions
  * @{
  */
- 
+
 /**
  * @brief  Initializes STMPE811 Touch driver
  * @param  None
@@ -205,17 +205,17 @@ TM_STMPE811_State_t TM_STMPE811_ReadTouch(TM_STMPE811_t* structdata);
  *            - 0: Touch is outside rectangle
  *            - > 0: Touch is inside rectangle
  * @note   Defined as macro for faster execution
- */ 
-#define TM_STMPE811_TouchInRectangle(sd, xPos, yPos, w, h)	(((sd)->x >= (xPos)) && ((sd)->x < (xPos + w)) && ((sd)->y >= (yPos)) && ((sd)->y < (yPos + h)))
+ */
+#define TM_STMPE811_TouchInRectangle(sd, xPos, yPos, w, h)  (((sd)->x >= (xPos)) && ((sd)->x < (xPos + w)) && ((sd)->y >= (yPos)) && ((sd)->y < (yPos + h)))
 
 /**
  * @}
  */
- 
+
 /**
  * @}
  */
- 
+
 /**
  * @}
  */

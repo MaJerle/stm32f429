@@ -7,21 +7,21 @@
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   RCC library for STM32F4xx devices
- *	
+ *
 @verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen MAJERLE, 2015
-    
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     any later version.
-     
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
@@ -46,12 +46,12 @@ extern "C" {
  * @{
  *
  * This library allows you to change PLL settings on the FLY.
- * 
+ *
  * It can be used to dynamically change system clock for various reasons.
  *
  * @note After you change PLL settings, some peripherals (like USART, Systick, TIMERS) will no longer work properly.
  *       Doing a reinit would fix that!
- * 
+ *
  * \par Changelog
  *
 @verbatim
@@ -94,7 +94,7 @@ extern "C" {
 /**
  * @}
  */
- 
+
 /**
  * @defgroup TM_RCC_Typedefs
  * @brief    Library Typedefs
@@ -102,15 +102,15 @@ extern "C" {
  */
 
 /**
- * @brief  PLL structure with settings for read and write operations 
+ * @brief  PLL structure with settings for read and write operations
  */
 typedef struct {
-	uint16_t PLLM; /*!< PLL M parameter. This value can be between 2 and 63.    Use 0 if you don't want to change parameter. */
-	uint16_t PLLN; /*!< PLL N parameter. This value can be between 192 and 432. Use 0 if you don't want to change parameter. */ 
-	uint16_t PLLP; /*!< PLL P parameter. This value can be 2, 4, 6 or 8.        Use 0 if you don't want to change parameter. */
-	uint16_t PLLQ; /*!< PLL Q parameter. This value can be between 2 and 15.    Use 0 if you don't want to change parameter. */
-	uint16_t PLLR; /*!< PLL R parameter. This value can be between 2 and 7 and is only available for STM32F446 devices. 
-	                       Use 0 if you don't want to change parameter. */
+    uint16_t PLLM; /*!< PLL M parameter. This value can be between 2 and 63.    Use 0 if you don't want to change parameter. */
+    uint16_t PLLN; /*!< PLL N parameter. This value can be between 192 and 432. Use 0 if you don't want to change parameter. */
+    uint16_t PLLP; /*!< PLL P parameter. This value can be 2, 4, 6 or 8.        Use 0 if you don't want to change parameter. */
+    uint16_t PLLQ; /*!< PLL Q parameter. This value can be between 2 and 15.    Use 0 if you don't want to change parameter. */
+    uint16_t PLLR; /*!< PLL R parameter. This value can be between 2 and 7 and is only available for STM32F446 devices.
+                           Use 0 if you don't want to change parameter. */
 } TM_RCC_PLL_t;
 
 /**
@@ -123,7 +123,7 @@ typedef struct {
  * @{
  */
 
-/** 
+/**
  * @brief  Sets the main PLL settings for STM32F4xx device
  * @note   PLL can only be configured when PLL is not used as system clock.
  *            For that purpose, this function does the following things:
@@ -160,11 +160,11 @@ uint8_t TM_RCC_IsPLLReady(void);
 /**
  * @}
  */
- 
+
 /**
  * @}
  */
- 
+
 /**
  * @}
  */

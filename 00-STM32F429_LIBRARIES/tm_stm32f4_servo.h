@@ -7,21 +7,21 @@
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   Servo library for STM32F4xx
- *	
+ *
 @verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen MAJERLE, 2015
-    
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     any later version.
-     
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
@@ -46,7 +46,7 @@ extern "C" {
  * @{
  *
  * This library allows you to control RC servo with STM32F4xx.
- * 
+ *
  * Basically, only limitation for number of servos is number of timers in MCU.
  *
  * \par Calculations
@@ -74,7 +74,7 @@ Degrees (pulse_length) = (pulse_length – MIN) * 180 / (MAX – MIN)
   - January 03, 2015
   - Added "micros" and "degrees" values to structure for user feedback where servo is located
   - Supports TM PWM 2.0 version library
- 
+
  Version 1.0
   - First release
 @endverbatim
@@ -110,44 +110,44 @@ Degrees (pulse_length) = (pulse_length – MIN) * 180 / (MAX – MIN)
  * @brief  Minimal pulse length for servo in micros
  */
 #ifndef SERVO_MICROS_MIN
-#define SERVO_MICROS_MIN	1000
+#define SERVO_MICROS_MIN    1000
 #endif
 
 /**
  * @brief  Maximal pulse length for servo in micros
  */
 #ifndef SERVO_MICROS_MAX
-#define SERVO_MICROS_MAX	2000
+#define SERVO_MICROS_MAX    2000
 #endif
-	
+
 /**
  * @}
  */
- 
+
 /**
  * @defgroup TM_SERVO_Typedefs
  * @brief    Library Typedefs
  * @{
  */
-	
+
 /**
- * @brief  Servo structure	
+ * @brief  Servo structure
  */
 typedef struct {
-	TM_PWM_TIM_t PWM;           /*!< PWM settings */
-	TIM_TypeDef* TIM;           /*!< Pointer to specific timer you will use for servo */
-	TM_PWM_Channel_t Channel;   /*!< Output channel on specific timer */
-	TM_PWM_PinsPack_t Pinspack; /*!< Pinspack for specific channel */
-	float Degrees;              /*!< Position of servo in degrees */
-	uint16_t Micros;            /*!< Pulse length in micro seconds for current servo position */
+    TM_PWM_TIM_t PWM;           /*!< PWM settings */
+    TIM_TypeDef* TIM;           /*!< Pointer to specific timer you will use for servo */
+    TM_PWM_Channel_t Channel;   /*!< Output channel on specific timer */
+    TM_PWM_PinsPack_t Pinspack; /*!< Pinspack for specific channel */
+    float Degrees;              /*!< Position of servo in degrees */
+    uint16_t Micros;            /*!< Pulse length in micro seconds for current servo position */
 } TM_SERVO_t;
 
 /**
- * @brief Results enumeration	
+ * @brief Results enumeration
  */
 typedef enum {
-	TM_SERVO_Result_Ok = 0, /*!< Everything OK */
-	TM_SERVO_Result_Error   /*!< An error occurred somewhere */
+    TM_SERVO_Result_Ok = 0, /*!< Everything OK */
+    TM_SERVO_Result_Error   /*!< An error occurred somewhere */
 } TM_SERVO_Result_t;
 
 /**
@@ -190,11 +190,11 @@ TM_SERVO_Result_t TM_SERVO_SetMicros(TM_SERVO_t* ServoStruct, uint16_t micros);
 /**
  * @}
  */
- 
+
 /**
  * @}
  */
- 
+
 /**
  * @}
  */

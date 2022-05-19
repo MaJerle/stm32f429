@@ -7,21 +7,21 @@
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   Measure distance with HC-SR04 Ultrasonic distance sensor on STM32F4xx devices
- *	
+ *
 @verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen MAJERLE, 2015
-    
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     any later version.
-     
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
@@ -40,7 +40,7 @@
  * @{
  *
  * \par Default pinout
- * 
+ *
  * There is not default pinout anymore.
  * As of version 2.0, you can use unlimited HC-SR sensors connected to STM32F4xx device.
  *
@@ -51,7 +51,7 @@
 @verbatim
 I didn't tested that, but you might use the same ECHO pin for all sensors if you read sensor by sensor at a time. Do that by own risk!
 @endverbatim
- * 
+ *
  *
  * \par Changelog
  *
@@ -67,7 +67,7 @@ I didn't tested that, but you might use the same ECHO pin for all sensors if you
 
  Version 1.1
   - November 29, 2014
-  - Update to fit new delay system 
+  - Update to fit new delay system
 
  Version 1.0
   - First release
@@ -96,13 +96,13 @@ I didn't tested that, but you might use the same ECHO pin for all sensors if you
 
 /* Default timeout pulses */
 #ifndef HCSR04_TIMEOUT
-#define HCSR04_TIMEOUT			1000000
+#define HCSR04_TIMEOUT          1000000
 #endif
 
 /**
  * @brief  Time in microseconds to centimeters conversion
  */
-#define HCSR04_NUMBER			((float)0.0171821)
+#define HCSR04_NUMBER           ((float)0.0171821)
 
 /**
  * @}
@@ -118,11 +118,11 @@ I didn't tested that, but you might use the same ECHO pin for all sensors if you
  * @brief  HC-SR04 working structure
  */
 typedef struct {
-	float Distance;              /*!< Distance measured from sensor in centimeters */
-	GPIO_TypeDef* ECHO_GPIOx;    /*!< Pointer to GPIOx PORT for ECHO pin. Meant for private use only */
-	uint16_t ECHO_GPIO_Pin;      /*!< GPIO Pin for ECHO pin. Meant for private use only */
-	GPIO_TypeDef* TRIGGER_GPIOx; /*!< Pointer to GPIOx PORT for TRIGGER pin. Meant for private use only */
-	uint16_t TRIGGER_GPIO_Pin;   /*!< GPIO Pin for ECHO pin. Meant for private use only */
+    float Distance;              /*!< Distance measured from sensor in centimeters */
+    GPIO_TypeDef* ECHO_GPIOx;    /*!< Pointer to GPIOx PORT for ECHO pin. Meant for private use only */
+    uint16_t ECHO_GPIO_Pin;      /*!< GPIO Pin for ECHO pin. Meant for private use only */
+    GPIO_TypeDef* TRIGGER_GPIOx; /*!< Pointer to GPIOx PORT for TRIGGER pin. Meant for private use only */
+    uint16_t TRIGGER_GPIO_Pin;   /*!< GPIO Pin for ECHO pin. Meant for private use only */
 } TM_HCSR04_t;
 
 /**
@@ -160,11 +160,11 @@ float TM_HCSR04_Read(TM_HCSR04_t* HCSR04);
 /**
  * @}
  */
- 
+
 /**
  * @}
  */
- 
+
 /**
  * @}
  */

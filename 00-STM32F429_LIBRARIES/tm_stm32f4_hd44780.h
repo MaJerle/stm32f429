@@ -7,21 +7,21 @@
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   HD44780 LCD driver library for STM32F4xx
- *	
+ *
 @verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen MAJERLE, 2015
-    
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     any later version.
-     
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
@@ -39,33 +39,33 @@
  * @brief    HD44780 LCD driver library for STM32F4xx - http://stm32f4-discovery.net/2014/06/library-16-interfacing-hd44780-lcd-controller-with-stm32f4/
  * @{
  *
- *	It also supports all HD44780 compatible LCD drivers.
+ *  It also supports all HD44780 compatible LCD drivers.
  *
- *	\par Default pinout
- *	
+ *  \par Default pinout
+ *
 @verbatim
-LCD		STM32F4XX		DESCRIPTION
+LCD     STM32F4XX       DESCRIPTION
 
-GND		GND				Ground
-VCC		+5V				Power supply for LCD
-V0		Potentiometer	Contrast voltage. Connect to potentiometer
-RS		PB2				Register select, can be overwritten in your project's defines.h file
-RW		GND				Read/write
-E		PB7				Enable pin, can be overwritten in your project's defines.h file
-D0		-				Data 0 - doesn't care
-D1		-				Data 1 - doesn't care
-D2		-				Data 2 - doesn't care
-D3		-				Data 3 - doesn't  care
-D4		PC12			Data 4, can be overwritten in your project's defines.h file
-D5		PC13			Data 5, can be overwritten in your project's defines.h file
-D6		PB12			Data 6, can be overwritten in your project's defines.h file
-D7		PB13			Data 7, can be overwritten in your project's defines.h file
-A		+3V3			Back light positive power
-K		GND				Ground for back light
-@endverbatim	
- *	
+GND     GND             Ground
+VCC     +5V             Power supply for LCD
+V0      Potentiometer   Contrast voltage. Connect to potentiometer
+RS      PB2             Register select, can be overwritten in your project's defines.h file
+RW      GND             Read/write
+E       PB7             Enable pin, can be overwritten in your project's defines.h file
+D0      -               Data 0 - doesn't care
+D1      -               Data 1 - doesn't care
+D2      -               Data 2 - doesn't care
+D3      -               Data 3 - doesn't  care
+D4      PC12            Data 4, can be overwritten in your project's defines.h file
+D5      PC13            Data 5, can be overwritten in your project's defines.h file
+D6      PB12            Data 6, can be overwritten in your project's defines.h file
+D7      PB13            Data 7, can be overwritten in your project's defines.h file
+A       +3V3            Back light positive power
+K       GND             Ground for back light
+@endverbatim
+ *
  * If you want to change pinout, do this in your defines.h file with lines below and set your own settings:
- *	
+ *
 @verbatim
 //RS - Register select pin
 #define HD44780_RS_PORT     GPIOB
@@ -97,7 +97,7 @@ K		GND				Ground for back light
  Version 1.1
   - November 08, 2014
   - D6 and D7 default pins changed from PC14,15 to PB12,13, because RTC crystal is on PC14,15
- 
+
  Version 1.0
   - First release
 @endverbatim
@@ -127,34 +127,34 @@ K		GND				Ground for back light
 /* Control pins, can be overwritten */
 /* RS - Register select pin */
 #ifndef HD44780_RS_PIN
-#define HD44780_RS_PORT				GPIOB
-#define HD44780_RS_PIN				GPIO_PIN_2
+#define HD44780_RS_PORT             GPIOB
+#define HD44780_RS_PIN              GPIO_PIN_2
 #endif
 /* E - Enable pin */
 #ifndef HD44780_E_PIN
-#define HD44780_E_PORT				GPIOB
-#define HD44780_E_PIN				GPIO_PIN_7
+#define HD44780_E_PORT              GPIOB
+#define HD44780_E_PIN               GPIO_PIN_7
 #endif
 /* Data pins */
 /* D4 - Data 4 pin */
 #ifndef HD44780_D4_PIN
-#define HD44780_D4_PORT				GPIOC
-#define HD44780_D4_PIN				GPIO_PIN_12
+#define HD44780_D4_PORT             GPIOC
+#define HD44780_D4_PIN              GPIO_PIN_12
 #endif
 /* D5 - Data 5 pin */
 #ifndef HD44780_D5_PIN
-#define HD44780_D5_PORT				GPIOC
-#define HD44780_D5_PIN				GPIO_PIN_13
+#define HD44780_D5_PORT             GPIOC
+#define HD44780_D5_PIN              GPIO_PIN_13
 #endif
 /* D6 - Data 6 pin */
 #ifndef HD44780_D6_PIN
-#define HD44780_D6_PORT				GPIOB
-#define HD44780_D6_PIN				GPIO_PIN_12
+#define HD44780_D6_PORT             GPIOB
+#define HD44780_D6_PIN              GPIO_PIN_12
 #endif
 /* D7 - Data 7 pin */
 #ifndef HD44780_D7_PIN
-#define HD44780_D7_PORT				GPIOB
-#define HD44780_D7_PIN				GPIO_PIN_13
+#define HD44780_D7_PORT             GPIOB
+#define HD44780_D7_PIN              GPIO_PIN_13
 #endif
 
 /**
@@ -265,11 +265,11 @@ void TM_HD44780_PutCustom(uint8_t x, uint8_t y, uint8_t location);
 /**
  * @}
  */
- 
+
 /**
  * @}
  */
- 
+
 /**
  * @}
  */

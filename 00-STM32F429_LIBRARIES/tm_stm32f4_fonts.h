@@ -2,26 +2,26 @@
  * @author  Tilen MAJERLE
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.net
- * @link    
+ * @link
  * @version v1.2
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   Fonts library for LCD libraries
- *	
+ *
 @verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen MAJERLE, 2015
-    
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     any later version.
-     
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
@@ -48,7 +48,7 @@ extern "C" {
  * Default fonts library. It is used in all LCD based libraries.
  *
  * \par Supported fonts
- * 
+ *
  * Currently, these fonts are supported:
  *  - 7 x 10 pixels
  *  - 11 x 18 pixels
@@ -60,7 +60,7 @@ extern "C" {
  Version 1.2
   - May 24, 2015
   - Added support for string length and height
-  
+
  Version 1.0
   - First release
 @endverbatim
@@ -87,17 +87,17 @@ extern "C" {
  * @brief  Font structure used on my LCD libraries
  */
 typedef struct {
-	uint8_t FontWidth;    /*!< Font width in pixels */
-	uint8_t FontHeight;   /*!< Font height in pixels */
-	const uint16_t *data; /*!< Pointer to data font data array */
+    uint8_t FontWidth;    /*!< Font width in pixels */
+    uint8_t FontHeight;   /*!< Font height in pixels */
+    const uint16_t* data; /*!< Pointer to data font data array */
 } TM_FontDef_t;
 
-/** 
- * @brief  String length and height 
+/**
+ * @brief  String length and height
  */
 typedef struct {
-	uint16_t Length;      /*!< String length in units of pixels */
-	uint16_t Height;      /*!< String height in units of pixels */
+    uint16_t Length;      /*!< String length in units of pixels */
+    uint16_t Height;      /*!< String height in units of pixels */
 } TM_FONTS_SIZE_t;
 
 /**
@@ -111,24 +111,24 @@ typedef struct {
  */
 
 /**
- * @brief  7 x 10 pixels font size structure 
+ * @brief  7 x 10 pixels font size structure
  */
 extern TM_FontDef_t TM_Font_7x10;
 
 /**
- * @brief  11 x 18 pixels font size structure 
+ * @brief  11 x 18 pixels font size structure
  */
 extern TM_FontDef_t TM_Font_11x18;
 
 /**
- * @brief  16 x 26 pixels font size structure 
+ * @brief  16 x 26 pixels font size structure
  */
 extern TM_FontDef_t TM_Font_16x26;
 
 /**
  * @}
  */
- 
+
 /**
  * @defgroup TM_FONTS_Functions
  * @brief    Library functions
@@ -147,11 +147,11 @@ char* TM_FONTS_GetStringSize(char* str, TM_FONTS_SIZE_t* SizeStruct, TM_FontDef_
 /**
  * @}
  */
- 
+
 /**
  * @}
  */
- 
+
 /**
  * @}
  */
@@ -161,6 +161,6 @@ char* TM_FONTS_GetStringSize(char* str, TM_FONTS_SIZE_t* SizeStruct, TM_FontDef_
 }
 #endif
 
- 
+
 #endif
 

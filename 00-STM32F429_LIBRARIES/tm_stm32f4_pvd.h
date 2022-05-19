@@ -2,26 +2,26 @@
  * @author  Tilen MAJERLE
  * @email   tilen@majerle.eu
  * @website http://stm32f4-discovery.net
- * @link    
+ * @link
  * @version v1.0
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   PVD Voltage detector for STM32F4xx
- *	
+ *
 @verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen MAJERLE, 2015
-    
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     any later version.
-     
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
@@ -86,7 +86,7 @@ extern "C" {
 /**
  * @}
  */
- 
+
 /**
  * @defgroup TM_PVD_Typedefs
  * @brief    Library Typedefs
@@ -97,9 +97,9 @@ extern "C" {
  * @brief  PVD Triggers for interrupt
  */
 typedef enum {
-	TM_PVD_Trigger_Rising = 0x00,  /*!< PVD will trigger interrupt when voltage rises above treshold */
-	TM_PVD_Trigger_Falling = 0x01, /*!< PVD will trigger interrupt when voltage falls below treshold */
-	TM_PVD_Trigger_Rising_Falling  /*!< PVD will trigger interrupt when voltage rises or falls above/below treshold */
+    TM_PVD_Trigger_Rising = 0x00,  /*!< PVD will trigger interrupt when voltage rises above treshold */
+    TM_PVD_Trigger_Falling = 0x01, /*!< PVD will trigger interrupt when voltage falls below treshold */
+    TM_PVD_Trigger_Rising_Falling  /*!< PVD will trigger interrupt when voltage rises or falls above/below treshold */
 } TM_PVD_Trigger_t;
 
 /**
@@ -107,14 +107,14 @@ typedef enum {
  * @note   Check datasheets for proper values for voltages
  */
 typedef enum {
-	TM_PVD_Level_0 = 0x00, /*!< PVD level 0 is used as treshold value */
-	TM_PVD_Level_1 = 0x01, /*!< PVD level 1 is used as treshold value */
-	TM_PVD_Level_2 = 0x02, /*!< PVD level 2 is used as treshold value */
-	TM_PVD_Level_3 = 0x03, /*!< PVD level 3 is used as treshold value */
-	TM_PVD_Level_4 = 0x04, /*!< PVD level 4 is used as treshold value */
-	TM_PVD_Level_5 = 0x05, /*!< PVD level 5 is used as treshold value */
-	TM_PVD_Level_6 = 0x06, /*!< PVD level 6 is used as treshold value */
-	TM_PVD_Level_7 = 0x07  /*!< PVD level 7 is used as treshold value */
+    TM_PVD_Level_0 = 0x00, /*!< PVD level 0 is used as treshold value */
+    TM_PVD_Level_1 = 0x01, /*!< PVD level 1 is used as treshold value */
+    TM_PVD_Level_2 = 0x02, /*!< PVD level 2 is used as treshold value */
+    TM_PVD_Level_3 = 0x03, /*!< PVD level 3 is used as treshold value */
+    TM_PVD_Level_4 = 0x04, /*!< PVD level 4 is used as treshold value */
+    TM_PVD_Level_5 = 0x05, /*!< PVD level 5 is used as treshold value */
+    TM_PVD_Level_6 = 0x06, /*!< PVD level 6 is used as treshold value */
+    TM_PVD_Level_7 = 0x07  /*!< PVD level 7 is used as treshold value */
 } TM_PVD_Level_t;
 
 /**
@@ -155,11 +155,11 @@ void TM_PVD_Handler(uint8_t status);
 /**
  * @}
  */
- 
+
 /**
  * @}
  */
- 
+
 /**
  * @}
  */

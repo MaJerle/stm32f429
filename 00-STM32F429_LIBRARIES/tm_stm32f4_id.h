@@ -7,21 +7,21 @@
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   Identification library for STM32F4xx devices
- *	
+ *
 @verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen MAJERLE, 2015
-    
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     any later version.
-     
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
@@ -47,7 +47,7 @@ extern "C" {
  *
  * \par This library allows you to read following things:
  *  - Device's 96bit unique ID
- *  - Device signature 
+ *  - Device signature
  *  - Revision
  *  - Flash size
  *
@@ -95,21 +95,21 @@ extern "C" {
 /**
  * @brief Unique ID register address location
  */
-#define ID_UNIQUE_ADDRESS		0x1FFF7A10
+#define ID_UNIQUE_ADDRESS       0x1FFF7A10
 
 /**
  * @brief Flash size register address
  */
-#define ID_FLASH_ADDRESS		0x1FFF7A22
+#define ID_FLASH_ADDRESS        0x1FFF7A22
 
 /**
  * @brief Device ID register address
  */
-#define ID_DBGMCU_IDCODE		0xE0042000
+#define ID_DBGMCU_IDCODE        0xE0042000
 
- /**
- * @}
- */
+/**
+* @}
+*/
 
 /**
  * @defgroup TM_ID_Functions
@@ -128,7 +128,7 @@ extern "C" {
  *           - 0x0433: STM32F401xD/E
  *           - 0x0431: STM32F411xC/E
  */
-#define TM_ID_GetSignature()	((*(uint16_t *) (ID_DBGMCU_IDCODE)) & 0x0FFF)
+#define TM_ID_GetSignature()    ((*(uint16_t *) (ID_DBGMCU_IDCODE)) & 0x0FFF)
 
 /**
  * @brief  Get STM32F4xx device revision
@@ -141,7 +141,7 @@ extern "C" {
  *           - 0x1007: Revision 1
  *           - 0x2001: Revision 3
  */
-#define TM_ID_GetRevision()		(*(uint16_t *) (DBGMCU->IDCODE + 2))
+#define TM_ID_GetRevision()     (*(uint16_t *) (DBGMCU->IDCODE + 2))
 
 /**
  * @brief  Get STM32F4xx device's flash size in kilo bytes
@@ -149,7 +149,7 @@ extern "C" {
  * @param  None
  * @retval Flash size in kilo bytes
  */
-#define TM_ID_GetFlashSize()	(*(uint16_t *) (ID_FLASH_ADDRESS))
+#define TM_ID_GetFlashSize()    (*(uint16_t *) (ID_FLASH_ADDRESS))
 
 /**
  * @brief  Get unique ID number in 8-bit format
@@ -159,8 +159,8 @@ extern "C" {
  *               - Values between 0 and 11 are allowed
  * @retval Unique ID address
  */
-#define TM_ID_GetUnique8(x)		((x >= 0 && x < 12) ? (*(uint8_t *) (ID_UNIQUE_ADDRESS + (x))) : 0)
-	
+#define TM_ID_GetUnique8(x)     ((x >= 0 && x < 12) ? (*(uint8_t *) (ID_UNIQUE_ADDRESS + (x))) : 0)
+
 /**
  * @brief  Get unique ID number in 16-bit format
  * @note   STM32F4xx has 96bits long unique ID, so 6 2-bytes values are available for read in 16-bit format
@@ -169,7 +169,7 @@ extern "C" {
  *               - Values between 0 and 5 are allowed
  * @retval Unique ID address
  */
-#define TM_ID_GetUnique16(x)	((x >= 0 && x < 6) ? (*(uint16_t *) (ID_UNIQUE_ADDRESS + 2 * (x))) : 0)
+#define TM_ID_GetUnique16(x)    ((x >= 0 && x < 6) ? (*(uint16_t *) (ID_UNIQUE_ADDRESS + 2 * (x))) : 0)
 
 /**
  * @brief  Get unique ID number in 32-bit format
@@ -179,12 +179,8 @@ extern "C" {
  *               - Values between 0 and 2 are allowed
  * @retval Unique ID address
  */
-#define TM_ID_GetUnique32(x)	((x >= 0 && x < 3) ? (*(uint32_t *) (ID_UNIQUE_ADDRESS + 4 * (x))) : 0)
+#define TM_ID_GetUnique32(x)    ((x >= 0 && x < 3) ? (*(uint32_t *) (ID_UNIQUE_ADDRESS + 4 * (x))) : 0)
 
-/**
- * @}
- */
- 
 /**
  * @}
  */
@@ -193,7 +189,11 @@ extern "C" {
  * @}
  */
 
- 
+/**
+ * @}
+ */
+
+
 /* C++ detection */
 #ifdef __cplusplus
 }

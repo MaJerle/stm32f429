@@ -7,21 +7,21 @@
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   STemWin implementation for STM32F429-Discovery
- *	
+ *
 @verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen MAJERLE, 2015
-    
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     any later version.
-     
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
@@ -93,20 +93,20 @@ extern "C" {
  * @brief If you want to rotate feature for LCD, set this define to 1
  */
 #ifndef TM_EMWIN_ROTATE_LCD
-#define TM_EMWIN_ROTATE_LCD				0
+#define TM_EMWIN_ROTATE_LCD             0
 #endif
 
 /**
  * @brief Number of milliseconds between 2 touch checks
  */
 #ifndef EMWIN_UPDATE_TOUCH_MILLIS
-#define EMWIN_UPDATE_TOUCH_MILLIS		50
+#define EMWIN_UPDATE_TOUCH_MILLIS       50
 #endif
 
 /**
  * @}
  */
- 
+
 /**
  * @defgroup TM_EMWIN_Typedefs
  * @brief    Library Typedefs
@@ -114,23 +114,23 @@ extern "C" {
  */
 
 /**
- * @brief  EMWIN Result enumeration	
+ * @brief  EMWIN Result enumeration
  */
 typedef enum {
-	TM_EMWIN_Result_Ok = 0,     /*!< Everything OK */
-	TM_EMWIN_Result_Error,      /*!< An error occurred */
-	TM_EMWIN_Result_TouchError, /*!< Error with touch controller */
-	TM_EMWIN_Result_GUIError    /*!< Error with emWin GUI */
+    TM_EMWIN_Result_Ok = 0,     /*!< Everything OK */
+    TM_EMWIN_Result_Error,      /*!< An error occurred */
+    TM_EMWIN_Result_TouchError, /*!< Error with touch controller */
+    TM_EMWIN_Result_GUIError    /*!< Error with emWin GUI */
 } TM_EMWIN_Result_t;
 
 /**
  * @brief  EMWIN Rotation enumeration
  */
 typedef enum {
-	TM_EMWIN_Rotate_0 = 0, /*!< Rotate LCD for 0 degrees, default state*/
-	TM_EMWIN_Rotate_90,    /*!< Rotate LCD 90 degrees */
-	TM_EMWIN_Rotate_180,   /*!< Rotate LCD 180 degrees */
-	TM_EMWIN_Rotate_270,   /*!< Rotate LCD 170 degrees */
+    TM_EMWIN_Rotate_0 = 0, /*!< Rotate LCD for 0 degrees, default state*/
+    TM_EMWIN_Rotate_90,    /*!< Rotate LCD 90 degrees */
+    TM_EMWIN_Rotate_180,   /*!< Rotate LCD 180 degrees */
+    TM_EMWIN_Rotate_270,   /*!< Rotate LCD 170 degrees */
 } TM_EMWIN_Rotate_t;
 
 /**
@@ -153,7 +153,7 @@ TM_EMWIN_Result_t TM_EMWIN_Init(void);
 /**
  * @brief  Rotates LCD
  * @note   It does not have any sense, if you have disabled define TM_EMWIN_ROTATE_LCD.
- * 
+ *
  * By default, rotation is disabled for memory purpose.
  *
  * To rotate LCD you need additional RAM, but it is available on F429-Discovery board
@@ -166,7 +166,7 @@ TM_EMWIN_Result_t TM_EMWIN_Rotate(TM_EMWIN_Rotate_t rotation);
  * @brief  Enables memory feature for EMWIN
  * @note   When you enable memory, then all drawings for EMWIN are stored on LCD layer 1,
  *            but layer 2 is shown to user. You have to use @ref TM_EMWIN_Exec() to update data from LCD layer 1 to layer 2
- *         This is used to avoid flickering system when doing a lot of redrawing, for example updating a big graph very fast 
+ *         This is used to avoid flickering system when doing a lot of redrawing, for example updating a big graph very fast
  * @param  None
  * @retval None
  */
@@ -180,7 +180,7 @@ void TM_EMWIN_MemoryEnable(void);
 void TM_EMWIN_MemoryDisable(void);
 
 /**
- * @brief  Execute EMWIN pending tasks 
+ * @brief  Execute EMWIN pending tasks
  * @note   This function was designed to be used in case memory is enabled using @ref TM_EMWIN_MemoryEnable function.
  *            You can also use it (and it is recommended) in case you don't have memory enabled
  * @param  None
@@ -201,11 +201,11 @@ TM_EMWIN_Result_t TM_EMWIN_UpdateTouch(void);
 /**
  * @}
  */
- 
+
 /**
  * @}
  */
- 
+
 /**
  * @}
  */

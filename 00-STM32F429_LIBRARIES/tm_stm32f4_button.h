@@ -7,21 +7,21 @@
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   Buttons library for STM32F4xx devices
- *	
+ *
 @verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen MAJERLE, 2015
-    
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     any later version.
-     
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
@@ -96,35 +96,35 @@ extern "C" {
 /**
  * @}
  */
- 
+
 /**
  * @defgroup TM_BUTTON_Typedefs
  * @brief    Library Typedefs
  * @{
  */
- 
+
 /**
  * @brief  Button possible press types
  */
 typedef enum {
-	TM_BUTTON_PressType_OnPressed = 0x00, /*!< Button pressed */
-	TM_BUTTON_PressType_Normal,           /*!< Normal press type, released */
-	TM_BUTTON_PressType_Long              /*!< Long press type */
+    TM_BUTTON_PressType_OnPressed = 0x00, /*!< Button pressed */
+    TM_BUTTON_PressType_Normal,           /*!< Normal press type, released */
+    TM_BUTTON_PressType_Long              /*!< Long press type */
 } TM_BUTTON_PressType_t;
 
-/** 
- * @brief  Button private structure 
+/**
+ * @brief  Button private structure
  */
 typedef struct _TM_BUTTON_t {
-	GPIO_TypeDef* GPIOx;                          /*!< GPIOx PORT for button */
-	uint16_t GPIO_Pin;                            /*!< GPIO pin for button */
-	uint8_t GPIO_State;                           /*!< GPIO state for pin when pressed */
-	void (*ButtonHandler)(TM_BUTTON_PressType_t); /*!< Button function handler */
-	uint32_t StartTime;                           /*!< Time when button was pressed */
-	uint8_t LastStatus;                           /*!< Button status on last check */
-	uint8_t State;                                /*!< Current button state */
-	uint16_t PressNormalTime;                     /*!< Time in ms for normal press for button */
-	uint16_t PressLongTime;                       /*!< Time in ms for long press for button */
+    GPIO_TypeDef* GPIOx;                          /*!< GPIOx PORT for button */
+    uint16_t GPIO_Pin;                            /*!< GPIO pin for button */
+    uint8_t GPIO_State;                           /*!< GPIO state for pin when pressed */
+    void (*ButtonHandler)(TM_BUTTON_PressType_t); /*!< Button function handler */
+    uint32_t StartTime;                           /*!< Time when button was pressed */
+    uint8_t LastStatus;                           /*!< Button status on last check */
+    uint8_t State;                                /*!< Current button state */
+    uint16_t PressNormalTime;                     /*!< Time in ms for normal press for button */
+    uint16_t PressLongTime;                       /*!< Time in ms for long press for button */
 } TM_BUTTON_t;
 
 /**
@@ -147,7 +147,7 @@ typedef struct _TM_BUTTON_t {
  *            - > 0: Button is high when pressed
  * @param  *ButtonHandler:
  * @retval Button creation status:
- *            - 0: Button was not created 
+ *            - 0: Button was not created
  *            - > 0: Button created and saved to library, button pointer is returned
  */
 TM_BUTTON_t* TM_BUTTON_Init(GPIO_TypeDef* GPIOx, uint16_t GPIO_Pin, uint8_t ButtonState, void (*ButtonHandler)(TM_BUTTON_PressType_t));
@@ -172,11 +172,11 @@ void TM_BUTTON_Update(void);
 /**
  * @}
  */
- 
+
 /**
  * @}
  */
- 
+
 /**
  * @}
  */

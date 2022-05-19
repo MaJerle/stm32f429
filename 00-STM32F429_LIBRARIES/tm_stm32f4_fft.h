@@ -7,21 +7,21 @@
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   FFT library for float 32 and Cortex-M4 little endian
- *	
+ *
 @verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen MAJERLE, 2015
-    
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     any later version.
-     
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
@@ -46,9 +46,9 @@ extern "C" {
  * @{
  *
  * This library allows you to calculate FFT in your signal.
- * 
+ *
  * For more info about FFT and how it works on Cortex-M4, you should take a look at ARM DSP documentation
- * 
+ *
  * \par Changelog
  *
 @verbatim
@@ -77,7 +77,7 @@ extern "C" {
  * @brief    Library defines
  * @{
  */
- 
+
 /* Memory allocation function */
 #ifndef LIB_ALLOC_FUNC
 #define LIB_ALLOC_FUNC    malloc
@@ -91,7 +91,7 @@ extern "C" {
 /**
  * @}
  */
- 
+
 /**
  * @defgroup TM_FFT_Typedefs
  * @brief    Library Typedefs
@@ -102,14 +102,14 @@ extern "C" {
  * @brief  FFT main structure for 32-bit float
  */
 typedef struct {
-	float32_t* Input;               /*!< Pointer to data input buffer. Its length must be 2 * FFT_Size */
-	float32_t* Output;              /*!< Pointer to data output buffer. Its length must be FFT_Size */
-	uint16_t FFT_Size;              /*!< FFT size in units of samples. This parameter can be a value of 2^n where n is between 4 and 12 */
-	uint8_t UseMalloc;              /*!< Set to 1 when malloc is used for memory allocation for buffers. Meant for private use */
-	uint16_t Count;                 /*!< Number of samples in buffer when using @ref TM_FFT_AddToBuffer function. Meant for private use */
-	const arm_cfft_instance_f32* S; /*!< Pointer to @ref arm_cfft_instance_f32 structure. Meant for private use */
-	float32_t MaxValue;             /*!< Max value in FTT result after calculation */
-	uint32_t MaxIndex;              /*!< Index in output array where max value happened */
+    float32_t* Input;               /*!< Pointer to data input buffer. Its length must be 2 * FFT_Size */
+    float32_t* Output;              /*!< Pointer to data output buffer. Its length must be FFT_Size */
+    uint16_t FFT_Size;              /*!< FFT size in units of samples. This parameter can be a value of 2^n where n is between 4 and 12 */
+    uint8_t UseMalloc;              /*!< Set to 1 when malloc is used for memory allocation for buffers. Meant for private use */
+    uint16_t Count;                 /*!< Number of samples in buffer when using @ref TM_FFT_AddToBuffer function. Meant for private use */
+    const arm_cfft_instance_f32* S; /*!< Pointer to @ref arm_cfft_instance_f32 structure. Meant for private use */
+    float32_t MaxValue;             /*!< Max value in FTT result after calculation */
+    uint32_t MaxIndex;              /*!< Index in output array where max value happened */
 } TM_FFT_F32_t;
 
 /**
@@ -148,7 +148,7 @@ uint8_t TM_FFT_Init_F32(TM_FFT_F32_t* FFT, uint16_t FFT_Size, uint8_t use_malloc
 void TM_FFT_SetBuffers_F32(TM_FFT_F32_t* FFT, float32_t* InputBuffer, float32_t* OutputBuffer);
 
 /**
- * @brief  Adds new sample to input buffer in FFT array 
+ * @brief  Adds new sample to input buffer in FFT array
  * @param  *FFT: Pointer to @ref TM_FFT_F32_t structure where new sample will be added
  * @param  sampleValue: A new sample to be added to buffer, real part. Imaginary part will be set to 0
  * @retval FFT calculation status:
@@ -209,11 +209,11 @@ void TM_FFT_Free_F32(TM_FFT_F32_t* FFT);
 /**
  * @}
  */
- 
+
 /**
  * @}
  */
- 
+
 /**
  * @}
  */

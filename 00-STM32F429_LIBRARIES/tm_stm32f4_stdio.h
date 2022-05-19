@@ -7,21 +7,21 @@
  * @ide     Keil uVision
  * @license GNU GPL v3
  * @brief   Simple STDIO output & input stream implementation for STM32F4
- *	
+ *
 @verbatim
    ----------------------------------------------------------------------
     Copyright (C) Tilen MAJERLE, 2015
-    
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     any later version.
-     
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
-    
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
    ----------------------------------------------------------------------
@@ -95,11 +95,11 @@ extern "C" {
  */
 
 /**
- * @brief  File structure for stdio stream output	
+ * @brief  File structure for stdio stream output
  */
 struct __FILE {
-	int (*outputFuncPointer)(int, FILE *); /*!< Pointer to function to call when need to output data to stream */
-	int (*inputFuncPointer)(FILE *);       /*!< Pointer to function to call when trying to get data from stream */
+    int (*outputFuncPointer)(int, FILE*);  /*!< Pointer to function to call when need to output data to stream */
+    int (*inputFuncPointer)(FILE*);        /*!< Pointer to function to call when trying to get data from stream */
 };
 
 /**
@@ -118,7 +118,7 @@ struct __FILE {
  * @param  *outputFuncPointer: Pointer to function to be used to output data to stream
  * @retval None
  */
-void TM_STDIO_SetOutputFunction(FILE* f, int (*outputFuncPointer)(int, FILE *));
+void TM_STDIO_SetOutputFunction(FILE* f, int (*outputFuncPointer)(int, FILE*));
 
 /**
  * @brief  Links file input stream with input get character function
@@ -126,7 +126,7 @@ void TM_STDIO_SetOutputFunction(FILE* f, int (*outputFuncPointer)(int, FILE *));
  * @param  *inputFuncPointer: Pointer to function to be used for input data from stream
  * @retval None
  */
-void TM_STDIO_SetInputFunction(FILE* f, int (*inputFuncPointer)(FILE *));
+void TM_STDIO_SetInputFunction(FILE* f, int (*inputFuncPointer)(FILE*));
 
 /**
  * @brief  Default output handler for standard output (stdout)
@@ -155,11 +155,11 @@ int TM_STDIO_StdinHandler(FILE* f);
 /**
  * @}
  */
- 
+
 /**
  * @}
  */
- 
+
 /**
  * @}
  */
